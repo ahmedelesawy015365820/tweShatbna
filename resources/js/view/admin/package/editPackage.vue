@@ -130,6 +130,7 @@
                                                         id="WebsitePages"
                                                         name="pageView_id[]"
                                                         v-if="pageWeb"
+                                                        required
                                                         v-model="idPageView"
                                                     >
                                                         <optgroup
@@ -147,7 +148,6 @@
                                                     </select>
                                                     <div class="valid-feedback">Looks good!</div>
                                                     <div class="invalid-feedback">
-<!--                                                        <span v-if="!$v.pageView_id.required.$invalid">name en is required.</span>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,6 +160,7 @@
                                                         id="MobilePages"
                                                         name="pageViewMobile_id[]"
                                                         v-if="pageMobile"
+                                                        required
                                                         v-model="idPageViewMobile"
                                                     >
                                                         <optgroup

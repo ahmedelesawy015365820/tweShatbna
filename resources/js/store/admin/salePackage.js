@@ -6,7 +6,8 @@ const state = {
     loading: false,
     Packages: [],
     valuePackage: {},
-    showSale: {}
+    showSale: {},
+    packageId: {}
 };
 
 // getters
@@ -15,7 +16,8 @@ const getters = {
     loading: state => state.loading,
     Packages: state => state.Packages,
     showSale: state => state.showSale,
-    valuePackage: state => state.valuePackage
+    valuePackage: state => state.valuePackage,
+    packageId: state => state.packageId
 }
 
 // mutations
@@ -34,6 +36,9 @@ const mutations = {
     },
     showSaleEdit(state,show){
         state.showSale = show;
+    },
+    packageIdEdit(state,packageId){
+        state.packageId = packageId;
     }
 };
 
@@ -104,6 +109,39 @@ const actions = {
             .finally(() => {
                 commit('loadingPackage',false);
             });
+    },
+    packageIdE({commit},id) {
+
+        commit('loadingPackage',true);
+
+        adminApi.get(`/v1/dashboard/packageSale/${id}/edit`)
+            .then((res) => {
+                let l = res.data.data;
+                commit('packageIdEdit',l.package);
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            })
+            .finally(() => {
+                commit('loadingPackage',false);
+            });
+
+    },
+    updateSalePackage({commit},preload) {
+
+        commit('loadingPackage',true);
+
+        adminApi.post(`/v1/dashboard/packageSale/${preload.id}`,preload)
+            .then((res) => {
+                console.log('ahmed elesawy')
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            })
+            .finally(() => {
+                commit('loadingPackage',false);
+            });
+
     },
     checkSale({commit},preload){
         commit('loadingPackage',true);

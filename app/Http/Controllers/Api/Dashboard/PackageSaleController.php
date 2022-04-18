@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AdvertisingPackageResource;
-use App\Http\Resources\PackageSaleResource;
 use App\Models\AdvertisingPackage;
 use App\Models\PackageSale;
 use App\Models\User;
@@ -127,6 +125,21 @@ class PackageSaleController extends Controller
 
     }
 
+    public function edit($id)
+    {
+        try {
+
+            $packageId = PackageSale::find($id);
+
+            return $this->sendResponse(['package' => $packageId],'Data exited successfully');
+
+        }catch (\Exception $e){
+
+            return $this->sendError('An error occurred in the system');
+
+        }
+    }
+
     public function update(Request $request,$id)
     {
         try{
@@ -137,10 +150,7 @@ class PackageSaleController extends Controller
 
                 // Validator request
                 $v = Validator::make($request->all(), [
-                    'check' => 'required|boolean',
-                    'accept' => 'required|boolean',
-                    'complete' => 'required|boolean',
-                    'package' => 'required|integer|exists:advertising_packages,id',
+                    'advertising_package_id' => 'required|integer|exists:advertising_packages,id',
                 ]);
 
                 if($v->fails()) {
@@ -148,10 +158,7 @@ class PackageSaleController extends Controller
                 }
 
                 $packageSale->update([
-                    'check' => $request->check,
-                    'accept' => $request->accept,
-                    'complete' => $request->complete,
-                    'advertising_package_id' => $request->package,
+                    'advertising_package_id' => $request->advertising_package_id,
                 ]);
 
             }else{

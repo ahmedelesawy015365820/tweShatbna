@@ -114,6 +114,7 @@
                                                             @change="checkPackage"
                                                             v-model="sale.check"
                                                             :checked="sale.check"
+                                                            :disabled="sale.check"
                                                         >
                                                         <span class="toggle-switch-label mx-auto">
 													        <span class="toggle-switch-indicator"></span>
@@ -134,6 +135,7 @@
                                                             @change="completePackage"
                                                             v-model="sale.complete"
                                                             :checked="sale.complete"
+                                                            :disabled="sale.complete"
                                                         >
                                                         <span class="toggle-switch-label mx-auto">
 													        <span class="toggle-switch-indicator"></span>
@@ -154,6 +156,7 @@
                                                             @change="acceptPackage"
                                                             v-model="sale.accept"
                                                             :checked="sale.accept"
+                                                            :disabled="sale.accept"
                                                         >
                                                         <span class="toggle-switch-label mx-auto">
 													        <span class="toggle-switch-indicator"></span>
@@ -255,7 +258,6 @@ export default {
     },
     data(){
         return {
-            dateTime: new Date('Y-m-d\TH:i:s')
         }
     },
     props:['id'],
@@ -418,6 +420,10 @@ img{
 
 .cal-icon:after {
     display: none;
+}
+
+.toggle-switch-input:checked:disabled + .toggle-switch-label {
+    background-color: #FF5B37;
 }
 
 </style>

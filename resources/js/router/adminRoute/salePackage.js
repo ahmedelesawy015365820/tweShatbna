@@ -1,6 +1,7 @@
 import salePackage from "../../view/admin/salePackage/index";
 import createSale from "../../view/admin/salePackage/createSale";
 import showSale from "../../view/admin/salePackage/show";
+import editSale from "../../view/admin/salePackage/editSale";
 
 export default [
     {
@@ -25,12 +26,12 @@ export default [
                 component: showSale,
                 props: true
             },
-            // {
-            //     path: 'edit/:id(\\d+)',
-            //     name: 'editPackage',
-            //     component: editPackage,
-            //     props: true
-            // },
+            {
+                path: 'edit/:id(\\d+)',
+                name: 'editSale',
+                component: editSale,
+                props: true
+            },
         ]
     },
 ];

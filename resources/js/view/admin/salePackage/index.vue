@@ -67,7 +67,7 @@
                                             <router-link v-if="!item.complete" :to="{name: 'showSale', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-info me-2">
                                                 <i class="fas fa-book-open"></i>
                                             </router-link>
-                                            <router-link :to="{name: 'createSale', params: {lang: locale || 'ar'}}" class="btn btn-sm btn-success me-2"><i class="far fa-edit"></i></router-link>
+                                            <router-link :to="{name: 'editSale', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2"><i class="far fa-edit"></i></router-link>
                                             <a href="#" data-bs-toggle="modal" :data-bs-target="'#staticBackdrop' + item.id"  class="btn btn-sm btn-danger me-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
 

@@ -1,0 +1,40 @@
+/* start register */
+.forget-login{
+    margin-top: 30px;
+    font-size: 17px;
+}
+.form-focus .focus-label {
+    right: 12px
+}
+
+.forget-register{
+    text-align: right !important;
+}
+
+.login-register{
+    text-align: left !important;
+}
+
+.custom_check {
+    padding-right: 30px;
+}
+
+
+.custom_check .checkmark{
+    right: 0;
+}
+
+.custom_check .checkmark::after {
+    right: 4px;
+}
+
+.custom_check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom_check input{
+    right: 0;
+}
+
+/* end register */
+

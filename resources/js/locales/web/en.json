@@ -1,0 +1,37 @@
+{
+    "index" :{
+        "home": "Home",
+        "desgin": "Desginer",
+        "trused": "Trused by over 2M+ users",
+        "best" : "Get the best",
+        "finishing": "Finishing and Designer company around the world",
+        "comfinish" : "finishing company"
+    },
+    "register" :{
+        "design": "DESIGNER",
+        "advertiser": "ADVERTISER",
+        "companies": "COMPANY",
+        "full_name" : "Full Name",
+        "email" : "Email",
+        "password": "Password",
+        "confirm": "Confirm Password",
+        "company": "Name Company",
+        "birth": "Birth",
+        "phone": "Phone",
+        "country": "Country",
+        "state": "State",
+        "female": "Female",
+        "male": "male",
+        "and": "and",
+        "cookie": "Cookie Policy",
+        "join": "Agree TO JOIN",
+        "agree": "you agree to the shatbna",
+        "Privacy": "User Agreement, Privacy Policy,",
+        "account": "Already on Shatbna ",
+        "click": "Click here",
+        "forget": "Forget Password ?",
+        "remember": "Remember password",
+        "login": "LOGIN",
+        "new": "New to Kofejob?"
+    }
+}

@@ -1,0 +1,184 @@
+<template>
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Show Package</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><router-link :to="{name: 'package', params: {lang: locale || 'ar'}}">Package</router-link></li>
+                            <li class="breadcrumb-item active">Show Package</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Page Header -->
+
+            <!-- Table -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <loader v-if="loading" />
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">
+                                    <div class="package-detail">
+                                        <h4>{{Package.name}} Plan</h4>
+                                        <h3 class="package-price">${{parseFloat(Package.price,2)}}</h3>
+                                        <div class="package-feature">
+                                            <ul>
+                                                <li>{{Package.visiter_num}} Number of Visitors</li>
+                                                <li>{{Package.period}} Days visibility</li>
+                                                <li>{{Package.period}} Days Package Expiry</li>
+                                                <p>Ad appearance pages</p>
+                                                <span v-for="pageView in pageWeb">
+                                                    <span v-for="view in pageView.page.views">
+                                                        <li>{{pageView.page.name + ' -- '+ view.type }}</li>
+                                                    </span>
+                                                </span>
+                                                <p>Ad appearance mobile pages</p>
+                                                <span v-for="pageViewMob in pageMobile">
+                                                    <span v-for="view in pageViewMob.page_mobile.views">
+                                                        <li>{{pageViewMob.page_mobile.name + ' -- '+ view.type }}</li>
+                                                    </span>
+                                                </span>
+                                            </ul>
+                                        </div>
+                                        <a href="#" class="btn btn-primary price-btn btn-block">Select Plan</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="card col-md-4 ">
+                                    <div class="card-body p-3 text-center">
+                                        <p class="card-text f-12">Active</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <label class="form-group toggle-switch mb-0" for="notification_switch1" v-if="Package">
+                                            <input type="checkbox" @change="statusPackage" v-model="Package.status" :checked="Package.status"  class="toggle-switch-input" id="notification_switch1">
+                                            <span class="toggle-switch-label mx-auto">
+                                            <span class="toggle-switch-indicator"></span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Table -->
+        </div>
+    </div>
+</template>
+
+<script>
+import {computed,inject,toRefs,onBeforeMount} from "vue";
+import {useStore} from "vuex";
+
+export default {
+    name: "showPackage",
+    props: ['id'],
+    setup(props){
+        const store = useStore();
+        const emitter = inject('emitter');
+        const { id } = toRefs(props);
+
+        // get create Package
+        let Package = computed(() => store.getters['packageAdmin/showpack'] );
+        let pageWeb = computed(() => store.getters['packageAdmin/pageWeb'] );
+        let pageMobile = computed(() => store.getters['packageAdmin/pageMobile'] );
+        let loading = computed(() => store.getters['packageAdmin/loading'] );
+        let getPackage = () => {
+            store.dispatch('packageAdmin/showPackage',id.value);
+        }
+
+        onBeforeMount(() => {
+            getPackage();
+        });
+
+        emitter.on('get_lang', () => {
+            getPackage();
+        });
+
+        let statusPackage = () => {
+            store.dispatch('packageAdmin/changeStatus',Package._value);
+        }
+
+
+        return {loading,Package,pageWeb,pageMobile,statusPackage,status};
+    },
+    data(){
+        return {
+            locale: localStorage.getItem("langAdmin")
+        }
+    }
+}
+</script>
+
+<style scoped>
+.card-body {
+    min-heightheight: 600px;
+}
+
+.package-detail {
+    background: #fff;
+    border: 1px solid #FEFEFE;
+    box-shadow: 0px 4px 24px rgb(199 199 199 / 25%);
+    border-radius: 5px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+.package-detail h4 {
+    font-weight: 500;
+    font-size: 18px;
+}
+.package-detail .package-price {
+    font-weight: 700;
+    font-size: 28px;
+    color: #ff5b37;
+    margin-bottom: 0;
+}
+.package-feature ul{
+    padding: 0;
+}
+
+.package-feature ul li {
+    margin-bottom: 15px;
+    position: relative;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 25px;
+}
+
+.package-feature ul li:first-child {
+    margin-top: 10px;
+}
+
+.package-feature ul li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    color: #4B9F18;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.package-feature ul li:last-child {
+    margin-bottom: 10px;
+}
+
+.price-btn {
+    background: #131135;
+    border: 1px solid #131135;
+    border-radius: 5px;
+    font-weight: 500;
+    color: #fff;
+    padding: 12px 20px;
+}
+
+
+</style>

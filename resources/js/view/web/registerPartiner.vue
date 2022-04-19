@@ -62,43 +62,37 @@
                                                 <input type="password" v-model="dataCompany.password" class="form-control floating">
                                                 <label class="focus-label">Password</label>
                                             </div>
-                                            <div class="form-group form-focus mb-0">
+                                            <div class="form-group form-focus">
                                                 <input type="password" v-model="dataCompany.confirmtion" class="form-control floating">
                                                 <label class="focus-label">Confirm Password</label>
                                             </div>
-                                            <div class="form-group  mb-0">
-                                                <input type="text" v-model="dataCompany.nameCompany" class="form-control">
+                                            <div class="form-group form-focus">
+                                                <input type="text" v-model="dataCompany.nameCompany" class="form-control floating">
                                                 <label class="focus-label">Name company</label>
                                             </div>
-                                            <div class="form-group form-focus mb-0">
+                                            <div class="form-group form-focus">
                                                 <input type="text" v-model="dataCompany.phone" class="form-control floating">
                                                 <label class="focus-label">Phone</label>
                                             </div>
-                                            <div class="form-group form-focus  mb-0">
+                                            <div class="form-group form-focus">
                                                 <input type="text" v-model="dataCompany.phone_second" class="form-control floating">
                                                 <label class="focus-label">Second Phone</label>
                                             </div>
-                                            <div class="form-group  mb-0">
-                                                <label >country</label>
-                                                <select v-model="dataCompany.country" class="form-control">
+                                            <div class="form-group form-focus">
+                                                <select v-model="dataCompany.country" class="form-control floating">
                                                     <option value="1">egypt</option>
                                                 </select>
+                                                <label class="focus-label">country</label>
                                             </div>
-                                            <div class="form-group mb-0">
-                                                <label >state</label>
-                                                <select v-model="dataCompany.state" class="form-control">
+                                            <div class="form-group form-focus">
+                                                <select v-model="dataCompany.state" class="form-control floating">
                                                     <option value="1">Alexandria</option>
                                                 </select>
+                                                <label class="focus-label">state</label>
                                             </div>
-                                            <div class="form-group form-focus mb-0">
+                                            <div class="form-group form-focus">
                                                 <input type="url" v-model="dataCompany.location" class="form-control floating">
                                                 <label class="focus-label">Location</label>
-                                            </div>
-                                            <div class="dont-have">
-                                                <label class="custom_check">
-                                                    <input type="checkbox" v-model="dataCompany.sendEmail">
-                                                    <span class="checkmark"></span> send email
-                                                </label>
                                             </div>
                                             <button class="btn btn-primary btn-block btn-lg login-btn text-center" type="submit">Agree TO JOIN</button>
                                             <div class="row form-row">

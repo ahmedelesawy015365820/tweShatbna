@@ -14,9 +14,10 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        $country []=['name'=>  'Egypt', 'status' => true,'code' => '+20'] ;
-        $country []=['name'=>  'Emirates', 'status' => true,'code' => '+967'] ;
-        $country []=['name'=>  'Sadui', 'status' => true,'code' => '+966'] ;
+        $country []=[ 'en'=> ['name'=>  'Egypt'],'ar'=> ['name'=>  'مصر'], 'status' => true,'code' => '+20'] ;
+        $country []=['en'=> ['name'=>  'Emirates'],'ar'=> ['name'=>  'الامارات'], 'status' => true,'code' => '+967'] ;
+        $country []=['en'=>['name'=>  'Sadui'],'ar'=> ['name'=>  'السعوديه'], 'status' => true,'code' => '+966'] ;
+
 
         Country::insert($country);
 

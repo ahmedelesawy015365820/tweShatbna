@@ -27,4 +27,9 @@ class Designer extends Model
         return $this->hasOne(User::class);
     }
 
+    public function media()
+    {
+        return $this->morphMany(Media::class,'mediable');
+    }
+
 }

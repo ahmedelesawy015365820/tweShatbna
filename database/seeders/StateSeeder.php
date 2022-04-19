@@ -14,14 +14,18 @@ class StateSeeder extends Seeder
      */
     public function run()
     {
-        $array = ['Alexandria','Ismailia','Aswan','Asyut','Luxor','cairo','Bani Sweif','Port Said',
-            'Giza','Damietta','Dakahlia','Sharkia'
-        ];
 
-        foreach($array as $item){
-            $state[] = ['name' => $item , 'country_id' => 1, 'status' => true];
-        }
 
-        State::insert($state);
+        State::create(['en' => ['name' => 'Alexandria'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Ismailia'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Aswan'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Asyut'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Luxor'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'cairo'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Bani Sweif'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Port Said'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Giza'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Damietta'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
+        State::create(['en' => ['name' => 'Sharkia'],'ar' => ['name' => 'اسكندريه'] , 'country_id' => 1, 'status' => true]);
     }
 }

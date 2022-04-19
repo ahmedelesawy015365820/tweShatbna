@@ -51,6 +51,11 @@ class User extends Authenticatable implements JWTSubject
 
     //start raletions
 
+    public function media()
+    {
+        return $this->morphOne(Media::class,'mediable');
+    }
+
     public function complement()
     {
         return $this->hasOne(Complement::class);

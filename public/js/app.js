@@ -25118,6 +25118,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         country: '',
         state: '',
         phone: '',
+        code: '',
         agree: false
       }
     });
@@ -25176,7 +25177,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (!this.v$.$error && this.dataAdvertiser.agree) {
         var item = document.querySelector('.codeCountry').innerHTML;
-        this.dataAdvertiser.phone = item + this.dataAdvertiser.phone;
+        this.dataAdvertiser.code = item;
         this.$store.dispatch('auth/advertiserRegister', this.dataAdvertiser);
       }
     }
@@ -25248,6 +25249,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         phone: '',
         birth: '',
         gender: '',
+        code: '',
         agree: false
       }
     });
@@ -25309,8 +25311,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (!this.v$.$error && this.dataDesign.agree) {
         var item = document.querySelector('.codeCountry').innerHTML;
-        this.dataDesign.phone = item + this.dataDesign.phone;
-        console.log(this.dataDesign);
+        this.dataDesign.code = item;
         this.$store.dispatch('auth/DesignRegister', this.dataDesign);
       }
     }
@@ -35494,7 +35495,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-467083a1] {\n        border: none;\n        box-shadow: none;\n}\n.card-body[data-v-467083a1] {\n         padding: 0;\n}\n.card-footer[data-v-467083a1] {\n        border-top: none;\n}\n.toggle-switch[data-v-467083a1] {\n        display: flex;\n        align-items: center;\n        cursor: pointer;\n}\n.toggle-switch-input[data-v-467083a1] {\n        position: absolute;\n        z-index: -1;\n        opacity: 0;\n}\n.toggle-switch-label[data-v-467083a1] {\n        position: relative;\n        display: block;\n        width: 3rem;\n        height: 30px;\n        background-color: #e7eaf3;\n        background-clip: content-box;\n        border: 0.125rem solid transparent;\n        border-radius: 6.1875rem;\n        transition: .3s;\n}\n.toggle-switch-indicator[data-v-467083a1] {\n        position: absolute;\n        left: 0.125rem;\n        bottom: 50%;\n        width: 22px;\n        height: 22px;\n        background-color: #fff;\n        transform: initial;\n        box-shadow: 0 3px 6px 0 rgb(140 152 164 / 25%);\n        border-radius: 50%;\n        transform: translate3d(0, 50%, 0);\n        transition: .3s;\n}\n#notification_switch1:checked ~ span[data-v-467083a1]{\n        background-color: #FF5B37;\n}\n#notification_switch1:checked ~ span span[data-v-467083a1]{\n        background-color: #fff;\n        transform: translate(18px, 11px);\n}\n#notification_switch2:checked ~ span[data-v-467083a1]{\n        background-color: #FF5B37;\n}\n#notification_switch2:checked ~ span span[data-v-467083a1]{\n        background-color: #fff;\n        transform: translate(18px, 11px);\n}\nimg[data-v-467083a1] {\n        width: 30px;\n        height: 20px;\n}\n.flag[data-v-467083a1]{\n        top: 34px;\n        left: 10px;\n        position: absolute;\n}\n.phone[data-v-467083a1] {\n        padding-left: 70px;\n        text-align: left;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-467083a1] {\r\n        border: none;\r\n        box-shadow: none;\n}\n.card-body[data-v-467083a1] {\r\n         padding: 0;\n}\n.card-footer[data-v-467083a1] {\r\n        border-top: none;\n}\n.toggle-switch[data-v-467083a1] {\r\n        display: flex;\r\n        align-items: center;\r\n        cursor: pointer;\n}\n.toggle-switch-input[data-v-467083a1] {\r\n        position: absolute;\r\n        z-index: -1;\r\n        opacity: 0;\n}\n.toggle-switch-label[data-v-467083a1] {\r\n        position: relative;\r\n        display: block;\r\n        width: 3rem;\r\n        height: 30px;\r\n        background-color: #e7eaf3;\r\n        background-clip: content-box;\r\n        border: 0.125rem solid transparent;\r\n        border-radius: 6.1875rem;\r\n        transition: .3s;\n}\n.toggle-switch-indicator[data-v-467083a1] {\r\n        position: absolute;\r\n        left: 0.125rem;\r\n        bottom: 50%;\r\n        width: 22px;\r\n        height: 22px;\r\n        background-color: #fff;\r\n        transform: initial;\r\n        box-shadow: 0 3px 6px 0 rgb(140 152 164 / 25%);\r\n        border-radius: 50%;\r\n        transform: translate3d(0, 50%, 0);\r\n        transition: .3s;\n}\n#notification_switch1:checked ~ span[data-v-467083a1]{\r\n        background-color: #FF5B37;\n}\n#notification_switch1:checked ~ span span[data-v-467083a1]{\r\n        background-color: #fff;\r\n        transform: translate(18px, 11px);\n}\n#notification_switch2:checked ~ span[data-v-467083a1]{\r\n        background-color: #FF5B37;\n}\n#notification_switch2:checked ~ span span[data-v-467083a1]{\r\n        background-color: #fff;\r\n        transform: translate(18px, 11px);\n}\nimg[data-v-467083a1] {\r\n        width: 30px;\r\n        height: 20px;\n}\n.flag[data-v-467083a1]{\r\n        top: 34px;\r\n        left: 10px;\r\n        position: absolute;\n}\n.phone[data-v-467083a1] {\r\n        padding-left: 70px;\r\n        text-align: left;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35542,7 +35543,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-d7e2b06a] {\n    padding: 150px 0 30px;\n}\n.model_sale[data-v-d7e2b06a]{\n    display: none;\n    background-color: #0a0a0a21;\n    position: fixed;\n    top: 0;\n    right: 0;\n    left: 0;\n    bottom: 0;\n    z-index: 1050;\n    width: 100%;\n    height: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    outline: 0;\n}\n.model_sale.open[data-v-d7e2b06a]{\n    display: block;\n}\n.modal-title[data-v-d7e2b06a],.modal-close a i[data-v-d7e2b06a]{\n    color: #fcb00c\n}\n.modal-dialog[data-v-d7e2b06a]{\n    max-width: 700px;\n    min-width: 300px;\n}\n.modal-content[data-v-d7e2b06a]{\n    padding: 6px 58px 20px;\n    border: none;\n    border-radius: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-d7e2b06a] {\r\n    padding: 150px 0 30px;\n}\n.model_sale[data-v-d7e2b06a]{\r\n    display: none;\r\n    background-color: #0a0a0a21;\r\n    position: fixed;\r\n    top: 0;\r\n    right: 0;\r\n    left: 0;\r\n    bottom: 0;\r\n    z-index: 1050;\r\n    width: 100%;\r\n    height: 100%;\r\n    border-radius: 10px;\r\n    overflow: hidden;\r\n    outline: 0;\n}\n.model_sale.open[data-v-d7e2b06a]{\r\n    display: block;\n}\n.modal-title[data-v-d7e2b06a],.modal-close a i[data-v-d7e2b06a]{\r\n    color: #fcb00c\n}\n.modal-dialog[data-v-d7e2b06a]{\r\n    max-width: 700px;\r\n    min-width: 300px;\n}\n.modal-content[data-v-d7e2b06a]{\r\n    padding: 6px 58px 20px;\r\n    border: none;\r\n    border-radius: 15px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35566,7 +35567,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-75d3ef0c] {\n    padding: 150px 0 30px;\n    position: relative;\n}\n.custom-icon[data-v-75d3ef0c]{\n    font-size: 110px;\n    color: green;\n}\n.checkCorrect[data-v-75d3ef0c] {\n    margin-bottom: 30px;\n}\n.waves-effect[data-v-75d3ef0c] {\n    position: relative;\n    overflow: hidden;\n    cursor: pointer;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n    -webkit-tap-highlight-color: transparent;\n    width: 200px;\n    height: 50px;\n    text-align: center;\n    line-height: 34px;\n}\ninput[type=\"file\"][data-v-75d3ef0c] {\n    position: absolute;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    padding: 0;\n    margin: 0;\n    cursor: pointer;\n    filter: alpha(opacity=0);\n    opacity: 0;\n}\n.num-of-files[data-v-75d3ef0c]{\n    text-align: center;\n    margin: 20px 0 30px;\n}\n.container-images[data-v-75d3ef0c]{\n    width: 90%;\n    position: relative;\n    margin: auto;\n    display: flex;\n    justify-content: space-evenly;\n    gap: 20px;\n    flex-wrap: wrap;\n    padding: 10px;\n    border-radius: 20px;\n    background-color: #f7f7f7;\n}\n.submit-section .submit-btn[data-v-75d3ef0c] {\n    margin-top: 30px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-75d3ef0c] {\r\n    padding: 150px 0 30px;\r\n    position: relative;\n}\n.custom-icon[data-v-75d3ef0c]{\r\n    font-size: 110px;\r\n    color: green;\n}\n.checkCorrect[data-v-75d3ef0c] {\r\n    margin-bottom: 30px;\n}\n.waves-effect[data-v-75d3ef0c] {\r\n    position: relative;\r\n    overflow: hidden;\r\n    cursor: pointer;\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\r\n    -webkit-tap-highlight-color: transparent;\r\n    width: 200px;\r\n    height: 50px;\r\n    text-align: center;\r\n    line-height: 34px;\n}\ninput[type=\"file\"][data-v-75d3ef0c] {\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 0;\r\n    margin: 0;\r\n    cursor: pointer;\r\n    filter: alpha(opacity=0);\r\n    opacity: 0;\n}\n.num-of-files[data-v-75d3ef0c]{\r\n    text-align: center;\r\n    margin: 20px 0 30px;\n}\n.container-images[data-v-75d3ef0c]{\r\n    width: 90%;\r\n    position: relative;\r\n    margin: auto;\r\n    display: flex;\r\n    justify-content: space-evenly;\r\n    gap: 20px;\r\n    flex-wrap: wrap;\r\n    padding: 10px;\r\n    border-radius: 20px;\r\n    background-color: #f7f7f7;\n}\n.submit-section .submit-btn[data-v-75d3ef0c] {\r\n    margin-top: 30px;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35614,7 +35615,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-1b517e16] {\n    padding: 150px 0 30px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-1b517e16] {\r\n    padding: 150px 0 30px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -35662,7 +35663,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-5c35063f] {\n    padding: 150px 0 30px;\n}\n.success[data-v-5c35063f]{\n    display: block;\n    background-color: #0a0a0a21;\n    position: fixed;\n    top: 0;\n    right: 0;\n    left: 0;\n    bottom: 0;\n    z-index: 1050;\n    width: 100%;\n    height: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    outline: 0;\n}\n.modal-dialog[data-v-5c35063f]{\n    width: 400px\n}\n.modal-content[data-v-5c35063f]{\n    padding: 6px 58px 20px;\n    border: none;\n    border-radius: 15px;\n}\n.success img[data-v-5c35063f]{\n    margin: 0 auto;\n    width: 100px;\n    margin-top: -50px;\n    border-radius: 50%;\n    box-shadow: 0 2px 5px rgba(0,0,0,.2);\n}\n.success h2[data-v-5c35063f]{\n    font-size: 38px;\n    font-weight: 500;\n    margin: 25px 0 10px;\n}\n.success button[data-v-5c35063f]{\n    width: 100%;\n    margin-top: 10px;\n    padding: 10px 0;\n    background-color: #FF5B37;\n    color: #fff;\n    border: 0;\n    outline: 0;\n    border-right: 4px;\n    cursor: pointer;\n    box-shadow: 0 2px 5px rgba(0,0,0,.2);\n}\n.login-header img[data-v-5c35063f]{\n    height: 50px;\n    width: 55px;\n}\n.custom-nav[data-v-5c35063f] {\n    margin:0 25px;\n}\n.stop-margin[data-v-5c35063f] {\n    margin: 0;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-5c35063f] {\r\n    padding: 150px 0 30px;\n}\n.success[data-v-5c35063f]{\r\n    display: block;\r\n    background-color: #0a0a0a21;\r\n    position: fixed;\r\n    top: 0;\r\n    right: 0;\r\n    left: 0;\r\n    bottom: 0;\r\n    z-index: 1050;\r\n    width: 100%;\r\n    height: 100%;\r\n    border-radius: 10px;\r\n    overflow: hidden;\r\n    outline: 0;\n}\n.modal-dialog[data-v-5c35063f]{\r\n    width: 400px\n}\n.modal-content[data-v-5c35063f]{\r\n    padding: 6px 58px 20px;\r\n    border: none;\r\n    border-radius: 15px;\n}\n.success img[data-v-5c35063f]{\r\n    margin: 0 auto;\r\n    width: 100px;\r\n    margin-top: -50px;\r\n    border-radius: 50%;\r\n    box-shadow: 0 2px 5px rgba(0,0,0,.2);\n}\n.success h2[data-v-5c35063f]{\r\n    font-size: 38px;\r\n    font-weight: 500;\r\n    margin: 25px 0 10px;\n}\n.success button[data-v-5c35063f]{\r\n    width: 100%;\r\n    margin-top: 10px;\r\n    padding: 10px 0;\r\n    background-color: #FF5B37;\r\n    color: #fff;\r\n    border: 0;\r\n    outline: 0;\r\n    border-right: 4px;\r\n    cursor: pointer;\r\n    box-shadow: 0 2px 5px rgba(0,0,0,.2);\n}\n.login-header img[data-v-5c35063f]{\r\n    height: 50px;\r\n    width: 55px;\n}\n.custom-nav[data-v-5c35063f] {\r\n    margin:0 25px;\n}\n.stop-margin[data-v-5c35063f] {\r\n    margin: 0;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -83257,7 +83258,7 @@ module.exports = JSON.parse('{"index":{"home":"الرئيسية","desgin":"ال�
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"index":{"home":"Home","desgin":"Desginer","trused":"Trused by over 2M+ users","best":"Get the best","finishing":"Finishing and Designer company around the world","comfinish":"finishing company"},"register":{"design":"DESIGNER","advertiser":"ADVERTISER","companies":"COMPANY","full_name":"Full Name","email":"Email","password":"Password","confirm":"Confirm Password","company":"Name Company","birth":"Birth","phone":"Phone","country":"Country","state":"State","female":"Female","male":"male","and":"and","cookie":"Cookie Policy","join":"Agree TO JOIN","agree":"you agree to the shatbna","Privacy":"User Agreement, Privacy Policy,","account":"Already on Shatbna ","click":"Click here","forget":"Forget Password ?","remember":"Remember password","login":"LOGIN","new":"New to Kofejob?"}}');
+module.exports = JSON.parse('{"index":{"home":"Home","desgin":"Desginer","trused":"Trused by over 2M+ users","best":"Get the best","finishing":"Finishing and Designer company around the world","comfinish":"finishing company"},"register":{"design":"DESIGNER","advertiser":"ADVERTISER","companies":"COMPANY","full_name":"Full Name","email":"Email","password":"Password","confirm":"Confirm Password","company":"Name Company","birth":"Birth","phone":"Phone","country":"Country","state":"State","female":"Female","male":"male","and":"and","cookie":"Cookie Policy","join":"Agree TO JOIN","agree":"you agree to the shatbna","Privacy":"User Agreement, Privacy Policy,","account":"Already on Shatbna ","click":"Click here","forget":"Forget Password ?","remember":"Remember password","login":"LOGIN","new":"New to Shatbna?"}}');
 
 /***/ })
 

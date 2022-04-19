@@ -158,6 +158,7 @@ export default {
                 country: '',
                 state: '',
                 phone: '',
+                code:'',
                 agree: false,
             }
         });
@@ -210,13 +211,13 @@ export default {
          Advertisersubmit (){
              this.v$.$validate();
 
-             if(!this.v$.$error && this.dataAdvertiser.agree){
+            if(!this.v$.$error && this.dataAdvertiser.agree){
 
-                 let item = document.querySelector('.codeCountry').innerHTML;
-                 this.dataAdvertiser.phone = item + this.dataAdvertiser.phone
+                let item = document.querySelector('.codeCountry').innerHTML;
+                this.dataAdvertiser.code = item ;
 
-                 this.$store.dispatch('auth/advertiserRegister', this.dataAdvertiser);
-             }
+                this.$store.dispatch('auth/advertiserRegister', this.dataAdvertiser);
+            }
         }
     }
 }

@@ -137,7 +137,7 @@ class RegisterController extends Controller
             $user->complement()->create([
                 'country_id' => $request->country,
                 'state_id' => $request->state,
-                'phone' => $request->phone
+                'phone' => $request->code . $request->phone
             ]);
 
             $user->designer()->create([
@@ -198,7 +198,7 @@ class RegisterController extends Controller
             $user->complement()->create([
                 'country_id' => $request->country,
                 'state_id' => $request->state,
-                'phone' => $request->phone,
+                'phone' => $request->code . $request->phone,
                 'nameCompany' => $request->nameCompany
             ]);
 

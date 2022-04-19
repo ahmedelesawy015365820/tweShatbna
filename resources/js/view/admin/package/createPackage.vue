@@ -32,8 +32,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <div class="alert alert-danger text-center" v-if="errors['en.name']">{{ errors['en.name'][0] }}<br /> </div>
-                                    <div class="alert alert-danger text-center" v-if="errors['ar.name']">{{ errors['ar.name'][0] }}<br /> </div>
+                                    <!-- <div class="alert alert-danger text-center" v-if="errors['en.name']">{{ errors['en.name'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['ar.name']">{{ errors['ar.name'][0] }}<br /> </div> -->
                                     <form @submit.prevent="storePackage" class="needs-validation">
                                         <div class="form-row row">
                                             <div class="col-md-6 mb-3">
@@ -140,6 +140,7 @@
                                                             <option
                                                                 v-for="view in page.views"
                                                                 :value="view.pivot.id"
+                                                                :key="view.pivot.id"
                                                             >
                                                                 {{ page.name+ ' -- '  +view.type}}
                                                             </option>
@@ -170,6 +171,7 @@
                                                             <option
                                                                 v-for="view in page.views"
                                                                 :value="view.pivot.id"
+                                                                :key="view.pivot.id"
                                                             >
                                                                 {{ page.name+ ' -- '  +view.type}}
                                                             </option>

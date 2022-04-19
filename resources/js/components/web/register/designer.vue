@@ -86,7 +86,7 @@
                 <div class="form-group form-focus">
                     <input type="text" v-model.trim="dataDesign.phone" :class="['form-control','floating',dataDesign.country ? 'phone': '']">
                     <label class="focus-label">{{$t('register.phone')}}</label>
-                    <span class="flag"  v-if="dataDesign.country" v-for="count in foucsCountry">
+                    <span class="flag"  v-if="dataDesign.country" v-for="(count) in foucsCountry">
                         <img v-if="this.$i18n.locale == 'en'" :src="'/web/img/country/'+ count.media.file_name">
                         <span class="codeCountry">{{count.code}}</span>
                         <img v-if="this.$i18n.locale == 'ar'" :src="'/web/img/country/'+ count.media.file_name">
@@ -209,6 +209,7 @@ export default {
                 phone: '',
                 birth: '',
                 gender: '',
+                code:'',
                 agree: false
             }
         });
@@ -270,10 +271,13 @@ export default {
             if(!this.v$.$error && this.dataDesign.agree){
 
                 let item = document.querySelector('.codeCountry').innerHTML;
-                this.dataDesign.phone = item + this.dataDesign.phone
-                console.log(this.dataDesign)
-                this.$store.dispatch('auth/DesignRegister', this.dataDesign);
+
+                this.dataDesign.code = item;
+
+                this.$store.dispatch('auth/DesignRegister', this.dataDesign)
+
             }
+
         }
     }
 }

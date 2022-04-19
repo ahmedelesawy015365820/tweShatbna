@@ -214,9 +214,11 @@ export default {
             if(!this.v$.$error && this.dataAdvertiser.agree){
 
                 let item = document.querySelector('.codeCountry').innerHTML;
+
                 this.dataAdvertiser.code = item ;
 
                 this.$store.dispatch('auth/advertiserRegister', this.dataAdvertiser);
+
             }
         }
     }

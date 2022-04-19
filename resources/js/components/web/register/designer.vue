@@ -274,8 +274,8 @@ export default {
 
                 this.dataDesign.code = item;
 
-                this.$store.dispatch('auth/DesignRegister', this.dataDesign)
-
+                this.$store.dispatch('auth/DesignRegister', this.dataDesign);
+                
             }
 
         }

@@ -43,7 +43,7 @@ class RegisterController extends Controller
                 'state'  => 'required|integer|exists:states,id',
                 'phone' => 'required|string|unique:complements',
                 'phone_second' => 'present',
-                'nameCompany' => 'required|string|unique:companies,nameCompany',
+                'nameCompany' => 'required|string|unique:complements',
                 'location' => 'required|url'
             ]);
 
@@ -51,6 +51,12 @@ class RegisterController extends Controller
                 return $this->sendError('There is an error in the data',$v->errors());
             }
 
+            $phone_second  = $request->phone_second != '' ?
+                $request->code . $request->phone_second : '';
+
+            if($request->phone_second != ''){
+                $phone_second = $request->code . $request->phone_second;
+            }
 
             // start create user
             $user =  User::create([
@@ -65,24 +71,18 @@ class RegisterController extends Controller
             $user->complement()->create([
                 'country_id' => $request->country,
                 'state_id' => $request->state,
-                'phone' => $request->phone,
-                'phone_second' => $request->phone_second,
-                "sendEmail" => $request->sendEmail
+                'phone' => $request->code . $request->phone,
+                'phone_second' => $phone_second,
+                'nameCompany' => $request->nameCompany,
             ]);
 
             $user->company()->create([
-                'nameCompany' => $request->nameCompany,
                 'location' => $request->location
             ]);
 
             DB::commit();
             if($user){
-
-                //start access token
-                $credentials = $request->only("email", "password");
-                $token = Auth::guard('api')->attempt($credentials);
-
-                return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
+                return $this->sendResponse([],'Data exited successfully');
             }else{
                 return $this->sendError('An error occurred in the system');
             }

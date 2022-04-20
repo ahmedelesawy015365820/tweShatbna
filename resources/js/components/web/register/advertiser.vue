@@ -44,6 +44,7 @@
             <input type="text" v-model.trim="v$.nameCompany.$model" class="form-control floating">
             <label class="focus-label">{{$t('register.company')}}</label>
         </div>
+
         <div v-if="v$.nameCompany.$error || errors.nameCompany">
             <span class="text-danger" v-if="v$.nameCompany.required.$invalid">name company is required.<br /> </span>
             <span class="text-danger" v-if="v$.nameCompany.maxLength.$invalid">nameCompany is must have at most {{ v$.nameCompany.maxLength.$params.max }} letters. </span>

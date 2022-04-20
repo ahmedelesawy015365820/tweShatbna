@@ -164,24 +164,23 @@ const actions = {
             })
             .finally(() => {
             commit('editLoading',false);
-        });
+            });
     },
     CompanyRegister({commit},preload) {
 
+        commit('editLoading',true);
+
         webApi.post(`/v1/web/company`,preload)
             .then((res) => {
-                let l =res.data.data;
-                commit('editToken',l.access_token);
-                commit('editRoles',l.role_name);
-
-                let locale = localStorage.getItem("langWeb");
-
-                return router.push({name: 'company', params: {lang: locale || 'ar'}});
-
+                commit('editSuccess',true);
             })
             .catch((err) => {
-                console.log(err.response.data);
+                commit('editErrors',err.response.data.errors)
+            })
+            .finally(() => {
+                commit('editLoading',false);
             });
+
     },
     advertiserRegister({commit},preload) {
 

@@ -18,6 +18,8 @@
         "company": "Name Company",
         "birth": "Birth",
         "phone": "Phone",
+        "second_phone": "Second Phone (optional)",
+        "location": "Google Map",
         "country": "Country",
         "state": "State",
         "female": "Female",

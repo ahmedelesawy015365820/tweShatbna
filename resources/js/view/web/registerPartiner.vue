@@ -49,61 +49,7 @@
                                         <design-register />
                                     </div>
                                     <div role="tabpanel" id="company" :class="['tab-pane','fade',query == 'company'? 'active show': false]">
-                                        <form @submit.prevent='Companysubmit'>
-                                            <div class="form-group form-focus">
-                                                <input type="text" v-model="dataCompany.name" class="form-control floating">
-                                                <label class="focus-label">name </label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <input type="email" v-model="dataCompany.email" class="form-control floating">
-                                                <label class="focus-label">Email</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <input type="password" v-model="dataCompany.password" class="form-control floating">
-                                                <label class="focus-label">Password</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <input type="password" v-model="dataCompany.confirmtion" class="form-control floating">
-                                                <label class="focus-label">Confirm Password</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <input type="text" v-model="dataCompany.nameCompany" class="form-control floating">
-                                                <label class="focus-label">Name company</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <input type="text" v-model="dataCompany.phone" class="form-control floating">
-                                                <label class="focus-label">Phone</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <input type="text" v-model="dataCompany.phone_second" class="form-control floating">
-                                                <label class="focus-label">Second Phone</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <select v-model="dataCompany.country" class="form-control floating">
-                                                    <option value="1">egypt</option>
-                                                </select>
-                                                <label class="focus-label">country</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <select v-model="dataCompany.state" class="form-control floating">
-                                                    <option value="1">Alexandria</option>
-                                                </select>
-                                                <label class="focus-label">state</label>
-                                            </div>
-                                            <div class="form-group form-focus">
-                                                <input type="url" v-model="dataCompany.location" class="form-control floating">
-                                                <label class="focus-label">Location</label>
-                                            </div>
-                                            <button class="btn btn-primary btn-block btn-lg login-btn text-center" type="submit">Agree TO JOIN</button>
-                                            <div class="row form-row">
-                                                <div class="col-6 text-start">
-                                                    <router-link class="forgot-link" to="/forgot-password">Forgot Password ?</router-link>
-                                                </div>
-                                                <div class="col-6 text-end dont-have">Already on Shatbna
-                                                    <router-link :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}">Click here</router-link>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <company-register /> 
                                     </div>
                                     <div role="tabpanel" id="advertiser" :class="['tab-pane','fade',query == 'advertiser'? 'active show': false]">
                                         <advertiser-register />
@@ -127,12 +73,14 @@ import {  useRoute,useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import advertiserRegister from "../../components/web/register/advertiser";
 import designRegister from "../../components/web/register/designer";
+import companyRegister from "../../components/web/register/company";
 
 export default {
     name: "registerPartiner",
     components:{
         advertiserRegister,
-        designRegister
+        designRegister,
+        companyRegister
     },
     setup(){
         const store = useStore();
@@ -169,28 +117,9 @@ export default {
             getCountry();
         });
 
-        //start company
-        let company =  reactive({
-            dataCompany:{
-                name:'',
-                email:'',
-                password:'',
-                confirmtion:'',
-                country: null,
-                state: null,
-                phone: '',
-                phone_second: '',
-                nameCompany: '',
-                sendEmail: false,
-                location:''
-            }
-        });
+    
 
-        function Companysubmit (){
-            store.dispatch('auth/CompanyRegister',company.dataCompany);
-        }
-
-        return {query,...toRefs(company),Companysubmit,loading,success,successRegister};
+        return {query,loading,success,successRegister};
     }
 }
 </script>

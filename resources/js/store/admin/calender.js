@@ -67,7 +67,6 @@ const actions = {
 
         adminApi.post(`/v1/dashboard/scheduleAdvertise`,preload)
             .then((res) => {
-                console.log('ahmed mohamed')
                 dispatch('getCalenderAll');
             })
             .catch((err) => {

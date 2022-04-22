@@ -59,39 +59,6 @@ const mutations = {
 
 // actions
 const actions = {
-     getPackage({commit},preload = '') {
-
-         commit('loadingPackage',true);
-
-         adminApi.get(`/v1/dashboard/advertiserPackage${preload}`)
-            .then((res) => {
-                let l = res.data.data;
-                commit('editPackage',l.package);
-            })
-            .catch((err) => {
-                console.log(err.response.data);
-            })
-            .finally(() => {
-                commit('loadingPackage',false);
-            })
-    },
-    getPages({commit}) {
-
-        commit('loadingPackage',true);
-
-        adminApi.get(`/v1/dashboard/advertiserPackage/create`)
-            .then((res) => {
-                let l = res.data.data;
-                commit('editpageWeb',l.pageView);
-                commit('editpageMobile',l.pageViewMobile);
-            })
-            .catch((err) => {
-                console.log(err.response.data);
-            })
-            .finally(() => {
-                commit('loadingPackage',false);
-            })
-    },
     showPackage({commit},preload) {
 
         commit('loadingPackage',true);
@@ -110,23 +77,23 @@ const actions = {
                 commit('loadingPackage',false);
             })
     },
-    storePackage({commit},preload) {
-
-        commit('loadingPackage',true);
-        commit('errorsEdit',{});
-
-
-        adminApi.post(`/v1/dashboard/advertiserPackage`,preload)
-            .then((res) => {
-
-            })
-            .catch((err) => {
-                commit('errorsEdit',err.response.data.errors);
-            })
-            .finally(() => {
-                commit('loadingPackage',false);
-            })
-    },
+    // storePackage({commit},preload) {
+    //
+    //     commit('loadingPackage',true);
+    //     commit('errorsEdit',{});
+    //
+    //
+    //     adminApi.post(`/v1/dashboard/advertiserPackage`,preload)
+    //         .then((res) => {
+    //
+    //         })
+    //         .catch((err) => {
+    //             commit('errorsEdit',err.response.data.errors);
+    //         })
+    //         .finally(() => {
+    //             commit('loadingPackage',false);
+    //         })
+    // },
     getEditPages({commit},id) {
 
         commit('loadingPackage',true);
@@ -184,17 +151,7 @@ const actions = {
                 commit('loadingPackage',false);
             });
 
-    },
-     daletePackage({commit,dispatch},preload) {
-
-          adminApi.delete(`/v1/dashboard/advertiserPackage/${preload}`)
-            .then((res) => {
-                dispatch('getPackage');
-            })
-            .catch((err) => {
-                console.log(err.response.data);
-            })
-    },
+    }
 }
 
 export default  {

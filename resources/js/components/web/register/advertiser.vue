@@ -108,13 +108,13 @@
             </label>
         </div>
 
-        <button class="btn btn-primary btn-block btn-lg login-btn text-center" type="submit">{{$t('register.join')}}</button>
+        <button class="btn btn-primary btn-block btn-lg login-btn text-center btn-color" type="submit">{{$t('register.join')}}</button>
         <div class="row form-row forget-login">
-            <div :class="['col-6','text-start', this.$i18n.locale == 'ar'? 'forget-register' : '']">
+            <div :class="['col-6','text-start','click-forget' ,this.$i18n.locale == 'ar'? 'forget-register' : '']">
                 <router-link  to="/forgot-password">{{$t('register.forget')}}</router-link>
             </div>
-            <div :class="['col-6','text-end',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.account')}}
-                <router-link class="text-danger" :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
+            <div :class="['col-6','text-end','click',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.account')}}
+                <router-link :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
             </div>
         </div>
     </form>
@@ -241,6 +241,15 @@ img {
 .phone {
     padding-left: 70px;
     text-align: left;
+}
+
+.login-right .dont-have a, .click-forget a:hover ,.click a{
+    color: #fcb00c;
+}
+
+.btn-color:hover{
+    background-color: #fcb00c;
+    border-color: #fcb00c ;
 }
 
 </style>

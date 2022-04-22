@@ -52,7 +52,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(item,index) in packages.data" :key="item.id">
+                                        <tr v-for="(item,index) in packages" v-if="packages" :key="item.id">
                                             <td>{{index + 1}}</td>
                                             <td>{{item.name}}</td>
                                             <td>{{item.period}}</td>
@@ -66,34 +66,14 @@
                                                 <router-link :to="{name: 'editPackage', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2">
                                                     <i class="far fa-edit"></i>
                                                 </router-link>
-                                                <a href="#" data-bs-toggle="modal" :data-bs-target="'#staticBackdrop' + item.id"  class="btn btn-sm btn-danger me-2"><i class="far fa-trash-alt"></i></a>
+                                                <a href="#" @click="deletePackage(item.id,item.name,index)" data-bs-target="#staticBackdrop"  class="btn btn-sm btn-danger me-2">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </a>
                                             </td>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" :id="'staticBackdrop' + item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="staticBackdropLabel">Delete Package</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form >
-                                                                <div class="modal-body">
-                                                                    <p>Sure Delete</p><br>
-                                                                    <input class="form-control" :value="item.name"  type="text" readonly>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" @click.prevent="deletePackage(item.id)" class="btn btn-primary">Delete</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /Modal -->
-
+                                        </tr>
+                                        <tr v-else>
+                                            <th class="text-center" colspan="7">No Data Found</th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -104,7 +84,7 @@
             </div>
             <!-- /Table -->
             <!-- start Pagination -->
-            <Pagination :data="packages" @pagination-change-page="getPackages">
+            <Pagination :data="packagesPaginate" @pagination-change-page="getPackages">
                 <template #prev-nav>
                     <span>&lt; Previous</span>
                 </template>
@@ -119,45 +99,83 @@
 </template>
 
 <script>
-import {computed,onMounted,inject,watch,ref} from "vue";
+import {onMounted,inject,watch,ref} from "vue";
 import {useStore} from "vuex";
+import adminApi from "../../../api/adminAxios";
 
 export default {
     name: "index",
     setup(){
-        const store = useStore();
         const emitter = inject('emitter');
 
         // get packages
-        let packages = computed(() => store.getters['packageAdmin/package'] );
-        let loading = computed(() => store.getters['packageAdmin/loading'] );
-        let getPackages = (page = 1,preload = '') => {
-            store.dispatch('packageAdmin/getPackage',`?page=${page}&search=${search.value}`);
+        let packages = ref([]);
+        let packagesPaginate = ref({});
+        let loading = ref(false);
+        const search = ref('');
+
+        let getPackages = (page = 1) => {
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/advertiserPackage?page=${page}&search=${search.value}`)
+                .then((res) => {
+                    let l = res.data.data;
+                    packagesPaginate.value = l.package;
+                    packages.value = l.package.data;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         }
-
-        emitter.on('get_lang', () => {
-            getPackages();
-        });
-
-        const search = ref('')
-        watch(search, (search, prevSearch) => {
-           if(search.length > 0){
-               getPackages();
-           }else{
-               getPackages();
-           }
-        });
 
         onMounted(() => {
             getPackages();
         });
 
-        async function deletePackage(id){
-            await store.dispatch('packageAdmin/daletePackage',id);
-             document.querySelector('.modal-backdrop').style.display = 'none';
+        emitter.on('get_lang', () => {
+            getPackages(search.value);
+        });
+
+        watch(search, (search, prevSearch) => {
+           if(search.length >= 0){
+               getPackages();
+           }
+        });
+
+
+         function deletePackage(id,packageName,index){
+            Swal.fire({
+                title: `Are you sure delete ? (${packageName})`,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    adminApi.delete(`/v1/dashboard/advertiserPackage/${id}`)
+                        .then((res) => {
+                            packages.value.splice(index,index + 1);
+                        })
+                        .catch((err) => {
+                            console.log(err.response.data);
+                        });
+
+                    Swal.fire(
+                        'Deleted!',
+                        'Your package has been deleted.',
+                        'success'
+                    );
+                }
+            })
         }
 
-        return {packages,loading,getPackages,search,deletePackage};
+        return {packages,loading,getPackages,search,deletePackage,packagesPaginate};
 
     },
     data(){

@@ -72,6 +72,9 @@
         <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('admin/plugins/datatables/datatables.min.js')}}"></script>
 
+        <!-- sweet alert -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script src="{{asset('admin/js/script.js')}}"></script>
 
         <script src="{{mix('control/js/admin.js')}}"></script>

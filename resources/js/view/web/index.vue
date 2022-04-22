@@ -832,7 +832,7 @@
 </template>
 
 <script>
-import {onMounted,inject,ref} from 'vue';
+import {onMounted,onBeforeMount,inject,ref} from 'vue';
 
 export default {
     setup(){
@@ -840,6 +840,8 @@ export default {
         const emitter = inject('emitter');
 
         let carousel = () => {
+            $('#developers-slider').removeClass('owl-hidden');
+            $('#testimonial-slider').removeClass('owl-hidden');
             //start owl-carousel
             if($('#developers-slider').length > 0 ){
                 $('#developers-slider').owlCarousel({
@@ -897,17 +899,8 @@ export default {
             //end owl-carousel
         }
 
-        let alert = () => {
-            Swal.fire(
-                'Good job!',
-                'You clicked the button!',
-                'success'
-            )
-        }
-
         onMounted(() => {
             carousel();
-            alert();
         });
 
         emitter.on('get_lang_web', () => {
@@ -915,7 +908,7 @@ export default {
         });
 
         return {};
-    },
+    }
 }
 </script>
 

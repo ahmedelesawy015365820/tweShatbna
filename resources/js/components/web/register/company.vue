@@ -135,23 +135,25 @@
         </label>
     </div>
 
-    <button class="btn btn-primary btn-block btn-lg login-btn text-center" type="submit">{{$t('register.join')}}</button>
+    <button class="btn btn-primary btn-block btn-lg login-btn text-center btn-color" type="submit">{{$t('register.join')}}</button>
     <div class="row form-row forget-login">
-        <div :class="['col-6','text-start', this.$i18n.locale == 'ar'? 'forget-register' : '']">
+        <div :class="['col-6','text-start', 'click-forget',this.$i18n.locale == 'ar'? 'forget-register' : '']">
             <router-link  to="/forgot-password">{{$t('register.forget')}}</router-link>
         </div>
-        <div :class="['col-6','text-end',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.account')}}
-            <router-link class="text-danger" :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
+        <div :class="['col-6','text-end','click',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.account')}}
+            <router-link  :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
         </div>
     </div>
 </form>
 </template>
 
 <script>
-import {toRefs, reactive, onMounted, ref, computed, inject} from 'vue';
+import {toRefs, reactive, ref, computed, inject} from 'vue';
 import { useStore } from 'vuex';
 import { maxLength, minLength, required,email,sameAs,alphaNum,integer,url,not} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import router from "../../../router/webRoute";
+import {useI18n} from "vue-i18n";
 
 
 export default {
@@ -159,6 +161,7 @@ export default {
     setup(){
         const store = useStore();
         const emitter = inject('emitter');
+        const { t } = useI18n({});
 
         let countries = computed(()=> store.getters['auth/country']);
         let states = computed(()=> store.getters['auth/newState']);
@@ -246,6 +249,11 @@ export default {
         return  {...toRefs(company),v$,countries,conutryState,states,foucsCountry,errors};
 
     },
+    computed: {
+        success(){
+            return this.$store.getters['auth/success'];
+        }
+    },
     methods: {
         Companysubmit(){
             this.v$.$validate();
@@ -279,5 +287,14 @@ img {
 .phone {
     padding-left: 70px;
     text-align: left;
+}
+
+.login-right .dont-have a, .click-forget a:hover ,.click a{
+    color: #fcb00c;
+}
+
+.btn-color:hover{
+    background-color: #fcb00c;
+    border-color: #fcb00c ;
 }
 </style>

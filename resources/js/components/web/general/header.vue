@@ -114,7 +114,6 @@ export default {
     .header{
         background-color: #fff;
         position: static;
-
     }
 
     .header.custom-header{
@@ -174,7 +173,7 @@ export default {
             margin-right: 11px;
         }
         .main-nav li a {
-            font-size: 13px !important;
+            font-size: 14px !important;
         }
         .header-navbar-rht .login-btn {
             padding: 5px 8px;
@@ -220,16 +219,13 @@ export default {
     }
 
     @media only screen and (max-width: 768px) {
-        .header-navbar-rht li {
-            margin-right: 9px;
-        }
         .header-navbar-rht .login-btn {
-            padding: 5px 8px;
-            font-size: 11px !important;
+            padding: 5px 12px;
+            font-size: 12px !important;
         }
         .header-navbar-rht .partner{
-            padding: 5px 8px;
-            font-size: 10px !important;
+            padding: 5px 12px;
+            font-size: 11px !important;
         }
     }
 

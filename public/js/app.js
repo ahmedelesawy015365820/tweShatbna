@@ -25209,9 +25209,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
 /* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
+/* harmony import */ var _router_webRoute__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../router/webRoute */ "./resources/js/router/webRoute.js");
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm-bundler.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -25222,11 +25224,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'company',
   setup: function setup() {
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
     var emitter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('emitter');
+
+    var _useI18n = (0,vue_i18n__WEBPACK_IMPORTED_MODULE_4__.useI18n)({}),
+        t = _useI18n.t;
+
     var countries = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.getters['auth/country'];
     });
@@ -25268,46 +25276,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var rules = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return {
         name: {
-          minLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.minLength)(3),
-          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxLength)(80),
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+          minLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.minLength)(3),
+          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.maxLength)(80),
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required
         },
         email: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-          email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.email
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+          email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.email
         },
         password: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-          minLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.minLength)(8),
-          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxLength)(16),
-          alphaNum: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.alphaNum
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+          minLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.minLength)(8),
+          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.maxLength)(16),
+          alphaNum: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.alphaNum
         },
         confirmtion: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-          sameAs: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.sameAs)(company.dataCompany.password)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+          sameAs: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.sameAs)(company.dataCompany.password)
         },
         nameCompany: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxLength)(60)
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.maxLength)(60)
         },
         phone: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxLength)(25),
-          integer: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.integer
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.maxLength)(25),
+          integer: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.integer
         },
         phone_second: {
-          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.maxLength)(25),
-          integer: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.integer
+          maxLength: (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.maxLength)(25),
+          integer: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.integer
         },
         country: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required
         },
         state: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required
         },
         location: {
-          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-          url: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.url
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+          url: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_5__.url
         }
       };
     });
@@ -25320,6 +25328,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       foucsCountry: foucsCountry,
       errors: errors
     });
+  },
+  computed: {
+    success: function success() {
+      return this.$store.getters['auth/success'];
+    }
   },
   methods: {
     Companysubmit: function Companysubmit() {
@@ -25850,7 +25863,9 @@ __webpack_require__.r(__webpack_exports__);
     var emitter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('emitter');
 
     var carousel = function carousel() {
-      //start owl-carousel
+      $('#developers-slider').removeClass('owl-hidden');
+      $('#testimonial-slider').removeClass('owl-hidden'); //start owl-carousel
+
       if ($('#developers-slider').length > 0) {
         $('#developers-slider').owlCarousel({
           rtl: true,
@@ -25901,13 +25916,8 @@ __webpack_require__.r(__webpack_exports__);
 
     };
 
-    var alert = function alert() {
-      Swal.fire('Good job!', 'You clicked the button!', 'success');
-    };
-
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       carousel();
-      alert();
     });
     emitter.on('get_lang_web', function () {});
     return {};
@@ -27371,7 +27381,7 @@ var _hoisted_95 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_96 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(". ");
 
 var _hoisted_97 = {
-  "class": "btn btn-primary btn-block btn-lg login-btn text-center",
+  "class": "btn btn-primary btn-block btn-lg login-btn text-center btn-color",
   type: "submit"
 };
 var _hoisted_98 = {
@@ -27569,7 +27579,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), _hoisted_96])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_97, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.join')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_98, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-start', this.$i18n.locale == 'ar' ? 'forget-register' : ''])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-start', 'click-forget', this.$i18n.locale == 'ar' ? 'forget-register' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/forgot-password"
   }, {
@@ -27584,11 +27594,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-end', this.$i18n.locale == 'ar' ? 'login-register' : ''])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-end', 'click', this.$i18n.locale == 'ar' ? 'login-register' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.account')) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "text-danger",
     to: {
       name: 'loginPartiner',
       params: {
@@ -28053,7 +28062,7 @@ var _hoisted_121 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_122 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(". ");
 
 var _hoisted_123 = {
-  "class": "btn btn-primary btn-block btn-lg login-btn text-center",
+  "class": "btn btn-primary btn-block btn-lg login-btn text-center btn-color",
   type: "submit"
 };
 var _hoisted_124 = {
@@ -28291,7 +28300,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), _hoisted_122])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_123, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.join')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_124, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-start', this.$i18n.locale == 'ar' ? 'forget-register' : ''])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-start', 'click-forget', this.$i18n.locale == 'ar' ? 'forget-register' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/forgot-password"
   }, {
@@ -28306,11 +28315,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-end', this.$i18n.locale == 'ar' ? 'login-register' : ''])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-end', 'click', this.$i18n.locale == 'ar' ? 'login-register' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.account')) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "text-danger",
     to: {
       name: 'loginPartiner',
       params: {
@@ -28772,7 +28780,7 @@ var _hoisted_116 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_117 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(". ");
 
 var _hoisted_118 = {
-  "class": "btn btn-primary btn-block btn-lg login-btn text-center",
+  "class": "btn btn-primary btn-block btn-lg login-btn text-center btn-color",
   type: "submit"
 };
 var _hoisted_119 = {
@@ -28980,7 +28988,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), _hoisted_117])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_118, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.join')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_119, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-start', this.$i18n.locale == 'ar' ? 'forget-register' : ''])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-start', 'click-forget', this.$i18n.locale == 'ar' ? 'forget-register' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/forgot-password"
   }, {
@@ -28995,11 +29003,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   })], 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-end', this.$i18n.locale == 'ar' ? 'login-register' : ''])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['col-6', 'text-end', 'click', this.$i18n.locale == 'ar' ? 'login-register' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.account')) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "text-danger",
     to: {
       name: 'loginPartiner',
       params: {
@@ -30023,7 +30030,7 @@ var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_18 = {
-  "class": "btn btn-primary btn-block btn-lg login-btn text-center",
+  "class": "btn btn-color btn-primary btn-block btn-lg login-btn text-center",
   type: "submit"
 };
 var _hoisted_19 = {
@@ -30097,7 +30104,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.new')) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    "class": "text-danger",
     to: {
       name: 'registerPartiner',
       params: {
@@ -30148,7 +30154,7 @@ var _hoisted_1 = {
   "class": "content"
 };
 var _hoisted_2 = {
-  key: 1,
+  key: 0,
   "class": "success"
 };
 var _hoisted_3 = {
@@ -30166,35 +30172,29 @@ var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Thank you!", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "container"
 };
-var _hoisted_8 = {
+var _hoisted_7 = {
   "class": "row"
 };
-var _hoisted_9 = {
+var _hoisted_8 = {
   "class": "col-md-6 offset-md-3"
 };
-var _hoisted_10 = {
+var _hoisted_9 = {
   "class": "account-content"
 };
-var _hoisted_11 = {
+var _hoisted_10 = {
   "class": "align-items-center justify-content-center"
 };
-var _hoisted_12 = {
+var _hoisted_11 = {
   "class": "login-right"
 };
-var _hoisted_13 = {
+var _hoisted_12 = {
   "class": "login-header text-center"
 };
 
-var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/web/img/logo.png",
     alt: "logo",
@@ -30204,23 +30204,23 @@ var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_15 = {
+var _hoisted_14 = {
   "class": "user-tabs mb-4"
 };
-var _hoisted_16 = {
+var _hoisted_15 = {
   role: "tablist",
   "class": "nav nav-pills nav-justified"
 };
-var _hoisted_17 = {
+var _hoisted_16 = {
   "class": "nav-item"
 };
-var _hoisted_18 = {
+var _hoisted_17 = {
   "class": "nav-item custom-nav"
 };
-var _hoisted_19 = {
+var _hoisted_18 = {
   "class": "nav-item stop-margin"
 };
-var _hoisted_20 = {
+var _hoisted_19 = {
   "class": "tab-content pt-0"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -30234,20 +30234,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [$setup.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_loader, {
     key: 0
-  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" The Modal "), $setup.success ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.success-mess')), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "button",
-    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $setup.successRegister && $setup.successRegister.apply($setup, arguments);
-    }, ["prevent"]))
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.ok')), 1
-  /* TEXT */
-  )])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /The Modal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Register Tab Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.Join')), 1
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("The Modal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+    name: "fade"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [$setup.success ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.thank')), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.success-mess')), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        type: "button",
+        onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+          return $setup.successRegister && $setup.successRegister.apply($setup, arguments);
+        }, ["prevent"]))
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.ok')), 1
+      /* TEXT */
+      )])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("  /The Modal"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Register Tab Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.Join')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.life')), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#design",
     "data-bs-toggle": "tab",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['nav-link', {
@@ -30255,7 +30266,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, !$setup.query ? 'active' : ''])
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.design')), 3
   /* TEXT, CLASS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#company",
     "data-bs-toggle": "tab",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['nav-link', {
@@ -30263,7 +30274,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }])
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.companies')), 3
   /* TEXT, CLASS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#advertiser",
     "data-bs-toggle": "tab",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['nav-link', {
@@ -30271,7 +30282,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }])
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('register.advertiser')), 3
   /* TEXT, CLASS */
-  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     role: "tabpanel",
     id: "design",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['tab-pane', 'fade', $setup.query == 'designer' ? 'active show' : false, !$setup.query ? 'active show' : ''])
@@ -31145,8 +31156,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_web_general_footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/web/general/footer */ "./resources/js/components/web/general/footer.vue");
 /* harmony import */ var _components_loader__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/loader */ "./resources/js/components/loader.vue");
 /* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
-/* harmony import */ var _assets_web_custom_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./assets/web/custom.css */ "./resources/js/assets/web/custom.css");
-/* harmony import */ var _assets_web_custom_en_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./assets/web/custom-en.css */ "./resources/js/assets/web/custom-en.css");
+/* harmony import */ var _assets_web_custom_en_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./assets/web/custom-en.css */ "./resources/js/assets/web/custom-en.css");
+/* harmony import */ var _assets_web_custom_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./assets/web/custom.css */ "./resources/js/assets/web/custom.css");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -31186,7 +31197,6 @@ if (localStorage.getItem("langWeb") == 'ar') {
 } else {
   tagHtml.setAttribute('dir', 'ltr');
   styleLink.setAttribute('href', '');
-  Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./assets/web/custom-en.css */ "./resources/js/assets/web/custom-en.css"));
 }
 
 /***/ }),
@@ -36362,7 +36372,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* start index */\n/* end index */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".swal2-styled.swal2-confirm{\n    width: 100px;\n}\n\n/* start index */\n/* end index */\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36506,7 +36516,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-d085508c]{\n        background-color: #fff;\n        position: static;\n}\n.header.custom-header[data-v-d085508c]{\n        position: fixed;\n}\n.logo[data-v-d085508c]{\n        width: 140px;\n}\n.main-menu-wrapper[data-v-d085508c]{\n        display: flex;\n}\n.main-nav li a[data-v-d085508c]{\n        font-size: 15px !important;\n        font-weight: 500;\n}\n.main-nav li a[data-v-d085508c]:hover{\n        color: #fcb00c;\n}\n.main-nav > li.active > a[data-v-d085508c]{\n        color: #fcb00c;\n}\n.main-nav > li.active > a[data-v-d085508c]::after {\n    background: #fcb00c;\n}\n.header-navbar-rht .reg-btn[data-v-d085508c]:hover {\n        color: #fcb00c !important;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n    background-color: #fcb00c;\n    border-color: #fcb00c;\n    padding: 5px 15px;\n    font-size: 16px;\n    box-shadow: none;\n}\n.header-navbar-rht .custom[data-v-d085508c]{\n            font-size: 13px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n        color: #fcb00c;\n        padding: 5px 15px;\n        font-size: 14px;\n        box-shadow: none;\n        border: 1px solid #fcb00c;\n        border-radius: 50px;\n}\n.header-navbar-rht .partner[data-v-d085508c]:hover{\n       background-color: #fcb00c !important;\n       color: #fff !important;\n}\n@media only screen and (max-width: 1115px){\n.main-nav > li[data-v-d085508c] {\n            margin-right: 11px;\n}\n.main-nav li a[data-v-d085508c] {\n            font-size: 13px !important;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 8px;\n            font-size: 11px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 8px;\n            font-size: 10px !important;\n}\n.header-navbar-rht li[data-v-d085508c] {\n            margin-right: 15px;\n}\n.header-navbar-rht .custom[data-v-d085508c]{\n            font-size: 11px !important;\n}\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 15px;\n}\n}\n@media only screen and (max-width: 992px){\n.main-menu-wrapper[data-v-d085508c]{\n            display: inline-block;\n}\n.main-nav li a[data-v-d085508c] {\n            font-size: 15px !important;\n}\n.header-navbar-rht[data-v-d085508c]{\n            margin-top: 20px;\n}\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 20px;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 12px;\n            font-size: 12px !important;\n            margin-top: 20px;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 12px;\n            font-size: 11px !important;\n}\n}\n@media only screen and (max-width: 768px) {\n.header-navbar-rht li[data-v-d085508c] {\n            margin-right: 9px;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 8px;\n            font-size: 11px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 8px;\n            font-size: 10px !important;\n}\n}\n@media only screen and (max-width: 600px) {\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 15px;\n}\n.header-navbar-rht[data-v-d085508c]{\n            display: block;\n}\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-d085508c]{\n        background-color: #fff;\n        position: static;\n}\n.header.custom-header[data-v-d085508c]{\n        position: fixed;\n}\n.logo[data-v-d085508c]{\n        width: 140px;\n}\n.main-menu-wrapper[data-v-d085508c]{\n        display: flex;\n}\n.main-nav li a[data-v-d085508c]{\n        font-size: 15px !important;\n        font-weight: 500;\n}\n.main-nav li a[data-v-d085508c]:hover{\n        color: #fcb00c;\n}\n.main-nav > li.active > a[data-v-d085508c]{\n        color: #fcb00c;\n}\n.main-nav > li.active > a[data-v-d085508c]::after {\n    background: #fcb00c;\n}\n.header-navbar-rht .reg-btn[data-v-d085508c]:hover {\n        color: #fcb00c !important;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n    background-color: #fcb00c;\n    border-color: #fcb00c;\n    padding: 5px 15px;\n    font-size: 16px;\n    box-shadow: none;\n}\n.header-navbar-rht .custom[data-v-d085508c]{\n            font-size: 13px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n        color: #fcb00c;\n        padding: 5px 15px;\n        font-size: 14px;\n        box-shadow: none;\n        border: 1px solid #fcb00c;\n        border-radius: 50px;\n}\n.header-navbar-rht .partner[data-v-d085508c]:hover{\n       background-color: #fcb00c !important;\n       color: #fff !important;\n}\n@media only screen and (max-width: 1115px){\n.main-nav > li[data-v-d085508c] {\n            margin-right: 11px;\n}\n.main-nav li a[data-v-d085508c] {\n            font-size: 14px !important;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 8px;\n            font-size: 11px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 8px;\n            font-size: 10px !important;\n}\n.header-navbar-rht li[data-v-d085508c] {\n            margin-right: 15px;\n}\n.header-navbar-rht .custom[data-v-d085508c]{\n            font-size: 11px !important;\n}\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 15px;\n}\n}\n@media only screen and (max-width: 992px){\n.main-menu-wrapper[data-v-d085508c]{\n            display: inline-block;\n}\n.main-nav li a[data-v-d085508c] {\n            font-size: 15px !important;\n}\n.header-navbar-rht[data-v-d085508c]{\n            margin-top: 20px;\n}\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 20px;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 12px;\n            font-size: 12px !important;\n            margin-top: 20px;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 12px;\n            font-size: 11px !important;\n}\n}\n@media only screen and (max-width: 768px) {\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 12px;\n            font-size: 12px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 12px;\n            font-size: 11px !important;\n}\n}\n@media only screen and (max-width: 600px) {\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 15px;\n}\n.header-navbar-rht[data-v-d085508c]{\n            display: block;\n}\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36530,7 +36540,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-73190b3e] {\r\n    width: 30px;\r\n    height: 20px;\n}\n.flag[data-v-73190b3e]{\r\n    top: 34px;\r\n    left: 10px;\r\n    position: absolute;\n}\n.phone[data-v-73190b3e] {\r\n    padding-left: 70px;\r\n    text-align: left;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-73190b3e] {\n    width: 30px;\n    height: 20px;\n}\n.flag[data-v-73190b3e]{\n    top: 34px;\n    left: 10px;\n    position: absolute;\n}\n.phone[data-v-73190b3e] {\n    padding-left: 70px;\n    text-align: left;\n}\n.login-right .dont-have a[data-v-73190b3e], .click-forget a[data-v-73190b3e]:hover ,.click a[data-v-73190b3e]{\n    color: #fcb00c;\n}\n.btn-color[data-v-73190b3e]:hover{\n    background-color: #fcb00c;\n    border-color: #fcb00c ;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36554,7 +36564,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-53321537] {\r\n    width: 30px;\r\n    height: 20px;\n}\n.flag[data-v-53321537]{\r\n    top: 34px;\r\n    left: 10px;\r\n    position: absolute;\n}\n.phone[data-v-53321537] {\r\n    padding-left: 70px;\r\n    text-align: left;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nimg[data-v-53321537] {\n    width: 30px;\n    height: 20px;\n}\n.flag[data-v-53321537]{\n    top: 34px;\n    left: 10px;\n    position: absolute;\n}\n.phone[data-v-53321537] {\n    padding-left: 70px;\n    text-align: left;\n}\n.login-right .dont-have a[data-v-53321537], .click-forget a[data-v-53321537]:hover ,.click a[data-v-53321537]{\n    color: #fcb00c;\n}\n.btn-color[data-v-53321537]:hover{\n    background-color: #fcb00c;\n    border-color: #fcb00c ;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36578,7 +36588,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-467083a1] {\n        border: none;\n        box-shadow: none;\n}\n.card-body[data-v-467083a1] {\n         padding: 0;\n}\n.card-footer[data-v-467083a1] {\n        border-top: none;\n}\n.toggle-switch[data-v-467083a1] {\n        display: flex;\n        align-items: center;\n        cursor: pointer;\n}\n.toggle-switch-input[data-v-467083a1] {\n        position: absolute;\n        z-index: -1;\n        opacity: 0;\n}\n.toggle-switch-label[data-v-467083a1] {\n        position: relative;\n        display: block;\n        width: 3rem;\n        height: 30px;\n        background-color: #e7eaf3;\n        background-clip: content-box;\n        border: 0.125rem solid transparent;\n        border-radius: 6.1875rem;\n        transition: .3s;\n}\n.toggle-switch-indicator[data-v-467083a1] {\n        position: absolute;\n        left: 0.125rem;\n        bottom: 50%;\n        width: 22px;\n        height: 22px;\n        background-color: #fff;\n        transform: initial;\n        box-shadow: 0 3px 6px 0 rgb(140 152 164 / 25%);\n        border-radius: 50%;\n        transform: translate3d(0, 50%, 0);\n        transition: .3s;\n}\n#notification_switch1:checked ~ span[data-v-467083a1]{\n        background-color: #fcb00c;\n}\n#notification_switch1:checked ~ span span[data-v-467083a1]{\n        background-color: #fff;\n        transform: translate(18px, 11px);\n}\n#notification_switch2:checked ~ span[data-v-467083a1]{\n        background-color: #fcb00c;\n}\n#notification_switch2:checked ~ span span[data-v-467083a1]{\n        background-color: #fff;\n        transform: translate(18px, 11px);\n}\nimg[data-v-467083a1] {\n        width: 30px;\n        height: 20px;\n}\n.flag[data-v-467083a1]{\n        top: 34px;\n        left: 10px;\n        position: absolute;\n}\n.phone[data-v-467083a1] {\n        padding-left: 70px;\n        text-align: left;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-467083a1] {\n        border: none;\n        box-shadow: none;\n}\n.card-body[data-v-467083a1] {\n         padding: 0;\n}\n.card-footer[data-v-467083a1] {\n        border-top: none;\n}\n.toggle-switch[data-v-467083a1] {\n        display: flex;\n        align-items: center;\n        cursor: pointer;\n}\n.toggle-switch-input[data-v-467083a1] {\n        position: absolute;\n        z-index: -1;\n        opacity: 0;\n}\n.toggle-switch-label[data-v-467083a1] {\n        position: relative;\n        display: block;\n        width: 3rem;\n        height: 30px;\n        background-color: #e7eaf3;\n        background-clip: content-box;\n        border: 0.125rem solid transparent;\n        border-radius: 6.1875rem;\n        transition: .3s;\n}\n.toggle-switch-indicator[data-v-467083a1] {\n        position: absolute;\n        left: 0.125rem;\n        bottom: 50%;\n        width: 22px;\n        height: 22px;\n        background-color: #fff;\n        transform: initial;\n        box-shadow: 0 3px 6px 0 rgb(140 152 164 / 25%);\n        border-radius: 50%;\n        transform: translate3d(0, 50%, 0);\n        transition: .3s;\n}\n#notification_switch1:checked ~ span[data-v-467083a1]{\n        background-color: #fcb00c;\n}\n#notification_switch1:checked ~ span span[data-v-467083a1]{\n        background-color: #fff;\n        transform: translate(18px, 11px);\n}\n#notification_switch2:checked ~ span[data-v-467083a1]{\n        background-color: #fcb00c;\n}\n#notification_switch2:checked ~ span span[data-v-467083a1]{\n        background-color: #fff;\n        transform: translate(18px, 11px);\n}\nimg[data-v-467083a1] {\n        width: 30px;\n        height: 20px;\n}\n.flag[data-v-467083a1]{\n        top: 34px;\n        left: 10px;\n        position: absolute;\n}\n.phone[data-v-467083a1] {\n        padding-left: 70px;\n        text-align: left;\n}\n.login-right .dont-have a[data-v-467083a1], .click-forget a[data-v-467083a1]:hover ,.click a[data-v-467083a1]{\n        color: #fcb00c;\n}\n.btn-color[data-v-467083a1]:hover{\n        background-color: #fcb00c;\n        border-color: #fcb00c ;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36746,7 +36756,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-5b695eb2] {\n    padding: 150px 0 30px;\n}\n.login-right .login-header img[data-v-5b695eb2]{\n    height: 100px;\n    width: 210px;\n}\n.login-header img[data-v-5b695eb2]{\n    height: 50px;\n    width: 55px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-5b695eb2] {\n    padding: 150px 0 30px;\n}\n.login-right .login-header img[data-v-5b695eb2]{\n    height: 100px;\n    width: 210px;\n}\n.login-header img[data-v-5b695eb2]{\n    height: 50px;\n    width: 55px;\n}\n.login-right .dont-have a[data-v-5b695eb2], .forget-register a[data-v-5b695eb2]:hover ,.login-register a[data-v-5b695eb2] {\n    color: #fcb00c;\n}\n.btn-color[data-v-5b695eb2]:hover{\n    background-color: #fcb00c;\n    border-color: #fcb00c ;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36770,7 +36780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-5c35063f] {\n    padding: 150px 0 30px;\n}\n.login-right .login-header img[data-v-5c35063f]{\n    height: 100px;\n    width: 210px;\n}\n.success[data-v-5c35063f]{\n    display: block;\n    background-color: #0a0a0a21;\n    position: fixed;\n    top: 0;\n    right: 0;\n    left: 0;\n    bottom: 0;\n    z-index: 1050;\n    width: 100%;\n    height: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    outline: 0;\n}\n.modal-dialog[data-v-5c35063f]{\n    width: 400px\n}\n.modal-content[data-v-5c35063f]{\n    padding: 6px 58px 20px;\n    border: none;\n    border-radius: 15px;\n}\n.success img[data-v-5c35063f]{\n    margin: 0 auto;\n    width: 100px;\n    margin-top: -50px;\n    border-radius: 50%;\n    box-shadow: 0 2px 5px rgba(0,0,0,.2);\n}\n.success h2[data-v-5c35063f]{\n    font-size: 38px;\n    font-weight: 500;\n    margin: 25px 0 10px;\n}\n.success button[data-v-5c35063f]{\n    width: 100%;\n    margin-top: 10px;\n    padding: 10px 0;\n    color: #fff;\n    border: 0;\n    outline: 0;\n    border-right: 4px;\n    cursor: pointer;\n    box-shadow: 0 2px 5px rgba(0,0,0,.2);\n}\n.login-header img[data-v-5c35063f]{\n    height: 50px;\n    width: 55px;\n}\n.custom-nav[data-v-5c35063f] {\n    margin:0 25px;\n}\n.stop-margin[data-v-5c35063f] {\n    margin: 0;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.content[data-v-5c35063f] {\n    padding: 150px 0 30px;\n}\n.login-right .login-header img[data-v-5c35063f]{\n    height: 100px;\n    width: 210px;\n}\n.success[data-v-5c35063f]{\n    display: block;\n    background-color: #0a0a0a21;\n    position: fixed;\n    top: 0;\n    right: 0;\n    left: 0;\n    bottom: 0;\n    z-index: 1050;\n    width: 100%;\n    height: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    outline: 0;\n}\n.modal-dialog[data-v-5c35063f]{\n    width: 400px\n}\n.modal-content[data-v-5c35063f]{\n    padding: 6px 58px 20px;\n    border: none;\n    border-radius: 15px;\n}\n.success img[data-v-5c35063f]{\n    margin: 0 auto;\n    width: 100px;\n    margin-top: -50px;\n    border-radius: 50%;\n    box-shadow: 0 2px 5px rgba(0,0,0,.2);\n}\n.success h2[data-v-5c35063f]{\n    font-size: 38px;\n    font-weight: 500;\n    margin: 25px 0 10px;\n}\n.success button[data-v-5c35063f]{\n    width: 100%;\n    margin-top: 10px;\n    padding: 10px 0;\n    color: #fff;\n    border: 0;\n    outline: 0;\n    border-right: 4px;\n    cursor: pointer;\n    background-color: #fcb00c;\n    box-shadow: 0 2px 5px rgba(0,0,0,.2);\n}\n.fade-enter-from[data-v-5c35063f], .fade-leave-to[data-v-5c35063f]{\n   opacity: 0;\n}\n.fade-enter-active[data-v-5c35063f],.fade-leave-active[data-v-5c35063f]{\n    transition:all 1s ease-in-out;\n}\n.login-header img[data-v-5c35063f]{\n    height: 50px;\n    width: 55px;\n}\n.custom-nav[data-v-5c35063f] {\n    margin:0 25px;\n}\n.stop-margin[data-v-5c35063f] {\n    margin: 0;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -84567,7 +84577,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"header":{"home":"الرئيسية","company":"شركات التشطيبات","desgin":"المصممين","size":"خدمه رفع المقاسات","bargain":"لقطة","partner":"كن من شركاء النجاح","login":"الدخول","register":"التسجيل","project":"اضافة مشروعك","advisor":"مستشار شطبنا"},"register":{"design":"ديزينر","advertiser":"معلن","companies":"شركه","full_name":"الاسم كامل","email":"الايميل","password":"رقم السري","birth":"تاريخ الميلاد","confirm":"اعاده الرقم السري","company":"اسم الشركة","phone":"رقم التليفون","location":"موقعك علي خريطه جوجول","second_phone":"رقم التليفون الثاني (اختياري)","country":"الدولة","female":"انثي","male":"رجل","state":"المحافظه","agree":"بالتسجيل انت توافق علي ","Privacy":"شروط الخدمه و سياسه الخصوصية","and":"و بما في ذلك ","cookie":" استخدام الكوكيز.","join":"موافقه علي الانضمام","account":"لدي حساب بالفعل","click":"انقر هنا","forget":"نسيت كلمه المرور ؟","remember":"تذكرني","login":"تسجيل الدخول","new":"ليس لدي حساب؟","success-mess":"التفاصيل الخاصة بك قد قدمت بنجاح. شكرًا! .\\n سيتم إرسال بريد إلكتروني بعد التحقق من حسابك.","ok":"موافق","Join":"انضم لشطبنا","life":"حقق أقصى استفادة من حياتك المهنية","welcome":"مرحبا بعودتك","miss":"لا تفوت فرصتك القادمة. تسجيل الدخول للبقاء على اطلاع على عالمك."},"index":{"trused":"حصلنا علي ثقه اكثر من 2000.000 مستخدم","best":"احصل علي افضل","finishing":"شركات التشطيبات و الديزاينر حول العالم","company":"شركات التشطيبات","search":"ابحث باسم شركات التشطيب او الديزينر","search-new":"ابحث الان","search-company":"ابحث عن شركات التشطيبات","search-design":"ابحث عن ديزينر","parge-company":"احصل علي افضل الشركات التشطيبات في مصر و حول العالم بافضل \\n الاسعار و افضل الخدمات من خلال \\nاكبر تجمع لشركات التشطيبات."},"footer":{"adress":"عناوين شطبنا","captial":"القاهره","adresses":"مقطم حي السفارات-المقطم-127 بنك القطري","free":"اتصل مجاني","phone":" تليفونات:","know":"اعرف اكثر عن شطبنا","about":"نبذه عن شطبنا","contact":"اتصل بنا","blog":"المدونة","login":"تسجيل الدخول","register":"تسجيل","help":"الدعم و المساعده","chat":"شات لايف","question":"الاسئله الشائعة","Privacy":"السياسات و الاحكام","term":"شروط و الاحكام","mobile":"تطبيق الموبيل","application":"قم بتحميل تطبيق الموبيل و احصل علي افضل الخدمات من شركات التشطيبات و الديزاينر و افضل العروض الحصرية لكافة منتجات لقطة.","copy":" حقوق الملكيه محفوظة لشركه شطبنا 2022"}}');
+module.exports = JSON.parse('{"header":{"home":"الرئيسية","company":"شركات التشطيبات","desgin":"المصممين","size":"خدمه رفع المقاسات","bargain":"لقطة","partner":"كن من شركاء النجاح","login":"الدخول","register":"التسجيل","project":"اضافة مشروعك","advisor":"مستشار شطبنا"},"register":{"design":"ديزينر","advertiser":"معلن","companies":"شركه","full_name":"الاسم كامل","email":"الايميل","password":"رقم السري","birth":"تاريخ الميلاد","confirm":"اعاده الرقم السري","company":"اسم الشركة","phone":"رقم التليفون","location":"موقعك علي خريطه جوجول","second_phone":"رقم التليفون الثاني (اختياري)","country":"الدولة","female":"انثي","male":"رجل","state":"المحافظه","agree":"بالتسجيل انت توافق علي ","Privacy":"شروط الخدمه و سياسه الخصوصية","and":"و بما في ذلك ","cookie":" استخدام الكوكيز.","join":"موافقه علي الانضمام","account":"لدي حساب بالفعل","click":"انقر هنا","forget":"نسيت كلمه المرور ؟","remember":"تذكرني","login":"تسجيل الدخول","new":"ليس لدي حساب؟","thank":"شكرًا لك!","success-mess":"التفاصيل الخاصة بك قد قدمت بنجاح. شكرًا! .\\n سيتم إرسال بريد إلكتروني بعد التحقق من حسابك.","ok":"موافق","Join":"انضم لشطبنا","life":"حقق أقصى استفادة من حياتك المهنية","welcome":"مرحبا بعودتك","miss":"لا تفوت فرصتك القادمة. تسجيل الدخول للبقاء على اطلاع على عالمك."},"index":{"trused":"حصلنا علي ثقه اكثر من 2000.000 مستخدم","best":"احصل علي افضل","finishing":"شركات التشطيبات و الديزاينر حول العالم","company":"شركات التشطيبات","search":"ابحث باسم شركات التشطيب او الديزينر","search-new":"ابحث الان","search-company":"ابحث عن شركات التشطيبات","search-design":"ابحث عن ديزينر","parge-company":"احصل علي افضل الشركات التشطيبات في مصر و حول العالم بافضل \\n الاسعار و افضل الخدمات من خلال \\nاكبر تجمع لشركات التشطيبات."},"footer":{"adress":"عناوين شطبنا","captial":"القاهره","adresses":"مقطم حي السفارات-المقطم-127 بنك القطري","free":"اتصل مجاني","phone":" تليفونات:","know":"اعرف اكثر عن شطبنا","about":"نبذه عن شطبنا","contact":"اتصل بنا","blog":"المدونة","login":"تسجيل الدخول","register":"تسجيل","help":"الدعم و المساعده","chat":"شات لايف","question":"الاسئله الشائعة","Privacy":"السياسات و الاحكام","term":"شروط و الاحكام","mobile":"تطبيق الموبيل","application":"قم بتحميل تطبيق الموبيل و احصل علي افضل الخدمات من شركات التشطيبات و الديزاينر و افضل العروض الحصرية لكافة منتجات لقطة.","copy":" حقوق الملكيه محفوظة لشركه شطبنا 2022"}}');
 
 /***/ }),
 
@@ -84578,7 +84588,7 @@ module.exports = JSON.parse('{"header":{"home":"الرئيسية","company":"ش�
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"header":{"home":"Home","company":"Companies","desgin":"Desginers","size":"Sizing Service","bargain":"Bargain","partner":"Success Partners","login":"Login","register":"Register","project":"Add Project","advisor":"Advisor Shatbna"},"register":{"design":"DESIGNER","advertiser":"ADVERTISER","companies":"COMPANY","full_name":"Full Name","email":"Email","password":"Password","confirm":"Confirm Password","company":"Name Company","birth":"Birth","phone":"Phone","second_phone":"Second Phone (optional)","location":"Google Map","country":"Country","state":"State","female":"Female","male":"male","and":"and","cookie":"Cookie Policy","join":"Agree TO JOIN","agree":"you agree to the shatbna","Privacy":"User Agreement, Privacy Policy,","account":"Already on Shatbna ","click":"Click here","forget":"Forget Password ?","remember":"Remember password","login":"LOGIN","new":"New to Shatbna?","success-mess":"Your details has been successfully submitted. Thanks! .\\n  An email will be sent after verifying your account .","ok":"Ok","Join":"Join Shatbna","life":"Make the most of your professional life","welcome":"Welcome Back","miss":"Don\'t miss your next opportunity. Sign in to stay updated on your world."},"index":{"trused":"Trused by over 2M+ users","best":"Get the best","finishing":"Finishes and designers around the world","company":"Finishing Companies","search":"Search by the name of the companies or the designer","search-new":"search now","search-company":"Looking for finishing companies","search-design":"Looking for a designer","parge-company":"Get the best finishing companies in Egypt and around the world at the best prices and the best services through the largest gathering of finishing companies."},"footer":{"adress":"Addresses Shatbna","captial":"Cairo","adresses":"Diplomatic Quarter Mokattam-Mokattam-127 Qatari Bank","free":"Free call","phone":"Telephones:","know":"More About Shutbana","about":"About Shtabna","contact":"Contact Us","blog":"Blog","login":"Login","register":"Register","help":"Support and Help","chat":"Live Chat","question":"Common Questions","Privacy":"Privacy Policy","term":"Terms and Conditions","mobile":"mobile app","application":"Download the mobile application and get the best services from the finishing and designer companies and the best exclusive offers for all Logta products.","copy":"All rights reserved to Shutbna Company 2022"}}');
+module.exports = JSON.parse('{"header":{"home":"Home","company":"Companies","desgin":"Desginers","size":"Sizing Service","bargain":"Bargain","partner":"Success Partners","login":"Login","register":"Register","project":"Add Project","advisor":"Advisor Shatbna"},"register":{"design":"DESIGNER","advertiser":"ADVERTISER","companies":"COMPANY","full_name":"Full Name","email":"Email","password":"Password","confirm":"Confirm Password","company":"Name Company","birth":"Birth","phone":"Phone","second_phone":"Second Phone (optional)","location":"Google Map","country":"Country","state":"State","female":"Female","male":"male","and":"and","cookie":"Cookie Policy","join":"Agree TO JOIN","agree":"you agree to the shatbna","Privacy":"User Agreement, Privacy Policy,","account":"Already on Shatbna ","click":"Click here","forget":"Forget Password ?","remember":"Remember password","login":"LOGIN","new":"New to Shatbna?","thank":"Thank you!","success-mess":"Your details has been successfully submitted. Thanks! .\\n  An email will be sent after verifying your account .","ok":"Ok","Join":"Join Shatbna","life":"Make the most of your professional life","welcome":"Welcome Back","miss":"Don\'t miss your next opportunity. Sign in to stay updated on your world."},"index":{"trused":"Trused by over 2M+ users","best":"Get the best","finishing":"Finishes and designers around the world","company":"Finishing Companies","search":"Search by the name of the companies or the designer","search-new":"search now","search-company":"Looking for finishing companies","search-design":"Looking for a designer","parge-company":"Get the best finishing companies in Egypt and around the world at the best prices and the best services through the largest gathering of finishing companies."},"footer":{"adress":"Addresses Shatbna","captial":"Cairo","adresses":"Diplomatic Quarter Mokattam-Mokattam-127 Qatari Bank","free":"Free call","phone":"Telephones:","know":"More About Shutbana","about":"About Shtabna","contact":"Contact Us","blog":"Blog","login":"Login","register":"Register","help":"Support and Help","chat":"Live Chat","question":"Common Questions","Privacy":"Privacy Policy","term":"Terms and Conditions","mobile":"mobile app","application":"Download the mobile application and get the best services from the finishing and designer companies and the best exclusive offers for all Logta products.","copy":"All rights reserved to Shutbna Company 2022"}}');
 
 /***/ })
 

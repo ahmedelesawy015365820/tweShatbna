@@ -34,13 +34,13 @@
                                                 <span class="checkmark"></span> {{$t('register.remember')}}
                                             </label>
                                         </div>
-                                        <button class="btn btn-primary btn-block btn-lg login-btn text-center" type="submit">{{$t('register.login')}}</button>
+                                        <button class="btn btn-color btn-primary btn-block btn-lg login-btn text-center" type="submit">{{$t('register.login')}}</button>
                                         <div class="row form-row forget-login">
                                             <div :class="['col-6','text-start', this.$i18n.locale == 'ar'? 'forget-register' : '']">
                                                 <router-link  to="/forgot-password">{{$t('register.forget')}}</router-link>
                                             </div>
                                             <div :class="['col-6','text-end',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.new')}}
-                                                <router-link class="text-danger" :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
+                                                <router-link  :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
                                             </div>
                                         </div>
                                     </form>
@@ -280,6 +280,15 @@ if($('#store').length > 0) {
 .login-header img{
     height: 50px;
     width: 55px;
+}
+
+.login-right .dont-have a, .forget-register a:hover ,.login-register a {
+    color: #fcb00c;
+}
+
+.btn-color:hover{
+    background-color: #fcb00c;
+    border-color: #fcb00c ;
 }
 
 </style>

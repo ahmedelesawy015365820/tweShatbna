@@ -29,7 +29,7 @@ class RegisterController extends Controller
     public function companyRegister(Request $request)
     {
 
-        try {
+//        try {
 
             DB::beginTransaction();
 
@@ -52,7 +52,7 @@ class RegisterController extends Controller
             }
 
             $phone_second  = $request->phone_second != '' ?
-                $request->code . $request->phone_second : '';
+                $request->code . $request->phone_second : null;
 
             if($request->phone_second != ''){
                 $phone_second = $request->code . $request->phone_second;
@@ -87,13 +87,13 @@ class RegisterController extends Controller
                 return $this->sendError('An error occurred in the system');
             }
 
-        }
-        catch (\Exception $e){
-
-            DB::rollBack();
-            return $this->sendError('An error occurred in the system');
-
-        }
+//        }
+//        catch (\Exception $e){
+//
+//            DB::rollBack();
+//            return $this->sendError('An error occurred in the system');
+//
+//        }
 
     }// end companyRegister
 

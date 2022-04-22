@@ -1,12 +1,15 @@
 <template>
     <div class="page-wrapper">
+
         <div class="content container-fluid">
+
+            <notifications :position="this.$i18n.locale == 'ar'? 'top left': 'top right'"  />
 
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Package</h3>
+                        <h3 class="page-title">Package <i class="fas fa-check-circle"></i></h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><router-link :to="{name: 'package', params: {lang: locale || 'ar'}}">Package</router-link></li>
                             <li class="breadcrumb-item active">Create Package</li>
@@ -198,30 +201,49 @@
 </template>
 
 <script>
-import {computed, onMounted, reactive,toRefs,inject} from "vue";
-import {useStore} from "vuex";
+import {computed, onMounted, reactive,toRefs,inject,ref} from "vue";
 import useVuelidate from '@vuelidate/core';
 import {required,minLength,between,maxLength,alpha,integer} from '@vuelidate/validators';
+import adminApi from "../../../api/adminAxios";
+import { notify } from "@kyvg/vue3-notification";
+import router from "../../../router/adminRoute";
+
 
 export default {
     name: "createPackage",
+    data(){
+        return {
+            errors:{}
+        }
+    },
     setup(){
-
-        const store = useStore();
         const emitter = inject('emitter');
 
         // get create Package
-        let pageWeb = computed(() => store.getters['packageAdmin/pageWeb'] );
-        let pageMobile = computed(() => store.getters['packageAdmin/pageMobile'] );
-        let loading = computed(() => store.getters['packageAdmin/loading'] );
+        let pageWeb = ref([]);
+        let pageMobile =  ref([]);
+        let loading = ref(false);
 
 
         let getPagesViews = () => {
-            store.dispatch('packageAdmin/getPages');
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/advertiserPackage/create`)
+                .then((res) => {
+                    let l = res.data.data;
+                    pageWeb.value = l.pageView;
+                    pageMobile.value = l.pageViewMobile;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                })
         }
+
          onMounted(() => {
             getPagesViews();
-
         });
 
         emitter.on('get_lang', () => {
@@ -289,35 +311,37 @@ export default {
 
         return {pageWeb,pageMobile,loading,...toRefs(addPackage),v$};
     },
-    computed:{
-        errors(){
-          return   this.$store.getters['packageAdmin/errors'] ;
-        }
-    },
     methods: {
         storePackage(){
             this.v$.$validate();
 
             if(!this.v$.$error){
 
-                this.$store.dispatch('packageAdmin/storePackage',this.data);
+                this.loading = true;
+                this.errors = {};
 
-                this.theReset();
-                this.$nextTick(() => { this.v$.$reset() });
+                adminApi.post(`/v1/dashboard/advertiserPackage`,this.data)
+                    .then((res) => {
+
+                        notify({
+                            title: `Data exited successfully <i class="fas fa-check-circle"></i>`,
+                            type: "success",
+                            duration: 5000,
+                            speed: 2000
+                        });
+
+                        let locale = localStorage.getItem("langAdmin");
+                        return router.push({name: 'package', params: {lang: locale || 'ar'}});
+                    })
+                    .catch((err) => {
+                        this.errors = err.response.data.errors;
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
 
             }
         },
-        theReset(){
-            this.data.en.name = '';
-            this.data.ar.name = '';
-            this.data.period = 0;
-            this.data.price = 0;
-            this.data.visiter_num = 0;
-            this.data.visiter_num = 0;
-            this.data.pageView_id = [];
-            this.data.pageViewMobile_id = [];
-        }
-
     }
 }
 </script>

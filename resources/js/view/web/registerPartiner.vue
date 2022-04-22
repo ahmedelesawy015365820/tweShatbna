@@ -3,20 +3,22 @@
     <div class="content">
         <loader v-if="loading" />
 
-        <!-- The Modal -->
-        <div class="success" v-if="success">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content text-center">
-                    <img src="/web/img/success.png">
-                    <h2>Thank you!</h2>
-                    <p>
-                        {{ $t('register.success-mess') }}
-                    </p>
-                    <button type="button" @click.prevent="successRegister">{{$t('register.ok')}}</button>
+        <!--The Modal-->
+        <transition name="fade">
+            <div class="success" v-if="success">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content text-center">
+                        <img src="/web/img/success.png">
+                        <h2>{{ $t('register.thank') }}</h2>
+                        <p>
+                            {{ $t('register.success-mess') }}
+                        </p>
+                        <button type="button" @click.prevent="successRegister">{{$t('register.ok')}}</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- /The Modal -->
+        </transition>
+        <!--  /The Modal-->
 
         <div class="container">
             <div class="row">
@@ -116,8 +118,6 @@ export default {
             getCountry();
         });
 
-
-
         return {query,loading,success,successRegister};
     }
 }
@@ -182,7 +182,15 @@ export default {
     outline: 0;
     border-right: 4px;
     cursor: pointer;
+    background-color: #fcb00c;
     box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+
+.fade-enter-from, .fade-leave-to{
+   opacity: 0;
+}
+.fade-enter-active,.fade-leave-active{
+    transition:all 1s ease-in-out;
 }
 
 .login-header img{

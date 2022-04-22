@@ -33,8 +33,8 @@ web.use(i18n).use(store).use(router).mount('#app');
 if(!localStorage.getItem("langWeb")){
     localStorage.setItem('langWeb','ar');
 }
-import './assets/web/custom.css';
 import'./assets/web/custom-en.css';
+import './assets/web/custom.css';
 
 let tagHtml = document.querySelector('html'),
     styleLink = document.getElementById('style_web');
@@ -46,7 +46,6 @@ if(localStorage.getItem("langWeb") == 'ar'){
 }else{
     tagHtml.setAttribute('dir', 'ltr');
     styleLink.setAttribute('href','');
-    import('./assets/web/custom-en.css');
 }
 
 

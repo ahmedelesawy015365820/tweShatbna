@@ -52758,7 +52758,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.sidebar .sidebar-menu > ul > li > a span {\n    margin-right: 10px;\n}\n.sidebar-menu li a{\n    color: #000;\n}\n.sidebar-menu li a:hover{\n    color: #fcb00c !important;\n}\n.sidebar-menu li.active > a{\n    color: #fcb00c !important;\n}\n.menu-title {\n    color: #fcb00c !important;\n}\n.show{\n    display: block;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.sidebar .sidebar-menu > ul > li > a span {\r\n    margin-right: 10px;\n}\n.sidebar-menu li a{\r\n    color: #000;\n}\n.sidebar-menu li a:hover{\r\n    color: #fcb00c !important;\n}\n.sidebar-menu li.active > a{\r\n    color: #fcb00c !important;\n}\n.menu-title {\r\n    color: #fcb00c !important;\n}\n.show{\r\n    display: block;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52782,7 +52782,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.big {\n    max-height: 80px !important;\n    width: auto;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.big {\r\n    max-height: 80px !important;\r\n    width: auto;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52878,7 +52878,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.page-wrapper[data-v-635fae67]{\r\n    min-height: 100vh;\n}\n.coustom-select[data-v-635fae67] {\r\n    height: 100px;\n}\n.card[data-v-635fae67]{\r\n    position: relative;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.page-wrapper[data-v-635fae67]{\n    min-height: 100vh;\n}\n.coustom-select[data-v-635fae67] {\n    height: 100px;\n}\n.card[data-v-635fae67]{\n    position: relative;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52902,7 +52902,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-d4db00c6] {\n    position: relative;\n}\n.btn-custom[data-v-d4db00c6] {\n    width: 30%;\n}\n.custom[data-v-d4db00c6] {\n    border: 1px solid #D7D7D7;\n    padding: 2px;\n    border-radius: 5px;\n    width: 35%;\n}\n.btn[data-v-d4db00c6] {\n    color: #fff;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-d4db00c6] {\r\n    position: relative;\n}\n.btn-custom[data-v-d4db00c6] {\r\n    width: 30%;\n}\n.custom[data-v-d4db00c6] {\r\n    border: 1px solid #D7D7D7;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n    width: 35%;\n}\n.btn[data-v-d4db00c6] {\r\n    color: #fff;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52950,7 +52950,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-b200d362] {\n    border: none;\n}\n.waves-effect[data-v-b200d362] {\nposition: relative;\noverflow: hidden;\ncursor: pointer;\n-webkit-user-select: none;\n   -moz-user-select: none;\n    -ms-user-select: none;\n        user-select: none;\n-webkit-tap-highlight-color: transparent;\nwidth: 200px;\nheight: 50px;\ntext-align: center;\nline-height: 34px;\nmargin: auto;\n}\ninput[type=\"file\"][data-v-b200d362] {\nposition: absolute;\ntop: 0;\nright: 0;\nbottom: 0;\nleft: 0;\nwidth: 100%;\nheight: 100%;\npadding: 0;\nmargin: 0;\ncursor: pointer;\nfilter: alpha(opacity=0);\nopacity: 0;\n}\n.num-of-files[data-v-b200d362]{\ntext-align: center;\nmargin: 20px 0 30px;\n}\n.container-images[data-v-b200d362] {\nwidth: 90%;\nposition: relative;\nmargin: auto;\ndisplay: flex;\njustify-content: space-evenly;\ngap: 20px;\nflex-wrap: wrap;\npadding: 10px;\nborder-radius: 20px;\nbackground-color: #f7f7f7;\n}\n.p-3[data-v-b200d362] {\n    padding: 1rem!important;\n}\n.btn[data-v-b200d362] {\n    margin-top: 20px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-b200d362] {\r\n    border: none;\n}\n.waves-effect[data-v-b200d362] {\r\nposition: relative;\r\noverflow: hidden;\r\ncursor: pointer;\r\n-webkit-user-select: none;\r\n   -moz-user-select: none;\r\n    -ms-user-select: none;\r\n        user-select: none;\r\n-webkit-tap-highlight-color: transparent;\r\nwidth: 200px;\r\nheight: 50px;\r\ntext-align: center;\r\nline-height: 34px;\r\nmargin: auto;\n}\ninput[type=\"file\"][data-v-b200d362] {\r\nposition: absolute;\r\ntop: 0;\r\nright: 0;\r\nbottom: 0;\r\nleft: 0;\r\nwidth: 100%;\r\nheight: 100%;\r\npadding: 0;\r\nmargin: 0;\r\ncursor: pointer;\r\nfilter: alpha(opacity=0);\r\nopacity: 0;\n}\n.num-of-files[data-v-b200d362]{\r\ntext-align: center;\r\nmargin: 20px 0 30px;\n}\n.container-images[data-v-b200d362] {\r\nwidth: 90%;\r\nposition: relative;\r\nmargin: auto;\r\ndisplay: flex;\r\njustify-content: space-evenly;\r\ngap: 20px;\r\nflex-wrap: wrap;\r\npadding: 10px;\r\nborder-radius: 20px;\r\nbackground-color: #f7f7f7;\n}\n.p-3[data-v-b200d362] {\r\n    padding: 1rem!important;\n}\n.btn[data-v-b200d362] {\r\n    margin-top: 20px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52974,7 +52974,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-8da30fd4] {\r\n    position: relative;\n}\n.btn-custom[data-v-8da30fd4] {\r\n    width: 30%;\n}\n.custom[data-v-8da30fd4] {\r\n    border: 1px solid #D7D7D7;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n    width: 35%;\n}\n.btn[data-v-8da30fd4] {\r\n     color: #fff;\n}\n.badge[data-v-8da30fd4] {\r\n    padding: 8px;\r\n    border-radius: 18px;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-8da30fd4] {\n    position: relative;\n}\n.btn-custom[data-v-8da30fd4] {\n    width: 30%;\n}\n.custom[data-v-8da30fd4] {\n    border: 1px solid #D7D7D7;\n    padding: 2px;\n    border-radius: 5px;\n    width: 35%;\n}\n.btn[data-v-8da30fd4] {\n     color: #fff;\n}\n.badge[data-v-8da30fd4] {\n    padding: 8px;\n    border-radius: 18px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52998,7 +52998,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-1977e82e] {\r\n    border: none;\n}\n.p-3[data-v-1977e82e] {\r\n    padding: 1rem!important;\n}\n.container-images[data-v-1977e82e] {\r\n    width: 90%;\r\n    position: relative;\r\n    margin: auto;\r\n    display: flex;\r\n    justify-content: space-evenly;\r\n    gap: 20px;\r\n    flex-wrap: wrap;\r\n    padding: 10px;\r\n    border-radius: 20px;\r\n    background-color: #f7f7f7;\n}\nimg[data-v-1977e82e]{\r\n    height: 200px;\r\n    width: 200px;\n}\n.calendar[data-v-1977e82e] {\r\n    margin-top: 50px;\r\n    position: relative;\n}\n.calendar .shodow[data-v-1977e82e]{\r\n    position: absolute;\r\n    top: 100px;\r\n    left: 0;\r\n    right: 34px;\r\n    bottom: 30px;\r\n    z-index: 100;\n}\n.modal-dialog[data-v-1977e82e] {\r\n    z-index: 100;\n}\n.custom-modal .shodow[data-v-1977e82e]{\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    background-color: #0000004a;\n}\n.fc-title[data-v-1977e82e]:hover {\r\n    cursor: pointer;\n}\n.cal-icon[data-v-1977e82e]:after {\r\n    display: none;\n}\n.toggle-switch-input:checked:disabled + .toggle-switch-label[data-v-1977e82e] {\r\n    background-color: #FF5B37;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-1977e82e] {\n    border: none;\n}\n.p-3[data-v-1977e82e] {\n    padding: 1rem!important;\n}\n.container-images[data-v-1977e82e] {\n    width: 90%;\n    position: relative;\n    margin: auto;\n    display: flex;\n    justify-content: space-evenly;\n    gap: 20px;\n    flex-wrap: wrap;\n    padding: 10px;\n    border-radius: 20px;\n    background-color: #f7f7f7;\n}\nimg[data-v-1977e82e]{\n    height: 200px;\n    width: 200px;\n}\n.calendar[data-v-1977e82e] {\n    margin-top: 50px;\n    position: relative;\n}\n.calendar .shodow[data-v-1977e82e]{\n    position: absolute;\n    top: 100px;\n    left: 0;\n    right: 34px;\n    bottom: 30px;\n    z-index: 100;\n}\n.modal-dialog[data-v-1977e82e] {\n    z-index: 100;\n}\n.custom-modal .shodow[data-v-1977e82e]{\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: #0000004a;\n}\n.fc-title[data-v-1977e82e]:hover {\n    cursor: pointer;\n}\n.cal-icon[data-v-1977e82e]:after {\n    display: none;\n}\n.toggle-switch-input:checked:disabled + .toggle-switch-label[data-v-1977e82e] {\n    background-color: #FF5B37;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -53022,7 +53022,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-c41994ba] {\n    position: relative;\n}\n.btn-custom[data-v-c41994ba] {\n    width: 30%;\n}\n.custom[data-v-c41994ba] {\n    border: 1px solid #D7D7D7;\n    padding: 2px;\n    border-radius: 5px;\n    width: 35%;\n}\n.btn[data-v-c41994ba] {\n    color: #fff;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-c41994ba] {\r\n    position: relative;\n}\n.btn-custom[data-v-c41994ba] {\r\n    width: 30%;\n}\n.custom[data-v-c41994ba] {\r\n    border: 1px solid #D7D7D7;\r\n    padding: 2px;\r\n    border-radius: 5px;\r\n    width: 35%;\n}\n.btn[data-v-c41994ba] {\r\n    color: #fff;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

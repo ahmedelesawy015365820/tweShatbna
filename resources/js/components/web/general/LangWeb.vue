@@ -1,10 +1,10 @@
 <template>
     <li>
-        <a href="#" v-if="this.$i18n.locale == 'en'" @click="getLang('ar')" class="log-btn">
+        <a href="#" v-if="this.$i18n.locale == 'en'" @click="getLang('ar')" class="log-btn space">
             AR
             <i class="fa fa-globe"></i>
         </a>
-        <a href="#" v-else @click="getLang('en')" class="log-btn">
+        <a href="#" v-else @click="getLang('en')" class="log-btn space">
             EN
             <i class="fa fa-globe"></i>
         </a>
@@ -23,6 +23,13 @@
     color: #fcb00c !important;
     text-decoration: none;
 }
+@media only screen and (max-width: 992px){
+
+    .header-navbar-rht .log-btn.space {
+        margin-top: 20px;
+    }
+}
+
 </style>
 
 <script>

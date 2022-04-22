@@ -1,6 +1,6 @@
 <template>
     <!-- Header -->
-    <header class="header">
+    <header :class="['header',scroll ?'custom-header':'']">
         <nav class="navbar navbar-expand-lg header-nav">
             <div class="navbar-header">
                 <a id="mobile_btn" href="javascript:void(0);">
@@ -10,62 +10,67 @@
 								<span></span>
 							</span>
                 </a>
-                <a href="index.html" class="navbar-brand logo">
+                <router-link :to="{name:'home',params: {lang:this.$i18n.locale}}" class="navbar-brand logo">
                     <img src="/web/img/logo.png" class="img-fluid" alt="Logo">
-                </a>
+                </router-link>
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
-                    <a href="index.html" class="menu-logo">
+                    <router-link :to="{name:'home',params: {lang:this.$i18n.locale}}" class="menu-logo">
                         <img src="/web/img/logo.png" class="img-fluid" alt="Logo">
-                    </a>
+                    </router-link>
                     <a id="menu_close" class="menu-close" href="javascript:void(0);">
                         <i class="fas fa-times"></i>
                     </a>
                 </div>
                 <ul class="main-nav">
-                    <li :class="[$route.name == 'home' ? 'active' : '']">
-                        <router-link :to="{name:'home',params: {lang:this.$i18n.locale}}">Home</router-link>
+                    <li :class="[$route.name == 'home' ? 'active' : '','nav-item']">
+                        <router-link :to="{name:'home',params: {lang:this.$i18n.locale}}">
+                            {{$t('header.home')}}
+                        </router-link>
                     </li>
-                    <li class="">
-                        <a href="index.html">Companies</a>
+                    <li class="nav-item">
+                        <a href="index.html">{{$t('header.company')}}</a>
                     </li>
-                    <li class="">
-                        <a href="index.html">Designers</a>
+                    <li class="nav-item">
+                        <a href="index.html">{{$t('header.desgin')}}</a>
                     </li>
-                    <li class="">
-                        <a href="index.html">sizing service</a>
+                    <li class="nav-item">
+                        <a href="index.html">{{$t('header.bargain')}}</a>
                     </li>
-                    <li class="">
-                        <a href="index.html">Bargain</a>
+                    <li class="nav-item">
+                        <a href="index.html">{{$t('header.size')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html">{{$t('header.advisor')}}</a>
                     </li>
                 </ul>
+                <ul class="nav header-navbar-rht">
+                    <li v-if="token">
+                        <router-link :to="{name:role,params: {lang:this.$i18n.locale}}" class="partner">
+                            Ahmed Mohamed
+                        </router-link>
+                    </li>
+                    <li v-if="!token" :class="[$route.name == 'partners' ? 'active' : '']">
+                        <router-link :to="{name:'partners',params: {lang:this.$i18n.locale}}" class="partner">
+                            {{$t('header.partner')}}
+                        </router-link>
+                    </li>
+                    <li v-if="!token" :class="[$route.name == 'registerPartiner' ? 'active' : '']">
+                        <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}" class="reg-btn custom">
+                            <i class="fas fa-user"></i> {{$t('header.register')}}
+                        </router-link>
+                    </li>
+                    <li v-if="!token" :class="[$route.name == 'loginPartiner' ? 'active' : '']">
+                        <router-link :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}" class="log-btn custom">
+                            <i class="fas fa-lock"></i>
+                            {{$t('header.login')}}
+                        </router-link >
+                    </li>
+                    <lang  />
+                    <li><a href="post-project.html" class="login-btn">{{$t('header.project')}}</a></li>
+                </ul>
             </div>
-            <ul class="nav header-navbar-rht">
-                <li v-if="token">
-                    <router-link :to="{name:role,params: {lang:this.$i18n.locale}}" class="partner">
-                        Ahmed Mohamed
-                    </router-link>
-                </li>
-                <li v-if="!token">
-                    <router-link :to="{name:'partners',params: {lang:this.$i18n.locale}}" class="partner">
-                        Success Partners
-                    </router-link>
-                </li>
-                <li v-if="!token">
-                    <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}" class="reg-btn custom">
-                        <i class="fas fa-user"></i> Register
-                    </router-link>
-                </li>
-                <li v-if="!token">
-                    <router-link :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}" class="log-btn custom">
-                        <i class="fas fa-lock"></i>
-                        Login
-                    </router-link >
-                </li>
-                <lang  />
-                <li><a href="post-project.html" class="login-btn">Post a Project</a></li>
-            </ul>
         </nav>
     </header>
     <!-- /Header -->
@@ -74,7 +79,7 @@
 <script>
 import lang from './LangWeb.vue';
 import {useStore} from 'vuex';
-import {computed} from 'vue';
+import {computed,ref} from 'vue';
 
 export default {
     name: "layout-header",
@@ -90,7 +95,17 @@ export default {
         const store = useStore();
         const token = computed(() => store.getters['auth/token']);
         const role = computed(() => store.getters['auth/roles'].split(',')[0]);
-        return {token,role};
+
+        let scroll = ref(false);
+        window.onscroll = function (){
+         if(window.pageYOffset > 400){
+             scroll.value = true;
+         }else{
+             scroll.value = false;
+         }
+        };
+
+        return {token,role,scroll};
     }
 }
 </script>
@@ -98,13 +113,24 @@ export default {
 <style scoped>
     .header{
         background-color: #fff;
+        position: static;
+
+    }
+
+    .header.custom-header{
+        position: fixed;
     }
 
     .logo{
         width: 140px;
     }
+    .main-menu-wrapper{
+        display: flex;
+    }
+
     .main-nav li a{
         font-size: 15px !important;
+        font-weight: 500;
     }
     .main-nav li a:hover{
         color: #fcb00c;
@@ -122,8 +148,8 @@ export default {
     .header-navbar-rht .login-btn {
     background-color: #fcb00c;
     border-color: #fcb00c;
-    padding: 10px 10px;
-    font-size: 12px;
+    padding: 5px 15px;
+    font-size: 16px;
     box-shadow: none;
     }
     .header-navbar-rht .custom{
@@ -132,8 +158,8 @@ export default {
 
     .header-navbar-rht .partner{
         color: #fcb00c;
-        padding: 10px 10px;
-        font-size: 12px;
+        padding: 5px 15px;
+        font-size: 14px;
         box-shadow: none;
         border: 1px solid #fcb00c;
         border-radius: 50px;
@@ -142,4 +168,78 @@ export default {
        background-color: #fcb00c !important;
        color: #fff !important;
     }
+
+    @media only screen and (max-width: 1115px){
+        .main-nav > li {
+            margin-right: 11px;
+        }
+        .main-nav li a {
+            font-size: 13px !important;
+        }
+        .header-navbar-rht .login-btn {
+            padding: 5px 8px;
+            font-size: 11px !important;
+        }
+        .header-navbar-rht .partner{
+            padding: 5px 8px;
+            font-size: 10px !important;
+        }
+        .header-navbar-rht li {
+            margin-right: 15px;
+        }
+        .header-navbar-rht .custom{
+            font-size: 11px !important;
+        }
+        .main-nav > li:last-child {
+            margin-right: 15px;
+        }
+    }
+
+    @media only screen and (max-width: 992px){
+        .main-menu-wrapper{
+            display: inline-block;
+        }
+        .main-nav li a {
+            font-size: 15px !important;
+        }
+        .header-navbar-rht{
+            margin-top: 20px;
+        }
+        .main-nav > li:last-child {
+            margin-right: 20px;
+        }
+        .header-navbar-rht .login-btn {
+            padding: 5px 12px;
+            font-size: 12px !important;
+            margin-top: 20px;
+        }
+        .header-navbar-rht .partner{
+            padding: 5px 12px;
+            font-size: 11px !important;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .header-navbar-rht li {
+            margin-right: 9px;
+        }
+        .header-navbar-rht .login-btn {
+            padding: 5px 8px;
+            font-size: 11px !important;
+        }
+        .header-navbar-rht .partner{
+            padding: 5px 8px;
+            font-size: 10px !important;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        .main-nav > li:last-child {
+            margin-right: 15px;
+        }
+        .header-navbar-rht{
+            display: block;
+        }
+    }
+
 </style>

@@ -10,10 +10,9 @@
                     <img src="/web/img/success.png">
                     <h2>Thank you!</h2>
                     <p>
-                        Your details has been successfully submitted. Thanks! .
-                        An email will be sent after verifying your account .
+                        {{ $t('register.success-mess') }}
                     </p>
-                    <button type="button" @click.prevent="successRegister">Ok</button>
+                    <button type="button" @click.prevent="successRegister">{{$t('register.ok')}}</button>
                 </div>
             </div>
         </div>
@@ -27,9 +26,9 @@
                         <div class="align-items-center justify-content-center">
                             <div class="login-right">
                                 <div class="login-header text-center">
-                                    <img src="../../assets/img/logo-01.png" alt="logo" class="img-fluid">
-                                    <h3>Join Shatbna</h3>
-                                    <p>Make the most of your professional life</p>
+                                    <img src="/web/img/logo.png" alt="logo" class="img-fluid">
+                                    <h3>{{ $t('register.Join') }}</h3>
+                                    <p>{{ $t('register.life') }}</p>
                                 </div>
                                 <nav class="user-tabs mb-4">
                                     <ul role="tablist" class="nav nav-pills nav-justified">
@@ -49,7 +48,7 @@
                                         <design-register />
                                     </div>
                                     <div role="tabpanel" id="company" :class="['tab-pane','fade',query == 'company'? 'active show': false]">
-                                        <company-register /> 
+                                        <company-register />
                                     </div>
                                     <div role="tabpanel" id="advertiser" :class="['tab-pane','fade',query == 'advertiser'? 'active show': false]">
                                         <advertiser-register />
@@ -117,7 +116,7 @@ export default {
             getCountry();
         });
 
-    
+
 
         return {query,loading,success,successRegister};
     }
@@ -127,6 +126,11 @@ export default {
 <style scoped>
 .content {
     padding: 150px 0 30px;
+}
+
+.login-right .login-header img{
+    height: 100px;
+    width: 210px;
 }
 
 .success{
@@ -173,7 +177,6 @@ export default {
     width: 100%;
     margin-top: 10px;
     padding: 10px 0;
-    background-color: #FF5B37;
     color: #fff;
     border: 0;
     outline: 0;

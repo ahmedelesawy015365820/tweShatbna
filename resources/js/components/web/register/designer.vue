@@ -275,7 +275,7 @@ export default {
                 this.dataDesign.code = item;
 
                 this.$store.dispatch('auth/DesignRegister', this.dataDesign);
-                
+
             }
 
         }
@@ -336,7 +336,7 @@ export default {
     }
 
     #notification_switch1:checked ~ span{
-        background-color: #FF5B37;
+        background-color: #fcb00c;
     }
 
     #notification_switch1:checked ~ span span{
@@ -345,7 +345,7 @@ export default {
     }
 
     #notification_switch2:checked ~ span{
-        background-color: #FF5B37;
+        background-color: #fcb00c;
     }
 
     #notification_switch2:checked ~ span span{

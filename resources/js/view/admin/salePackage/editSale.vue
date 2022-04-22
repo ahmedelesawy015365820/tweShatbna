@@ -104,7 +104,6 @@ export default {
             store.dispatch('sale/updateSalePackage',packageIdE._value);
         }
 
-
         return {packages,loading,packageIdE,editSale};
 
     }

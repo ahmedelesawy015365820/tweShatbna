@@ -37,6 +37,9 @@
 		<!-- Datatables CSS -->
 		<link rel="stylesheet" href="{{asset('admin/plugins/datatables/datatables.min.css')}}">
 
+        {{--font arabic--}}
+        <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=hanimation" />
+
         <!-- Main CSS -->
 		<link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
 

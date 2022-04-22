@@ -3,8 +3,8 @@
         <!-- Home Banner -->
         <section class="section home-banner row-middle">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-8 col-lg-7">
+                <div class="row align-items-center custom-row">
+                    <div class="col-md-9 col-lg-8 custom-col">
                         <div class="banner-content">
                             <div class="rating d-flex">
                                 <i class="fas fa-star checked"></i>
@@ -12,29 +12,25 @@
                                 <i class="fas fa-star checked"></i>
                                 <i class="fas fa-star checked"></i>
                                 <i class="fas fa-star checked"></i>
-                                <h5>Trused by over 2M+ users</h5>
+                                <h5>{{$t('index.trused')}}</h5>
                             </div>
-                            <h1>Get the perfect <span class="orange-text">Developers & Projects</span></h1>
-                            <p>With the world's #1 Developers marketplace</p>
-                            <form class="form"  name="store" id="store" method="post" action="project.html">
+                            <h1>{{$t('index.best')}}</h1>
+                            <p>{{$t('index.finishing')}}</p>
+                            <form class="form" id="store">
                                 <div class="form-inner">
                                     <div class="input-group">
 											<span class="drop-detail">
+                                                <span class="border-cutom-en" v-show="this.$i18n.locale != 'ar'"></span>
 												<select class="form-control select" name="storeID">
-													<option value="project.html">Projects</option>
-													<option value="developer.html">Freelancers</option>
+													<option value="project.html">{{$t('index.company')}}</option>
 												</select>
+                                                <span class="border-cutom-ar" v-show="this.$i18n.locale == 'ar'"></span>
 											</span>
-                                        <input type="email" class="form-control" placeholder="Search here">
-                                        <button class="btn btn-primary sub-btn" type="submit">Search Now</button>
+                                        <input type="text" class="form-control" :placeholder="$t('index.search')">
+                                        <button class="btn btn-primary sub-btn" type="submit">{{ $t('index.search-new') }}</button>
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-lg-5">
-                        <div class="banner-img">
-                            <img src="web/img/banner-img.png" class="img-fluid" alt="banner">
                         </div>
                     </div>
                 </div>
@@ -102,18 +98,28 @@
                     <!-- Feature Item -->
                     <div class="col-md-6 work-box bg1">
                         <div class="work-content">
-                            <h2>I need a Developed <span>Project</span></h2>
-                            <p>Get the perfect Developed project for your budget from our creative community.</p>
-                            <a href="project.html"><i class="fas fa-long-arrow-alt-right long-arrow"></i></a>
+                            <h2>{{$t('index.search-company')}}</h2>
+                            <p>{{$t('index.parge-company')}}</p>
+                            <div class="row justify-content-between">
+                                <div class="col-4"></div>
+                                <a href="#" class="col-2">
+                                    <i :class="['fas',this.$i18n.locale != 'ar'?'fa-long-arrow-alt-right':'fa-long-arrow-alt-left','long-arrow']"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <!-- /Feature Item -->
 
                     <div class="col-md-6 work-box bg2">
                         <div class="work-content">
-                            <h2>I want to <span>work</span></h2>
-                            <p>Do you want to earn money, find unlimited clients and build your freelance career?</p>
-                            <a href="developer.html"><i class="fas fa-long-arrow-alt-right long-arrow"></i></a>
+                            <h2>{{$t('index.search-design')}}</h2>
+                            <p>{{$t('index.parge-company')}}</p>
+                            <div class="row justify-content-between">
+                                <div class="col-4"></div>
+                                <a href="#" class="col-2">
+                                    <i :class="['fas',this.$i18n.locale != 'ar'?'fa-long-arrow-alt-right':'fa-long-arrow-alt-left','long-arrow']"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -344,22 +350,8 @@
         <!-- Subscribe -->
         <section class="section subscribe">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-4">
-                        <img src="web/img/subscribe.png" class="img-fluid" alt="subscribe">
-                    </div>
-                    <div class="col-md-6">
-                        <h3>Subscribe To Get Discounts, Updates & More</h3>
-                        <p>Monthly product updates, industry news and more!</p>
-                        <form action="#" method="POST">
-                            <div class="form-inner">
-                                <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Enter Email Address">
-                                    <button class="btn btn-primary sub-btn" type="submit">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-5 "><h1 class="text-center">مساحه اعلانيه</h1></div>
                 </div>
             </div>
         </section>
@@ -727,13 +719,15 @@
                         </div>
                     </div>
                 </div>
-                <div id="testimonial-slider" class="owl-carousel owl-theme testimonial-slider">
+                <div id="testimonial-slider"
+                     class="owl-carousel owl-theme testimonial-slider"
+                >
 
                     <!-- Review Widget -->
                     <div class="review-blog">
                         <div class="review-top d-flex align-items-center">
                             <div class="review-img">
-                                <a href="review.html"><img class="img-fluid" src="web/img/review/review-01.jpg" alt="Post Image"></a>
+                                <a href="review.html"><img class="img-fluid" src="/web/img/review/review-01.jpg" alt="Post Image"></a>
                             </div>
                             <div class="review-info">
                                 <h3>Davis Payerf</h3>
@@ -758,7 +752,7 @@
                     <div class="review-blog">
                         <div class="review-top d-flex align-items-center">
                             <div class="review-img">
-                                <a href="review.html"><img class="img-fluid" src="web/img/review/review-02.jpg" alt="Post Image"></a>
+                                <a href="review.html"><img class="img-fluid" src="/web/img/review/review-02.jpg" alt="Post Image"></a>
                             </div>
                             <div class="review-info">
                                 <h3>Davis Payerf</h3>
@@ -783,7 +777,7 @@
                     <div class="review-blog">
                         <div class="review-top d-flex align-items-center">
                             <div class="review-img">
-                                <a href="review.html"><img class="img-fluid" src="web/img/review/review-03.jpg" alt="Post Image"></a>
+                                <a href="review.html"><img class="img-fluid" src="/web/img/review/review-03.jpg" alt="Post Image"></a>
                             </div>
                             <div class="review-info">
                                 <h3>Davis Payerf</h3>
@@ -808,7 +802,7 @@
                     <div class="review-blog">
                         <div class="review-top d-flex align-items-center">
                             <div class="review-img">
-                                <a href="review.html"><img class="img-fluid" src="web/img/review/review-02.jpg" alt="Post Image"></a>
+                                <a href="review.html"><img class="img-fluid" src="/web/img/review/review-02.jpg" alt="Post Image"></a>
                             </div>
                             <div class="review-info">
                                 <h3>Davis Payerf</h3>
@@ -834,100 +828,248 @@
         </section>
         <!-- / Review -->
 
-        <!-- News -->
-        <section class="section news">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-header text-center">
-                            <div class="section-line"></div>
-                            <h2 class="header-title">Feature Blog</h2>
-                            <p>High Performing Developers To Your</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="row blog-grid-row">
-                        <div class="col-md-4">
-
-                            <!-- Blog Post -->
-                            <div class="blog grid-blog">
-                                <div class="blog-image">
-                                    <a href="blog-details.html"><img class="img-fluid" src="web/img/blog/blog-01.jpg" alt="Post Image"></a>
-                                </div>
-                                <div class="blog-content">
-                                    <ul class="entry-meta meta-item">
-                                        <li>
-                                            <div class="post-author">
-                                                <a href="developer-details.html"><img src="web/img/img-02.jpg" alt="Post Author"> <span> David Lee</span></a>
-                                            </div>
-                                        </li>
-                                        <li><i class="far fa-clock"></i> 4 Oct 2021</li>
-                                    </ul>
-                                    <h3 class="blog-title"><a href="blog-details.html">Your next job starts right here</a></h3>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
-                                </div>
-                            </div>
-                            <!-- /Blog Post -->
-
-                        </div>
-                        <div class="col-md-4">
-
-                            <!-- Blog Post -->
-                            <div class="blog grid-blog">
-                                <div class="blog-image">
-                                    <a href="blog-details.html"><img class="img-fluid" src="web/img/blog/blog-02.jpg" alt="Post Image"></a>
-                                </div>
-                                <div class="blog-content">
-                                    <ul class="entry-meta meta-item">
-                                        <li>
-                                            <div class="post-author">
-                                                <a href="developer-details.html"><img src="web/img/img-03.jpg" alt="Post Author"> <span> Deborah Angel</span></a>
-                                            </div>
-                                        </li>
-                                        <li><i class="far fa-clock"></i> 10 Oct 2021</li>
-                                    </ul>
-                                    <h3 class="blog-title"><a href="blog-details.html">People who completed NAND?</a></h3>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
-                                </div>
-                            </div>
-                            <!-- /Blog Post -->
-
-                        </div>
-                        <div class="col-md-4">
-
-                            <!-- Blog Post -->
-                            <div class="blog grid-blog">
-                                <div class="blog-image">
-                                    <a href="blog-details.html"><img class="img-fluid" src="web/img/blog/blog-03.jpg" alt="Post Image"></a>
-                                </div>
-                                <div class="blog-content">
-                                    <ul class="entry-meta meta-item">
-                                        <li>
-                                            <div class="post-author">
-                                                <a href="developer-details.html"><img src="web/img/img-04.jpg" alt="Post Author"> <span>Darren Elder</span></a>
-                                            </div>
-                                        </li>
-                                        <li><i class="far fa-clock"></i> 3 Nov 2021</li>
-                                    </ul>
-                                    <h3 class="blog-title"><a href="blog-details.html">Kofejob - How to get job through online?</a></h3>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur em adipiscing elit, sed do eiusmod tempor.</p>
-                                </div>
-                            </div>
-                            <!-- /Blog Post -->
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- / News -->
     </div>
 </template>
 
 <script>
-export default {
+import {onMounted,inject,ref} from 'vue';
 
+export default {
+    setup(){
+
+        const emitter = inject('emitter');
+
+        let carousel = () => {
+            //start owl-carousel
+            if($('#developers-slider').length > 0 ){
+                $('#developers-slider').owlCarousel({
+                    rtl: true,
+                    items: 5,
+                    margin: 30,
+                    dots : false,
+                    nav: true,
+                    navText: [
+                        '<i class="fas fa-chevron-left"></i>',
+                        '<i class="fas fa-chevron-right"></i>'
+                    ],
+                    loop: true,
+                    responsiveClass:true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        768 : {
+                            items: 3
+                        },
+                        1170: {
+                            items: 4
+                        }
+                    }
+                });
+            }
+
+            if($('#testimonial-slider').length > 0 ){
+                $('#testimonial-slider').owlCarousel({
+                    rtl: true,
+                    items: 5,
+                    margin: 30,
+                    dots : false,
+                    nav: true,
+                    navText: [
+                        '<i class="fas fa-chevron-left"></i>',
+                        '<i class="fas fa-chevron-right"></i>'
+                    ],
+                    loop: true,
+                    responsiveClass:true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        768 : {
+                            items: 3
+                        },
+                        1170: {
+                            items: 3
+                        }
+                    }
+                });
+            }
+            //end owl-carousel
+        }
+
+        let alert = () => {
+            Swal.fire(
+                'Good job!',
+                'You clicked the button!',
+                'success'
+            )
+        }
+
+        onMounted(() => {
+            carousel();
+            alert();
+        });
+
+        emitter.on('get_lang_web', () => {
+
+        });
+
+        return {};
+    },
 }
 </script>
+
+<style scoped>
+section{
+   overflow: hidden;
+}
+
+.home-banner {
+    background-image: url(/web/img/Slider.jfif);
+    height: 100vh !important;
+    background-position: unset;
+    padding-top: 0;
+}
+
+.custom-row{
+    height: 100vh;
+}
+
+.custom-col{
+    margin: 0 30px;
+}
+
+.banner-content .rating i{
+    font-size: 22px;
+}
+
+.banner-content .rating h5{
+    color: #fff;
+    font-size: 22px;
+    text-shadow: 2px 1px 9px #000;
+}
+
+.banner-content h1 {
+    font-size: 35px;
+    color: #fcb00c;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    text-shadow: 2px 1px 9px #000;
+}
+
+.banner-content p {
+    color: #fff;
+    text-shadow: 2px 1px 9px #000;
+    font-size: 45px;
+}
+
+.form{
+    width: 75%;
+}
+
+.form select{
+    color: #7c7777;
+    appearance: auto;
+}
+.drop-detail{
+    position: relative;
+}
+
+input.form-control{
+    padding: 0 30px;
+}
+
+.form-control::-webkit-input-placeholder, .form-control::placeholder{
+    color: #7c777766 !important;
+}
+
+.border-cutom-ar{
+    position: absolute;
+    width: 1px;
+    height: 60%;
+    left: -12px;
+    top: 16px;
+    background-color: #7c7777;
+    margin-right: 4px;
+    z-index: 10
+}
+
+.border-cutom-en{
+    position: absolute;
+    width: 1px;
+    height: 60%;
+    right: -12px;
+    top: 16px;
+    background-color: #7c7777;
+    margin-right: 4px;
+    z-index: 10
+}
+
+/*.work-content h2:after{*/
+/*    display: none;*/
+/*}*/
+
+.work-content h2 {
+    font-size: 32px;
+}
+
+.work-content {
+    width: 95%;
+}
+
+.work-content p {
+    font-size: 22px;
+}
+
+.subscribe {
+    padding: 125px 0;
+}
+.subscribe h1{
+    color: #fff;
+}
+
+@media only screen and (max-width: 992px){
+    .banner-content .rating, .banner-content .rating h5 {
+        font-size: 17px;
+    }
+    .banner-content h1{
+        font-size: 30px;
+    }
+    .banner-content p {
+        font-size: 36px;
+    }
+    .work-content h2 {
+        font-size: 20px;
+    }
+    .work-content p {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .banner-content h1{
+        margin-bottom: 20px;
+    }
+    .banner-content p {
+        margin-bottom: 35px;
+    }
+    .work-content h2 {
+        font-size: 24px;
+    }
+    .work-content p {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .banner-content .rating i, .banner-content .rating h5 {
+        font-size: 11px;
+    }
+    .banner-content h1 {
+        font-size: 25px;
+    }
+    .banner-content p[data-v-0939d6eb] {
+        font-size: 24px;
+    }
+}
+</style>

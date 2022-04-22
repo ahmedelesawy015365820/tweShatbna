@@ -1,3 +1,16 @@
+body {
+    font-family:'hanimation'
+}
+
+
+/* start header */
+
+.main-nav > li:last-child {
+    margin-right: 30px;
+}
+/* end header */
+
+
 /* start register */
 .forget-login{
     margin-top: 30px;
@@ -37,4 +50,11 @@
 }
 
 /* end register */
+
+/* start index */
+.banner-content .rating h5 {
+    padding-right: 15px;
+}
+
+/* end index */
 

@@ -37,15 +37,12 @@
         <link href="{{asset('web/page/css/main.css')}}" rel="stylesheet">
         <link href="{{asset('web/page/css/responsive.css')}}" rel="stylesheet">
 
+        {{--font arabic--}}
+        <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=hanimation" />
+
         <!-- Main CSS -->
         <link rel="stylesheet" href="{{asset('web/css/style.css')}}">
 
-
-        <style>
-            body {
-                  font-family:'hanimation'
-            }
-        </style>
     </head>
     <body>
 
@@ -75,6 +72,10 @@
 
         <!-- Chart JS -->
         <script src="{{asset('web/plugins/apexchart/apexcharts.min.js')}}"></script>
+
+        <!-- sweet alert -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script src="{{asset('web/plugins/apexchart/chart-data.js')}}"></script>
 
         <!-- Custom JS -->

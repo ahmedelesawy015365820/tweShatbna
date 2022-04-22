@@ -1,11 +1,15 @@
 {
-    "index" :{
+    "header" :{
         "home": "Home",
-        "desgin": "Desginer",
-        "trused": "Trused by over 2M+ users",
-        "best" : "Get the best",
-        "finishing": "Finishing and Designer company around the world",
-        "comfinish" : "finishing company"
+        "company": "Companies",
+        "desgin": "Desginers",
+        "size": "Sizing Service",
+        "bargain": "Bargain",
+        "partner":"Success Partners",
+        "login":"Login",
+        "register":"Register",
+        "project":"Add Project",
+        "advisor": "Advisor Shatbna"
     },
     "register" :{
         "design": "DESIGNER",
@@ -34,6 +38,44 @@
         "forget": "Forget Password ?",
         "remember": "Remember password",
         "login": "LOGIN",
-        "new": "New to Shatbna?"
+        "new": "New to Shatbna?",
+        "success-mess": "Your details has been successfully submitted. Thanks! .\n  An email will be sent after verifying your account .",
+        "ok": "Ok",
+        "Join": "Join Shatbna",
+        "life": "Make the most of your professional life",
+        "welcome": "Welcome Back",
+        "miss": "Don't miss your next opportunity. Sign in to stay updated on your world."
+    },
+    "index": {
+        "trused": "Trused by over 2M+ users",
+        "best" : "Get the best",
+        "finishing": "Finishes and designers around the world",
+        "company": "Finishing Companies",
+        "search": "Search by the name of the companies or the designer",
+        "search-new": "search now",
+        "search-company":"Looking for finishing companies",
+        "search-design":"Looking for a designer",
+        "parge-company":"Get the best finishing companies in Egypt and around the world at the best prices and the best services through the largest gathering of finishing companies."
+    },
+    "footer": {
+        "adress": "Addresses Shatbna",
+        "captial": "Cairo",
+        "adresses": "Diplomatic Quarter Mokattam-Mokattam-127 Qatari Bank",
+        "free": "Free call",
+        "phone": "Telephones:",
+        "know": "More About Shutbana",
+        "about": "About Shtabna",
+        "contact": "Contact Us",
+        "blog": "Blog",
+        "login": "Login",
+        "register": "Register",
+        "help" : "Support and Help",
+        "chat": "Live Chat",
+        "question": "Common Questions",
+        "Privacy": "Privacy Policy",
+        "term": "Terms and Conditions",
+        "mobile": "mobile app",
+        "application":"Download the mobile application and get the best services from the finishing and designer companies and the best exclusive offers for all Logta products.",
+        "copy": "All rights reserved to Shutbna Company 2022"
     }
 }

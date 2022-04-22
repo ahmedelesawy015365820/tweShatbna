@@ -12,9 +12,9 @@
                             <div class="align-items-center justify-content-center">
                                 <div class="login-right">
                                     <div class="login-header text-center">
-                                       <img src="../../assets/img/logo-01.png" alt="logo" class="img-fluid">
-                                        <h3>Welcome Back</h3>
-                                        <p>Don't miss your next opportunity. Sign in to stay updated on your professional world.</p>
+                                       <img src="/web/img/logo.png" alt="logo" class="img-fluid">
+                                        <h3>{{$t('register.welcome')}}</h3>
+                                        <p>{{$t('register.miss')}}</p>
                                     </div>
                                     <div class="alert alert-danger text-center" v-if="errors.message">
                                         {{errors.message}}
@@ -270,6 +270,11 @@ if($('#store').length > 0) {
 <style scoped>
 .content {
     padding: 150px 0 30px;
+}
+
+.login-right .login-header img{
+    height: 100px;
+    width: 210px;
 }
 
 .login-header img{

@@ -1,110 +1,75 @@
 <template>
     <div class="page-wrapper">
 
-        <!-- Preloader -->
-        <div class="preloader"></div>
-
         <!-- Main Header-->
         <header class="main-header">
 
             <!--Header-Upper-->
             <div class="header-upper">
                 <div class="auto-container">
-                    <div class="clearfix">
+                    <div class="d-flex justify-content-between">
 
-                        <div class="pull-left logo-box">
-                            <div class="logo"><a href="index-2.html"><img src="web/page/images/logo.png" alt="" title=""></a></div>
-                        </div>
-
-                        <div class="nav-outer clearfix">
-                            <!--Mobile Navigation Toggler-->
-                            <div class="mobile-nav-toggler"><span class="icon icons-menu-button"></span></div>
-                            <!-- Main Menu -->
-                            <nav class="main-menu show navbar-expand-md">
-                                <div class="navbar-header">
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                </div>
-
-                                <div class="navbar-collapse collapse scroll-nav clearfix" id="navbarSupportedContent">
-                                    <ul class="navigation clearfix">
-                                        <li class="current dropdown"><a href="#home-banner">Home</a>
-                                            <ul>
-                                                <li><a href="index-2.html">Home Page 01</a></li>
-                                                <li><a href="index-2.html">Home Page 02</a></li>
-                                                <li><a href="index-2.html">Home Page 03</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#featured">Features</a></li>
-                                        <li><a href="#how-works">How it works</a></li>
-                                        <li><a href="#pricing">Pricing</a></li>
-                                        <li class="dropdown"><a href="#blog">Blog</a>
-                                            <ul>
-                                                <li><a href="blog.html">Our Blog</a></li>
-                                                <li><a href="blog-single.html">Blog Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#contact">Contact us</a></li>
-                                    </ul>
-                                </div>
-
-                            </nav>
-
-                            <div class="outer-box">
-                                <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}"  class="theme-btn btn-style-one"><span class="txt">Register now</span></router-link>
+                        <div class="pull-left">
+                            <div class="logo">
+                                <router-link :to="{name:'home',params: {lang:this.$i18n.locale}}">
+                                    <img src="/web/img/logo.png" alt="shatbna">
+                                </router-link >
                             </div>
-
                         </div>
-
+                        <div class="nav-outer clearfix">
+                            <div class="outer-box">
+                                <div class="d-flex">
+                                    <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}"  class="theme-btn btn-style-one"><span class="txt">{{$t('partner.register')}}</span></router-link>
+                                    <div :class="['lang', this.$i18n.locale == 'ar'? 'lang-ar':'']">
+                                        <lang />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <!--End Header Upper-->
-
-
-
-            <!-- Mobile Menu  -->
-            <div class="mobile-menu">
-                <div class="menu-backdrop"></div>
-                <div class="close-btn"><span class="icon icons-multiply"></span></div>
-
-                <nav class="menu-box">
-                    <div class="nav-logo"><a href="index-2.html"><img src="web/page/images/logo-2.png" alt="" title=""></a></div>
-                    <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-                </nav>
-            </div><!-- End Mobile Menu -->
 
         </header>
         <!--End Main Header -->
 
         <!--Banner Section-->
         <section class="banner-section" id="home-banner">
-            <div class="patern-layer-one"></div> <!-- style="background-image: url('images/background/banner-bg.png')" -->
-            <div class="bg-layer" ></div> <!-- style="background-image: url(images/background/2.jpg)" -->
-            <div class="auto-container">age
-                <div class="row clearfix">
+            <div
+                 :class="['patern-layer-one',this.$i18n.locale == 'ar' ? 'patern-layer-one-ar' : '']"
+                 :style="{'background-image': this.$i18n.locale != 'ar' ? 'url(/web/img/partner/banner-bg.png)' : 'url(/web/img/partner/Reflect.png)'}"
+            >
+            </div>
+            <div class="bg-layer"
+                 style="background-image: url(/web/img/partner/2.jpg)"
+            ></div>
+
+            <div class="auto-container">
+                <div class="row">
 
                     <!-- Content Column -->
                     <div class="content-column col-lg-7 col-md-12 col-sm-12">
                         <div class="inner-column">
-                            <h1>Get connect to other. <br> Just ask Topapp</h1>
-                            <div class="text">Access to opportunities for career advancement and <br> professional growth relies heavily on connections.</div>
+                            <h1>{{$t('partner.banner-h1')}}</h1>
+                            <div class="text">{{$t('partner.banner-p1')}}</div>
                             <div class="newsletter-form">
-                                <form method="post" action="https://html.themexriver.com/topapp/contact.html">
+                                <form>
                                     <div class="form-group">
-                                        <input type="email" name="email" value="" placeholder="Enter mail address" required="">
-                                        <button type="submit" class="theme-btn btn-style-two"><span class="txt">Take free trial</span></button>
+                                        <input type="email" :class="[this.$i18n.locale == 'ar'?'email-ar':'']" name="email" value="" :placeholder="$t('partner.banner-email')" required>
+                                        <button
+                                                type="submit"
+                                                :class="['theme-btn btn-style-two', this.$i18n.locale == 'ar'? 'btn-ar' : '']">
+                                            <span class="txt">{{$t('partner.free')}}</span>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
-                            <div class="address">*We will give a trial download link to your mail address</div>
+                            <div class="address">{{$t('partner.dowoload')}}</div>
                             <!--Video Box-->
-                            <div class="video-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div :class="['video-box',this.$i18n.locale == 'ar'?'video-box-ar':'']" data-wow-delay="0ms" data-wow-duration="1500ms">
                                 <figure class="video-image">
-                                    <img src="web/page/images/resource/video.jpg" alt="">
+                                    <img src="/web/page/images/resource/video.jpg" alt="">
                                 </figure>
                                 <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image overlay-box"><span class="fa fa-play"><i class="ripple"></i></span></a>
                             </div>
@@ -118,53 +83,29 @@
                             <div class="slider-outer">
 
                                 <!-- Custom Pager -->
-                                <div class="pager-box">
-                                    <div class="inner-box">
+                                <div :class="['pager-box',this.$i18n.locale == 'ar'?'pager-box-ar':'']">
+                                    <div :class="['inner-box',this.$i18n.locale == 'ar'?'inner-box-ar':'']">
                                         <div class="banner-pager clearfix" id="banner-pager">
-                                            <a class="pager one wow zoomIn" data-wow-delay="100ms" data-wow-duration="1500ms" data-slide-index="0" href="#"><div class="image img-circle">1</div></a>
-                                            <a class="pager two wow zoomIn" data-wow-delay="200ms" data-wow-duration="1500ms" data-slide-index="1" href="#"><div class="image img-circle">2</div></a>
-                                            <a class="pager three wow zoomIn" data-wow-delay="300ms" data-wow-duration="1500ms" data-slide-index="2" href="#"><div class="image img-circle">3</div></a>
+                                            <a :class="['pager','one',this.$i18n.locale == 'ar'?'one-ar':'']" href="">
+                                                <div class="image img-circle">1</div>
+                                            </a>
+                                            <a :class="['pager','two',this.$i18n.locale == 'ar'?'two-ar':'']" href="#">
+                                                <div class="image img-circle">2</div>
+                                            </a>
+                                            <a :class="['pager' ,'three',this.$i18n.locale == 'ar'?'three-ar':'']" href="#">
+                                                <div class="image img-circle">3</div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Column / Slides -->
-                                <div class="slides-box"> <!-- style="background-image: url(web/page/images/resource/mobile.png)" -->
+                                <div class="slides-box" style="background-image: url(/web/img/partner/Category4.svg)">
                                     <div class="inner-box">
 
                                         <div class="banner-slider">
 
-                                            <div class="slide-item">
-                                                <div class="image">
-                                                    <img src="web/page/images/resource/search.png" alt="" />
-                                                </div>
-                                            </div>
-
-                                            <div class="slide-item">
-                                                <div class="image">
-                                                    <img src="web/page/images/resource/screenshot01.png" alt="" />
-                                                </div>
-                                            </div>
-
-                                            <div class="slide-item">
-                                                <div class="image">
-                                                    <img src="web/page/images/resource/slider-05.png" alt="" />
-                                                </div>
-                                            </div>
-
                                         </div>
-                                    </div>
-
-                                    <div class="mobile-small-image">
-                                        <img src="web/page/images/resource/play.png" alt="" />
-                                    </div>
-
-                                    <div class="heart-image-icon">
-                                        <img src="web/page/images/icons/heart.png" alt="" />
-                                    </div>
-
-                                    <div class="plus-small-image">
-                                        <img src="web/page/images/icons/plus.png" alt="" />
                                     </div>
 
                                 </div>
@@ -179,103 +120,73 @@
         </section>
         <!--End Banner Section-->
 
-        <!-- Featured Section -->
-        <section class="featured-section" id="featured">
-            <div class="auto-container">
-                <div class="row clearfix">
 
-                    <!-- Content Column -->
-                    <div class="content-column col-lg-5 col-md-12 col-sm-12">
-                        <div class="iner-column">
-                            <div class="sec-title">
-                                <div class="title"><span>Fe</span>atures</div>
-                                <h2>Learn the features of new Beautiful <span>lifest</span>y<span>le</span> app!</h2>
+        <!--Banner Section-->
+        <section class="register" >
+            <div class="auto-container">
+                <div class="row justify-content-center">
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="register-container one">
+                            <div class="row">
+                                <div class="register-info text-center col-7">
+                                    <h4>{{$t('partner.design')}}</h4>
+                                    <p>{{$t('partner.design-p')}}</p>
+                                    <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale},query:{p:'designer'}}" class="btn">
+                                        {{$t('partner.start')}}
+                                    </router-link>
+                                </div>
+                                <div class="register-img text-center col-5">
+                                    <img src="/web/img/partner/Category3.svg">
+                                </div>
                             </div>
-                            <div class="text">
-                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's stan dard dummy text ever since the 1500s.</p>
-                                <p>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts.</p>
-                            </div>
-                            <ul class="list-style-one">
-                                <li>Identfy the most trending sessions & exibitors.</li>
-                                <li>24 hours customer supports facilites.</li>
-                                <li>Take action to improve your event value.</li>
-                            </ul>
-                            <a href="contact.html" class="theme-btn btn-style-three"><span class="txt">Contact Us</span></a>
                         </div>
                     </div>
 
-                    <!-- Blocks Column -->
-                    <div class="blocks-column col-lg-7 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <!-- Cloud Icon -->
-                            <div class="cloud-icon">
-                                <img src="web/page/images/icons/cloud-icon.png" alt="" />
+                    <div class="col-lg-4 col-md-6">
+                        <div class="register-container twe">
+                            <div class="row">
+                                <div class="register-info text-center col-7">
+                                    <h4>{{$t('partner.company')}}</h4>
+                                    <p>{{$t('partner.company-p')}}</p>
+                                    <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale},query:{p:'company'}}" class="btn">
+                                        {{$t('partner.start')}}
+                                    </router-link>
+                                </div>
+                                <div class="register-img text-center col-5">
+                                    <img src="/web/img/partner/Category2.svg">
+                                </div>
                             </div>
-                            <div class="row clearfix">
+                        </div>
+                    </div>
 
-                                <!-- Featured Block -->
-                                <div class="featured-block titlt col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="8">
-                                    <div class="inner-box">
-                                        <div class="icon-box">
-                                            <span class="icon flaticon-writing"></span>
-                                        </div>
-                                        <h3>Easy to edit</h3>
-                                        <div class="text">Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div>
-                                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="register-container three">
+                            <div class="row">
+                                <div class="register-info text-center col-7">
+                                    <h4>{{$t('partner.advertise')}}</h4>
+                                    <p>{{$t('partner.advertise-p')}}</p>
+                                    <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale},query:{p:'advertiser'}}" class="btn">
+                                        {{$t('partner.start')}}
+                                    </router-link>
                                 </div>
-
-                                <!-- Featured Block -->
-                                <div class="featured-block titlt style-two col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="6">
-                                    <div class="inner-box">
-                                        <div class="icon-box">
-                                            <span class="icon flaticon-protection-shield-with-a-check-mark"></span>
-                                        </div>
-                                        <h3>Full protection</h3>
-                                        <div class="text">The app needs to be running in the background, as it tracks BLE regions. </div>
-                                    </div>
+                                <div class="register-img text-center col-5">
+                                    <img src="/web/img/partner/Category1.svg">
                                 </div>
-
-                                <!-- Featured Block -->
-                                <div class="featured-block titlt style-three col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="10">
-                                    <div class="inner-box">
-                                        <div class="icon-box">
-                                            <span class="icon flaticon-dashboard"></span>
-                                        </div>
-                                        <h3>Hi speedy app</h3>
-                                        <div class="text">Speedy App provides instant information on thousands of hire and buy products.</div>
-                                    </div>
-                                </div>
-
-                                <!-- Featured Block -->
-                                <div class="featured-block style-four col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <div class="icon-box">
-                                            <span class="icon flaticon-writing"></span>
-                                        </div>
-                                        <h3>Easy to edit</h3>
-                                        <div class="text">Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div>
-                                    </div>
-                                </div>
-
                             </div>
-                            <!-- Side Image -->
-                            <div class="side-image">
-                                <img src="web/page/images/resource/girl-icon.png" alt="" />
-                            </div>
-
                         </div>
                     </div>
 
                 </div>
             </div>
         </section>
-        <!-- End Featured Section -->
+        <!--End Banner Section-->
 
         <!-- Steps Section -->
         <section class="steps-section">
-            <div class="patern-layer-one"></div> <!-- style="background-image: url(web/page/images/background/pattern-2.png)" -->
-            <div class="patern-layer-two"></div> <!-- style="background-image: url(web/page/images/background/pattern-3.png)" -->
-            <div class="patern-layer-three"></div> <!-- style="background-image: url(web/page/images/background/pattern-4.png)" -->
+            <div class="patern-layer-one" style="background-image: url(/web/img/partner/pattern-2.png)"></div>
+            <div class="patern-layer-two" style="background-image: url(/web/img/partner/pattern-3.png)"></div>
+            <div class="patern-layer-three" style="background-image: url(/web/img/partner/pattern-4.png)" ></div>
             <div class="auto-container">
 
                 <!-- Carousel Wrapper -->
@@ -285,29 +196,15 @@
                         <!-- Carousel Column -->
                         <div class="carousel-column col-lg-6 col-md-12 col-sm-12">
                             <!-- Slides -->
-                            <div class="carousel-inner" role="listbox"> <!-- style="background-image: url(web/page/images/resource/mobile.png)" -->
+                            <div class="carousel-inner" role="listbox" style="background-image: url(/web/page/images/resource/mobile.png)">
                                 <div class="slides">
 
                                     <div class="carousel-item active">
                                         <div class="content">
                                             <div class="image">
-                                                <a href="web/page/images/resource/mokeup-1.jpg" data-fancybox="steps" data-caption="" class="image-link lightbox-image"><img src="web/page/images/resource/mokeup-1.jpg" alt="" /></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="carousel-item">
-                                        <div class="content">
-                                            <div class="image">
-                                                <a href="web/page/images/resource/mokeup-2.jpg" data-fancybox="steps" data-caption="" class="image-link lightbox-image"><img src="web/page/images/resource/mokeup-2.jpg" alt="" /></a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="carousel-item">
-                                        <div class="content">
-                                            <div class="image">
-                                                <a href="web/page/images/resource/mokeup-3.jpg" data-fancybox="steps" data-caption="" class="image-link lightbox-image"><img src="web/page/images/resource/mokeup-3.jpg" alt="" /></a>
+                                                <a href="#" data-fancybox="steps" data-caption="" class="image-link lightbox-image">
+                                                    <img src="/web/img/partner/Category5.svg" alt="" />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -361,6 +258,98 @@
         </section>
         <!-- End Steps Section -->
 
+        <!-- Featured Section -->
+        <section class="featured-section" id="featured">
+            <div class="auto-container">
+                <div class="row clearfix">
+
+                    <!-- Content Column -->
+                    <div class="content-column col-lg-5 col-md-12 col-sm-12">
+                        <div class="iner-column">
+                            <div class="sec-title">
+                                <div class="title"><span>Fe</span>atures</div>
+                                <h2>Learn the features of new Beautiful <span>lifest</span>y<span>le</span> app!</h2>
+                            </div>
+                            <div class="text">
+                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's stan dard dummy text ever since the 1500s.</p>
+                                <p>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts.</p>
+                            </div>
+                            <ul class="list-style-one">
+                                <li>Identfy the most trending sessions & exibitors.</li>
+                                <li>24 hours customer supports facilites.</li>
+                                <li>Take action to improve your event value.</li>
+                            </ul>
+                            <a href="contact.html" class="theme-btn btn-style-three"><span class="txt">Contact Us</span></a>
+                        </div>
+                    </div>
+
+                    <!-- Blocks Column -->
+                    <div class="blocks-column col-lg-7 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <!-- Cloud Icon -->
+                            <div class="cloud-icon">
+                                <img src="/web/page/images/icons/cloud-icon.png" alt="" />
+                            </div>
+                            <div class="row clearfix">
+
+                                <!-- Featured Block -->
+                                <div class="featured-block titlt col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="8">
+                                    <div class="inner-box">
+                                        <div class="icon-box">
+                                            <span class="icon flaticon-writing"></span>
+                                        </div>
+                                        <h3>Easy to edit</h3>
+                                        <div class="text">Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Featured Block -->
+                                <div class="featured-block titlt style-two col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="6">
+                                    <div class="inner-box">
+                                        <div class="icon-box">
+                                            <span class="icon flaticon-protection-shield-with-a-check-mark"></span>
+                                        </div>
+                                        <h3>Full protection</h3>
+                                        <div class="text">The app needs to be running in the background, as it tracks BLE regions. </div>
+                                    </div>
+                                </div>
+
+                                <!-- Featured Block -->
+                                <div class="featured-block titlt style-three col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="10">
+                                    <div class="inner-box">
+                                        <div class="icon-box">
+                                            <span class="icon flaticon-dashboard"></span>
+                                        </div>
+                                        <h3>Hi speedy app</h3>
+                                        <div class="text">Speedy App provides instant information on thousands of hire and buy products.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Featured Block -->
+                                <div class="featured-block style-four col-lg-6 col-md-6 col-sm-12">
+                                    <div class="inner-box">
+                                        <div class="icon-box">
+                                            <span class="icon flaticon-writing"></span>
+                                        </div>
+                                        <h3>Easy to edit</h3>
+                                        <div class="text">Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Side Image -->
+                            <div class="side-image">
+                                <img src="/web/page/images/resource/girl-icon.png" alt="" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- End Featured Section -->
+
         <!-- Apps Section -->
         <section class="apps-section" id="how-works">
             <div class="auto-container">
@@ -397,7 +386,7 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <div class="image titlt" data-tilt data-tilt-max="8">
-                                        <a href="web/page/images/resource/app-1.png" class="app-1 lightbox-image"><img src="web/page/images/resource/dash-board.png" alt="" /></a>
+                                        <a href="/web/page/images/resource/app-1.png" class="app-1 lightbox-image"><img src="/web/page/images/resource/dash-board.png" alt="" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -440,10 +429,10 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <div class="image titlt" data-tilt data-tilt-max="8">
-                                        <a href="web/page/images/resource/app-2.png" class="app-2 lightbox-image"><img src="web/page/images/resource/app-2.png" alt="" /></a>
+                                        <a href="/web/page/images/resource/app-2.png" class="app-2 lightbox-image"><img src="/web/page/images/resource/app-2.png" alt="" /></a>
                                     </div>
                                     <div class="small-image titlt wow slideInRight" data-wow-delay="300ms" data-wow-duration="1500ms" data-tilt data-tilt-max="15">
-                                        <a href="web/page/images/resource/app-3.png" class="app-2 lightbox-image"><img src="web/page/images/resource/app-3.png" alt="" /></a>
+                                        <a href="/web/page/images/resource/app-3.png" class="app-2 lightbox-image"><img src="/web/page/images/resource/app-3.png" alt="" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -459,14 +448,14 @@
 
         <!-- Counter Section -->
         <section class="counter-section">
-            <div class="patern-layer-one" ></div> <!-- style="background-image: url(web/page/images/background/pattern-5.png)" -->
-            <div class="patern-layer-two"></div> <!-- style="background-image: url(web/page/images/background/pattern-6.png)" -->
-            <div class="patern-layer-three"></div> <!-- style="background-image: url(web/page/images/background/pattern-7.png)" -->
-            <div class="patern-layer-four"></div> <!-- style="background-image: url(web/page/images/background/pattern-8.png)" -->
+            <div class="patern-layer-one" style="background-image: url(/web/page/images/background/pattern-5.png)"></div>
+            <div class="patern-layer-two" style="background-image: url(/web/page/images/background/pattern-6.png)"></div>
+            <div class="patern-layer-three" style="background-image: url(web/page/images/background/pattern-7.png)"></div>
+            <div class="patern-layer-four" style="background-image: url(web/page/images/background/pattern-8.png)"></div>
             <!-- Flower Image -->
             <div class="flower-image">
                 <!-- Image One -->
-                <div class="image paroller" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60" data-paroller-type="foreground" data-paroller-direction="horizontal" style="background-image:url(web/page/images/resource/flower.png)"></div>
+                <div class="image paroller" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60" data-paroller-type="foreground" data-paroller-direction="horizontal" style="background-image:url(/web/page/images/resource/flower.png)"></div>
             </div>
             <div class="auto-container">
                 <div class="row clearfix">
@@ -481,8 +470,8 @@
                             <div class="text">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's stan dard dummy text ever since the 1500s.</div>
                             <div class="download">Download a trial version to make life easy!</div>
                             <div class="google-btns">
-                                <a href="#"><img src="web/page/images/icons/google.png" alt="" /></a>
-                                <a href="#"><img src="web/page/images/icons/app.png" alt="" /></a>
+                                <a href="#"><img src="/web/page/images/icons/google.png" alt="" /></a>
+                                <a href="#"><img src="/web/page/images/icons/app.png" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -566,177 +555,6 @@
         </section>
         <!-- End Counter Section -->
 
-        <!-- Testimonials Section -->
-        <section class="testimonials-thumbs-carousel">
-            <div class="auto-container">
-
-                <!-- Carousel Wrapper -->
-                <div id="carousel-thumb" class="carousel slide carousel-thumbnails" data-ride="carousel">
-                    <div class="row clearfix">
-
-                        <div class="pagers-column col-lg-6 col-md-12 col-sm-12">
-                            <div class="pattern-layer"></div> <!-- style="background-image: url(web/page/images/background/pattern-9.png)" -->
-                            <!-- Controls-->
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-thumb" data-slide-to="0" class="active"> <div class="image img-circle"><img src="web/page/images/resource/author-thumb-1.jpg" alt=""></div></li>
-                                <li data-target="#carousel-thumb" data-slide-to="1"><div class="image img-circle"><img src="web/page/images/resource/author-thumb-2.jpg" alt=""></div></li>
-                                <li data-target="#carousel-thumb" data-slide-to="2"><div class="image img-circle"><img src="web/page/images/resource/author-thumb-3.jpg" alt=""></div></li>
-                                <li data-target="#carousel-thumb" data-slide-to="3"><div class="image img-circle"><img src="web/page/images/resource/author-thumb-4.jpg" alt=""></div></li>
-                                <li data-target="#carousel-thumb" data-slide-to="4"><div class="image img-circle"><img src="web/page/images/resource/author-thumb-5.jpg" alt=""></div></li>
-                                <li data-target="#carousel-thumb" data-slide-to="5"><div class="image img-circle"><img src="web/page/images/resource/author-thumb-6.jpg" alt=""></div></li>
-                                <li data-target="#carousel-thumb" data-slide-to="6"><div class="image img-circle"><img src="web/page/images/resource/author-thumb-7.jpg" alt=""></div></li>
-                            </ol>
-                        </div>
-
-                        <div class="carousel-column col-lg-6 col-md-12 col-sm-12">
-                            <div class="sec-title style-four">
-                                <div class="title"><span>Te</span>stimonials</div>
-                                <h2>Clients choice us because our app<span>lication is the best!</span></h2>
-                            </div>
-                            <!-- Slides -->
-                            <div class="carousel-inner" role="listbox">
-
-                                <div class="carousel-item active">
-                                    <div class="testimonial-block">
-                                        <div class="inner-box">
-                                            <div class="author-image">
-                                                <span class="social-icon fa fa-facebook-square"></span>
-                                                <img src="web/page/images/resource/author-thumb-1.jpg" alt="" />
-                                            </div>
-                                            <div class="quote-icon icons-right-quote-sign"></div>
-                                            <div class="slide-text">“ Lorem Ipsum is simply dummy text of the printing and type <br> setting industry. Lorem Ipsum has been the industry's stan  <br> dard dummy text ever since. ”</div>
-                                            <div class="slide-info">
-                                                <h4 class="author-title">Kathleen Smith</h4>
-                                                <div class="designation">Senior Director</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class="testimonial-block">
-                                        <div class="inner-box">
-                                            <div class="author-image">
-                                                <span class="social-icon fa fa-facebook-square"></span>
-                                                <img src="web/page/images/resource/author-thumb-2.jpg" alt="" />
-                                            </div>
-                                            <div class="quote-icon icons-right-quote-sign"></div>
-                                            <div class="slide-text">“ Lorem Ipsum is simply dummy text of the printing and type <br> setting industry. Lorem Ipsum has been the industry's stan  <br> dard dummy text ever since. ”</div>
-                                            <div class="slide-info">
-                                                <h4 class="author-title">Kathleen Smith</h4>
-                                                <div class="designation">Senior Director</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class="testimonial-block">
-                                        <div class="inner-box">
-                                            <div class="author-image">
-                                                <span class="social-icon fa fa-facebook-square"></span>
-                                                <img src="web/page/images/resource/author-thumb-3.jpg" alt="" />
-                                            </div>
-                                            <div class="quote-icon icons-right-quote-sign"></div>
-                                            <div class="slide-text">“ Lorem Ipsum is simply dummy text of the printing and type <br> setting industry. Lorem Ipsum has been the industry's stan  <br> dard dummy text ever since. ”</div>
-                                            <div class="slide-info">
-                                                <h4 class="author-title">Kathleen Smith</h4>
-                                                <div class="designation">Senior Director</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class="testimonial-block">
-                                        <div class="inner-box">
-                                            <div class="author-image">
-                                                <span class="social-icon fa fa-facebook-square"></span>
-                                                <img src="web/page/images/resource/author-thumb-4.jpg" alt="" />
-                                            </div>
-                                            <div class="quote-icon icons-right-quote-sign"></div>
-                                            <div class="slide-text">“ Lorem Ipsum is simply dummy text of the printing and type <br> setting industry. Lorem Ipsum has been the industry's stan  <br> dard dummy text ever since. ”</div>
-                                            <div class="slide-info">
-                                                <h4 class="author-title">Kathleen Smith</h4>
-                                                <div class="designation">Senior Director</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class="testimonial-block">
-                                        <div class="inner-box">
-                                            <div class="author-image">
-                                                <span class="social-icon fa fa-facebook-square"></span>
-                                                <img src="web/page/images/resource/author-thumb-5.jpg" alt="" />
-                                            </div>
-                                            <div class="quote-icon icons-right-quote-sign"></div>
-                                            <div class="slide-text">“ Lorem Ipsum is simply dummy text of the printing and type <br> setting industry. Lorem Ipsum has been the industry's stan  <br> dard dummy text ever since. ”</div>
-                                            <div class="slide-info">
-                                                <h4 class="author-title">Kathleen Smith</h4>
-                                                <div class="designation">Senior Director</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class="testimonial-block">
-                                        <div class="inner-box">
-                                            <div class="author-image">
-                                                <span class="social-icon fa fa-facebook-square"></span>
-                                                <img src="web/page/images/resource/author-thumb-6.jpg" alt="" />
-                                            </div>
-                                            <div class="quote-icon icons-right-quote-sign"></div>
-                                            <div class="slide-text">“ Lorem Ipsum is simply dummy text of the printing and type <br> setting industry. Lorem Ipsum has been the industry's stan  <br> dard dummy text ever since. ”</div>
-                                            <div class="slide-info">
-                                                <h4 class="author-title">Kathleen Smith</h4>
-                                                <div class="designation">Senior Director</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class="testimonial-block">
-                                        <div class="inner-box">
-                                            <div class="author-image">
-                                                <span class="social-icon fa fa-facebook-square"></span>
-                                                <img src="web/page/images/resource/author-thumb-7.jpg" alt="" />
-                                            </div>
-                                            <div class="quote-icon icons-right-quote-sign"></div>
-                                            <div class="slide-text">“ Lorem Ipsum is simply dummy text of the printing and type <br> setting industry. Lorem Ipsum has been the industry's stan  <br> dard dummy text ever since. ”</div>
-                                            <div class="slide-info">
-                                                <h4 class="author-title">Kathleen Smith</h4>
-                                                <div class="designation">Senior Director</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- Slides -->
-
-                            <!-- Controls -->
-                            <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        <!-- End Testimonials Section -->
-
         <!-- Screenshots Section -->
         <section class="screenshots-section">
             <div class="auto-container">
@@ -748,17 +566,17 @@
                 <div class="row appScreenshotCarousel-container swiper-container">
                     <div class="screen-mobile-image"></div>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-01.jpg)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-02.png)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-03.png)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-04.png)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-05.png)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-02.png)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-01.jpg)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-02.png)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-03.png)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-04.png)" -->
-                        <div class="swiper-slide"></div> <!-- style="background-image:url(web/page/images/resource/slider-05.png)"-->
+                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-01.jpg)"></div> <!-- style="background-image:url(web/page/images/resource/slider-01.jpg)" -->
+                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-02.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-02.png)" -->
+                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-03.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-03.png)" -->
+                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-04.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-04.png)" -->
+                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-05.png)"></div> <!--  -->
+                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-02.png)" ></div> <!-- -->
+                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-01.jpg)"></div> <!-- style="background-image:url(web/page/images/resource/slider-01.jpg)" -->
+                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-02.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-02.png)" -->
+                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-03.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-03.png)" -->
+                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-04.png)" ></div>
+                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-05.png)"></div>
                     </div>
                     <!-- Add Arrows -->
                 </div>
@@ -773,10 +591,10 @@
 
         <!-- Integration Section -->
         <section class="integration-section">
-            <div class="patern-layer-one"></div> <!-- style="background-image: url(web/page/images/background/pattern-5.png)" -->
-            <div class="patern-layer-two" ></div> <!-- style="background-image: url(web/page/images/background/pattern-6.png)" -->
-            <div class="patern-layer-three" ></div> <!-- style="background-image: url(web/page/images/background/pattern-10.png)" -->
-            <div class="patern-layer-four" ></div> <!-- style="background-image: url(web/page/images/background/pattern-11.png)" -->
+            <div class="patern-layer-one" style="background-image: url(web/page/images/background/pattern-5.png)"></div>
+            <div class="patern-layer-two" style="background-image: url(web/page/images/background/pattern-6.png)"></div>
+            <div class="patern-layer-three" style="background-image: url(web/page/images/background/pattern-10.png)"></div>
+            <div class="patern-layer-four" style="background-image: url(web/page/images/background/pattern-10.png)"></div>
             <div class="auto-container">
                 <div class="sec-title centered">
                     <div class="title"><span>In</span>tegrations</div>
@@ -790,51 +608,51 @@
                 <div class="bubbles-wrapper">
                     <div class="animations m-0">
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-md">
-                            <img src="web/page/images/resource/Integrations-1.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-1.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">HTML-5</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xxl">
-                            <img src="web/page/images/resource/Integrations-2.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-2.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Envato</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-lg">
-                            <img src="web/page/images/resource/Integrations-3.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-3.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Elementor</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xl">
-                            <img src="web/page/images/resource/Integrations-4.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-4.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Fingerprint</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-md">
-                            <img src="web/page/images/resource/Integrations-5.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-5.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Amplify</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-lg">
-                            <img src="web/page/images/resource/Integrations-6.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-6.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Firebase Integration</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-md">
-                            <img src="web/page/images/resource/Integrations-7.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-7.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Google-Plus</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xl">
-                            <img src="web/page/images/resource/Integrations-8.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-8.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Jio Tv</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-lg">
-                            <img src="web/page/images/resource/Integrations-9.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-9.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Paypal</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xxl">
-                            <img src="web/page/images/resource/Integrations-10.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-10.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Stripe</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-md">
-                            <img src="web/page/images/resource/Integrations-11.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-11.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Goola Map</span>
                         </div>
                         <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xl">
-                            <img src="web/page/images/resource/Integrations-12.jpg" alt="" class="img-responsive">
+                            <img src="/web/page/images/resource/Integrations-12.jpg" alt="" class="img-responsive">
                             <span class="badge badge-contrast shadow-box">Microsoft</span>
                         </div>
                     </div>
@@ -848,365 +666,6 @@
 
         </section>
         <!-- End Integration Section -->
-
-        <!-- Pricing Section -->
-        <section class="pricing-section" id="pricing">
-            <div class="auto-container">
-                <div class="sec-title centered style-three">
-                    <div class="title"><span>pr</span>icing</div>
-                    <h2>We have offered the <span>best </span>p<span>ricing</span> <br> to make life easier!</h2>
-                </div>
-
-                <div class="pricing-tabs tabs-box">
-
-                    <!-- Title Column -->
-                    <div class="title-column">
-
-                        <!-- Tab Btns -->
-                        <ul class="tab-buttons clearfix">
-                            <li data-tab="#prod-monthly" class="tab-btn monthly active-btn">Monthly</li>
-                            <li class="boll"><span class="round"></span></li>
-                            <li data-tab="#prod-yearly" class="tab-btn yearly">Yearly</li>
-                        </ul>
-
-                    </div>
-
-                    <!--Tabs Container-->
-                    <div class="tabs-content">
-
-                        <div class="patern-layer-three paroller" data-paroller-factor="0.30" data-paroller-factor-lg="0.60" data-paroller-type="foreground" data-paroller-direction="horizontal" style="background-image: url(web/page/images/icons/pattern-19.png)"></div>
-                        <div class="patern-layer-four paroller" data-paroller-factor="-0.30" data-paroller-factor-lg="0.60" data-paroller-type="foreground" data-paroller-direction="horizontal" style="background-image: url(web/page/images/icons/pattern-20.png)"></div>
-
-                        <!--Tab-->
-                        <div class="tab active-tab" id="prod-monthly">
-                            <div class="content">
-                                <div class="row clearfix">
-
-                                    <!-- Price Block -->
-                                    <div class="price-block col-lg-4 col-md-6 col-sm-12">
-                                        <div class="inner-box">
-                                            <div class="patern-layer-two"></div> <!--  style="background-image: url(web/page/images/icons/pattern-18.png)" -->
-                                            <div class="patern-layer-one"></div> <!-- style="background-image: url(web/page/images/icons/pattern-17.png)" -->
-                                            <div class="upper-box">
-                                                <div class="icon-box">
-                                                    <span class="icon flaticon-paper-plane"></span>
-                                                </div>
-                                                <div class="title">Premeum</div>
-                                                <h3>$39.99</h3>
-                                            </div>
-                                            <div class="middle-box">
-                                                <div class="price-title">unLimited access</div>
-                                                <ul class="price-list">
-                                                    <li><i class="fa fa-remove"></i>100 MB Disk Space</li>
-                                                    <li><i class="fa fa-check"></i>2 Subdo mains dolor</li>
-                                                    <li><i class="fa fa-remove"></i>5 Email Accounts</li>
-                                                    <li><i class="fa fa-remove"></i>No License</li>
-                                                    <li><i class="fa fa-check"></i>Phone & Mail Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="lower-box">
-                                                <a href="#" class="theme-btn plan-btn">choose plan</a>
-                                                <a href="#" class="trial">Get a free trial now!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Price Block -->
-                                    <div class="price-block col-lg-4 col-md-6 col-sm-12">
-                                        <div class="inner-box">
-                                            <div class="patern-layer-two"></div> <!-- style="background-image: url(web/page/images/icons/pattern-18.png)" -->
-                                            <div class="patern-layer-one" ></div> <!-- style="background-image: url(web/page/images/icons/pattern-17.png)" -->
-                                            <div class="upper-box">
-                                                <div class="icon-box">
-                                                    <span class="icon flaticon-plane"></span>
-                                                </div>
-                                                <div class="title">Standrad</div>
-                                                <h3>$59.99</h3>
-                                            </div>
-                                            <div class="middle-box">
-                                                <div class="price-title">Limited access</div>
-                                                <ul class="price-list">
-                                                    <li><i class="fa fa-remove"></i>100 MB Disk Space</li>
-                                                    <li><i class="fa fa-check"></i>2 Subdo mains dolor</li>
-                                                    <li><i class="fa fa-remove"></i>5 Email Accounts</li>
-                                                    <li><i class="fa fa-remove"></i>No License</li>
-                                                    <li><i class="fa fa-check"></i>Phone & Mail Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="lower-box">
-                                                <a href="#" class="theme-btn plan-btn">choose plan</a>
-                                                <a href="#" class="trial">Get a free trial now!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Price Block -->
-                                    <div class="price-block col-lg-4 col-md-6 col-sm-12">
-                                        <div class="inner-box">
-                                            <div class="patern-layer-two"></div> <!-- style="background-image: url(web/page/images/icons/pattern-18.png)" -->
-                                            <div class="patern-layer-one"></div> <!-- style="background-image: url(web/page/images/icons/pattern-17.png)" -->
-                                            <div class="upper-box">
-                                                <div class="icon-box">
-                                                    <span class="icon icons-rocket-ship"></span>
-                                                </div>
-                                                <div class="title">Premeum</div>
-                                                <h3>$89.99</h3>
-                                            </div>
-                                            <div class="middle-box">
-                                                <div class="price-title">unLimited access</div>
-                                                <ul class="price-list">
-                                                    <li><i class="fa fa-remove"></i>100 MB Disk Space</li>
-                                                    <li><i class="fa fa-check"></i>2 Subdo mains dolor</li>
-                                                    <li><i class="fa fa-remove"></i>5 Email Accounts</li>
-                                                    <li><i class="fa fa-remove"></i>No License</li>
-                                                    <li><i class="fa fa-check"></i>Phone & Mail Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="lower-box">
-                                                <a href="#" class="theme-btn plan-btn">choose plan</a>
-                                                <a href="#" class="trial">Get a free trial now!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <!-- Guarantee -->
-                                <div class="guarantee"><span class="circle"></span>30 days money back guarantee!</div>
-
-                            </div>
-                        </div>
-
-                        <!--Tab-->
-                        <div class="tab" id="prod-yearly">
-                            <div class="content">
-                                <div class="row clearfix">
-
-                                    <!-- Price Block -->
-                                    <div class="price-block col-lg-4 col-md-6 col-sm-12">
-                                        <div class="inner-box">
-                                            <div class="patern-layer-two" style="background-image: url(web/page/images/icons/pattern-18.png)"></div> <!-- style="background-image: url(web/page/images/icons/pattern-18.png)" -->
-                                            <div class="patern-layer-one" style="background-image: url(web/page/images/icons/pattern-17.png)"></div><!-- style="background-image: url(web/page/images/icons/pattern-17.png)" -->
-                                            <div class="upper-box">
-                                                <div class="icon-box">
-                                                    <span class="icon flaticon-paper-plane"></span>
-                                                </div>
-                                                <div class="title">Premeum</div>
-                                                <h3>$99.99</h3>
-                                            </div>
-                                            <div class="middle-box">
-                                                <div class="price-title">unLimited access</div>
-                                                <ul class="price-list">
-                                                    <li><i class="fa fa-remove"></i>100 MB Disk Space</li>
-                                                    <li><i class="fa fa-check"></i>2 Subdo mains dolor</li>
-                                                    <li><i class="fa fa-remove"></i>5 Email Accounts</li>
-                                                    <li><i class="fa fa-remove"></i>No License</li>
-                                                    <li><i class="fa fa-check"></i>Phone & Mail Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="lower-box">
-                                                <a href="#" class="theme-btn plan-btn">choose plan</a>
-                                                <a href="#" class="trial">Get a free trial now!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Price Block -->
-                                    <div class="price-block col-lg-4 col-md-6 col-sm-12">
-                                        <div class="inner-box">
-                                            <div class="patern-layer-two"></div> <!-- style="background-image: url(web/page/images/icons/pattern-18.png)" -->
-                                            <div class="patern-layer-one"></div> <!-- style="background-image: url(web/page/images/icons/pattern-17.png)" -->
-                                            <div class="upper-box">
-                                                <div class="icon-box">
-                                                    <span class="icon flaticon-plane"></span>
-                                                </div>
-                                                <div class="title">Standrad</div>
-                                                <h3>$149.99</h3>
-                                            </div>
-                                            <div class="middle-box">
-                                                <div class="price-title">Limited access</div>
-                                                <ul class="price-list">
-                                                    <li><i class="fa fa-remove"></i>100 MB Disk Space</li>
-                                                    <li><i class="fa fa-check"></i>2 Subdo mains dolor</li>
-                                                    <li><i class="fa fa-remove"></i>5 Email Accounts</li>
-                                                    <li><i class="fa fa-remove"></i>No License</li>
-                                                    <li><i class="fa fa-check"></i>Phone & Mail Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="lower-box">
-                                                <a href="#" class="theme-btn plan-btn">choose plan</a>
-                                                <a href="#" class="trial">Get a free trial now!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Price Block -->
-                                    <div class="price-block col-lg-4 col-md-6 col-sm-12">
-                                        <div class="inner-box">
-                                            <div class="patern-layer-two"></div> <!-- style="background-image: url(web/page/images/icons/pattern-18.png)" -->
-                                            <div class="patern-layer-one"></div> <!-- style="background-image: url(web/page/images/icons/pattern-17.png)" -->
-                                            <div class="upper-box">
-                                                <div class="icon-box">
-                                                    <span class="icon icons-rocket-ship"></span>
-                                                </div>
-                                                <div class="title">Premeum</div>
-                                                <h3>$199.99</h3>
-                                            </div>
-                                            <div class="middle-box">
-                                                <div class="price-title">unLimited access</div>
-                                                <ul class="price-list">
-                                                    <li><i class="fa fa-remove"></i>100 MB Disk Space</li>
-                                                    <li><i class="fa fa-check"></i>2 Subdo mains dolor</li>
-                                                    <li><i class="fa fa-remove"></i>5 Email Accounts</li>
-                                                    <li><i class="fa fa-remove"></i>No License</li>
-                                                    <li><i class="fa fa-check"></i>Phone & Mail Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="lower-box">
-                                                <a href="#" class="theme-btn plan-btn">choose plan</a>
-                                                <a href="#" class="trial">Get a free trial now!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        <!-- End Pricing Section -->
-
-        <!-- Faq Section -->
-        <section class="faq-section">
-            <div class="auto-container">
-                <div class="sec-title centered style-four">
-                    <div class="title"><span>FA</span>Q</div>
-                    <h2>Learn about new features from <br> <span>fre</span>q<span>uentl</span>y asked question</h2>
-                </div>
-                <div class="inner-container">
-                    <div class="row clearfix">
-
-                        <!-- Faq Column -->
-                        <div class="faq-column col-lg-6 col-md-12 col-sm-12">
-                            <h3>What should I include in App?</h3>
-                            <div class="text">Lorem ipsum dolor sit amet consecte tur adipiscing elit sed <a href="#">eiusmod tempor incididunt</a> ut labore.</div>
-                        </div>
-
-                        <!-- Faq Column -->
-                        <div class="faq-column col-lg-6 col-md-12 col-sm-12">
-                            <h3>Can users choose to install the app?</h3>
-                            <div class="text">We’re a company built on open source. It all began with Ionic Framework - the world's most popular open source for building cross-platform mobile and Progressive Web Apps.</div>
-                        </div>
-
-                        <!-- Faq Column -->
-                        <div class="faq-column col-lg-6 col-md-12 col-sm-12">
-                            <h3>How does the Moodle app work?</h3>
-                            <div class="text">The apps you build with Ionic leverage the power and stability of the open web - the most time-tested universal runtime in the world. The web has been around over two decades.</div>
-                        </div>
-
-                        <!-- Faq Column -->
-                        <div class="faq-column col-lg-6 col-md-12 col-sm-12">
-                            <h3>How do I disable installed apps?</h3>
-                            <div class="text">Lorem ipsum dolor sit amet consecte tur adipiscing elit sed do eiusmod tempor incididunt ut labore.</div>
-                        </div>
-
-                        <!-- Faq Column -->
-                        <div class="faq-column col-lg-6 col-md-12 col-sm-12">
-                            <h3>Does disabling apps free up space?</h3>
-                            <div class="text">Lorem ipsum dolor sit amet consecte tur adipiscing elit sed <a href="#">eiusmod tempor incididunt</a> ut labore.</div>
-                        </div>
-
-                        <!-- Faq Column -->
-                        <div class="faq-column col-lg-6 col-md-12 col-sm-12">
-                            <h3>Why are mobile apps important?</h3>
-                            <div class="text">Lorem ipsum dolor sit amet consecte tur adipiscing elit sed do <a href="#">eiusmod tempor incididunt</a> ut labore.</div>
-                        </div>
-
-                    </div>
-                    <!-- Question -->
-                    <div class="question">Still have a question? <a href="#">Contact us:</a> <strong>topapp@info.com</strong></div>
-
-                </div>
-            </div>
-        </section>
-        <!-- End Faq Section -->
-
-        <!-- Blog Section -->
-        <section class="blog-section" id="blog">
-            <div class="auto-container">
-                <!-- Sec Title -->
-                <div class="sec-title style-two">
-                    <div class="clearfix">
-                        <div class="pull-left">
-                            <div class="title"><span>Bl</span>og</div>
-                            <h2>We want to <span>share our</span> succes <br> by our latest blog.</h2>
-                        </div>
-                        <div class="pull-right">
-                            <div class="text">Lorem Ipsum is simply dummy text of the printing and type <br> setting industry. Lorem Ipsum has been the industry's stan <br> dard dummy text ever since the 1500s.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row clearfix">
-
-                    <!-- News Block -->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                            <div class="image">
-                                <a href="blog-single.html"><img src="web/page/images/resource/news-1.png" alt="" /></a>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="post-meta">
-                                    <li><span class="icon icons-calendar-2"></span>September 12, 2020</li>
-                                    <li><span class="icon icons-user-4"></span>Admin</li>
-                                </ul>
-                                <h3><a href="blog-single.html">Organisationaly teams are just like families.</a></h3>
-                                <div class="text">Lorem Ipsum is simply dummy text the printing and setting industry. Lorm Ipsum has been the industry's stanard dummy text ever.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Block -->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                            <div class="image">
-                                <a href="blog-single.html"><img src="web/page/images/resource/news-2.png" alt="" /></a>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="post-meta">
-                                    <li><span class="icon icons-calendar-2"></span>September 12, 2020</li>
-                                    <li><span class="icon icons-user-4"></span>Admin</li>
-                                </ul>
-                                <h3><a href="blog-single.html">Revitalising your people in a retail downturn...</a></h3>
-                                <div class="text">Lorem Ipsum is simply dummy text the printing and setting industry. Lorm Ipsum has been the industry's stanard dummy text ever.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- News Block -->
-                    <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                        <div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-                            <div class="image">
-                                <a href="blog-single.html"><img src="web/page/images/resource/news-3.png" alt="" /></a>
-                            </div>
-                            <div class="lower-content">
-                                <ul class="post-meta">
-                                    <li><span class="icon icons-calendar-2"></span>September 12, 2020</li>
-                                    <li><span class="icon icons-user-4"></span>Admin</li>
-                                </ul>
-                                <h3><a href="blog-single.html">Regional Managers time management.</a></h3>
-                                <div class="text">Lorem Ipsum is simply dummy text the printing and setting industry. Lorm Ipsum has been the industry's stanard dummy text ever.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <!-- End Blog Section -->
 
         <!-- Team Section -->
         <section class="team-section">
@@ -1248,7 +707,7 @@
                         <div class="inner-box">
                             <div class="image-outer">
                                 <div class="image">
-                                    <a href="#"><img src="web/page/images/resource/team-1.png" alt="" /></a>
+                                    <a href="#"><img src="/web/page/images/resource/team-1.png" alt="" /></a>
                                 </div>
                             </div>
                             <div class="lower-content">
@@ -1272,7 +731,7 @@
                         <div class="inner-box">
                             <div class="image-outer">
                                 <div class="image">
-                                    <a href="#"><img src="web/page/images/resource/team-2.png" alt="" /></a>
+                                    <a href="#"><img src="/web/page/images/resource/team-2.png" alt="" /></a>
                                 </div>
                             </div>
                             <div class="lower-content">
@@ -1296,7 +755,7 @@
                         <div class="inner-box">
                             <div class="image-outer">
                                 <div class="image">
-                                    <a href="#"><img src="web/page/images/resource/team-3.png" alt="" /></a>
+                                    <a href="#"><img src="/web/page/images/resource/team-3.png" alt="" /></a>
                                 </div>
                             </div>
                             <div class="lower-content">
@@ -1320,7 +779,7 @@
                         <div class="inner-box">
                             <div class="image-outer">
                                 <div class="image">
-                                    <a href="#"><img src="web/page/images/resource/team-1.png" alt="" /></a>
+                                    <a href="#"><img src="/web/page/images/resource/team-1.png" alt="" /></a>
                                 </div>
                             </div>
                             <div class="lower-content">
@@ -1401,24 +860,27 @@
                     <!-- Info Column -->
                     <div class="info-column col-lg-6 col-md-12 col-sm-12">
                         <div class="inner-column">
-                            <div class="patern-layer-one"></div> <!-- style="background-image: url(web/page/images/background/pattern-12.png)" -->
-                            <div class="patern-layer-two"></div> <!-- style="background-image: url(web/page/images/background/pattern-13.png)" -->
-                            <div class="patern-layer-three paroller" data-paroller-factor="-0.10" data-paroller-factor-lg="0.08" data-paroller-type="foreground" data-paroller-direction="horizontal" ></div> <!-- style="background-image: url(web/page/images/background/pattern-14.png)" -->
-                            <ul class="info-list">
+                            <div
+                                  class="patern-layer-one"
+                                 :style="{'background-image': this.$i18n.locale != 'ar'?'url(/web/page/images/background/pattern-12.png)' : 'url(/web/page/images/background/pattern-20.png)'}">
+                            </div>
+                            <div class="patern-layer-two" :style="{'background-image': this.$i18n.locale != 'ar'?'url(/web/page/images/background/pattern-13.png)':'url(/web/page/images/background/pattern-21.png)'}"></div>
+                            <div class="patern-layer-three paroller" :style="{'background-image': this.$i18n.locale != 'ar'?'url(/web/page/images/background/pattern-14.png)':'url(/web/page/images/background/pattern-22.png)'}" data-paroller-factor="-0.10" data-paroller-factor-lg="0.08" data-paroller-type="foreground" data-paroller-direction="horizontal" ></div>
+                            <ul :class="['info-list',this.$i18n.locale == 'ar'?'info-list-ar':'']">
                                 <li>
-                                    <span class="icon flaticon-address"></span>
-                                    <strong>Our head office address:</strong>
-                                    3556 Hartford Way Vlg, Mount Pleasant, SC, <br> 29466, Australia.
+                                    <span :class="['icon','flaticon-address',this.$i18n.locale == 'ar'?'icon-ar':'']"></span>
+                                    <strong>{{$t('partner.contact-h')}}</strong>
+                                    {{$t('partner.address')}}
                                 </li>
                                 <li>
-                                    <span class="icon flaticon-telephone"></span>
-                                    <strong>Call for help:</strong>
-                                    <a href="tel:734-697-2907">(734) 697-2907</a><br>
-                                    <a href="tel:843-971-1906">(843) 971-1906</a>
+                                    <span :class="['icon','flaticon-telephone',this.$i18n.locale == 'ar'?'icon-ar':'']"></span>
+                                    <strong>{{$t('partner.call')}}</strong>
+                                    <a href="tel:469-537-2410">469-537-2410</a><br>
+                                    <a href="tel:469-537-2410">469-537-2410</a>
                                 </li>
                                 <li>
-                                    <span class="icon flaticon-invite"></span>
-                                    <strong>Mail us:</strong>
+                                    <span :class="['icon','flaticon-invite',this.$i18n.locale == 'ar'?'icon-ar':'']"></span>
+                                    <strong>{{$t('partner.mail')}}</strong>
                                     <a class="mailto:noreply@envato.com" href="#">noreply@envato.com</a><br>
                                     <a class="mailto:noreply@envato.com" href="#">noreply@topapp.com</a>
                                 </li>
@@ -1430,37 +892,41 @@
                     <div class="form-column col-lg-6 col-md-12 col-sm-12">
                         <div class="inner-column">
                             <div class="sec-title style-three">
-                                <div class="title"><span>Co</span>ntact</div>
-                                <h2>Contact with our support <br> during <span>emer</span>g<span>enc</span>y!</h2>
+                                <div :class="['title',this.$i18n.locale == 'ar'?'title-ar':'']"><span>{{$t('partner.co')}}</span>{{$t('partner.ntact')}}</div>
+                                <h2>{{$t('partner.from-h')}} <br> {{$t('partner.during')}}
+                                    <span>{{$t('partner.emer')}}</span>{{$t('partner.g')}}<span>{{$t('partner.enc')}}</span>{{$t('partner.y')}}
+                                </h2>
                             </div>
 
                             <!-- Default Form -->
                             <div class="default-form">
-                                <form method="post" action="https://html.themexriver.com/topapp/sendemail.php" id="contact-form">
+                                <form method="post"  id="contact-form">
                                     <div class="row clearfix">
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="username" placeholder="Full Name *" required>
+                                            <input type="text" name="username" :placeholder="$t('partner.first')" required>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="lastname" placeholder="Last Name *" required>
+                                            <input type="text" name="lastname" :placeholder="$t('partner.last')" required>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="email" name="email" placeholder="Your mail *" required>
+                                            <input type="email" name="email" :placeholder="$t('partner.mail-contact')" required>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="phone" placeholder="Phone number *" required>
+                                            <input type="text" name="phone" :placeholder="$t('partner.phone')" required>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <textarea name="message" placeholder="Message..."></textarea>
+                                            <textarea name="message" :placeholder="$t('partner.message')"></textarea>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <button class="theme-btn submit-btn" type="submit" name="submit-form"><span class="txt"> <i class="fa fa-arrow-circle-right"></i> &nbsp; Send now</span></button>
+                                            <button class="theme-btn submit-btn" type="submit" name="submit-form"><span class="txt">
+                                                <i class="fa fa-arrow-circle-right"></i> &nbsp; {{ $t('partner.send') }}</span>
+                                            </button>
                                         </div>
 
                                     </div>
@@ -1476,37 +942,16 @@
         </section>
         <!-- End Contact Section -->
 
-        <!-- Subscribe Section -->
-        <section class="subscribe-section">
-            <div class="patern-layer-one" style="background-image: url(web/page/images/background/pattern-15.png)"></div>
-            <div class="auto-container">
-                <div class="sec-title centered style-four">
-                    <div class="title"><span>Su</span>bscription</div>
-                    <h2>Always know what’s happening in the <br> world of applications. Recieve all <br> latest p<span>ost in</span> y<span>our inbox.</span></h2>
-                </div>
-
-                <div class="subscribe-form">
-                    <form method="post" action="https://html.themexriver.com/topapp/contact.html">
-                        <div class="form-group">
-                            <input type="email" name="email" value="" placeholder="your mail address..." required="">
-                            <button type="submit" class="theme-btn btn-style-two">Subscrib now</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="email">* Your mail address will be fully secure . We don’t share!</div>
-            </div>
-        </section>
-        <!-- End Subscribe Section -->
-
-        <!-- Main Footer -->
-        <layout-footer />
-        <!-- End Main Footer -->
-
     </div>
 </template>
 
 <script>
+import lang from "../../components/web/general/LangWeb";
+
 export default {
+    components:{
+        lang
+    },
     name: "successPartner",
     data(){
         return {
@@ -1519,5 +964,331 @@ export default {
 <style scoped>
 .fa {
     font-size: 39px;
+}
+
+/*start header*/
+.lang{
+    margin: 15px -29px 0 15px;
+}
+.lang.lang-ar{
+    margin: 15px 22px 0 -84px;
+}
+.logo a img{
+    width: 225px;
+}
+.main-header .nav-outer{
+    padding-top: 0;
+}
+.btn-style-one{
+    background-color: #fcb00c;
+    border-radius: 32px;
+}
+.btn-style-one:hover{
+    color: #fff !important;
+}
+.main-header.fixed-header .header-upper .outer-box {
+    padding-top: 36px;
+}
+
+.main-header.fixed-header {
+    background-color: #fff;
+    box-shadow: 0px 0px 12px -6px #000;
+}
+
+.main-header.fixed-header .logo a img{
+    width: 155px;
+}
+.main-header.fixed-header .header-upper .outer-box {
+    padding-top: 13px;
+}
+/*end header*/
+
+/*start banner*/
+.banner-pager .pager{
+    pointer-events: none;
+}
+.video-box figure{
+    width: 100%;
+}
+.banner-section .patern-layer-one.patern-layer-one-ar {
+    left: 260px;
+    width: 104%;
+}
+.banner-section .newsletter-form .form-group button.btn-ar {
+    right: unset;
+    left: 0;
+}
+section .newsletter-form .form-group input[type="email"].email-ar {
+    left: 195px;
+}
+.banner-section .carousel-column .inner-column .pager-box.pager-box-ar {
+    left: unset;
+    right: 0;
+}
+.banner-section .content-column .video-box.video-box-ar {
+    position: absolute;
+    left: 0px;
+    right: unset;
+}
+.banner-section .carousel-column .inner-column .pager-box .pager.one {
+    background-color: #cb2467;
+}
+.banner-section .carousel-column .inner-column .pager-box .pager.two {
+    background-color: #20b3a1;
+}
+.banner-section .carousel-column .inner-column .pager-box .pager.three{
+    background-color: #8610f2;
+}
+/*end banner*/
+
+/*start register*/
+.register{
+    padding: 120px 0 0px;
+}
+.register-container{
+    padding: 10px 5px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+.register-container.one{
+    background-color: #8610f2;
+}
+.register-container.twe{
+    background-color: #20b3a1;
+}
+.register-container.three{
+    background-color: #cb2467;
+}
+.register-info h4 {
+    color: #fff;
+    font-size: 16px;
+    margin: 25px 0 0;
+}
+.register-container.one p {
+    margin-bottom: 5px;
+}
+.register-info p{
+    color: #fff;
+    font-size: 11px;
+}
+.register-info a{
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 6px 30px;
+    border-radius: 15px;
+    transition: all .5s;
+}
+.register-info a:hover{
+    background-color: #fff;
+}
+.register-container.one .register-info a:hover{
+    color: #6610f2;
+}
+.register-container.twe .register-info a:hover{
+    color: #6610f2;
+}
+.register-container.three .register-info a:hover{
+    color: #cb2467;
+}
+/*end register*/
+
+/*start steps-section*/
+.steps-section .carousel-item{
+    margin: 0!important;
+}
+.steps-section .content {
+     padding: 0;
+}
+/*end steps-section*/
+
+/*start contact*/
+.sec-title .title:before {
+    left: 20px;
+    top: 16px;
+}
+.sec-title .title.title-ar:before {
+    right: 22px;
+    left: unset;
+    top: 16px;
+}
+.contact-section .info-column .info-list.info-list-ar {
+    margin-left: 0px;
+    margin-right: 120px;
+}
+.contact-section .info-column .info-list li .icon.icon-ar {
+    right: -48px;
+    left: unset;
+}
+/*end contact*/
+
+@media only screen and (min-width: 1140px) {
+    .banner-section .carousel-column .inner-column .pager-box .pager.one.one-ar{
+        right: -75px;
+    }
+    .banner-section .carousel-column .inner-column .pager-box .pager.two.two-ar{
+        left: 35px;
+    }
+    .banner-section .carousel-column .inner-column .pager-box .pager.three.three-ar{
+        left: -160px;
+    }
+}
+
+@media only screen and (max-width: 1140px) {
+    .main-header {
+        background-color: #fff;
+    }
+    .lang{
+        margin: 15px 10px 0 15px;
+    }
+}
+@media only screen and (max-width: 1115px){
+    .banner-section .content-column .video-box .video-image {
+        position: relative;
+        margin: 0px;
+        top: 36px;
+        left: 57px;
+    }
+    section .content-column .video-box .overlay-box span {
+        left: 50%;
+        top: 30%;
+    }
+    .main-header.fixed-header {
+        background-color: #fff;
+    }
+    .banner-section .patern-layer-one.patern-layer-one-ar{
+        left: 0px;
+    }
+    .banner-section .content-column .video-box.video-box-ar {
+        display: none;
+    }
+    .banner-section .newsletter-form .form-group button.btn-ar{
+        left: -10px;
+    }
+    section .newsletter-form .form-group input[type="email"].email-ar {
+        left: 185px;
+    }
+}
+@media only screen and (max-width: 1055px){
+    .register-container.one p {
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .main-header {
+        background-color: #fff;
+    }
+    .logo a img {
+        width: 185px;
+    }
+    .main-header .nav-outer {
+        width: unset;
+    }
+    .btn-style-one {
+        line-height: 20px;
+        font-size: 15px;
+        padding: 15px 13px 15px;
+    }
+    .main-header .header-upper .outer-box {
+        padding-top: 19px;
+    }
+    .lang.lang-ar{
+        margin: 15px 34px 0 4px;
+    }
+}
+
+@media only screen and (max-width: 992px){
+    .video-box{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .main-header .nav-outer {
+        margin-top: 0px;
+    }
+    .nav-outer .outer-box{
+        display: block !important;
+    }
+    .btn-style-one {
+        font-size: 16px;
+        padding: 10px 13px 12px;
+    }
+
+    .main-header .header-upper .outer-box {
+        padding-top: 29px;
+    }
+    .main-header.fixed-header .header-upper .outer-box{
+        padding-top: 20px;
+    }
+    .register-info h4 {
+        color: #fff;
+        font-size: 28px;
+        margin: 14% 0 0;
+    }
+    .register-container.one p{
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .logo a img {
+        width: 160px;
+    }
+    .main-header .header-upper .outer-box {
+        padding-top: 20px;
+    }
+    .btn-style-one {
+        line-height: 19px;
+        font-size: 12px;
+        padding: 10px 6px 12px;
+    }
+    .btn-style-one {
+        padding: 10px 15px 7px;
+    }
+    .register-info h4 {
+        font-size: 20px;
+        margin: 14% 0 0;
+    }
+    .register-container.one p {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 479px){
+    .banner-section .carousel-column .inner-column .slides-box {
+         margin-left: 0px;
+    }
+    section .newsletter-form .form-group input[type="email"].email-ar {
+         left: 0px;
+    }
+    .banner-section .newsletter-form .form-group button.btn-ar {
+         left: 0px;
+    }
+    .main-header .header-upper .outer-box{
+        padding-top: 23px;
+    }
+    .banner-section .carousel-column .inner-column .slides-box {
+        margin: 0 11%;
+    }
+    .register-container.one p {
+        margin-bottom: 10px;
+        font-size: 13px;
+    }
+    .register-container.one p{
+        font-size: 12px;
+    }
+    .register-info a{
+        padding: 4px 23px;
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    .banner-section .carousel-column .inner-column .slides-box{
+        margin: 0px 3%;
+    }
 }
 </style>

@@ -9,7 +9,7 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Package <i class="fas fa-check-circle"></i></h3>
+                        <h3 class="page-title">Package</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><router-link :to="{name: 'package', params: {lang: locale || 'ar'}}">Package</router-link></li>
                             <li class="breadcrumb-item active">Create Package</li>

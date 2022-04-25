@@ -24882,6 +24882,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('web.');
+  },
+  data: function data() {
+    return {
+      link: ['partners']
+    };
   }
 });
 
@@ -25863,8 +25868,7 @@ __webpack_require__.r(__webpack_exports__);
     var emitter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)('emitter');
 
     var carousel = function carousel() {
-      $('#developers-slider').removeClass('owl-hidden');
-      $('#testimonial-slider').removeClass('owl-hidden'); //start owl-carousel
+      $('#developers-slider').removeClass('owl-hidden'); //start owl-carousel
 
       if ($('#developers-slider').length > 0) {
         $('#developers-slider').owlCarousel({
@@ -25888,39 +25892,45 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         });
-      }
-
-      if ($('#testimonial-slider').length > 0) {
-        $('#testimonial-slider').owlCarousel({
-          rtl: true,
-          items: 5,
-          margin: 30,
-          dots: false,
-          nav: true,
-          navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
-          loop: true,
-          responsiveClass: true,
-          responsive: {
-            0: {
-              items: 1
-            },
-            768: {
-              items: 3
-            },
-            1170: {
-              items: 3
-            }
-          }
-        });
       } //end owl-carousel
 
     };
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       carousel();
+      counter(20600, 1, 0);
+      counter(67000, 2, 0);
+      counter(105340, 3, 0);
     });
     emitter.on('get_lang_web', function () {});
-    return {};
+
+    var counter = function counter(num, id) {
+      var time = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+      var number = 0;
+
+      if (num > 10000 && num < 20000) {
+        number = num - 1500;
+      } else if (num > 20000 && num < 30000) {
+        number = num - 2000;
+      } else if (num > 50000 && num < 100000) {
+        number = num - 40000;
+      } else if (num > 100000) {
+        number = 90000 - 3500;
+      }
+
+      var count = setInterval(function () {
+        var element = document.getElementById("counter-" + id);
+        element.innerHTML = new Intl.NumberFormat().format(number++);
+
+        if (num < number) {
+          clearInterval(count);
+        }
+      }, time);
+    };
+
+    return {
+      counter: counter
+    };
   }
 });
 
@@ -26218,7 +26228,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _components_web_general_LangWeb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/web/general/LangWeb */ "./resources/js/components/web/general/LangWeb.vue");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    lang: _components_web_general_LangWeb__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   name: "successPartner",
   data: function data() {
     return {
@@ -26252,7 +26267,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_layout_footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("layout-footer");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Main Wrapper "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start Navigation "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_layout_header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, null, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Main Wrapper "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start Navigation "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Header "), !$data.link.includes(_ctx.$route.name) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_layout_header, {
+    key: 0
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (_ref) {
       var Component = _ref.Component;
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
@@ -26523,7 +26540,7 @@ var _hoisted_4 = {
   "class": "row"
 };
 var _hoisted_5 = {
-  "class": "col-md-3"
+  "class": "col-lg-3 col-md-6"
 };
 var _hoisted_6 = {
   "class": "footer-title"
@@ -26570,7 +26587,7 @@ var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_18 = {
-  "class": "col-lg-3"
+  "class": "col-lg-3 col-md-6"
 };
 var _hoisted_19 = {
   "class": "footer-widget footer-menu"
@@ -26588,78 +26605,71 @@ var _hoisted_23 = {
   href: "login.html"
 };
 var _hoisted_24 = {
-  href: "register.html"
+  "class": "col-lg-2 col-md-4"
 };
 var _hoisted_25 = {
-  href: "register.html"
+  "class": "footer-widget footer-menu"
 };
 var _hoisted_26 = {
-  href: "forgot-password.html"
+  "class": "footer-title"
 };
 var _hoisted_27 = {
-  "class": "col-lg-2"
-};
-var _hoisted_28 = {
-  "class": "footer-widget footer-menu"
-};
-var _hoisted_29 = {
-  "class": "footer-title"
-};
-var _hoisted_30 = {
   href: "chats.html"
 };
-var _hoisted_31 = {
+var _hoisted_28 = {
   href: "faq.html"
 };
-var _hoisted_32 = {
+var _hoisted_29 = {
   href: "review.html"
 };
-var _hoisted_33 = {
+var _hoisted_30 = {
   href: "privacy-policy.html"
 };
+var _hoisted_31 = {
+  href: "term-condition.html"
+};
+var _hoisted_32 = {
+  href: "term-condition.html"
+};
+var _hoisted_33 = {
+  "class": "col-lg-4 col-md-8"
+};
 var _hoisted_34 = {
-  href: "term-condition.html"
-};
-var _hoisted_35 = {
-  href: "term-condition.html"
-};
-var _hoisted_36 = {
-  "class": "col-lg-4"
-};
-var _hoisted_37 = {
   "class": "footer-widget footer-menu"
 };
-var _hoisted_38 = {
+var _hoisted_35 = {
   "class": "footer-title"
 };
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row g-2\" data-v-768af3c8><div class=\"col mobile-aplication\" data-v-768af3c8><a href=\"#\" data-v-768af3c8><div class=\"row\" data-v-768af3c8><div class=\"col-4 row justify-content-center align-items-center\" data-v-768af3c8><i class=\"fab fa-apple\" data-v-768af3c8></i></div><div class=\"col-8\" data-v-768af3c8><span data-v-768af3c8>Dowonload on the</span><h3 data-v-768af3c8>APP Store</h3></div></div></a></div><div class=\"col\" data-v-768af3c8><div class=\"col mobile-aplication\" data-v-768af3c8><a href=\"#\" data-v-768af3c8><div class=\"row\" data-v-768af3c8><div class=\"col-4 row justify-content-center align-items-center\" data-v-768af3c8><i class=\"fab fa-google-play\" data-v-768af3c8></i></div><div class=\"col-8\" data-v-768af3c8><span data-v-768af3c8>GET IT ON</span><h3 data-v-768af3c8>Google Play</h3></div></div></a></div></div></div>", 1);
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row no-gutters\" data-v-768af3c8><a href=\"#\" class=\"col\" data-v-768af3c8><img src=\"/web/img/icon/Google.svg\" data-v-768af3c8></a><a href=\"#\" class=\"col\" data-v-768af3c8><img src=\"/web/img/icon/Apple.svg\" data-v-768af3c8></a></div>", 1);
 
-var _hoisted_40 = {
+var _hoisted_37 = {
   "class": "footer-bottom"
 };
-var _hoisted_41 = {
+var _hoisted_38 = {
   "class": "container"
 };
-var _hoisted_42 = {
+var _hoisted_39 = {
   "class": "copyright"
 };
-var _hoisted_43 = {
+var _hoisted_40 = {
   "class": "row"
 };
-var _hoisted_44 = {
+var _hoisted_41 = {
   "class": "col-md-6 col-lg-6"
 };
-var _hoisted_45 = {
+var _hoisted_42 = {
   "class": "copyright-text"
 };
-var _hoisted_46 = {
+var _hoisted_43 = {
   "class": "mb-0"
 };
 
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-6 col-lg-6\" data-v-768af3c8><div class=\"social-icon\" data-v-768af3c8><ul data-v-768af3c8><li data-v-768af3c8><a href=\"#\" class=\"icon\" target=\"_blank\" data-v-768af3c8><i class=\"fab fa-facebook-f\" data-v-768af3c8></i></a></li><li data-v-768af3c8><a href=\"#\" class=\"icon\" target=\"_blank\" data-v-768af3c8><i class=\"fab fa-instagram\" data-v-768af3c8></i></a></li><li data-v-768af3c8><a href=\"#\" class=\"icon\" target=\"_blank\" data-v-768af3c8><i class=\"fab fa-linkedin-in\" data-v-768af3c8></i></a></li><li data-v-768af3c8><a href=\"#\" class=\"icon\" target=\"_blank\" data-v-768af3c8><i class=\"fab fa-twitter\" data-v-768af3c8></i></a></li></ul></div></div>", 1);
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-6 col-lg-6\" data-v-768af3c8><div class=\"social-icon\" data-v-768af3c8><ul data-v-768af3c8><li data-v-768af3c8><a href=\"#\" class=\"icon\" target=\"_blank\" data-v-768af3c8><i class=\"fab fa-facebook-f\" data-v-768af3c8></i></a></li><li data-v-768af3c8><a href=\"#\" class=\"icon\" target=\"_blank\" data-v-768af3c8><i class=\"fab fa-instagram\" data-v-768af3c8></i></a></li><li data-v-768af3c8><a href=\"#\" class=\"icon\" target=\"_blank\" data-v-768af3c8><i class=\"fab fa-linkedin-in\" data-v-768af3c8></i></a></li><li data-v-768af3c8><a href=\"#\" class=\"icon\" target=\"_blank\" data-v-768af3c8><i class=\"fab fa-twitter\" data-v-768af3c8></i></a></li></ul></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.adress')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.captial')), 1
@@ -26686,33 +26696,81 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.blog')), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.login')), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'loginPartiner',
+      params: {
+        lang: this.$i18n.locale
+      }
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.login')), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'registerPartiner',
+      params: {
+        lang: this.$i18n.locale
+      }
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.register')), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'partners',
+      params: {
+        lang: this.$i18n.locale
+      }
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('header.partner')), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.help')), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.register')), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.chat')), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('header.partner')), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.question')), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.help')), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.company')), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.chat')), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.desgin')), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.question')), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.Privacy')), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.company')), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.term')), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.desgin')), 1
-  /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.Privacy')), 1
-  /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.term')), 1
-  /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.Privacy')), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.Privacy')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.application')), 1
   /* TEXT */
-  ), _hoisted_39])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Footer Top "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Bottom "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Copyright "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_46, "©" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.copy')), 1
+  ), _hoisted_36])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Footer Top "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer Bottom "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Copyright "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_43, "©" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('footer.copy')), 1
   /* TEXT */
-  )])]), _hoisted_47])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Copyright ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Footer Bottom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Footer ")], 2112
+  )])]), _hoisted_44])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Copyright ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Footer Bottom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Footer ")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
@@ -26836,7 +26894,11 @@ var _hoisted_21 = {
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ahmed Mohamed ");
 
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_23 = {
+  key: 1
+};
+
+var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "fas fa-user"
   }, null, -1
@@ -26844,7 +26906,7 @@ var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "fas fa-lock"
   }, null, -1
@@ -26852,7 +26914,7 @@ var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_25 = {
+var _hoisted_26 = {
   href: "post-project.html",
   "class": "login-btn"
 };
@@ -26946,10 +27008,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["to"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
-    key: 1,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([_ctx.$route.name == 'partners' ? 'active' : ''])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  , ["to"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'partners',
       params: {
@@ -26968,9 +27027,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["to"])], 2
-  /* CLASS */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+  , ["to"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.token ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
     key: 2,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([_ctx.$route.name == 'registerPartiner' ? 'active' : ''])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
@@ -26983,7 +27040,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "reg-btn custom"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('header.register')), 1
+      return [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('header.register')), 1
       /* TEXT */
       )];
     }),
@@ -27007,7 +27064,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "log-btn custom"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('header.login')), 1
+      return [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('header.login')), 1
       /* TEXT */
       )];
     }),
@@ -27018,7 +27075,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["to"])], 2
   /* CLASS */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_lang), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('header.project')), 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_lang), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('header.project')), 1
   /* TEXT */
   )])])])])], 2
   /* CLASS */
@@ -29838,71 +29895,959 @@ var _hoisted_21 = {
   "class": "btn btn-primary sub-btn",
   type: "submit"
 };
-
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"section feature\" data-v-0939d6eb><div class=\"container\" data-v-0939d6eb><div class=\"row\" data-v-0939d6eb><!-- Feature Item --><div class=\"col-md-4\" data-v-0939d6eb><div class=\"feature-item freelance-count\" data-v-0939d6eb><div class=\"feature-icon\" data-v-0939d6eb><img src=\"web/img/icon/icon-01.png\" class=\"img-fluid\" alt=\"\" data-v-0939d6eb></div><div class=\"feature-content\" data-v-0939d6eb><h3 data-v-0939d6eb>919,207</h3><p data-v-0939d6eb>freelance Developers</p></div></div></div><!-- /Feature Item --><!-- Feature Item --><div class=\"col-md-4\" data-v-0939d6eb><div class=\"feature-item\" data-v-0939d6eb><div class=\"feature-icon\" data-v-0939d6eb><img src=\"web/img/icon/icon-02.png\" class=\"img-fluid\" alt=\"\" data-v-0939d6eb></div><div class=\"feature-content\" data-v-0939d6eb><h3 data-v-0939d6eb>25 - 100+</h3><p data-v-0939d6eb>Developers per project</p></div></div></div><!-- /Feature Item --><!-- Feature Item --><div class=\"col-md-4\" data-v-0939d6eb><div class=\"feature-item comp-project\" data-v-0939d6eb><div class=\"feature-icon\" data-v-0939d6eb><img src=\"web/img/icon/icon-03.png\" class=\"img-fluid\" alt=\"\" data-v-0939d6eb></div><div class=\"feature-content\" data-v-0939d6eb><h3 data-v-0939d6eb>388,615</h3><p data-v-0939d6eb>completed projects</p></div></div></div><!-- /Feature Item --></div></div></section>", 1);
-
+var _hoisted_22 = {
+  "class": "section feature"
+};
 var _hoisted_23 = {
-  "class": "section work"
+  "class": "container container-custom"
 };
 var _hoisted_24 = {
-  "class": "container-fluid"
-};
-var _hoisted_25 = {
   "class": "row"
 };
+var _hoisted_25 = {
+  "class": "col-md-4"
+};
 var _hoisted_26 = {
-  "class": "col-md-6 work-box bg1"
+  "class": "feature-item"
 };
-var _hoisted_27 = {
-  "class": "work-content"
-};
+
+var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "feature-icon"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "web/img/icon/FreeDesignerOrange.svg",
+    "class": "img-fluid",
+    alt: ""
+  })], -1
+  /* HOISTED */
+  );
+});
+
 var _hoisted_28 = {
-  "class": "row justify-content-between"
+  "class": "feature-content"
 };
 
 var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-4"
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+    id: "counter-1"
   }, null, -1
   /* HOISTED */
   );
 });
 
 var _hoisted_30 = {
-  href: "#",
-  "class": "col-2"
+  "class": "col-md-4"
 };
 var _hoisted_31 = {
-  "class": "col-md-6 work-box bg2"
+  "class": "feature-item"
 };
-var _hoisted_32 = {
-  "class": "work-content"
-};
+
+var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "feature-icon middle"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "web/img/icon/CompanyFreeOrange.svg",
+    "class": "img-fluid",
+    alt: ""
+  })], -1
+  /* HOISTED */
+  );
+});
+
 var _hoisted_33 = {
-  "class": "row justify-content-between"
+  "class": "feature-content"
 };
 
 var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-4"
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+    id: "counter-2"
   }, null, -1
   /* HOISTED */
   );
 });
 
 var _hoisted_35 = {
+  "class": "col-md-4"
+};
+var _hoisted_36 = {
+  "class": "feature-item"
+};
+
+var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "feature-icon last"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "web/img/icon/ProjectOrange.svg",
+    "class": "img-fluid",
+    alt: ""
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_38 = {
+  "class": "feature-content"
+};
+
+var _hoisted_39 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+    id: "counter-3"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_40 = {
+  "class": "section work"
+};
+var _hoisted_41 = {
+  "class": "container-fluid"
+};
+var _hoisted_42 = {
+  "class": "row"
+};
+var _hoisted_43 = {
+  "class": "col-md-6 work-box bg12"
+};
+var _hoisted_44 = {
+  "class": "work-content"
+};
+var _hoisted_45 = {
+  "class": "row justify-content-between align-items-end"
+};
+
+var _hoisted_46 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "col-4"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/AHMED12.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_47 = {
   href: "#",
   "class": "col-2"
 };
+var _hoisted_48 = {
+  "class": "col-md-6 work-box bg10"
+};
+var _hoisted_49 = {
+  "class": "work-content"
+};
+var _hoisted_50 = {
+  "class": "row justify-content-between align-items-end"
+};
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"section projects\" data-v-0939d6eb><div class=\"container\" data-v-0939d6eb><div class=\"row\" data-v-0939d6eb><div class=\"col-12 col-md-12 mx-auto\" data-v-0939d6eb><div class=\"section-header text-center\" data-v-0939d6eb><div class=\"section-line\" data-v-0939d6eb></div><h2 class=\"header-title\" data-v-0939d6eb>Get Inspired<br data-v-0939d6eb> By Development Projects</h2><p data-v-0939d6eb>High Performing Solutions To Your</p></div></div></div><div class=\"row\" data-v-0939d6eb><!--- Project Item  --><div class=\"col-lg-3 col-md-6 col-sm-6\" data-v-0939d6eb><div class=\"project-item\" data-v-0939d6eb><div class=\"project-img\" data-v-0939d6eb><a href=\"project.html\" data-v-0939d6eb><img src=\"web/img/project/project-01.jpg\" alt=\"\" class=\"img-fluid\" data-v-0939d6eb></a></div><div class=\"d-flex justify-content-between align-items-center\" data-v-0939d6eb><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>45</h4><h5 data-v-0939d6eb>ANDROID APPS</h5></div><div class=\"pro-icon\" data-v-0939d6eb><div class=\"project-icon\" data-v-0939d6eb></div></div><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>20</h4><h5 data-v-0939d6eb>Developers</h5></div></div></div></div><!--- /Project Item  --><!--- Project Item  --><div class=\"col-lg-3 col-md-6 col-sm-6\" data-v-0939d6eb><div class=\"project-item\" data-v-0939d6eb><div class=\"project-img\" data-v-0939d6eb><a href=\"project.html\" data-v-0939d6eb><img src=\"web/img/project/project-02.jpg\" alt=\"\" class=\"img-fluid\" data-v-0939d6eb></a></div><div class=\"d-flex justify-content-between align-items-center\" data-v-0939d6eb><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>45</h4><h5 data-v-0939d6eb>LARAVEL</h5></div><div class=\"pro-icon\" data-v-0939d6eb><div class=\"project-icon\" data-v-0939d6eb></div></div><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>20</h4><h5 data-v-0939d6eb>Developers</h5></div></div></div></div><!--- /Project Item  --><!--- Project-Item  --><div class=\"col-lg-3 col-md-6 col-sm-6\" data-v-0939d6eb><div class=\"project-item\" data-v-0939d6eb><div class=\"project-img\" data-v-0939d6eb><a href=\"project.html\" data-v-0939d6eb><img src=\"web/img/project/project-03.jpg\" alt=\"\" class=\"img-fluid\" data-v-0939d6eb></a></div><div class=\"d-flex justify-content-between align-items-center\" data-v-0939d6eb><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>45</h4><h5 data-v-0939d6eb>React</h5></div><div class=\"pro-icon\" data-v-0939d6eb><div class=\"project-icon\" data-v-0939d6eb></div></div><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>20</h4><h5 data-v-0939d6eb>Developers</h5></div></div></div></div><!--- /Project Item  --><!--- Project Item  --><div class=\"col-lg-3 col-md-6 col-sm-6\" data-v-0939d6eb><div class=\"project-item\" data-v-0939d6eb><div class=\"project-img\" data-v-0939d6eb><a href=\"project.html\" data-v-0939d6eb><img src=\"web/img/project/project-04.jpg\" alt=\"\" class=\"img-fluid\" data-v-0939d6eb></a></div><div class=\"d-flex justify-content-between align-items-center\" data-v-0939d6eb><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>45</h4><h5 data-v-0939d6eb>GOLANG</h5></div><div class=\"pro-icon\" data-v-0939d6eb><div class=\"project-icon\" data-v-0939d6eb></div></div><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>20</h4><h5 data-v-0939d6eb>Developers</h5></div></div></div></div><!--- /Project Item  --><!--- Project Item  --><div class=\"col-lg-3 col-md-6 col-sm-6\" data-v-0939d6eb><div class=\"project-item\" data-v-0939d6eb><div class=\"project-img\" data-v-0939d6eb><a href=\"project.html\" data-v-0939d6eb><img src=\"web/img/project/project-01.jpg\" alt=\"\" class=\"img-fluid\" data-v-0939d6eb></a></div><div class=\"d-flex justify-content-between align-items-center\" data-v-0939d6eb><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>45</h4><h5 data-v-0939d6eb>.NET</h5></div><div class=\"pro-icon\" data-v-0939d6eb><div class=\"project-icon\" data-v-0939d6eb></div></div><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>20</h4><h5 data-v-0939d6eb>Developers</h5></div></div></div></div><!--- /Project Item  --><!--- Project Item  --><div class=\"col-lg-3 col-md-6 col-sm-6\" data-v-0939d6eb><div class=\"project-item\" data-v-0939d6eb><div class=\"project-img\" data-v-0939d6eb><a href=\"project.html\" data-v-0939d6eb><img src=\"web/img/project/project-04.jpg\" alt=\"\" class=\"img-fluid\" data-v-0939d6eb></a></div><div class=\"d-flex justify-content-between align-items-center\" data-v-0939d6eb><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>45</h4><h5 data-v-0939d6eb>JAVA</h5></div><div class=\"pro-icon\" data-v-0939d6eb><div class=\"project-icon\" data-v-0939d6eb></div></div><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>20</h4><h5 data-v-0939d6eb>Developers</h5></div></div></div></div><!--- /Project Item  --><!--- Project Item  --><div class=\"col-lg-3 col-md-6 col-sm-6\" data-v-0939d6eb><div class=\"project-item\" data-v-0939d6eb><div class=\"project-img\" data-v-0939d6eb><a href=\"project.html\" data-v-0939d6eb><img src=\"web/img/project/project-03.jpg\" alt=\"\" class=\"img-fluid\" data-v-0939d6eb></a></div><div class=\"d-flex justify-content-between align-items-center\" data-v-0939d6eb><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>45</h4><h5 data-v-0939d6eb>PYTHON</h5></div><div class=\"pro-icon\" data-v-0939d6eb><div class=\"project-icon\" data-v-0939d6eb></div></div><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>20</h4><h5 data-v-0939d6eb>Developers</h5></div></div></div></div><!--- /Project Item  --><!--- Project-Item  --><div class=\"col-lg-3 col-md-6 col-sm-6\" data-v-0939d6eb><div class=\"project-item\" data-v-0939d6eb><div class=\"project-img\" data-v-0939d6eb><a href=\"project.html\" data-v-0939d6eb><img src=\"web/img/project/project-01.jpg\" alt=\"\" class=\"img-fluid\" data-v-0939d6eb></a></div><div class=\"d-flex justify-content-between align-items-center\" data-v-0939d6eb><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>45</h4><h5 data-v-0939d6eb>ANGULAR</h5></div><div class=\"pro-icon\" data-v-0939d6eb><div class=\"project-icon\" data-v-0939d6eb></div></div><div class=\"project-content\" data-v-0939d6eb><h4 data-v-0939d6eb>20</h4><h5 data-v-0939d6eb>Developers</h5></div></div></div></div><!--- /Project Item  --></div><div class=\"row\" data-v-0939d6eb><div class=\"col-md-12 text-center\" data-v-0939d6eb><div class=\"see-all\" data-v-0939d6eb><a href=\"project.html\" class=\"btn all-btn\" data-v-0939d6eb>SEE ALL PROJECT</a></div></div></div></div></section>", 1);
+var _hoisted_51 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "col-4"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/DesignerSearchBlack.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"section subscribe\" data-v-0939d6eb><div class=\"container\" data-v-0939d6eb><div class=\"row align-items-center justify-content-center\" data-v-0939d6eb><div class=\"col-5\" data-v-0939d6eb><h1 class=\"text-center\" data-v-0939d6eb>مساحه اعلانيه</h1></div></div></div></section>", 1);
+var _hoisted_52 = {
+  href: "#",
+  "class": "col-2"
+};
+var _hoisted_53 = {
+  "class": "section projects"
+};
+var _hoisted_54 = {
+  "class": "container container-custom"
+};
+var _hoisted_55 = {
+  "class": "row"
+};
+var _hoisted_56 = {
+  "class": "col-12 col-md-12 mx-auto"
+};
+var _hoisted_57 = {
+  "class": "section-header text-center"
+};
 
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"section developer\" data-v-0939d6eb><div class=\"container\" data-v-0939d6eb><div class=\"row\" data-v-0939d6eb><div class=\"col-md-7 col-sm-12 col-12 mx-auto\" data-v-0939d6eb><div class=\"section-header text-center\" data-v-0939d6eb><div class=\"section-line\" data-v-0939d6eb></div><h2 class=\"header-title\" data-v-0939d6eb>Most Hired Developers</h2><p data-v-0939d6eb>Work with talented people at the most affordable price</p></div></div></div><div id=\"developers-slider\" class=\"owl-carousel owl-theme developers-slider\" data-v-0939d6eb><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/user/avatar-1.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>George Wells</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>UI/UX Designer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Alabama, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.7 (32)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>$25 Hourly</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/user/avatar-2.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Timothy Smith</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>PHP Developer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Illinois, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>3.5 (25)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>Free</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/user/avatar-3.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Janet Paden</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>Graphic Designer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>New York, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.1 (30)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>$27 Hourly</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/img-03.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>James Douglas</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>iOS Developer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Florida, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.3 (31)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>$23 Hourly</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/img-03.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Richard Wilson</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>UI/UX Designer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Alabama, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.7 (32)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>$25 Hourly</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/img-03.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Richard Wilson</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>UI/UX Designer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Alabama, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.7 (32)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>$25 Hourly</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/img-03.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Richard Wilson</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>UI/UX Designer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Alabama, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.7 (32)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>$25 Hourly</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/img-03.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Richard Wilson</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>UI/UX Designer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Alabama, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.7 (32)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>$25 Hourly</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite favourited\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/img-04.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Richard Wilson</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>UI/UX Designer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Alabama, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.8 (55)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>$25 Hourly</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div><div class=\"freelance-widget\" data-v-0939d6eb><div class=\"freelance-content\" data-v-0939d6eb><a data-toggle=\"modal\" href=\"#rating\" class=\"favourite\" data-v-0939d6eb><i class=\"fas fa-star\" data-v-0939d6eb></i></a><div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"web/img/img-03.jpg\" alt=\"User Image\" data-v-0939d6eb><span class=\"verified\" data-v-0939d6eb><i class=\"fas fa-check-circle\" data-v-0939d6eb></i></span></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Richard Wilson</a></h3><div class=\"freelance-specific\" data-v-0939d6eb>UI/UX Designer</div><div class=\"freelance-location\" data-v-0939d6eb><i class=\"fas fa-map-marker-alt me-1\" data-v-0939d6eb></i>Alabama, USA</div><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>5.0 (4)</span></div><div class=\"freelance-tags\" data-v-0939d6eb><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Web Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>UI Design</span></a><a href=\"javascript:void(0);\" data-v-0939d6eb><span class=\"badge badge-pill badge-design\" data-v-0939d6eb>Node Js</span></a></div><div class=\"freelancers-price\" data-v-0939d6eb>Free</div></div></div><div class=\"cart-hover\" data-v-0939d6eb><a href=\"developer-details.html\" class=\"btn-cart\" tabindex=\"-1\" data-v-0939d6eb>View Profile</a></div></div></div></div></section>", 1);
+var _hoisted_58 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "section-line"
+  }, null, -1
+  /* HOISTED */
+  );
+});
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"section testimonial-section review\" data-v-0939d6eb><div class=\"container\" data-v-0939d6eb><div class=\"row\" data-v-0939d6eb><div class=\"col-12\" data-v-0939d6eb><div class=\"section-header text-center\" data-v-0939d6eb><div class=\"section-line\" data-v-0939d6eb></div><h2 class=\"header-title\" data-v-0939d6eb>Top Reviews</h2><p data-v-0939d6eb>High Performing Developers To Your</p></div></div></div><div id=\"testimonial-slider\" class=\"owl-carousel owl-theme testimonial-slider\" data-v-0939d6eb><!-- Review Widget --><div class=\"review-blog\" data-v-0939d6eb><div class=\"review-top d-flex align-items-center\" data-v-0939d6eb><div class=\"review-img\" data-v-0939d6eb><a href=\"review.html\" data-v-0939d6eb><img class=\"img-fluid\" src=\"/web/img/review/review-01.jpg\" alt=\"Post Image\" data-v-0939d6eb></a></div><div class=\"review-info\" data-v-0939d6eb><h3 data-v-0939d6eb>Davis Payerf</h3><h5 data-v-0939d6eb>CEO</h5><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.7</span></div></div></div><div class=\"review-content\" data-v-0939d6eb><p data-v-0939d6eb>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p></div></div><!-- / Review Widget --><!-- Review Widget --><div class=\"review-blog\" data-v-0939d6eb><div class=\"review-top d-flex align-items-center\" data-v-0939d6eb><div class=\"review-img\" data-v-0939d6eb><a href=\"review.html\" data-v-0939d6eb><img class=\"img-fluid\" src=\"/web/img/review/review-02.jpg\" alt=\"Post Image\" data-v-0939d6eb></a></div><div class=\"review-info\" data-v-0939d6eb><h3 data-v-0939d6eb>Davis Payerf</h3><h5 data-v-0939d6eb>PROJECT LEAD</h5><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>4.8</span></div></div></div><div class=\"review-content\" data-v-0939d6eb><p data-v-0939d6eb>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p></div></div><!-- /Review Widget --><!-- Review Widget --><div class=\"review-blog\" data-v-0939d6eb><div class=\"review-top d-flex align-items-center\" data-v-0939d6eb><div class=\"review-img\" data-v-0939d6eb><a href=\"review.html\" data-v-0939d6eb><img class=\"img-fluid\" src=\"/web/img/review/review-03.jpg\" alt=\"Post Image\" data-v-0939d6eb></a></div><div class=\"review-info\" data-v-0939d6eb><h3 data-v-0939d6eb>Davis Payerf</h3><h5 data-v-0939d6eb>TEAM LEAD</h5><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>5.0</span></div></div></div><div class=\"review-content\" data-v-0939d6eb><p data-v-0939d6eb>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p></div></div><!-- /Review Widget --><!-- Review Widget --><div class=\"review-blog\" data-v-0939d6eb><div class=\"review-top d-flex align-items-center\" data-v-0939d6eb><div class=\"review-img\" data-v-0939d6eb><a href=\"review.html\" data-v-0939d6eb><img class=\"img-fluid\" src=\"/web/img/review/review-02.jpg\" alt=\"Post Image\" data-v-0939d6eb></a></div><div class=\"review-info\" data-v-0939d6eb><h3 data-v-0939d6eb>Davis Payerf</h3><h5 data-v-0939d6eb>PROJECT LEAD</h5><div class=\"rating\" data-v-0939d6eb><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star filled\" data-v-0939d6eb></i><i class=\"fas fa-star\" data-v-0939d6eb></i><span class=\"average-rating\" data-v-0939d6eb>3.2</span></div></div></div><div class=\"review-content\" data-v-0939d6eb><p data-v-0939d6eb>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p></div></div><!-- /Review Widget --></div></div></section>", 1);
+var _hoisted_59 = {
+  "class": "header-title"
+};
+var _hoisted_60 = {
+  "class": "row justify-content-center"
+};
+var _hoisted_61 = {
+  "class": "row"
+};
+var _hoisted_62 = {
+  "class": "col-lg-6 col-md-6 col-sm-12"
+};
+var _hoisted_63 = {
+  "class": "project-item"
+};
 
+var _hoisted_64 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "500"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "coin"
+  }, "EGP")], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_65 = [_hoisted_64];
+var _hoisted_66 = {
+  "class": "row"
+};
+
+var _hoisted_67 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "project-img col-6"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "project.html"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/chair.svg"
+  })])], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_68 = {
+  "class": "col-6 row align-items-center"
+};
+var _hoisted_69 = {
+  "class": "d-flex align-items-center"
+};
+var _hoisted_70 = {
+  "class": "project-content button"
+};
+var _hoisted_71 = {
+  "class": "subscribe"
+};
+
+var _hoisted_72 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/AHMED11.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_73 = {
+  "class": "share"
+};
+
+var _hoisted_74 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/share.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_75 = {
+  "class": "project-content"
+};
+var _hoisted_76 = {
+  "class": "time-container"
+};
+var _hoisted_77 = {
+  "class": "time"
+};
+var _hoisted_78 = {
+  "class": "second"
+};
+
+var _hoisted_79 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "05", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_80 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_81 = {
+  "class": "minute"
+};
+
+var _hoisted_82 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "23", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_83 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_84 = {
+  "class": "hour"
+};
+
+var _hoisted_85 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "33", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_86 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_87 = {
+  "class": "day"
+};
+
+var _hoisted_88 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "15", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_89 = {
+  "class": "col-lg-6 col-md-6 col-sm-12"
+};
+var _hoisted_90 = {
+  "class": "project-item"
+};
+
+var _hoisted_91 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "500"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "coin"
+  }, "EGP")], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_92 = [_hoisted_91];
+var _hoisted_93 = {
+  "class": "row"
+};
+
+var _hoisted_94 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "project-img col-6"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "project.html"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/chair.svg"
+  })])], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_95 = {
+  "class": "col-6 row align-items-center"
+};
+var _hoisted_96 = {
+  "class": "d-flex align-items-center"
+};
+var _hoisted_97 = {
+  "class": "project-content button"
+};
+var _hoisted_98 = {
+  "class": "subscribe"
+};
+
+var _hoisted_99 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/AHMED11.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_100 = {
+  "class": "share"
+};
+
+var _hoisted_101 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/share.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_102 = {
+  "class": "project-content"
+};
+var _hoisted_103 = {
+  "class": "time-container"
+};
+var _hoisted_104 = {
+  "class": "time"
+};
+var _hoisted_105 = {
+  "class": "second"
+};
+
+var _hoisted_106 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "05", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_107 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_108 = {
+  "class": "minute"
+};
+
+var _hoisted_109 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "23", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_110 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_111 = {
+  "class": "hour"
+};
+
+var _hoisted_112 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "33", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_113 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_114 = {
+  "class": "day"
+};
+
+var _hoisted_115 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "15", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_116 = {
+  "class": "col-lg-6 col-md-6 col-sm-12"
+};
+var _hoisted_117 = {
+  "class": "project-item"
+};
+
+var _hoisted_118 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "500"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "coin"
+  }, "EGP")], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_119 = [_hoisted_118];
+var _hoisted_120 = {
+  "class": "row"
+};
+
+var _hoisted_121 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "project-img col-6"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "project.html"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/chair.svg"
+  })])], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_122 = {
+  "class": "col-6 row align-items-center"
+};
+var _hoisted_123 = {
+  "class": "d-flex align-items-center"
+};
+var _hoisted_124 = {
+  "class": "project-content button"
+};
+var _hoisted_125 = {
+  "class": "subscribe"
+};
+
+var _hoisted_126 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/AHMED11.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_127 = {
+  "class": "share"
+};
+
+var _hoisted_128 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/share.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_129 = {
+  "class": "project-content"
+};
+var _hoisted_130 = {
+  "class": "time-container"
+};
+var _hoisted_131 = {
+  "class": "time"
+};
+var _hoisted_132 = {
+  "class": "second"
+};
+
+var _hoisted_133 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "05", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_134 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_135 = {
+  "class": "minute"
+};
+
+var _hoisted_136 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "23", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_137 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_138 = {
+  "class": "hour"
+};
+
+var _hoisted_139 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "33", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_140 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_141 = {
+  "class": "day"
+};
+
+var _hoisted_142 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "15", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_143 = {
+  "class": "col-lg-6 col-md-6 col-sm-12"
+};
+var _hoisted_144 = {
+  "class": "project-item"
+};
+
+var _hoisted_145 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "500"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "coin"
+  }, "EGP")], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_146 = [_hoisted_145];
+var _hoisted_147 = {
+  "class": "row"
+};
+
+var _hoisted_148 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "project-img col-6"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "project.html"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/chair.svg"
+  })])], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_149 = {
+  "class": "col-6 row align-items-center"
+};
+var _hoisted_150 = {
+  "class": "d-flex align-items-center"
+};
+var _hoisted_151 = {
+  "class": "project-content button"
+};
+var _hoisted_152 = {
+  "class": "subscribe"
+};
+
+var _hoisted_153 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/AHMED11.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_154 = {
+  "class": "share"
+};
+
+var _hoisted_155 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/icon/share.svg"
+  })], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_156 = {
+  "class": "project-content"
+};
+var _hoisted_157 = {
+  "class": "time-container"
+};
+var _hoisted_158 = {
+  "class": "time"
+};
+var _hoisted_159 = {
+  "class": "second"
+};
+
+var _hoisted_160 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "05", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_161 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_162 = {
+  "class": "minute"
+};
+
+var _hoisted_163 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "23", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_164 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_165 = {
+  "class": "hour"
+};
+
+var _hoisted_166 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "33", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_167 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "point"
+  }, ":", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_168 = {
+  "class": "day"
+};
+
+var _hoisted_169 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "15", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_170 = {
+  "class": "row"
+};
+var _hoisted_171 = {
+  "class": "col-md-12 text-center"
+};
+var _hoisted_172 = {
+  "class": "see-all"
+};
+var _hoisted_173 = {
+  href: "project.html",
+  "class": "btn all-btn"
+};
+
+var _hoisted_174 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"section subscribe\" data-v-0939d6eb><div class=\"container\" data-v-0939d6eb><div class=\"row align-items-center justify-content-center\" data-v-0939d6eb><div class=\"col-5\" data-v-0939d6eb><h1 class=\"text-center\" data-v-0939d6eb>مساحه اعلانيه</h1></div></div></div></section>", 1);
+
+var _hoisted_175 = {
+  "class": "section developer"
+};
+var _hoisted_176 = {
+  "class": "container"
+};
+var _hoisted_177 = {
+  "class": "row"
+};
+var _hoisted_178 = {
+  "class": "col-md-7 col-sm-12 col-12 mx-auto"
+};
+var _hoisted_179 = {
+  "class": "section-header text-center"
+};
+
+var _hoisted_180 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "section-line"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_181 = {
+  "class": "header-title"
+};
+var _hoisted_182 = {
+  id: "developers-slider",
+  "class": "owl-carousel owl-theme developers-slider"
+};
+var _hoisted_183 = {
+  "class": "freelance-widget"
+};
+var _hoisted_184 = {
+  "class": "freelance-content"
+};
+
+var _hoisted_185 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fas fa-star"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_186 = [_hoisted_185];
+
+var _hoisted_187 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"/web/img/user/avatar-1.jpg\" alt=\"User Image\" data-v-0939d6eb></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Sponser Name</a></h3><div class=\"freelance-specific row justify-content-center\" data-v-0939d6eb><span data-v-0939d6eb> من اكبر مصنعي الاساس في مصر </span></div></div>", 2);
+
+var _hoisted_189 = {
+  "class": "cart-hover"
+};
+var _hoisted_190 = {
+  href: "developer-details.html",
+  "class": "btn-cart",
+  tabindex: "-1"
+};
+var _hoisted_191 = {
+  "class": "freelance-widget"
+};
+var _hoisted_192 = {
+  "class": "freelance-content"
+};
+
+var _hoisted_193 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fas fa-star"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_194 = [_hoisted_193];
+
+var _hoisted_195 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"/web/img/user/avatar-1.jpg\" alt=\"User Image\" data-v-0939d6eb></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Sponser Name</a></h3><div class=\"freelance-specific row justify-content-center\" data-v-0939d6eb><span data-v-0939d6eb> من اكبر مصنعي الاساس في مصر </span></div></div>", 2);
+
+var _hoisted_197 = {
+  "class": "cart-hover"
+};
+var _hoisted_198 = {
+  href: "developer-details.html",
+  "class": "btn-cart",
+  tabindex: "-1"
+};
+var _hoisted_199 = {
+  "class": "freelance-widget"
+};
+var _hoisted_200 = {
+  "class": "freelance-content"
+};
+
+var _hoisted_201 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fas fa-star"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_202 = [_hoisted_201];
+
+var _hoisted_203 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"/web/img/user/avatar-1.jpg\" alt=\"User Image\" data-v-0939d6eb></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Sponser Name</a></h3><div class=\"freelance-specific row justify-content-center\" data-v-0939d6eb><span data-v-0939d6eb> من اكبر مصنعي الاساس في مصر </span></div></div>", 2);
+
+var _hoisted_205 = {
+  "class": "cart-hover"
+};
+var _hoisted_206 = {
+  href: "developer-details.html",
+  "class": "btn-cart",
+  tabindex: "-1"
+};
+var _hoisted_207 = {
+  "class": "freelance-widget"
+};
+var _hoisted_208 = {
+  "class": "freelance-content"
+};
+
+var _hoisted_209 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fas fa-star"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_210 = [_hoisted_209];
+
+var _hoisted_211 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"/web/img/user/avatar-1.jpg\" alt=\"User Image\" data-v-0939d6eb></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Sponser Name</a></h3><div class=\"freelance-specific row justify-content-center\" data-v-0939d6eb><span data-v-0939d6eb> من اكبر مصنعي الاساس في مصر </span></div></div>", 2);
+
+var _hoisted_213 = {
+  "class": "cart-hover"
+};
+var _hoisted_214 = {
+  href: "developer-details.html",
+  "class": "btn-cart",
+  tabindex: "-1"
+};
+var _hoisted_215 = {
+  "class": "freelance-widget"
+};
+var _hoisted_216 = {
+  "class": "freelance-content"
+};
+
+var _hoisted_217 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fas fa-star"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_218 = [_hoisted_217];
+
+var _hoisted_219 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"/web/img/user/avatar-1.jpg\" alt=\"User Image\" data-v-0939d6eb></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Sponser Name</a></h3><div class=\"freelance-specific row justify-content-center\" data-v-0939d6eb><span data-v-0939d6eb> من اكبر مصنعي الاساس في مصر </span></div></div>", 2);
+
+var _hoisted_221 = {
+  "class": "cart-hover"
+};
+var _hoisted_222 = {
+  href: "developer-details.html",
+  "class": "btn-cart",
+  tabindex: "-1"
+};
+var _hoisted_223 = {
+  "class": "freelance-widget"
+};
+var _hoisted_224 = {
+  "class": "freelance-content"
+};
+
+var _hoisted_225 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fas fa-star"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_226 = [_hoisted_225];
+
+var _hoisted_227 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"freelance-img\" data-v-0939d6eb><a href=\"#\" data-v-0939d6eb><img src=\"/web/img/user/avatar-1.jpg\" alt=\"User Image\" data-v-0939d6eb></a></div><div class=\"freelance-info\" data-v-0939d6eb><h3 data-v-0939d6eb><a href=\"#\" data-v-0939d6eb>Sponser Name</a></h3><div class=\"freelance-specific row justify-content-center\" data-v-0939d6eb><span data-v-0939d6eb> من اكبر مصنعي الاساس في مصر </span></div></div>", 2);
+
+var _hoisted_229 = {
+  "class": "cart-hover"
+};
+var _hoisted_230 = {
+  href: "developer-details.html",
+  "class": "btn-cart",
+  tabindex: "-1"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Home Banner "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.trused')), 1
   /* TEXT */
@@ -29924,23 +30869,189 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_20), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.search-new')), 1
   /* TEXT */
-  )])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Home Banner "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Our Feature "), _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Our Feature "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- Developed Project  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.search-company')), 1
+  )])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Home Banner "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Our Feature "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.freelancer')), 1
+  /* TEXT */
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.finish')), 1
+  /* TEXT */
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.project')), 1
+  /* TEXT */
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Feature Item ")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Our Feature "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- Developed Project  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.search-company')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.parge-company')), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['fas', this.$i18n.locale != 'ar' ? 'fa-long-arrow-alt-right' : 'fa-long-arrow-alt-left', 'long-arrow'])
   }, null, 2
   /* CLASS */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.search-design')), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Feature Item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.search-design')), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.parge-company')), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['fas', this.$i18n.locale != 'ar' ? 'fa-long-arrow-alt-right' : 'fa-long-arrow-alt-left', 'long-arrow'])
   }, null, 2
   /* CLASS */
-  )])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- /Developed Project  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Projects "), _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Projects "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Subscribe "), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Subscribe "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Top Instructor "), _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Developer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Review "), _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" / Review ")]);
+  )])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- /Developed Project  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Projects "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [_hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.bargain')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.decBargain')), 1
+  /* TEXT */
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- Project Item  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale == 'ar' ? 'price-ar' : 'price'])
+  }, _hoisted_65, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_66, [_hoisted_67, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.decProduct')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_71, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.subscribe')), 1
+  /* TEXT */
+  ), _hoisted_72]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_73, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.share')), 1
+  /* TEXT */
+  ), _hoisted_74])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_75, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_76, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.show')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_77, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_78, [_hoisted_79, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.second')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_80, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_81, [_hoisted_82, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.minute')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [_hoisted_85, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.hour')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_87, [_hoisted_88, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.day')), 1
+  /* TEXT */
+  )])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- /Project Item  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- Project Item  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_89, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_90, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale == 'ar' ? 'price-ar' : 'price'])
+  }, _hoisted_92, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_93, [_hoisted_94, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_95, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.decProduct')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_96, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_97, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_98, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.subscribe')), 1
+  /* TEXT */
+  ), _hoisted_99]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_100, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.share')), 1
+  /* TEXT */
+  ), _hoisted_101])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_102, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_103, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.show')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_104, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_105, [_hoisted_106, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.second')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_107, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_108, [_hoisted_109, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.minute')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_110, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_111, [_hoisted_112, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.hour')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_113, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_114, [_hoisted_115, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.day')), 1
+  /* TEXT */
+  )])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- /Project Item  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- Project Item  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_116, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_117, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale == 'ar' ? 'price-ar' : 'price'])
+  }, _hoisted_119, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_120, [_hoisted_121, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_122, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.decProduct')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_123, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_124, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_125, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.subscribe')), 1
+  /* TEXT */
+  ), _hoisted_126]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_127, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.share')), 1
+  /* TEXT */
+  ), _hoisted_128])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_129, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_130, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.show')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_131, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_132, [_hoisted_133, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.second')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_134, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_135, [_hoisted_136, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.minute')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_137, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_138, [_hoisted_139, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.hour')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_140, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_141, [_hoisted_142, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.day')), 1
+  /* TEXT */
+  )])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- /Project Item  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- Project Item  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_143, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_144, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale == 'ar' ? 'price-ar' : 'price'])
+  }, _hoisted_146, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_147, [_hoisted_148, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_149, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.decProduct')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_150, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_151, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_152, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.subscribe')), 1
+  /* TEXT */
+  ), _hoisted_153]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_154, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.share')), 1
+  /* TEXT */
+  ), _hoisted_155])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_156, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_157, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.show')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_158, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_159, [_hoisted_160, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.second')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_161, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_162, [_hoisted_163, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.minute')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_164, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_165, [_hoisted_166, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale != 'ar' ? 'en' : ''])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.hour')), 3
+  /* TEXT, CLASS */
+  )]), _hoisted_167, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_168, [_hoisted_169, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.day')), 1
+  /* TEXT */
+  )])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("- /Project Item  ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_170, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_171, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_172, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_173, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.productEver')), 1
+  /* TEXT */
+  )])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /Projects "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Subscribe "), _hoisted_174, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Subscribe "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Top Instructor "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_175, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_176, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_177, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_178, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_179, [_hoisted_180, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_181, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.patrons')), 1
+  /* TEXT */
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_182, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_183, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_184, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "data-toggle": "modal",
+    href: "#rating",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['favourite', this.$i18n.locale != 'ar' ? 'favourite-ar' : ''])
+  }, _hoisted_186, 2
+  /* CLASS */
+  ), _hoisted_187]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_189, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_190, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.more')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_191, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_192, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "data-toggle": "modal",
+    href: "#rating",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['favourite', this.$i18n.locale != 'ar' ? 'favourite-ar' : ''])
+  }, _hoisted_194, 2
+  /* CLASS */
+  ), _hoisted_195]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_197, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_198, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.more')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_199, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_200, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "data-toggle": "modal",
+    href: "#rating",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['favourite', this.$i18n.locale != 'ar' ? 'favourite-ar' : ''])
+  }, _hoisted_202, 2
+  /* CLASS */
+  ), _hoisted_203]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_205, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_206, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.more')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_207, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_208, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "data-toggle": "modal",
+    href: "#rating",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['favourite', this.$i18n.locale != 'ar' ? 'favourite-ar' : ''])
+  }, _hoisted_210, 2
+  /* CLASS */
+  ), _hoisted_211]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_213, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_214, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.more')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_215, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_216, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "data-toggle": "modal",
+    href: "#rating",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['favourite', this.$i18n.locale != 'ar' ? 'favourite-ar' : ''])
+  }, _hoisted_218, 2
+  /* CLASS */
+  ), _hoisted_219]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_221, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_222, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.more')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_223, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_224, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "data-toggle": "modal",
+    href: "#rating",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['favourite', this.$i18n.locale != 'ar' ? 'favourite-ar' : ''])
+  }, _hoisted_226, 2
+  /* CLASS */
+  ), _hoisted_227]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_229, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_230, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('index.more')), 1
+  /* TEXT */
+  )])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Developer ")]);
 }
 
 /***/ }),
@@ -30328,224 +31439,250 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = {
   "class": "page-wrapper"
 };
+var _hoisted_2 = {
+  "class": "main-header"
+};
+var _hoisted_3 = {
+  "class": "header-upper"
+};
+var _hoisted_4 = {
+  "class": "auto-container"
+};
+var _hoisted_5 = {
+  "class": "d-flex justify-content-between"
+};
+var _hoisted_6 = {
+  "class": "pull-left"
+};
+var _hoisted_7 = {
+  "class": "logo"
+};
 
-var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "preloader"
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/logo.png",
+    alt: "shatbna"
   }, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_3 = {
-  "class": "main-header"
+var _hoisted_9 = {
+  "class": "nav-outer clearfix"
 };
-var _hoisted_4 = {
-  "class": "header-upper"
+var _hoisted_10 = {
+  "class": "outer-box"
 };
-var _hoisted_5 = {
-  "class": "auto-container"
+var _hoisted_11 = {
+  "class": "d-flex"
 };
-var _hoisted_6 = {
-  "class": "clearfix"
+var _hoisted_12 = {
+  "class": "txt"
+};
+var _hoisted_13 = {
+  "class": "banner-section",
+  id: "home-banner"
 };
 
-var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "pull-left logo-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "logo"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "index-2.html"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/logo.png",
-    alt: "",
-    title: ""
-  })])])], -1
+    "class": "bg-layer",
+    style: {
+      "background-image": "url(/web/img/partner/2.jpg)"
+    }
+  }, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_8 = {
-  "class": "nav-outer clearfix"
+var _hoisted_15 = {
+  "class": "auto-container"
+};
+var _hoisted_16 = {
+  "class": "row"
+};
+var _hoisted_17 = {
+  "class": "content-column col-lg-7 col-md-12 col-sm-12"
+};
+var _hoisted_18 = {
+  "class": "inner-column"
+};
+var _hoisted_19 = {
+  "class": "text"
+};
+var _hoisted_20 = {
+  "class": "newsletter-form"
+};
+var _hoisted_21 = {
+  "class": "form-group"
+};
+var _hoisted_22 = ["placeholder"];
+var _hoisted_23 = {
+  "class": "txt"
+};
+var _hoisted_24 = {
+  "class": "address"
 };
 
-var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<figure class=\"video-image\" data-v-52ade008><img src=\"/web/page/images/resource/video.jpg\" alt=\"\" data-v-52ade008></figure><a href=\"https://www.youtube.com/watch?v=kxPCFljwJws\" class=\"lightbox-image overlay-box\" data-v-52ade008><span class=\"fa fa-play\" data-v-52ade008><i class=\"ripple\" data-v-52ade008></i></span></a>", 2);
+
+var _hoisted_27 = [_hoisted_25];
+var _hoisted_28 = {
+  "class": "carousel-column col-lg-5 col-md-12 col-sm-12"
+};
+var _hoisted_29 = {
+  "class": "inner-column"
+};
+var _hoisted_30 = {
+  "class": "slider-outer"
+};
+var _hoisted_31 = {
+  "class": "banner-pager clearfix",
+  id: "banner-pager"
+};
+
+var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "mobile-nav-toggler"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "icon icons-menu-button"
+    "class": "image img-circle"
+  }, "1", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_33 = [_hoisted_32];
+
+var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "image img-circle"
+  }, "2", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_35 = [_hoisted_34];
+
+var _hoisted_36 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "image img-circle"
+  }, "3", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_37 = [_hoisted_36];
+
+var _hoisted_38 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "slides-box",
+    style: {
+      "background-image": "url(/web/img/partner/Category4.svg)"
+    }
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "inner-box"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "banner-slider"
+  })])], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_39 = {
+  "class": "register"
+};
+var _hoisted_40 = {
+  "class": "auto-container"
+};
+var _hoisted_41 = {
+  "class": "row justify-content-center"
+};
+var _hoisted_42 = {
+  "class": "col-lg-4 col-md-6"
+};
+var _hoisted_43 = {
+  "class": "register-container one"
+};
+var _hoisted_44 = {
+  "class": "row"
+};
+var _hoisted_45 = {
+  "class": "register-info text-center col-7"
+};
+
+var _hoisted_46 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "register-img text-center col-5"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/partner/Category3.svg"
   })], -1
   /* HOISTED */
   );
 });
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<nav class=\"main-menu show navbar-expand-md\" data-v-52ade008><div class=\"navbar-header\" data-v-52ade008><button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\" data-v-52ade008><span class=\"icon-bar\" data-v-52ade008></span><span class=\"icon-bar\" data-v-52ade008></span><span class=\"icon-bar\" data-v-52ade008></span></button></div><div class=\"navbar-collapse collapse scroll-nav clearfix\" id=\"navbarSupportedContent\" data-v-52ade008><ul class=\"navigation clearfix\" data-v-52ade008><li class=\"current dropdown\" data-v-52ade008><a href=\"#home-banner\" data-v-52ade008>Home</a><ul data-v-52ade008><li data-v-52ade008><a href=\"index-2.html\" data-v-52ade008>Home Page 01</a></li><li data-v-52ade008><a href=\"index-2.html\" data-v-52ade008>Home Page 02</a></li><li data-v-52ade008><a href=\"index-2.html\" data-v-52ade008>Home Page 03</a></li></ul></li><li data-v-52ade008><a href=\"#featured\" data-v-52ade008>Features</a></li><li data-v-52ade008><a href=\"#how-works\" data-v-52ade008>How it works</a></li><li data-v-52ade008><a href=\"#pricing\" data-v-52ade008>Pricing</a></li><li class=\"dropdown\" data-v-52ade008><a href=\"#blog\" data-v-52ade008>Blog</a><ul data-v-52ade008><li data-v-52ade008><a href=\"blog.html\" data-v-52ade008>Our Blog</a></li><li data-v-52ade008><a href=\"blog-single.html\" data-v-52ade008>Blog Single</a></li></ul></li><li data-v-52ade008><a href=\"#contact\" data-v-52ade008>Contact us</a></li></ul></div></nav>", 1);
-
-var _hoisted_11 = {
-  "class": "outer-box"
+var _hoisted_47 = {
+  "class": "col-lg-4 col-md-6"
+};
+var _hoisted_48 = {
+  "class": "register-container twe"
+};
+var _hoisted_49 = {
+  "class": "row"
+};
+var _hoisted_50 = {
+  "class": "register-info text-center col-7"
 };
 
-var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "txt"
-  }, "Register now", -1
+var _hoisted_51 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "register-img text-center col-5"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/web/img/partner/Category2.svg"
+  })], -1
   /* HOISTED */
   );
 });
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"mobile-menu\" data-v-52ade008><div class=\"menu-backdrop\" data-v-52ade008></div><div class=\"close-btn\" data-v-52ade008><span class=\"icon icons-multiply\" data-v-52ade008></span></div><nav class=\"menu-box\" data-v-52ade008><div class=\"nav-logo\" data-v-52ade008><a href=\"index-2.html\" data-v-52ade008><img src=\"web/page/images/logo-2.png\" alt=\"\" title=\"\" data-v-52ade008></a></div><div class=\"menu-outer\" data-v-52ade008><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div></nav></div>", 1);
+var _hoisted_52 = {
+  "class": "col-lg-4 col-md-6"
+};
+var _hoisted_53 = {
+  "class": "register-container three"
+};
+var _hoisted_54 = {
+  "class": "row"
+};
+var _hoisted_55 = {
+  "class": "register-info text-center col-7"
+};
 
-var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
-    "class": "banner-section",
-    id: "home-banner"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "patern-layer-one"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url('images/background/banner-bg.png')\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "bg-layer"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(images/background/2.jpg)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "auto-container"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("age "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "row clearfix"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Column "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "content-column col-lg-7 col-md-12 col-sm-12"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-column"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Get connect to other. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Just ask Topapp")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Access to opportunities for career advancement and "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" professional growth relies heavily on connections.")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "newsletter-form"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    method: "post",
-    action: "https://html.themexriver.com/topapp/contact.html"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "form-group"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "email",
-    name: "email",
-    value: "",
-    placeholder: "Enter mail address",
-    required: ""
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "submit",
-    "class": "theme-btn btn-style-two"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "txt"
-  }, "Take free trial")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "address"
-  }, "*We will give a trial download link to your mail address"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Video Box"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "video-box wow fadeInRight",
-    "data-wow-delay": "0ms",
-    "data-wow-duration": "1500ms"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("figure", {
-    "class": "video-image"
+var _hoisted_56 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "register-img text-center col-5"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/video.jpg",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "https://www.youtube.com/watch?v=kxPCFljwJws",
-    "class": "lightbox-image overlay-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "fa fa-play"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-    "class": "ripple"
-  })])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Carousel Column "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-column col-lg-5 col-md-12 col-sm-12"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-column"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slider-outer"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Custom Pager "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "pager-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "banner-pager clearfix",
-    id: "banner-pager"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": "pager one wow zoomIn",
-    "data-wow-delay": "100ms",
-    "data-wow-duration": "1500ms",
-    "data-slide-index": "0",
-    href: "#"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, "1")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": "pager two wow zoomIn",
-    "data-wow-delay": "200ms",
-    "data-wow-duration": "1500ms",
-    "data-slide-index": "1",
-    href: "#"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, "2")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": "pager three wow zoomIn",
-    "data-wow-delay": "300ms",
-    "data-wow-duration": "1500ms",
-    "data-slide-index": "2",
-    href: "#"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, "3")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Column / Slides "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slides-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/resource/mobile.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "banner-slider"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/search.png",
-    alt: ""
-  })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/screenshot01.png",
-    alt: ""
-  })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/slider-05.png",
-    alt: ""
-  })])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "mobile-small-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/play.png",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "heart-image-icon"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/icons/heart.png",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "plus-small-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/icons/plus.png",
-    alt: ""
-  })])])])])])])])], -1
+    src: "/web/img/partner/Category1.svg"
+  })], -1
   /* HOISTED */
   );
 });
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"featured-section\" id=\"featured\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Content Column --><div class=\"content-column col-lg-5 col-md-12 col-sm-12\" data-v-52ade008><div class=\"iner-column\" data-v-52ade008><div class=\"sec-title\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Fe</span>atures</div><h2 data-v-52ade008>Learn the features of new Beautiful <span data-v-52ade008>lifest</span>y<span data-v-52ade008>le</span> app!</h2></div><div class=\"text\" data-v-52ade008><p data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry&#39;s stan dard dummy text ever since the 1500s.</p><p data-v-52ade008>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts.</p></div><ul class=\"list-style-one\" data-v-52ade008><li data-v-52ade008>Identfy the most trending sessions &amp; exibitors.</li><li data-v-52ade008>24 hours customer supports facilites.</li><li data-v-52ade008>Take action to improve your event value.</li></ul><a href=\"contact.html\" class=\"theme-btn btn-style-three\" data-v-52ade008><span class=\"txt\" data-v-52ade008>Contact Us</span></a></div></div><!-- Blocks Column --><div class=\"blocks-column col-lg-7 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><!-- Cloud Icon --><div class=\"cloud-icon\" data-v-52ade008><img src=\"web/page/images/icons/cloud-icon.png\" alt=\"\" data-v-52ade008></div><div class=\"row clearfix\" data-v-52ade008><!-- Featured Block --><div class=\"featured-block titlt col-lg-6 col-md-6 col-sm-12\" data-tilt data-tilt-max=\"8\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-writing\" data-v-52ade008></span></div><h3 data-v-52ade008>Easy to edit</h3><div class=\"text\" data-v-52ade008>Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div></div></div><!-- Featured Block --><div class=\"featured-block titlt style-two col-lg-6 col-md-6 col-sm-12\" data-tilt data-tilt-max=\"6\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-protection-shield-with-a-check-mark\" data-v-52ade008></span></div><h3 data-v-52ade008>Full protection</h3><div class=\"text\" data-v-52ade008>The app needs to be running in the background, as it tracks BLE regions. </div></div></div><!-- Featured Block --><div class=\"featured-block titlt style-three col-lg-6 col-md-6 col-sm-12\" data-tilt data-tilt-max=\"10\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-dashboard\" data-v-52ade008></span></div><h3 data-v-52ade008>Hi speedy app</h3><div class=\"text\" data-v-52ade008>Speedy App provides instant information on thousands of hire and buy products.</div></div></div><!-- Featured Block --><div class=\"featured-block style-four col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-writing\" data-v-52ade008></span></div><h3 data-v-52ade008>Easy to edit</h3><div class=\"text\" data-v-52ade008>Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div></div></div></div><!-- Side Image --><div class=\"side-image\" data-v-52ade008><img src=\"web/page/images/resource/girl-icon.png\" alt=\"\" data-v-52ade008></div></div></div></div></div></section>", 1);
-
-var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_57 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
     "class": "steps-section"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "patern-layer-one"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/background/pattern-2.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "patern-layer-two"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/background/pattern-3.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "patern-layer-three"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/background/pattern-4.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "patern-layer-one",
+    style: {
+      "background-image": "url(/web/img/partner/pattern-2.png)"
+    }
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "patern-layer-two",
+    style: {
+      "background-image": "url(/web/img/partner/pattern-3.png)"
+    }
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "patern-layer-three",
+    style: {
+      "background-image": "url(/web/img/partner/pattern-4.png)"
+    }
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "auto-container"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Carousel Wrapper "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     id: "steps-thumb",
@@ -30557,8 +31694,11 @@ var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
     "class": "carousel-column col-lg-6 col-md-12 col-sm-12"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slides "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "carousel-inner",
-    role: "listbox"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/resource/mobile.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    role: "listbox",
+    style: {
+      "background-image": "url(/web/page/images/resource/mobile.png)"
+    }
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "slides"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "carousel-item active"
@@ -30567,40 +31707,12 @@ var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "image"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "web/page/images/resource/mokeup-1.jpg",
+    href: "#",
     "data-fancybox": "steps",
     "data-caption": "",
     "class": "image-link lightbox-image"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/mokeup-1.jpg",
-    alt: ""
-  })])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "content"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "web/page/images/resource/mokeup-2.jpg",
-    "data-fancybox": "steps",
-    "data-caption": "",
-    "class": "image-link lightbox-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/mokeup-2.jpg",
-    alt: ""
-  })])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "content"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "web/page/images/resource/mokeup-3.jpg",
-    "data-fancybox": "steps",
-    "data-caption": "",
-    "class": "image-link lightbox-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/mokeup-3.jpg",
+    src: "/web/img/partner/Category5.svg",
     alt: ""
   })])])])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "blocks-column col-lg-6 col-md-12 col-sm-12"
@@ -30653,428 +31765,143 @@ var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"apps-section\" id=\"how-works\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><div class=\"ct-dot-animated\" data-v-52ade008><div class=\"ct-dot-container\" data-v-52ade008><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div></div></div><!-- App Block --><div class=\"app-block\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Image Column --><div class=\"image-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column wow fadeInLeft\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"image titlt\" data-tilt data-tilt-max=\"8\" data-v-52ade008><a href=\"web/page/images/resource/app-1.png\" class=\"app-1 lightbox-image\" data-v-52ade008><img src=\"web/page/images/resource/dash-board.png\" alt=\"\" data-v-52ade008></a></div></div></div><!-- Content Column --><div class=\"content-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-settings\" data-v-52ade008></span></div><h3 data-v-52ade008>Easy to Manage Your All Data by This App!</h3><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry.</div><a href=\"#\" class=\"theme-btn btn-style-two\" data-v-52ade008><span class=\"txt\" data-v-52ade008>Contact team</span></a></div></div></div></div></div><!-- End App Block --><!-- App Block --><div class=\"app-block style-two\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Content Column --><div class=\"content-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-dashboard\" data-v-52ade008></span></div><h3 data-v-52ade008>Bug free responsive app with high performence speed!</h3><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry.</div><a href=\"#\" class=\"theme-btn btn-style-four\" data-v-52ade008><span class=\"txt\" data-v-52ade008>Read more</span></a></div></div><!-- Image Column --><div class=\"image-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column wow fadeInRight\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"image titlt\" data-tilt data-tilt-max=\"8\" data-v-52ade008><a href=\"web/page/images/resource/app-2.png\" class=\"app-2 lightbox-image\" data-v-52ade008><img src=\"web/page/images/resource/app-2.png\" alt=\"\" data-v-52ade008></a></div><div class=\"small-image titlt wow slideInRight\" data-wow-delay=\"300ms\" data-wow-duration=\"1500ms\" data-tilt data-tilt-max=\"15\" data-v-52ade008><a href=\"web/page/images/resource/app-3.png\" class=\"app-2 lightbox-image\" data-v-52ade008><img src=\"web/page/images/resource/app-3.png\" alt=\"\" data-v-52ade008></a></div></div></div></div></div></div><!-- End App Block --></div></section>", 1);
+var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"featured-section\" id=\"featured\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Content Column --><div class=\"content-column col-lg-5 col-md-12 col-sm-12\" data-v-52ade008><div class=\"iner-column\" data-v-52ade008><div class=\"sec-title\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Fe</span>atures</div><h2 data-v-52ade008>Learn the features of new Beautiful <span data-v-52ade008>lifest</span>y<span data-v-52ade008>le</span> app!</h2></div><div class=\"text\" data-v-52ade008><p data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry&#39;s stan dard dummy text ever since the 1500s.</p><p data-v-52ade008>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts.</p></div><ul class=\"list-style-one\" data-v-52ade008><li data-v-52ade008>Identfy the most trending sessions &amp; exibitors.</li><li data-v-52ade008>24 hours customer supports facilites.</li><li data-v-52ade008>Take action to improve your event value.</li></ul><a href=\"contact.html\" class=\"theme-btn btn-style-three\" data-v-52ade008><span class=\"txt\" data-v-52ade008>Contact Us</span></a></div></div><!-- Blocks Column --><div class=\"blocks-column col-lg-7 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><!-- Cloud Icon --><div class=\"cloud-icon\" data-v-52ade008><img src=\"/web/page/images/icons/cloud-icon.png\" alt=\"\" data-v-52ade008></div><div class=\"row clearfix\" data-v-52ade008><!-- Featured Block --><div class=\"featured-block titlt col-lg-6 col-md-6 col-sm-12\" data-tilt data-tilt-max=\"8\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-writing\" data-v-52ade008></span></div><h3 data-v-52ade008>Easy to edit</h3><div class=\"text\" data-v-52ade008>Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div></div></div><!-- Featured Block --><div class=\"featured-block titlt style-two col-lg-6 col-md-6 col-sm-12\" data-tilt data-tilt-max=\"6\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-protection-shield-with-a-check-mark\" data-v-52ade008></span></div><h3 data-v-52ade008>Full protection</h3><div class=\"text\" data-v-52ade008>The app needs to be running in the background, as it tracks BLE regions. </div></div></div><!-- Featured Block --><div class=\"featured-block titlt style-three col-lg-6 col-md-6 col-sm-12\" data-tilt data-tilt-max=\"10\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-dashboard\" data-v-52ade008></span></div><h3 data-v-52ade008>Hi speedy app</h3><div class=\"text\" data-v-52ade008>Speedy App provides instant information on thousands of hire and buy products.</div></div></div><!-- Featured Block --><div class=\"featured-block style-four col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-writing\" data-v-52ade008></span></div><h3 data-v-52ade008>Easy to edit</h3><div class=\"text\" data-v-52ade008>Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div></div></div></div><!-- Side Image --><div class=\"side-image\" data-v-52ade008><img src=\"/web/page/images/resource/girl-icon.png\" alt=\"\" data-v-52ade008></div></div></div></div></div></section>", 1);
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"counter-section\" data-v-52ade008><div class=\"patern-layer-one\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/background/pattern-5.png)&quot; --><div class=\"patern-layer-two\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/background/pattern-6.png)&quot; --><div class=\"patern-layer-three\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/background/pattern-7.png)&quot; --><div class=\"patern-layer-four\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/background/pattern-8.png)&quot; --><!-- Flower Image --><div class=\"flower-image\" data-v-52ade008><!-- Image One --><div class=\"image paroller\" data-paroller-factor=\"-0.30\" data-paroller-factor-lg=\"0.60\" data-paroller-type=\"foreground\" data-paroller-direction=\"horizontal\" style=\"background-image:url(web/page/images/resource/flower.png);\" data-v-52ade008></div></div><div class=\"auto-container\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Content Column --><div class=\"content-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><div class=\"sec-title style-three\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Fu</span>nfacts</div><h2 data-v-52ade008>We have a g<span data-v-52ade008>reat funfact</span> which <br data-v-52ade008> we want to show you!</h2></div><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry&#39;s stan dard dummy text ever since the 1500s.</div><div class=\"download\" data-v-52ade008>Download a trial version to make life easy!</div><div class=\"google-btns\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/icons/google.png\" alt=\"\" data-v-52ade008></a><a href=\"#\" data-v-52ade008><img src=\"web/page/images/icons/app.png\" alt=\"\" data-v-52ade008></a></div></div></div><!-- Counter Column --><div class=\"counter-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><!-- Fact Counter --><div class=\"fact-counter\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!--Column--><div class=\"column counter-column col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner wow fadeInUp\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-user\" data-v-52ade008></span></div><div class=\"count-outer count-box\" data-v-52ade008><span class=\"count-text\" data-speed=\"2500\" data-stop=\"1200\" data-v-52ade008>0</span>+ </div><h5 class=\"counter-title\" data-v-52ade008>Satisfied Clients</h5></div></div></div><!--Column--><div class=\"column counter-column col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner wow fadeInUp\" data-wow-delay=\"300ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-cube\" data-v-52ade008></span></div><div class=\"count-outer count-box alternate\" data-v-52ade008><span class=\"count-text\" data-speed=\"3000\" data-stop=\"850\" data-v-52ade008>0</span>+ </div><h5 class=\"counter-title\" data-v-52ade008>Agents Team</h5></div></div></div><!--Column--><div class=\"column counter-column col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner wow fadeInUp\" data-wow-delay=\"600ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-followers\" data-v-52ade008></span></div><div class=\"count-outer count-box\" data-v-52ade008><span class=\"count-text\" data-speed=\"3000\" data-stop=\"154\" data-v-52ade008>0</span>+ </div><h5 class=\"counter-title\" data-v-52ade008>Success Mission</h5></div></div></div><!--Column--><div class=\"column counter-column col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner wow fadeInUp\" data-wow-delay=\"900ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-heart\" data-v-52ade008></span></div><div class=\"count-outer count-box\" data-v-52ade008><span class=\"count-text\" data-speed=\"2500\" data-stop=\"1360\" data-v-52ade008>0</span>+ </div><h5 class=\"counter-title\" data-v-52ade008>Awards</h5></div></div></div></div></div></div></div></div></div></section>", 1);
+var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"apps-section\" id=\"how-works\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><div class=\"ct-dot-animated\" data-v-52ade008><div class=\"ct-dot-container\" data-v-52ade008><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div></div></div><!-- App Block --><div class=\"app-block\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Image Column --><div class=\"image-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column wow fadeInLeft\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"image titlt\" data-tilt data-tilt-max=\"8\" data-v-52ade008><a href=\"/web/page/images/resource/app-1.png\" class=\"app-1 lightbox-image\" data-v-52ade008><img src=\"/web/page/images/resource/dash-board.png\" alt=\"\" data-v-52ade008></a></div></div></div><!-- Content Column --><div class=\"content-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-settings\" data-v-52ade008></span></div><h3 data-v-52ade008>Easy to Manage Your All Data by This App!</h3><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry.</div><a href=\"#\" class=\"theme-btn btn-style-two\" data-v-52ade008><span class=\"txt\" data-v-52ade008>Contact team</span></a></div></div></div></div></div><!-- End App Block --><!-- App Block --><div class=\"app-block style-two\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Content Column --><div class=\"content-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-dashboard\" data-v-52ade008></span></div><h3 data-v-52ade008>Bug free responsive app with high performence speed!</h3><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry.</div><a href=\"#\" class=\"theme-btn btn-style-four\" data-v-52ade008><span class=\"txt\" data-v-52ade008>Read more</span></a></div></div><!-- Image Column --><div class=\"image-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column wow fadeInRight\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"image titlt\" data-tilt data-tilt-max=\"8\" data-v-52ade008><a href=\"/web/page/images/resource/app-2.png\" class=\"app-2 lightbox-image\" data-v-52ade008><img src=\"/web/page/images/resource/app-2.png\" alt=\"\" data-v-52ade008></a></div><div class=\"small-image titlt wow slideInRight\" data-wow-delay=\"300ms\" data-wow-duration=\"1500ms\" data-tilt data-tilt-max=\"15\" data-v-52ade008><a href=\"/web/page/images/resource/app-3.png\" class=\"app-2 lightbox-image\" data-v-52ade008><img src=\"/web/page/images/resource/app-3.png\" alt=\"\" data-v-52ade008></a></div></div></div></div></div></div><!-- End App Block --></div></section>", 1);
 
-var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
-    "class": "testimonials-thumbs-carousel"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "auto-container"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Carousel Wrapper "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    id: "carousel-thumb",
-    "class": "carousel slide carousel-thumbnails",
-    "data-ride": "carousel"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "row clearfix"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "pagers-column col-lg-6 col-md-12 col-sm-12"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "pattern-layer"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/background/pattern-9.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Controls"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ol", {
-    "class": "carousel-indicators"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "data-target": "#carousel-thumb",
-    "data-slide-to": "0",
-    "class": "active"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-1.jpg",
-    alt: ""
-  })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "data-target": "#carousel-thumb",
-    "data-slide-to": "1"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-2.jpg",
-    alt: ""
-  })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "data-target": "#carousel-thumb",
-    "data-slide-to": "2"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-3.jpg",
-    alt: ""
-  })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "data-target": "#carousel-thumb",
-    "data-slide-to": "3"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-4.jpg",
-    alt: ""
-  })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "data-target": "#carousel-thumb",
-    "data-slide-to": "4"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-5.jpg",
-    alt: ""
-  })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "data-target": "#carousel-thumb",
-    "data-slide-to": "5"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-6.jpg",
-    alt: ""
-  })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
-    "data-target": "#carousel-thumb",
-    "data-slide-to": "6"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "image img-circle"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-7.jpg",
-    alt: ""
-  })])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-column col-lg-6 col-md-12 col-sm-12"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "sec-title style-four"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "title"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Te"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("stimonials")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Clients choice us because our app"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "lication is the best!")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slides "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-inner",
-    role: "listbox"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item active"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "testimonial-block"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "author-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "social-icon fa fa-facebook-square"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-1.jpg",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "quote-icon icons-right-quote-sign"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("“ Lorem Ipsum is simply dummy text of the printing and type "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" setting industry. Lorem Ipsum has been the industry's stan "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" dard dummy text ever since. ”")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-info"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-    "class": "author-title"
-  }, "Kathleen Smith"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "designation"
-  }, "Senior Director")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "testimonial-block"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "author-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "social-icon fa fa-facebook-square"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-2.jpg",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "quote-icon icons-right-quote-sign"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("“ Lorem Ipsum is simply dummy text of the printing and type "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" setting industry. Lorem Ipsum has been the industry's stan "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" dard dummy text ever since. ”")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-info"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-    "class": "author-title"
-  }, "Kathleen Smith"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "designation"
-  }, "Senior Director")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "testimonial-block"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "author-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "social-icon fa fa-facebook-square"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-3.jpg",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "quote-icon icons-right-quote-sign"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("“ Lorem Ipsum is simply dummy text of the printing and type "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" setting industry. Lorem Ipsum has been the industry's stan "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" dard dummy text ever since. ”")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-info"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-    "class": "author-title"
-  }, "Kathleen Smith"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "designation"
-  }, "Senior Director")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "testimonial-block"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "author-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "social-icon fa fa-facebook-square"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-4.jpg",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "quote-icon icons-right-quote-sign"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("“ Lorem Ipsum is simply dummy text of the printing and type "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" setting industry. Lorem Ipsum has been the industry's stan "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" dard dummy text ever since. ”")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-info"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-    "class": "author-title"
-  }, "Kathleen Smith"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "designation"
-  }, "Senior Director")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "testimonial-block"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "author-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "social-icon fa fa-facebook-square"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-5.jpg",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "quote-icon icons-right-quote-sign"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("“ Lorem Ipsum is simply dummy text of the printing and type "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" setting industry. Lorem Ipsum has been the industry's stan "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" dard dummy text ever since. ”")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-info"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-    "class": "author-title"
-  }, "Kathleen Smith"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "designation"
-  }, "Senior Director")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "testimonial-block"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "author-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "social-icon fa fa-facebook-square"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-6.jpg",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "quote-icon icons-right-quote-sign"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("“ Lorem Ipsum is simply dummy text of the printing and type "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" setting industry. Lorem Ipsum has been the industry's stan "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" dard dummy text ever since. ”")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-info"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-    "class": "author-title"
-  }, "Kathleen Smith"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "designation"
-  }, "Senior Director")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "carousel-item"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "testimonial-block"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-box"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "author-image"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "social-icon fa fa-facebook-square"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "web/page/images/resource/author-thumb-7.jpg",
-    alt: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "quote-icon icons-right-quote-sign"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-text"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("“ Lorem Ipsum is simply dummy text of the printing and type "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" setting industry. Lorem Ipsum has been the industry's stan "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" dard dummy text ever since. ”")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "slide-info"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-    "class": "author-title"
-  }, "Kathleen Smith"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "designation"
-  }, "Senior Director")])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Slides "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Controls "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": "carousel-control-prev",
-    href: "#carousel-thumb",
-    role: "button",
-    "data-slide": "prev"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "carousel-control-prev-icon",
-    "aria-hidden": "true"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "sr-only"
-  }, "Previous")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": "carousel-control-next",
-    href: "#carousel-thumb",
-    role: "button",
-    "data-slide": "next"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "carousel-control-next-icon",
-    "aria-hidden": "true"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "sr-only"
-  }, "Next")])])])])])], -1
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"counter-section\" data-v-52ade008><div class=\"patern-layer-one\" style=\"background-image:url(/web/page/images/background/pattern-5.png);\" data-v-52ade008></div><div class=\"patern-layer-two\" style=\"background-image:url(/web/page/images/background/pattern-6.png);\" data-v-52ade008></div><div class=\"patern-layer-three\" style=\"background-image:url(web/page/images/background/pattern-7.png);\" data-v-52ade008></div><div class=\"patern-layer-four\" style=\"background-image:url(web/page/images/background/pattern-8.png);\" data-v-52ade008></div><!-- Flower Image --><div class=\"flower-image\" data-v-52ade008><!-- Image One --><div class=\"image paroller\" data-paroller-factor=\"-0.30\" data-paroller-factor-lg=\"0.60\" data-paroller-type=\"foreground\" data-paroller-direction=\"horizontal\" style=\"background-image:url(/web/page/images/resource/flower.png);\" data-v-52ade008></div></div><div class=\"auto-container\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Content Column --><div class=\"content-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><div class=\"sec-title style-three\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Fu</span>nfacts</div><h2 data-v-52ade008>We have a g<span data-v-52ade008>reat funfact</span> which <br data-v-52ade008> we want to show you!</h2></div><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry&#39;s stan dard dummy text ever since the 1500s.</div><div class=\"download\" data-v-52ade008>Download a trial version to make life easy!</div><div class=\"google-btns\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"/web/page/images/icons/google.png\" alt=\"\" data-v-52ade008></a><a href=\"#\" data-v-52ade008><img src=\"/web/page/images/icons/app.png\" alt=\"\" data-v-52ade008></a></div></div></div><!-- Counter Column --><div class=\"counter-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><div class=\"inner-column\" data-v-52ade008><!-- Fact Counter --><div class=\"fact-counter\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!--Column--><div class=\"column counter-column col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner wow fadeInUp\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-user\" data-v-52ade008></span></div><div class=\"count-outer count-box\" data-v-52ade008><span class=\"count-text\" data-speed=\"2500\" data-stop=\"1200\" data-v-52ade008>0</span>+ </div><h5 class=\"counter-title\" data-v-52ade008>Satisfied Clients</h5></div></div></div><!--Column--><div class=\"column counter-column col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner wow fadeInUp\" data-wow-delay=\"300ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-cube\" data-v-52ade008></span></div><div class=\"count-outer count-box alternate\" data-v-52ade008><span class=\"count-text\" data-speed=\"3000\" data-stop=\"850\" data-v-52ade008>0</span>+ </div><h5 class=\"counter-title\" data-v-52ade008>Agents Team</h5></div></div></div><!--Column--><div class=\"column counter-column col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner wow fadeInUp\" data-wow-delay=\"600ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-followers\" data-v-52ade008></span></div><div class=\"count-outer count-box\" data-v-52ade008><span class=\"count-text\" data-speed=\"3000\" data-stop=\"154\" data-v-52ade008>0</span>+ </div><h5 class=\"counter-title\" data-v-52ade008>Success Mission</h5></div></div></div><!--Column--><div class=\"column counter-column col-lg-6 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner wow fadeInUp\" data-wow-delay=\"900ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-heart\" data-v-52ade008></span></div><div class=\"count-outer count-box\" data-v-52ade008><span class=\"count-text\" data-speed=\"2500\" data-stop=\"1360\" data-v-52ade008>0</span>+ </div><h5 class=\"counter-title\" data-v-52ade008>Awards</h5></div></div></div></div></div></div></div></div></div></section>", 1);
+
+var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"screenshots-section\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><div class=\"sec-title centered style-two\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Ap</span>p Screenshots</div><h2 data-v-52ade008>App screenshots will be <span data-v-52ade008>im</span>p<span data-v-52ade008>ortant</span> <br data-v-52ade008> to know properly the app! lifestyle app!</h2></div><div class=\"row appScreenshotCarousel-container swiper-container\" data-v-52ade008><div class=\"screen-mobile-image\" data-v-52ade008></div><div class=\"swiper-wrapper\" data-v-52ade008><div class=\"swiper-slide\" style=\"background-image:url(/web/page/images/resource/slider-01.jpg);\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-01.jpg)&quot; --><div class=\"swiper-slide\" style=\"background-image:url(/web/page/images/resource/slider-02.png);\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-02.png)&quot; --><div class=\"swiper-slide\" style=\"background-image:url(/web/page/images/resource/slider-03.png);\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-03.png)&quot; --><div class=\"swiper-slide\" style=\"background-image:url(/web/page/images/resource/slider-04.png);\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-04.png)&quot; --><div class=\"swiper-slide\" style=\"background-image:url(/web/page/images/resource/slider-05.png);\" data-v-52ade008></div><!--  --><div class=\"swiper-slide\" style=\"background-image:url(/web/page/images/resource/slider-02.png);\" data-v-52ade008></div><!-- --><div class=\"swiper-slide\" style=\"background-image:url(web/page/images/resource/slider-01.jpg);\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-01.jpg)&quot; --><div class=\"swiper-slide\" style=\"background-image:url(web/page/images/resource/slider-02.png);\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-02.png)&quot; --><div class=\"swiper-slide\" style=\"background-image:url(web/page/images/resource/slider-03.png);\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-03.png)&quot; --><div class=\"swiper-slide\" style=\"background-image:url(web/page/images/resource/slider-04.png);\" data-v-52ade008></div><div class=\"swiper-slide\" style=\"background-image:url(web/page/images/resource/slider-05.png);\" data-v-52ade008></div></div><!-- Add Arrows --></div><!-- Navigations --><div class=\"banner-navigation\" data-v-52ade008><div class=\"swiper-button-prev\" data-v-52ade008><span class=\"icons-left-arrow-1\" data-v-52ade008></span></div><div class=\"swiper-button-next\" data-v-52ade008><span class=\"icons-right-arrow-1\" data-v-52ade008></span></div></div></div></section>", 1);
+
+var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"integration-section\" data-v-52ade008><div class=\"patern-layer-one\" style=\"background-image:url(web/page/images/background/pattern-5.png);\" data-v-52ade008></div><div class=\"patern-layer-two\" style=\"background-image:url(web/page/images/background/pattern-6.png);\" data-v-52ade008></div><div class=\"patern-layer-three\" style=\"background-image:url(web/page/images/background/pattern-10.png);\" data-v-52ade008></div><div class=\"patern-layer-four\" style=\"background-image:url(web/page/images/background/pattern-10.png);\" data-v-52ade008></div><div class=\"auto-container\" data-v-52ade008><div class=\"sec-title centered\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>In</span>tegrations</div><h2 data-v-52ade008>We use some plugins to do premium <br data-v-52ade008> quality <span data-v-52ade008>inte</span>g<span data-v-52ade008>rations</span></h2></div></div><!-- Outer Container --><div class=\"outer-container\" data-v-52ade008><div class=\"bubbles-wrapper\" data-v-52ade008><div class=\"animations m-0\" data-v-52ade008><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-md\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-1.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>HTML-5</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xxl\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-2.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Envato</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-lg\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-3.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Elementor</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xl\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-4.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Fingerprint</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-md\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-5.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Amplify</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-lg\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-6.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Firebase Integration</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-md\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-7.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Google-Plus</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xl\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-8.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Jio Tv</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-lg\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-9.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Paypal</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xxl\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-10.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Stripe</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-md\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-11.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Goola Map</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xl\" data-v-52ade008><img src=\"/web/page/images/resource/Integrations-12.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Microsoft</span></div></div></div></div><div class=\"btn-box text-center\" data-v-52ade008><a href=\"#\" class=\"theme-btn btn-style-five\" data-v-52ade008><span class=\"txt\" data-v-52ade008>All Integretions</span></a></div></section>", 1);
+
+var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"team-section\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><!-- Ct Dot Animated --><div class=\"ct-dot-animated\" data-v-52ade008><div class=\"ct-dot-container\" data-v-52ade008><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div></div></div><div class=\"sec-title centered\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Te</span>am member</div><h2 data-v-52ade008>Really we have <span data-v-52ade008>an ex</span>p<span data-v-52ade008>ert</span> team <br data-v-52ade008> to develop many apps!</h2></div><div class=\"team-carousel owl-carousel owl-theme\" data-v-52ade008><!-- Team Block --><div class=\"team-block\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"/web/page/images/resource/team-1.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>Romeo Poro</h3><div class=\"designation\" data-v-52ade008>Android Developer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block style-two\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"/web/page/images/resource/team-2.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>David Roger</h3><div class=\"designation\" data-v-52ade008>iOS Developer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block style-three\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"/web/page/images/resource/team-3.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>Jasmin Duke</h3><div class=\"designation\" data-v-52ade008>App Designer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"/web/page/images/resource/team-1.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>Romeo Poro</h3><div class=\"designation\" data-v-52ade008>Android Developer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block style-two\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/resource/team-2.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>David Roger</h3><div class=\"designation\" data-v-52ade008>iOS Developer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block style-three\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/resource/team-3.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>Jasmin Duke</h3><div class=\"designation\" data-v-52ade008>App Designer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div></div></div></section>", 1);
+
+var _hoisted_64 = {
+  "class": "contact-section",
+  id: "contact"
+};
+var _hoisted_65 = {
+  "class": "auto-container"
+};
+var _hoisted_66 = {
+  "class": "row clearfix"
+};
+var _hoisted_67 = {
+  "class": "info-column col-lg-6 col-md-12 col-sm-12"
+};
+var _hoisted_68 = {
+  "class": "inner-column"
+};
+
+var _hoisted_69 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "tel:469-537-2410"
+  }, "469-537-2410", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"screenshots-section\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><div class=\"sec-title centered style-two\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Ap</span>p Screenshots</div><h2 data-v-52ade008>App screenshots will be <span data-v-52ade008>im</span>p<span data-v-52ade008>ortant</span> <br data-v-52ade008> to know properly the app! lifestyle app!</h2></div><div class=\"row appScreenshotCarousel-container swiper-container\" data-v-52ade008><div class=\"screen-mobile-image\" data-v-52ade008></div><div class=\"swiper-wrapper\" data-v-52ade008><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-01.jpg)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-02.png)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-03.png)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-04.png)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-05.png)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-02.png)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-01.jpg)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-02.png)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-03.png)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-04.png)&quot; --><div class=\"swiper-slide\" data-v-52ade008></div><!-- style=&quot;background-image:url(web/page/images/resource/slider-05.png)&quot;--></div><!-- Add Arrows --></div><!-- Navigations --><div class=\"banner-navigation\" data-v-52ade008><div class=\"swiper-button-prev\" data-v-52ade008><span class=\"icons-left-arrow-1\" data-v-52ade008></span></div><div class=\"swiper-button-next\" data-v-52ade008><span class=\"icons-right-arrow-1\" data-v-52ade008></span></div></div></div></section>", 1);
+var _hoisted_70 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"integration-section\" data-v-52ade008><div class=\"patern-layer-one\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/background/pattern-5.png)&quot; --><div class=\"patern-layer-two\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/background/pattern-6.png)&quot; --><div class=\"patern-layer-three\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/background/pattern-10.png)&quot; --><div class=\"patern-layer-four\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/background/pattern-11.png)&quot; --><div class=\"auto-container\" data-v-52ade008><div class=\"sec-title centered\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>In</span>tegrations</div><h2 data-v-52ade008>We use some plugins to do premium <br data-v-52ade008> quality <span data-v-52ade008>inte</span>g<span data-v-52ade008>rations</span></h2></div></div><!-- Outer Container --><div class=\"outer-container\" data-v-52ade008><div class=\"bubbles-wrapper\" data-v-52ade008><div class=\"animations m-0\" data-v-52ade008><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-md\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-1.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>HTML-5</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xxl\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-2.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Envato</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-lg\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-3.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Elementor</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xl\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-4.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Fingerprint</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-md\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-5.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Amplify</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-lg\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-6.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Firebase Integration</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-md\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-7.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Google-Plus</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xl\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-8.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Jio Tv</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-lg\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-9.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Paypal</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xxl\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-10.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Stripe</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-md\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-11.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Goola Map</span></div><div class=\"bubble bg-contrast rounded-circle p-2 shadow icon icon-xl\" data-v-52ade008><img src=\"web/page/images/resource/Integrations-12.jpg\" alt=\"\" class=\"img-responsive\" data-v-52ade008><span class=\"badge badge-contrast shadow-box\" data-v-52ade008>Microsoft</span></div></div></div></div><div class=\"btn-box text-center\" data-v-52ade008><a href=\"#\" class=\"theme-btn btn-style-five\" data-v-52ade008><span class=\"txt\" data-v-52ade008>All Integretions</span></a></div></section>", 1);
+var _hoisted_71 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "tel:469-537-2410"
+  }, "469-537-2410", -1
+  /* HOISTED */
+  );
+});
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"pricing-section\" id=\"pricing\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><div class=\"sec-title centered style-three\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>pr</span>icing</div><h2 data-v-52ade008>We have offered the <span data-v-52ade008>best </span>p<span data-v-52ade008>ricing</span> <br data-v-52ade008> to make life easier!</h2></div><div class=\"pricing-tabs tabs-box\" data-v-52ade008><!-- Title Column --><div class=\"title-column\" data-v-52ade008><!-- Tab Btns --><ul class=\"tab-buttons clearfix\" data-v-52ade008><li data-tab=\"#prod-monthly\" class=\"tab-btn monthly active-btn\" data-v-52ade008>Monthly</li><li class=\"boll\" data-v-52ade008><span class=\"round\" data-v-52ade008></span></li><li data-tab=\"#prod-yearly\" class=\"tab-btn yearly\" data-v-52ade008>Yearly</li></ul></div><!--Tabs Container--><div class=\"tabs-content\" data-v-52ade008><div class=\"patern-layer-three paroller\" data-paroller-factor=\"0.30\" data-paroller-factor-lg=\"0.60\" data-paroller-type=\"foreground\" data-paroller-direction=\"horizontal\" style=\"background-image:url(web/page/images/icons/pattern-19.png);\" data-v-52ade008></div><div class=\"patern-layer-four paroller\" data-paroller-factor=\"-0.30\" data-paroller-factor-lg=\"0.60\" data-paroller-type=\"foreground\" data-paroller-direction=\"horizontal\" style=\"background-image:url(web/page/images/icons/pattern-20.png);\" data-v-52ade008></div><!--Tab--><div class=\"tab active-tab\" id=\"prod-monthly\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Price Block --><div class=\"price-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"patern-layer-two\" data-v-52ade008></div><!--  style=&quot;background-image: url(web/page/images/icons/pattern-18.png)&quot; --><div class=\"patern-layer-one\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-17.png)&quot; --><div class=\"upper-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-paper-plane\" data-v-52ade008></span></div><div class=\"title\" data-v-52ade008>Premeum</div><h3 data-v-52ade008>$39.99</h3></div><div class=\"middle-box\" data-v-52ade008><div class=\"price-title\" data-v-52ade008>unLimited access</div><ul class=\"price-list\" data-v-52ade008><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>100 MB Disk Space</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>2 Subdo mains dolor</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>5 Email Accounts</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>No License</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>Phone &amp; Mail Support</li></ul></div><div class=\"lower-box\" data-v-52ade008><a href=\"#\" class=\"theme-btn plan-btn\" data-v-52ade008>choose plan</a><a href=\"#\" class=\"trial\" data-v-52ade008>Get a free trial now!</a></div></div></div><!-- Price Block --><div class=\"price-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"patern-layer-two\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-18.png)&quot; --><div class=\"patern-layer-one\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-17.png)&quot; --><div class=\"upper-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-plane\" data-v-52ade008></span></div><div class=\"title\" data-v-52ade008>Standrad</div><h3 data-v-52ade008>$59.99</h3></div><div class=\"middle-box\" data-v-52ade008><div class=\"price-title\" data-v-52ade008>Limited access</div><ul class=\"price-list\" data-v-52ade008><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>100 MB Disk Space</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>2 Subdo mains dolor</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>5 Email Accounts</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>No License</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>Phone &amp; Mail Support</li></ul></div><div class=\"lower-box\" data-v-52ade008><a href=\"#\" class=\"theme-btn plan-btn\" data-v-52ade008>choose plan</a><a href=\"#\" class=\"trial\" data-v-52ade008>Get a free trial now!</a></div></div></div><!-- Price Block --><div class=\"price-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"patern-layer-two\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-18.png)&quot; --><div class=\"patern-layer-one\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-17.png)&quot; --><div class=\"upper-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon icons-rocket-ship\" data-v-52ade008></span></div><div class=\"title\" data-v-52ade008>Premeum</div><h3 data-v-52ade008>$89.99</h3></div><div class=\"middle-box\" data-v-52ade008><div class=\"price-title\" data-v-52ade008>unLimited access</div><ul class=\"price-list\" data-v-52ade008><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>100 MB Disk Space</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>2 Subdo mains dolor</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>5 Email Accounts</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>No License</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>Phone &amp; Mail Support</li></ul></div><div class=\"lower-box\" data-v-52ade008><a href=\"#\" class=\"theme-btn plan-btn\" data-v-52ade008>choose plan</a><a href=\"#\" class=\"trial\" data-v-52ade008>Get a free trial now!</a></div></div></div></div><!-- Guarantee --><div class=\"guarantee\" data-v-52ade008><span class=\"circle\" data-v-52ade008></span>30 days money back guarantee!</div></div></div><!--Tab--><div class=\"tab\" id=\"prod-yearly\" data-v-52ade008><div class=\"content\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Price Block --><div class=\"price-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"patern-layer-two\" style=\"background-image:url(web/page/images/icons/pattern-18.png);\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-18.png)&quot; --><div class=\"patern-layer-one\" style=\"background-image:url(web/page/images/icons/pattern-17.png);\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-17.png)&quot; --><div class=\"upper-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-paper-plane\" data-v-52ade008></span></div><div class=\"title\" data-v-52ade008>Premeum</div><h3 data-v-52ade008>$99.99</h3></div><div class=\"middle-box\" data-v-52ade008><div class=\"price-title\" data-v-52ade008>unLimited access</div><ul class=\"price-list\" data-v-52ade008><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>100 MB Disk Space</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>2 Subdo mains dolor</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>5 Email Accounts</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>No License</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>Phone &amp; Mail Support</li></ul></div><div class=\"lower-box\" data-v-52ade008><a href=\"#\" class=\"theme-btn plan-btn\" data-v-52ade008>choose plan</a><a href=\"#\" class=\"trial\" data-v-52ade008>Get a free trial now!</a></div></div></div><!-- Price Block --><div class=\"price-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"patern-layer-two\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-18.png)&quot; --><div class=\"patern-layer-one\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-17.png)&quot; --><div class=\"upper-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon flaticon-plane\" data-v-52ade008></span></div><div class=\"title\" data-v-52ade008>Standrad</div><h3 data-v-52ade008>$149.99</h3></div><div class=\"middle-box\" data-v-52ade008><div class=\"price-title\" data-v-52ade008>Limited access</div><ul class=\"price-list\" data-v-52ade008><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>100 MB Disk Space</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>2 Subdo mains dolor</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>5 Email Accounts</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>No License</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>Phone &amp; Mail Support</li></ul></div><div class=\"lower-box\" data-v-52ade008><a href=\"#\" class=\"theme-btn plan-btn\" data-v-52ade008>choose plan</a><a href=\"#\" class=\"trial\" data-v-52ade008>Get a free trial now!</a></div></div></div><!-- Price Block --><div class=\"price-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"patern-layer-two\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-18.png)&quot; --><div class=\"patern-layer-one\" data-v-52ade008></div><!-- style=&quot;background-image: url(web/page/images/icons/pattern-17.png)&quot; --><div class=\"upper-box\" data-v-52ade008><div class=\"icon-box\" data-v-52ade008><span class=\"icon icons-rocket-ship\" data-v-52ade008></span></div><div class=\"title\" data-v-52ade008>Premeum</div><h3 data-v-52ade008>$199.99</h3></div><div class=\"middle-box\" data-v-52ade008><div class=\"price-title\" data-v-52ade008>unLimited access</div><ul class=\"price-list\" data-v-52ade008><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>100 MB Disk Space</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>2 Subdo mains dolor</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>5 Email Accounts</li><li data-v-52ade008><i class=\"fa fa-remove\" data-v-52ade008></i>No License</li><li data-v-52ade008><i class=\"fa fa-check\" data-v-52ade008></i>Phone &amp; Mail Support</li></ul></div><div class=\"lower-box\" data-v-52ade008><a href=\"#\" class=\"theme-btn plan-btn\" data-v-52ade008>choose plan</a><a href=\"#\" class=\"trial\" data-v-52ade008>Get a free trial now!</a></div></div></div></div></div></div></div></div></div></section>", 1);
-
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"faq-section\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><div class=\"sec-title centered style-four\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>FA</span>Q</div><h2 data-v-52ade008>Learn about new features from <br data-v-52ade008> <span data-v-52ade008>fre</span>q<span data-v-52ade008>uentl</span>y asked question</h2></div><div class=\"inner-container\" data-v-52ade008><div class=\"row clearfix\" data-v-52ade008><!-- Faq Column --><div class=\"faq-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><h3 data-v-52ade008>What should I include in App?</h3><div class=\"text\" data-v-52ade008>Lorem ipsum dolor sit amet consecte tur adipiscing elit sed <a href=\"#\" data-v-52ade008>eiusmod tempor incididunt</a> ut labore.</div></div><!-- Faq Column --><div class=\"faq-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><h3 data-v-52ade008>Can users choose to install the app?</h3><div class=\"text\" data-v-52ade008>We’re a company built on open source. It all began with Ionic Framework - the world&#39;s most popular open source for building cross-platform mobile and Progressive Web Apps.</div></div><!-- Faq Column --><div class=\"faq-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><h3 data-v-52ade008>How does the Moodle app work?</h3><div class=\"text\" data-v-52ade008>The apps you build with Ionic leverage the power and stability of the open web - the most time-tested universal runtime in the world. The web has been around over two decades.</div></div><!-- Faq Column --><div class=\"faq-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><h3 data-v-52ade008>How do I disable installed apps?</h3><div class=\"text\" data-v-52ade008>Lorem ipsum dolor sit amet consecte tur adipiscing elit sed do eiusmod tempor incididunt ut labore.</div></div><!-- Faq Column --><div class=\"faq-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><h3 data-v-52ade008>Does disabling apps free up space?</h3><div class=\"text\" data-v-52ade008>Lorem ipsum dolor sit amet consecte tur adipiscing elit sed <a href=\"#\" data-v-52ade008>eiusmod tempor incididunt</a> ut labore.</div></div><!-- Faq Column --><div class=\"faq-column col-lg-6 col-md-12 col-sm-12\" data-v-52ade008><h3 data-v-52ade008>Why are mobile apps important?</h3><div class=\"text\" data-v-52ade008>Lorem ipsum dolor sit amet consecte tur adipiscing elit sed do <a href=\"#\" data-v-52ade008>eiusmod tempor incididunt</a> ut labore.</div></div></div><!-- Question --><div class=\"question\" data-v-52ade008>Still have a question? <a href=\"#\" data-v-52ade008>Contact us:</a> <strong data-v-52ade008>topapp@info.com</strong></div></div></div></section>", 1);
-
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"blog-section\" id=\"blog\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><!-- Sec Title --><div class=\"sec-title style-two\" data-v-52ade008><div class=\"clearfix\" data-v-52ade008><div class=\"pull-left\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Bl</span>og</div><h2 data-v-52ade008>We want to <span data-v-52ade008>share our</span> succes <br data-v-52ade008> by our latest blog.</h2></div><div class=\"pull-right\" data-v-52ade008><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text of the printing and type <br data-v-52ade008> setting industry. Lorem Ipsum has been the industry&#39;s stan <br data-v-52ade008> dard dummy text ever since the 1500s.</div></div></div></div><div class=\"row clearfix\" data-v-52ade008><!-- News Block --><div class=\"news-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box wow fadeInLeft\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"blog-single.html\" data-v-52ade008><img src=\"web/page/images/resource/news-1.png\" alt=\"\" data-v-52ade008></a></div><div class=\"lower-content\" data-v-52ade008><ul class=\"post-meta\" data-v-52ade008><li data-v-52ade008><span class=\"icon icons-calendar-2\" data-v-52ade008></span>September 12, 2020</li><li data-v-52ade008><span class=\"icon icons-user-4\" data-v-52ade008></span>Admin</li></ul><h3 data-v-52ade008><a href=\"blog-single.html\" data-v-52ade008>Organisationaly teams are just like families.</a></h3><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text the printing and setting industry. Lorm Ipsum has been the industry&#39;s stanard dummy text ever.</div></div></div></div><!-- News Block --><div class=\"news-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box wow fadeInUp\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"blog-single.html\" data-v-52ade008><img src=\"web/page/images/resource/news-2.png\" alt=\"\" data-v-52ade008></a></div><div class=\"lower-content\" data-v-52ade008><ul class=\"post-meta\" data-v-52ade008><li data-v-52ade008><span class=\"icon icons-calendar-2\" data-v-52ade008></span>September 12, 2020</li><li data-v-52ade008><span class=\"icon icons-user-4\" data-v-52ade008></span>Admin</li></ul><h3 data-v-52ade008><a href=\"blog-single.html\" data-v-52ade008>Revitalising your people in a retail downturn...</a></h3><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text the printing and setting industry. Lorm Ipsum has been the industry&#39;s stanard dummy text ever.</div></div></div></div><!-- News Block --><div class=\"news-block col-lg-4 col-md-6 col-sm-12\" data-v-52ade008><div class=\"inner-box wow fadeInRight\" data-wow-delay=\"0ms\" data-wow-duration=\"1500ms\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"blog-single.html\" data-v-52ade008><img src=\"web/page/images/resource/news-3.png\" alt=\"\" data-v-52ade008></a></div><div class=\"lower-content\" data-v-52ade008><ul class=\"post-meta\" data-v-52ade008><li data-v-52ade008><span class=\"icon icons-calendar-2\" data-v-52ade008></span>September 12, 2020</li><li data-v-52ade008><span class=\"icon icons-user-4\" data-v-52ade008></span>Admin</li></ul><h3 data-v-52ade008><a href=\"blog-single.html\" data-v-52ade008>Regional Managers time management.</a></h3><div class=\"text\" data-v-52ade008>Lorem Ipsum is simply dummy text the printing and setting industry. Lorm Ipsum has been the industry&#39;s stanard dummy text ever.</div></div></div></div></div></div></section>", 1);
-
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section class=\"team-section\" data-v-52ade008><div class=\"auto-container\" data-v-52ade008><!-- Ct Dot Animated --><div class=\"ct-dot-animated\" data-v-52ade008><div class=\"ct-dot-container\" data-v-52ade008><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div><div class=\"ct-dot-item\" data-v-52ade008><span data-v-52ade008></span></div></div></div><div class=\"sec-title centered\" data-v-52ade008><div class=\"title\" data-v-52ade008><span data-v-52ade008>Te</span>am member</div><h2 data-v-52ade008>Really we have <span data-v-52ade008>an ex</span>p<span data-v-52ade008>ert</span> team <br data-v-52ade008> to develop many apps!</h2></div><div class=\"team-carousel owl-carousel owl-theme\" data-v-52ade008><!-- Team Block --><div class=\"team-block\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/resource/team-1.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>Romeo Poro</h3><div class=\"designation\" data-v-52ade008>Android Developer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block style-two\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/resource/team-2.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>David Roger</h3><div class=\"designation\" data-v-52ade008>iOS Developer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block style-three\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/resource/team-3.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>Jasmin Duke</h3><div class=\"designation\" data-v-52ade008>App Designer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/resource/team-1.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>Romeo Poro</h3><div class=\"designation\" data-v-52ade008>Android Developer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block style-two\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/resource/team-2.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>David Roger</h3><div class=\"designation\" data-v-52ade008>iOS Developer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div><!-- Team Block --><div class=\"team-block style-three\" data-v-52ade008><div class=\"inner-box\" data-v-52ade008><div class=\"image-outer\" data-v-52ade008><div class=\"image\" data-v-52ade008><a href=\"#\" data-v-52ade008><img src=\"web/page/images/resource/team-3.png\" alt=\"\" data-v-52ade008></a></div></div><div class=\"lower-content\" data-v-52ade008><h3 data-v-52ade008>Jasmin Duke</h3><div class=\"designation\" data-v-52ade008>App Designer</div><div class=\"social-boxed\" data-v-52ade008><div class=\"social-inner\" data-v-52ade008><span class=\"share-now fa fa-share-alt\" data-v-52ade008></span><a href=\"#\" data-v-52ade008><span class=\"fa fa-facebook\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-twitter\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-dribbble\" data-v-52ade008></span></a><a href=\"#\" data-v-52ade008><span class=\"fa fa-behance\" data-v-52ade008></span></a></div></div></div></div></div></div></div></section>", 1);
-
-var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
-    "class": "contact-section",
-    id: "contact"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "auto-container"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "row clearfix"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Info Column "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "info-column col-lg-6 col-md-12 col-sm-12"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-column"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "patern-layer-one"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/background/pattern-12.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "patern-layer-two"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/background/pattern-13.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "patern-layer-three paroller",
-    "data-paroller-factor": "-0.10",
-    "data-paroller-factor-lg": "0.08",
-    "data-paroller-type": "foreground",
-    "data-paroller-direction": "horizontal"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" style=\"background-image: url(web/page/images/background/pattern-14.png)\" "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
-    "class": "info-list"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "icon flaticon-address"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Our head office address:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 3556 Hartford Way Vlg, Mount Pleasant, SC, "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 29466, Australia. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "icon flaticon-telephone"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Call for help:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "tel:734-697-2907"
-  }, "(734) 697-2907"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "tel:843-971-1906"
-  }, "(843) 971-1906")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "icon flaticon-invite"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, "Mail us:"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_72 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "mailto:noreply@envato.com",
     href: "#"
-  }, "noreply@envato.com"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, "noreply@envato.com", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_73 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_74 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "mailto:noreply@envato.com",
     href: "#"
-  }, "noreply@topapp.com")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Form Column "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "form-column col-lg-6 col-md-12 col-sm-12"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "inner-column"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "sec-title style-three"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "title"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Co"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("ntact")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Contact with our support "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" during "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "emer"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "enc"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("y!")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Default Form "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "default-form"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    method: "post",
-    action: "https://html.themexriver.com/topapp/sendemail.php",
-    id: "contact-form"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "row clearfix"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-lg-6 col-md-6 col-sm-12 form-group"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "text",
-    name: "username",
-    placeholder: "Full Name *",
-    required: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-lg-6 col-md-6 col-sm-12 form-group"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "text",
-    name: "lastname",
-    placeholder: "Last Name *",
-    required: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-lg-6 col-md-6 col-sm-12 form-group"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "email",
-    name: "email",
-    placeholder: "Your mail *",
-    required: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-lg-6 col-md-6 col-sm-12 form-group"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "text",
-    name: "phone",
-    placeholder: "Phone number *",
-    required: ""
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-lg-12 col-md-12 col-sm-12 form-group"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-    name: "message",
-    placeholder: "Message..."
-  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-lg-12 col-md-12 col-sm-12 form-group"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "theme-btn submit-btn",
-    type: "submit",
-    name: "submit-form"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "txt"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  }, "noreply@topapp.com", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_75 = {
+  "class": "form-column col-lg-6 col-md-12 col-sm-12"
+};
+var _hoisted_76 = {
+  "class": "inner-column"
+};
+var _hoisted_77 = {
+  "class": "sec-title style-three"
+};
+
+var _hoisted_78 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_79 = {
+  "class": "default-form"
+};
+var _hoisted_80 = {
+  method: "post",
+  id: "contact-form"
+};
+var _hoisted_81 = {
+  "class": "row clearfix"
+};
+var _hoisted_82 = {
+  "class": "col-lg-6 col-md-6 col-sm-12 form-group"
+};
+var _hoisted_83 = ["placeholder"];
+var _hoisted_84 = {
+  "class": "col-lg-6 col-md-6 col-sm-12 form-group"
+};
+var _hoisted_85 = ["placeholder"];
+var _hoisted_86 = {
+  "class": "col-lg-6 col-md-6 col-sm-12 form-group"
+};
+var _hoisted_87 = ["placeholder"];
+var _hoisted_88 = {
+  "class": "col-lg-6 col-md-6 col-sm-12 form-group"
+};
+var _hoisted_89 = ["placeholder"];
+var _hoisted_90 = {
+  "class": "col-lg-12 col-md-12 col-sm-12 form-group"
+};
+var _hoisted_91 = ["placeholder"];
+var _hoisted_92 = {
+  "class": "col-lg-12 col-md-12 col-sm-12 form-group"
+};
+var _hoisted_93 = {
+  "class": "theme-btn submit-btn",
+  type: "submit",
+  name: "submit-form"
+};
+var _hoisted_94 = {
+  "class": "txt"
+};
+
+var _hoisted_95 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
     "class": "fa fa-arrow-circle-right"
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   Send now")])])])])])])])])])])], -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
-    "class": "subscribe-section"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "patern-layer-one",
-    style: {
-      "background-image": "url(web/page/images/background/pattern-15.png)"
-    }
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "auto-container"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "sec-title centered style-four"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "title"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "Su"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("bscription")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Always know what’s happening in the "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" world of applications. Recieve all "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" latest p"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "ost in"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" y"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "our inbox.")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "subscribe-form"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    method: "post",
-    action: "https://html.themexriver.com/topapp/contact.html"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "form-group"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "email",
-    name: "email",
-    value: "",
-    placeholder: "your mail address...",
-    required: ""
-  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    type: "submit",
-    "class": "theme-btn btn-style-two"
-  }, "Subscrib now")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "email"
-  }, "* Your mail address will be fully secure . We don’t share!")])], -1
+  }, null, -1
   /* HOISTED */
   );
 });
@@ -31082,9 +31909,25 @@ var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  var _component_layout_footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("layout-footer");
+  var _component_lang = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("lang");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Preloader "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Main Header"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Header-Upper"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Mobile Navigation Toggler"), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Main Menu "), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Main Header"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("header", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Header-Upper"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'home',
+      params: {
+        lang: this.$i18n.locale
+      }
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_8];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'registerPartiner',
       params: {
@@ -31094,14 +31937,260 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "theme-btn btn-style-one"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_12];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.register')), 1
+      /* TEXT */
+      )];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["to"])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Header Upper"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Mobile Menu  "), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Mobile Menu ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Main Header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Banner Section"), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Banner Section"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Featured Section "), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Featured Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Steps Section "), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Steps Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Apps Section "), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Apps Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Counter Section "), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Counter Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Testimonials Section "), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Testimonials Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Screenshots Section "), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Screenshots Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Integration Section "), _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Integration Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Pricing Section "), _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Pricing Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Faq Section "), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Faq Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Blog Section "), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Blog Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Team Section "), _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Team Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contact Section "), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Contact Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Subscribe Section "), _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Subscribe Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Main Footer "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_layout_footer), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Main Footer ")]);
+  , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['lang', this.$i18n.locale == 'ar' ? 'lang-ar' : ''])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_lang)], 2
+  /* CLASS */
+  )])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Header Upper")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Main Header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Banner Section"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['patern-layer-one', this.$i18n.locale == 'ar' ? 'patern-layer-one-ar' : '']),
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+      'background-image': this.$i18n.locale != 'ar' ? 'url(/web/img/partner/banner-bg.png)' : 'url(/web/img/partner/Reflect.png)'
+    })
+  }, null, 6
+  /* CLASS, STYLE */
+  ), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Column "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.banner-h1')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.banner-p1')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "email",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([this.$i18n.locale == 'ar' ? 'email-ar' : '']),
+    name: "email",
+    value: "",
+    placeholder: _ctx.$t('partner.banner-email'),
+    required: ""
+  }, null, 10
+  /* CLASS, PROPS */
+  , _hoisted_22), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "submit",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['theme-btn btn-style-two', this.$i18n.locale == 'ar' ? 'btn-ar' : ''])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.free')), 1
+  /* TEXT */
+  )], 2
+  /* CLASS */
+  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.dowoload')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Video Box"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['video-box', this.$i18n.locale == 'ar' ? 'video-box-ar' : '']),
+    "data-wow-delay": "0ms",
+    "data-wow-duration": "1500ms"
+  }, _hoisted_27, 2
+  /* CLASS */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Carousel Column "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Custom Pager "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['pager-box', this.$i18n.locale == 'ar' ? 'pager-box-ar' : ''])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['inner-box', this.$i18n.locale == 'ar' ? 'inner-box-ar' : ''])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['pager', 'one', this.$i18n.locale == 'ar' ? 'one-ar' : '']),
+    href: ""
+  }, _hoisted_33, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['pager', 'two', this.$i18n.locale == 'ar' ? 'two-ar' : '']),
+    href: "#"
+  }, _hoisted_35, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['pager', 'three', this.$i18n.locale == 'ar' ? 'three-ar' : '']),
+    href: "#"
+  }, _hoisted_37, 2
+  /* CLASS */
+  )])], 2
+  /* CLASS */
+  )], 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Column / Slides "), _hoisted_38])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Banner Section"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Banner Section"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.design')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.design-p')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'registerPartiner',
+      params: {
+        lang: this.$i18n.locale
+      },
+      query: {
+        p: 'designer'
+      }
+    },
+    "class": "btn"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.start')), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])]), _hoisted_46])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.company')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.company-p')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'registerPartiner',
+      params: {
+        lang: this.$i18n.locale
+      },
+      query: {
+        p: 'company'
+      }
+    },
+    "class": "btn"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.start')), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])]), _hoisted_51])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.advertise')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.advertise-p')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'registerPartiner',
+      params: {
+        lang: this.$i18n.locale
+      },
+      query: {
+        p: 'advertiser'
+      }
+    },
+    "class": "btn"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.start')), 1
+      /* TEXT */
+      )];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["to"])]), _hoisted_56])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Banner Section"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Steps Section "), _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Steps Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Featured Section "), _hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Featured Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Apps Section "), _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Apps Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Counter Section "), _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Counter Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Screenshots Section "), _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Screenshots Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Integration Section "), _hoisted_62, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Integration Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Team Section "), _hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Team Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contact Section "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_66, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Info Column "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "patern-layer-one",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+      'background-image': this.$i18n.locale != 'ar' ? 'url(/web/page/images/background/pattern-12.png)' : 'url(/web/page/images/background/pattern-20.png)'
+    })
+  }, null, 4
+  /* STYLE */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "patern-layer-two",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+      'background-image': this.$i18n.locale != 'ar' ? 'url(/web/page/images/background/pattern-13.png)' : 'url(/web/page/images/background/pattern-21.png)'
+    })
+  }, null, 4
+  /* STYLE */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "patern-layer-three paroller",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)({
+      'background-image': this.$i18n.locale != 'ar' ? 'url(/web/page/images/background/pattern-14.png)' : 'url(/web/page/images/background/pattern-22.png)'
+    }),
+    "data-paroller-factor": "-0.10",
+    "data-paroller-factor-lg": "0.08",
+    "data-paroller-type": "foreground",
+    "data-paroller-direction": "horizontal"
+  }, null, 4
+  /* STYLE */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['info-list', this.$i18n.locale == 'ar' ? 'info-list-ar' : ''])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['icon', 'flaticon-address', this.$i18n.locale == 'ar' ? 'icon-ar' : ''])
+  }, null, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.contact-h')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.address')), 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['icon', 'flaticon-telephone', this.$i18n.locale == 'ar' ? 'icon-ar' : ''])
+  }, null, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.call')), 1
+  /* TEXT */
+  ), _hoisted_69, _hoisted_70, _hoisted_71]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['icon', 'flaticon-invite', this.$i18n.locale == 'ar' ? 'icon-ar' : ''])
+  }, null, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.mail')), 1
+  /* TEXT */
+  ), _hoisted_72, _hoisted_73, _hoisted_74])], 2
+  /* CLASS */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Form Column "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_75, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_76, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_77, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['title', this.$i18n.locale == 'ar' ? 'title-ar' : ''])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.co')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.ntact')), 1
+  /* TEXT */
+  )], 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.from-h')) + " ", 1
+  /* TEXT */
+  ), _hoisted_78, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.during')) + " ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.emer')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.g')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.enc')), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.y')), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Default Form "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_79, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_80, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_81, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    name: "username",
+    placeholder: _ctx.$t('partner.first'),
+    required: ""
+  }, null, 8
+  /* PROPS */
+  , _hoisted_83)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    name: "lastname",
+    placeholder: _ctx.$t('partner.last'),
+    required: ""
+  }, null, 8
+  /* PROPS */
+  , _hoisted_85)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_86, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "email",
+    name: "email",
+    placeholder: _ctx.$t('partner.mail-contact'),
+    required: ""
+  }, null, 8
+  /* PROPS */
+  , _hoisted_87)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    name: "phone",
+    placeholder: _ctx.$t('partner.phone'),
+    required: ""
+  }, null, 8
+  /* PROPS */
+  , _hoisted_89)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_90, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    name: "message",
+    placeholder: _ctx.$t('partner.message')
+  }, null, 8
+  /* PROPS */
+  , _hoisted_91)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_92, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_93, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_94, [_hoisted_95, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t('partner.send')), 1
+  /* TEXT */
+  )])])])])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End Contact Section ")]);
 }
 
 /***/ }),
@@ -31527,7 +32616,7 @@ var routes = [{
     name: 'partners',
     component: _view_web_successPartner_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     meta: {
-      middleware: [_middleware_web_auth__WEBPACK_IMPORTED_MODULE_12__["default"]]
+      middleware: [_middleware_web_guest__WEBPACK_IMPORTED_MODULE_11__["default"]]
     }
   }, {
     path: 'p',
@@ -36420,7 +37509,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-from,\r\n.fade-leave-to {\r\n    transform: translateX(30px);\r\n    opacity: 0;\n}\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: all .7s ease-in-out;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-from,\n.fade-leave-to {\n    transform: translateX(30px);\n    opacity: 0;\n}\n.fade-enter-active,\n.fade-leave-active {\n    transition: all .7s ease-in-out;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36492,7 +37581,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.footer .footer-menu ul li a[data-v-768af3c8]:hover{\n    color:#fcb00c;\n}\n.footer-widget p[data-v-768af3c8]{\n    width: 70%;\n}\n.copyright-text p[data-v-768af3c8]{\n    font-size: 17px;\n}\n.copyright[data-v-768af3c8] {\n    border-top: 1px solid #d9d8d87d;\n}\n.footer-address .off-address p[data-v-768af3c8] {\n    font-size: 13px;\n}\n.mobile-aplication[data-v-768af3c8]{\n    background-color: #fff;\n    border-radius: 5px;\n    padding: 5px 0;\n}\n.mobile-aplication span[data-v-768af3c8]{\n    font-weight: 600;\n    font-size: 14px;\n}\n.mobile-aplication h3[data-v-768af3c8]{\n    font-size: 23px;\n    font-weight: 700;\n}\n.mobile-aplication a[data-v-768af3c8]:hover{\n    color: #fcb00c;\n}\n.fa-apple[data-v-768af3c8] {\n    font-size: 55px;\n    color: #000;\n    padding: 0 16px;\n}\n.fa-google-play[data-v-768af3c8]{\n    font-size: 40px;\n    color: #000;\n    padding: 0 16px;\n}\n.social-icon ul[data-v-768af3c8] {\n    display: flex;\n    width: 100%;\n    justify-content: flex-end;\n}\n.fa-instagram[data-v-768af3c8], .fa-linkedin-in[data-v-768af3c8], .fa-twitter[data-v-768af3c8], .fa-facebook-f[data-v-768af3c8]{\n    font-size: 20px;\n}\n@media only screen and (max-width: 1115px){\n.fa-apple[data-v-768af3c8] {\n        font-size: 40px;\n}\n.fa-google-play[data-v-768af3c8] {\n        font-size: 34px;\n}\n.mobile-aplication h3[data-v-768af3c8]{\n        font-size: 16px;\n}\n.mobile-aplication span[data-v-768af3c8] {\n        font-size: 11px;\n}\n}\n@media only screen and (max-width: 992px){\n.fa-apple[data-v-768af3c8] {\n        font-size: 70px;\n}\n.fa-google-play[data-v-768af3c8] {\n        font-size: 59px;\n        padding: 7px 16px;\n}\n.mobile-aplication span[data-v-768af3c8]{\n        font-size: 16px;\n}\n.mobile-aplication h3[data-v-768af3c8] {\n        font-size: 29px;\n}\n}\n@media only screen and (max-width: 768px){\n.footer[data-v-768af3c8] {\n        background-color:#1a1919;\n}\n}\n@media only screen and (max-width: 600px){\n.fa-apple[data-v-768af3c8] {\n        font-size: 51px;\n}\n.fa-google-play[data-v-768af3c8] {\n        font-size: 40px;\n        padding: 7px 16px;\n}\n.mobile-aplication span[data-v-768af3c8]{\n        font-size: 11px;\n}\n.mobile-aplication h3[data-v-768af3c8] {\n        font-size: 18px;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.footer-top[data-v-768af3c8] {\n    padding: 30px 0;\n}\n.footer .footer-menu ul li a[data-v-768af3c8]:hover{\n    color:#fcb00c;\n}\n.footer-widget p[data-v-768af3c8]{\n    width: 70%;\n}\n.copyright-text p[data-v-768af3c8]{\n    font-size: 17px;\n}\n.copyright[data-v-768af3c8] {\n    border-top: 1px solid #d9d8d87d;\n}\n.footer-address .off-address p[data-v-768af3c8] {\n    font-size: 13px;\n}\n.social-icon ul[data-v-768af3c8] {\n    display: flex;\n    width: 100%;\n    justify-content: flex-end;\n}\n.fa-instagram[data-v-768af3c8], .fa-linkedin-in[data-v-768af3c8], .fa-twitter[data-v-768af3c8], .fa-facebook-f[data-v-768af3c8]{\n    font-size: 20px;\n    color: #fcb00c;\n}\n@media only screen and (max-width: 1115px){\n}\n@media only screen and (max-width: 992px){\n}\n@media only screen and (max-width: 768px){\n.footer[data-v-768af3c8] {\n        background-color:#1a1919;\n}\n}\n@media only screen and (max-width: 600px){\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36516,7 +37605,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-d085508c]{\n        background-color: #fff;\n        position: static;\n}\n.header.custom-header[data-v-d085508c]{\n        position: fixed;\n}\n.logo[data-v-d085508c]{\n        width: 140px;\n}\n.main-menu-wrapper[data-v-d085508c]{\n        display: flex;\n}\n.main-nav li a[data-v-d085508c]{\n        font-size: 15px !important;\n        font-weight: 500;\n}\n.main-nav li a[data-v-d085508c]:hover{\n        color: #fcb00c;\n}\n.main-nav > li.active > a[data-v-d085508c]{\n        color: #fcb00c;\n}\n.main-nav > li.active > a[data-v-d085508c]::after {\n    background: #fcb00c;\n}\n.header-navbar-rht .reg-btn[data-v-d085508c]:hover {\n        color: #fcb00c !important;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n    background-color: #fcb00c;\n    border-color: #fcb00c;\n    padding: 5px 15px;\n    font-size: 16px;\n    box-shadow: none;\n}\n.header-navbar-rht .custom[data-v-d085508c]{\n            font-size: 13px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n        color: #fcb00c;\n        padding: 5px 15px;\n        font-size: 14px;\n        box-shadow: none;\n        border: 1px solid #fcb00c;\n        border-radius: 50px;\n}\n.header-navbar-rht .partner[data-v-d085508c]:hover{\n       background-color: #fcb00c !important;\n       color: #fff !important;\n}\n@media only screen and (max-width: 1115px){\n.main-nav > li[data-v-d085508c] {\n            margin-right: 11px;\n}\n.main-nav li a[data-v-d085508c] {\n            font-size: 14px !important;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 8px;\n            font-size: 11px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 8px;\n            font-size: 10px !important;\n}\n.header-navbar-rht li[data-v-d085508c] {\n            margin-right: 15px;\n}\n.header-navbar-rht .custom[data-v-d085508c]{\n            font-size: 11px !important;\n}\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 15px;\n}\n}\n@media only screen and (max-width: 992px){\n.main-menu-wrapper[data-v-d085508c]{\n            display: inline-block;\n}\n.main-nav li a[data-v-d085508c] {\n            font-size: 15px !important;\n}\n.header-navbar-rht[data-v-d085508c]{\n            margin-top: 20px;\n}\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 20px;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 12px;\n            font-size: 12px !important;\n            margin-top: 20px;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 12px;\n            font-size: 11px !important;\n}\n}\n@media only screen and (max-width: 768px) {\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 12px;\n            font-size: 12px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 12px;\n            font-size: 11px !important;\n}\n}\n@media only screen and (max-width: 600px) {\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 15px;\n}\n.header-navbar-rht[data-v-d085508c]{\n            display: block;\n}\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.header[data-v-d085508c]{\n        background-color: #fff;\n        position: static;\n}\n.header.custom-header[data-v-d085508c]{\n        position: fixed;\n}\n.logo[data-v-d085508c]{\n        width: 140px;\n}\n.main-menu-wrapper[data-v-d085508c]{\n        display: flex;\n}\n.main-nav li a[data-v-d085508c]{\n        font-size: 15px !important;\n        font-weight: 500;\n        color: #000;\n}\n.main-nav li a[data-v-d085508c]:hover{\n        color: #fcb00c;\n}\n.main-nav > li.active > a[data-v-d085508c]{\n        color: #fcb00c;\n}\n.main-nav > li.active > a[data-v-d085508c]::after {\n        background: #fcb00c;\n}\n.header-navbar-rht .reg-btn[data-v-d085508c]:hover {\n        color: #fcb00c !important;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n        background: #fcb00cd6;\n        border-color: #fcb00cd6;\n        padding: 5px 15px;\n        font-size: 16px;\n        box-shadow: none;\n}\n.header-navbar-rht .login-btn[data-v-d085508c]:hover {\n        background: #fcb00c;\n        border-color: #fcb00c;\n}\n.header-navbar-rht .custom[data-v-d085508c]{\n            font-size: 13px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n        color: #fcb00c;\n        padding: 5px 15px;\n        font-size: 14px;\n        box-shadow: none;\n        border: 1px solid #fcb00c;\n        border-radius: 50px;\n}\n.header-navbar-rht .partner[data-v-d085508c]:hover{\n       background-color: #fcb00c !important;\n       color: #fff !important;\n}\n.active[data-v-d085508c]{\n        color: #fcb00c;\n}\n@media only screen and (max-width: 1115px){\n.main-nav > li[data-v-d085508c] {\n            margin-right: 11px;\n}\n.main-nav li a[data-v-d085508c] {\n            font-size: 14px !important;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 8px;\n            font-size: 11px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 8px;\n            font-size: 10px !important;\n}\n.header-navbar-rht li[data-v-d085508c] {\n            margin-right: 15px;\n}\n.header-navbar-rht .custom[data-v-d085508c]{\n            font-size: 11px !important;\n}\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 15px;\n}\n}\n@media only screen and (max-width: 992px){\n.main-menu-wrapper[data-v-d085508c]{\n            display: inline-block;\n}\n.main-nav li a[data-v-d085508c] {\n            font-size: 15px !important;\n}\n.header-navbar-rht[data-v-d085508c]{\n            margin-top: 20px;\n}\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 20px;\n}\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 12px;\n            font-size: 12px !important;\n            margin-top: 20px;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 12px;\n            font-size: 11px !important;\n}\n}\n@media only screen and (max-width: 768px) {\n.header-navbar-rht .login-btn[data-v-d085508c] {\n            padding: 5px 12px;\n            font-size: 12px !important;\n}\n.header-navbar-rht .partner[data-v-d085508c]{\n            padding: 5px 12px;\n            font-size: 11px !important;\n}\n}\n@media only screen and (max-width: 600px) {\n.main-nav > li[data-v-d085508c]:last-child {\n            margin-right: 15px;\n}\n.header-navbar-rht[data-v-d085508c]{\n            display: block;\n}\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36732,7 +37821,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nsection[data-v-0939d6eb]{\n   overflow: hidden;\n}\n.home-banner[data-v-0939d6eb] {\n    background-image: url(/web/img/Slider.jfif);\n    height: 100vh !important;\n    background-position: unset;\n    padding-top: 0;\n}\n.custom-row[data-v-0939d6eb]{\n    height: 100vh;\n}\n.custom-col[data-v-0939d6eb]{\n    margin: 0 30px;\n}\n.banner-content .rating i[data-v-0939d6eb]{\n    font-size: 22px;\n}\n.banner-content .rating h5[data-v-0939d6eb]{\n    color: #fff;\n    font-size: 22px;\n    text-shadow: 2px 1px 9px #000;\n}\n.banner-content h1[data-v-0939d6eb] {\n    font-size: 35px;\n    color: #fcb00c;\n    margin-bottom: 10px;\n    margin-top: 25px;\n    text-shadow: 2px 1px 9px #000;\n}\n.banner-content p[data-v-0939d6eb] {\n    color: #fff;\n    text-shadow: 2px 1px 9px #000;\n    font-size: 45px;\n}\n.form[data-v-0939d6eb]{\n    width: 75%;\n}\n.form select[data-v-0939d6eb]{\n    color: #7c7777;\n    -webkit-appearance: auto;\n       -moz-appearance: auto;\n            appearance: auto;\n}\n.drop-detail[data-v-0939d6eb]{\n    position: relative;\n}\ninput.form-control[data-v-0939d6eb]{\n    padding: 0 30px;\n}\n.form-control[data-v-0939d6eb]::-webkit-input-placeholder, .form-control[data-v-0939d6eb]::placeholder{\n    color: #7c777766 !important;\n}\n.border-cutom-ar[data-v-0939d6eb]{\n    position: absolute;\n    width: 1px;\n    height: 60%;\n    left: -12px;\n    top: 16px;\n    background-color: #7c7777;\n    margin-right: 4px;\n    z-index: 10\n}\n.border-cutom-en[data-v-0939d6eb]{\n    position: absolute;\n    width: 1px;\n    height: 60%;\n    right: -12px;\n    top: 16px;\n    background-color: #7c7777;\n    margin-right: 4px;\n    z-index: 10\n}\n\n/*.work-content h2:after{*/\n/*    display: none;*/\n/*}*/\n.work-content h2[data-v-0939d6eb] {\n    font-size: 32px;\n}\n.work-content[data-v-0939d6eb] {\n    width: 95%;\n}\n.work-content p[data-v-0939d6eb] {\n    font-size: 22px;\n}\n.subscribe[data-v-0939d6eb] {\n    padding: 125px 0;\n}\n.subscribe h1[data-v-0939d6eb]{\n    color: #fff;\n}\n@media only screen and (max-width: 992px){\n.banner-content .rating[data-v-0939d6eb], .banner-content .rating h5[data-v-0939d6eb] {\n        font-size: 17px;\n}\n.banner-content h1[data-v-0939d6eb]{\n        font-size: 30px;\n}\n.banner-content p[data-v-0939d6eb] {\n        font-size: 36px;\n}\n.work-content h2[data-v-0939d6eb] {\n        font-size: 20px;\n}\n.work-content p[data-v-0939d6eb] {\n        font-size: 16px;\n}\n}\n@media only screen and (max-width: 768px) {\n.banner-content h1[data-v-0939d6eb]{\n        margin-bottom: 20px;\n}\n.banner-content p[data-v-0939d6eb] {\n        margin-bottom: 35px;\n}\n.work-content h2[data-v-0939d6eb] {\n        font-size: 24px;\n}\n.work-content p[data-v-0939d6eb] {\n        font-size: 16px;\n}\n}\n@media only screen and (max-width: 600px) {\n.banner-content .rating i[data-v-0939d6eb], .banner-content .rating h5[data-v-0939d6eb] {\n        font-size: 11px;\n}\n.banner-content h1[data-v-0939d6eb] {\n        font-size: 25px;\n}\n.banner-content p[data-v-0939d6eb][data-v-0939d6eb] {\n        font-size: 24px;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nsection[data-v-0939d6eb]{\n   overflow: hidden;\n}\n\n/*start banner*/\n.home-banner[data-v-0939d6eb] {\n    background-image: url(/web/img/Slider.jfif);\n    height: 100vh !important;\n    background-position: unset;\n    padding-top: 0;\n}\n.custom-row[data-v-0939d6eb]{\n    height: 100vh;\n}\n.custom-col[data-v-0939d6eb]{\n    margin: 0 30px;\n}\n.banner-content .rating i[data-v-0939d6eb]{\n    font-size: 22px;\n}\n.banner-content .rating h5[data-v-0939d6eb]{\n    color: #fff;\n    font-size: 22px;\n    text-shadow: 2px 1px 9px #000;\n}\n.banner-content h1[data-v-0939d6eb] {\n    font-size: 35px;\n    color: #fcb00c;\n    margin-bottom: 10px;\n    margin-top: 25px;\n    text-shadow: 2px 1px 9px #000;\n}\n.banner-content p[data-v-0939d6eb] {\n    color: #fff;\n    text-shadow: 2px 1px 9px #000;\n    font-size: 45px;\n}\n.form[data-v-0939d6eb]{\n    width: 75%;\n}\n.form select[data-v-0939d6eb]{\n    color: #7c7777;\n    -webkit-appearance: auto;\n       -moz-appearance: auto;\n            appearance: auto;\n}\n.drop-detail[data-v-0939d6eb]{\n    position: relative;\n}\ninput.form-control[data-v-0939d6eb]{\n    padding: 0 30px;\n}\n.form-control[data-v-0939d6eb]::-webkit-input-placeholder, .form-control[data-v-0939d6eb]::placeholder{\n    color: #7c777766 !important;\n}\n.border-cutom-ar[data-v-0939d6eb]{\n    position: absolute;\n    width: 1px;\n    height: 60%;\n    left: -12px;\n    top: 16px;\n    background-color: #7c7777;\n    margin-right: 4px;\n    z-index: 10\n}\n.border-cutom-en[data-v-0939d6eb]{\n    position: absolute;\n    width: 1px;\n    height: 60%;\n    right: -12px;\n    top: 16px;\n    background-color: #7c7777;\n    margin-right: 4px;\n    z-index: 10\n}\n.banner-content .sub-btn[data-v-0939d6eb]{\n    display: inline-block;\n    margin-left: 20px;\n    height: 54px;\n    padding: 0 45px;\n    margin-top: 10px;\n}\n\n/*end banner*/\n.feature-item[data-v-0939d6eb] {\n    padding: 20px 30px;\n    box-shadow: 0px 0px 5px -2px rgb(0 0 0 / 37%);\n}\n.feature .feature-icon[data-v-0939d6eb] {\n    margin-bottom: 0px;\n    min-height: 70px;\n}\n.feature .feature-icon[data-v-0939d6eb]::before {\n    content: '';\n    background: #ffb2045c;\n    transform: translateX(-50%);\n    width: 84px;\n    border-radius: 50%;\n    height: 84px;\n    top: -12px;\n}\n.feature .feature-icon[data-v-0939d6eb]:nth-of-type(1)::before {\n     transform: translateX(1%);\n}\n.feature .feature-icon.middle[data-v-0939d6eb]::before {\n    transform: translateX(0%);\n    top: -5px;\n    width: 80px;\n    height: 80px;\n}\n.feature .feature-icon.middle img[data-v-0939d6eb]{\n    width: 60px;\n}\n.feature .feature-icon.last[data-v-0939d6eb]::before{\n    transform: translateX(-112%);\n}\n.feature .feature-icon.last img[data-v-0939d6eb][data-v-0939d6eb] {\n    width: 68px;\n}\n.feature .feature-icon img[data-v-0939d6eb] {\n    width: 65px;\n}\n.feature .feature-content h3[data-v-0939d6eb] {\n     margin-bottom: 0px;\n    font-size: 28px;\n}\n.feature .feature-content p[data-v-0939d6eb] {\n    font-size: 18px;\n    text-transform: capitalize;\n    letter-spacing: 1px;\n    word-spacing: 1px;\n}\n\n/*start work-content*/\n.bg12[data-v-0939d6eb]{\n    background-color: #fcb00c;\n}\n.bg10[data-v-0939d6eb]{\n    background-color: #f5ae1473;\n}\n.bg10 .work-content h2[data-v-0939d6eb]{\n    color: #000;\n}\n.bg10 .work-content h2[data-v-0939d6eb]:after{\n    background-color: #000;\n}\n.bg10 .work-content p[data-v-0939d6eb]{\n    color: #000000de;\n}\n.bg10 .work-content .long-arrow[data-v-0939d6eb] {\n    background: #000;\n    color: #fff;\n}\n.work-content h2[data-v-0939d6eb] {\n    font-size: 32px;\n}\n.work-content[data-v-0939d6eb] {\n    width: 95%;\n}\n.work-content p[data-v-0939d6eb] {\n    font-size: 22px;\n}\n.work-content img[data-v-0939d6eb]{\n    width: 90%;\n}\n.subscribe[data-v-0939d6eb] {\n    padding: 125px 0;\n}\n.subscribe h1[data-v-0939d6eb]{\n    color: #fff;\n}\n\n/*start work-content*/\n\n\n/*start product*/\n.container-custom[data-v-0939d6eb]{\n    max-width: 1160px;\n}\n.projects .header-title[data-v-0939d6eb]{\n    color: #fcb00c;\n}\n.projects  .section-header p[data-v-0939d6eb]{\n    width: 30%;\n    font-size: 28px;\n}\n.project-item[data-v-0939d6eb] {\n    padding: 15px;\n    border-radius: 8px;\n    box-shadow: 0px 0px 5px -2px rgb(0 0 0 / 37%);\n}\n.project-item[data-v-0939d6eb]{\n    position: relative;\n}\n.project-item .price[data-v-0939d6eb]{\n    position: absolute;\n    color: #fcb00c;\n    right: 3%;\n    font-size: 35px;\n    top: 7%;\n    font-weight: 600;\n}\n.project-item .price-ar[data-v-0939d6eb]{\n    position: absolute;\n    color: #fcb00c;\n    left: 3%;\n    top: 7%;\n    font-size: 35px;\n    font-weight: 600;\n}\n.price .coin[data-v-0939d6eb],.price-ar .coin[data-v-0939d6eb] {\n    font-size: 18px;\n    margin: 0 10px;\n    font-weight: 500;\n}\n.project-item h4[data-v-0939d6eb]{\n    font-size: 19px;\n    color: #4e4949;\n}\n.project-content[data-v-0939d6eb] {\n    margin: 0 auto;\n}\n.project-content.button[data-v-0939d6eb]{\n    position: relative;\n    top: 20px;\n}\n.project-content button.subscribe[data-v-0939d6eb]{\n    margin: 5px 3px;\n    padding: 3px 3px;\n    font-size: 15px;\n    background: #fcb00c;\n    color: #fff;\n    border-radius: 22px;\n}\n.project-content button.share[data-v-0939d6eb]{\n    margin: 0 3px;\n    padding: 2px 0;\n    font-size: 15px;\n    color: #fcb00c;\n    border: 1px solid  #fcb00c;\n    background-color: transparent;\n    border-radius: 22px;\n}\n.project-content button div[data-v-0939d6eb]{\n    display: inline-block;\n    border-radius: 50%;\n    padding: 0 5px;\n}\n.project-content button.share div[data-v-0939d6eb] {\n    border: 1px solid #fcb00c;\n}\n.project-content button.subscribe div[data-v-0939d6eb] {\n    border: 1px solid #fff;\n}\n.project-content button.subscribe span[data-v-0939d6eb]{\n    margin: 0 8px;\n}\n.project-content button.share span[data-v-0939d6eb]{\n    margin: 0 20px;\n}\n.project-content button img[data-v-0939d6eb]{\n    width: 13px;\n}\n.project-content h4[data-v-0939d6eb] {\n    font-weight: bold;\n    font-size: 11px;\n    text-transform: lowercase;\n    color: #fcb00c;\n    text-align: start;\n    padding: 0 20px;\n}\n.project-content .time-container[data-v-0939d6eb]{\n    position: relative;\n    right: 42px;\n}\n.project-content .time[data-v-0939d6eb]{\n    position: relative;\n}\n.project-content .time .point[data-v-0939d6eb]{\n    top: 6px;\n    position: relative;\n    font-size: 19px;\n    color: #000;\n    font-weight: 600;\n}\n.project-content .time div[data-v-0939d6eb]{\n    display: inline-block;\n    background: #000;\n    position: relative;\n    color: #fff;\n    border-radius: 5px;\n    margin: 2px 4px;\n    text-align: center;\n    padding: 0px 10px 9px;\n}\n.project-content .time div.day[data-v-0939d6eb]{\n    padding: 0 11px 9px;\n}\n.project-content .time div small[data-v-0939d6eb] {\n    display: block;\n    position: absolute;\n    top: 13px;\n    margin: 0;\n    font-size: 9px;\n}\n.project-content .time div.minute small[data-v-0939d6eb] {\n    left: 7px;\n}\n.project-content .time div.hour small.en[data-v-0939d6eb] {\n    left: 10px;\n}\n.project-content .time div.minute small.en[data-v-0939d6eb], .project-content .time div small.en[data-v-0939d6eb]{\n    left: 5px;\n}\n.project-content .time div.hour small[data-v-0939d6eb] {\n    left: 7px;\n}\n/*end product*/\n.header-title[data-v-0939d6eb] {\n    font-size: 36px;\n}\n.freelance-widget .freelance-content[data-v-0939d6eb]{\n    box-shadow: 0 3px 18px -8px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);\n    border: none;\n}\n.freelance-widget:hover .favourite[data-v-0939d6eb],\n.freelance-widget:hover .btn-cart[data-v-0939d6eb]{\n    color: #fff;\n    background-color: #fcb00c;\n}\n.freelance-info h3[data-v-0939d6eb] {\n    font-size: 22px;\n    font-weight: 600;\n}\n.freelance-info h3 a[data-v-0939d6eb]:hover{\n    color: #fcb00c;\n}\n.freelance-specific span[data-v-0939d6eb]{\n    font-size: 18px;\n    width: 65%;\n}\n.btn-cart[data-v-0939d6eb] {\n    background: #fcb00cd6;\n    transition: all .5s ease-in-out;\n}\n@media only screen and (max-width: 992px){\n.home-banner[data-v-0939d6eb]{\n        height: 80vh !important;\n}\n.banner-content .rating[data-v-0939d6eb], .banner-content .rating h5[data-v-0939d6eb] {\n        font-size: 17px;\n}\n.banner-content h1[data-v-0939d6eb]{\n        font-size: 30px;\n}\n.banner-content p[data-v-0939d6eb] {\n        font-size: 36px;\n}\n.work-content h2[data-v-0939d6eb] {\n        font-size: 20px;\n}\n.work-content p[data-v-0939d6eb] {\n        font-size: 16px;\n}\n.project-content .time-container[data-v-0939d6eb]{\n        position: initial;\n}\n.project-content[data-v-0939d6eb] {\n        margin: 0 auto;\n        text-align: initial;\n        width: 52%;\n}\n.project-content .time div[data-v-0939d6eb] {\n        margin: 2px 2px;\n        padding: 0px 9px 9px;\n}\n.project-content h4[data-v-0939d6eb] {\n        padding: 0 3px;\n}\n.projects .section-header p[data-v-0939d6eb]{\n        width: 44%;\n        font-size: 28px;\n}\n.project-content button.share[data-v-0939d6eb]{\n        margin: 0 3px 13px;\n}\n}\n@media only screen and (max-width: 768px) {\n.banner-content h1[data-v-0939d6eb]{\n        margin-bottom: 20px;\n}\n.banner-content p[data-v-0939d6eb] {\n        margin-bottom: 35px;\n}\n.work-content h2[data-v-0939d6eb] {\n        font-size: 24px;\n}\n.work-content p[data-v-0939d6eb] {\n        font-size: 16px;\n}\n.project-content h4[data-v-0939d6eb] {\n        font-size: 14px;\n        text-transform: lowercase;\n        text-align: start;\n        padding: 0px 0%;\n}\n.projects .section-header p[data-v-0939d6eb] {\n        width: 58%;\n}\n}\n@media only screen and (max-width: 600px) {\n.banner-content .rating i[data-v-0939d6eb], .banner-content .rating h5[data-v-0939d6eb] {\n        font-size: 11px;\n}\n.banner-content h1[data-v-0939d6eb] {\n        font-size: 25px;\n}\n.banner-content p[data-v-0939d6eb][data-v-0939d6eb] {\n        font-size: 24px;\n}\n.projects .section-header p[data-v-0939d6eb]{\n        width: 65%;\n        font-size: 27px;\n        line-height: 1.1;\n}\n.project-item .price-ar[data-v-0939d6eb],.project-item .price[data-v-0939d6eb] {\n        font-size: 30px;\n}\n.project-item h4[data-v-0939d6eb]{\n        font-size: 13px;\n        color: #4e4949;\n}\n.project-content .time-container[data-v-0939d6eb]{\n        position: initial;\n}\n.project-content h4[data-v-0939d6eb]{\n        color: #fcb00c;\n}\n.project-content[data-v-0939d6eb] {\n        margin: 0 auto;\n        text-align: initial;\n         width: 52%;\n}\n.project-content button.share[data-v-0939d6eb]{\n        margin: 0px 3px 15px;\n        font-size: 14px;\n}\n.project-content .time div[data-v-0939d6eb] {\n        margin: 2px 2px;\n}\n.project-content h4[data-v-0939d6eb]{\n        padding: 0 6px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -36804,7 +37893,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.fa[data-v-52ade008] {\r\n    font-size: 39px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.fa[data-v-52ade008] {\n    font-size: 39px;\n}\n\n/*start header*/\n.lang[data-v-52ade008]{\n    margin: 15px -29px 0 15px;\n}\n.lang.lang-ar[data-v-52ade008]{\n    margin: 15px 22px 0 -84px;\n}\n.logo a img[data-v-52ade008]{\n    width: 225px;\n}\n.main-header .nav-outer[data-v-52ade008]{\n    padding-top: 0;\n}\n.btn-style-one[data-v-52ade008]{\n    background-color: #fcb00c;\n    border-radius: 32px;\n}\n.btn-style-one[data-v-52ade008]:hover{\n    color: #fff !important;\n}\n.main-header.fixed-header .header-upper .outer-box[data-v-52ade008] {\n    padding-top: 36px;\n}\n.main-header.fixed-header[data-v-52ade008] {\n    background-color: #fff;\n    box-shadow: 0px 0px 12px -6px #000;\n}\n.main-header.fixed-header .logo a img[data-v-52ade008]{\n    width: 155px;\n}\n.main-header.fixed-header .header-upper .outer-box[data-v-52ade008] {\n    padding-top: 13px;\n}\n/*end header*/\n\n/*start banner*/\n.banner-pager .pager[data-v-52ade008]{\n    pointer-events: none;\n}\n.video-box figure[data-v-52ade008]{\n    width: 100%;\n}\n.banner-section .patern-layer-one.patern-layer-one-ar[data-v-52ade008] {\n    left: 260px;\n    width: 104%;\n}\n.banner-section .newsletter-form .form-group button.btn-ar[data-v-52ade008] {\n    right: unset;\n    left: 0;\n}\nsection .newsletter-form .form-group input[type=\"email\"].email-ar[data-v-52ade008] {\n    left: 195px;\n}\n.banner-section .carousel-column .inner-column .pager-box.pager-box-ar[data-v-52ade008] {\n    left: unset;\n    right: 0;\n}\n.banner-section .content-column .video-box.video-box-ar[data-v-52ade008] {\n    position: absolute;\n    left: 0px;\n    right: unset;\n}\n.banner-section .carousel-column .inner-column .pager-box .pager.one[data-v-52ade008] {\n    background-color: #cb2467;\n}\n.banner-section .carousel-column .inner-column .pager-box .pager.two[data-v-52ade008] {\n    background-color: #20b3a1;\n}\n.banner-section .carousel-column .inner-column .pager-box .pager.three[data-v-52ade008]{\n    background-color: #8610f2;\n}\n/*end banner*/\n\n/*start register*/\n.register[data-v-52ade008]{\n    padding: 120px 0 0px;\n}\n.register-container[data-v-52ade008]{\n    padding: 10px 5px;\n    border-radius: 7px;\n    margin-bottom: 20px;\n}\n.register-container.one[data-v-52ade008]{\n    background-color: #8610f2;\n}\n.register-container.twe[data-v-52ade008]{\n    background-color: #20b3a1;\n}\n.register-container.three[data-v-52ade008]{\n    background-color: #cb2467;\n}\n.register-info h4[data-v-52ade008] {\n    color: #fff;\n    font-size: 16px;\n    margin: 25px 0 0;\n}\n.register-container.one p[data-v-52ade008] {\n    margin-bottom: 5px;\n}\n.register-info p[data-v-52ade008]{\n    color: #fff;\n    font-size: 11px;\n}\n.register-info a[data-v-52ade008]{\n    color: #fff;\n    border: 1px solid #fff;\n    padding: 6px 30px;\n    border-radius: 15px;\n    transition: all .5s;\n}\n.register-info a[data-v-52ade008]:hover{\n    background-color: #fff;\n}\n.register-container.one .register-info a[data-v-52ade008]:hover{\n    color: #6610f2;\n}\n.register-container.twe .register-info a[data-v-52ade008]:hover{\n    color: #6610f2;\n}\n.register-container.three .register-info a[data-v-52ade008]:hover{\n    color: #cb2467;\n}\n/*end register*/\n\n/*start steps-section*/\n.steps-section .carousel-item[data-v-52ade008]{\n    margin: 0!important;\n}\n.steps-section .content[data-v-52ade008] {\n     padding: 0;\n}\n/*end steps-section*/\n\n/*start contact*/\n.sec-title .title[data-v-52ade008]:before {\n    left: 20px;\n    top: 16px;\n}\n.sec-title .title.title-ar[data-v-52ade008]:before {\n    right: 22px;\n    left: unset;\n    top: 16px;\n}\n.contact-section .info-column .info-list.info-list-ar[data-v-52ade008] {\n    margin-left: 0px;\n    margin-right: 120px;\n}\n.contact-section .info-column .info-list li .icon.icon-ar[data-v-52ade008] {\n    right: -48px;\n    left: unset;\n}\n/*end contact*/\n@media only screen and (min-width: 1140px) {\n.banner-section .carousel-column .inner-column .pager-box .pager.one.one-ar[data-v-52ade008]{\n        right: -75px;\n}\n.banner-section .carousel-column .inner-column .pager-box .pager.two.two-ar[data-v-52ade008]{\n        left: 35px;\n}\n.banner-section .carousel-column .inner-column .pager-box .pager.three.three-ar[data-v-52ade008]{\n        left: -160px;\n}\n}\n@media only screen and (max-width: 1140px) {\n.main-header[data-v-52ade008] {\n        background-color: #fff;\n}\n.lang[data-v-52ade008]{\n        margin: 15px 10px 0 15px;\n}\n}\n@media only screen and (max-width: 1115px){\n.banner-section .content-column .video-box .video-image[data-v-52ade008] {\n        position: relative;\n        margin: 0px;\n        top: 36px;\n        left: 57px;\n}\nsection .content-column .video-box .overlay-box span[data-v-52ade008] {\n        left: 50%;\n        top: 30%;\n}\n.main-header.fixed-header[data-v-52ade008] {\n        background-color: #fff;\n}\n.banner-section .patern-layer-one.patern-layer-one-ar[data-v-52ade008]{\n        left: 0px;\n}\n.banner-section .content-column .video-box.video-box-ar[data-v-52ade008] {\n        display: none;\n}\n.banner-section .newsletter-form .form-group button.btn-ar[data-v-52ade008]{\n        left: -10px;\n}\nsection .newsletter-form .form-group input[type=\"email\"].email-ar[data-v-52ade008] {\n        left: 185px;\n}\n}\n@media only screen and (max-width: 1055px){\n.register-container.one p[data-v-52ade008] {\n        margin-bottom: 15px;\n}\n}\n@media only screen and (max-width: 1023px) {\n.main-header[data-v-52ade008] {\n        background-color: #fff;\n}\n.logo a img[data-v-52ade008] {\n        width: 185px;\n}\n.main-header .nav-outer[data-v-52ade008] {\n        width: unset;\n}\n.btn-style-one[data-v-52ade008] {\n        line-height: 20px;\n        font-size: 15px;\n        padding: 15px 13px 15px;\n}\n.main-header .header-upper .outer-box[data-v-52ade008] {\n        padding-top: 19px;\n}\n.lang.lang-ar[data-v-52ade008]{\n        margin: 15px 34px 0 4px;\n}\n}\n@media only screen and (max-width: 992px){\n.video-box[data-v-52ade008]{\n        display: none;\n}\n}\n@media only screen and (max-width: 767px){\n.main-header .nav-outer[data-v-52ade008] {\n        margin-top: 0px;\n}\n.nav-outer .outer-box[data-v-52ade008]{\n        display: block !important;\n}\n.btn-style-one[data-v-52ade008] {\n        font-size: 16px;\n        padding: 10px 13px 12px;\n}\n.main-header .header-upper .outer-box[data-v-52ade008] {\n        padding-top: 29px;\n}\n.main-header.fixed-header .header-upper .outer-box[data-v-52ade008]{\n        padding-top: 20px;\n}\n.register-info h4[data-v-52ade008] {\n        color: #fff;\n        font-size: 28px;\n        margin: 14% 0 0;\n}\n.register-container.one p[data-v-52ade008]{\n        margin-bottom: 20px;\n        font-size: 16px;\n}\n}\n@media only screen and (max-width: 600px){\n.logo a img[data-v-52ade008] {\n        width: 160px;\n}\n.main-header .header-upper .outer-box[data-v-52ade008] {\n        padding-top: 20px;\n}\n.btn-style-one[data-v-52ade008] {\n        line-height: 19px;\n        font-size: 12px;\n        padding: 10px 6px 12px;\n}\n.btn-style-one[data-v-52ade008] {\n        padding: 10px 15px 7px;\n}\n.register-info h4[data-v-52ade008] {\n        font-size: 20px;\n        margin: 14% 0 0;\n}\n.register-container.one p[data-v-52ade008] {\n        margin-bottom: 20px;\n        font-size: 14px;\n}\n}\n@media only screen and (max-width: 479px){\n.banner-section .carousel-column .inner-column .slides-box[data-v-52ade008] {\n         margin-left: 0px;\n}\nsection .newsletter-form .form-group input[type=\"email\"].email-ar[data-v-52ade008] {\n         left: 0px;\n}\n.banner-section .newsletter-form .form-group button.btn-ar[data-v-52ade008] {\n         left: 0px;\n}\n.main-header .header-upper .outer-box[data-v-52ade008]{\n        padding-top: 23px;\n}\n.banner-section .carousel-column .inner-column .slides-box[data-v-52ade008] {\n        margin: 0 11%;\n}\n.register-container.one p[data-v-52ade008] {\n        margin-bottom: 10px;\n        font-size: 13px;\n}\n.register-container.one p[data-v-52ade008]{\n        font-size: 12px;\n}\n.register-info a[data-v-52ade008]{\n        padding: 4px 23px;\n        font-size: 14px;\n}\n}\n@media only screen and (max-width: 390px) {\n.banner-section .carousel-column .inner-column .slides-box[data-v-52ade008]{\n        margin: 0px 3%;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -84577,7 +85666,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"header":{"home":"الرئيسية","company":"شركات التشطيبات","desgin":"المصممين","size":"خدمه رفع المقاسات","bargain":"لقطة","partner":"كن من شركاء النجاح","login":"الدخول","register":"التسجيل","project":"اضافة مشروعك","advisor":"مستشار شطبنا"},"register":{"design":"ديزينر","advertiser":"معلن","companies":"شركه","full_name":"الاسم كامل","email":"الايميل","password":"رقم السري","birth":"تاريخ الميلاد","confirm":"اعاده الرقم السري","company":"اسم الشركة","phone":"رقم التليفون","location":"موقعك علي خريطه جوجول","second_phone":"رقم التليفون الثاني (اختياري)","country":"الدولة","female":"انثي","male":"رجل","state":"المحافظه","agree":"بالتسجيل انت توافق علي ","Privacy":"شروط الخدمه و سياسه الخصوصية","and":"و بما في ذلك ","cookie":" استخدام الكوكيز.","join":"موافقه علي الانضمام","account":"لدي حساب بالفعل","click":"انقر هنا","forget":"نسيت كلمه المرور ؟","remember":"تذكرني","login":"تسجيل الدخول","new":"ليس لدي حساب؟","thank":"شكرًا لك!","success-mess":"التفاصيل الخاصة بك قد قدمت بنجاح. شكرًا! .\\n سيتم إرسال بريد إلكتروني بعد التحقق من حسابك.","ok":"موافق","Join":"انضم لشطبنا","life":"حقق أقصى استفادة من حياتك المهنية","welcome":"مرحبا بعودتك","miss":"لا تفوت فرصتك القادمة. تسجيل الدخول للبقاء على اطلاع على عالمك."},"index":{"trused":"حصلنا علي ثقه اكثر من 2000.000 مستخدم","best":"احصل علي افضل","finishing":"شركات التشطيبات و الديزاينر حول العالم","company":"شركات التشطيبات","search":"ابحث باسم شركات التشطيب او الديزينر","search-new":"ابحث الان","search-company":"ابحث عن شركات التشطيبات","search-design":"ابحث عن ديزينر","parge-company":"احصل علي افضل الشركات التشطيبات في مصر و حول العالم بافضل \\n الاسعار و افضل الخدمات من خلال \\nاكبر تجمع لشركات التشطيبات."},"footer":{"adress":"عناوين شطبنا","captial":"القاهره","adresses":"مقطم حي السفارات-المقطم-127 بنك القطري","free":"اتصل مجاني","phone":" تليفونات:","know":"اعرف اكثر عن شطبنا","about":"نبذه عن شطبنا","contact":"اتصل بنا","blog":"المدونة","login":"تسجيل الدخول","register":"تسجيل","help":"الدعم و المساعده","chat":"شات لايف","question":"الاسئله الشائعة","Privacy":"السياسات و الاحكام","term":"شروط و الاحكام","mobile":"تطبيق الموبيل","application":"قم بتحميل تطبيق الموبيل و احصل علي افضل الخدمات من شركات التشطيبات و الديزاينر و افضل العروض الحصرية لكافة منتجات لقطة.","copy":" حقوق الملكيه محفوظة لشركه شطبنا 2022"}}');
+module.exports = JSON.parse('{"header":{"home":"الرئيسية","company":"شركات التشطيبات","desgin":"المصممين","size":"خدمه رفع المقاسات","bargain":"لقطة","partner":"كن من شركاء النجاح","login":"الدخول","register":"التسجيل","project":"اضافة مشروعك","advisor":"مستشار شطبنا"},"register":{"design":"ديزينر","advertiser":"معلن","companies":"شركه","full_name":"الاسم كامل","email":"الايميل","password":"رقم السري","birth":"تاريخ الميلاد","confirm":"اعاده الرقم السري","company":"اسم الشركة","phone":"رقم التليفون","location":"موقعك علي خريطه جوجول","second_phone":"رقم التليفون الثاني (اختياري)","country":"الدولة","female":"انثي","male":"رجل","state":"المحافظه","agree":"بالتسجيل انت توافق علي ","Privacy":"شروط الخدمه و سياسه الخصوصية","and":"و بما في ذلك ","cookie":" استخدام الكوكيز.","join":"موافقه علي الانضمام","account":"لدي حساب بالفعل","click":"انقر هنا","forget":"نسيت كلمه المرور ؟","remember":"تذكرني","login":"تسجيل الدخول","new":"ليس لدي حساب؟","thank":"شكرًا لك!","success-mess":"التفاصيل الخاصة بك قد قدمت بنجاح. شكرًا! .\\n سيتم إرسال بريد إلكتروني بعد التحقق من حسابك.","ok":"موافق","Join":"انضم لشطبنا","life":"حقق أقصى استفادة من حياتك المهنية","welcome":"مرحبا بعودتك","miss":"لا تفوت فرصتك القادمة. تسجيل الدخول للبقاء على اطلاع على عالمك."},"index":{"trused":"حصلنا علي ثقه اكثر من 2000.000 مستخدم","best":"احصل علي افضل","finishing":"شركات التشطيبات و الديزاينر حول العالم","company":"شركات التشطيبات","search":"ابحث باسم شركات التشطيب او الديزينر","search-new":"ابحث الان","search-company":"ابحث عن شركات التشطيبات","search-design":"ابحث عن ديزينر","parge-company":"احصل علي افضل الشركات التشطيبات في مصر و حول العالم بافضل \\n الاسعار و افضل الخدمات من خلال \\nاكبر تجمع لشركات التشطيبات.","patrons":"رعاة شطبنا","more":"معرفة المزيد","bargain":"اللقطة","decBargain":"احصل علي افضل المنتجات من اكبر معارض الاثاث و الديكور","decProduct":"كرسي اصفر بمنبه احمر","subscribe":"اشتري الان","share":"شير","productEver":"كل المنتجات","show":"ينتهي عرض اللقطه خلال","second":"ثانية","minute":"الدقيقة","hour":"ساعه","day":"يوم","freelancer":"ديزاينير حر","finish":"شركه تشطبيات","project":"مشاريع عبر منصه شطبنا"},"partner":{"register":"سجل الان","banner-h1":"احصل على اتصال بالآخرين.\\nفقط إسأل شطبنا","banner-p1":"الوصول إلى فرص التقدم الوظيفي و\\nيعتمد النمو المهني بشكل كبير على العلاقات.","banner-email":"أدخل عنوان البريد","dowoload":"سنقدم رابط تنزيل تجريبي إلى عنوان بريدك الإلكتروني *","free":"خذ نسخة تجريبية مجانية","design":"حساب ديزانير","design-p":"كن علي موعد مع مئات العملاءالحقيقيين المنتظرين لابداعك","start":"ابدء الان","company":"حساب شركات الشتطيبات","company-p":"احصل علي مئات الفرص من عملاء التشطيبات","advertise":"حساب معلنين","advertise-p":"اوصل للمستخدمين من خلال نشر اعلانك معنا","contact-h":"عنوان مكتبنا الرئيسي:","address":"مقطم حي السفارات-المقطم-127 بنك القطري","call":"لطلب المساعدة:","mail":"راسلنا بالبريد الإلكتروني: ","from-h":"تواصل مع دعمنا","during":"اثناء","emer":"الط","g":"و","enc":"ا","y":"رئ!","co":"اتص","ntact":"ل بينا","first":"الاسم الاول *","last":"الاسم الاخير *","mail-contact":"الايميل *","phone":"رقم التليفون *","message":"الرساله...","send":"ارسل الان"},"footer":{"adress":"عناوين شطبنا","captial":"القاهره","adresses":"مقطم حي السفارات-المقطم-127 بنك القطري","free":"اتصل مجاني","phone":" تليفونات:","know":"اعرف اكثر عن شطبنا","about":"نبذه عن شطبنا","contact":"اتصل بنا","blog":"المدونة","login":"تسجيل الدخول","register":"تسجيل","help":"الدعم و المساعده","chat":"شات لايف","question":"الاسئله الشائعة","Privacy":"السياسات و الاحكام","term":"شروط و الاحكام","mobile":"تطبيق الموبيل","application":"قم بتحميل تطبيق الموبيل و احصل علي افضل الخدمات من شركات التشطيبات و الديزاينر و افضل العروض الحصرية لكافة منتجات لقطة.","copy":" حقوق الملكيه محفوظة لشركه شطبنا 2022"}}');
 
 /***/ }),
 
@@ -84588,7 +85677,7 @@ module.exports = JSON.parse('{"header":{"home":"الرئيسية","company":"ش�
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"header":{"home":"Home","company":"Companies","desgin":"Desginers","size":"Sizing Service","bargain":"Bargain","partner":"Success Partners","login":"Login","register":"Register","project":"Add Project","advisor":"Advisor Shatbna"},"register":{"design":"DESIGNER","advertiser":"ADVERTISER","companies":"COMPANY","full_name":"Full Name","email":"Email","password":"Password","confirm":"Confirm Password","company":"Name Company","birth":"Birth","phone":"Phone","second_phone":"Second Phone (optional)","location":"Google Map","country":"Country","state":"State","female":"Female","male":"male","and":"and","cookie":"Cookie Policy","join":"Agree TO JOIN","agree":"you agree to the shatbna","Privacy":"User Agreement, Privacy Policy,","account":"Already on Shatbna ","click":"Click here","forget":"Forget Password ?","remember":"Remember password","login":"LOGIN","new":"New to Shatbna?","thank":"Thank you!","success-mess":"Your details has been successfully submitted. Thanks! .\\n  An email will be sent after verifying your account .","ok":"Ok","Join":"Join Shatbna","life":"Make the most of your professional life","welcome":"Welcome Back","miss":"Don\'t miss your next opportunity. Sign in to stay updated on your world."},"index":{"trused":"Trused by over 2M+ users","best":"Get the best","finishing":"Finishes and designers around the world","company":"Finishing Companies","search":"Search by the name of the companies or the designer","search-new":"search now","search-company":"Looking for finishing companies","search-design":"Looking for a designer","parge-company":"Get the best finishing companies in Egypt and around the world at the best prices and the best services through the largest gathering of finishing companies."},"footer":{"adress":"Addresses Shatbna","captial":"Cairo","adresses":"Diplomatic Quarter Mokattam-Mokattam-127 Qatari Bank","free":"Free call","phone":"Telephones:","know":"More About Shutbana","about":"About Shtabna","contact":"Contact Us","blog":"Blog","login":"Login","register":"Register","help":"Support and Help","chat":"Live Chat","question":"Common Questions","Privacy":"Privacy Policy","term":"Terms and Conditions","mobile":"mobile app","application":"Download the mobile application and get the best services from the finishing and designer companies and the best exclusive offers for all Logta products.","copy":"All rights reserved to Shutbna Company 2022"}}');
+module.exports = JSON.parse('{"header":{"home":"Home","company":"Companies","desgin":"Desginers","size":"Sizing Service","bargain":"Bargain","partner":"Success Partners","login":"Login","register":"Register","project":"Add Project","advisor":"Advisor Shatbna"},"register":{"design":"DESIGNER","advertiser":"ADVERTISER","companies":"COMPANY","full_name":"Full Name","email":"Email","password":"Password","confirm":"Confirm Password","company":"Name Company","birth":"Birth","phone":"Phone","second_phone":"Second Phone (optional)","location":"Google Map","country":"Country","state":"State","female":"Female","male":"male","and":"and","cookie":"Cookie Policy","join":"Agree TO JOIN","agree":"you agree to the shatbna","Privacy":"User Agreement, Privacy Policy,","account":"Already on Shatbna ","click":"Click here","forget":"Forget Password ?","remember":"Remember password","login":"LOGIN","new":"New to Shatbna?","thank":"Thank you!","success-mess":"Your details has been successfully submitted. Thanks! .\\n  An email will be sent after verifying your account .","ok":"Ok","Join":"Join Shatbna","life":"Make the most of your professional life","welcome":"Welcome Back","miss":"Don\'t miss your next opportunity. Sign in to stay updated on your world."},"index":{"trused":"Trused by over 2M+ users","best":"Get the best","finishing":"Finishes and designers around the world","company":"Finishing Companies","search":"Search by the name of the companies or the designer","search-new":"search now","search-company":"Looking for finishing companies","search-design":"Looking for a designer","parge-company":"Get the best finishing companies in Egypt and around the world at the best prices and the best services through the largest gathering of finishing companies.","patrons":"Shatbina  Patrons","more":"know More","bargain":"Bargain","decBargain":"Get the best products from the largest furniture and decoration fairs","decProduct":"Yellow chair with red alarm","subscribe":"Buy now","share":"Share","productEver":"SEE ALL PRODUCT","show":"Show ends within","second":"second","minute":"minute","hour":"hour","day":"day","freelancer":"freelancer designer","finish":"Finishing company","project":"Projects via our cross-platform"},"partner":{"register":"Register now","banner-h1":"Get connect to other. \\nJust ask Topapp","banner-p1":"Access to opportunities for career advancement and\\nprofessional growth relies heavily on connections.","banner-email":"Enter mail address","dowoload":"We will give a trial download link to your mail address *","free":"Take free trial","design":"Designer Account","design-p":"Be on a date with hundreds of real customers waiting for your creativity","start":"start now","company":"Companies Account","company-p":"Get hundreds of opportunities from finishing clients","advertise":"Advertisers account","advertise-p":"Reach out to users by posting your ad with us","contact-h":"Our head office address:","address":"Diplomatic Quarter Mokattam-Mokattam-127, \\n Qatari Bank","call":"Call for help:","mail":"Mail us:","from-h":"Contact with our support","during":"during","emer":"emer","g":"g","enc":"enc","y":"y!","co":"Co","ntact":"ntact","first":"First Name *","last":"Last Name *","mail-contact":"Your mail *","phone":"Phone number *","message":"Message...","send":"Send now"},"footer":{"adress":"Addresses Shatbna","captial":"Cairo","adresses":"Diplomatic Quarter Mokattam-Mokattam-127 Qatari Bank","free":"Free call","phone":"Telephones:","know":"More About Shutbana","about":"About Shtabna","contact":"Contact Us","blog":"Blog","login":"Login","register":"Register","help":"Support and Help","chat":"Live Chat","question":"Common Questions","Privacy":"Privacy Policy","term":"Terms and Conditions","mobile":"mobile app","application":"Download the mobile application and get the best services from the finishing and designer companies and the best exclusive offers for all Logta products.","copy":"All rights reserved to Shutbna Company 2022"}}');
 
 /***/ })
 

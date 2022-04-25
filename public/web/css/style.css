@@ -1909,7 +1909,7 @@ label {
 	font-weight: normal;
 }
 .account-item .arrow-circle {
-	background: #131135;
+	background: #000;
     color: #FFFBFB;
     width: 31px;
     height: 31px;
@@ -2344,7 +2344,7 @@ html.menu-opened body header:before {
     border-color: #fcb00c;
 }
 .courses-btn {
-	background: #131135;
+	background: #000;
 	border-radius: 130px;
 	font-weight: bold;
     padding: 12px 39px;
@@ -2419,7 +2419,6 @@ html.menu-opened body header:before {
     transform: translateX(-50%);
     width: 108px;
     height: 70px;
-    background-image: url(../img/icon/icon-bg.png);
 }
 .feature .feature-icon img{
 	position: relative;
@@ -2544,11 +2543,11 @@ html.menu-opened body header:before {
     font-size: 30px;
 }
 .work-content .long-arrow:hover, .work-content .long-arrow:focus {
-	background: #131135;
+	background: #000;
 	color: #fff;
 }
 .bg2 .work-content .long-arrow {
-	background: #131135;
+	background: #000;
 	color: #FFFBFB;
 }
 .bg2 .work-content .long-arrow:hover, .bg2 .work-content .long-arrow:focus {
@@ -2681,8 +2680,8 @@ html.menu-opened body header:before {
 }
 .all-btn {
     padding: 12px 40px;
-    background: #131135;
-    border: 3px solid #131135;
+    background: #000;
+    border: 3px solid #000;
     border-radius: 50px;
     color: #FFF5F3;
     font-weight: bold;
@@ -2729,7 +2728,6 @@ html.menu-opened body header:before {
 }
 .project-img {
 	overflow: hidden;
-    padding: 3px 3px 0 3px;
 }
 .project-img img {
     -webkit-transform: translateZ(0);
@@ -2741,11 +2739,6 @@ html.menu-opened body header:before {
     -webkit-transition: all 2000ms cubic-bezier(.19,1,.22,1) 0ms;
     transition: all 2000ms cubic-bezier(.19,1,.22,1) 0ms;
     width: 100%;
-}
-.project-img:hover img {
-    -webkit-transform: scale(1.15);
-    -moz-transform: scale(1.15);
-    transform: scale(1.15);
 }
 .project-icon {
     position: relative;
@@ -2940,10 +2933,10 @@ html.menu-opened body header:before {
 	color: #1a1b1e;
 }
 .subscribe .sub-btn {
-    background: #131135;
+    background: #000;
     border-radius: 50px !important;
     font-weight: bold;
-    border: 1px solid #131135;
+    border: 1px solid #000;
     margin: 3px;
     font-size: 15px;
     line-height: 18px;
@@ -3128,7 +3121,7 @@ html.menu-opened body header:before {
     color: #fcb00c;
 }
 .learn-btn {
-	background: #131135;
+	background: #000;
 	border-radius: 150px;
 	font-weight: 600;
 	font-size: 14px;
@@ -3170,7 +3163,7 @@ html.menu-opened body header:before {
 	overflow: hidden;
 }
 .black-bg {
-	background: #131135;
+	background: #000;
 }
 .agency-content h2 {
 	font-weight: 600;
@@ -3315,7 +3308,7 @@ html.menu-opened body header:before {
     cursor: pointer;
     border: none;
     outline: none;
-    background: #131135;
+    background: #000;
 }
 .slick-prev:hover,
 .slick-prev:focus,
@@ -3662,7 +3655,7 @@ html.menu-opened body header:before {
     border-color: #fcb00c;
 }
 .cancel-btn {
-	background: #131135;
+	background: #000;
 	border-radius: 90px;
 	font-weight: bold;
     font-size: 17px;
@@ -4191,8 +4184,8 @@ label.file-upload.image-btn {
 	z-index: unset;
 }
 .btn-search .btn {
-    background-color: #131135;
-    border: 1px solid #131135;
+    background-color: #000;
+    border: 1px solid #000;
 	border-radius: 5px;
     color: #fff;
     height: 46px;
@@ -5564,7 +5557,7 @@ label.file-upload  input[type="file"] {
 }
 .share-icon {
 	display: inline-block;
-    background-color: #131135;
+    background-color: #000;
     border-radius: 6px;
     color: #fff;
     padding: 9px 16px;
@@ -7457,7 +7450,7 @@ label.file-upload  input[type="file"] {
 	color: #161c2d;
 }
 .plan-btn {
-	background: #131135;
+	background: #000;
 	border-radius: 10px;
 	font-weight: 500;
 	font-size: 20px;
@@ -7570,7 +7563,7 @@ label.file-upload  input[type="file"] {
 	margin-bottom: 25px;
 }
 .fund-btn {
-	background: #131135;
+	background: #000;
 	border-radius: 5px;
 	color: #fff;
 	font-weight: bold;
@@ -7676,8 +7669,8 @@ label.file-upload  input[type="file"] {
     color: #febe42;
 }
 .bg-black {
-	background: #131135;
-	border: 1px solid #131135;
+	background: #000;
+	border: 1px solid #000;
 }
 .setting-tab .nav-link {
 	padding: 15px 30px;
@@ -9020,8 +9013,8 @@ label.file-upload  input[type="file"] {
     color: #fff;
 }
 label.file-upload.image-upbtn {
-    background: #131135;
-	border: 1px solid #131135;
+    background: #000;
+	border: 1px solid #000;
     border-radius: 5px;
     color: #fff;
     padding: 12px 15px;
@@ -9139,8 +9132,8 @@ label.award-upload input[type="file"] {
 	margin-bottom: 35px;
 }
 .black-btn {
-	background: #131135;
-	border: 1px solid #131135;
+	background: #000;
+	border: 1px solid #000;
 }
 .portfolio-img {
     position: relative;
@@ -9883,8 +9876,8 @@ label.award-upload input[type="file"] {
     top: 0;
 }
 .price-btn {
-	background: #131135;
-	border: 1px solid #131135;
+	background: #000;
+	border: 1px solid #000;
 	border-radius: 5px;
 	font-weight: 500;
 	color: #fff;
@@ -10551,7 +10544,7 @@ h2.footer-title:after {
     padding: 0;
     display: inline-flex;
     position: absolute;
-    right: 15px;
+    left: 15px;
     top: 15px;
     justify-content: center;
     align-items: center;
@@ -10766,7 +10759,7 @@ h2.footer-title:after {
     font-size: 13px;
     color: #fff;
     border: 0;
-    background: #131135;
+    background: #000;
     text-align: center;
     -webkit-transition: color .7s ease, background-color .7s ease, border-color .7s ease;
     transition: color .7s ease, background-color .7s ease, border-color .7s ease;
@@ -10801,7 +10794,7 @@ h2.footer-title:after {
     font-size: 13px;
     color: #fff;
     border: 0;
-    background: #131135;
+    background: #000;
     text-align: center;
     -webkit-transition: color .7s ease, background-color .7s ease, border-color .7s ease;
     transition: color .7s ease, background-color .7s ease, border-color .7s ease;

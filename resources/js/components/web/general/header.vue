@@ -51,7 +51,7 @@
                             Ahmed Mohamed
                         </router-link>
                     </li>
-                    <li v-if="!token" :class="[$route.name == 'partners' ? 'active' : '']">
+                    <li v-if="!token">
                         <router-link :to="{name:'partners',params: {lang:this.$i18n.locale}}" class="partner">
                             {{$t('header.partner')}}
                         </router-link>
@@ -130,6 +130,7 @@ export default {
     .main-nav li a{
         font-size: 15px !important;
         font-weight: 500;
+        color: #000;
     }
     .main-nav li a:hover{
         color: #fcb00c;
@@ -138,18 +139,22 @@ export default {
         color: #fcb00c;
     }
     .main-nav > li.active > a::after {
-    background: #fcb00c;
+        background: #fcb00c;
     }
 
     .header-navbar-rht .reg-btn:hover {
         color: #fcb00c !important;
     }
     .header-navbar-rht .login-btn {
-    background-color: #fcb00c;
-    border-color: #fcb00c;
-    padding: 5px 15px;
-    font-size: 16px;
-    box-shadow: none;
+        background: #fcb00cd6;
+        border-color: #fcb00cd6;
+        padding: 5px 15px;
+        font-size: 16px;
+        box-shadow: none;
+    }
+    .header-navbar-rht .login-btn:hover {
+        background: #fcb00c;
+        border-color: #fcb00c;
     }
     .header-navbar-rht .custom{
             font-size: 13px !important;
@@ -166,6 +171,10 @@ export default {
     .header-navbar-rht .partner:hover{
        background-color: #fcb00c !important;
        color: #fff !important;
+    }
+
+    .active{
+        color: #fcb00c;
     }
 
     @media only screen and (max-width: 1115px){

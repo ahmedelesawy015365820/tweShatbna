@@ -40,18 +40,18 @@
 
         <!-- Our Feature -->
         <section class="section feature">
-            <div class="container">
+            <div class="container container-custom">
                 <div class="row">
 
                     <!-- Feature Item -->
                     <div class="col-md-4">
-                        <div class="feature-item freelance-count">
+                        <div class="feature-item">
                             <div class="feature-icon">
-                                <img src="web/img/icon/icon-01.png" class="img-fluid" alt="">
+                                <img src="web/img/icon/FreeDesignerOrange.svg" class="img-fluid" alt="">
                             </div>
                             <div class="feature-content">
-                                <h3>919,207</h3>
-                                <p>freelance Developers</p>
+                                <h3 id="counter-1"></h3>
+                                <p>{{$t('index.freelancer')}}</p>
                             </div>
                         </div>
                     </div>
@@ -60,12 +60,12 @@
                     <!-- Feature Item -->
                     <div class="col-md-4">
                         <div class="feature-item">
-                            <div class="feature-icon">
-                                <img src="web/img/icon/icon-02.png" class="img-fluid" alt="">
+                            <div class="feature-icon middle">
+                                <img src="web/img/icon/CompanyFreeOrange.svg" class="img-fluid" alt="">
                             </div>
                             <div class="feature-content">
-                                <h3>25 - 100+</h3>
-                                <p>Developers  per project</p>
+                                <h3 id="counter-2"></h3>
+                                <p>{{$t('index.finish')}}</p>
                             </div>
                         </div>
                     </div>
@@ -73,13 +73,13 @@
 
                     <!-- Feature Item -->
                     <div class="col-md-4">
-                        <div class="feature-item comp-project">
-                            <div class="feature-icon">
-                                <img src="web/img/icon/icon-03.png" class="img-fluid" alt="">
+                        <div class="feature-item">
+                            <div class="feature-icon last">
+                                <img src="web/img/icon/ProjectOrange.svg" class="img-fluid" alt="">
                             </div>
                             <div class="feature-content">
-                                <h3>388,615</h3>
-                                <p>completed projects</p>
+                                <h3 id="counter-3"></h3>
+                                <p>{{$t('index.project')}}</p>
                             </div>
                         </div>
                     </div>
@@ -96,12 +96,14 @@
                 <div class="row">
 
                     <!-- Feature Item -->
-                    <div class="col-md-6 work-box bg1">
+                    <div class="col-md-6 work-box bg12">
                         <div class="work-content">
                             <h2>{{$t('index.search-company')}}</h2>
                             <p>{{$t('index.parge-company')}}</p>
-                            <div class="row justify-content-between">
-                                <div class="col-4"></div>
+                            <div class="row justify-content-between align-items-end">
+                                <div class="col-4">
+                                    <img src="/web/img/icon/AHMED12.svg">
+                                </div>
                                 <a href="#" class="col-2">
                                     <i :class="['fas',this.$i18n.locale != 'ar'?'fa-long-arrow-alt-right':'fa-long-arrow-alt-left','long-arrow']"></i>
                                 </a>
@@ -110,12 +112,14 @@
                     </div>
                     <!-- /Feature Item -->
 
-                    <div class="col-md-6 work-box bg2">
+                    <div class="col-md-6 work-box bg10">
                         <div class="work-content">
                             <h2>{{$t('index.search-design')}}</h2>
                             <p>{{$t('index.parge-company')}}</p>
-                            <div class="row justify-content-between">
-                                <div class="col-4"></div>
+                            <div class="row justify-content-between align-items-end">
+                                <div class="col-4">
+                                    <img src="/web/img/icon/DesignerSearchBlack.svg">
+                                </div>
                                 <a href="#" class="col-2">
                                     <i :class="['fas',this.$i18n.locale != 'ar'?'fa-long-arrow-alt-right':'fa-long-arrow-alt-left','long-arrow']"></i>
                                 </a>
@@ -129,13 +133,15 @@
 
         <!-- Projects -->
         <section class="section projects">
-            <div class="container">
+            <div class="container container-custom">
                 <div class="row">
                     <div class="col-12 col-md-12 mx-auto">
                         <div class="section-header text-center">
                             <div class="section-line"></div>
-                            <h2 class="header-title">Get Inspired<br> By Development Projects</h2>
-                            <p>High Performing Solutions To Your</p>
+                            <h2 class="header-title">{{$t('index.bargain')}}</h2>
+                            <div class="row justify-content-center">
+                                <p>{{$t('index.decBargain')}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,23 +149,60 @@
                 <div class="row">
 
                     <!--- Project Item  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="project-item">
-                            <div class="project-img">
-                                <a href="project.html"><img src="web/img/project/project-01.jpg" alt="" class="img-fluid"></a>
+                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
+                                <div>
+                                    <span>500</span>
+                                    <span class="coin">EGP</span>
+                                </div>
+                            </span>
+                            <div class="row">
+                                <div class="project-img col-6">
+                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
+                                </div>
+                                <div class="col-6 row align-items-center">
+                                    <h4>
+                                        {{$t('index.decProduct')}}
+                                    </h4>
+                                </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="project-content">
-                                    <h4>45</h4>
-                                    <h5>ANDROID APPS</h5>
+                            <div class="d-flex  align-items-center">
+                                <div class="project-content button">
+                                    <button class="subscribe">
+                                        <span>{{$t('index.subscribe')}}</span>
+                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
+                                    </button>
+                                    <button class="share">
+                                        <span>{{$t('index.share')}}</span>
+                                        <div><img src="/web/img/icon/share.svg"></div>
+                                    </button>
                                 </div>
-                                <div class="pro-icon">
-                                    <div class="project-icon">
+                                <div class="project-content">
+                                    <div class="time-container">
+                                        <h4>{{$t('index.show')}}</h4>
+                                        <div class="time">
+                                            <div class="second">
+                                                <span>05</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="minute">
+                                                <span>23</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="hour">
+                                                <span>33</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="day">
+                                                <span>15</span>
+                                                <small>{{$t('index.day')}}</small>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="project-content">
-                                    <h4>20</h4>
-                                    <h5>Developers</h5>
                                 </div>
                             </div>
                         </div>
@@ -167,71 +210,60 @@
                     <!--- /Project Item  -->
 
                     <!--- Project Item  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="project-item">
-                            <div class="project-img">
-                                <a href="project.html"><img src="web/img/project/project-02.jpg" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="project-content">
-                                    <h4>45</h4>
-                                    <h5>LARAVEL</h5>
+                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
+                                <div>
+                                    <span>500</span>
+                                    <span class="coin">EGP</span>
                                 </div>
-                                <div class="pro-icon">
-                                    <div class="project-icon">
+                            </span>
+                            <div class="row">
+                                <div class="project-img col-6">
+                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
+                                </div>
+                                <div class="col-6 row align-items-center">
+                                    <h4>
+                                        {{$t('index.decProduct')}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="d-flex  align-items-center">
+                                <div class="project-content button">
+                                    <button class="subscribe">
+                                        <span>{{$t('index.subscribe')}}</span>
+                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
+                                    </button>
+                                    <button class="share">
+                                        <span>{{$t('index.share')}}</span>
+                                        <div><img src="/web/img/icon/share.svg"></div>
+                                    </button>
+                                </div>
+                                <div class="project-content">
+                                    <div class="time-container">
+                                        <h4>{{$t('index.show')}}</h4>
+                                        <div class="time">
+                                            <div class="second">
+                                                <span>05</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="minute">
+                                                <span>23</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="hour">
+                                                <span>33</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="day">
+                                                <span>15</span>
+                                                <small>{{$t('index.day')}}</small>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="project-content">
-                                    <h4>20</h4>
-                                    <h5>Developers</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- /Project Item  -->
-
-                    <!--- Project-Item  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="project-item">
-                            <div class="project-img">
-                                <a href="project.html"><img src="web/img/project/project-03.jpg" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="project-content">
-                                    <h4>45</h4>
-                                    <h5>React</h5>
-                                </div>
-                                <div class="pro-icon">
-                                    <div class="project-icon">
-                                    </div>
-                                </div>
-                                <div class="project-content">
-                                    <h4>20</h4>
-                                    <h5>Developers</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- /Project Item  -->
-
-                    <!--- Project Item  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="project-item">
-                            <div class="project-img">
-                                <a href="project.html"><img src="web/img/project/project-04.jpg" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="project-content">
-                                    <h4>45</h4>
-                                    <h5>GOLANG</h5>
-                                </div>
-                                <div class="pro-icon">
-                                    <div class="project-icon">
-                                    </div>
-                                </div>
-                                <div class="project-content">
-                                    <h4>20</h4>
-                                    <h5>Developers</h5>
                                 </div>
                             </div>
                         </div>
@@ -239,23 +271,60 @@
                     <!--- /Project Item  -->
 
                     <!--- Project Item  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="project-item">
-                            <div class="project-img">
-                                <a href="project.html"><img src="web/img/project/project-01.jpg" alt="" class="img-fluid"></a>
+                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
+                                <div>
+                                    <span>500</span>
+                                    <span class="coin">EGP</span>
+                                </div>
+                            </span>
+                            <div class="row">
+                                <div class="project-img col-6">
+                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
+                                </div>
+                                <div class="col-6 row align-items-center">
+                                    <h4>
+                                        {{$t('index.decProduct')}}
+                                    </h4>
+                                </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="project-content">
-                                    <h4>45</h4>
-                                    <h5>.NET</h5>
+                            <div class="d-flex  align-items-center">
+                                <div class="project-content button">
+                                    <button class="subscribe">
+                                        <span>{{$t('index.subscribe')}}</span>
+                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
+                                    </button>
+                                    <button class="share">
+                                        <span>{{$t('index.share')}}</span>
+                                        <div><img src="/web/img/icon/share.svg"></div>
+                                    </button>
                                 </div>
-                                <div class="pro-icon">
-                                    <div class="project-icon">
+                                <div class="project-content">
+                                    <div class="time-container">
+                                        <h4>{{$t('index.show')}}</h4>
+                                        <div class="time">
+                                            <div class="second">
+                                                <span>05</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="minute">
+                                                <span>23</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="hour">
+                                                <span>33</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="day">
+                                                <span>15</span>
+                                                <small>{{$t('index.day')}}</small>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="project-content">
-                                    <h4>20</h4>
-                                    <h5>Developers</h5>
                                 </div>
                             </div>
                         </div>
@@ -263,71 +332,60 @@
                     <!--- /Project Item  -->
 
                     <!--- Project Item  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="project-item">
-                            <div class="project-img">
-                                <a href="project.html"><img src="web/img/project/project-04.jpg" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="project-content">
-                                    <h4>45</h4>
-                                    <h5>JAVA</h5>
+                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
+                                <div>
+                                    <span>500</span>
+                                    <span class="coin">EGP</span>
                                 </div>
-                                <div class="pro-icon">
-                                    <div class="project-icon">
+                            </span>
+                            <div class="row">
+                                <div class="project-img col-6">
+                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
+                                </div>
+                                <div class="col-6 row align-items-center">
+                                    <h4>
+                                        {{$t('index.decProduct')}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="d-flex  align-items-center">
+                                <div class="project-content button">
+                                    <button class="subscribe">
+                                        <span>{{$t('index.subscribe')}}</span>
+                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
+                                    </button>
+                                    <button class="share">
+                                        <span>{{$t('index.share')}}</span>
+                                        <div><img src="/web/img/icon/share.svg"></div>
+                                    </button>
+                                </div>
+                                <div class="project-content">
+                                    <div class="time-container">
+                                        <h4>{{$t('index.show')}}</h4>
+                                        <div class="time">
+                                            <div class="second">
+                                                <span>05</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="minute">
+                                                <span>23</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="hour">
+                                                <span>33</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="day">
+                                                <span>15</span>
+                                                <small>{{$t('index.day')}}</small>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="project-content">
-                                    <h4>20</h4>
-                                    <h5>Developers</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- /Project Item  -->
-
-                    <!--- Project Item  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="project-item">
-                            <div class="project-img">
-                                <a href="project.html"><img src="web/img/project/project-03.jpg" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="project-content">
-                                    <h4>45</h4>
-                                    <h5>PYTHON</h5>
-                                </div>
-                                <div class="pro-icon">
-                                    <div class="project-icon">
-                                    </div>
-                                </div>
-                                <div class="project-content">
-                                    <h4>20</h4>
-                                    <h5>Developers</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- /Project Item  -->
-
-                    <!--- Project-Item  -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="project-item">
-                            <div class="project-img">
-                                <a href="project.html"><img src="web/img/project/project-01.jpg" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="project-content">
-                                    <h4>45</h4>
-                                    <h5>ANGULAR</h5>
-                                </div>
-                                <div class="pro-icon">
-                                    <div class="project-icon">
-                                    </div>
-                                </div>
-                                <div class="project-content">
-                                    <h4>20</h4>
-                                    <h5>Developers</h5>
                                 </div>
                             </div>
                         </div>
@@ -339,7 +397,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div class="see-all">
-                            <a href="project.html" class="btn all-btn">SEE ALL PROJECT</a>
+                            <a href="project.html" class="btn all-btn">{{$t('index.productEver')}}</a>
                         </div>
                     </div>
                 </div>
@@ -364,8 +422,7 @@
                     <div class="col-md-7 col-sm-12 col-12 mx-auto">
                         <div class="section-header text-center">
                             <div class="section-line"></div>
-                            <h2 class="header-title">Most Hired Developers</h2>
-                            <p>Work with talented people at the most affordable price</p>
+                            <h2 class="header-title">{{$t('index.patrons')}}</h2>
                         </div>
                     </div>
                 </div>
@@ -373,332 +430,164 @@
                 <div id="developers-slider" class="owl-carousel owl-theme developers-slider">
                     <div class="freelance-widget">
                         <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
+                            <a
+                                data-toggle="modal"
+                               href="#rating"
+                               :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
                             <div class="freelance-img">
                                 <a href="#">
-                                    <img src="web/img/user/avatar-1.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
                                 </a>
                             </div>
                             <div class="freelance-info">
-                                <h3><a href="#">George Wells</a></h3>
-                                <div class="freelance-specific">UI/UX Designer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Alabama, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.7 (32)</span>
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
                                 </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">$25 Hourly</div>
                             </div>
                         </div>
                         <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
                         </div>
                     </div>
                     <div class="freelance-widget">
                         <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
                             <div class="freelance-img">
                                 <a href="#">
-                                    <img src="web/img/user/avatar-2.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
                                 </a>
                             </div>
                             <div class="freelance-info">
-                                <h3><a href="#">Timothy Smith</a></h3>
-                                <div class="freelance-specific">PHP Developer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Illinois, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">3.5 (25)</span>
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
                                 </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">Free</div>
                             </div>
                         </div>
                         <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
                         </div>
                     </div>
                     <div class="freelance-widget">
                         <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
                             <div class="freelance-img">
                                 <a href="#">
-                                    <img src="web/img/user/avatar-3.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
                                 </a>
                             </div>
                             <div class="freelance-info">
-                                <h3><a href="#">Janet Paden</a></h3>
-                                <div class="freelance-specific">Graphic Designer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>New York, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.1 (30)</span>
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
                                 </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">$27 Hourly</div>
                             </div>
                         </div>
                         <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
                         </div>
                     </div>
                     <div class="freelance-widget">
                         <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
                             <div class="freelance-img">
                                 <a href="#">
-                                    <img src="web/img/img-03.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
                                 </a>
                             </div>
                             <div class="freelance-info">
-                                <h3><a href="#">James Douglas</a></h3>
-                                <div class="freelance-specific">iOS Developer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Florida, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.3 (31)</span>
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
                                 </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">$23 Hourly</div>
                             </div>
                         </div>
                         <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
                         </div>
                     </div>
                     <div class="freelance-widget">
                         <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
                             <div class="freelance-img">
                                 <a href="#">
-                                    <img src="web/img/img-03.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
                                 </a>
                             </div>
                             <div class="freelance-info">
-                                <h3><a href="#">Richard Wilson</a></h3>
-                                <div class="freelance-specific">UI/UX Designer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Alabama, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.7 (32)</span>
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
                                 </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">$25 Hourly</div>
                             </div>
                         </div>
                         <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
                         </div>
                     </div>
                     <div class="freelance-widget">
                         <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
                             <div class="freelance-img">
                                 <a href="#">
-                                    <img src="web/img/img-03.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
                                 </a>
                             </div>
                             <div class="freelance-info">
-                                <h3><a href="#">Richard Wilson</a></h3>
-                                <div class="freelance-specific">UI/UX Designer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Alabama, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.7 (32)</span>
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
                                 </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">$25 Hourly</div>
                             </div>
                         </div>
                         <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="web/img/img-03.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Richard Wilson</a></h3>
-                                <div class="freelance-specific">UI/UX Designer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Alabama, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.7 (32)</span>
-                                </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">$25 Hourly</div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="web/img/img-03.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Richard Wilson</a></h3>
-                                <div class="freelance-specific">UI/UX Designer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Alabama, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.7 (32)</span>
-                                </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">$25 Hourly</div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite favourited"><i class="fas fa-star"></i></a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="web/img/img-04.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Richard Wilson</a></h3>
-                                <div class="freelance-specific">UI/UX Designer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Alabama, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.8 (55)</span>
-                                </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">$25 Hourly</div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a data-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="web/img/img-03.jpg" alt="User Image">
-                                    <span class="verified"><i class="fas fa-check-circle"></i></span>
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Richard Wilson</a></h3>
-                                <div class="freelance-specific">UI/UX Designer</div>
-                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Alabama, USA</div>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">5.0 (4)</span>
-                                </div>
-                                <div class="freelance-tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Web Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">UI Design</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Node Js</span></a>
-                                </div>
-                                <div class="freelancers-price">Free</div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">View Profile</a>
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
                         </div>
                     </div>
                 </div>
@@ -706,127 +595,6 @@
             </div>
         </section>
         <!-- End Developer -->
-
-        <!-- Review -->
-        <section class="section testimonial-section review">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-header text-center">
-                            <div class="section-line"></div>
-                            <h2 class="header-title">Top Reviews</h2>
-                            <p>High Performing Developers To Your</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="testimonial-slider"
-                     class="owl-carousel owl-theme testimonial-slider"
-                >
-
-                    <!-- Review Widget -->
-                    <div class="review-blog">
-                        <div class="review-top d-flex align-items-center">
-                            <div class="review-img">
-                                <a href="review.html"><img class="img-fluid" src="/web/img/review/review-01.jpg" alt="Post Image"></a>
-                            </div>
-                            <div class="review-info">
-                                <h3>Davis Payerf</h3>
-                                <h5>CEO</h5>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.7</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p>
-                        </div>
-                    </div>
-                    <!-- / Review Widget -->
-
-                    <!-- Review Widget -->
-                    <div class="review-blog">
-                        <div class="review-top d-flex align-items-center">
-                            <div class="review-img">
-                                <a href="review.html"><img class="img-fluid" src="/web/img/review/review-02.jpg" alt="Post Image"></a>
-                            </div>
-                            <div class="review-info">
-                                <h3>Davis Payerf</h3>
-                                <h5>PROJECT LEAD</h5>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">4.8</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p>
-                        </div>
-                    </div>
-                    <!-- /Review Widget -->
-
-                    <!-- Review Widget -->
-                    <div class="review-blog">
-                        <div class="review-top d-flex align-items-center">
-                            <div class="review-img">
-                                <a href="review.html"><img class="img-fluid" src="/web/img/review/review-03.jpg" alt="Post Image"></a>
-                            </div>
-                            <div class="review-info">
-                                <h3>Davis Payerf</h3>
-                                <h5>TEAM LEAD</h5>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">5.0</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p>
-                        </div>
-                    </div>
-                    <!-- /Review Widget -->
-
-                    <!-- Review Widget -->
-                    <div class="review-blog">
-                        <div class="review-top d-flex align-items-center">
-                            <div class="review-img">
-                                <a href="review.html"><img class="img-fluid" src="/web/img/review/review-02.jpg" alt="Post Image"></a>
-                            </div>
-                            <div class="review-info">
-                                <h3>Davis Payerf</h3>
-                                <h5>PROJECT LEAD</h5>
-                                <div class="rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span class="average-rating">3.2</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Volutpat orci enim, mattis nibh aliquam dui, nibh faucibus aenean.</p>
-                        </div>
-                    </div>
-                    <!-- /Review Widget -->
-                </div>
-
-            </div>
-        </section>
-        <!-- / Review -->
 
     </div>
 </template>
@@ -841,7 +609,6 @@ export default {
 
         let carousel = () => {
             $('#developers-slider').removeClass('owl-hidden');
-            $('#testimonial-slider').removeClass('owl-hidden');
             //start owl-carousel
             if($('#developers-slider').length > 0 ){
                 $('#developers-slider').owlCarousel({
@@ -869,45 +636,52 @@ export default {
                     }
                 });
             }
-
-            if($('#testimonial-slider').length > 0 ){
-                $('#testimonial-slider').owlCarousel({
-                    rtl: true,
-                    items: 5,
-                    margin: 30,
-                    dots : false,
-                    nav: true,
-                    navText: [
-                        '<i class="fas fa-chevron-left"></i>',
-                        '<i class="fas fa-chevron-right"></i>'
-                    ],
-                    loop: true,
-                    responsiveClass:true,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        768 : {
-                            items: 3
-                        },
-                        1170: {
-                            items: 3
-                        }
-                    }
-                });
-            }
             //end owl-carousel
         }
 
         onMounted(() => {
             carousel();
+            counter(20600,1,0)
+            counter(67000,2,0)
+            counter(105340,3,0)
         });
 
         emitter.on('get_lang_web', () => {
 
         });
 
-        return {};
+        let counter = (num,id,time = 1000) => {
+
+            let number = 0;
+
+            if(num > 10000 && num < 20000 ){
+                number = num - 1500;
+            }
+            else if(num > 20000 && num < 30000){
+                number = num - 2000;
+            }
+            else if(num > 50000 && num < 100000){
+                number =  num - 40000;
+            }
+            else if(num > 100000){
+                number = 90000 - 3500;
+            }
+
+             let count = setInterval(() =>{
+
+                 let element= document.getElementById("counter-"+id);
+
+                 element.innerHTML = new Intl.NumberFormat().format(number++);
+
+                    if(num < number){
+                        clearInterval(count);
+                    }
+
+               },time);
+
+        };
+
+        return {counter};
     }
 }
 </script>
@@ -916,6 +690,8 @@ export default {
 section{
    overflow: hidden;
 }
+
+/*start banner*/
 
 .home-banner {
     background-image: url(/web/img/Slider.jfif);
@@ -998,9 +774,98 @@ input.form-control{
     z-index: 10
 }
 
-/*.work-content h2:after{*/
-/*    display: none;*/
-/*}*/
+.banner-content .sub-btn{
+    display: inline-block;
+    margin-left: 20px;
+    height: 54px;
+    padding: 0 45px;
+    margin-top: 10px;
+}
+
+/*end banner*/
+
+.feature-item {
+    padding: 20px 30px;
+    box-shadow: 0px 0px 5px -2px rgb(0 0 0 / 37%);
+}
+
+.feature .feature-icon {
+    margin-bottom: 0px;
+    min-height: 70px;
+}
+
+.feature .feature-icon::before {
+    content: '';
+    background: #ffb2045c;
+    transform: translateX(-50%);
+    width: 84px;
+    border-radius: 50%;
+    height: 84px;
+    top: -12px;
+}
+ .feature .feature-icon:nth-of-type(1)::before {
+     transform: translateX(1%);
+ }
+
+.feature .feature-icon.middle::before {
+    transform: translateX(0%);
+    top: -5px;
+    width: 80px;
+    height: 80px;
+}
+.feature .feature-icon.middle img{
+    width: 60px;
+}
+
+.feature .feature-icon.last::before{
+    transform: translateX(-112%);
+}
+.feature .feature-icon.last img[data-v-0939d6eb] {
+    width: 68px;
+}
+
+
+
+.feature .feature-icon img {
+    width: 65px;
+}
+
+.feature .feature-content h3 {
+     margin-bottom: 0px;
+    font-size: 28px;
+}
+
+.feature .feature-content p {
+    font-size: 18px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+}
+
+/*start work-content*/
+.bg12{
+    background-color: #fcb00c;
+}
+
+.bg10{
+    background-color: #f5ae1473;
+}
+
+.bg10 .work-content h2{
+    color: #000;
+}
+.bg10 .work-content h2:after{
+    background-color: #000;
+}
+
+.bg10 .work-content p{
+    color: #000000de;
+}
+
+.bg10 .work-content .long-arrow {
+    background: #000;
+    color: #fff;
+}
 
 .work-content h2 {
     font-size: 32px;
@@ -1014,6 +879,10 @@ input.form-control{
     font-size: 22px;
 }
 
+.work-content img{
+    width: 90%;
+}
+
 .subscribe {
     padding: 125px 0;
 }
@@ -1021,7 +890,198 @@ input.form-control{
     color: #fff;
 }
 
+/*start work-content*/
+
+
+/*start product*/
+.container-custom{
+    max-width: 1160px;
+}
+.projects .header-title{
+    color: #fcb00c;
+}
+
+.projects  .section-header p{
+    width: 30%;
+    font-size: 28px;
+}
+
+.project-item {
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px -2px rgb(0 0 0 / 37%);
+}
+.project-item{
+    position: relative;
+}
+.project-item .price{
+    position: absolute;
+    color: #fcb00c;
+    right: 3%;
+    font-size: 35px;
+    top: 7%;
+    font-weight: 600;
+}
+.project-item .price-ar{
+    position: absolute;
+    color: #fcb00c;
+    left: 3%;
+    top: 7%;
+    font-size: 35px;
+    font-weight: 600;
+}
+.price .coin ,.price-ar .coin {
+    font-size: 18px;
+    margin: 0 10px;
+    font-weight: 500;
+}
+.project-item h4{
+    font-size: 19px;
+    color: #4e4949;
+}
+
+.project-content {
+    margin: 0 auto;
+}
+.project-content.button{
+    position: relative;
+    top: 20px;
+}
+
+.project-content button.subscribe{
+    margin: 5px 3px;
+    padding: 3px 3px;
+    font-size: 15px;
+    background: #fcb00c;
+    color: #fff;
+    border-radius: 22px;
+}
+.project-content button.share{
+    margin: 0 3px;
+    padding: 2px 0;
+    font-size: 15px;
+    color: #fcb00c;
+    border: 1px solid  #fcb00c;
+    background-color: transparent;
+    border-radius: 22px;
+}
+
+.project-content button div{
+    display: inline-block;
+    border-radius: 50%;
+    padding: 0 5px;
+}
+
+.project-content button.share div {
+    border: 1px solid #fcb00c;
+}
+.project-content button.subscribe div {
+    border: 1px solid #fff;
+}
+.project-content button.subscribe span{
+    margin: 0 8px;
+}
+.project-content button.share span{
+    margin: 0 20px;
+}
+.project-content button img{
+    width: 13px;
+}
+.project-content h4 {
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: lowercase;
+    color: #fcb00c;
+    text-align: start;
+    padding: 0 20px;
+}
+.project-content .time-container{
+    position: relative;
+    right: 42px;
+}
+.project-content .time{
+    position: relative;
+}
+.project-content .time .point{
+    top: 6px;
+    position: relative;
+    font-size: 19px;
+    color: #000;
+    font-weight: 600;
+}
+.project-content .time div{
+    display: inline-block;
+    background: #000;
+    position: relative;
+    color: #fff;
+    border-radius: 5px;
+    margin: 2px 4px;
+    text-align: center;
+    padding: 0px 10px 9px;
+}
+.project-content .time div.day{
+    padding: 0 11px 9px;
+}
+.project-content .time div small {
+    display: block;
+    position: absolute;
+    top: 13px;
+    margin: 0;
+    font-size: 9px;
+}
+.project-content .time div.minute small {
+    left: 7px;
+}
+.project-content .time div.hour small.en {
+    left: 10px;
+}
+.project-content .time div.minute small.en, .project-content .time div small.en{
+    left: 5px;
+}
+.project-content .time div.hour small {
+    left: 7px;
+}
+/*end product*/
+
+
+.header-title {
+    font-size: 36px;
+}
+
+.freelance-widget .freelance-content{
+    box-shadow: 0 3px 18px -8px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    border: none;
+}
+
+.freelance-widget:hover .favourite,
+.freelance-widget:hover .btn-cart{
+    color: #fff;
+    background-color: #fcb00c;
+}
+
+.freelance-info h3 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.freelance-info h3 a:hover{
+    color: #fcb00c;
+}
+
+.freelance-specific span{
+    font-size: 18px;
+    width: 65%;
+}
+
+.btn-cart {
+    background: #fcb00cd6;
+    transition: all .5s ease-in-out;
+}
+
 @media only screen and (max-width: 992px){
+    .home-banner{
+        height: 80vh !important;
+    }
     .banner-content .rating, .banner-content .rating h5 {
         font-size: 17px;
     }
@@ -1036,6 +1096,28 @@ input.form-control{
     }
     .work-content p {
         font-size: 16px;
+    }
+    .project-content .time-container{
+        position: initial;
+    }
+    .project-content {
+        margin: 0 auto;
+        text-align: initial;
+        width: 52%;
+    }
+    .project-content .time div {
+        margin: 2px 2px;
+        padding: 0px 9px 9px;
+    }
+    .project-content h4 {
+        padding: 0 3px;
+    }
+    .projects .section-header p{
+        width: 44%;
+        font-size: 28px;
+    }
+    .project-content button.share{
+        margin: 0 3px 13px;
     }
 }
 
@@ -1052,6 +1134,15 @@ input.form-control{
     .work-content p {
         font-size: 16px;
     }
+    .project-content h4 {
+        font-size: 14px;
+        text-transform: lowercase;
+        text-align: start;
+        padding: 0px 0%;
+    }
+    .projects .section-header p {
+        width: 58%;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -1063,6 +1154,40 @@ input.form-control{
     }
     .banner-content p[data-v-0939d6eb] {
         font-size: 24px;
+    }
+    .projects .section-header p{
+        width: 65%;
+        font-size: 27px;
+        line-height: 1.1;
+    }
+    .project-item .price-ar,.project-item .price {
+        font-size: 30px;
+    }
+    .project-item h4{
+        font-size: 13px;
+        color: #4e4949;
+    }
+    .project-content .time-container{
+        position: initial;
+    }
+    .project-content h4{
+        color: #fcb00c;
+    }
+    .project-content {
+        margin: 0 auto;
+        text-align: initial;
+         width: 52%;
+    }
+
+    .project-content button.share{
+        margin: 0px 3px 15px;
+        font-size: 14px;
+    }
+    .project-content .time div {
+        margin: 2px 2px;
+    }
+    .project-content h4{
+        padding: 0 6px;
     }
 }
 </style>

@@ -56,7 +56,7 @@ const routes = [
                 name: 'partners',
                 component: successPartner,
                 meta: {
-                    middleware: [auth]
+                    middleware: [guest]
                 },
             },
             {

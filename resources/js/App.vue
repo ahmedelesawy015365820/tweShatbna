@@ -5,7 +5,7 @@
         <!-- Start Navigation -->
 
         <!-- Header -->
-        <layout-header />
+        <layout-header v-if="!link.includes($route.name)" />
         <!-- /Header -->
 
         <router-view v-slot="{ Component }">
@@ -38,6 +38,11 @@
     export default {
         mounted() {
             console.log('web.')
+        },
+        data(){
+            return {
+                link : ['partners']
+            }
         }
     }
 </script>

@@ -957,6 +957,11 @@ export default {
         return {
             locale : localStorage.getItem("langWeb") || 'ar'
         }
+    },
+    mounted(){
+
+        // remove class menu-opened from html (!important)
+        document.querySelector("html").classList.remove("menu-opened");
     }
 }
 </script>

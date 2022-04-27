@@ -131,7 +131,7 @@ class RegisterController extends Controller
                 "password" => $request->password,
                 "auth_id" => 2,
                 'role_name'=> ['design'],
-                "status" => 0,
+                "status" => 1,
             ]);
 
             $user->complement()->create([

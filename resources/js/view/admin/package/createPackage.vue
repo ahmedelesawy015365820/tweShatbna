@@ -35,8 +35,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <!-- <div class="alert alert-danger text-center" v-if="errors['en.name']">{{ errors['en.name'][0] }}<br /> </div>
-                                    <div class="alert alert-danger text-center" v-if="errors['ar.name']">{{ errors['ar.name'][0] }}<br /> </div> -->
+                                    <div class="alert alert-danger text-center" v-if="errors['en.name']">{{ errors['en.name'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['ar.name']">{{ errors['ar.name'][0] }}<br /> </div>
                                     <form @submit.prevent="storePackage" class="needs-validation">
                                         <div class="form-row row">
                                             <div class="col-md-6 mb-3">
@@ -143,7 +143,7 @@
                                                             <option
                                                                 v-for="view in page.views"
                                                                 :value="view.pivot.id"
-                                                                :key="view.pivot.id"
+                                                                v-show="!notWebId.includes(view.pivot.id)"
                                                             >
                                                                 {{ page.name+ ' -- '  +view.type}}
                                                             </option>
@@ -174,6 +174,7 @@
                                                             <option
                                                                 v-for="view in page.views"
                                                                 :value="view.pivot.id"
+                                                                v-show="!notMobileId.includes(view.pivot.id)"
                                                                 :key="view.pivot.id"
                                                             >
                                                                 {{ page.name+ ' -- '  +view.type}}
@@ -222,6 +223,8 @@ export default {
         // get create Package
         let pageWeb = ref([]);
         let pageMobile =  ref([]);
+        let notWebId = ref([]);
+        let notMobileId = ref([]);
         let loading = ref(false);
 
 
@@ -233,6 +236,8 @@ export default {
                     let l = res.data.data;
                     pageWeb.value = l.pageView;
                     pageMobile.value = l.pageViewMobile;
+                    notWebId.value = l.notWebId;
+                    notMobileId.value = l.notMobileId;
                 })
                 .catch((err) => {
                     console.log(err.response.data);
@@ -309,7 +314,7 @@ export default {
         const v$ = useVuelidate(rules,addPackage.data);
 
 
-        return {pageWeb,pageMobile,loading,...toRefs(addPackage),v$};
+        return {pageWeb,pageMobile,loading,...toRefs(addPackage),notWebId,notMobileId,v$};
     },
     methods: {
         storePackage(){

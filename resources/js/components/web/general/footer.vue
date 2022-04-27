@@ -133,6 +133,9 @@ export default {
     font-size: 20px;
     color: #fcb00c;
 }
+.fa-instagram:hover, .fa-linkedin-in:hover, .fa-twitter:hover, .fa-facebook-f:hover{
+    color: #fff;
+}
 @media only screen and (max-width: 1115px){
 }
 @media only screen and (max-width: 992px){

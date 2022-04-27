@@ -91,6 +91,12 @@ use Illuminate\Support\Facades\Route;
              Route::get('numPackage',  'AdvertiseController@numPackage');
              Route::get('salePackage',  'AdvertiseController@package');
 
+             // start DeSign
+             Route::get('degreeService',  'DesignController@degreeService');
+             Route::post('trustDesginOne',  'DesignController@trustDesginOne');
+             Route::post('trustDesginTwe',  'DesignController@trustDesginTwe');
+             Route::post('trustDesginThree',  'DesignController@trustDesginThree');
+
          });
 
 

@@ -20,6 +20,11 @@ class AdvertisingPageMobileAdvertisingView extends Model
         return $this->belongsTo(AdvertisingPageMobile::class,'page_mobile_id');
     }
 
+    public function view()
+    {
+        return $this->belongsTo(AdvertisingView::class,'view_id');
+    }
+
     public function sizeMobile()
     {
         return $this->hasOne(AdvertisingSizeMobile::class,'page_mobile_view_id','id');

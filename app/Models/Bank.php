@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PageViewPackage extends Model
+class Bank extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    protected $table = 'page_view_packages';
-
+    public function user()
+    {
+        return $this->belongsTo(Bank::class,'user_id');
+    }
 }

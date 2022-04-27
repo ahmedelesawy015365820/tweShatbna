@@ -89,22 +89,26 @@ const actions = {
 
         webApi.post(`/v1/web/login`,preload)
             .then((res) => {
-                let l =res.data.data;
-                commit('editToken',l.access_token);
-                commit('editRoles',l.role_name);
-                commit('editUser',l.user);
-                commit('editComplement',l.complement);
-                commit('editPartner',l.partner);
+                let l = res.data.data;
+                commit('editToken', l.access_token);
+                commit('editRoles', l.role_name);
+                commit('editUser', l.user);
+                commit('editComplement', l.complement);
+                commit('editPartner', l.partner);
 
-                let roles = localStorage.getItem("roles").split(',');
                 let locale = localStorage.getItem("langWeb");
 
-                return router.push({name: roles[0], params: {lang: locale || 'ar'}});
+                if (l.role_name[0] == 'company'){
+                    return router.push({name: 'company', params: {lang: locale || 'ar'}});
+                }else if(l.role_name[0] == 'design'){
+                    return router.push({name: 'dashboardDesign', params: {lang: locale || 'ar'}});
+                }else if(l.role_name[0] == 'advertiser'){
+                    return router.push({name: '', params: {lang: locale || 'ar'}});
+                }
 
             })
             .catch((err) => {
                 commit('editErrors',err.response.data);
-                console.log(err.response.data)
             })
             .finally(() => {
                 commit('editLoading',false);
@@ -157,7 +161,10 @@ const actions = {
 
         webApi.post(`/v1/web/design`,preload)
             .then((res) => {
-                commit('editSuccess',true);
+
+                let locale = localStorage.getItem("langWeb");
+
+                return router.push({name: 'loginPartiner', params: {lang: locale || 'ar'}});
             })
             .catch((err) => {
                 console.log(err.response.data);

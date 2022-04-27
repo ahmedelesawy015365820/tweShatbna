@@ -14,14 +14,14 @@ class DatabaseSeeder extends Seeder
         $this->call(CreateAdminUserSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(StateSeeder::class);
-        $this->call(AdvertisePageSeeder::class);
         $this->call(AdvertiseViewSeeder::class);
+        $this->call(AdvertisePageSeeder::class);
         $this->call(AdvertisePageMobileSeeder::class);
         $this->call(ExtentionImagesSeeder::class);
         $this->call(AdvertisePackageSeeder::class);
         $this->call(DaySeeder::class);
         $this->call(DesignServiceSeeder::class);
-        $this->call(DesignServiceSeeder::class);
+        $this->call(DegreeDesignSeeder::class);
 
 
     }

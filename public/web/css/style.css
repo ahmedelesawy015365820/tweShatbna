@@ -12455,6 +12455,10 @@ figure{
     width: 30%;
 }
 
+figure.single{
+    width: 80%;
+}
+
 figcaption {
     text-align: center;
     font-size: 2.4vmin ;

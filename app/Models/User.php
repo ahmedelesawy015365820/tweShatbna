@@ -66,24 +66,51 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Company::class);
     }
 
-    public function designer()
-    {
-        return $this->hasOne(Designer::class);
-    }
-
     public function advertiser()
     {
         return $this->hasOne(Advertiser::class);
     }
+
 
     public function  packageSale()
     {
         return $this->belongsToMany(PackageSale::class,'package_sale_users','user_id','package_sale_id');
     }
 
+
     public function  schedule()
     {
         return $this->hasMany(AdvertiseSchedule::class,'user_id');
+    }
+
+    public function banks()
+    {
+        return $this->hasMany(Bank::class,'user_id');
+    }
+
+    public function  designService()
+    {
+        return $this->belongsToMany(DesignService::class,'user_design_services','user_id','design_service_id');
+    }
+
+    public function  designDegree()
+    {
+        return $this->belongsToMany(DegreeDesign::class,'user_degreer_designs','user_id','degree_design_id');
+    }
+
+    public function designDesScience()
+    {
+        return $this->hasOne(DesignDesScience::class);
+    }
+
+    public function designDetail()
+    {
+        return $this->hasOne(DesignDetail::class);
+    }
+
+    public function designer()
+    {
+        return $this->hasOne(Designer::class);
     }
 
     //end raletions

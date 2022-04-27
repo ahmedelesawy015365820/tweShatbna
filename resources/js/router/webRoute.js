@@ -3,7 +3,6 @@ import i18n from '../lang/web';
 
 import Index from '../view/web/index.vue';
 import successPartner from '../view/web/successPartner.vue';
-import design from '../view/web/design.vue';
 import company from '../view/web/company.vue';
 import registerPartiner from '../view/web/registerPartiner.vue';
 import page404 from '../view/web/404.vue';
@@ -14,6 +13,7 @@ import lang from "../middleware/web/lang";
 import guest from "../middleware/web/guest";
 import auth from "../middleware/web/auth";
 import advertise from "./webRoute/advertise";
+import design from "./webRoute/design";
 
 
 const routes = [
@@ -69,11 +69,8 @@ const routes = [
                     middleware: [auth]
                 },
                 children:[
-                    {
-                        path: 'design',
-                        name: 'design',
-                        component: design,
-                    },
+                    ...design
+                    ,
                     {
                         path: 'company',
                         name: 'company',

@@ -35,15 +35,11 @@
                                                 <li>{{Package.period}} Days Package Expiry</li>
                                                 <p>Ad appearance pages</p>
                                                 <span v-for="pageView in pageWeb">
-                                                    <span v-for="view in pageView.page.views">
-                                                        <li>{{pageView.page.name + ' -- '+ view.type }}</li>
-                                                    </span>
+                                                    <li>{{pageView.page.name + ' -- '+ pageView.view.type }}</li>
                                                 </span>
                                                 <p>Ad appearance mobile pages</p>
                                                 <span v-for="pageViewMob in pageMobile">
-                                                    <span v-for="view in pageViewMob.page_mobile.views">
-                                                        <li>{{pageViewMob.page_mobile.name + ' -- '+ view.type }}</li>
-                                                    </span>
+                                                    <li>{{pageViewMob.page_mobile.name + ' -- '+ pageViewMob.view.type }}</li>
                                                 </span>
                                             </ul>
                                         </div>

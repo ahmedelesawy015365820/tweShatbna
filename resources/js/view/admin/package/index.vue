@@ -172,7 +172,7 @@ export default {
                         'success'
                     );
                 }
-            })
+            });
         }
 
         return {packages,loading,getPackages,search,deletePackage,packagesPaginate};

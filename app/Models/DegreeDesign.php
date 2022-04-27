@@ -17,4 +17,10 @@ class DegreeDesign extends Model implements TranslatableContract
 
     protected $guarded = ['id'];
     protected $hidden = ['translations'];
+
+    public function  user()
+    {
+        return $this->belongsToMany(User::class,'user_degreer_designs','degree_design_id','user_id');
+    }
+
 }

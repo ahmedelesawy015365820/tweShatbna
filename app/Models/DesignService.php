@@ -19,5 +19,9 @@ class DesignService extends Model implements TranslatableContract
     protected $guarded = ['id'];
     protected $hidden = ['translations'];
 
+    public function  user()
+    {
+        return $this->belongsToMany(User::class,'user_design_services','design_service_id','user_id');
+    }
 
 }

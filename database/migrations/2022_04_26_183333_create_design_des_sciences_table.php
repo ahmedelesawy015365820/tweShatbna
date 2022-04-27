@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDesignDetailsTable extends Migration
+class CreateDesignDesSciencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateDesignDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('design_details', function (Blueprint $table) {
+        Schema::create('design_des_sciences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->text('vision')->nullable();
-            $table->text('message')->nullable();
-            $table->text('strategy')->nullable();
+            $table->double('experience')->nullable();
+            $table->string('subject')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateDesignDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('design_details');
+        Schema::dropIfExists('design_des_sciences');
     }
 }

@@ -19,6 +19,7 @@ class CreateDesignersTable extends Migration
             $table->string('gender')->default('male');
             $table->date('birth');
             $table->boolean('trust')->default(false);
+            $table->boolean('send')->default(false);
             $table->timestamps();
         });
     }

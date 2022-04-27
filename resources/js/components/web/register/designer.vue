@@ -258,9 +258,6 @@ export default {
 
         const v$ = useVuelidate(rules,design.dataDesign);
 
-        emitter.on('get_lang_web', () => {
-
-        });
 
         return {v$,...toRefs(design),countries,conutryState,states,foucsCountry,errors}
     },

@@ -37,8 +37,8 @@ class AdvertiserScheduleController extends Controller
 
     public function store(Request $request)
     {
-//        DB::beginTransaction();
-//        try {
+        DB::beginTransaction();
+        try {
 
             // Validator request
             $v = Validator::make($request->all(), [
@@ -85,11 +85,11 @@ class AdvertiserScheduleController extends Controller
             DB::commit();
             return $this->sendResponse([], 'Data exited successfully');
 
-//        } catch (\Exception $e) {
-//
-//            DB::rollBack();
-//            return $this->sendError('An error occurred in the system');
-//        }
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            return $this->sendError('An error occurred in the system');
+        }
     }
 
     public function  getALL()

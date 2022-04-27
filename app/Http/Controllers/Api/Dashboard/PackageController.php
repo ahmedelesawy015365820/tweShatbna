@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdvertisePackageRequest;
-use App\Http\Resources\AdvertisingPackageResource;
 use App\Models\AdvertisingPackage;
 use App\Models\AdvertisingPage;
 use App\Models\AdvertisingPageMobile;
+use App\Models\PageViewMobilePackage;
+use App\Models\PageViewPackage;
 use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,11 @@ class PackageController extends Controller
 
             $pageViewMobile = AdvertisingPageMobile::with('views')->get();
 
-            return $this->sendResponse(['pageView' => $pageView, 'pageViewMobile' => $pageViewMobile],'Data exited successfully');
+            $notWebId = PageViewPackage::get()->pluck('page_view_id')->toArray();
+
+            $notMobileId = PageViewMobilePackage::get()->pluck('page_view_mobile_id')->toArray();
+
+            return $this->sendResponse(['pageView' => $pageView, 'pageViewMobile' => $pageViewMobile,'notWebId' => $notWebId,"notMobileId" => $notMobileId ],'Data exited successfully');
 
         }catch (\Exception $e){
 
@@ -97,7 +102,7 @@ class PackageController extends Controller
     {
         try {
 
-            $package = AdvertisingPackage::with(['page_view.Page.views','page_view_mobile.pageMobile.views'])->find($id);
+            $package = AdvertisingPackage::with(['page_view.Page','page_view.view','page_view_mobile.pageMobile','page_view_mobile.view'])->find($id);
 
             return $this->sendResponse(['package'=> $package],'Data exited successfully');
 
@@ -113,15 +118,21 @@ class PackageController extends Controller
     {
         try {
 
-            $dataPackage = AdvertisingPackage::with(['page_view','page_view_mobile'])->find($id)->makeVisible('translations');
+            $dataPackage = AdvertisingPackage::with(['page_view','page_view_mobile'])->find($id);
 
             if($dataPackage){
+
+                $dataPackage->makeVisible('translations');
 
                 $pageView = AdvertisingPage::with('views:id')->get();
 
                 $pageViewMobile = AdvertisingPageMobile::with('views:id')->get();
 
-                return $this->sendResponse(['pageView' => $pageView, 'pageViewMobile' => $pageViewMobile,'Package' => $dataPackage],'Data exited successfully');
+                $notWebId = PageViewPackage::get()->pluck('page_view_id')->toArray();
+
+                $notMobileId = PageViewMobilePackage::get()->pluck('page_view_mobile_id')->toArray();
+
+                return $this->sendResponse(['pageView' => $pageView, 'pageViewMobile' => $pageViewMobile,'Package' => $dataPackage,'notWebId' => $notWebId,'notMobileId' => $notMobileId],'Data exited successfully');
             }else{
                 return $this->sendError('ID is not exist');
             }

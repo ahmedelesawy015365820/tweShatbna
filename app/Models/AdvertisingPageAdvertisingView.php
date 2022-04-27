@@ -25,6 +25,11 @@ class AdvertisingPageAdvertisingView extends Model
         return $this->belongsTo(AdvertisingPage::class,'page_id');
     }
 
+    public function view()
+    {
+        return $this->belongsTo(AdvertisingView::class,'view_id');
+    }
+
     public function packages()
     {
         return $this->belongsToMany(AdvertisingPackage::class,'page_view_packages','page_view_mobile_id','package_id')->withTimestamps();

@@ -15,19 +15,26 @@ class AdvertisePageSeeder extends Seeder
     public function run()
     {
 
-        AdvertisingPage::create([
+        $home = AdvertisingPage::create([
             "en" => ["name" => "home page"],
             "ar"=>["name" => 'الصفحه الرئيسيه']
         ]);
 
-        AdvertisingPage::create([
+        $home->views()->attach([1,2]);
+
+        $branch =  AdvertisingPage::create([
             "en" => ["name" => "branch page"],
             "ar"=>["name" => 'الصفحه الفرعيه'],
         ]);
 
-        AdvertisingPage::create([
+        $branch->views()->attach([1,2]);
+
+        $product =  AdvertisingPage::create([
             "ar" => ["name" => "الصفحه المنتجات"],
             "en"=>["name" => 'product page'],
         ]);
+
+        $product->views()->attach([1]);
+
     }
 }

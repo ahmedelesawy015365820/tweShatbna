@@ -30,6 +30,9 @@ class DesignController extends Controller
                 'iban' => 'required',
                 'swift' => 'present',
                 'files' => 'required',
+                'vision' => 'required',
+                'message' => 'required',
+                'strategy' => 'required',
                 'files.*' => 'file|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100px,min_height=100,max_width=1000,max_height=1000'
             ]);
 
@@ -38,6 +41,8 @@ class DesignController extends Controller
             }
 
             $user = auth()->guard('api')->user();
+
+            Designer::whereUserId($user->id)->first()->update(['send' => 1]);
 
             $i = 0;
 
@@ -66,6 +71,13 @@ class DesignController extends Controller
                 'iban' => $request->iban,
                 'swift' => $request->swift
             ]);
+
+            $user->designDetail()->create([
+                'vision' => $request->vision,
+                'message' => $request->message,
+                'strategy' => $request->strategy
+            ]);
+
 
             DB::commit();
             return $this->sendResponse([], 'Data exited successfully');
@@ -133,42 +145,6 @@ class DesignController extends Controller
 
     } // ******************End trustDesgin2*********************//
 
-    public function trustDesginThree(Request $request)
-    {
-
-        DB::beginTransaction();
-        try {
-            // Validator request
-            $v = Validator::make($request->all(), [
-                'vision' => 'required',
-                'message' => 'required',
-                'strategy' => 'required'
-            ]);
-
-            if ($v->fails()) {
-                return $this->sendError('There is an error in the data', $v->errors());
-            }
-
-            $user = auth()->guard('api')->user();
-
-            $user->designDetail()->create([
-                'vision' => $request->vision,
-                'message' => $request->message,
-                'strategy' => $request->strategy
-            ]);
-
-            Designer::whereUserId($user->id)->first()->update(['send' => 1]);
-
-            DB::commit();
-            return $this->sendResponse([], 'Data exited successfully');
-
-        } catch (\Exception $e) {
-
-            DB::rollBack();
-            return $this->sendError('An error occurred in the system');
-        }
-
-    }// ******************End trustDesgin3*********************//
 
     public function degreeService()
     {

@@ -116,6 +116,7 @@
 <script>
 import {useStore} from "vuex";
 import {computed, inject, onMounted, ref, watch} from "vue";
+import adminApi from "../../../api/adminAxios";
 
 export default {
     name: "scheduleGet",
@@ -124,10 +125,24 @@ export default {
         const emitter = inject('emitter');
 
         // get packages
-        let calender = computed(() => store.getters['calender/getCal'] );
-        let loading = computed(() => store.getters['calender/loading'] );
-        let getCalender = (page = 1,preload = '') => {
-            store.dispatch('calender/getCalender',`?page=${page}&search=${search.value}`);
+        let calender = ref({});
+        let loading = ref(false);
+
+        let getCalender = (page = 1) => {
+
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/scheduleAdvertise?page=${page}&search=${search.value}`)
+                .then((res) => {
+                    let l = res.data.data;
+                    calender.value = l.schedule;
+                })
+                .catch((err) => {
+                    console.log(err.response);
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         }
 
         emitter.on('get_lang', () => {

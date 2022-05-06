@@ -15,7 +15,6 @@
                             <li class="breadcrumb-item active">Create Package</li>
                         </ul>
                     </div>
-
                 </div>
             </div>
             <!-- /Page Header -->
@@ -207,7 +206,6 @@ import useVuelidate from '@vuelidate/core';
 import {required,minLength,between,maxLength,alpha,integer} from '@vuelidate/validators';
 import adminApi from "../../../api/adminAxios";
 import { notify } from "@kyvg/vue3-notification";
-import router from "../../../router/adminRoute";
 
 
 export default {
@@ -294,8 +292,7 @@ export default {
                     required,
                     between: between(1, 4000),
                     integer
-                }
-                ,
+                },
                 visiter_num: {
                     required,
                     between: between(1, 4000),
@@ -329,14 +326,14 @@ export default {
                     .then((res) => {
 
                         notify({
-                            title: `Data exited successfully <i class="fas fa-check-circle"></i>`,
+                            title: `Successfully added <i class="fas fa-check-circle"></i>`,
                             type: "success",
                             duration: 5000,
                             speed: 2000
                         });
 
-                        let locale = localStorage.getItem("langAdmin");
-                        return router.push({name: 'package', params: {lang: locale || 'ar'}});
+                        this.resetForm();
+                        this.$nextTick(() => { this.v$.$reset() });
                     })
                     .catch((err) => {
                         this.errors = err.response.data.errors;
@@ -347,6 +344,16 @@ export default {
 
             }
         },
+        resetForm(){
+            this.data.en.name = '';
+            this.data.ar.name = '';
+            this.data.period = '';
+            this.data.price = '';
+            this.data.visiter_num = '';
+            this.data.pageView_id = [];
+            this.data.pageViewMobile_id = [];
+
+        }
     }
 }
 </script>

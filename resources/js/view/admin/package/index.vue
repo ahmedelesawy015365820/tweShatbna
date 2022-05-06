@@ -161,16 +161,21 @@ export default {
                     adminApi.delete(`/v1/dashboard/advertiserPackage/${id}`)
                         .then((res) => {
                             packages.value.splice(index,index + 1);
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Your package has been deleted.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
                         })
                         .catch((err) => {
-                            console.log(err.response.data);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'يوجد خطا في النظام...',
+                                text: 'لا تسنطيع حذف هذه الحزمة !',
+                            });
                         });
-
-                    Swal.fire(
-                        'Deleted!',
-                        'Your package has been deleted.',
-                        'success'
-                    );
                 }
             });
         }

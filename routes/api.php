@@ -67,6 +67,7 @@ use Illuminate\Support\Facades\Route;
 
              // start package sale
              Route::resource('packageSale','PackageSaleController');
+             Route::post('packageSale/deleteOne/{id}','PackageSaleController@deleteOne');
              Route::post('packageSale/accept','PackageSaleController@accept');
              Route::post('packageSale/check','PackageSaleController@check');
              Route::post('packageSale/complete','PackageSaleController@complete');
@@ -84,6 +85,12 @@ use Illuminate\Support\Facades\Route;
             //  Route::post('email/verification-notification', 'AuthController@sendVerificationEmail');
             //  Route::get('verify-email/{id}/{hash}',  'AuthController@verify')->name('verification.verify');
 
+            //auth User
+             Route::get('user',  'AuthController@user');
+             Route::get('complement',  'AuthController@complement');
+             Route::get('partner',  'AuthController@partner');
+             Route::post('changeImage',  'AuthController@changeImage');
+
             // start Advertise
              Route::get('webadvertise',  'AdvertiseController@advertise');
              Route::get('package',  'AdvertiseController@index');
@@ -95,7 +102,13 @@ use Illuminate\Support\Facades\Route;
              Route::get('degreeService',  'DesignController@degreeService');
              Route::post('trustDesginOne',  'DesignController@trustDesginOne');
              Route::post('trustDesginTwe',  'DesignController@trustDesginTwe');
-             Route::post('trustDesginThree',  'DesignController@trustDesginThree');
+
+             // start DeSign profile
+             Route::get('getBank',  'DesignEditProfile@getBank');
+             Route::get('getDesignDetails',  'DesignEditProfile@getDesignDetails');
+             Route::post('storeBank',  'DesignEditProfile@storeBank');
+             Route::post('deleteBank/{id}',  'DesignEditProfile@deleteBank');
+             Route::post('storeDesignDetail',  'DesignEditProfile@storeDesignDetail');
 
          });
 
@@ -111,5 +124,6 @@ use Illuminate\Support\Facades\Route;
      });
 
  });
+
 
 

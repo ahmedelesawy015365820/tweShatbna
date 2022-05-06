@@ -12,7 +12,8 @@ class DesignResource extends JsonResource
         return [
             'gender' => $this->gender,
             'birth' => $this->birth,
-            'trust' => $this->trust
+            'trust' => $this->trust,
+            'send' => $this->send
         ];
     }
 }

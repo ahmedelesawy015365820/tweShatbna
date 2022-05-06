@@ -7,6 +7,7 @@ use App\Http\Requests\AdvertisePackageRequest;
 use App\Models\AdvertisingPackage;
 use App\Models\AdvertisingPage;
 use App\Models\AdvertisingPageMobile;
+use App\Models\PackageSale;
 use App\Models\PageViewMobilePackage;
 use App\Models\PageViewPackage;
 use App\Traits\Message;
@@ -78,6 +79,23 @@ class PackageController extends Controller
 
     }
 
+
+    public function show($id)
+    {
+        try {
+
+            $package = AdvertisingPackage::with(['page_view.Page','page_view.view','page_view_mobile.pageMobile','page_view_mobile.view'])->find($id);
+
+            return $this->sendResponse(['package'=> $package],'Data exited successfully');
+
+        }catch (\Exception $e){
+
+            return $this->sendError('An error occurred in the system');
+
+        }
+
+    }
+
     public function statusPackage(Request $request)
     {
         DB::beginTransaction();
@@ -94,22 +112,6 @@ class PackageController extends Controller
 
             DB::rollBack();
             return $this->sendError('An error occurred in the system');
-        }
-
-    }
-
-    public function show($id)
-    {
-        try {
-
-            $package = AdvertisingPackage::with(['page_view.Page','page_view.view','page_view_mobile.pageMobile','page_view_mobile.view'])->find($id);
-
-            return $this->sendResponse(['package'=> $package],'Data exited successfully');
-
-        }catch (\Exception $e){
-
-            return $this->sendError('An error occurred in the system');
-
         }
 
     }
@@ -148,7 +150,7 @@ class PackageController extends Controller
     public function update(Request $request, $id)
     {
         DB::beginTransaction();
-//        try{
+        try{
 
             $advertisingPackage = AdvertisingPackage::find($id);
 
@@ -156,8 +158,8 @@ class PackageController extends Controller
 
                 // Validator request
                 $v = Validator::make($request->all(), [
-                    'name_ar' => ['required', Rule::unique('advertising_package_translations','name')->whereNot('package_id',$id)],
-                    'name_en' => ['required', Rule::unique('advertising_package_translations','name')->whereNot('package_id',$id)],
+                    'ar.name' => ['required', Rule::unique('advertising_package_translations','name')->whereNot('package_id',$id)],
+                    'en.name' => ['required', Rule::unique('advertising_package_translations','name')->whereNot('package_id',$id)],
                     'period'  => 'required|integer',
                     'visiter_num' => 'required|integer',
                     'price' => 'required|integer',
@@ -171,15 +173,7 @@ class PackageController extends Controller
                     return $this->sendError('There is an error in the data', $v->errors());
                 }
 
-                $en =  ['name' => $request->name_en];
-                $ar= ['name' => $request->name_ar];
-                $data = [
-                    'period' => $request->period ,
-                    'visiter_num'  => $request->visiter_num,
-                    'price'  => $request->price,
-                    'en' => $en,
-                    'ar' => $ar
-                ];
+                $data = $request->only(['ar','en','period','visiter_num','price']);
 
                 $advertisingPackage->update($data);
 
@@ -196,11 +190,11 @@ class PackageController extends Controller
                 return $this->sendError('ID is not exist');
             }
 
-//        }catch (\Exception $e){
-//
-//            DB::rollBack();
-//            return $this->sendError('An error occurred in the system');
-//        }
+        }catch (\Exception $e){
+
+            DB::rollBack();
+            return $this->sendError('An error occurred in the system');
+        }
     }
 
 
@@ -209,9 +203,14 @@ class PackageController extends Controller
         try {
             $advertisingPackage = AdvertisingPackage::find($id);
             if ($advertisingPackage){
+                $advertisingSale = PackageSale::where('advertising_package_id',$id)->first();
+                if(!$advertisingSale){
+                    $advertisingPackage->delete();
+                    return $this->sendResponse([],'Deleted successfully');
+                }else{
+                    return $this->sendError("you can't delete this package. ");
+                }
 
-                $advertisingPackage->delete();
-                return $this->sendResponse([],'Deleted successfully');
             }else{
                 return $this->sendError('ID is not exist');
             }

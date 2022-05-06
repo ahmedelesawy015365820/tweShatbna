@@ -47,7 +47,7 @@
                 </ul>
                 <ul class="nav header-navbar-rht">
                     <li v-if="token">
-                        <router-link :to="{name:role,params: {lang:this.$i18n.locale}}" class="partner">
+                        <router-link :to="{name:'home',params: {lang:this.$i18n.locale}}" class="partner">
                             Ahmed Mohamed
                         </router-link>
                     </li>
@@ -94,7 +94,6 @@ export default {
 
         const store = useStore();
         const token = computed(() => store.getters['auth/token']);
-        const role = computed(() => store.getters['auth/roles'].split(',')[0]);
 
         let scroll = ref(false);
         window.onscroll = function (){
@@ -105,7 +104,7 @@ export default {
          }
         };
 
-        return {token,role,scroll};
+        return {token,scroll};
     }
 }
 </script>

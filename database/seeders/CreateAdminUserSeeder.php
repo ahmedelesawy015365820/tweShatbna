@@ -29,5 +29,12 @@ class CreateAdminUserSeeder extends Seeder
         $permissions = Permission::pluck('id','id')->all();
         $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);
+
+        $user->media()->create([
+            'file_name' => 'img-04.jpg' ,
+            'file_size' => 7664,
+            'file_type' => 'png/image',
+            'file_sort' => 1
+        ]);
     }
 }

@@ -68,7 +68,7 @@
                                                 <i class="fas fa-book-open"></i>
                                             </router-link>
                                             <router-link :to="{name: 'editSale', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2"><i class="far fa-edit"></i></router-link>
-                                            <a href="#" data-bs-toggle="modal" :data-bs-target="'#staticBackdrop' + item.id"  class="btn btn-sm btn-danger me-2"><i class="far fa-trash-alt"></i></a>
+                                            <a href="#"  v-if="!item.complete" data-bs-toggle="modal" :data-bs-target="'#staticBackdrop' + item.id"  class="btn btn-sm btn-danger me-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
 
                                         <!-- Modal -->
@@ -122,6 +122,7 @@
 <script>
 import {computed,onMounted,inject,watch,ref} from "vue";
 import {useStore} from "vuex";
+import adminApi from "../../../api/adminAxios";
 
 export default {
     name: "index",
@@ -130,10 +131,23 @@ export default {
         const emitter = inject('emitter');
 
         // // get sale packages
-        let packageSale = computed(() => store.getters['sale/salePackage'] );
-        let loading = computed(() => store.getters['sale/loading'] );
+        let packageSale = ref({});
+        let loading = ref(false);
         let getSalePackages = (page = 1,preload = '') => {
-            store.dispatch('sale/getSalePackage',`?page=${page}&search=${search.value}`);
+
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/packageSale?page=${page}&search=${search.value}`)
+                .then((res) => {
+                    let l = res.data.data;
+                    packageSale.value = l.packageSale;
+                })
+                .catch((err) => {
+
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         }
 
         emitter.on('get_lang', () => {

@@ -112,9 +112,9 @@
                                                             class="toggle-switch-input"
                                                             id="notification_switch1"
                                                             @change="checkPackage"
-                                                            v-model="sale.check"
-                                                            :checked="sale.check"
-                                                            :disabled="sale.check"
+                                                            v-model="check"
+                                                            :checked="check"
+                                                            :disabled="check"
                                                         >
                                                         <span class="toggle-switch-label mx-auto">
 													        <span class="toggle-switch-indicator"></span>
@@ -133,9 +133,9 @@
                                                             class="toggle-switch-input"
                                                             id="notification_switch2"
                                                             @change="completePackage"
-                                                            v-model="sale.complete"
-                                                            :checked="sale.complete"
-                                                            :disabled="sale.complete"
+                                                            v-model="complete"
+                                                            :checked="complete"
+                                                            :disabled="complete"
                                                         >
                                                         <span class="toggle-switch-label mx-auto">
 													        <span class="toggle-switch-indicator"></span>
@@ -154,9 +154,9 @@
                                                             class="toggle-switch-input"
                                                             id="notification_switch3"
                                                             @change="acceptPackage"
-                                                            v-model="sale.accept"
-                                                            :checked="sale.accept"
-                                                            :disabled="sale.accept"
+                                                            v-model="accept"
+                                                            :checked="accept"
+                                                            :disabled="accept"
                                                         >
                                                         <span class="toggle-switch-label mx-auto">
 													        <span class="toggle-switch-indicator"></span>
@@ -250,6 +250,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import TimeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import adminApi from "../../../api/adminAxios";
 
 export default {
     name: "showSale",
@@ -267,13 +268,38 @@ export default {
         const { id } = toRefs(props);
 
         // get create Package
-        let sale = computed(() => store.getters['sale/showSale'] );
-        let valuePackage = computed(() => store.getters['sale/valuePackage'] );
-        let loading = computed(() => store.getters['sale/loading'] );
-        let loadingCalender = computed(() => store.getters['calender/loading'] );
+        let sale = ref({});
+        let valuePackage =  ref({});
+        const check = ref(false);
+        const complete = ref(false);
+        const accept = ref(false);
+        let loading = ref(false);
 
         let getSale = () => {
-            store.dispatch('sale/showSaleShow',id.value);
+
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/packageSale/${id.value}`)
+                .then((res) => {
+                    let l = res.data.data;
+
+                    valuePackage.value = l.packageSale.package;
+                    check.value = l.packageSale.check;
+                    complete.value = l.packageSale.complete;
+                    accept.value = l.packageSale.accept;
+                    sale.value = l.packageSale;
+
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         }
 
         onBeforeMount(() => {
@@ -285,15 +311,64 @@ export default {
         });
 
         let checkPackage = () => {
-            store.dispatch('sale/checkSale',sale._value);
+
+            loading.value = true;
+
+            adminApi.post(`/v1/dashboard/packageSale/check`,{check: check.value,id: id.value})
+                .then((res) => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم بنجاح التعديل .',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         };
 
         let completePackage = () => {
-            store.dispatch('sale/completeSale',sale._value);
+
+            loading.value = true;
+
+            adminApi.post(`/v1/dashboard/packageSale/complete`,{complete: complete.value,id: id.value})
+                .then((res) => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم بنجاح التعديل .',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch((err) => {
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         };
 
         let acceptPackage = () => {
-            store.dispatch('sale/acceptSale',sale._value);
+            loading.value = true;
+
+            adminApi.post(`/v1/dashboard/packageSale/accept`,{accept: accept.value,id: id.value})
+                .then((res) => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم بنجاح التعديل .',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         };
 
 
@@ -301,7 +376,7 @@ export default {
 
         const ip = ref(10);
 
-        const allEvents = computed(() => store.getters['calender/calenderAll'] );
+        const allEvents = ref([]);
 
         const options = reactive({
             plugins: [ dayGridPlugin, interactionPlugin,TimeGridPlugin,listPlugin ],
@@ -326,19 +401,51 @@ export default {
         });
 
         let getCalender = ()=> {
-            store.dispatch('calender/getCalenderAll');
+
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/scheduleAdvertise/getALL`)
+                .then((res) => {
+                    let l = res.data.data;
+                    allEvents.value =  l.schedule;
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         };
 
         let addCalender = (e) => {
 
             let formData =  new FormData(e.target);
-            store.dispatch('calender/StoreCalender',formData);
+
+            loading.value = true;
+
+            adminApi.post(`/v1/dashboard/scheduleAdvertise`,formData)
+                .then((res) => {
+                    getCalender();
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في البيانات ...',
+                        text: 'هذا الوقت محجوز مسبقا !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
+
             closeCreateCalender()
         };
 
-        onMounted(() => {
-            getCalender();
-        });
+        onMounted(() => { getCalender(); });
 
         let popCreateCalender = () => {
             let ele = document.getElementById('createCalender');
@@ -352,7 +459,7 @@ export default {
             ele.style.display = 'none';
         }
 
-        return {addCalender,loadingCalender,closeCreateCalender,popCreateCalender,sale,loading,valuePackage,checkPackage,completePackage,acceptPackage,options}
+        return {addCalender,closeCreateCalender,popCreateCalender,sale,loading,valuePackage,checkPackage,completePackage,acceptPackage,options,check,complete,accept}
     }
 
 }

@@ -14,6 +14,7 @@ class ComplementResource extends JsonResource
             'state' => new StateResource($this->state),
             'phone' => $this->phone,
             'phoneSecond' => $this->phone_second,
+            'nameCompany' => $this->nameCompany
         ];
     }
 }

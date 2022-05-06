@@ -35,16 +35,15 @@ class AdvertiseController extends Controller
     {
 
         try{
-            $Advertise = AdvertisingPackage::whereStatus(true)->with(['page_view.Page.views','page_view_mobile.pageMobile.views'])->get();
+            $Advertise = AdvertisingPackage::whereStatus(true)->with(['page_view.Page','page_view.view','page_view_mobile.pageMobile','page_view_mobile.view'])->get();
 
             return $this->sendResponse(['packages' => $Advertise],'Data exited successfully');
 
         }catch(\Exception $e){
-
+            return $this->sendError('An error occurred in the system');
         }
 
     }//**********end advertise************/
-
 
     public function buy_package(Request $request)
     {
@@ -134,8 +133,5 @@ class AdvertiseController extends Controller
         );
 
     }//**********end Packages************/
-
-
-
 
 }

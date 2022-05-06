@@ -36,10 +36,10 @@
                                         </div>
                                         <button class="btn btn-color btn-primary btn-block btn-lg login-btn text-center" type="submit">{{$t('register.login')}}</button>
                                         <div class="row form-row forget-login">
-                                            <div :class="['col-6','text-start', this.$i18n.locale == 'ar'? 'forget-register' : '']">
+                                            <div :class="['col-6','text-start','click-forget', this.$i18n.locale == 'ar'? 'forget-register' : '']">
                                                 <router-link  to="/forgot-password">{{$t('register.forget')}}</router-link>
                                             </div>
-                                            <div :class="['col-6','text-end',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.new')}}
+                                            <div :class="['col-6','text-end','click',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.new')}}
                                                 <router-link  :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
         <!-- /Page Content -->
 </template>
 <script>
-import {toRefs, reactive, computed} from 'vue';
+import {toRefs, reactive, computed,onMounted} from 'vue';
 import { useStore } from 'vuex';
 
 export default {
@@ -78,6 +78,10 @@ export default {
         function Loginsubmit (){
             store.dispatch('auth/login',login.data);
         }
+
+        onMounted(() => {
+            store.commit('auth/editErrors', {});
+        });
 
         return {Loginsubmit,...toRefs(login),errors,loading};
 
@@ -289,6 +293,10 @@ if($('#store').length > 0) {
 .btn-color:hover{
     background-color: #fcb00c;
     border-color: #fcb00c ;
+}
+
+.login-right .dont-have a, .click-forget a:hover ,.click a{
+    color: #fcb00c;
 }
 
 </style>

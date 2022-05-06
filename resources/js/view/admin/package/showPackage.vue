@@ -21,6 +21,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        <div class="mt-3 ml-3">
+                            <router-link
+                                :to="{name: 'package', params: {lang: locale || 'ar'}}"
+                                class="btn btn-custom btn-dark"
+                            >
+                                back
+                            </router-link>
+                        </div>
                         <loader v-if="loading" />
                         <div class="card-body">
                             <div class="row justify-content-center">
@@ -54,7 +62,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <label class="form-group toggle-switch mb-0" for="notification_switch1" v-if="Package">
-                                            <input type="checkbox" @change="statusPackage" v-model="Package.status" :checked="Package.status"  class="toggle-switch-input" id="notification_switch1">
+                                            <input type="checkbox" @change="statusPackage" v-model="status" :checked="status"  class="toggle-switch-input" id="notification_switch1">
                                             <span class="toggle-switch-label mx-auto">
                                             <span class="toggle-switch-indicator"></span></span>
                                         </label>
@@ -71,24 +79,42 @@
 </template>
 
 <script>
-import {computed,inject,toRefs,onBeforeMount} from "vue";
+import {computed,inject,toRefs,onBeforeMount,ref} from "vue";
 import {useStore} from "vuex";
+import adminApi from "../../../api/adminAxios";
 
 export default {
     name: "showPackage",
     props: ['id'],
     setup(props){
-        const store = useStore();
         const emitter = inject('emitter');
         const { id } = toRefs(props);
+        const status = ref('')
 
         // get create Package
-        let Package = computed(() => store.getters['packageAdmin/showpack'] );
-        let pageWeb = computed(() => store.getters['packageAdmin/pageWeb'] );
-        let pageMobile = computed(() => store.getters['packageAdmin/pageMobile'] );
-        let loading = computed(() => store.getters['packageAdmin/loading'] );
+        let Package = ref({});
+        let pageWeb = ref({});
+        let pageMobile = ref({});
+        let loading = ref(false);
+
         let getPackage = () => {
-            store.dispatch('packageAdmin/showPackage',id.value);
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/advertiserPackage/${id.value}`)
+                .then((res) => {
+                    let l = res.data.data;
+
+                    Package.value = l.package;
+                    status.value = l.package.status;
+                    pageWeb.value = l.package.page_view;
+                    pageMobile.value = l.package.page_view_mobile;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                })
         }
 
         onBeforeMount(() => {
@@ -100,7 +126,24 @@ export default {
         });
 
         let statusPackage = () => {
-            store.dispatch('packageAdmin/changeStatus',Package._value);
+
+            loading.value = true;
+            let data = {status: status.value, id: id.value}
+
+            adminApi.post(`/v1/dashboard/advertiserPackage/statusPackage`,data)
+                .then((res) => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم بنجاح التعديل .',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                .catch((err) => {
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         }
 
 
@@ -176,5 +219,7 @@ export default {
     padding: 12px 20px;
 }
 
-
+.ml-3{
+    margin-left: 1.5rem;
+}
 </style>

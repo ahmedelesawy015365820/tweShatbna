@@ -1,10 +1,13 @@
 <template>
     <!-- Page Content -->
     <div class="content">
+        <loader2 v-if="loading2" />
+
         <div class="container-fluid">
             <div class="row justify-content-center">
 
-                <div class="error-trust alert-danger">
+
+                <div class="error-trust alert-danger" v-if="!partner.send">
                     يجب عليك توثيق حسابك لعرض مشاريع العملاء عليك
                     <router-link
                         :to="{name:'trust',params:{lang:this.$i18n.locale}}"
@@ -13,9 +16,13 @@
                         انقر هنا
                     </router-link>
                 </div>
+                <div class="error-trust send alert-danger" v-else-if="partner.send && !partner.trust">
+                    يتم الان مراجعه بيانات حسابك لتاكيد من صحتها
+                </div>
+
 
                 <!-- sidebar -->
-                <design-sidebar />
+                <Sidebar />
                 <!-- /sidebar -->
 
                 <div class="col-xl-9 col-md-8" >
@@ -294,22 +301,29 @@
 </template>
 
 <script>
-import designSidebar from '../../../components/web/design/designSidebar';
+import Sidebar from '../../../components/web/sidebar';
+import {computed, ref} from 'vue';
+import {useStore} from 'vuex';
 
 export default {
     name: "dashboard",
     components: {
-        designSidebar
+        Sidebar
     },
     setup(){
 
+        const store = useStore();
+        const partner = computed(() => store.getters['auth/partner']);
+        let loading2 = computed(() => store.getters['auth/loading'] );
+
+        return {partner,loading2};
     }
 }
 </script>
 
 <style scoped>
 .content {
-    padding: 150px 0 30px;
+    padding: 120px 0 30px;
     position: relative;
     min-height: 100vh;
 }
@@ -325,6 +339,9 @@ export default {
 }
 .error-trust  .nav-link:hover {
     color: #fcb00c;
+}
+.error-trust.send{
+    top: 0px;
 }
 
 </style>

@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdvertisingPackage;
+use App\Models\Media;
 use App\Models\PackageSale;
 use App\Models\User;
 use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class PackageSaleController extends Controller
@@ -30,7 +32,7 @@ class PackageSaleController extends Controller
     {
         try {
 
-            $packages = AdvertisingPackage::get();
+            $packages = AdvertisingPackage::whereStatus(true)->get();
 
             return $this->sendResponse(['packages' => $packages],'Data exited successfully');
 
@@ -39,7 +41,6 @@ class PackageSaleController extends Controller
             return $this->sendError('An error occurred in the system');
 
         }
-
 
     }
 
@@ -63,7 +64,8 @@ class PackageSaleController extends Controller
 
             $checkAdvertise = User::find($request->user)->role_name;
 
-            if(in_array('advertiser',$checkAdvertise)){
+
+        if(in_array('advertiser',$checkAdvertise)){
 
                 $sale = PackageSale::create(['advertising_package_id' => $request->package,'check' => $request->check]);
 
@@ -75,7 +77,7 @@ class PackageSaleController extends Controller
 
                         $file_size = $file->getSize();
                         $file_type = $file->getMimeType();
-                        $image = time() .'.'. $file->getClientOriginalName();
+                        $image = time().$i.'.'. $file->getClientOriginalName();
 
                         // picture move
                         $file->storeAs($sale->id, $image,'advertise');
@@ -92,7 +94,7 @@ class PackageSaleController extends Controller
                 }
 
             }else{
-                return $this->sendError('There is no advertiser for this id',401);
+                return $this->sendError('There is no advertiser for this id',['error' => 'id'],401);
             }
 
             DB::commit();
@@ -104,7 +106,6 @@ class PackageSaleController extends Controller
         }
 
     }
-
 
     public function show($id)
     {
@@ -129,9 +130,11 @@ class PackageSaleController extends Controller
     {
         try {
 
-            $packageId = PackageSale::find($id);
+            $packages = AdvertisingPackage::whereStatus(true)->get();
 
-            return $this->sendResponse(['package' => $packageId],'Data exited successfully');
+            $packageId = PackageSale::with('media:id,mediable_id,file_name')->find($id);
+
+            return $this->sendResponse(['package' => $packageId,'packages' => $packages],'Data exited successfully');
 
         }catch (\Exception $e){
 
@@ -149,17 +152,41 @@ class PackageSaleController extends Controller
             if($packageSale){
 
                 // Validator request
-                $v = Validator::make($request->all(), [
-                    'advertising_package_id' => 'required|integer|exists:advertising_packages,id',
+                $v = Validator::make($request->all(),[
+                    'package' => 'required|integer|exists:advertising_packages,id',
+                    'files' => 'nullable',
+                    'files.*' => 'nullable|file|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100,min_height=100,max_width=500,max_height=500',
                 ]);
 
                 if($v->fails()) {
-                    return $this->sendError('There is an error in the data',$v->errors());
+                    return $this->sendError('There is an error in the data',$v->errors(),401);
                 }
 
-                $packageSale->update([
-                    'advertising_package_id' => $request->advertising_package_id,
-                ]);
+                $packageSale->update(['advertising_package_id' => $request->package]);
+
+                $i = 0;
+                if($request->hasFile('files')){
+                    foreach($request->file('files') as $index => $file){
+
+                        $file_size = $file->getSize();
+                        $file_type = $file->getMimeType();
+                        $image = time().$i.'.'. $file->getClientOriginalName();
+
+                        // picture move
+                        $file->storeAs($packageSale->id, $image,'advertise');
+
+                        $packageSale->media()->create([
+                            'file_name' => $image ,
+                            'file_size' => $file_size,
+                            'file_type' => $file_type,
+                            'file_sort' => $i
+                        ]);
+
+                        $i++;
+                    }
+                }
+
+                return $this->sendResponse([],'Data exited successfully');
 
             }else{
                 return $this->sendError('ID is not exist');
@@ -253,6 +280,29 @@ class PackageSaleController extends Controller
             return $this->sendError('An error occurred in the system');
         }
 
+    }
+
+    public function deleteOne(Request $request,$id)
+    {
+        try {
+            $package = PackageSale::find($id);
+            if ($package){
+
+                $media = Media::find($request->idMedia);
+
+                if(File::exists('web/img/advertise/'.$id.'/'.$media->file_name)){
+                    unlink('web/img/advertise/'.$id.'/'. $media->file_name);
+                }
+
+                $media->delete();
+                return $this->sendResponse([],'Deleted successfully');
+            }else{
+                return $this->sendError('ID is not exist');
+            }
+
+        }catch (\Exception $e){
+            return $this->sendError('An error occurred in the system');
+        }
     }
 
     public function destroy($id)

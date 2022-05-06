@@ -141,12 +141,11 @@
                                                            class="form-control"
                                                            id="validationServer01"
                                                            placeholder="مطلوب *"
-                                                           v-model="v$.bank.name.$model"
+                                                           v-model.trim="v$.bank.name.$model"
                                                            required
                                                     >
                                                     <div v-if="v$.bank.name.$error">
                                                         <span class="text-danger" v-if="v$.bank.name.required.$invalid">bank name is required.<br /> </span>
-                                                        <span class="text-danger" v-if="v$.bank.name.alphaNum.$invalid">must be letters or numbers. <br /></span>
                                                         <span class="text-danger" v-if="v$.bank.name.maxLength.$invalid">bank name is must have at most {{ v$.bank.name.maxLength.$params.max }} letters.</span>
                                                     </div>
                                                 </div>
@@ -156,7 +155,7 @@
                                                            class="form-control"
                                                            id="address"
                                                            placeholder="مطلوب *"
-                                                           v-model="v$.bank.address.$model"
+                                                           v-model.trim="v$.bank.address.$model"
                                                            required
                                                     >
                                                     <div v-if="v$.bank.address.$error">
@@ -171,7 +170,7 @@
                                                            class="form-control"
                                                             id="validationServer0sjh"
                                                             placeholder="مطلوب *"
-                                                            v-model="v$.bank.iban.$model"
+                                                            v-model.trim="v$.bank.iban.$model"
                                                             required
                                                     >
                                                     <div v-if="v$.bank.iban.$error">
@@ -186,7 +185,7 @@
                                                         type="text"
                                                         class="form-control"
                                                         id="validationServer02"
-                                                        v-model="v$.bank.swift.$model"
+                                                        v-model.trim="v$.bank.swift.$model"
                                                     >
                                                     <div v-if="v$.bank.swift.$error">
                                                         <span class="text-danger" v-if="v$.bank.swift.alphaNum.$invalid">must be letters or numbers. </span>
@@ -247,7 +246,7 @@
                                                                class="form-control"
                                                                placeholder="(كليه تجاره- علوم -حقوق - هندسه)"
                                                                 id="validationCustom01"
-                                                                v-model="v$.person.subject.$model"
+                                                                v-model.trim="v$.person.subject.$model"
                                                         >
                                                         <div v-if="v$.person.subject.$error">
                                                             <span class="text-danger" v-if="v$.person.subject.required.$invalid">subject is required.<br /> </span>
@@ -262,7 +261,7 @@
                                                             type="number"
                                                             class="form-control"
                                                             id="validationCustom02"
-                                                            v-model="v$.person.experience.$model"
+                                                            v-model.number="v$.person.experience.$model"
                                                         >
                                                         <div v-if="v$.person.experience.$error">
                                                             <span class="text-danger" v-if="v$.person.experience.required.$invalid">experience is required.<br /> </span>
@@ -279,7 +278,7 @@
                                                                   class="form-control"
                                                                   rows="5" id="validationTextarea"
                                                                   required
-                                                                  v-model="v$.person.description.$model"
+                                                                  v-model.trim="v$.person.description.$model"
                                                         >
                                                         </textarea>
                                                         <div v-if="v$.person.description.$error">
@@ -319,7 +318,7 @@
                                                                   placeholder="مطلوب *"
                                                                   maxlength="350"
                                                                   required
-                                                                  v-model="v$.info.vision.$model"
+                                                                  v-model.trim="v$.info.vision.$model"
 
                                                         >
                                                         </textarea>
@@ -337,7 +336,7 @@
                                                                   rows="5" id="validationTextarea2"
                                                                   placeholder="مطلوب *"
                                                                   required
-                                                                  v-model="v$.info.message.$model"
+                                                                  v-model.trim="v$.info.message.$model"
                                                         >
                                                         </textarea>
                                                         <div v-if="v$.info.message.$error">
@@ -354,7 +353,7 @@
                                                             rows="5" id="validationTextarea3"
                                                             placeholder="مطلوب *"
                                                             required
-                                                            v-model="v$.info.strategy.$model"
+                                                            v-model.trim="v$.info.strategy.$model"
                                                         >
                                                         </textarea>
                                                         <div v-if="v$.info.strategy.$error">
@@ -365,7 +364,7 @@
 
                                                 <div class="row justify-content-between">
                                                     <button type="button" @click="step1FuncBack3" class="btn back">السابق</button>
-                                                    <button type="submit" class="btn next">ارسال</button>
+                                                    <button type="submit" :disabled="button" class="btn next">ارسال</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -385,16 +384,12 @@
 
 <script>
 import {computed, reactive, ref, toRefs, onMounted, inject} from 'vue';
-import designSidebar from '../../../components/web/design/designSidebar';
 import {maxLength, minLength, required, alphaNum, integer,alpha,between} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import webApi from "../../../api/webAxios";
 
 export default {
     name: "dashboard",
-    components: {
-        designSidebar
-    },
     setup(){
 
         const emitter = inject('emitter');
@@ -403,6 +398,7 @@ export default {
         const numberOfImage1 = ref(0);
         const numberOfImage2 = ref(0);
         const numberOfImage3 = ref(0);
+        const button = ref(false);
 
         const step =  ref(1);
 
@@ -535,7 +531,7 @@ export default {
         const rules = computed(() => {
             return {
                 bank: {
-                    name: {required, alphaNum,maxLength:maxLength(50)},
+                    name: {required,maxLength:maxLength(50)},
                     address: {required,maxLength:maxLength(150)},
                     iban: {required, alphaNum,maxLength:maxLength(150)},
                     swift: {alphaNum,maxLength:maxLength(150)}
@@ -585,7 +581,7 @@ export default {
             getServiceDegree();
         });
 
-        return {loading,services,degrees,...toRefs(data),numberOfImage1,numberOfImage2,numberOfImage3,preview1,preview2,preview3,step,step1Func,step1FuncBack1,step1FuncBack2,step1FuncBack3,v$}
+        return {button,loading,services,degrees,...toRefs(data),numberOfImage1,numberOfImage2,numberOfImage3,preview1,preview2,preview3,step,step1Func,step1FuncBack1,step1FuncBack2,step1FuncBack3,v$}
     },
     methods: {
         step2Func (){
@@ -615,6 +611,8 @@ export default {
             this.v$.info.$validate();
             if(!this.v$.info.$error){
 
+                this.button = true;
+
                 Swal.fire({
                     title: 'هل انت متاكد من البيانات ؟',
                     icon: 'info',
@@ -630,12 +628,6 @@ export default {
                         let formData = new FormData();
                         this.loading = true;
 
-                        const config = {
-                            headers: {
-                                'content-type': 'multipart/form-data'
-                            }
-                        }
-
                         formData.append('name',this.bank.name);
                         formData.append('address',this.bank.address);
                         formData.append('iban',this.bank.iban);
@@ -643,6 +635,9 @@ export default {
                         formData.append('files[0]',this.bank.file1);
                         formData.append('files[1]',this.bank.file2);
                         formData.append('files[2]',this.bank.file3);
+                        formData.append('vision',this.info.vision);
+                        formData.append('message',this.info.message);
+                        formData.append('strategy',this.info.strategy);
 
                         webApi.post(`/v1/web/trustDesginOne`,formData)
                             .then((res) => {
@@ -650,23 +645,15 @@ export default {
                                 webApi.post(`/v1/web/trustDesginTwe`,this.person)
                                     .then((res) => {
 
-                                        webApi.post(`/v1/web/trustDesginThree`,this.info)
-                                            .then((res) => {
+                                        Swal.fire(
+                                            'تم الاضافه بنجاح',
+                                            'سيتم مراجعه ملفك و سنرسل رساله الي البريد الالكتروني بعد الانتهاء من المراجعه .',
+                                            'نجاح'
+                                        );
 
-                                                Swal.fire(
-                                                    'تم الاضافه بنجاح',
-                                                    'سيتم مراجعه ملفك و سنرسل رساله الي البريد الالكتروني بعد الانتهاء من المراجعه .',
-                                                    'نجاح'
-                                                );
-
-                                            })
-                                            .catch((err) => {
-                                                Swal.fire({
-                                                    icon: 'error',
-                                                    title: 'يوجد خطا في النظام...',
-                                                    text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
-                                                });
-                                            });
+                                        setTimeout(() => {
+                                            return this.$router.push({name:'dashboardDesign',params:{lang:this.$i18n.locale}});
+                                        },1000);
 
                                     })
                                     .catch((err) => {
@@ -677,12 +664,10 @@ export default {
                                         });
                                     });
 
-                                return this.$router.push({name:'dashboardDesign',params:{lang:this.$i18n.locale}});
-
                             })
                             .catch((err) => {
                                 this.step = 1;
-
+                                this.button = false;
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'يوجد خطا في الصور...',
@@ -699,13 +684,21 @@ export default {
 
             }
         }
+    },
+    beforeRouteEnter(to, from,next) {
+        let send = JSON.parse(localStorage.getItem('partner')).send;
+        if(!send){
+            return next();
+        }else{
+            return next({name:'dashboardDesign',params:{lang:localStorage.getItem('langWeb') || 'ar'}});
+        }
     }
 }
 </script>
 
 <style scoped>
 .content {
-    padding: 150px 0 30px;
+    padding: 120px 0 30px;
     position: relative;
     min-height: 100vh;
 }

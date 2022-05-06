@@ -17,11 +17,13 @@ web.provide('emitter', emitter);
 import header from './components/web/general/header';
 import footer from './components/web/general/footer';
 import loader from './components/loader';
+import loader2 from './components/loader2';
 import LaravelVuePagination from 'laravel-vue-pagination';
 
 web.component('layout-header', header);
 web.component('layout-footer', footer);
 web.component('loader', loader);
+web.component('loader2', loader2);
 web.component('Pagination', LaravelVuePagination);
 
 

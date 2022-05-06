@@ -12,6 +12,7 @@ use App\Models\Advertiser;
 use App\Models\Company;
 use App\Models\Complement;
 use App\Models\Designer;
+use App\Models\Media;
 use App\Models\User;
 use App\Traits\Message;
 use Illuminate\Auth\Events\Verified;
@@ -70,6 +71,39 @@ class AuthController extends Controller
 
     }//**********end login************//
 
+    public function user()
+    {
+        $user = auth()->guard('api')->user();
+
+        return  $this->sendResponse(['user' => new UserResource($user)],'Data exited successfully');
+
+    }
+
+    public function complement()
+    {
+
+        $user = auth()->guard('api')->user();
+        $complement = Complement::whereUserId($user->id)->first();
+
+        return  $this->sendResponse(['complement' => $complement],'Data exited successfully');
+
+    }
+
+    public function partner()
+    {
+        $user = auth()->guard('api')->user();
+
+        if($user->role_name[0] == 'company'){
+            $partner = new CompanyResource(Company::whereUserId($user->id)->first());
+        }elseif ($user->role_name[0] == 'design'){
+            $partner = new DesignResource(Designer::whereUserId($user->id)->first());
+        }elseif ($user->role_name[0] == 'advertiser'){
+            $partner = new AdvertiserResource(Advertiser::whereUserId($user->id)->first());
+        }
+
+        return  $this->sendResponse(['partner' => $partner],'Data exited successfully');
+
+    }
 
     //start forgotPassword
     public function forgotPassword(Request $request)
@@ -177,6 +211,61 @@ class AuthController extends Controller
 
     }//end verify
 
+    public function changeImage(Request $request)
+    {
+        // Validator request
+        $v = Validator::make($request->all(), [
+            'file' => 'required|file|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=50px,min_height=50,max_width=500,max_height=500'
+        ]);
+
+        if ($v->fails()) {
+            return $this->sendError('There is an error in the data', $v->errors());
+        }
+
+        $user = auth()->guard('api')->user();
+
+        if($user->media && $user->media->file_name != 'img-04.jpg'){
+            unlink('web/img/user/'.$user->id.'/'. $user->media->file_name);
+            $user->media->delete();
+
+            $file = $request->file;
+            $file_size = $file->getSize();
+            $file_type = $file->getMimeType();
+            $image = time() .'.'. $file->getClientOriginalName();
+
+            // picture move
+            $file->storeAs($user->id, $image,'user');
+
+            User::find($user->id)->media()->create([
+                'file_name' => $image ,
+                'file_size' => $file_size,
+                'file_type' => $file_type,
+                'file_sort' => 1
+            ]);
+
+        }elseif ($user->media->file_name == 'img-04.jpg'){
+
+            $file = $request->file;
+            $file_size = $file->getSize();
+            $file_type = $file->getMimeType();
+            $image = time() .'.'. $file->getClientOriginalName();
+
+            // picture move
+            $file->storeAs($user->id, $image,'user');
+
+            Media::find($user->media->id)->update([
+                'file_name' => $image ,
+                'file_size' => $file_size,
+                'file_type' => $file_type,
+                'file_sort' => 1
+            ]);
+
+        }
+
+        return $this->sendResponse([],'Data exited successfully');
+
+    }//end changeImage
+
 
     // create token (company,desgin,advertiser)
     protected function respondWithToken($token)
@@ -195,7 +284,6 @@ class AuthController extends Controller
         return [
             'access_token' => $token,
             'token_type' => 'bearer',
-            'role_name' => Auth::guard('api')->user()->role_name,
             'user' => new UserResource($user),
             'complement'=> new ComplementResource($complement),
             'partner'=> $partner

@@ -2,6 +2,8 @@
     <div class="page-wrapper">
         <div class="content container-fluid">
 
+            <notifications :position="this.$i18n.locale == 'ar'? 'top left': 'top right'"  />
+
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-items-center">
@@ -117,6 +119,8 @@ import {computed, inject, onMounted, ref, watch, reactive,toRefs} from "vue";
 
 import useVuelidate from '@vuelidate/core';
 import {required,minValue} from '@vuelidate/validators';
+import adminApi from "../../../api/adminAxios";
+import {notify} from "@kyvg/vue3-notification";
 
 export default {
     name: "createSale",
@@ -126,16 +130,31 @@ export default {
         }
     },
     setup(){
-        const store = useStore();
         const emitter = inject('emitter');
 
         // get create Package
-        let packages = computed(() => store.getters['sale/Packages'] );
-        let loading = computed(() => store.getters['sale/loading'] );
+        let packages = ref([]);
+        let loading = ref(false);
 
 
         let getPackages = () => {
-            store.dispatch('sale/getCreate');
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/packageSale/create`)
+                .then((res) => {
+                    let l = res.data.data;
+                    packages.value = l.packages;
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         }
         onMounted(() => {
             getPackages();
@@ -154,13 +173,14 @@ export default {
             min.value = false;
             requiredn.value = false;
             max.value = false;
-            store.commit('advertise/errorsEdit',{})
         }
 
         let preview = (e) => {
 
             let containerImages = document.querySelector('#container-images');
             containerImages.innerHTML = '';
+            images.value = [];
+
             numberOfImage.value = e.target.files.length;
 
             for(let i of e.target.files){
@@ -225,10 +245,9 @@ export default {
             }
         });
 
-
         const v$ = useVuelidate(rules,dataSale.data);
 
-        return {packages,loading,images,max,min,requiredn,preview,numberOfImage,v$,...toRefs(dataSale)};
+        return {packages,loading,images,max,min,requiredn,preview,numberOfImage,v$,...toRefs(dataSale),empty};
 
     },
     methods:{
@@ -247,7 +266,40 @@ export default {
                     formData.append('files[' + i + ']', file);
                 }
 
-                this.$store.dispatch('sale/storeSale',formData);
+                this.loading = true;
+
+                adminApi.post(`/v1/dashboard/packageSale`,formData)
+                    .then((res) => {
+                        notify({
+                            title: `Successfully added <i class="fas fa-check-circle"></i>`,
+                            type: "success",
+                            duration: 5000,
+                            speed: 2000
+                        });
+
+                        this.images = [];
+                        this.resetForm();
+                        this.empty();
+                        this.$nextTick(() => { this.v$.$reset() });
+                    })
+                    .catch((err) => {
+                        if(err.response.data.errors.error == 'id'){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'يوجد خطا في ip...',
+                                text: ' ليس معلن.',
+                            });
+                        }else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'يوجد خطا في الصور...',
+                                text: 'اقصي ارتفاع للصوره يكون 500px و اقصي عرض 500px و ان حجمها لا يتعدي 2mb !',
+                            });
+                        }
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
 
             }else{
                 if(!this.numberOfImage){
@@ -256,6 +308,11 @@ export default {
                     this.requiredn = true;
                 }
             }
+        },
+        resetForm(){
+            this.data.check = false;
+            this.data.user = 0;
+            this.data.package = '';
         }
     }
 }

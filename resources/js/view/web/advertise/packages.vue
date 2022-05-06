@@ -6,7 +6,7 @@
             <div class="row">
 
                 <!-- sidebar -->
-                <advertiseSidebar />
+                <Sidebar />
                 <!-- /sidebar -->
                 <div class="col-xl-9 col-md-8 mx-auto">
                     <div class="freelance-title" id="plan">
@@ -26,15 +26,11 @@
                                         <li>{{Package.period}} Days Package Expiry</li>
                                         <p>Ad appearance pages</p>
                                         <span v-for="pageView in Package.page_view">
-                                                <span v-for="view in pageView.page.views">
-                                                    <li>{{pageView.page.name + ' -- '+ view.type }}</li>
-                                                </span>
-                                            </span>
+                                            <li>{{pageView.page.name + ' -- '+ pageView.view.type }}</li>
+                                        </span>
                                         <p>Ad appearance mobile pages</p>
                                         <span v-for="pageViewMob in Package.page_view_mobile">
-                                                <span v-for="view in pageViewMob.page_mobile.views">
-                                                    <li>{{pageViewMob.page_mobile.name + ' -- '+ view.type }}</li>
-                                                </span>
+                                            <li>{{pageViewMob.page_mobile.name + ' -- '+ pageViewMob.view.type }}</li>
                                         </span>
                                     </ul>
                                 </div>
@@ -211,31 +207,39 @@
 </template>
 
 <script>
-import advertiseSidebar from "../../../components/web/advertise/advertiseSidebar";
 import {computed, inject, onBeforeMount, ref,watch} from "vue";
-
 import {useStore} from "vuex";
+import Sidebar from "../../../components/web/sidebar";
+import webApi from "../../../api/webAxios";
 
 export default {
     name: "packages",
     components:{
-        advertiseSidebar
+        Sidebar
     },
     setup(){
         const store = useStore();
         const emitter = inject('emitter');
 
         // get create Package
-        let Packages = computed(() => store.getters['advertise/packages'] );
-        let loading = computed(() => store.getters['advertise/loading'] );
-        let errors = computed(() => store.getters['advertise/errors'] );
+        let Packages = ref([]);
+        let loading = ref(false);
 
-        const numberOfImage = ref(0);
-        const images = ref([]);
-        const closeId = ref(1);
 
         let getPackage = () => {
-            store.dispatch('advertise/getPackages');
+
+            loading.value = true;
+
+            webApi.get(`/v1/web/package`)
+                .then((res) => {
+                    let l =res.data.data;
+                    Packages.value = l.packages;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                }).finally(() => {
+                    loading.value = false;
+                });
         }
 
         onBeforeMount(() => {
@@ -245,6 +249,10 @@ export default {
         emitter.on('get_lang_web', () => {
             getPackage();
         });
+
+        const numberOfImage = ref(0);
+        const images = ref([]);
+        const closeId = ref(1);
 
         let empty = (id) => {
             numberOfImage.value = 0;
@@ -316,7 +324,32 @@ export default {
                     formData.append('files[' + i + ']', file);
                 }
 
-                store.dispatch('advertise/buy_package',formData);
+                const config = {
+                    headers: {
+                        'content-type': 'multipart/form-data'
+                    }
+                };
+
+                loading.value = true;
+
+                webApi.post(`/v1/web/buy_package`,formData,config)
+                    .then((res) => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم اضافه صور الاعلان بنجاح و سيتم الان مراجعه الصور و الاتصال بك.',
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                    })
+                    .catch((err) => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'يوجد خطا في الصور...',
+                            text: 'اقصي ارتفاع للصوره يكون 500px و اقصي عرض 500px و ان حجمها لا يتعدي 2mb !',
+                        });
+                    }).finally(() => {
+                        loading.value = false;
+                     });
 
                  let modal = document.getElementById('modal-close-' + closeId.value);
 
@@ -329,23 +362,14 @@ export default {
 
         };
 
-        return {Packages,preview,numberOfImage,pushasePackage,empty,loading,max,min,required,errors};
-    },
-    beforeRouteEnter(to, from,next) {
-        let roles = localStorage.getItem('roles').split(',');
-
-        if(roles.includes('advertiser')){
-            return next();
-        }else{
-            return next({name:'error'});
-        }
-    },
+        return {Packages,preview,numberOfImage,pushasePackage,empty,loading,max,min,required};
+    }
 }
 </script>
 
 <style scoped>
 .content {
-    padding: 150px 0 30px;
+    padding: 120px 0 30px;
     position: relative;
 }
 

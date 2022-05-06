@@ -5,10 +5,9 @@ import router from "../../router/webRoute";
 // state
 const state = {
     token: Cookies.get("token") || null,
-    roles: localStorage.getItem("roles") || '',
-    user: localStorage.getItem("user") || {},
-    complement: localStorage.getItem("complement") || {},
-    partner: localStorage.getItem("partner") || {},
+    user: localStorage.getItem('user') || {},
+    complement:  {},
+    partner:  {},
     loading: false,
     country: [],
     newState: [],
@@ -19,7 +18,6 @@ const state = {
 // getters
 const getters = {
     token: state => state.token,
-    roles: state => state.roles,
     user: state => state.user,
     complement: state => state.complement,
     partner: state => state.partner,
@@ -36,33 +34,27 @@ const mutations = {
         state.token = token;
         Cookies.set('token',token,{ expires: 7 });
     },
-    editRoles(state,roles){
-        state.roles = roles;
-        localStorage.setItem('roles',roles);
-    },
     editUser(state,user){
         state.user = user;
-        localStorage.setItem('user',user);
+        localStorage.setItem('user',JSON.stringify(user));
     },
     editComplement(state,complement){
         state.complement = complement;
-        localStorage.setItem('complement',complement);
+        localStorage.setItem('complement',JSON.stringify(complement));
     },
     editPartner(state,partner){
         state.partner = partner;
-        localStorage.setItem('partner',partner);
+        localStorage.setItem('partner',JSON.stringify(partner));
     },
     logoutToken(state){
-        state.roles = null;
         state.token = null;
         state.user = {};
         state.complement = {};
         state.errors = {};
         state.partner = {};
-        localStorage.removeItem('roles');
-        localStorage.removeItem('partner');
-        localStorage.removeItem('complement');
         localStorage.removeItem('user');
+        localStorage.removeItem('complement');
+        localStorage.removeItem('partner');
         Cookies.remove('token');
     },
     editLoading(state,load){
@@ -84,36 +76,6 @@ const mutations = {
 
 // actions
 const actions = {
-    login({commit},preload) {
-        commit('editLoading',true);
-
-        webApi.post(`/v1/web/login`,preload)
-            .then((res) => {
-                let l = res.data.data;
-                commit('editToken', l.access_token);
-                commit('editRoles', l.role_name);
-                commit('editUser', l.user);
-                commit('editComplement', l.complement);
-                commit('editPartner', l.partner);
-
-                let locale = localStorage.getItem("langWeb");
-
-                if (l.role_name[0] == 'company'){
-                    return router.push({name: 'company', params: {lang: locale || 'ar'}});
-                }else if(l.role_name[0] == 'design'){
-                    return router.push({name: 'dashboardDesign', params: {lang: locale || 'ar'}});
-                }else if(l.role_name[0] == 'advertiser'){
-                    return router.push({name: '', params: {lang: locale || 'ar'}});
-                }
-
-            })
-            .catch((err) => {
-                commit('editErrors',err.response.data);
-            })
-            .finally(() => {
-                commit('editLoading',false);
-            });
-    },
     countryRegister({commit}){
 
         commit('editLoading',true);
@@ -131,7 +93,7 @@ const actions = {
                 console.log(err.response.data);
             })
             .finally(() => {
-                 commit('editLoading',false);
+                commit('editLoading',false);
             });
 
     },
@@ -145,6 +107,93 @@ const actions = {
                 let l =res.data.data;
 
                 commit('editState',l.state);
+
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            })
+            .finally(() => {
+                commit('editLoading',false);
+            });
+
+    },
+    login({commit},preload) {
+        commit('editLoading',true);
+        commit('editErrors', {});
+
+        webApi.post(`/v1/web/login`,preload)
+            .then((res) => {
+                let l = res.data.data;
+                commit('editToken', l.access_token);
+                commit('editUser', l.user);
+                commit('editComplement', l.complement);
+                commit('editPartner', l.partner);
+
+                let locale = localStorage.getItem("langWeb");
+
+                if (l.user.role_name[0] == 'company'){
+                    return router.push({name: 'company', params: {lang: locale || 'ar'}});
+                }else if(l.user.role_name[0] == 'design'){
+                    return router.push({name: 'dashboardDesign', params: {lang: locale || 'ar'}});
+                }else if(l.user.role_name[0] == 'advertiser'){
+                    return router.push({name: 'dashboardAdvertise', params: {lang: locale || 'ar'}});
+                }
+
+            })
+            .catch((err) => {
+                commit('editErrors',err.response.data);
+            })
+            .finally(() => {
+                commit('editLoading',false);
+            });
+    },
+    userUpdate({commit}){
+
+        commit('editLoading',true);
+
+        webApi.get(`/v1/web/user`)
+            .then((res) => {
+                let l =res.data.data;
+
+                commit('editUser',l.user);
+
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            })
+            .finally(() => {
+                commit('editLoading',false);
+            });
+
+    },
+    complementUpdate({commit}){
+
+        commit('editLoading',true);
+
+        webApi.get(`/v1/web/complement`)
+            .then((res) => {
+                let l =res.data.data;
+
+                commit('complement',l.complement);
+
+            })
+            .catch((err) => {
+                console.log(err.response.data);
+            })
+            .finally(() => {
+                commit('editLoading',false);
+            });
+
+    },
+    partnerUpdate({commit}){
+
+        commit('editLoading',true);
+
+        webApi.get(`/v1/web/partner`)
+            .then((res) => {
+                let l =res.data.data;
+
+                commit('editPartner',l.partner);
 
             })
             .catch((err) => {

@@ -46,7 +46,7 @@ class AdvertiserScheduleController extends Controller
                 'end' => 'required|date|after_or_equal:start',
                 'package' => 'required|integer|exists:advertising_packages,id',
                 'user' => 'required|integer|exists:users,id',
-                'package_sale' => 'required|integer|exists:users,id',
+                'package_sale' => 'required|integer|exists:package_sales,id',
             ]);
 
             if ($v->fails()) {

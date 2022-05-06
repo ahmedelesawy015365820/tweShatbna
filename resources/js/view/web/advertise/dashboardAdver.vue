@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- sidebar -->
-                <advertiseSidebar />
+                <Sidebar />
                 <!--   /sidebar -->
                 <div class="col-xl-9 col-md-8">
                     <div>
@@ -337,30 +337,53 @@
 
 <script>
 
-import advertiseSidebar from "../../../components/web/advertise/advertiseSidebar";
+import Sidebar from "../../../components/web/sidebar.vue";
 import {computed, inject, onMounted, ref,watch} from "vue";
 import {useStore} from "vuex";
+import webApi from "../../../api/webAxios";
 
 
 export default {
-    name: "dashboardAdver",
+    name: "dashboardAdvertise",
     components:{
-        advertiseSidebar,
+        Sidebar
     },
     setup(){
 
-        const store = useStore();
         const emitter = inject('emitter');
-        let salePackages = computed(() => store.getters['advertise/salePackages'] );
-        let nuMalePackages = computed(() => store.getters['advertise/nuMalePackages'] );
-        let loading = computed(() => store.getters['advertise/loading'] );
+        let salePackages = ref([]);
+        let nuMalePackages = ref(0);
+        let loading = ref(false);
 
         let getSalePackage =  () => {
-            store.dispatch('advertise/getSalePackage');
+
+            loading.value = true;
+
+            webApi.get(`/v1/web/numPackage`)
+                .then((res) => {
+                    let l =res.data.data;
+                    nuMalePackages.value = l.numPackage;
+                })
+                .catch((err) => {
+                }).finally(() => {
+                    loading.value = false;
+                });
         }
 
         let getSalePackages =  (page = 1) => {
-            store.dispatch('advertise/getSalePackages',`?page=${page}`);
+
+            loading.value = true;
+
+            webApi.get(`/v1/web/salePackage?page=${page}`)
+                .then((res) => {
+                    let l =res.data.data;
+                    salePackages.value = l.advertises;
+                })
+                .catch((err) => {
+                }).finally(() => {
+                    loading.value = false;
+                });
+
         }
 
         let openModel = () => {
@@ -380,27 +403,16 @@ export default {
             getSalePackage();
         });
 
-        let dateFormate = (item) => {
-            return new Date(item).toDateString();
-        }
+        let dateFormate = (item) => new Date(item).toDateString();
 
         return {salePackages,nuMalePackages,loading,openModel,closeModel,dateFormate,getSalePackages};
-    },
-    beforeRouteEnter(to, from,next) {
-        let roles = localStorage.getItem('roles').split(',');
-
-        if(roles.includes('advertiser')){
-            return next();
-        }else{
-            return next({name:'error'});
-        }
-    },
+    }
 }
 </script>
 
 <style scoped>
 .content {
-    padding: 150px 0 30px;
+    padding: 120px 0 30px;
 }
 
 .model_sale{

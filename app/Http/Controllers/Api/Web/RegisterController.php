@@ -29,7 +29,7 @@ class RegisterController extends Controller
     public function companyRegister(Request $request)
     {
 
-//        try {
+        try {
 
             DB::beginTransaction();
 
@@ -80,6 +80,13 @@ class RegisterController extends Controller
                 'location' => $request->location
             ]);
 
+            $user->media()->create([
+                'file_name' => 'img-04.jpg' ,
+                'file_size' => 7664,
+                'file_type' => 'png/image',
+                'file_sort' => 1
+            ]);
+
             DB::commit();
             if($user){
                 return $this->sendResponse([],'Data exited successfully');
@@ -87,13 +94,13 @@ class RegisterController extends Controller
                 return $this->sendError('An error occurred in the system');
             }
 
-//        }
-//        catch (\Exception $e){
-//
-//            DB::rollBack();
-//            return $this->sendError('An error occurred in the system');
-//
-//        }
+        }
+        catch (\Exception $e){
+
+            DB::rollBack();
+            return $this->sendError('An error occurred in the system');
+
+        }
 
     }// end companyRegister
 
@@ -143,6 +150,13 @@ class RegisterController extends Controller
             $user->designer()->create([
                 'gender' => $request->gender,
                 'birth' => $request->birth
+            ]);
+
+            $user->media()->create([
+                'file_name' => 'img-04.jpg' ,
+                'file_size' => 7664,
+                'file_type' => 'png/image',
+                'file_sort' => 1
             ]);
 
             DB::commit();
@@ -204,6 +218,13 @@ class RegisterController extends Controller
 
             Advertiser::create([
                 'user_id' => $user->id
+            ]);
+
+            $user->media()->create([
+                'file_name' => 'img-04.jpg' ,
+                'file_size' => 7664,
+                'file_type' => 'png/image',
+                'file_sort' => 1
             ]);
 
             DB::commit();

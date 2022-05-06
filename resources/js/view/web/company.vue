@@ -368,13 +368,12 @@ export default {
         return {logout}
     },
     beforeRouteEnter(to, from,next) {
-        let roles = localStorage.getItem('roles').split(',');
 
-        if(roles.includes('company')){
-            return next();
-        }else{
-            return next({name:'error'});
-        }
+        // if(roles.includes('company')){
+        //     return next();
+        // }else{
+        //     return next({name:'error'});
+        // }
     },
 }
 </script>

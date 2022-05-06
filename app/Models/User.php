@@ -43,6 +43,14 @@ class User extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
+    protected $appends = ['custom_name'];
+
+    // first_name + last_name = full_name
+    public function getCustomNameAttribute()
+    {
+        return substr($this->name,0,12);
+    }
+
 
     public function getJWTCustomClaims()
     {

@@ -2,6 +2,8 @@
     <div class="page-wrapper">
         <div class="content container-fluid">
 
+            <notifications :position="this.$i18n.locale == 'ar'? 'top left': 'top right'"  />
+
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-items-center">
@@ -37,17 +39,17 @@
                                             <div class="col-md-6 mb-3">
                                                 <label for="validationCustom01">Name En</label>
                                                 <input type="text" class="form-control"
-                                                       v-model.trim="v$.translations[1].name.$model"
+                                                       v-model.trim="v$.en.name.$model"
                                                        id="validationCustom01"
                                                        name="name_en"
                                                        placeholder="Name En"
-                                                       :class="{'is-invalid':v$.translations[1].name.$error,'is-valid':!v$.translations[1].name.$invalid}"
+                                                       :class="{'is-invalid':v$.en.name.$error,'is-valid':!v$.en.name.$invalid}"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="!v$.translations[1].name.required.$invalid">name en is required. <br></span>
-                                                    <span v-if="!v$.translations[1].name.minLength.$invalid">name en is must have at least {{ v$.translations[1].name.minLength.$params.min }} letters. <br></span>
-                                                    <span v-if="!v$.translations[1].name.maxLength.$invalid">name en is must have at least {{ v$.translations[1].name.maxLength.$params.max }} letters. <br></span>
+                                                    <span v-if="!v$.en.name.required.$invalid">name en is required. <br></span>
+                                                    <span v-if="!v$.en.name.minLength.$invalid">name en is must have at least {{ v$.en.name.minLength.$params.min }} letters. <br></span>
+                                                    <span v-if="!v$.en.name.maxLength.$invalid">name en is must have at least {{ v$.en.name.maxLength.$params.max }} letters. <br></span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3">
@@ -55,16 +57,16 @@
                                                 <input type="text"
                                                        class="form-control"
                                                        name="name_ar"
-                                                       v-model.trim="v$.translations[0].name.$model"
+                                                       v-model.trim="v$.ar.name.$model"
                                                        id="validationCustom02"
-                                                       :class="{'is-invalid':v$.translations[0].name.$error,'is-valid':!v$.translations[0].name.$invalid}"
+                                                       :class="{'is-invalid':v$.ar.name.$error,'is-valid':!v$.ar.name.$invalid}"
                                                        placeholder="Name Ar"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="!v$.translations[0].name.required.$invalid">name en is required. <br></span>
-                                                    <span v-if="!v$.translations[0].name.minLength.$invalid">name en is must have at least {{ v$.translations[0].name.minLength.$params.min }} letters.<br> </span>
-                                                    <span v-if="!v$.translations[0].name.maxLength.$invalid">name en is must have at least {{ v$.translations[0].name.maxLength.$params.max }} letters.<br> </span>
+                                                    <span v-if="!v$.ar.name.required.$invalid">name en is required. <br></span>
+                                                    <span v-if="!v$.ar.name.minLength.$invalid">name en is must have at least {{ v$.ar.name.minLength.$params.min }} letters.<br> </span>
+                                                    <span v-if="!v$.ar.name.maxLength.$invalid">name en is must have at least {{ v$.ar.name.maxLength.$params.max }} letters.<br> </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,12 +128,11 @@
                                                     <label for="WebsitePages">Website Pages</label>
                                                     <select
                                                         multiple
-                                                        class="form-control coustom-select"
+                                                        :class="['form-control coustom-select',{'is-invalid':v$.pageView_id.$error,'is-valid':!v$.pageView_id.$invalid}]"
                                                         id="WebsitePages"
-                                                        name="pageView_id[]"
                                                         v-if="pageWeb"
                                                         required
-                                                        v-model="idPageView"
+                                                        v-model="v$.pageView_id.$model"
                                                     >
                                                         <optgroup
                                                             v-for="page in pageWeb"
@@ -141,6 +142,7 @@
                                                             <option
                                                                 v-for="view in page.views"
                                                                 :value="view.pivot.id"
+                                                                v-show="(notWebId.includes(view.pivot.id) && webId.includes(view.pivot.id)) || !notWebId.includes(view.pivot.id)"
                                                             >
                                                                 {{ page.name+ ' -- ' + view.type}}
                                                             </option>
@@ -148,6 +150,7 @@
                                                     </select>
                                                     <div class="valid-feedback">Looks good!</div>
                                                     <div class="invalid-feedback">
+                                                        <span v-if="v$.pageView_id.required.$invalid">pageView  is required.</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -156,12 +159,11 @@
                                                     <label for="MobilePages">Mobile Pages</label>
                                                     <select
                                                         multiple
-                                                        class="form-control coustom-select"
+                                                        :class="['form-control coustom-select',{'is-invalid':v$.pageViewMobile_id.$error,'is-valid':!v$.pageViewMobile_id.$invalid}]"
                                                         id="MobilePages"
-                                                        name="pageViewMobile_id[]"
                                                         v-if="pageMobile"
                                                         required
-                                                        v-model="idPageViewMobile"
+                                                        v-model="v$.pageViewMobile_id.$model"
                                                     >
                                                         <optgroup
                                                             v-for="page in pageMobile"
@@ -171,6 +173,7 @@
                                                             <option
                                                                 v-for="view in page.views"
                                                                 :value="view.pivot.id"
+                                                                v-show="(notMobileId.includes(view.pivot.id) && mobileId.includes(view.pivot.id)) || !notMobileId.includes(view.pivot.id)"
                                                             >
                                                                 {{ page.name+ ' -- '  +view.type}}
                                                             </option>
@@ -178,7 +181,7 @@
                                                     </select>
                                                     <div class="valid-feedback">Looks good!</div>
                                                     <div class="invalid-feedback">
-<!--                                                        <span v-if="!$v.pageView_id.required.$invalid">name en is required.</span>-->
+                                                        <span v-if="v$.pageViewMobile_id.required.$invalid">pageView mobile is required.</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -200,7 +203,9 @@
 import {computed, onMounted, reactive,toRefs,ref} from "vue";
 import {useStore} from "vuex";
 import useVuelidate from '@vuelidate/core';
-import {required,minLength,between,maxLength} from '@vuelidate/validators';
+import {required, minLength, between, maxLength, alpha, integer} from '@vuelidate/validators';
+import adminApi from "../../../api/adminAxios";
+import {notify} from "@kyvg/vue3-notification";
 
 export default {
     name: "editPackage",
@@ -211,16 +216,63 @@ export default {
         const { id } = toRefs(props);
 
         // get create Package
-        let pageWeb = computed(() => store.getters['packageAdmin/pageWeb'] );
-        let pageMobile = computed(() => store.getters['packageAdmin/pageMobile'] );
-        let getPackage = computed(() => store.getters['packageAdmin/packageEdit'] );
-        let idPageView = computed(() => store.getters['packageAdmin/idPageView'] );
-        let idPageViewMobile = computed(() => store.getters['packageAdmin/idPageViewMobile'] );
-        let loading = computed(() => store.getters['packageAdmin/loading'] );
+        let pageWeb = ref({});
+        let pageMobile = ref({});
+        let notWebId = ref([]);
+        let notMobileId = ref([]);
+        let webId = ref([]);
+        let mobileId = ref([]);
+        let loading = ref(false);
+        //start design
+        let editPackageDate =  reactive({
+            data:{
+                en:{ name : ''},
+                ar:{ name : ''},
+                period:0,
+                visiter_num: 0,
+                price: 0,
+                pageView_id: [],
+                pageViewMobile_id: [],
+                _method:'PUT'
+            }
+        });
+
+
         let getPagesViews = () => {
-            store.dispatch('packageAdmin/getEditPages',id.value);
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/advertiserPackage/${id.value}/edit`)
+                .then((res) => {
+                    let l = res.data.data;
+                    pageWeb.value = l.pageView;
+                    pageMobile.value = l.pageViewMobile;
+
+                    editPackageDate.data.en.name = l.Package.translations[1].name;
+                    editPackageDate.data.ar.name = l.Package.translations[0].name;
+                    editPackageDate.data.period = l.Package.period;
+                    editPackageDate.data.visiter_num = l.Package.visiter_num;
+                    editPackageDate.data.price = l.Package.price;
+
+                    l.Package.page_view.forEach((view) => {
+                        editPackageDate.data.pageView_id.push(view.pivot.page_view_id);
+                        webId.value.push(view.pivot.page_view_id);
+                    });
+                    l.Package.page_view_mobile.forEach((view) => {
+                        editPackageDate.data.pageViewMobile_id.push(view.pivot.page_view_mobile_id);
+                        mobileId.value.push(view.pivot.page_view_mobile_id);
+                    });
+                    notWebId.value = l.notWebId;
+                    notMobileId.value = l.notMobileId;
+
+                    console.log(l)
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                })
         }
-        const i = ref(getPackage);
 
          onMounted(() => {
             getPagesViews();
@@ -228,36 +280,77 @@ export default {
 
         const rules = computed(() => {
             return {
-                translations:[
-                {name: {minLength: minLength(3), maxLength: maxLength(40), required}},
-                {name: {minLength: minLength(3), maxLength: maxLength(40), required}}
-                ],
-                period: {between: between(1, 360),required},
-                price: {required,between: between(1, 4000)},
-                visiter_num: {required,between: between(1, 4000)}
+                en:{
+                    name: {
+                        minLength: minLength(3),
+                        maxLength:maxLength(40),
+                        required,
+                        alpha
+                    }
+                },
+                ar:{
+                    name: {
+                        minLength: minLength(3),
+                        maxLength:maxLength(40),
+                        required
+                    }
+                },
+                period: {
+                    between: between(1, 360),
+                    required,
+                    integer
+                },
+                price: {
+                    required,
+                    between: between(1, 4000),
+                    integer
+                }
+                ,
+                visiter_num: {
+                    required,
+                    between: between(1, 4000),
+                    integer
+                },
+                pageView_id:{
+                    required
+                },
+                pageViewMobile_id:{
+                    required
+                }
             }
         });
 
 
-        const v$ = useVuelidate(rules,getPackage);
+        const v$ = useVuelidate(rules,editPackageDate.data);
 
 
-        return {pageWeb,pageMobile,loading,v$,getPackage,idPageView,idPageViewMobile};
+        return {pageWeb,pageMobile,loading,v$,...toRefs(editPackageDate),notWebId,notMobileId,mobileId,webId};
     },
     methods:{
-        editPackage (e){
-
-            let formData = new FormData(e.target);
-            formData.append('id',this.id);
-            formData.append('_method','PUT');
-            console.log(formData.get('idPageView'));
-            console.log(formData.get('pageViewMobile_id'));
+        editPackage (){
 
             this.v$.$validate();
+            this.loading = true;
 
             if(!this.v$.$error){
 
-                this.$store.dispatch('packageAdmin/updatePackage',formData);
+                adminApi.post(`/v1/dashboard/advertiserPackage/${this.id}`,this.data)
+                    .then((res) => {
+
+                        notify({
+                            title: `Edited successfully <i class="fas fa-check-circle"></i>`,
+                            type: "success",
+                            duration: 5000,
+                            speed: 2000
+                        });
+
+                    })
+                    .catch((err) => {
+                        commit('errorsEdit',err.response.data.errors);
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
 
             }
         }

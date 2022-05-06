@@ -1,6 +1,5 @@
 import { createStore } from 'vuex';
 import auth from './web/auth';
-import advertise from './web/advertise';
 
 const store = createStore({
     state () {
@@ -17,8 +16,7 @@ const store = createStore({
 
     },
     modules:{
-        auth,
-        advertise
+        auth
     }
 });
 

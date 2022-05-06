@@ -42,6 +42,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'user' => [
+            'driver' => 'local',
+            'root' => public_path('web/img/user'),
+        ],
+
         'advertise' => [
             'driver' => 'local',
             'root' => public_path('web/img/advertise'),

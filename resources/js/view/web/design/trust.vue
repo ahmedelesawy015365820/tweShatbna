@@ -75,7 +75,6 @@
                                                     </div>
                                                     <p class="num-of-files">{{numberOfImage1 ? numberOfImage1 + ' Files Selected' : 'No Files Chosen' }}</p>
                                                     <div class="container-images" id="container-images-1" v-show="numberOfImage1"></div>
-<!--                                                    <span class="text-danger text-center" v-if="min">images en is required. <br /></span>-->
                                                 </div>
 
                                                 <div class="col-lg-4 text-center">
@@ -95,7 +94,6 @@
                                                     </div>
                                                     <p class="num-of-files">{{numberOfImage2 ? numberOfImage2 + ' Files Selected' : 'No Files Chosen' }}</p>
                                                     <div class="container-images" id="container-images-2" v-show="numberOfImage2"></div>
-<!--                                                    <span class="text-danger text-center" v-if="min">images en is required. <br /></span>-->
                                                 </div>
 
                                                 <div class="col-lg-4 text-center">
@@ -115,7 +113,6 @@
                                                     </div>
                                                     <p class="num-of-files">{{numberOfImage3 ? numberOfImage3 + ' Files Selected' : 'No Files Chosen' }}</p>
                                                     <div class="container-images" id="container-images-3" v-show="numberOfImage3"></div>
-<!--                                                    <span class="text-danger text-center" v-if="min">images en is required. <br /></span>-->
                                                 </div>
 
                                             </div>
@@ -276,8 +273,8 @@
                                                         <textarea
                                                                   maxlength="350"
                                                                   class="form-control"
-                                                                  rows="5" id="validationTextarea"
-                                                                  required
+                                                                  rows="5"
+                                                                  id="validationTextarea"
                                                                   v-model.trim="v$.person.description.$model"
                                                         >
                                                         </textarea>
@@ -291,7 +288,7 @@
                                                 <div class="form-group">
                                                     <div class="form-check">
                                                         <h4>في حاله عدم حصولك علي اي درجة علمية قم بتنشيط خانه لاحصل علي اي درجات علمية  <br /> لنتمكن من مساعدتك في الظهور بشكل افضل للعملاء</h4>
-                                                        <input class="form-check-input" v-model="person.noDegree" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback">
+                                                        <input class="form-check-input" v-model="person.noDegree" type="checkbox" id="invalidCheck3" aria-describedby="invalidCheck3Feedback">
                                                         <label class="form-check-label" for="invalidCheck3">
                                                             لا احصل علي اي درجة علمية
                                                         </label>
@@ -364,7 +361,7 @@
 
                                                 <div class="row justify-content-between">
                                                     <button type="button" @click="step1FuncBack3" class="btn back">السابق</button>
-                                                    <button type="submit" :disabled="button" class="btn next">ارسال</button>
+                                                    <button type="submit"  class="btn next">ارسال</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -389,7 +386,7 @@ import useVuelidate from "@vuelidate/core";
 import webApi from "../../../api/webAxios";
 
 export default {
-    name: "dashboard",
+    name: "trust",
     setup(){
 
         const emitter = inject('emitter');
@@ -398,7 +395,6 @@ export default {
         const numberOfImage1 = ref(0);
         const numberOfImage2 = ref(0);
         const numberOfImage3 = ref(0);
-        const button = ref(false);
 
         const step =  ref(1);
 
@@ -581,7 +577,7 @@ export default {
             getServiceDegree();
         });
 
-        return {button,loading,services,degrees,...toRefs(data),numberOfImage1,numberOfImage2,numberOfImage3,preview1,preview2,preview3,step,step1Func,step1FuncBack1,step1FuncBack2,step1FuncBack3,v$}
+        return {loading,services,degrees,...toRefs(data),numberOfImage1,numberOfImage2,numberOfImage3,preview1,preview2,preview3,step,step1Func,step1FuncBack1,step1FuncBack2,step1FuncBack3,v$}
     },
     methods: {
         step2Func (){
@@ -609,9 +605,8 @@ export default {
         step4Resault (){
 
             this.v$.info.$validate();
+            console.log('ahmed mohamed');
             if(!this.v$.info.$error){
-
-                this.button = true;
 
                 Swal.fire({
                     title: 'هل انت متاكد من البيانات ؟',
@@ -1007,7 +1002,7 @@ input:focus, select:focus , textarea:focus{
 
 @media only screen and (max-width: 992px){
     .wazard1::before,.wazard2::before,.wazard3::before {
-        display: none;
+        display: none !important;
     }
     .wazard1::after,.wazard2::after,.wazard3::after {
         display: none !important;

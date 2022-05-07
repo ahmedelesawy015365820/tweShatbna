@@ -18,7 +18,7 @@
                             <!--   subject degree   -->
                             <div class="col-12">
                                 <div class="all">
-                                    <form>
+                                    <form @submit.prevent="infoStore">
                                         <h3 class="know-you">معلومات عنك .</h3>
 
                                         <div class="form-row">
@@ -87,13 +87,12 @@
                                             </div>
 
                                             <div class=" col-12 mb-3 positionTextarea">
-                                                <span class="spaceLength">{{350 - person.description.length}}</span>
+                                                <span class="spaceLength">{{350 - (person.description ? person.description.length : 0)}}</span>
                                                 <label for="validationTextarea">وصف مجال الدراسه الخاص بك</label>
                                                 <textarea
                                                     maxlength="350"
                                                     class="form-control"
                                                     rows="5" id="validationTextarea"
-                                                    required
                                                     v-model="v$.person.description.$model"
                                                 >
                                                         </textarea>
@@ -284,45 +283,61 @@
                                 <div class="all">
                                     <h3 class="know-you">تغير كلمه المرور .</h3>
 
-                                    <div class="form-row" >
+                                    <form @submit.prevent="editPassword">
+                                        <div class="form-row" >
 
-                                        <div class="col-md-7 mb-3">
-                                            <label for="validationCustom015">كلمه المرور الجديده</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="****************"
-                                                id="validationCustom015"
-                                                v-model="v$.person.subject.$model"
-                                            >
-                                            <div v-if="v$.person.subject.$error">
-                                                <span class="text-danger" v-if="v$.person.subject.required.$invalid">subject is required.<br /> </span>
-                                                <span class="text-danger" v-if="v$.person.subject.maxLength.$invalid">subject is must have at most {{ v$.person.subject.maxLength.$params.min }} letters. <br /></span>
-                                                <span class="text-danger" v-if="v$.person.subject.minLength.$invalid">subject is must have at least {{ v$.person.subject.minLength.$params.max }} letters.</span>
+                                            <div class="col-md-7 mb-3">
+                                                <label for="validationCustom0156">كلمه المرور القديمة</label>
+                                                <input
+                                                    type="password"
+                                                    class="form-control"
+                                                    placeholder="****************"
+                                                    id="validationCustom0156"
+                                                    v-model="v$.password.oldPassword.$model"
+                                                >
+                                                <div v-if="v$.password.oldPassword.$error">
+                                                    <span class="text-danger" v-if="v$.password.oldPassword.required.$invalid">old password  is required.<br /> </span>
+                                                </div>
                                             </div>
+
+                                            <div class="col-md-7 mb-3">
+                                                <label for="validationCustom015">كلمه المرور الجديده</label>
+                                                <input
+                                                    type="password"
+                                                    class="form-control"
+                                                    placeholder="****************"
+                                                    id="validationCustom015"
+                                                    v-model="v$.password.newPassword.$model"
+                                                >
+                                                <div v-if="v$.password.newPassword.$error">
+                                                    <span class="text-danger" v-if="v$.password.newPassword.required.$invalid">new password is required.<br /> </span>
+                                                    <span class="text-danger" v-if="v$.password.newPassword.alphaNum.$invalid">must be letters or numbers. <br /></span>
+                                                    <span class="text-danger" v-if="v$.password.newPassword.minLength.$invalid">new password is must have at least {{ v$.password.newPassword.minLength.$params.min }} letters. <br /></span>
+                                                    <span class="text-danger" v-if="v$.password.newPassword.maxLength.$invalid">new password is must have at most {{ v$.password.newPassword.maxLength.$params.max }} letters. </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-7 mb-3">
+                                                <label for="validationCustom016">اعاده كلمه المرورالجديدة</label>
+                                                <input
+                                                    type="password"
+                                                    class="form-control"
+                                                    placeholder="****************"
+                                                    id="validationCustom016"
+                                                    v-model="v$.password.newRepeatPassword.$model"
+                                                >
+                                                <div v-if="v$.password.newRepeatPassword.$error">
+                                                    <span class="text-danger" v-if="v$.password.newRepeatPassword.$invalid">repeat password is required.<br /> </span>
+                                                    <span class="text-danger" v-if="v$.password.newRepeatPassword.sameAs.$invalid">repeat password other must match. <br /></span>
+                                                </div>
+                                            </div>
+
                                         </div>
 
-                                        <div class="col-md-7 mb-3">
-                                            <label for="validationCustom016">اعاده كلمه المرور</label>
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="****************"
-                                                id="validationCustom016"
-                                                v-model="v$.person.subject.$model"
-                                            >
-                                            <div v-if="v$.person.subject.$error">
-                                                <span class="text-danger" v-if="v$.person.subject.required.$invalid">subject is required.<br /> </span>
-                                                <span class="text-danger" v-if="v$.person.subject.maxLength.$invalid">subject is must have at most {{ v$.person.subject.maxLength.$params.min }} letters. <br /></span>
-                                                <span class="text-danger" v-if="v$.person.subject.minLength.$invalid">subject is must have at least {{ v$.person.subject.minLength.$params.max }} letters.</span>
-                                            </div>
+                                        <div class="row justify-content-between">
+                                            <button type="submit"  class="btn next">ارسال</button>
                                         </div>
-
-                                    </div>
-
-                                    <div class="row justify-content-between">
-                                        <button type="submit"  class="btn next">ارسال</button>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -338,7 +353,7 @@
 <script>
 import Sidebar from '../../../components/web/sidebar';
 import {computed, reactive,toRefs,ref,onMounted} from "vue";
-import {alphaNum, between, integer, maxLength, minLength, required} from "@vuelidate/validators";
+import {alphaNum, between, integer, maxLength,sameAs, minLength, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import webApi from "../../../api/webAxios";
 
@@ -366,12 +381,16 @@ export default {
                 experience: 0,
                 subject: '',
                 description: '',
-                noDegree: false
             },
             info: {
                 vision: '',
                 message: '',
                 strategy: ''
+            },
+            password: {
+                oldPassword: '',
+                newPassword: '',
+                newRepeatPassword: '',
             }
         });
 
@@ -394,6 +413,11 @@ export default {
                     vision: {required},
                     message: {required},
                     strategy: {required},
+                },
+                password: {
+                    oldPassword: {required},
+                    newPassword: {required,alphaNum,minLength: minLength(8),maxLength:maxLength(16)},
+                    newRepeatPassword: {required,sameAs:sameAs(data.password.newPassword)},
                 }
             }
         });
@@ -409,7 +433,11 @@ export default {
                     banks.value = l.banks;
                 })
                 .catch((err) => {
-                    console.log(err.response.data.errors);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
                 })
                 .finally(() => {
                     loading.value = false;
@@ -453,7 +481,6 @@ export default {
             });
         };
 
-        let detail = ref({});
         const getDetail = () =>{
             webApi.get(`/v1/web/getDesignDetails`)
                 .then((res) => {
@@ -463,17 +490,52 @@ export default {
                     data.info.strategy = l.strategy;
                 })
                 .catch((err) => {
-                    console.log(err.response.data.errors);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
                 })
+        }
+
+        let services = ref([]);
+        let degrees = ref([]);
+        const getInfo = () => {
+            loading.value = true;
+            webApi.get(`/v1/web/getInfo`)
+                .then((res) => {
+                    data.person.experience = res.data.data.info.experience;
+                    data.person.description = res.data.data.info.description;
+                    data.person.subject = res.data.data.info.subject;
+                    res.data.data.degree.forEach((e) => {
+                        data.person.nameDegree.push(e.id);
+                    });
+                    res.data.data.service.forEach((e) => {
+                        data.person.nameService.push(e.id);
+                    });
+                    services.value = res.data.data.services;
+                    degrees.value = res.data.data.degrees;
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
         }
 
 
         onMounted(() => {
             getBanks();
             getDetail();
+            getInfo();
         });
 
-        return {banks,getDetail,detail,v$,...toRefs(data),hide,loading,getBanks,deleteBank};
+        return {degrees,services,banks,getDetail,v$,...toRefs(data),hide,loading,getBanks,deleteBank};
     },
     methods:{
         bankStore() {
@@ -510,7 +572,11 @@ export default {
 
                             })
                             .catch((err) => {
-                                console.log(err.response.data);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'يوجد خطا في النظام...',
+                                    text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                                });
                             })
                             .finally(() => {
                                 this.loading = false;
@@ -550,7 +616,11 @@ export default {
 
                             })
                             .catch((err) => {
-                                console.log(err.response.data);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'يوجد خطا في النظام...',
+                                    text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                                });
                             })
                             .finally(() => {
                                 this.loading = false;
@@ -562,11 +632,103 @@ export default {
 
             }
         },
+        infoStore(){
+            this.v$.person.$validate();
+            if(!this.v$.person.$error){
+                Swal.fire({
+                    title: 'هل انت متاكد من البيانات ؟',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#fcb00c',
+                    cancelButtonColor: '#000',
+                    confirmButtonText: 'موافق',
+                    cancelButtonText: 'رجوع',
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        this.loading = true;
+                        webApi.post(`/v1/web/storeInfo`,this.person)
+                            .then((res) => {
+
+                                Swal.fire(
+                                    'تم الاضافه بنجاح',
+                                    'تم تغير المعلومات بنجاح .',
+                                    'نجاح'
+                                );
+
+                            })
+                            .catch((err) => {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'يوجد خطا في النظام...',
+                                    text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                                });
+                            })
+                            .finally(() => {
+                                this.loading = false;
+                            });
+
+                    }
+
+                });
+            }
+        },
+        editPassword(){
+            this.v$.password.$validate();
+            if(!this.v$.password.$error){
+                Swal.fire({
+                    title: 'هل انت متاكد من البيانات ؟',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#fcb00c',
+                    cancelButtonColor: '#000',
+                    confirmButtonText: 'موافق',
+                    cancelButtonText: 'رجوع',
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+
+                        this.loading = true;
+                        webApi.post(`/v1/web/editPassword`,this.password)
+                            .then((res) => {
+                                Swal.fire(
+                                    'تم الاضافه بنجاح',
+                                    'تم تغير المعلومات بنجاح .',
+                                    'نجاح'
+                                );
+
+                                this.resetFromPassword();
+                                this.$nextTick(() => { this.v$.password.$reset() });
+
+                            })
+                            .catch((err) => {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'يوجد خطا ...',
+                                    text: 'يوجد خطاء في الرقم السري القديم !',
+                                });
+                            })
+                            .finally(() => {
+                                this.loading = false;
+                            });
+
+                    }
+
+                });
+            }
+
+        },
         resetFromBank(){
             this.bank.name = '';
             this.bank.address = '';
             this.bank.iban = '';
             this.bank.swift = '';
+        },
+        resetFromPassword(){
+            this.password.oldPassword = '';
+            this.password.newPassword = '';
+            this.password.newRepeatPassword = '';
         }
     },
     beforeRouteEnter(to, from,next) {

@@ -228,6 +228,10 @@ export default {
             padding: 5px 12px;
             font-size: 11px !important;
         }
+        .navbar-header {
+            width: 100%;
+            justify-content: space-between;
+        }
     }
 
     @media only screen and (max-width: 768px) {

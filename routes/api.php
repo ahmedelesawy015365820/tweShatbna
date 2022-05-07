@@ -105,10 +105,13 @@ use Illuminate\Support\Facades\Route;
 
              // start DeSign profile
              Route::get('getBank',  'DesignEditProfile@getBank');
+             Route::get('getInfo',  'DesignEditProfile@getInfo');
              Route::get('getDesignDetails',  'DesignEditProfile@getDesignDetails');
              Route::post('storeBank',  'DesignEditProfile@storeBank');
              Route::post('deleteBank/{id}',  'DesignEditProfile@deleteBank');
              Route::post('storeDesignDetail',  'DesignEditProfile@storeDesignDetail');
+             Route::post('storeInfo',  'DesignEditProfile@storeInfo');
+             Route::post('editPassword',  'DesignEditProfile@editPassword');
 
          });
 

@@ -1021,7 +1021,7 @@ export default {
 }
 .banner-section .newsletter-form .form-group button.btn-ar {
     right: unset;
-    left: 0;
+    left: 55px;
 }
 section .newsletter-form .form-group input[type="email"].email-ar {
     left: 195px;
@@ -1043,6 +1043,9 @@ section .newsletter-form .form-group input[type="email"].email-ar {
 }
 .banner-section .carousel-column .inner-column .pager-box .pager.three{
     background-color: #8610f2;
+}
+.banner-section .newsletter-form .form-group button {
+    right: 10px;
 }
 /*end banner*/
 
@@ -1145,6 +1148,10 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     .lang{
         margin: 15px 10px 0 15px;
     }
+    .banner-section .newsletter-form .form-group button.btn-ar {
+        right: unset;
+        left: 45px;
+    }
 }
 @media only screen and (max-width: 1115px){
     .banner-section .content-column .video-box .video-image {
@@ -1165,9 +1172,6 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     }
     .banner-section .content-column .video-box.video-box-ar {
         display: none;
-    }
-    .banner-section .newsletter-form .form-group button.btn-ar{
-        left: -10px;
     }
     section .newsletter-form .form-group input[type="email"].email-ar {
         left: 185px;

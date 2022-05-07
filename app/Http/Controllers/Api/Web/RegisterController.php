@@ -104,8 +104,6 @@ class RegisterController extends Controller
 
     }// end companyRegister
 
-
-
     public function designRegister(Request $request)
     {
 
@@ -173,8 +171,6 @@ class RegisterController extends Controller
 
         }
     }// end designRegister
-
-
 
     public function advertiserRegister(Request $request)
     {

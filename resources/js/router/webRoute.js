@@ -3,10 +3,11 @@ import i18n from '../lang/web';
 
 import Index from '../view/web/index.vue';
 import successPartner from '../view/web/successPartner.vue';
-import company from '../view/web/company.vue';
 import registerPartiner from '../view/web/registerPartiner.vue';
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
+import forgetPassword from '../view/web/forgetPassword.vue';
+import resetPassword from '../view/web/resetPassword.vue';
 import middlewarePipeline from "./middlewarePipeline";
 import store from "../store/web";
 import lang from "../middleware/web/lang";
@@ -14,6 +15,7 @@ import guest from "../middleware/web/guest";
 import auth from "../middleware/web/auth";
 import advertise from "./webRoute/advertise";
 import design from "./webRoute/design";
+import company from "./webRoute/company";
 
 
 const routes = [
@@ -52,6 +54,22 @@ const routes = [
                 }
             },
             {
+                path: 'forget-password',
+                name: 'forgetPassword',
+                component: forgetPassword,
+                meta: {
+                    middleware: [guest]
+                }
+            },
+            {
+                path: 'reset-password',
+                name: 'resetPassword',
+                component: resetPassword,
+                meta: {
+                    middleware: [guest]
+                }
+            },
+            {
                 path: 'success-partners',
                 name: 'partners',
                 component: successPartner,
@@ -71,11 +89,8 @@ const routes = [
                 children:[
                     ...design
                     ,
-                    {
-                        path: 'company',
-                        name: 'company',
-                        component: company
-                    },
+                    ...company
+                    ,
                     ...advertise
                 ]
             },

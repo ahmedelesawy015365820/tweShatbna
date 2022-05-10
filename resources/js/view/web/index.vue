@@ -47,7 +47,7 @@
                     <div class="col-md-4">
                         <div class="feature-item">
                             <div class="feature-icon">
-                                <img src="web/img/icon/FreeDesignerOrange.svg" class="img-fluid" alt="">
+                                <img src="/web/img/icon/FreeDesignerOrange.svg" class="img-fluid" alt="">
                             </div>
                             <div class="feature-content">
                                 <h3 id="counter-1"></h3>
@@ -61,7 +61,7 @@
                     <div class="col-md-4">
                         <div class="feature-item">
                             <div class="feature-icon middle">
-                                <img src="web/img/icon/CompanyFreeOrange.svg" class="img-fluid" alt="">
+                                <img src="/web/img/icon/CompanyFreeOrange.svg" class="img-fluid" alt="">
                             </div>
                             <div class="feature-content">
                                 <h3 id="counter-2"></h3>
@@ -75,7 +75,7 @@
                     <div class="col-md-4">
                         <div class="feature-item">
                             <div class="feature-icon last">
-                                <img src="web/img/icon/ProjectOrange.svg" class="img-fluid" alt="">
+                                <img src="/web/img/icon/ProjectOrange.svg" class="img-fluid" alt="">
                             </div>
                             <div class="feature-content">
                                 <h3 id="counter-3"></h3>

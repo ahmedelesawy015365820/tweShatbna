@@ -18,6 +18,7 @@ use App\Models\State;
 use App\Models\User;
 use App\Traits\Message;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -65,7 +66,7 @@ class RegisterController extends Controller
                 "password" => $request->password,
                 "auth_id" => 2,
                 'role_name'=> ['company'],
-                "status" => 0,
+                "status" => 1,
             ]);
 
             $user->complement()->create([
@@ -76,9 +77,7 @@ class RegisterController extends Controller
                 'nameCompany' => $request->nameCompany,
             ]);
 
-            $user->company()->create([
-                'location' => $request->location
-            ]);
+            $user->company()->create(['location' => $request->location]);
 
             $user->media()->create([
                 'file_name' => 'img-04.jpg' ,
@@ -89,7 +88,10 @@ class RegisterController extends Controller
 
             DB::commit();
             if($user){
-                return $this->sendResponse([],'Data exited successfully');
+                $credentials = $request->only("email", "password");
+                if ($token = Auth::guard('api')->attempt($credentials)){
+                    return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
+                }
             }else{
                 return $this->sendError('An error occurred in the system');
             }
@@ -159,7 +161,11 @@ class RegisterController extends Controller
 
             DB::commit();
             if($user){
-                return $this->sendResponse([],'Data exited successfully');
+                //start access token
+                $credentials = $request->only("email", "password");
+                if ($token = Auth::guard('api')->attempt($credentials)){
+                    return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
+                }
             }else{
                 return $this->sendError('An error occurred in the system');
             }
@@ -251,5 +257,28 @@ class RegisterController extends Controller
         $state = State::whereCountryId($id)->get();
         return $this->sendResponse(['state' => StateResource::collection($state)],'Data exited successfully');
     }
+
+    // create token (company,desgin,advertiser)
+    protected function respondWithToken($token)
+    {
+        $user = auth()->guard('api')->user();
+        $complement = Complement::whereUserId($user->id)->first();
+
+        if($user->role_name[0] == 'company'){
+            $partner = new CompanyResource(Company::whereUserId($user->id)->first());
+        }elseif ($user->role_name[0] == 'design'){
+            $partner = new DesignResource(Designer::whereUserId($user->id)->first());
+        }
+
+        return [
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'user' => new UserResource($user),
+            'complement'=> new ComplementResource($complement),
+            'partner'=> $partner
+        ];
+
+    }//**********end respondWithToken************/
+
 
 }

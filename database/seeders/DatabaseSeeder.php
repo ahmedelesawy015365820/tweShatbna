@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DaySeeder::class);
         $this->call(DesignServiceSeeder::class);
         $this->call(DegreeDesignSeeder::class);
-
+        $this->call(CompanyServiceSeeder::class);
 
     }
 }

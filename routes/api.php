@@ -113,6 +113,12 @@ use Illuminate\Support\Facades\Route;
              Route::post('storeInfo',  'DesignEditProfile@storeInfo');
              Route::post('editPassword',  'DesignEditProfile@editPassword');
 
+             // start  company and profile
+             Route::get('companyService',  'CompanyController@companyService');
+             Route::get('getCompanyDetails',  'CompanyController@getCompanyDetails');
+             Route::post('storeCompanyDetail',  'CompanyController@storeCompanyDetail');
+             Route::post('trustCompanyOne',  'CompanyController@companyOne');
+
          });
 
 

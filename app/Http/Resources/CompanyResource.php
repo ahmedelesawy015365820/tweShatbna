@@ -11,7 +11,8 @@ class CompanyResource extends JsonResource
     {
         return [
             'location' => $this->location,
-            'trust' => $this->trust
+            'trust' => $this->trust,
+            'send' => $this->send
         ];
     }
 }

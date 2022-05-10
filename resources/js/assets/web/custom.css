@@ -49,6 +49,11 @@ body {
     right: 0;
 }
 
+.btn-color:active, .btn-color:focus{
+    background-color: #fcb00c !important;
+    border: 1px solid #fcb00c;
+}
+
 /* end register */
 
 /* start index */

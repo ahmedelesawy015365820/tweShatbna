@@ -132,7 +132,7 @@ const actions = {
                 let locale = localStorage.getItem("langWeb");
 
                 if (l.user.role_name[0] == 'company'){
-                    return router.push({name: 'company', params: {lang: locale || 'ar'}});
+                    return router.push({name: 'dashboardCompany', params: {lang: locale || 'ar'}});
                 }else if(l.user.role_name[0] == 'design'){
                     return router.push({name: 'dashboardDesign', params: {lang: locale || 'ar'}});
                 }else if(l.user.role_name[0] == 'advertiser'){
@@ -211,9 +211,18 @@ const actions = {
         webApi.post(`/v1/web/design`,preload)
             .then((res) => {
 
+                let l = res.data.data;
+                commit('editToken', l.access_token);
+                commit('editUser', l.user);
+                commit('editComplement', l.complement);
+                commit('editPartner', l.partner);
+
                 let locale = localStorage.getItem("langWeb");
 
-                return router.push({name: 'loginPartiner', params: {lang: locale || 'ar'}});
+                if(l.user.role_name[0] == 'design'){
+                    return router.push({name: 'dashboardDesign', params: {lang: locale || 'ar'}});
+                }
+
             })
             .catch((err) => {
                 console.log(err.response.data);
@@ -228,7 +237,17 @@ const actions = {
 
         webApi.post(`/v1/web/company`,preload)
             .then((res) => {
-                commit('editSuccess',true);
+                let l = res.data.data;
+                commit('editToken', l.access_token);
+                commit('editUser', l.user);
+                commit('editComplement', l.complement);
+                commit('editPartner', l.partner);
+
+                let locale = localStorage.getItem("langWeb");
+
+                if (l.user.role_name[0] == 'company'){
+                    return router.push({name: 'dashboardCompany', params: {lang: locale || 'ar'}});
+                }
             })
             .catch((err) => {
                 commit('editErrors',err.response.data.errors)

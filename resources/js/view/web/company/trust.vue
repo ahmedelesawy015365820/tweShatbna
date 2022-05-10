@@ -9,57 +9,51 @@
                     يجب عليك توثيق حسابك لعرض مشاريع العملاء عليك
                 </div>
 
-
                 <div class="trust> col-10" >
                     <div class="row">
-                        <router-link class="btn main-page" :to="{name:'dashboardDesign',params:{lang:this.$i18n.locale}}">
+                        <router-link class="btn main-page" :to="{name:'dashboardCompany',params:{lang:this.$i18n.locale}}">
                             العوده للرئيسية
                         </router-link>
                         <ul class="col-12">
                             <div class="row justify-content-center">
 
-                                <li class="col-lg-3  col-sm-6">
+                                <li class="col-lg-4  col-sm-6">
                                     <div class="text-center">
                                         <i :class="['fas','fa-check-circle',step <= 4 ?'active' : '']"></i>
                                         <h4 :class="['step-text',step <= 4 ?'active' : '']">تاكيد الهويه</h4>
                                     </div>
                                 </li>
 
-                                <li :class="['col-lg-3','col-sm-6','wazard1',(step > 1 && this.$i18n.locale == 'ar') ?'active' : '',(step > 1 && this.$i18n.locale != 'ar') ?'active-en' : '']">
+                                <li :class="['col-lg-4','col-sm-6','wazard1',(step > 1 && this.$i18n.locale == 'ar') ?'active' : '',(step > 1 && this.$i18n.locale != 'ar') ?'active-en' : '']">
                                     <div class="text-center">
                                         <i :class="['fas','fa-money-check',(step > 1 && step <= 4)?'active' : '']"></i>
                                         <h4 :class="['step-text',(step > 1 && step <= 4)?'active' : '']">الحساب البنكي</h4>
                                     </div>
                                 </li>
 
-                                <li :class="['col-lg-3' ,'col-sm-6' ,'wazard2',(step > 2 && this.$i18n.locale == 'ar')?'active' : '',(step > 2 && this.$i18n.locale != 'ar') ?'active-en' : '']">
+                                <li :class="['col-lg-4' ,'col-sm-6' ,'wazard2',(step > 2 && this.$i18n.locale == 'ar')?'active' : '',(step > 2 && this.$i18n.locale != 'ar') ?'active-en' : '']">
                                     <div class="text-center">
                                         <i :class="['fas','fa-user-cog',(step > 2 && step <= 4)?'active' : '']"></i>
-                                        <h4 :class="['step-text',(step > 2 && step <= 4)?'active' : '']">معلومات عنك</h4>
+                                        <h4 :class="['step-text',(step > 2 && step <= 3)?'active' : '']">معلومات عن الشركة</h4>
                                     </div>
                                 </li>
 
-                                <li :class="['col-lg-3 ','col-sm-6']">
-                                    <div :class="['text-center','wazard3',(step > 3 && this.$i18n.locale == 'ar') ?'active' : '', (step > 3 && this.$i18n.locale != 'ar') ?'active-en' : '']">
-                                        <i :class="['fas','fa-cogs',step == 4?'active' : '']"></i>
-                                        <h4 :class="['step-text',step == 4?'active' : '']">معلومات إضافية</h4>
-                                    </div>
-                                </li>
 
                             </div>
                         </ul>
 
                         <div class="col-12">
                             <div class="form">
-                                <form @submit.prevent="step4Resault" enctype="multipart/form-data">
+                                <form @submit.prevent="step3Resault" enctype="multipart/form-data">
                                     <div class="row justify-content-center">
 
                                         <div :class="['col-lg-10',step == 1?'active' : '']">
                                             <h3 class="know-you">توثيق الهوية</h3>
                                             <div class="form-row justify-content-center">
+
                                                 <div class="col-lg-4 text-center">
 
-                                                    <label class="text-center d-block">قم برفع صوره الوجه الامامي لوثيقه الهويه <br/> تظهر فيها جميع المعلومات واضحة</label>
+                                                    <label class="text-center d-block">قم برفع صورة للسجل التجاري لتوثيق الهوية تظهر فيها جميع المعلومات واضحة</label>
                                                     <div class="btn btn-outline-primary waves-effect">
                                                     <span>
                                                         Choose files
@@ -78,7 +72,7 @@
                                                 </div>
 
                                                 <div class="col-lg-4 text-center">
-                                                    <label class="text-center d-block">قم برفع صوره الوجه الخلفي لوثيقه الهويه <br/> تظهر فيها جميع المعلومات واضحة</label>
+                                                    <label class="text-center d-block">قم برفع صورة البطاقة الضريبية لتوثيق الهوية تظهر فيها جميع المعلومات واضحة</label>
                                                     <div class="btn btn-outline-primary waves-effect">
                                                     <span>
                                                         Choose files
@@ -96,32 +90,13 @@
                                                     <div class="container-images" id="container-images-2" v-show="numberOfImage2"></div>
                                                 </div>
 
-                                                <div class="col-lg-4 text-center">
-                                                    <label class="text-center d-block">قم برفع سيلفي لك مع  وثيقة الهوية  حيث <br /> تظهر ملامح وجهك  الوثيقه</label>
-                                                    <div class="btn btn-outline-primary waves-effect">
-                                                    <span>
-                                                        Choose files
-                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
-                                                    </span>
-                                                        <input
-                                                            type="file"
-                                                            required
-                                                            id="mediaPackage3"
-                                                            accept="image/*"
-                                                            @change="preview3"
-                                                        >
-                                                    </div>
-                                                    <p class="num-of-files">{{numberOfImage3 ? numberOfImage3 + ' Files Selected' : 'No Files Chosen' }}</p>
-                                                    <div class="container-images" id="container-images-3" v-show="numberOfImage3"></div>
-                                                </div>
-
                                             </div>
                                             <div class="row justify-content-between">
                                                 <button
                                                     type="button"
                                                     class="btn next add"
                                                     @click="step1Func"
-                                                    :disabled="!numberOfImage1 || !numberOfImage2 || !numberOfImage3"
+                                                    :disabled="!numberOfImage1 || !numberOfImage2"
                                                 >
                                                     التالي
                                                 </button>
@@ -163,12 +138,12 @@
                                                 <div class="col-md-12 mb-3">
                                                     <label for="validationServer0sjh">رقم الحساب البنكي IBAN</label>
                                                     <input
-                                                            type="text"
-                                                           class="form-control"
-                                                            id="validationServer0sjh"
-                                                            placeholder="مطلوب *"
-                                                            v-model.trim="v$.bank.iban.$model"
-                                                            required
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="validationServer0sjh"
+                                                        placeholder="مطلوب *"
+                                                        v-model.trim="v$.bank.iban.$model"
+                                                        required
                                                     >
                                                     <div v-if="v$.bank.iban.$error">
                                                         <span class="text-danger" v-if="v$.bank.iban.required.$invalid">iban is required.<br /> </span>
@@ -197,125 +172,34 @@
                                         </div>
 
                                         <div :class="['col-lg-10',step == 3?'active' : '']">
-
-                                            <h3 class="know-you">معلومات عنك</h3>
-
                                             <div>
                                                 <div class="form-row">
+                                                    <h3 class="know-you col-12">معلومات اضافية .</h3>
 
                                                     <div class="col-md-6 mb-3">
-                                                        <label for="validationServer05">قم بتسجيل الدرجه العلميه</label>
+                                                        <label for="validationServer05">اختر خدمات شركات التشطيبات</label>
                                                         <select
                                                             class="custom-select form-control"
                                                             multiple id="validationServer05"
-                                                            v-model="v$.person.nameService.$model"
+                                                            v-model="v$.info.nameService.$model"
                                                         >
                                                             <option selected disabled>اختار...</option>
-                                                            <option v-for="service in services" :value="service.id">
-                                                                {{ service.name }}
-                                                            </option>
+                                                            <option :value="service.id" v-for="service in services">{{service.name}}</option>
                                                         </select>
-                                                        <div v-if="v$.person.nameService.$error">
-                                                            <span class="text-danger" v-if="v$.person.nameService.required.$invalid">Degree is required.<br /> </span>
+                                                        <div v-if="v$.info.nameService.$error">
+                                                            <span class="text-danger" v-if="v$.info.nameService.required.$invalid">Degree is required.<br /> </span>
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="validationServer04">اختر خدمات الديزاير</label>
-                                                        <select class="custom-select form-control"
-                                                                multiple id="validationServer04"
-                                                                v-model="v$.person.nameDegree.$model"
-                                                        >
-                                                            <option selected disabled >اختار...</option>
-                                                            <option v-for="degree in degrees" :value="degree.id">
-                                                                {{ degree.name }}
-                                                            </option>
-                                                        </select>
-                                                        <div v-if="v$.person.nameDegree.$error">
-                                                            <span class="text-danger" v-if="v$.person.nameDegree.required.$invalid">bank name is required.<br /> </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="validationCustom01">اسم مجال الدراسه</label>
-                                                        <input
-                                                                type="text"
-                                                               class="form-control"
-                                                               placeholder="(كليه تجاره- علوم -حقوق - هندسه)"
-                                                                id="validationCustom01"
-                                                                v-model.trim="v$.person.subject.$model"
-                                                        >
-                                                        <div v-if="v$.person.subject.$error">
-                                                            <span class="text-danger" v-if="v$.person.subject.required.$invalid">subject is required.<br /> </span>
-                                                            <span class="text-danger" v-if="v$.person.subject.maxLength.$invalid">subject is must have at most {{ v$.person.subject.maxLength.$params.min }} letters. <br /></span>
-                                                            <span class="text-danger" v-if="v$.person.subject.minLength.$invalid">subject is must have at least {{ v$.person.subject.minLength.$params.max }} letters.</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="validationCustom02">اضف سنوات الخبره</label>
-                                                        <input
-                                                            type="number"
-                                                            class="form-control"
-                                                            id="validationCustom02"
-                                                            v-model.number="v$.person.experience.$model"
-                                                        >
-                                                        <div v-if="v$.person.experience.$error">
-                                                            <span class="text-danger" v-if="v$.person.experience.required.$invalid">experience is required.<br /> </span>
-                                                            <span v-if="v$.person.experience.integer.$invalid">experience  is number. <br /></span>
-                                                            <span class="text-danger" v-if="v$.person.experience.between.$invalid">must be between {{ v$.person.experience.between.$params.min }} and {{ v$.person.experience.between.$params.max }}</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class=" col-12 mb-3 positionTextarea">
-                                                        <span class="spaceLength">{{350 - person.description.length}}</span>
-                                                        <label for="validationTextarea">وصف مجال الدراسه الخاص بك</label>
-                                                        <textarea
-                                                                  maxlength="350"
-                                                                  class="form-control"
-                                                                  rows="5"
-                                                                  id="validationTextarea"
-                                                                  v-model.trim="v$.person.description.$model"
-                                                        >
-                                                        </textarea>
-                                                        <div v-if="v$.person.description.$error">
-                                                            <span class="text-danger" v-if="v$.person.description.required.$invalid">description is required.<br /> </span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="form-check">
-                                                        <h4>في حاله عدم حصولك علي اي درجة علمية قم بتنشيط خانه لاحصل علي اي درجات علمية  <br /> لنتمكن من مساعدتك في الظهور بشكل افضل للعملاء</h4>
-                                                        <input class="form-check-input" v-model="person.noDegree" type="checkbox" id="invalidCheck3" aria-describedby="invalidCheck3Feedback">
-                                                        <label class="form-check-label" for="invalidCheck3">
-                                                            لا احصل علي اي درجة علمية
-                                                        </label>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row justify-content-between">
-                                                    <button type="button" @click="step1FuncBack2" class="btn back">السابق</button>
-                                                    <button type="button" @click="step3Func" class="btn next">التالي</button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div :class="['col-lg-10',step == 4?'active' : '']">
-                                            <div>
-                                                <div class="form-row">
-                                                    <h3 class="know-you">معلومات اضافية .</h3>
                                                     <div class="col-12 mb-3 positionTextarea">
                                                         <span class="spaceLength">{{350 - info.vision.length}}</span>
                                                         <label for="validationTextarea1">الرؤيه</label>
                                                         <textarea
-                                                          class="form-control"
-                                                          rows="5" id="validationTextarea1"
-                                                          placeholder="مطلوب *"
-                                                          maxlength="350"
-                                                          required
-                                                          v-model.trim="v$.info.vision.$model"
+                                                            class="form-control"
+                                                            rows="5" id="validationTextarea1"
+                                                            placeholder="مطلوب *"
+                                                            maxlength="350"
+                                                            v-model.trim="v$.info.vision.$model"
                                                         >
                                                         </textarea>
                                                         <div v-if="v$.info.vision.$error">
@@ -327,12 +211,11 @@
                                                         <span class="spaceLength">{{350 - info.message.length}}</span>
                                                         <label for="validationTextarea2">الرساله</label>
                                                         <textarea
-                                                                  class="form-control"
-                                                                  maxlength="350"
-                                                                  rows="5" id="validationTextarea2"
-                                                                  placeholder="مطلوب *"
-                                                                  required
-                                                                  v-model.trim="v$.info.message.$model"
+                                                            class="form-control"
+                                                            maxlength="350"
+                                                            rows="5" id="validationTextarea2"
+                                                            placeholder="مطلوب *"
+                                                            v-model.trim="v$.info.message.$model"
                                                         >
                                                         </textarea>
                                                         <div v-if="v$.info.message.$error">
@@ -348,7 +231,6 @@
                                                             class="form-control"
                                                             rows="5" id="validationTextarea3"
                                                             placeholder="مطلوب *"
-                                                            required
                                                             v-model.trim="v$.info.strategy.$model"
                                                         >
                                                         </textarea>
@@ -359,7 +241,7 @@
                                                 </div>
 
                                                 <div class="row justify-content-between">
-                                                    <button type="button" @click="step1FuncBack3" class="btn back">السابق</button>
+                                                    <button type="button" @click="step1FuncBack2" class="btn back">السابق</button>
                                                     <button type="submit"  class="btn next">ارسال</button>
                                                 </div>
                                             </div>
@@ -379,8 +261,8 @@
 </template>
 
 <script>
-import {computed, reactive, ref, toRefs, onMounted, inject} from 'vue';
-import {maxLength, minLength, required, alphaNum, integer,alpha,between} from "@vuelidate/validators";
+import {computed, inject, onMounted, reactive, ref, toRefs} from "vue";
+import {alphaNum, between, integer, maxLength, minLength, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import webApi from "../../../api/webAxios";
 
@@ -393,7 +275,6 @@ export default {
         let loading = ref(false);
         const numberOfImage1 = ref(0);
         const numberOfImage2 = ref(0);
-        const numberOfImage3 = ref(0);
 
         const step =  ref(1);
 
@@ -461,41 +342,9 @@ export default {
 
         }
 
-        let preview3 = (e) => {
-
-            let containerImages = document.querySelector('#container-images-3');
-            containerImages.innerHTML = '';
-            numberOfImage3.value = e.target.files.length;
-            data.bank.file3 = e.target.files[0];
-
-            for(let i of e.target.files){
-
-                let reader = new FileReader();
-                let figure = document.createElement('figure');
-                figure.setAttribute('class','single');
-
-                let figcap = document.createElement('figcaption');
-
-                figcap.innerText = i.name;
-                figure.appendChild(figcap);
-
-                reader.onload = () => {
-                    let img = document.createElement('img');
-                    img.setAttribute('src',reader.result);
-                    figure.insertBefore(img,figcap);
-                }
-
-                containerImages.appendChild(figure);
-                reader.readAsDataURL(i);
-
-            }
-
-        }
-
         let step1Func = () =>{step.value = 2;}
         let step1FuncBack1 = () =>{step.value = 1;}
         let step1FuncBack2 = () =>{step.value = 2;}
-        let step1FuncBack3 = () =>{step.value = 3;}
 
         //start advertiser
         let data =  reactive({
@@ -506,17 +355,9 @@ export default {
                 swift: '',
                 file1:{},
                 file2:{},
-                file3:{},
-            },
-            person: {
-                nameService: [],
-                nameDegree: [],
-                experience: 0,
-                subject: '',
-                description: '',
-                noDegree: false
             },
             info: {
+                nameService:[],
                 vision: '',
                 message: '',
                 strategy: ''
@@ -531,14 +372,8 @@ export default {
                     iban: {required, alphaNum,maxLength:maxLength(150)},
                     swift: {alphaNum,maxLength:maxLength(150)}
                 },
-                person: {
-                    nameService: {required},
-                    nameDegree: {required},
-                    experience: {required,integer,between:between(0,30)},
-                    subject: {required,minLength:minLength(0),maxLength:maxLength(50)},
-                    description: {required}
-                },
                 info: {
+                    nameService:{required},
                     vision: {required},
                     message: {required},
                     strategy: {required},
@@ -549,19 +384,21 @@ export default {
         const v$ = useVuelidate(rules,data);
 
         const services = ref([]);
-        const degrees = ref([]);
 
-        let getServiceDegree = () => {
+        let getService = () => {
             loading.value = true;
 
-            webApi.get(`/v1/web/degreeService`)
+            webApi.get(`/v1/web/companyService`)
                 .then((res) => {
                     let l =res.data.data;
-                    services.value = l.degrees;
-                    degrees.value = l.services;
+                    services.value = l.services;
                 })
                 .catch((err) => {
-                    console.log(err.response.data.errors);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
                 })
                 .finally(() => {
                     loading.value = false;
@@ -569,14 +406,14 @@ export default {
         };
 
         onMounted(() => {
-            getServiceDegree();
+            getService();
         });
 
         emitter.on('get_lang_web', () => {
-            getServiceDegree();
+            getService();
         });
 
-        return {loading,services,degrees,...toRefs(data),numberOfImage1,numberOfImage2,numberOfImage3,preview1,preview2,preview3,step,step1Func,step1FuncBack1,step1FuncBack2,step1FuncBack3,v$}
+        return {loading,services,...toRefs(data),numberOfImage1,numberOfImage2,preview1,preview2,step,step1Func,step1FuncBack1,step1FuncBack2,v$}
     },
     methods: {
         step2Func (){
@@ -586,22 +423,7 @@ export default {
                 this.step = 3;
             }
         },
-        step3Func (){
-
-            if(!this.person.noDegree){
-
-                this.v$.person.$validate();
-
-                if(!this.v$.person.$error){
-                    this.step = 4;
-                }
-
-            }else{
-                this.step = 4;
-            }
-
-        },
-        step4Resault (){
+        step3Resault (){
 
             this.v$.info.$validate();
 
@@ -628,45 +450,47 @@ export default {
                         formData.append('swift',this.bank.swift);
                         formData.append('files[0]',this.bank.file1);
                         formData.append('files[1]',this.bank.file2);
-                        formData.append('files[2]',this.bank.file3);
                         formData.append('vision',this.info.vision);
                         formData.append('message',this.info.message);
                         formData.append('strategy',this.info.strategy);
+                        formData.append('nameService[]',this.info.nameService);
 
-                        webApi.post(`/v1/web/trustDesginOne`,formData)
+                        webApi.post(`/v1/web/trustCompanyOne`,formData)
                             .then((res) => {
 
-                                webApi.post(`/v1/web/trustDesginTwe`,this.person)
-                                    .then((res) => {
+                                Swal.fire(
+                                    'تم الاضافه بنجاح',
+                                    'سيتم مراجعه ملفك و سنرسل رساله الي البريد الالكتروني بعد الانتهاء من المراجعه .',
+                                    'نجاح'
+                                );
 
-                                        Swal.fire(
-                                            'تم الاضافه بنجاح',
-                                            'سيتم مراجعه ملفك و سنرسل رساله الي البريد الالكتروني بعد الانتهاء من المراجعه .',
-                                            'نجاح'
-                                        );
-
-                                        setTimeout(() => {
-                                            return this.$router.push({name:'dashboardDesign',params:{lang:this.$i18n.locale}});
-                                        },1000);
-
-                                    })
-                                    .catch((err) => {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'يوجد خطا في النظام...',
-                                            text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
-                                        });
-                                    });
+                                setTimeout(() => {
+                                    return this.$router.push({name:'dashboardCompany',params:{lang:this.$i18n.locale}});
+                                },1000);
 
                             })
                             .catch((err) => {
-                                this.step = 1;
-                                this.button = false;
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'يوجد خطا في الصور...',
-                                    text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !',
-                                });
+
+                                console.log(err.response.data)
+                                if(err.response.data.errors.error == 'image'){
+
+                                    this.step = 1;
+                                    this.button = false;
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'يوجد خطا في الصور...',
+                                        text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !'
+                                    });
+
+                                }else {
+
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'يوجد خطا في النظام...',
+                                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                                    });
+
+                                }
 
                             }).finally(() => {
                                 this.loading = false;
@@ -684,7 +508,7 @@ export default {
         if(!send){
             return next();
         }else{
-            return next({name:'dashboardDesign',params:{lang:localStorage.getItem('langWeb') || 'ar'}});
+            return next({name:'dashboardCompany',params:{lang:localStorage.getItem('langWeb') || 'ar'}});
         }
     }
 }

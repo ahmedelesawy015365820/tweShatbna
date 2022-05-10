@@ -96,6 +96,16 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Bank::class,'user_id');
     }
 
+    public function  CompanyService()
+    {
+        return $this->belongsToMany(CompanyService::class,'user_company_services','user_id','company_service_id');
+    }
+
+    public function CompanyDetail()
+    {
+        return $this->hasOne(CompanyDetail::class);
+    }
+
     public function  designService()
     {
         return $this->belongsToMany(DesignService::class,'user_design_services','user_id','design_service_id');
@@ -127,13 +137,8 @@ class User extends Authenticatable implements JWTSubject
     public function sendPasswordResetNotification($token)
     {
 
-        $user = Auth::guard('api')->user();
 
-        if($user->auth_id == 2){
-            $url = 'web/reset-password?token=' . $token;
-        }elseif ($user->auth_id == 1){
-            $url = 'dashboard/reset-password?token=' . $token;
-        }
+        $url = 'http://shatbna.com/ar/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }

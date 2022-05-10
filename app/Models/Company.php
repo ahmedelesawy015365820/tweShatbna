@@ -11,4 +11,10 @@ class Company extends Model
 
     protected $guarded = ['id'];
 
+
+    public function media()
+    {
+        return $this->morphMany(Media::class,'mediable');
+    }
+
 }

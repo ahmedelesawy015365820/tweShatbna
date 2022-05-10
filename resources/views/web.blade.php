@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>Shatbna</title>
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="{{asset('web/img/favicon.png')}}" type="image/x-icon">

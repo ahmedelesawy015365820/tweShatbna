@@ -149,8 +149,8 @@ class DesignController extends Controller
     public function degreeService()
     {
 
-        $degrees = DegreeDesign::get();
-        $services = DesignService::get();
+        $degrees = DegreeDesign::whereStatus(true)->get();
+        $services = DesignService::whereStatus(true)->get();
 
         return $this->sendResponse(['degrees' => $degrees, 'services' => $services], 'Data exited successfully');
     }

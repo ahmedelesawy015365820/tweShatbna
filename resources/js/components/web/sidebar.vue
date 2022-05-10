@@ -20,13 +20,62 @@
                     <h3 class="mb-0">
                         {{user.custom_name}}
                     </h3>
-                    <p  class="mb-0 editProfile" v-if="partner.trust">
+                    <p  class="mb-0 editProfile" v-if="partner.trust && roles.includes('design')">
                         <router-link :to="{name:'profile',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>
+                    </p>
+                    <p  class="mb-0 editProfile" v-if="partner.trust && roles.includes('company')">
+                        <router-link  :to="{name:'profileCompany',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>
                     </p>
                 </div>
             </div>
             <div class="settings-menu">
                 <ul>
+
+                    <!-- start company  -->
+                    <div class="mb-4"  v-if="roles.includes('company')">
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'dashboardCompany',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link',$route.name != 'dashboardCompany'? 'main-adver': '']"
+                            >
+                                <i class="material-icons">verified_user</i> الرئيسيه
+                            </router-link>
+                        </li>
+                        <li class="nav-item" v-if="!partner.send || !partner.trust">
+                            <router-link
+                                :to="{name:'trustCompany',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link',$route.name == 'trustCompany' ? 'active' : '']"
+                                v-if="!partner.send"
+                            >
+                                <i class="material-icons">person_pin</i> تاكيد الحساب
+                            </router-link>
+
+                            <a href="javascript:void(0);" @click="sendData"  class="nav-link" v-else>
+                                <i class="material-icons">person_pin</i> تاكيد الحساب
+                            </a>
+                        </li>
+                        <li class="nav-item" v-if="partner.trust">
+                            <a href="manage-projects.html" class="nav-link">
+                                <i class="material-icons">business_center</i> Projects
+                            </a>
+                        </li>
+                        <li class="nav-item" v-if="partner.trust">
+                            <a href="favourites.html" class="nav-link">
+                                <i class="material-icons">local_play</i> Favourites
+                            </a>
+                        </li>
+                        <li class="nav-item" v-if="partner.trust">
+                            <a href="review.html" class="nav-link">
+                                <i class="material-icons">record_voice_over</i> Reviews
+                            </a>
+                        </li>
+                        <li class="nav-item" v-if="partner.trust">
+                            <a href="chats.html" class="nav-link">
+                                <i class="material-icons">chat</i> Messages
+                            </a>
+                        </li>
+                    </div>
+                    <!-- end company  -->
 
                     <!-- start design  -->
 
@@ -35,7 +84,7 @@
                         <li class="nav-item">
                             <router-link
                                 :to="{name:'dashboardDesign',params:{lang:this.$i18n.locale}}"
-                                :class="['nav-link',$route.name == 'dashboardDesign' ? 'active' : '']"
+                                :class="['nav-link', $route.name != 'dashboardDesign'? 'main-adver': '']"
                             >
                                 <i class="material-icons">verified_user</i> الرئيسيه
                             </router-link>

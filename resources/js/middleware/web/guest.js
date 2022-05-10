@@ -6,7 +6,7 @@ export default function guest({ next,store}){
         if(roles[0] == 'design') {
             return next({name: 'dashboardDesign', params: {lang: localStorage.getItem("langWeb") || 'ar'}})
         }else if(roles[0] == 'company'){
-            return next({name:'company',params: {lang: localStorage.getItem("langWeb") || 'ar'}});
+            return next({name:'dashboardCompany',params: {lang: localStorage.getItem("langWeb") || 'ar'}});
         }else if(roles[0] == 'advertiser'){
             return next({name:'dashboardAdvertise',params: {lang: localStorage.getItem("langWeb") || 'ar'}});
         }

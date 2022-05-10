@@ -160,7 +160,7 @@
         <button class="btn btn-primary btn-block btn-lg login-btn text-center btn-color" type="submit">{{$t('register.join')}}</button>
         <div class="row form-row forget-login">
             <div :class="['col-6','text-start','click-forget', this.$i18n.locale == 'ar'? 'forget-register' : '']">
-                <router-link  to="/forgot-password">{{$t('register.forget')}}</router-link>
+                <router-link  :to="{name:'forgetPassword',params: {lang:this.$i18n.locale}}">{{$t('register.forget')}}</router-link>
             </div>
             <div :class="['col-6','text-end','click',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.account')}}
                 <router-link :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>

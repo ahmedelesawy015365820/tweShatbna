@@ -45,7 +45,11 @@
         "Join": "Join Shatbna",
         "life": "Make the most of your professional life",
         "welcome": "Welcome Back",
-        "miss": "Don't miss your next opportunity. Sign in to stay updated on your world."
+        "miss": "Don't miss your next opportunity. Sign in to stay updated on your world.",
+        "find": "FIND OUT PASSWORD",
+        "rememberP": "Remember your password?",
+        "first-account": "First, let's find your account",
+        "enter": "Please enter your email"
     },
     "index": {
         "trused": "Trused by over 2M+ users",
@@ -105,7 +109,22 @@
         "mail-contact": "Your mail *",
         "phone": "Phone number *",
         "message": "Message...",
-        "send": "Send now"
+        "send": "Send now",
+        "step": "step",
+        "stepH": "The easiest steps to get clients for your projects .",
+        "step1": "Create an account on the website or mobile app",
+        "step1p": "All you have to do is create an account on the Shutbna website or app\nThen you browse hundreds of projects for hundreds of clients\nOn the platform and application, we have written off",
+        "step2": "Confirm the account and complete your information",
+        "step2p": "Your account is reviewed by Chtbna website and application management\n    Once the account is activated, all you have to do is complete your profile\n    that expresses you to your customers",
+        "step3": "Get many opportunities",
+        "step3p": "Welcome, a member of the Shutbana community for your decoration and finishes\nHundreds of opportunities we will help you get\nNever wait now",
+        "screenshot": "Hundreds of operations for hundreds of customers only through the Shutbana application\nThe largest community for decoration and finishing in Egypt",
+        "control": "Control panel to track all your projects",
+        "controlp": "Shutbna community provides you with a control panel that has many characteristics in terms of ease and control over all your projects, starting with contracting the project and following up on your cases after completion of the financial position of the projects.",
+        "opportunity": "Hundreds of opportunities available to you .",
+        "opportunityp":"Seize hundreds of opportunities for projects that suit you, as there are hundreds of clients and thousands of projects waiting for you to participate in them.",
+        "join": "Join the largest community for decoration and finishes in Egypt",
+        "joinp": "Join hundreds of companies and hundreds of designers. All you have to do is download the application and create an account."
     },
     "footer": {
         "adress": "Addresses Shatbna",

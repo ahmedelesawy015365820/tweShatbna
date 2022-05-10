@@ -1,6 +1,17 @@
 <template>
     <div class="page-wrapper">
 
+        <div class="position-fixed overlay" v-if="show" @click.self="show = !show">
+            <div class="embed-responsive embed-responsive-21by9">
+                <iframe
+                    class="embed-responsive-item"
+                    src="https://www.youtube.com/embed/kxPCFljwJws"
+                    allowfullscreen
+                >
+                </iframe>
+            </div>
+        </div>
+
         <!-- Main Header-->
         <header class="main-header">
 
@@ -71,7 +82,13 @@
                                 <figure class="video-image">
                                     <img src="/web/page/images/resource/video.jpg" alt="">
                                 </figure>
-                                <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image overlay-box"><span class="fa fa-play"><i class="ripple"></i></span></a>
+                                <a
+                                    href="#"
+                                   class="lightbox-image overlay-box"
+                                    @click="show = !show"
+                                >
+                                    <span class="fa fa-play"><i class="ripple"></i></span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -119,7 +136,6 @@
             </div>
         </section>
         <!--End Banner Section-->
-
 
         <!--Banner Section-->
         <section class="register" >
@@ -218,32 +234,32 @@
 
                                 <!-- Sec Title -->
                                 <div class="sec-title style-two">
-                                    <div class="title"><span>St</span>eps</div>
-                                    <h2>We have some <span> eas</span>y <span>ste</span>p<span>s</span>! </h2>
+                                    <div :class="['title',this.$i18n.locale == 'ar'?'title-ar':'']"><span>3</span>{{ $t('partner.step') }}</div>
+                                    <h2>{{ $t('partner.stepH') }}</h2>
                                 </div>
 
                                 <!-- Controls-->
                                 <ul class="carousel-indicators">
 
-                                    <li data-target="#steps-thumb" data-slide-to="0" class="tab-btn active wow" data-wow-delay="0ms" data-wow-duration="1500ms">
+                                    <li data-target="#steps-thumb">
                                         <span class="number">1</span>
                                         <span class="icon"><i class="flaticon-logout"></i></span>
-                                        <strong>Download as a free trial!</strong>
-                                        Lorem Ipsum is simply dummy text of the printing setting industry. Lorem Ipsum has been industry's dard dummy text ever since the 1500s.
+                                        <strong>{{ $t("partner.step1") }} </strong>
+                                        {{ $t("partner.step1p") }}
                                     </li>
 
-                                    <li data-target="#steps-thumb" data-slide-to="1" class="tab-btn wow" data-wow-delay="0ms" data-wow-duration="1500ms">
+                                    <li data-target="#steps-thumb">
                                         <span class="number">2</span>
                                         <span class="icon"><i class="flaticon-credit-card"></i></span>
-                                        <strong>Login your account</strong>
-                                        Lorem Ipsum is simply dummy text of the printing setting industry. Lorem Ipsum has been industry's dard dummy text ever since the 1500s.
+                                        <strong>{{ $t("partner.step2") }}</strong>
+                                        {{ $t("partner.step2p") }}
                                     </li>
 
                                     <li data-target="#steps-thumb" data-slide-to="2" class="tab-btn wow" data-wow-delay="0ms" data-wow-duration="1500ms">
                                         <span class="number">3</span>
                                         <span class="icon"><i class="flaticon-gift"></i></span>
-                                        <strong>Enjoy the app!</strong>
-                                        Lorem Ipsum is simply dummy text of the printing setting industry. Lorem Ipsum has been industry's dard dummy text ever since the 1500s.
+                                        <strong>{{ $t("partner.step3") }}</strong>
+                                        {{ $t("partner.step3p") }}
                                     </li>
 
                                 </ul>
@@ -257,98 +273,6 @@
             </div>
         </section>
         <!-- End Steps Section -->
-
-        <!-- Featured Section -->
-        <section class="featured-section" id="featured">
-            <div class="auto-container">
-                <div class="row clearfix">
-
-                    <!-- Content Column -->
-                    <div class="content-column col-lg-5 col-md-12 col-sm-12">
-                        <div class="iner-column">
-                            <div class="sec-title">
-                                <div class="title"><span>Fe</span>atures</div>
-                                <h2>Learn the features of new Beautiful <span>lifest</span>y<span>le</span> app!</h2>
-                            </div>
-                            <div class="text">
-                                <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's stan dard dummy text ever since the 1500s.</p>
-                                <p>The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts.</p>
-                            </div>
-                            <ul class="list-style-one">
-                                <li>Identfy the most trending sessions & exibitors.</li>
-                                <li>24 hours customer supports facilites.</li>
-                                <li>Take action to improve your event value.</li>
-                            </ul>
-                            <a href="contact.html" class="theme-btn btn-style-three"><span class="txt">Contact Us</span></a>
-                        </div>
-                    </div>
-
-                    <!-- Blocks Column -->
-                    <div class="blocks-column col-lg-7 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <!-- Cloud Icon -->
-                            <div class="cloud-icon">
-                                <img src="/web/page/images/icons/cloud-icon.png" alt="" />
-                            </div>
-                            <div class="row clearfix">
-
-                                <!-- Featured Block -->
-                                <div class="featured-block titlt col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="8">
-                                    <div class="inner-box">
-                                        <div class="icon-box">
-                                            <span class="icon flaticon-writing"></span>
-                                        </div>
-                                        <h3>Easy to edit</h3>
-                                        <div class="text">Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div>
-                                    </div>
-                                </div>
-
-                                <!-- Featured Block -->
-                                <div class="featured-block titlt style-two col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="6">
-                                    <div class="inner-box">
-                                        <div class="icon-box">
-                                            <span class="icon flaticon-protection-shield-with-a-check-mark"></span>
-                                        </div>
-                                        <h3>Full protection</h3>
-                                        <div class="text">The app needs to be running in the background, as it tracks BLE regions. </div>
-                                    </div>
-                                </div>
-
-                                <!-- Featured Block -->
-                                <div class="featured-block titlt style-three col-lg-6 col-md-6 col-sm-12" data-tilt data-tilt-max="10">
-                                    <div class="inner-box">
-                                        <div class="icon-box">
-                                            <span class="icon flaticon-dashboard"></span>
-                                        </div>
-                                        <h3>Hi speedy app</h3>
-                                        <div class="text">Speedy App provides instant information on thousands of hire and buy products.</div>
-                                    </div>
-                                </div>
-
-                                <!-- Featured Block -->
-                                <div class="featured-block style-four col-lg-6 col-md-6 col-sm-12">
-                                    <div class="inner-box">
-                                        <div class="icon-box">
-                                            <span class="icon flaticon-writing"></span>
-                                        </div>
-                                        <h3>Easy to edit</h3>
-                                        <div class="text">Save time and edit like a pro! Yes! you will be able to edit your application on the easy way.</div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- Side Image -->
-                            <div class="side-image">
-                                <img src="/web/page/images/resource/girl-icon.png" alt="" />
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <!-- End Featured Section -->
 
         <!-- Apps Section -->
         <section class="apps-section" id="how-works">
@@ -386,7 +310,8 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <div class="image titlt" data-tilt data-tilt-max="8">
-                                        <a href="/web/page/images/resource/app-1.png" class="app-1 lightbox-image"><img src="/web/page/images/resource/dash-board.png" alt="" /></a>
+                                        <a href="/web/page/images/resource/app-1.png" class="app-1 lightbox-image">
+                                            <img src="/web/img/dash-board.jfif" alt="" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -397,9 +322,11 @@
                                     <div class="icon-box">
                                         <span class="icon flaticon-settings"></span>
                                     </div>
-                                    <h3>Easy to Manage Your All Data by This App!</h3>
-                                    <div class="text">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry.</div>
-                                    <a href="#" class="theme-btn btn-style-two"><span class="txt">Contact team</span></a>
+                                    <h3>{{$t('partner.control')}}</h3>
+                                    <div class="text">{{$t('partner.controlp')}}</div>
+                                    <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}" class="theme-btn btn-style-two">
+                                        <span class="txt">{{$t('partner.register')}}</span>
+                                    </router-link>
                                 </div>
                             </div>
 
@@ -419,9 +346,11 @@
                                     <div class="icon-box">
                                         <span class="icon flaticon-dashboard"></span>
                                     </div>
-                                    <h3>Bug free responsive app with high performence speed!</h3>
-                                    <div class="text">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry.</div>
-                                    <a href="#" class="theme-btn btn-style-four"><span class="txt">Read more</span></a>
+                                    <h3>{{ $t('partner.opportunity') }}</h3>
+                                    <div class="text">{{ $t('partner.opportunityp') }}</div>
+                                    <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}"   class="theme-btn btn-style-four">
+                                        <span class="txt">{{ $t('partner.start') }}</span>
+                                    </router-link>
                                 </div>
                             </div>
 
@@ -432,7 +361,7 @@
                                         <a href="/web/page/images/resource/app-2.png" class="app-2 lightbox-image"><img src="/web/page/images/resource/app-2.png" alt="" /></a>
                                     </div>
                                     <div class="small-image titlt wow slideInRight" data-wow-delay="300ms" data-wow-duration="1500ms" data-tilt data-tilt-max="15">
-                                        <a href="/web/page/images/resource/app-3.png" class="app-2 lightbox-image"><img src="/web/page/images/resource/app-3.png" alt="" /></a>
+                                        <a href="/web/page/images/resource/app-3.png" class="app-2 lightbox-image"><img  src="/web/img/dash-board.jfif" alt="" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -464,11 +393,10 @@
                     <div class="content-column col-lg-6 col-md-12 col-sm-12">
                         <div class="inner-column">
                             <div class="sec-title style-three">
-                                <div class="title"><span>Fu</span>nfacts</div>
-                                <h2>We have a g<span>reat funfact</span> which <br> we want to show you!</h2>
+                                <div class="text-center"><img src="/web/img/logo.png" class="img-fluid logo" alt="Logo"></div>
+                                <h2>{{$t('partner.join')}}</h2>
                             </div>
-                            <div class="text">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's stan dard dummy text ever since the 1500s.</div>
-                            <div class="download">Download a trial version to make life easy!</div>
+                            <div class="text">{{$t('partner.joinp')}}</div>
                             <div class="google-btns">
                                 <a href="#"><img src="/web/page/images/icons/google.png" alt="" /></a>
                                 <a href="#"><img src="/web/page/images/icons/app.png" alt="" /></a>
@@ -486,30 +414,15 @@
 
                                     <!--Column-->
                                     <div class="column counter-column col-lg-6 col-md-6 col-sm-12">
-                                        <div class="inner wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                                            <div class="content">
-                                                <div class="icon-box">
-                                                    <span class="icon flaticon-user"></span>
-                                                </div>
-                                                <div class="count-outer count-box">
-                                                    <span class="count-text" data-speed="2500" data-stop="1200">0</span>+
-                                                </div>
-                                                <h5 class="counter-title">Satisfied Clients</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--Column-->
-                                    <div class="column counter-column col-lg-6 col-md-6 col-sm-12">
                                         <div class="inner wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                                             <div class="content">
-                                                <div class="icon-box">
-                                                    <span class="icon flaticon-cube"></span>
+                                                <div class="feature-icon">
+                                                    <img src="/web/img/icon/FreeDesignerOrange.svg" class="img-fluid" alt="">
                                                 </div>
-                                                <div class="count-outer count-box alternate">
-                                                    <span class="count-text" data-speed="3000" data-stop="850">0</span>+
+                                                <div class="feature-content">
+                                                    <h3 id="counter-1"></h3>
+                                                    <p>{{$t('index.freelancer')}}</p>
                                                 </div>
-                                                <h5 class="counter-title">Agents Team</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -518,13 +431,13 @@
                                     <div class="column counter-column col-lg-6 col-md-6 col-sm-12">
                                         <div class="inner wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
                                             <div class="content">
-                                                <div class="icon-box">
-                                                    <span class="icon flaticon-followers"></span>
+                                                <div class="feature-icon middle">
+                                                    <img src="/web/img/icon/CompanyFreeOrange.svg" class="img-fluid" alt="">
                                                 </div>
-                                                <div class="count-outer count-box">
-                                                    <span class="count-text" data-speed="3000" data-stop="154">0</span>+
+                                                <div class="feature-content">
+                                                    <h3 id="counter-2"></h3>
+                                                    <p>{{$t('index.finish')}}</p>
                                                 </div>
-                                                <h5 class="counter-title">Success Mission</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -533,13 +446,13 @@
                                     <div class="column counter-column col-lg-6 col-md-6 col-sm-12">
                                         <div class="inner wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms">
                                             <div class="content">
-                                                <div class="icon-box">
-                                                    <span class="icon flaticon-heart"></span>
+                                                <div class="feature-icon last">
+                                                    <img src="/web/img/icon/ProjectOrange.svg" class="img-fluid" alt="">
                                                 </div>
-                                                <div class="count-outer count-box">
-                                                    <span class="count-text" data-speed="2500" data-stop="1360">0</span>+
+                                                <div class="feature-content">
+                                                    <h3 id="counter-3"></h3>
+                                                    <p>{{$t('index.project')}}</p>
                                                 </div>
-                                                <h5 class="counter-title">Awards</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -559,298 +472,24 @@
         <section class="screenshots-section">
             <div class="auto-container">
                 <div class="sec-title centered style-two">
-                    <div class="title"><span>Ap</span>p Screenshots</div>
-                    <h2>App screenshots will be <span>im</span>p<span>ortant</span> <br> to know properly the app! lifestyle app!</h2>
+                    <h2>
+                        <div><img src="/web/img/logo.png" class="img-fluid logo" alt="Logo"></div>
+                        {{ $t("partner.screenshot") }}
+                    </h2>
                 </div>
 
-                <div class="row appScreenshotCarousel-container swiper-container">
-                    <div class="screen-mobile-image"></div>
+                <div class="row justify-content-center appScreenshotCarousel-container swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-01.jpg)"></div> <!-- style="background-image:url(web/page/images/resource/slider-01.jpg)" -->
-                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-02.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-02.png)" -->
-                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-03.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-03.png)" -->
-                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-04.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-04.png)" -->
-                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-05.png)"></div> <!--  -->
-                        <div class="swiper-slide" style="background-image:url(/web/page/images/resource/slider-02.png)" ></div> <!-- -->
-                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-01.jpg)"></div> <!-- style="background-image:url(web/page/images/resource/slider-01.jpg)" -->
-                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-02.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-02.png)" -->
-                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-03.png)"></div> <!-- style="background-image:url(web/page/images/resource/slider-03.png)" -->
-                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-04.png)" ></div>
-                        <div class="swiper-slide" style="background-image:url(web/page/images/resource/slider-05.png)"></div>
+                        <div class="swiper-slide">
+                            <img src="/web/img/screen-mobile.png" alt="screen-mobile">
+                        </div>
                     </div>
                     <!-- Add Arrows -->
                 </div>
-                <!-- Navigations -->
-                <div class="banner-navigation">
-                    <div class="swiper-button-prev"><span class="icons-left-arrow-1"></span></div>
-                    <div class="swiper-button-next"><span class="icons-right-arrow-1"></span></div>
-                </div>
+
             </div>
         </section>
         <!-- End Screenshots Section -->
-
-        <!-- Integration Section -->
-        <section class="integration-section">
-            <div class="patern-layer-one" style="background-image: url(web/page/images/background/pattern-5.png)"></div>
-            <div class="patern-layer-two" style="background-image: url(web/page/images/background/pattern-6.png)"></div>
-            <div class="patern-layer-three" style="background-image: url(web/page/images/background/pattern-10.png)"></div>
-            <div class="patern-layer-four" style="background-image: url(web/page/images/background/pattern-10.png)"></div>
-            <div class="auto-container">
-                <div class="sec-title centered">
-                    <div class="title"><span>In</span>tegrations</div>
-                    <h2>We use some plugins to do premium <br> quality <span>inte</span>g<span>rations</span></h2>
-                </div>
-            </div>
-
-            <!-- Outer Container -->
-            <div class="outer-container">
-
-                <div class="bubbles-wrapper">
-                    <div class="animations m-0">
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-md">
-                            <img src="/web/page/images/resource/Integrations-1.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">HTML-5</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xxl">
-                            <img src="/web/page/images/resource/Integrations-2.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Envato</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-lg">
-                            <img src="/web/page/images/resource/Integrations-3.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Elementor</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xl">
-                            <img src="/web/page/images/resource/Integrations-4.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Fingerprint</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-md">
-                            <img src="/web/page/images/resource/Integrations-5.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Amplify</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-lg">
-                            <img src="/web/page/images/resource/Integrations-6.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Firebase Integration</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-md">
-                            <img src="/web/page/images/resource/Integrations-7.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Google-Plus</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xl">
-                            <img src="/web/page/images/resource/Integrations-8.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Jio Tv</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-lg">
-                            <img src="/web/page/images/resource/Integrations-9.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Paypal</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xxl">
-                            <img src="/web/page/images/resource/Integrations-10.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Stripe</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-md">
-                            <img src="/web/page/images/resource/Integrations-11.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Goola Map</span>
-                        </div>
-                        <div class="bubble bg-contrast rounded-circle p-2 shadow icon icon-xl">
-                            <img src="/web/page/images/resource/Integrations-12.jpg" alt="" class="img-responsive">
-                            <span class="badge badge-contrast shadow-box">Microsoft</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="btn-box text-center">
-                <a href="#" class="theme-btn btn-style-five"><span class="txt">All Integretions</span></a>
-            </div>
-
-        </section>
-        <!-- End Integration Section -->
-
-        <!-- Team Section -->
-        <section class="team-section">
-            <div class="auto-container">
-
-                <!-- Ct Dot Animated -->
-                <div class="ct-dot-animated">
-                    <div class="ct-dot-container">
-                        <div class="ct-dot-item">
-                            <span></span>
-                        </div>
-                        <div class="ct-dot-item">
-                            <span></span>
-                        </div>
-                        <div class="ct-dot-item">
-                            <span></span>
-                        </div>
-                        <div class="ct-dot-item">
-                            <span></span>
-                        </div>
-                        <div class="ct-dot-item">
-                            <span></span>
-                        </div>
-                        <div class="ct-dot-item">
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sec-title centered">
-                    <div class="title"><span>Te</span>am member</div>
-                    <h2>Really we have <span>an ex</span>p<span>ert</span> team <br> to develop many apps!</h2>
-                </div>
-
-                <div class="team-carousel owl-carousel owl-theme">
-
-                    <!-- Team Block -->
-                    <div class="team-block">
-                        <div class="inner-box">
-                            <div class="image-outer">
-                                <div class="image">
-                                    <a href="#"><img src="/web/page/images/resource/team-1.png" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="lower-content">
-                                <h3>Romeo Poro</h3>
-                                <div class="designation">Android Developer</div>
-                                <div class="social-boxed">
-                                    <div class="social-inner">
-                                        <span class="share-now fa fa-share-alt"></span>
-                                        <a href="#"><span class="fa fa-facebook"></span></a>
-                                        <a href="#"><span class="fa fa-twitter"></span></a>
-                                        <a href="#"><span class="fa fa-dribbble"></span></a>
-                                        <a href="#"><span class="fa fa-behance"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Team Block -->
-                    <div class="team-block style-two">
-                        <div class="inner-box">
-                            <div class="image-outer">
-                                <div class="image">
-                                    <a href="#"><img src="/web/page/images/resource/team-2.png" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="lower-content">
-                                <h3>David Roger</h3>
-                                <div class="designation">iOS Developer</div>
-                                <div class="social-boxed">
-                                    <div class="social-inner">
-                                        <span class="share-now fa fa-share-alt"></span>
-                                        <a href="#"><span class="fa fa-facebook"></span></a>
-                                        <a href="#"><span class="fa fa-twitter"></span></a>
-                                        <a href="#"><span class="fa fa-dribbble"></span></a>
-                                        <a href="#"><span class="fa fa-behance"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Team Block -->
-                    <div class="team-block style-three">
-                        <div class="inner-box">
-                            <div class="image-outer">
-                                <div class="image">
-                                    <a href="#"><img src="/web/page/images/resource/team-3.png" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="lower-content">
-                                <h3>Jasmin Duke</h3>
-                                <div class="designation">App Designer</div>
-                                <div class="social-boxed">
-                                    <div class="social-inner">
-                                        <span class="share-now fa fa-share-alt"></span>
-                                        <a href="#"><span class="fa fa-facebook"></span></a>
-                                        <a href="#"><span class="fa fa-twitter"></span></a>
-                                        <a href="#"><span class="fa fa-dribbble"></span></a>
-                                        <a href="#"><span class="fa fa-behance"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Team Block -->
-                    <div class="team-block">
-                        <div class="inner-box">
-                            <div class="image-outer">
-                                <div class="image">
-                                    <a href="#"><img src="/web/page/images/resource/team-1.png" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="lower-content">
-                                <h3>Romeo Poro</h3>
-                                <div class="designation">Android Developer</div>
-                                <div class="social-boxed">
-                                    <div class="social-inner">
-                                        <span class="share-now fa fa-share-alt"></span>
-                                        <a href="#"><span class="fa fa-facebook"></span></a>
-                                        <a href="#"><span class="fa fa-twitter"></span></a>
-                                        <a href="#"><span class="fa fa-dribbble"></span></a>
-                                        <a href="#"><span class="fa fa-behance"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Team Block -->
-                    <div class="team-block style-two">
-                        <div class="inner-box">
-                            <div class="image-outer">
-                                <div class="image">
-                                    <a href="#"><img src="web/page/images/resource/team-2.png" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="lower-content">
-                                <h3>David Roger</h3>
-                                <div class="designation">iOS Developer</div>
-                                <div class="social-boxed">
-                                    <div class="social-inner">
-                                        <span class="share-now fa fa-share-alt"></span>
-                                        <a href="#"><span class="fa fa-facebook"></span></a>
-                                        <a href="#"><span class="fa fa-twitter"></span></a>
-                                        <a href="#"><span class="fa fa-dribbble"></span></a>
-                                        <a href="#"><span class="fa fa-behance"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Team Block -->
-                    <div class="team-block style-three">
-                        <div class="inner-box">
-                            <div class="image-outer">
-                                <div class="image">
-                                    <a href="#"><img src="web/page/images/resource/team-3.png" alt="" /></a>
-                                </div>
-                            </div>
-                            <div class="lower-content">
-                                <h3>Jasmin Duke</h3>
-                                <div class="designation">App Designer</div>
-                                <div class="social-boxed">
-                                    <div class="social-inner">
-                                        <span class="share-now fa fa-share-alt"></span>
-                                        <a href="#"><span class="fa fa-facebook"></span></a>
-                                        <a href="#"><span class="fa fa-twitter"></span></a>
-                                        <a href="#"><span class="fa fa-dribbble"></span></a>
-                                        <a href="#"><span class="fa fa-behance"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-        <!-- End Team Section -->
 
         <!-- Contact Section -->
         <section class="contact-section" id="contact">
@@ -947,6 +586,7 @@
 
 <script>
 import lang from "../../components/web/general/LangWeb";
+import {onMounted} from 'vue'
 
 export default {
     components:{
@@ -955,13 +595,51 @@ export default {
     name: "successPartner",
     data(){
         return {
-            locale : localStorage.getItem("langWeb") || 'ar'
+            locale : localStorage.getItem("langWeb") || 'ar',
+            show: false
         }
     },
     mounted(){
-
         // remove class menu-opened from html (!important)
         document.querySelector("html").classList.remove("menu-opened");
+    },
+    setup(){
+        let counter = (num,id,time = 1000) => {
+
+            let number = 0;
+
+            if(num > 10000 && num < 20000 ){
+                number = num - 1500;
+            }
+            else if(num > 20000 && num < 30000){
+                number = num - 2000;
+            }
+            else if(num > 50000 && num < 100000){
+                number =  num - 40000;
+            }
+            else if(num > 100000){
+                number = 90000 - 3500;
+            }
+
+            let count = setInterval(() =>{
+
+                let element= document.getElementById("counter-"+id);
+
+                element.innerHTML = new Intl.NumberFormat().format(number++);
+
+                if(num < number){
+                    clearInterval(count);
+                }
+
+            },time);
+
+        };
+
+        onMounted(() => {
+            counter(20600,1,0);
+            counter(67000,2,0);
+            counter(105340,3,0);
+        });
     }
 }
 </script>
@@ -1006,6 +684,24 @@ export default {
 .main-header.fixed-header .header-upper .outer-box {
     padding-top: 13px;
 }
+
+.overlay{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    background-color: rgba(0,0,0,.5);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.embed-responsive {
+    width: 75%;
+    height: 65%;
+}
+
 /*end header*/
 
 /*start banner*/
@@ -1110,9 +806,14 @@ section .newsletter-form .form-group input[type="email"].email-ar {
 /*end steps-section*/
 
 /*start contact*/
+.contact-section {
+    padding: 0px 0px 80px;
+}
+
 .sec-title .title:before {
     left: 20px;
     top: 16px;
+    background-color: #fcb00c;
 }
 .sec-title .title.title-ar:before {
     right: 22px;
@@ -1128,6 +829,102 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     left: unset;
 }
 /*end contact*/
+.screenshots-section {
+    padding-bottom: 0;
+}
+
+.swiper-slide img{
+    width: 721px !important;
+}
+.swiper-wrapper {
+    height: 630px;
+    width: auto;
+}
+
+.screenshots-section .sec-title h2 {
+    max-width: 532px;
+    font-size: 29px;
+    margin: auto;
+}
+
+.logo{
+    width: 220px;
+}
+
+.btn-style-four{
+    background-color: #fcb00c;
+}
+
+.counter-section .content-column .text {
+    font-size: 20px;
+}
+
+
+.fact-counter .column .inner {
+    padding: 20px 32px;
+}
+
+.feature-icon {
+    margin-bottom: 0px;
+    min-height: 70px;
+    text-align: center;
+    position: relative;
+}
+
+.feature-content{
+    text-align: center;
+}
+
+.feature-icon::before {
+    content: '';
+    background: #ffb2045c;
+    transform: translateX(-50%);
+    width: 84px;
+    border-radius: 50%;
+    height: 84px;
+    top: -12px;
+    position: absolute;
+}
+ .feature-icon:nth-of-type(1)::before {
+    transform: translateX(50%);
+}
+
+ .feature-icon.middle::before {
+    transform: translateX(-31%);
+    top: -5px;
+    width: 80px;
+    height: 80px;
+}
+ .feature-icon.middle img{
+    width: 60px;
+}
+
+ .feature-icon.last::before{
+    transform: translateX(50%);
+}
+.feature-icon.last img {
+    width: 68px;
+}
+
+
+.feature-icon img {
+    width: 75px;
+}
+
+.feature-content h3 {
+    margin-bottom: 0px;
+    font-size: 28px;
+}
+
+.feature-content p {
+    font-size: 18px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+}
+
+
+
 
 @media only screen and (min-width: 1140px) {
     .banner-section .carousel-column .inner-column .pager-box .pager.one.one-ar{
@@ -1239,6 +1036,10 @@ section .newsletter-form .form-group input[type="email"].email-ar {
         margin-bottom: 20px;
         font-size: 16px;
     }
+    .screenshots-section .sec-title h2 {
+        max-width: 390px;
+        font-size: 27px;
+    }
 }
 
 @media only screen and (max-width: 600px){
@@ -1263,6 +1064,10 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     .register-container.one p {
         margin-bottom: 20px;
         font-size: 14px;
+    }
+    .screenshots-section .sec-title h2[data-v-52ade008] {
+        max-width: 320px;
+        font-size: 24px;
     }
 }
 

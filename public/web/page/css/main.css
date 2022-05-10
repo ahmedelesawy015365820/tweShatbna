@@ -219,6 +219,10 @@ img{
 	font-family: 'Poppins', sans-serif;
 }
 
+.btn-style-two:hover{
+    color: #fff;
+}
+
 /* Btn Style Three */
 
 .btn-style-three{
@@ -306,35 +310,6 @@ img{
 	font-family: 'Poppins', sans-serif;
 }
 
-.btn-style-four:before{
-	position: absolute;
-	content: '';
-    left: 100%;
-	top:0px;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-	background:url(../images/icons/pattern-13.png) right top no-repeat;
-}
-
-.btn-style-four:after{
-	position: absolute;
-	content: '';
-    left: 100%;
-	top:0px;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-	background:url(../images/icons/pattern-14.png) right top no-repeat;
-}
 
 .btn-style-four .txt{
 	position:relative;
@@ -579,12 +554,6 @@ img{
 	z-index:-1;
 	border-radius:50px;
 	display:inline-block;
-	background-image: -ms-linear-gradient(left, #0084fd 0%, #6cd8ff 100%);
-    background-image: -moz-linear-gradient(left, #0084fd 0%, #6cd8ff 100%);
-    background-image: -o-linear-gradient(left, #0084fd 0%, #6cd8ff 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #0084fd), color-stop(100, #6cd8ff));
-    background-image: -webkit-linear-gradient(left, #0084fd 0%, #6cd8ff 100%);
-    background-image: linear-gradient(to right, #0084fd 0%, #6cd8ff 100%);
 }
 
 .sec-title .title span{
@@ -614,12 +583,6 @@ img{
 	width:100%;
 	height:3px;
 	z-index:-1;
-	background-image: -ms-linear-gradient(left, #0084fd 0%, #6cd8ff 100%);
-    background-image: -moz-linear-gradient(left, #0084fd 0%, #6cd8ff 100%);
-    background-image: -o-linear-gradient(left, #0084fd 0%, #6cd8ff 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #0084fd), color-stop(100, #6cd8ff));
-    background-image: -webkit-linear-gradient(left, #0084fd 0%, #6cd8ff 100%);
-    background-image: linear-gradient(to right, #0084fd 0%, #6cd8ff 100%);
 }
 
 .sec-title .text{
@@ -643,64 +606,6 @@ img{
 }
 
 /* Style Two */
-
-.sec-title.style-two .title:before{
-	background-image: -ms-linear-gradient(left, #31c551 0%, #77e34b 100%);
-    background-image: -moz-linear-gradient(left, #31c551 0%, #77e34b 100%);
-    background-image: -o-linear-gradient(left, #31c551 0%, #77e34b 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #31c551), color-stop(100, #77e34b));
-    background-image: -webkit-linear-gradient(left, #31c551 0%, #77e34b 100%);
-    background-image: linear-gradient(to right, #31c551 0%, #77e34b 100%);
-}
-
-.sec-title.style-two h2 span:before{
-	background-image: -ms-linear-gradient(left, #31c551 0%, #77e34b 100%);
-    background-image: -moz-linear-gradient(left, #31c551 0%, #77e34b 100%);
-    background-image: -o-linear-gradient(left, #31c551 0%, #77e34b 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #31c551), color-stop(100, #77e34b));
-    background-image: -webkit-linear-gradient(left, #31c551 0%, #77e34b 100%);
-    background-image: linear-gradient(to right, #31c551 0%, #77e34b 100%);
-}
-
-/* Style Three */
-
-.sec-title.style-three .title:before{
-	background-image: -ms-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -moz-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -o-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #9426d5), color-stop(100, #e642dc));
-    background-image: -webkit-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: linear-gradient(to right, #9426d5 0%, #e642dc 100%);
-}
-
-.sec-title.style-three h2 span:before{
-	background-image: -ms-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -moz-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -o-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #9426d5), color-stop(100, #e642dc));
-    background-image: -webkit-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: linear-gradient(to right, #9426d5 0%, #e642dc 100%);
-}
-
-/* Style Four */
-
-.sec-title.style-four .title:before{
-	background-image: -ms-linear-gradient(left, #f24548 0%, #fb8383 100%);
-    background-image: -moz-linear-gradient(left, #f24548 0%, #fb8383 100%);
-    background-image: -o-linear-gradient(left, #f24548 0%, #fb8383 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #f24548), color-stop(100, #fb8383));
-    background-image: -webkit-linear-gradient(left, #f24548 0%, #fb8383 100%);
-    background-image: linear-gradient(to right, #f24548 0%, #fb8383 100%);
-}
-
-.sec-title.style-four h2 span:before{
-	background-image: -ms-linear-gradient(left, #f24548 0%, #fb8383 100%);
-    background-image: -moz-linear-gradient(left, #f24548 0%, #fb8383 100%);
-    background-image: -o-linear-gradient(left, #f24548 0%, #fb8383 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #f24548), color-stop(100, #fb8383));
-    background-image: -webkit-linear-gradient(left, #f24548 0%, #fb8383 100%);
-    background-image: linear-gradient(to right, #f24548 0%, #fb8383 100%);
-}
 
 /* List Style One */
 
@@ -4983,12 +4888,7 @@ a.badge-contrast:focus {
 	padding:18px 15px;
 	border-radius:7px;
 	font-family: 'Poppins', sans-serif;
-	background-image: -ms-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -moz-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -o-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #9426d5), color-stop(100, #e642dc));
-    background-image: -webkit-linear-gradient(left, #9426d5 0%, #e642dc 100%);
-    background-image: linear-gradient(to right, #9426d5 0%, #e642dc 100%);
+    background-color: #fcb00c;
 }
 
 /***

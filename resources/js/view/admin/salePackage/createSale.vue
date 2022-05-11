@@ -268,6 +268,7 @@ export default {
 
                 this.loading = true;
 
+
                 adminApi.post(`/v1/dashboard/packageSale`,formData)
                     .then((res) => {
                         notify({
@@ -290,11 +291,19 @@ export default {
                                 text: ' ليس معلن.',
                             });
                         }else {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'يوجد خطا في الصور...',
-                                text: 'اقصي ارتفاع للصوره يكون 500px و اقصي عرض 500px و ان حجمها لا يتعدي 2mb !',
-                            });
+                            if(err.response.data.errors.user){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'يوجد خطا في ip...',
+                                    text: ' ليس معلن.',
+                                });
+                            }else{
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'يوجد خطا في الصور...',
+                                    text: 'اقصي ارتفاع للصوره يكون 500px و اقصي عرض 500px و ان حجمها لا يتعدي 2mb !',
+                                });
+                            }
                         }
                     })
                     .finally(() => {

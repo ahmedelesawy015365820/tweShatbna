@@ -164,8 +164,6 @@ class AuthController extends Controller
                     'remember_token' => Str::random(60),
                 ])->save();
 
-                $user->tokens()->delete();
-
                 event(new PasswordReset($user));
             }
         );
@@ -179,7 +177,6 @@ class AuthController extends Controller
 
     }//**********end reset************//
 
-
     //start sendVerificationEmail
     public function sendVerificationEmail(Request $request)
     {
@@ -192,7 +189,6 @@ class AuthController extends Controller
         return  $this->sendResponse([],'verification-link-sent');
 
     }//end sendVerificationEmail
-
 
     //start verify
     public function verify(EmailVerificationRequest $request)
@@ -265,7 +261,6 @@ class AuthController extends Controller
         return $this->sendResponse([],'Data exited successfully');
 
     }//end changeImage
-
 
     // create token (company,desgin,advertiser)
     protected function respondWithToken($token)

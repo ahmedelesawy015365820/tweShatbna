@@ -311,7 +311,7 @@ export default {
         const v$ = useVuelidate(rules,addPackage.data);
 
 
-        return {pageWeb,pageMobile,loading,...toRefs(addPackage),notWebId,notMobileId,v$};
+        return {getPagesViews,pageWeb,pageMobile,loading,...toRefs(addPackage),notWebId,notMobileId,v$};
     },
     methods: {
         storePackage(){
@@ -324,6 +324,8 @@ export default {
 
                 adminApi.post(`/v1/dashboard/advertiserPackage`,this.data)
                     .then((res) => {
+
+                        this.getPagesViews();
 
                         notify({
                             title: `Successfully added <i class="fas fa-check-circle"></i>`,

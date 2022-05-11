@@ -561,7 +561,11 @@ export default {
                     degrees.value = l.services;
                 })
                 .catch((err) => {
-                    console.log(err.response.data.errors);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
                 })
                 .finally(() => {
                     loading.value = false;

@@ -11,7 +11,7 @@ class CreatePackageSalesTable extends Migration
     {
         Schema::create('package_sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('advertising_package_id')->constrained('advertising_packages')->restrictOnDelete();
+            $table->foreignId('advertising_package_id')->constrained('advertising_packages')->cascadeOnDelete();
             $table->boolean('check')->default(false);
             $table->boolean('accept')->default(false);
             $table->boolean('complete')->default(false);

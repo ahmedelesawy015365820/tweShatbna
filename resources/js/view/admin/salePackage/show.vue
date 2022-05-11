@@ -21,7 +21,6 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <loader v-if="loading" />
-                        <loader v-if="loadingCalender" />
                         <div class="card-body">
                             <div class="card-header pt-0 mb-4">
                                 <router-link
@@ -182,7 +181,7 @@
                                     <FullCalendar
                                         :options="options"
                                     />
-                                    <div class="shodow" @click="popCreateCalender"></div>
+                                    <div :class="['shodow',(closePop || complete) ?'event-pointer':'']" @click="popCreateCalender"></div>
                                 </div>
                             </div>
                         </div>
@@ -421,6 +420,7 @@ export default {
                 });
         };
 
+        let closePop = ref(false);
         let addCalender = (e) => {
 
             let formData =  new FormData(e.target);
@@ -430,13 +430,22 @@ export default {
             adminApi.post(`/v1/dashboard/scheduleAdvertise`,formData)
                 .then((res) => {
                     getCalender();
+                    closePop.value = true;
                 })
                 .catch((err) => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'يوجد خطا في البيانات ...',
-                        text: 'هذا الوقت محجوز مسبقا !',
-                    });
+                    if(err.response.data.errors.error == 'date'){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'يوجد خطا في التاريخ ...',
+                            text: 'عليك كتابه التاريخ صحيح!',
+                        });
+                    }else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'يوجد خطا في البيانات ...',
+                            text: 'هذا الوقت محجوز مسبقا !',
+                        });
+                    }
                 })
                 .finally(() => {
                     loading.value = false;
@@ -459,7 +468,7 @@ export default {
             ele.style.display = 'none';
         }
 
-        return {addCalender,closeCreateCalender,popCreateCalender,sale,loading,valuePackage,checkPackage,completePackage,acceptPackage,options,check,complete,accept}
+        return {addCalender,closePop,closeCreateCalender,popCreateCalender,sale,loading,valuePackage,checkPackage,completePackage,acceptPackage,options,check,complete,accept}
     }
 
 }
@@ -530,7 +539,11 @@ img{
 }
 
 .toggle-switch-input:checked:disabled + .toggle-switch-label {
-    background-color: #FF5B37;
+    background-color: #fcb00c;
+}
+
+.event-pointer{
+    pointer-events: none;
 }
 
 </style>

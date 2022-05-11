@@ -15,8 +15,8 @@ class CreatePackageSaleUsersTable extends Migration
     {
         Schema::create('package_sale_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->restrictOnDelete();
-            $table->foreignId('package_sale_id')->constrained('package_sales')->restrictOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('package_sale_id')->constrained('package_sales')->cascadeOnDelete();
             $table->timestamps();
         });
     }

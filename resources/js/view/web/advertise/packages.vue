@@ -236,7 +236,11 @@ export default {
                     Packages.value = l.packages;
                 })
                 .catch((err) => {
-                    console.log(err.response.data);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
                 }).finally(() => {
                     loading.value = false;
                 });
@@ -262,7 +266,6 @@ export default {
             images.value = [];
             required.value = false;
             max.value = false;
-            store.commit('advertise/errorsEdit',{})
         }
 
         let preview = (e) => {
@@ -338,7 +341,7 @@ export default {
                             icon: 'success',
                             title: 'تم اضافه صور الاعلان بنجاح و سيتم الان مراجعه الصور و الاتصال بك.',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 4000
                         });
                     })
                     .catch((err) => {
@@ -430,6 +433,11 @@ input[type="file"] {
 
 .submit-section .submit-btn {
     margin-top: 30px;
+}
+
+.price-btn:hover,.price-btn:active, .price-btn:focus {
+    background-color: #fcb00c;
+    border: 1px solid #fcb00c;
 }
 
 </style>

@@ -45,7 +45,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="text-center" v-for="(item,index) in calender.data" :key="item.id">
+                                    <tr class="text-center" v-for="(item,index) in calender" :key="item.id">
                                         <td>{{index + 1}}</td>
                                         <td>{{item.title}}</td>
                                         <td>{{item.users.name}}</td>
@@ -61,34 +61,10 @@
                                             <router-link :to="{name: 'editSchedule', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2">
                                                 <i class="far fa-edit"></i>
                                             </router-link>
-                                            <a href="#" data-bs-toggle="modal" :data-bs-target="'#staticBackdrop' + item.id"  class="btn btn-sm btn-danger me-2"><i class="far fa-trash-alt"></i></a>
+                                            <a href="#" @click="deleteCalender(item.id,index)"  class="btn btn-sm btn-danger me-2">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
                                         </td>
-
-<!--                                        &lt;!&ndash; Modal &ndash;&gt;-->
-<!--                                        <div class="modal fade" :id="'staticBackdrop' + item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-<!--                                            <div class="modal-dialog">-->
-<!--                                                <div class="modal-content">-->
-<!--                                                    <div class="modal-header">-->
-<!--                                                        <h5 class="modal-title" id="staticBackdropLabel">Delete Package</h5>-->
-<!--                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="modal-body">-->
-<!--                                                        <form >-->
-<!--                                                            <div class="modal-body">-->
-<!--                                                                <p>Sure Delete</p><br>-->
-<!--                                                                <input class="form-control" :value="item.name"  type="text" readonly>-->
-<!--                                                            </div>-->
-<!--                                                        </form>-->
-<!--                                                    </div>-->
-<!--                                                    <div class="modal-footer">-->
-<!--                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--                                                        <button type="submit" @click.prevent="deletePackage(item.id)" class="btn btn-primary">Delete</button>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        &lt;!&ndash; /Modal &ndash;&gt;-->
-
                                     </tr>
                                     </tbody>
                                 </table>
@@ -99,7 +75,7 @@
             </div>
             <!-- /Table -->
             <!-- start Pagination -->
-            <Pagination :data="calender" @pagination-change-page="getCalender">
+            <Pagination :data="calenderPagination" @pagination-change-page="getCalender">
                 <template #prev-nav>
                     <span>&lt; Previous</span>
                 </template>
@@ -114,18 +90,17 @@
 </template>
 
 <script>
-import {useStore} from "vuex";
 import {computed, inject, onMounted, ref, watch} from "vue";
 import adminApi from "../../../api/adminAxios";
 
 export default {
     name: "scheduleGet",
     setup(){
-        const store = useStore();
         const emitter = inject('emitter');
 
         // get packages
-        let calender = ref({});
+        let calender = ref([]);
+        let calenderPagination = ref({});
         let loading = ref(false);
 
         let getCalender = (page = 1) => {
@@ -135,7 +110,8 @@ export default {
             adminApi.get(`/v1/dashboard/scheduleAdvertise?page=${page}&search=${search.value}`)
                 .then((res) => {
                     let l = res.data.data;
-                    calender.value = l.schedule;
+                    calender.value = l.schedule.data;
+                    calenderPagination.value = l.schedule;
                 })
                 .catch((err) => {
                     console.log(err.response);
@@ -166,12 +142,46 @@ export default {
             return new Date(item).toDateString();
         }
 
-        // async function deletePackage(id){
-        //     await store.dispatch('packageAdmin/daletePackage',id);
-        //     document.querySelector('.modal-backdrop').style.display = 'none';
-        // }
+        function deleteCalender(id,index){
+            Swal.fire({
+                title: `Are you sure delete ?`,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
 
-        return {calender,loading,getCalender,search,dateFormate};
+                    loading.value = true;
+
+                    adminApi.delete(`/v1/dashboard/scheduleAdvertise/${id}`)
+                        .then((res) => {
+                            calender.value.splice(index,index + 1);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Your sale package has been deleted.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        })
+                        .catch((err) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'يوجد خطا في النظام...',
+                                text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                            });
+                        })
+                        .finally(() => {
+                            loading.value = false;
+                        });
+                }
+            });
+        }
+
+
+        return {calender,loading,getCalender,search,dateFormate,deleteCalender,calenderPagination};
 
     },
     data(){

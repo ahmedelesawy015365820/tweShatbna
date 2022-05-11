@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AdvertiseScheduleResource;
 use App\Models\AdvertiseSchedule;
+use App\Models\PackageSale;
+use App\Models\PackageSaleUser;
 use App\Traits\Message;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class AdvertiserScheduleController extends Controller
@@ -50,7 +53,7 @@ class AdvertiserScheduleController extends Controller
             ]);
 
             if ($v->fails()) {
-                return $this->sendError('There is an error in the data', $v->errors(), 401);
+                return $this->sendError('There is an error in the data',['error' => 'date'], 401);
             }
 
             $AdvertiseSchedules = AdvertiseSchedule::
@@ -114,6 +117,27 @@ class AdvertiserScheduleController extends Controller
 
     public function destroy($id)
     {
-        //
+        try {
+
+            $calender = AdvertiseSchedule::find($id);
+            if ($calender){
+
+                // delete images
+                $packageSale = PackageSale::find($calender->package_sale_id);
+
+                File::deleteDirectory(public_path('web/img/advertise/'. $packageSale->id));
+
+                $userSalePackage = PackageSaleUser::where('package_sale_id',$packageSale->id)->first()->delete();
+
+                $packageSale->delete();
+                $calender->delete();
+                return $this->sendResponse([],'Deleted successfully');
+            }else{
+                return $this->sendError('ID is not exist');
+            }
+
+        }catch (\Exception $e){
+            return $this->sendError('An error occurred in the system');
+        }
     }
 }

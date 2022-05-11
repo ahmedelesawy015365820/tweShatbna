@@ -51,7 +51,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr v-for="(item,index) in packageSale.data" :key="item.id">
+                                    <tr v-for="(item,index) in packageSale" :key="item.id">
                                         <td>{{index + 1}}</td>
                                         <td>{{item.package.name}}</td>
                                         <td>{{item.user[0].name}}</td>
@@ -68,33 +68,15 @@
                                                 <i class="fas fa-book-open"></i>
                                             </router-link>
                                             <router-link :to="{name: 'editSale', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2"><i class="far fa-edit"></i></router-link>
-                                            <a href="#"  v-if="!item.complete" data-bs-toggle="modal" :data-bs-target="'#staticBackdrop' + item.id"  class="btn btn-sm btn-danger me-2"><i class="far fa-trash-alt"></i></a>
+                                            <a
+                                               href="#"
+                                               v-if="!item.complete"
+                                               class="btn btn-sm btn-danger me-2"
+                                               @click="deletePackage(item.id,index)"
+                                            >
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
                                         </td>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" :id="'staticBackdrop' + item.id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="staticBackdropLabel">Delete Package</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form >
-                                                            <div class="modal-body">
-                                                                <p>Sure Delete</p><br>
-<!--                                                                <input class="form-control" :value="item.name"  type="text" readonly>-->
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<!--                                                        <button type="submit" @click.prevent="deletePackage(item.id)" class="btn btn-primary">Delete</button>-->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /Modal -->
                                     </tr>
                                     </tbody>
                                 </table>
@@ -105,7 +87,7 @@
             </div>
             <!-- /Table -->
             <!-- start Pagination  -->
-           <Pagination :data="packageSale" @pagination-change-page="getSalePackages">
+           <Pagination :data="packageSalePaginate" @pagination-change-page="getSalePackages">
                <template #prev-nav>
                    <span>&lt; Previous</span>
                </template>
@@ -127,11 +109,11 @@ import adminApi from "../../../api/adminAxios";
 export default {
     name: "index",
     setup(){
-        const store = useStore();
         const emitter = inject('emitter');
 
         // // get sale packages
-        let packageSale = ref({});
+        let packageSale = ref([]);
+        let packageSalePaginate = ref({})
         let loading = ref(false);
         let getSalePackages = (page = 1,preload = '') => {
 
@@ -140,7 +122,9 @@ export default {
             adminApi.get(`/v1/dashboard/packageSale?page=${page}&search=${search.value}`)
                 .then((res) => {
                     let l = res.data.data;
-                    packageSale.value = l.packageSale;
+                    packageSalePaginate.value = l.packageSale;
+                    packageSale.value = l.packageSale.data;
+
                 })
                 .catch((err) => {
 
@@ -166,13 +150,46 @@ export default {
         onMounted(() => {
             getSalePackages();
         });
-        //
-        // async function deletePackage(id){
-        //     await store.dispatch('sale/daletePackage',id);
-        //     document.querySelector('.modal-backdrop').style.display = 'none';
-        // }
-        //
-        return {getSalePackages,loading,search,packageSale};
+
+        function deletePackage(id,index){
+            Swal.fire({
+                title: `Are you sure delete ?`,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    loading.value = true;
+
+                    adminApi.delete(`/v1/dashboard/packageSale/${id}`)
+                        .then((res) => {
+                            packageSale.value.splice(index,index + 1);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Your sale package has been deleted.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        })
+                        .catch((err) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'يوجد خطا في النظام...',
+                                text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                            });
+                        })
+                        .finally(() => {
+                            loading.value = false;
+                        });
+                }
+            });
+        }
+
+        return {getSalePackages,loading,search,packageSale,deletePackage,packageSalePaginate};
 
     },
     data(){

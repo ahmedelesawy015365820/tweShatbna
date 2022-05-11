@@ -48,7 +48,7 @@
                                     </div>
 
                                     <button class=" btn-color btn btn-primary btn-block btn-lg login-btn text-center" type="submit">
-                                        {{$t('register.find')}}
+                                        {{$t('register.reset')}}
                                     </button>
                                     <div class="row form-row forget-login">
                                         <div :class="['col-6','text-start','click-forget', this.$i18n.locale == 'ar'? 'forget-register' : '']">

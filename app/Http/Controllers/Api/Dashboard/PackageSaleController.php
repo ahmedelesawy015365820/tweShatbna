@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AdvertisingPackage;
 use App\Models\Media;
 use App\Models\PackageSale;
+use App\Models\PackageSaleUser;
 use App\Models\User;
 use App\Traits\Message;
 use Illuminate\Http\Request;
@@ -310,6 +311,11 @@ class PackageSaleController extends Controller
         try {
             $package = PackageSale::find($id);
             if ($package){
+
+                // delete images
+                File::deleteDirectory(public_path('web/img/advertise/'. $id));
+
+                $userSalePackage = PackageSaleUser::where('package_sale_id',$package->id)->first()->delete();
 
                 $package->delete();
                 return $this->sendResponse([],'Deleted successfully');

@@ -606,8 +606,8 @@ button.bg-danger:hover {
 .btn-primary.active,
 .btn-primary:active,
 .open > .dropdown-toggle.btn-primary {
-	background-color: #FF5b33;
-	border: 1px solid #FF5b33;
+	background-color: #fcb00c;
+	border: 1px solid #fcb00c;
 }
 .btn-primary.active.focus,
 .btn-primary.active:focus,
@@ -618,14 +618,14 @@ button.bg-danger:hover {
 .open > .dropdown-toggle.btn-primary.focus,
 .open > .dropdown-toggle.btn-primary:focus,
 .open > .dropdown-toggle.btn-primary:hover {
-	background-color: #FF5b33;
-	border: 1px solid #FF5b33;
+	background-color: #fcb00c;
+	border: 1px solid #fcb00c;
 }
 .btn-primary.active:not(:disabled):not(.disabled),
 .btn-primary:active:not(:disabled):not(.disabled),
 .show > .btn-primary.dropdown-toggle {
-	background-color: #FF5b33;
-	border-color: #FF5b33;
+	background-color: #fcb00c;
+	border-color: #fcb00c;
 	color: #fff;
 }
 .btn-primary.active:focus:not(:disabled):not(.disabled),
@@ -772,7 +772,7 @@ button.bg-danger:hover {
 	color: #fff;
 }
 .badge-secondary {
-	background-color: #FF5b33 !important;
+	background-color: #fcb00c !important;
 }
 .btn-danger {
 	background-color: #ef3737;
@@ -1132,7 +1132,7 @@ button.bg-danger:hover {
 .zone i {
 	text-align: center;
 	font-size: 3em;
-	color: #FF5b33;
+	color: #fcb00c;
 	margin-top: 50px;
 }
 .zone .selectFile {
@@ -1304,7 +1304,7 @@ button.bg-danger:hover {
 }
 .continue-btn {
     background-color: #fff;
-    border: 1px solid #ff5b33;
+    border: 1px solid #fcb00c;
     border-radius: 50px;
     color: #ff5b33;
     display: block;
@@ -1316,15 +1316,15 @@ button.bg-danger:hover {
 .continue-btn:hover,
 .continue-btn:focus,
 .continue-btn:active {
-	background-color: #ff5b33;
-	border: 1px solid #ff5b33;
+	background-color: #fcb00c;
+	border: 1px solid #fcb00c;
 	color: #fff;
 }
 .cancel-btn {
     background-color: #fff;
-    border: 1px solid #ff5b33;
+    border: 1px solid #fcb00c;
     border-radius: 50px;
-    color: #ff5b33;
+    color: #fcb00c;
     display: block;
     font-size: 18px;
     font-weight: 600;
@@ -1334,8 +1334,8 @@ button.bg-danger:hover {
 .cancel-btn:hover,
 .cancel-btn:focus,
 .cancel-btn:active {
-	background-color: #ff5b33;
-	border: 1px solid #ff5b33;
+	background-color: #fcb00c;
+	border: 1px solid #fcb00c;
 	color: #fff;
 }
 
@@ -1643,7 +1643,7 @@ button.bg-danger:hover {
 	background-color: #22cc62;
 }
 .avatar-offline:before {
-	background-color: #ef3737;
+	background-color: #fcb00c;
 }
 .avatar-away:before {
 	background-color: #ffbc34;
@@ -2725,7 +2725,7 @@ html.menu-opened body {
 	line-height: 40px;
 }
 .sidebar-menu li.menu-title a {
-	color: #ff5b33;
+	color: #fcb00c;
 	display: inline-block;
 	margin-left: auto;
 	padding: 0;
@@ -3287,12 +3287,12 @@ table.table-inbox tbody tr.checked {
     align-items: center;
     color: #fff;
     background: #fcb00c;
-    border: 1px solid #ff431a;
+    border: 1px solid #fcb00c;
     border-radius: 5px;
 }
 .filter-btn:hover, .filter-btn:focus {
-    background: #ff431a;
-    border: 1px solid #ff431a;
+    background: #fcb00c;
+    border: 1px solid #fcb00c;
     color: #fff;
 }
 .filter-card .form-group {

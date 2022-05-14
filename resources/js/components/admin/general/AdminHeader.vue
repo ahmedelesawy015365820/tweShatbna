@@ -151,26 +151,37 @@
 <script>
     import lang from './Lang.vue';
     import {useStore} from "vuex";
-    import {computed} from "vue";
+    import {computed,ref,onMounted} from "vue";
+    import Cookies from "js-cookie";
 
 export default {
     setup(){
         const store = useStore();
+        const userId = ref(0);
 
         let loading = computed(() => {
             return store.getters['authAdmin/loading'];
         });
 
+        onMounted(() => {
+            if (Cookies.get("tokenAdmin")){
+                userId.value = JSON.parse(localStorage.getItem("user")).id
+            }
+        });
+
+        Echo.private(`App.Models.User.${userId.value}`)
+            .notification((notification) => {
+                console.log(notification);
+            });
+
         function logout(){
             store.dispatch('authAdmin/logout');
         }
 
-        return {logout,loading};
+        return {logout,loading,userId};
     },
     components: {
         lang
-    },
-    methods: {
     }
 }
 </script>

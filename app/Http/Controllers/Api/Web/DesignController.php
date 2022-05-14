@@ -7,6 +7,8 @@ use App\Models\DegreeDesign;
 use App\Models\DesignDesScience;
 use App\Models\Designer;
 use App\Models\DesignService;
+use App\Models\User;
+use App\Notifications\Web\TrustDesignNotification;
 use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,8 +43,6 @@ class DesignController extends Controller
             }
 
             $user = auth()->guard('api')->user();
-
-            Designer::whereUserId($user->id)->first()->update(['send' => 1]);
 
             $i = 0;
 
@@ -104,9 +104,6 @@ class DesignController extends Controller
                      'user_id' => $user->id
                 ]);
 
-                DB::commit();
-                return $this->sendResponse([], 'Data exited successfully');
-
             }
             else{
                 // Validator request
@@ -132,10 +129,18 @@ class DesignController extends Controller
                     'description' => $request->description
                 ]);
 
-                DB::commit();
-                return $this->sendResponse([], 'Data exited successfully');
-
             }
+
+            $designer = Designer::whereUserId($user->id)->first();
+            $designer->update(['send' => 1]);
+            $designer->save();
+
+            User::whereAuthId(1)->each(function ($admin) use($designer){
+                $admin->notify(new TrustDesignNotification($designer));
+            });
+
+            DB::commit();
+            return $this->sendResponse([], 'Data exited successfully');
 
         } catch (\Exception $e) {
 

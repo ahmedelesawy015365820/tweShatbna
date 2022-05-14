@@ -41251,16 +41251,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Lang_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Lang.vue */ "./resources/js/components/admin/general/Lang.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup() {
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    var userId = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(0);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.getters['authAdmin/loading'];
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
+      if (js_cookie__WEBPACK_IMPORTED_MODULE_2__["default"].get("tokenAdmin")) {
+        userId.value = JSON.parse(localStorage.getItem("user")).id;
+      }
+    });
+    Echo["private"]("App.Models.User.".concat(userId.value)).notification(function (notification) {
+      console.log(notification);
     });
 
     function logout() {
@@ -41269,13 +41280,13 @@ __webpack_require__.r(__webpack_exports__);
 
     return {
       logout: logout,
-      loading: loading
+      loading: loading,
+      userId: userId
     };
   },
   components: {
     lang: _Lang_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -48353,11 +48364,8 @@ adminApi.defaults.headers.common['secretApi'] = 'Snr92EUKCmrE06PiJ'; // end axio
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 try {
@@ -48377,18 +48385,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
+// import Echo from 'laravel-echo';
 
-
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  broadcaster: 'pusher',
-  key: "shatbnaKey",
-  cluster: "mt1",
-  forceTLS: false,
-  wsHost: window.location.hostname,
-  wsPort: 6001,
-  disableStats: true
-});
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: false,
+//     wsHost: window.location.hostname,
+//     wsPort: 6001,
+//     disableStats: true,
+// });
 
 /***/ }),
 
@@ -48870,8 +48877,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var state = {
   token: js_cookie__WEBPACK_IMPORTED_MODULE_1__["default"].get("tokenAdmin") || null,
-  permission: localStorage.getItem("permission") || '',
-  loading: false
+  permission: JSON.parse(localStorage.getItem("permission")) || [],
+  loading: false,
+  user: JSON.parse(localStorage.getItem("user")) || {}
 }; // getters
 
 var getters = {
@@ -48883,6 +48891,9 @@ var getters = {
   },
   loading: function loading(state) {
     return state.loading;
+  },
+  user: function user(state) {
+    return state.user;
   }
 }; // mutations
 
@@ -48895,7 +48906,11 @@ var mutations = {
   },
   editPermission: function editPermission(state, permission) {
     state.permission = permission;
-    localStorage.setItem('permission', permission);
+    localStorage.setItem('permission', JSON.stringify(permission));
+  },
+  editUser: function editUser(state, user) {
+    state.user = user;
+    localStorage.setItem('user', JSON.stringify(user));
   },
   editLoading: function editLoading(state, load) {
     state.loading = load;
@@ -48903,7 +48918,9 @@ var mutations = {
   logoutToken: function logoutToken(state) {
     state.roles = null;
     state.token = null;
+    state.user = null;
     localStorage.removeItem('permission');
+    localStorage.removeItem('user');
     js_cookie__WEBPACK_IMPORTED_MODULE_1__["default"].remove('tokenAdmin');
   }
 }; // actions
@@ -48916,6 +48933,7 @@ var actions = {
       var l = res.data.data;
       commit('editToken', l.access_token);
       commit('editPermission', l.permission);
+      commit('editUser', l.user);
       var locale = localStorage.getItem("langAdmin");
       return _router_adminRoute__WEBPACK_IMPORTED_MODULE_3__["default"].push({
         name: 'dashboard',
@@ -53509,7 +53527,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.sidebar .sidebar-menu > ul > li > a span {\n    margin-right: 10px;\n}\n.sidebar-menu li a{\n    color: #000;\n}\n.sidebar-menu li a:hover{\n    color: #fcb00c !important;\n}\n.sidebar-menu li.active > a{\n    color: #fcb00c !important;\n}\n.menu-title {\n    color: #fcb00c !important;\n}\n.show{\n    display: block;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.sidebar .sidebar-menu > ul > li > a span {\r\n    margin-right: 10px;\n}\n.sidebar-menu li a{\r\n    color: #000;\n}\n.sidebar-menu li a:hover{\r\n    color: #fcb00c !important;\n}\n.sidebar-menu li.active > a{\r\n    color: #fcb00c !important;\n}\n.menu-title {\r\n    color: #fcb00c !important;\n}\n.show{\r\n    display: block;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -53605,7 +53623,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.coustom-select[data-v-0c14c116] {\n    height: 100px;\n}\n.card[data-v-0c14c116]{\n    position: relative;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.coustom-select[data-v-0c14c116] {\r\n    height: 100px;\n}\n.card[data-v-0c14c116]{\r\n    position: relative;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -53701,7 +53719,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-b200d362] {\n    border: none;\n}\n.waves-effect[data-v-b200d362] {\nposition: relative;\noverflow: hidden;\ncursor: pointer;\n-webkit-user-select: none;\n   -moz-user-select: none;\n    -ms-user-select: none;\n        user-select: none;\n-webkit-tap-highlight-color: transparent;\nwidth: 200px;\nheight: 50px;\ntext-align: center;\nline-height: 34px;\nmargin: auto;\n}\ninput[type=\"file\"][data-v-b200d362] {\nposition: absolute;\ntop: 0;\nright: 0;\nbottom: 0;\nleft: 0;\nwidth: 100%;\nheight: 100%;\npadding: 0;\nmargin: 0;\ncursor: pointer;\nfilter: alpha(opacity=0);\nopacity: 0;\n}\n.num-of-files[data-v-b200d362]{\ntext-align: center;\nmargin: 20px 0 30px;\n}\n.container-images[data-v-b200d362] {\nwidth: 90%;\nposition: relative;\nmargin: auto;\ndisplay: flex;\njustify-content: space-evenly;\ngap: 20px;\nflex-wrap: wrap;\npadding: 10px;\nborder-radius: 20px;\nbackground-color: #f7f7f7;\n}\n.p-3[data-v-b200d362] {\n    padding: 1rem!important;\n}\n.btn[data-v-b200d362] {\n    margin-top: 20px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.card[data-v-b200d362] {\r\n    border: none;\n}\n.waves-effect[data-v-b200d362] {\r\nposition: relative;\r\noverflow: hidden;\r\ncursor: pointer;\r\n-webkit-user-select: none;\r\n   -moz-user-select: none;\r\n    -ms-user-select: none;\r\n        user-select: none;\r\n-webkit-tap-highlight-color: transparent;\r\nwidth: 200px;\r\nheight: 50px;\r\ntext-align: center;\r\nline-height: 34px;\r\nmargin: auto;\n}\ninput[type=\"file\"][data-v-b200d362] {\r\nposition: absolute;\r\ntop: 0;\r\nright: 0;\r\nbottom: 0;\r\nleft: 0;\r\nwidth: 100%;\r\nheight: 100%;\r\npadding: 0;\r\nmargin: 0;\r\ncursor: pointer;\r\nfilter: alpha(opacity=0);\r\nopacity: 0;\n}\n.num-of-files[data-v-b200d362]{\r\ntext-align: center;\r\nmargin: 20px 0 30px;\n}\n.container-images[data-v-b200d362] {\r\nwidth: 90%;\r\nposition: relative;\r\nmargin: auto;\r\ndisplay: flex;\r\njustify-content: space-evenly;\r\ngap: 20px;\r\nflex-wrap: wrap;\r\npadding: 10px;\r\nborder-radius: 20px;\r\nbackground-color: #f7f7f7;\n}\n.p-3[data-v-b200d362] {\r\n    padding: 1rem!important;\n}\n.btn[data-v-b200d362] {\r\n    margin-top: 20px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -102058,33 +102076,52 @@ var __webpack_exports__ = {};
   !*** ./resources/js/admin.js ***!
   \*******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _lang_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lang/admin */ "./resources/js/lang/admin.js");
-/* harmony import */ var _store_admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/admin */ "./resources/js/store/admin.js");
-/* harmony import */ var _router_adminRoute__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router/adminRoute */ "./resources/js/router/adminRoute.js");
-/* harmony import */ var _Admin_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Admin.vue */ "./resources/js/Admin.vue");
-/* harmony import */ var mitt__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! mitt */ "./node_modules/mitt/dist/mitt.mjs");
-/* harmony import */ var _kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @kyvg/vue3-notification */ "./node_modules/@kyvg/vue3-notification/dist/index.esm.js");
-/* harmony import */ var _components_loader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/loader */ "./resources/js/components/loader.vue");
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
-/* harmony import */ var _assets_admin_custom_admin_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./assets/admin/custom-admin.css */ "./resources/js/assets/admin/custom-admin.css");
+/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _lang_admin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lang/admin */ "./resources/js/lang/admin.js");
+/* harmony import */ var _store_admin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/admin */ "./resources/js/store/admin.js");
+/* harmony import */ var _router_adminRoute__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./router/adminRoute */ "./resources/js/router/adminRoute.js");
+/* harmony import */ var _Admin_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Admin.vue */ "./resources/js/Admin.vue");
+/* harmony import */ var mitt__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! mitt */ "./node_modules/mitt/dist/mitt.mjs");
+/* harmony import */ var _kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @kyvg/vue3-notification */ "./node_modules/@kyvg/vue3-notification/dist/index.esm.js");
+/* harmony import */ var _components_loader__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/loader */ "./resources/js/components/loader.vue");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
+/* harmony import */ var _assets_admin_custom_admin_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./assets/admin/custom-admin.css */ "./resources/js/assets/admin/custom-admin.css");
+
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
+window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  broadcaster: 'pusher',
+  key: "shatbnaKey",
+  cluster: "mt1",
+  forceTLS: false,
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  disableStats: true,
+  auth: {
+    headers: {
+      Authorization: "Bearer " + js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get("tokenAdmin")
+    }
+  }
+});
 
 
 
 
 
 
-var emitter = (0,mitt__WEBPACK_IMPORTED_MODULE_5__["default"])();
-var admin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_Admin_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+
+var emitter = (0,mitt__WEBPACK_IMPORTED_MODULE_7__["default"])();
+var admin = (0,vue__WEBPACK_IMPORTED_MODULE_2__.createApp)(_Admin_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
 admin.provide('emitter', emitter);
 
 
-admin.component('loader', _components_loader__WEBPACK_IMPORTED_MODULE_7__["default"]);
-admin.component('Pagination', laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_8__["default"]);
-admin.use(_lang_admin__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store_admin__WEBPACK_IMPORTED_MODULE_2__["default"]).use(_router_adminRoute__WEBPACK_IMPORTED_MODULE_3__["default"]).use(_kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_6__["default"]).mount('#admin');
+admin.component('loader', _components_loader__WEBPACK_IMPORTED_MODULE_9__["default"]);
+admin.component('Pagination', laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_10__["default"]);
+admin.use(_lang_admin__WEBPACK_IMPORTED_MODULE_3__["default"]).use(_store_admin__WEBPACK_IMPORTED_MODULE_4__["default"]).use(_router_adminRoute__WEBPACK_IMPORTED_MODULE_5__["default"]).use(_kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_8__["default"]).mount('#admin');
  // set lang
 
 if (!localStorage.getItem("langAdmin")) {

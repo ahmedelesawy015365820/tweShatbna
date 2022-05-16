@@ -104,9 +104,9 @@
                                     <h3 class="know-you">الحسابات البنكية .</h3>
                                     <div class="row">
 
-                                        <div class="col-md-6" v-if="banks" v-for="bank in banks">
+                                        <div class="col-md-6" v-if="banks" v-for="(bank,key) in banks">
                                             <div class="bank">
-                                                <span class="delete" @click="deleteBank(bank.id)" v-if="banks.length > 1">
+                                                <span class="delete" @click="deleteBank(bank.id)" v-if="banks.length > 1 && key > 0">
                                                     <i class="fas fa-plus"></i>
                                                 </span>
                                                 <i class="fas fa-university"></i><br>

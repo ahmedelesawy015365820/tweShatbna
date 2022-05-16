@@ -1,22 +1,8 @@
 import Cookies from "js-cookie";
 
 require('./bootstrap');
-import Echo from 'laravel-echo';
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: false,
-    wsHost: window.location.hostname,
-    wsPort: 6001,
-    disableStats: true,
-    auth:{
-        headers:{
-            Authorization: "Bearer " + Cookies.get("token")
-        }
-    }
-});
+
 
 import { createApp } from 'vue';
 import  router  from './router/webRoute';
@@ -67,5 +53,11 @@ if(localStorage.getItem("langWeb") == 'ar'){
     tagHtml.setAttribute('dir', 'ltr');
     styleLink.setAttribute('href','');
 }
+
+Echo.private(`App.Models.User.2`)
+    .notification((notification) => {
+        console.log(notification);
+        console.log('khaled');
+    });
 
 

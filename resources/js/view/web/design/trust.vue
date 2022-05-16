@@ -574,13 +574,33 @@ export default {
 
         onMounted(() => {
             getServiceDegree();
+
+            if(localStorage.getItem('trustDesgin')){
+
+                let localData = JSON.parse(localStorage.getItem('trustDesgin'));
+
+                data.bank.name = localData.bank.name;
+                data.bank.address = localData.bank.address;
+                data.bank.iban = localData.bank.iban;
+                data.bank.swift = localData.bank.swift;
+                data.person.nameService = localData.person.nameService;
+                data.person.nameDegree = localData.person.nameDegree;
+                data.person.experience = localData.person.experience;
+                data.person.subject = localData.person.subject;
+                data.person.description = localData.person.description;
+                data.info.vision = localData.info.vision;
+                data.info.message = localData.info.message;
+                data.info.strategy = localData.info.strategy;
+
+            }
+
         });
 
         emitter.on('get_lang_web', () => {
             getServiceDegree();
         });
 
-        return {loading,services,degrees,...toRefs(data),numberOfImage1,numberOfImage2,numberOfImage3,preview1,preview2,preview3,step,step1Func,step1FuncBack1,step1FuncBack2,step1FuncBack3,v$}
+        return {data,loading,services,degrees,...toRefs(data),numberOfImage1,numberOfImage2,numberOfImage3,preview1,preview2,preview3,step,step1Func,step1FuncBack1,step1FuncBack2,step1FuncBack3,v$}
     },
     methods: {
         step2Func (){
@@ -637,6 +657,8 @@ export default {
                         formData.append('message',this.info.message);
                         formData.append('strategy',this.info.strategy);
 
+                        localStorage.setItem('trustDesgin',JSON.stringify(this.data));
+
                         webApi.post(`/v1/web/trustDesginOne`,formData)
                             .then((res) => {
 
@@ -648,6 +670,8 @@ export default {
                                             'سيتم مراجعه ملفك و سنرسل رساله الي البريد الالكتروني بعد الانتهاء من المراجعه .',
                                             'نجاح'
                                         );
+
+                                        localStorage.removeItem('trustDesgin');
 
                                         setTimeout(() => {
                                             return this.$router.push({name:'dashboardDesign',params:{lang:this.$i18n.locale}});

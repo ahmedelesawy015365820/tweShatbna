@@ -48364,8 +48364,11 @@ adminApi.defaults.headers.common['secretApi'] = 'Snr92EUKCmrE06PiJ'; // end axio
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 try {
@@ -48385,17 +48388,19 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-// import Echo from 'laravel-echo';
 
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: false,
-//     wsHost: window.location.hostname,
-//     wsPort: 6001,
-//     disableStats: true,
-// });
+
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  broadcaster: 'pusher',
+  key: "shatbnaKey",
+  cluster: "mt1",
+  forceTLS: false,
+  wsHost: window.location.hostname,
+  wsPort: 6001,
+  disableStats: true,
+  authEndpoint: "/api/broadcasting/auth"
+});
 
 /***/ }),
 
@@ -102076,52 +102081,33 @@ var __webpack_exports__ = {};
   !*** ./resources/js/admin.js ***!
   \*******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-cookie */ "./node_modules/js-cookie/dist/js.cookie.mjs");
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _lang_admin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lang/admin */ "./resources/js/lang/admin.js");
-/* harmony import */ var _store_admin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store/admin */ "./resources/js/store/admin.js");
-/* harmony import */ var _router_adminRoute__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./router/adminRoute */ "./resources/js/router/adminRoute.js");
-/* harmony import */ var _Admin_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Admin.vue */ "./resources/js/Admin.vue");
-/* harmony import */ var mitt__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! mitt */ "./node_modules/mitt/dist/mitt.mjs");
-/* harmony import */ var _kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @kyvg/vue3-notification */ "./node_modules/@kyvg/vue3-notification/dist/index.esm.js");
-/* harmony import */ var _components_loader__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/loader */ "./resources/js/components/loader.vue");
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
-/* harmony import */ var _assets_admin_custom_admin_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./assets/admin/custom-admin.css */ "./resources/js/assets/admin/custom-admin.css");
-
-
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _lang_admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lang/admin */ "./resources/js/lang/admin.js");
+/* harmony import */ var _store_admin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/admin */ "./resources/js/store/admin.js");
+/* harmony import */ var _router_adminRoute__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router/adminRoute */ "./resources/js/router/adminRoute.js");
+/* harmony import */ var _Admin_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Admin.vue */ "./resources/js/Admin.vue");
+/* harmony import */ var mitt__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! mitt */ "./node_modules/mitt/dist/mitt.mjs");
+/* harmony import */ var _kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @kyvg/vue3-notification */ "./node_modules/@kyvg/vue3-notification/dist/index.esm.js");
+/* harmony import */ var _components_loader__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/loader */ "./resources/js/components/loader.vue");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
+/* harmony import */ var _assets_admin_custom_admin_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./assets/admin/custom-admin.css */ "./resources/js/assets/admin/custom-admin.css");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  broadcaster: 'pusher',
-  key: "shatbnaKey",
-  cluster: "mt1",
-  forceTLS: false,
-  wsHost: window.location.hostname,
-  wsPort: 6001,
-  disableStats: true,
-  auth: {
-    headers: {
-      Authorization: "Bearer " + js_cookie__WEBPACK_IMPORTED_MODULE_0__["default"].get("tokenAdmin")
-    }
-  }
-});
 
 
 
 
 
 
-
-var emitter = (0,mitt__WEBPACK_IMPORTED_MODULE_7__["default"])();
-var admin = (0,vue__WEBPACK_IMPORTED_MODULE_2__.createApp)(_Admin_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+var emitter = (0,mitt__WEBPACK_IMPORTED_MODULE_5__["default"])();
+var admin = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_Admin_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
 admin.provide('emitter', emitter);
 
 
-admin.component('loader', _components_loader__WEBPACK_IMPORTED_MODULE_9__["default"]);
-admin.component('Pagination', laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_10__["default"]);
-admin.use(_lang_admin__WEBPACK_IMPORTED_MODULE_3__["default"]).use(_store_admin__WEBPACK_IMPORTED_MODULE_4__["default"]).use(_router_adminRoute__WEBPACK_IMPORTED_MODULE_5__["default"]).use(_kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_8__["default"]).mount('#admin');
+admin.component('loader', _components_loader__WEBPACK_IMPORTED_MODULE_7__["default"]);
+admin.component('Pagination', laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_8__["default"]);
+admin.use(_lang_admin__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_store_admin__WEBPACK_IMPORTED_MODULE_2__["default"]).use(_router_adminRoute__WEBPACK_IMPORTED_MODULE_3__["default"]).use(_kyvg_vue3_notification__WEBPACK_IMPORTED_MODULE_6__["default"]).mount('#admin');
  // set lang
 
 if (!localStorage.getItem("langAdmin")) {
@@ -102138,6 +102124,11 @@ if (localStorage.getItem("langAdmin") == 'ar') {
   tagHtml.setAttribute('dir', 'ltr');
   styleLink.setAttribute('href', '');
 }
+
+Echo["private"]("App.Models.User.1").notification(function (notification) {
+  console.log(notification);
+  console.log('khaled');
+});
 })();
 
 /******/ })()

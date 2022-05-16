@@ -30,9 +30,13 @@ class RegisterController extends Controller
     public function companyRegister(Request $request)
     {
 
+        DB::beginTransaction();
+
         try {
 
-            DB::beginTransaction();
+            $regex = '/\+(20[0,9]{10})$/';
+
+            return response()->json($request->all());
 
             // Validator request
             $v = Validator::make($request->all(), [
@@ -42,7 +46,7 @@ class RegisterController extends Controller
                 'confirmtion' => 'required|same:password',
                 'country'  => 'required|integer|exists:countries,id',
                 'state'  => 'required|integer|exists:states,id',
-                'phone' => 'required|string|unique:complements',
+                'phone' => 'required|string|unique:complements|regex:'. $regex,
                 'phone_second' => 'present',
                 'nameCompany' => 'required|string|unique:complements',
                 'location' => 'required|url'
@@ -109,9 +113,9 @@ class RegisterController extends Controller
     public function designRegister(Request $request)
     {
 
-        try {
+        DB::beginTransaction();
 
-            DB::beginTransaction();
+        try {
 
             // Validator request
             $v = Validator::make($request->all(), [
@@ -161,11 +165,11 @@ class RegisterController extends Controller
 
             DB::commit();
             if($user){
-                //start access token
                 $credentials = $request->only("email", "password");
                 if ($token = Auth::guard('api')->attempt($credentials)){
                     return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
-                }
+                }//start access token
+
             }else{
                 return $this->sendError('An error occurred in the system');
             }
@@ -181,9 +185,10 @@ class RegisterController extends Controller
     public function advertiserRegister(Request $request)
     {
 
+        DB::beginTransaction();
+
         try {
 
-            DB::beginTransaction();
 
             // Validator request
             $v = Validator::make($request->all(), [
@@ -231,11 +236,13 @@ class RegisterController extends Controller
 
             DB::commit();
             if($user){
-                return $this->sendResponse([],'Data exited successfully');
+                $credentials = $request->only("email", "password");
+                if ($token = Auth::guard('api')->attempt($credentials)){
+                    return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
+                }//start access token
             }else{
                 return $this->sendError('An error occurred in the system');
             }
-
 
         }catch(\Exception $e){
 
@@ -268,6 +275,8 @@ class RegisterController extends Controller
             $partner = new CompanyResource(Company::whereUserId($user->id)->first());
         }elseif ($user->role_name[0] == 'design'){
             $partner = new DesignResource(Designer::whereUserId($user->id)->first());
+        }elseif ($user->role_name[0] == 'advertiser'){
+            $partner = new AdvertiserResource(Advertiser::whereUserId($user->id)->first());
         }
 
         return [

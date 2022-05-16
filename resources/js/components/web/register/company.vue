@@ -262,6 +262,7 @@ export default {
 
                 let item = document.getElementById('codeCountry').innerHTML;
 
+
                 this.dataCompany.code = item ;
 
                 this.$store.dispatch('auth/CompanyRegister',this.dataCompany);

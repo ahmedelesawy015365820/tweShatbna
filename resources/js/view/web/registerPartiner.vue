@@ -3,23 +3,6 @@
     <div class="content">
         <loader v-if="loading" />
 
-        <!--The Modal-->
-        <transition name="fade">
-            <div class="success" v-if="success">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content text-center">
-                        <img src="/web/img/success.png">
-                        <h2>{{ $t('register.thank') }}</h2>
-                        <p>
-                            {{ $t('register.success-mess') }}
-                        </p>
-                        <button type="button" @click.prevent="successRegister">{{$t('register.ok')}}</button>
-                    </div>
-                </div>
-            </div>
-        </transition>
-        <!--  /The Modal-->
-
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
@@ -90,7 +73,6 @@ export default {
         const emitter = inject('emitter');
 
         let loading = computed(() => store.getters['auth/loading'] );
-        let success = computed(() => store.getters['auth/success'] );
 
         const query = ref('');
 
@@ -109,16 +91,13 @@ export default {
             // get country
             getCountry();
 
-            // success
-            store.commit('auth/editSuccess',false);
-
         });
 
         emitter.on('get_lang_web', () => {
             getCountry();
         });
 
-        return {query,loading,success,successRegister};
+        return {query,loading,successRegister};
     }
 }
 </script>

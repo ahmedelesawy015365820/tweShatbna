@@ -135,7 +135,7 @@ class DesignController extends Controller
             $designer->update(['send' => 1]);
             $designer->save();
 
-            User::whereAuthId(1)->each(function ($admin) use($designer){
+            User::each(function ($admin) use($designer){
                 $admin->notify(new TrustDesignNotification($designer));
             });
 
@@ -149,7 +149,6 @@ class DesignController extends Controller
         }
 
     } // ******************End trustDesgin2*********************//
-
 
     public function degreeService()
     {

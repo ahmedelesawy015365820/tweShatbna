@@ -11,7 +11,6 @@ const state = {
     loading: false,
     country: [],
     newState: [],
-    success: false,
     errors: {}
 }
 
@@ -24,7 +23,6 @@ const getters = {
     loading: state => state.loading,
     country: state => state.country,
     newState: state => state.newState,
-    success: state => state.success,
     errors: state => state.errors
 }
 
@@ -65,9 +63,6 @@ const mutations = {
     },
     editState(state,newState){
         state.newState = newState;
-    },
-    editSuccess(state,success){
-        state.success = success;
     },
     editErrors(state,errors){
         state.errors = errors;
@@ -237,20 +232,23 @@ const actions = {
 
         webApi.post(`/v1/web/company`,preload)
             .then((res) => {
-                let l = res.data.data;
-                commit('editToken', l.access_token);
-                commit('editUser', l.user);
-                commit('editComplement', l.complement);
-                commit('editPartner', l.partner);
+                // let l = res.data.data;
+                // commit('editToken', l.access_token);
+                // commit('editUser', l.user);
+                // commit('editComplement', l.complement);
+                // commit('editPartner', l.partner);
 
                 let locale = localStorage.getItem("langWeb");
 
-                if (l.user.role_name[0] == 'company'){
-                    return router.push({name: 'dashboardCompany', params: {lang: locale || 'ar'}});
-                }
+                console.log(res);
+
+                // if (l.user.role_name[0] == 'company'){
+                //     return router.push({name: 'dashboardCompany', params: {lang: locale || 'ar'}});
+                // }
             })
             .catch((err) => {
                 commit('editErrors',err.response.data.errors)
+                console.log(err.response)
             })
             .finally(() => {
                 commit('editLoading',false);
@@ -263,7 +261,18 @@ const actions = {
 
         webApi.post(`/v1/web/advertiser`,preload)
             .then((res) => {
-                commit('editSuccess',true);
+
+                let l = res.data.data;
+                commit('editToken', l.access_token);
+                commit('editUser', l.user);
+                commit('editComplement', l.complement);
+                commit('editPartner', l.partner);
+
+                let locale = localStorage.getItem("langWeb");
+
+                if (l.user.role_name[0] == 'advertiser'){
+                    return router.push({name: 'dashboardAdvertise', params: {lang: locale || 'ar'}});
+                }
             })
             .catch((err) => {
                 commit('editErrors',err.response.data.errors)

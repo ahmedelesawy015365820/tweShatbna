@@ -232,19 +232,17 @@ const actions = {
 
         webApi.post(`/v1/web/company`,preload)
             .then((res) => {
-                // let l = res.data.data;
-                // commit('editToken', l.access_token);
-                // commit('editUser', l.user);
-                // commit('editComplement', l.complement);
-                // commit('editPartner', l.partner);
+                let l = res.data.data;
+                commit('editToken', l.access_token);
+                commit('editUser', l.user);
+                commit('editComplement', l.complement);
+                commit('editPartner', l.partner);
 
                 let locale = localStorage.getItem("langWeb");
 
-                console.log(res);
-
-                // if (l.user.role_name[0] == 'company'){
-                //     return router.push({name: 'dashboardCompany', params: {lang: locale || 'ar'}});
-                // }
+                if (l.user.role_name[0] == 'company'){
+                    return router.push({name: 'dashboardCompany', params: {lang: locale || 'ar'}});
+                }
             })
             .catch((err) => {
                 commit('editErrors',err.response.data.errors)

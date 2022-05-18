@@ -61,5 +61,12 @@ body {
     padding-right: 15px;
 }
 
+.fc .fc-scrollgrid-section table ,
+.fc-scrollgrid-sync-table ,
+.fc .fc-daygrid-body-natural
+{
+    width : 100% !important;
+}
+
 /* end index */
 

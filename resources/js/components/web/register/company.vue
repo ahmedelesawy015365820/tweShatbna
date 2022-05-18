@@ -85,7 +85,11 @@
         <div class="col-md-6">
 
             <div class="form-group form-focus">
-                <input type="text" v-model.trim="v$.phone.$model" :class="['form-control','floating',dataCompany.country ? 'phone': '']">
+                <input
+                    type="text"
+                    v-model.trim="v$.phone.$model"
+                    :class="['form-control','floating',dataCompany.country ? 'phone': '']"
+                >
                 <label class="focus-label">{{$t('register.phone')}}</label>
                 <span class="flag"  v-if="dataCompany.country" v-for="count in foucsCountry">
                         <img v-if="this.$i18n.locale == 'en'" :src="'/web/img/country/'+ count.media.file_name">
@@ -148,7 +152,7 @@
 </template>
 
 <script>
-import {toRefs, reactive, ref, computed, inject} from 'vue';
+import {toRefs, reactive, ref, computed, inject,watch} from 'vue';
 import { useStore } from 'vuex';
 import { maxLength, minLength, required,email,sameAs,alphaNum,integer,url,not} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
@@ -161,7 +165,6 @@ export default {
     setup(){
         const store = useStore();
         const emitter = inject('emitter');
-        const { t } = useI18n({});
 
         let countries = computed(()=> store.getters['auth/country']);
         let states = computed(()=> store.getters['auth/newState']);
@@ -188,7 +191,6 @@ export default {
                 country: null,
                 state: null,
                 phone: '',
-                code:'',
                 phone_second: '',
                 nameCompany: '',
                 location:'',
@@ -262,9 +264,11 @@ export default {
 
                 let item = document.getElementById('codeCountry').innerHTML;
 
+                this.dataCompany.phone = item + this.dataCompany.phone ;
 
-                this.dataCompany.code = item ;
+                // var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
 
+                // if (re.test(this.dataCompany.phone)) {
                 this.$store.dispatch('auth/CompanyRegister',this.dataCompany);
 
             }

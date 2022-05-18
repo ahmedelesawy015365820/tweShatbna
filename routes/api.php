@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 
          Route::post('login','AuthController@login');
 
-         // start reset[Dashboard,company,design,advertiser]
+         // start reset[Dashboard,company,design,advertiser,client]
 
          Route::post('forgot-password', 'AuthController@forgotPassword');
          Route::post('reset-password', 'AuthController@reset');
@@ -97,6 +97,7 @@ use Illuminate\Support\Facades\Route;
              Route::post('buy_package',  'AdvertiseController@buy_package');
              Route::get('numPackage',  'AdvertiseController@numPackage');
              Route::get('salePackage',  'AdvertiseController@package');
+             Route::get('getALL',  'AdvertiseController@getALL');
 
              // start DeSign
              Route::get('degreeService',  'DesignController@degreeService');

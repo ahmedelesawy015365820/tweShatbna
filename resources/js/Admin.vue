@@ -33,7 +33,7 @@
         },
         data(){
             return {
-                link : ['loginLang','login','Page404']
+                link : ['loginLang','login','Page404','forgetPassword','resetPassword']
             }
         }
     }

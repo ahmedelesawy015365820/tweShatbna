@@ -33,9 +33,8 @@
                                 <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Login</button>
                                 <div class="row form-row login-foot">
                                     <div class="col-lg-6 login-forgot">
-                                        <a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
+                                        <router-link class="forgot-link" :to="{name:'forgetPassword',params: {lang:this.$i18n.locale}}">Forgot Password ?</router-link>
                                     </div>
-                                    <div class="col-lg-6 dont-have">New to Kofejob? <a href="register.html">Click here</a></div>
                                 </div>
                             </form>
 

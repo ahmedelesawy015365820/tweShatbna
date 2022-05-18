@@ -15,7 +15,7 @@ class CreateAdvertisingPackagesTable extends Migration
     {
         Schema::create('advertising_packages', function (Blueprint $table) {
             $table->id();
-            $table->double('period',2);
+            $table->double('period');
             $table->double('visiter_num');
             $table->double('price');
             $table->boolean('status')->default(false);

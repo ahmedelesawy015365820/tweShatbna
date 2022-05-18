@@ -15,6 +15,7 @@ class CreatePackageSalesTable extends Migration
             $table->boolean('check')->default(false);
             $table->boolean('accept')->default(false);
             $table->boolean('complete')->default(false);
+            $table->integer('click')->default(0);
             $table->timestamps();
         });
 

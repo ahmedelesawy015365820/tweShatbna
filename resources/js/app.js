@@ -54,7 +54,7 @@ if(localStorage.getItem("langWeb") == 'ar'){
     styleLink.setAttribute('href','');
 }
 
-Echo.private(`App.Models.User.2`)
+Echo.private(`App.Models.User.5`)
     .notification((notification) => {
         console.log(notification);
         console.log('khaled');

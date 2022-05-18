@@ -35,7 +35,14 @@
                                     </ul>
                                 </div>
 
-                                <a  data-bs-toggle="modal" @click="empty(Package.id)" :href="'#file' + Package.id" class="btn btn-primary text-center price-btn btn-block">Select Plan</a>
+                                <div>
+                                    <a  data-bs-toggle="modal" @click="empty(Package.id)" :href="'#file' + Package.id" class="btn btn-primary text-center price-btn btn-block">
+                                        Pay Now
+                                    </a>
+                                    <a  data-bs-toggle="modal" @click="getCalender(Package.id)" href="#calender" class="btn btn-primary text-center price-btn btn-block">
+                                        Available Days
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- The Modal -->
@@ -73,35 +80,139 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-info">
-                                                    <input type="hidden" name="package" :id="'package_id_'+ Package.id" :value="Package.id">
-                                                    <div class="row">
-                                                        <div class="alert alert-danger text-center" v-for="error in errors" v-if="errors">{{ errors[error] }}<br /> </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="btn btn-outline-primary waves-effect">
-                                                                <span>
-                                                                    Choose files
-                                                                    <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
-                                                                </span>
-                                                                <input
-                                                                    name="mediaPackage[]"
-                                                                    multiple
-                                                                    type="file"
-                                                                    :id="'mediaPackage_'+Package.id"
-                                                                    :data-package="Package.id"
-                                                                    @change="preview"
-                                                                    accept="image/*"
-                                                                >
+
+                                                    <div class="row justify-content-between">
+                                                        <div :class="['col-lg-12',step == 1?'active' : '']">
+                                                            <h3 class="know-you">Website image sizes</h3>
+                                                            <div class="form-row justify-content-center">
+                                                                <div class="col-lg-4 text-center">
+
+                                                                    <label class="text-center d-block">( طول: 200px | العرض: 200px | الدقه: 300px )</label>
+                                                                    <div class="btn btn-outline-primary waves-effect">
+                                                                    <span>
+                                                                        Choose files
+                                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                                                    </span>
+                                                                        <input
+                                                                            required
+                                                                            type="file"
+                                                                            id="mediaPackage1"
+                                                                            accept="image/*"
+                                                                            @change="preview1"
+                                                                        >
+                                                                    </div>
+                                                                    <p class="num-of-files">{{numberOfImage1 ? numberOfImage1 + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                                    <div class="container-images" id="container-images-1" v-show="numberOfImage1"></div>
+                                                                </div>
+
+                                                                <div class="col-lg-4 text-center">
+                                                                    <label class="text-center d-block">( طول: 200px | العرض: 200px | الدقه: 300px )</label>
+                                                                    <div class="btn btn-outline-primary waves-effect">
+                                                                    <span>
+                                                                        Choose files
+                                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                                                    </span>
+                                                                        <input
+                                                                            required
+                                                                            type="file"
+                                                                            id="mediaPackage2"
+                                                                            accept="image/*"
+                                                                            @change="preview2"
+                                                                        >
+                                                                    </div>
+                                                                    <p class="num-of-files">{{numberOfImage2 ? numberOfImage2 + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                                    <div class="container-images" id="container-images-2" v-show="numberOfImage2"></div>
+                                                                </div>
+
+                                                                <div class="col-lg-4 text-center">
+                                                                    <label class="text-center d-block">( طول: 200px | العرض: 200px | الدقه: 300px )</label>
+                                                                    <div class="btn btn-outline-primary waves-effect">
+                                                                    <span>
+                                                                        Choose files
+                                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                                                    </span>
+                                                                        <input
+                                                                            type="file"
+                                                                            required
+                                                                            id="mediaPackage3"
+                                                                            accept="image/*"
+                                                                            @change="preview3"
+                                                                        >
+                                                                    </div>
+                                                                    <p class="num-of-files">{{numberOfImage3 ? numberOfImage3 + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                                    <div class="container-images" id="container-images-3" v-show="numberOfImage3"></div>
+                                                                </div>
+
                                                             </div>
-                                                            <p class="num-of-files">{{numberOfImage ? numberOfImage + ' Files Selected' : 'No Files Chosen' }}</p>
-                                                            <div class="container-images" :id="'container-images-' + Package.id" v-show="numberOfImage"></div>
-                                                            <span class="text-danger text-center" v-if="min">images en is required. <br /></span>
-                                                            <span class="text-danger text-center" v-if="required">images is must have at least 1 photos<br /></span>
-                                                            <span class="text-danger text-center" v-if="max">images is must have at most 5 photos. <br /></span>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="submit-section text-end">
-                                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+
+                                                    <div class="row justify-content-between">
+                                                        <div :class="['col-lg-12',step == 2?'active' : '']">
+                                                            <h3 class="know-you"> Mobile phone image sizes</h3>
+                                                            <div class="form-row justify-content-center">
+                                                                <div class="col-lg-4 text-center">
+
+                                                                    <label class="text-center d-block">( طول: 200px | العرض: 200px | الدقه: 300px )</label>
+                                                                    <div class="btn btn-outline-primary waves-effect">
+                                                    <span>
+                                                        Choose files
+                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                                    </span>
+                                                                        <input
+                                                                            required
+                                                                            type="file"
+                                                                            id="mediaPackage4"
+                                                                            accept="image/*"
+                                                                            @change="preview1"
+                                                                        >
+                                                                    </div>
+                                                                    <p class="num-of-files">{{numberOfImage1 ? numberOfImage1 + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                                    <div class="container-images" id="container-images-4" v-show="numberOfImage1"></div>
+                                                                </div>
+
+                                                                <div class="col-lg-4 text-center">
+                                                                    <label class="text-center d-block">( طول: 200px | العرض: 200px | الدقه: 300px )</label>
+                                                                    <div class="btn btn-outline-primary waves-effect">
+                                                    <span>
+                                                        Choose files
+                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                                    </span>
+                                                                        <input
+                                                                            required
+                                                                            type="file"
+                                                                            id="mediaPackage5"
+                                                                            accept="image/*"
+                                                                            @change="preview2"
+                                                                        >
+                                                                    </div>
+                                                                    <p class="num-of-files">{{numberOfImage2 ? numberOfImage2 + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                                    <div class="container-images" id="container-images-5" v-show="numberOfImage2"></div>
+                                                                </div>
+
+                                                                <div class="col-lg-4 text-center">
+                                                                    <label class="text-center d-block">( طول: 200px | العرض: 200px | الدقه: 300px )</label>
+                                                                    <div class="btn btn-outline-primary waves-effect">
+                                                    <span>
+                                                        Choose files
+                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                                    </span>
+                                                                        <input
+                                                                            type="file"
+                                                                            required
+                                                                            id="mediaPackage6"
+                                                                            accept="image/*"
+                                                                            @change="preview3"
+                                                                        >
+                                                                    </div>
+                                                                    <p class="num-of-files">{{numberOfImage3 ? numberOfImage3 + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                                    <div class="container-images" id="container-images-6" v-show="numberOfImage3"></div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </form>
                                         </div>
@@ -109,10 +220,28 @@
                                 </div>
                             </div>
 
-
                         </div>
 
                     </div>
+
+                    <!-- The Modal -->
+                    <div class="modal fade" id="calender">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Show available days </h4>
+                                    <span class="modal-close"><a href="#" id="modal-close-" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times-circle orange-text"></i></a></span>
+                                </div>
+                                <div class="modal-body">
+                                    <FullCalendar
+                                        :options="options"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                     <div class="row">
                         <div class="col-lg-6">
@@ -207,15 +336,22 @@
 </template>
 
 <script>
-import {computed, inject, onBeforeMount, ref,watch} from "vue";
+import {inject, onBeforeMount, reactive, ref, watch} from "vue";
 import {useStore} from "vuex";
 import Sidebar from "../../../components/web/sidebar";
 import webApi from "../../../api/webAxios";
+import FullCalendar from '@fullcalendar/vue3';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import TimeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
+
 
 export default {
     name: "packages",
     components:{
-        Sidebar
+        Sidebar,
+        FullCalendar
     },
     setup(){
         const store = useStore();
@@ -365,12 +501,53 @@ export default {
 
         };
 
-        return {Packages,preview,numberOfImage,pushasePackage,empty,loading,max,min,required};
+        const allEvents = ref([]);
+
+        const options = reactive({
+            plugins: [ dayGridPlugin, interactionPlugin,TimeGridPlugin,listPlugin ],
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                center: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            editable:true,
+            weekends:true,
+            events:  allEvents || [],
+            height: "auto"
+        });
+
+        let getCalender = (packageId)=> {
+
+            allEvents.value = [];
+            webApi.get(`/v1/web/getALL?package=${packageId}`)
+                .then((res) => {
+
+                    let l = res.data.data;
+                    allEvents.value =  l.schedule
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا في النظام...',
+                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                    });
+
+                    console.log(err.response);
+                })
+
+        };
+
+
+        return {Packages,getCalender,preview,numberOfImage,pushasePackage,empty,loading,max,min,required,options};
     }
 }
 </script>
 
 <style scoped>
+
+.modal-lg, .modal-xl {
+    max-width: 850px;
+}
+
 .content {
     padding: 120px 0 30px;
     position: relative;
@@ -383,6 +560,18 @@ export default {
 
 .checkCorrect {
     margin-bottom: 30px;
+}
+
+.price-btn {
+    margin: 5px 0;
+}
+
+.know-you {
+    margin-bottom: 25px;
+}
+
+label{
+    margin-bottom: 15px;
 }
 
 .waves-effect {
@@ -439,5 +628,60 @@ input[type="file"] {
     background-color: #fcb00c;
     border: 1px solid #fcb00c;
 }
+
+.modal.show{
+    display: block;
+    padding-right: 0px;
+}
+
+.waves-effect {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    line-height: 34px;
+}
+
+input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+.num-of-files{
+    text-align: inherit;
+    margin: 20px 48px 30px;
+
+}
+
+.container-images{
+    width: 90%;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #f7f7f7;
+    left: 20px;
+}
+
+
+
 
 </style>

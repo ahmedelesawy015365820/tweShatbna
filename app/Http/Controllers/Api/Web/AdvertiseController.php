@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AdvertiserResource;
+use App\Http\Resources\AdvertiseScheduleResource;
 use App\Http\Resources\UserResource;
 use App\Models\Advertiser;
 use App\Models\AdvertiseSchedule;
@@ -133,5 +134,22 @@ class AdvertiseController extends Controller
         );
 
     }//**********end Packages************/
+
+    public function  getALL(Request $request)
+    {
+        try{
+            $schedule = AdvertiseSchedule::
+                where([
+                        ['advertising_package_id', $request->package],
+                    ])
+                ->whereBetween('created_at', [now()->subMonth(), now()->addMonths(5)])
+                ->get();
+
+            return $this->sendResponse(['schedule' => AdvertiseScheduleResource::collection($schedule)], 'Data exited successfully');
+
+        }catch (\Exception $e){
+            return $this->sendError('An error occurred in the system');
+        }
+    }
 
 }

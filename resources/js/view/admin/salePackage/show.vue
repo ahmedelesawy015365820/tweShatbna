@@ -370,9 +370,7 @@ export default {
                 });
         };
 
-
         // start calender
-
         const ip = ref(10);
 
         const allEvents = ref([]);
@@ -407,6 +405,7 @@ export default {
                 .then((res) => {
                     let l = res.data.data;
                     allEvents.value =  l.schedule;
+                    options.events = l.schedule;
                 })
                 .catch((err) => {
                     Swal.fire({

@@ -34,9 +34,7 @@ class RegisterController extends Controller
 
         try {
 
-            $regex = '/\+(20[0,9]{10})$/';
-
-            return response()->json($request->all());
+//            return response()->json($request->all());
 
             // Validator request
             $v = Validator::make($request->all(), [
@@ -46,7 +44,7 @@ class RegisterController extends Controller
                 'confirmtion' => 'required|same:password',
                 'country'  => 'required|integer|exists:countries,id',
                 'state'  => 'required|integer|exists:states,id',
-                'phone' => 'required|string|unique:complements|regex:'. $regex,
+                'phone' => 'required|string|unique:complements',
                 'phone_second' => 'present',
                 'nameCompany' => 'required|string|unique:complements',
                 'location' => 'required|url'
@@ -91,14 +89,12 @@ class RegisterController extends Controller
             ]);
 
             DB::commit();
-            if($user){
-                $credentials = $request->only("email", "password");
-                if ($token = Auth::guard('api')->attempt($credentials)){
-                    return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
-                }
-            }else{
-                return $this->sendError('An error occurred in the system');
-            }
+
+            $credentials = $request->only("email", "password");
+            $token = Auth::guard('api')->attempt($credentials);
+
+            DB::commit();
+            return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
 
         }
         catch (\Exception $e){
@@ -163,16 +159,12 @@ class RegisterController extends Controller
                 'file_sort' => 1
             ]);
 
-            DB::commit();
-            if($user){
-                $credentials = $request->only("email", "password");
-                if ($token = Auth::guard('api')->attempt($credentials)){
-                    return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
-                }//start access token
 
-            }else{
-                return $this->sendError('An error occurred in the system');
-            }
+            $credentials = $request->only("email", "password");
+            $token = Auth::guard('api')->attempt($credentials);
+
+            DB::commit();
+            return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
 
         }catch(\Exception $e){
 
@@ -213,7 +205,7 @@ class RegisterController extends Controller
                 "password" => $request->password,
                 "auth_id" => 2,
                 'role_name' => ['advertiser'],
-                "status" => 0,
+                "status" => 1,
             ]);
 
             $user->complement()->create([
@@ -234,21 +226,17 @@ class RegisterController extends Controller
                 'file_sort' => 1
             ]);
 
+
+            $credentials = $request->only("email", "password");
+            $token = Auth::guard('api')->attempt($credentials);
+
             DB::commit();
-            if($user){
-                $credentials = $request->only("email", "password");
-                if ($token = Auth::guard('api')->attempt($credentials)){
-                    return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
-                }//start access token
-            }else{
-                return $this->sendError('An error occurred in the system');
-            }
+            return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
 
         }catch(\Exception $e){
 
             DB::rollBack();
             return $this->sendError('An error occurred in the system');
-
         }
 
     }// end advertiserRegister

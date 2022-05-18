@@ -33,42 +33,45 @@ class AuthController extends Controller
     // login user & create token
     public function login(Request $request)
     {
+        try{
 
-        // Validator request
-        $v = Validator::make($request->all(),[
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
-        ]);
+            // Validator request
+            $v = Validator::make($request->all(),[
+                'email' => 'required|string|email',
+                'password' => 'required|string',
+                'remember_me' => 'boolean'
+            ]);
 
-        if($v->fails()) {
-            return $this->sendError('Your Email/Password is wrong',$v->errors(),401);
-        }
+            if($v->fails()) {
+                return $this->sendError(trans('general.forget'),$v->errors(),401);
+            }
+            //start access token
+            $credentials = $request->only("email", "password");
 
-        //start access token
-        $credentials = $request->only("email", "password");
+            if ($token = Auth::guard('api')->attempt($credentials)) {
 
-        if ($token = Auth::guard('api')->attempt($credentials)) {
+                $user = Auth::guard('api')->user();
 
-            $user = Auth::guard('api')->user();
+                if( $user->auth_id == 2){
 
-            if( $user->auth_id == 2){
+                    if($user->status  == 1){
+                        return  $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
+                    }else {
+                        return $this->sendError(trans('general.approved'));
+                    }
 
-                if($user->status  == 1){
-                    return  $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
-                }else {
-                    return $this->sendError('Your account has not been approved');
+                }else{
+                    return $this->sendError(trans('general.forget'));
                 }
 
             }else{
-                return $this->sendError('Your Email/Password is wrong');
+
+                return $this->sendError(trans('general.forget'));
             }
 
-        }else{
-
-            return $this->sendError('Your Email/Password is wrong');
+        }catch (\Exception $e){
+            return $this->sendError(trans('general.forget'));
         }
-
     }//**********end login************//
 
     public function user()

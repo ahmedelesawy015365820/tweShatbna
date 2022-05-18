@@ -11,6 +11,8 @@ import store from "../store/admin";
 import guest from "../middleware/admin/guest";
 import auth from "../middleware/admin/auth";
 import login from "../view/admin/login";
+import forgetPassword from "../view/admin/forgetPassword";
+import resetPassword from "../view/admin/resetPassword";
 
 
 const routes = [
@@ -47,6 +49,23 @@ const routes = [
                     middleware: [guest]
                 }
             },
+            {
+                path: 'forget-password',
+                name: 'forgetPassword',
+                component: forgetPassword,
+                meta: {
+                    middleware: [guest]
+                }
+            },
+            {
+                path: 'reset-password',
+                name: 'resetPassword',
+                component: resetPassword,
+                meta: {
+                    middleware: [guest]
+                }
+            },
+
             {
                 path: 'd',
                 name: 'partner',

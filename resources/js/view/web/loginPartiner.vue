@@ -21,11 +21,11 @@
                                     </div>
                                     <form @submit.prevent='Loginsubmit'>
                                         <div class="form-group form-focus">
-                                            <input type="text" v-model="data.email" class="form-control floating">
-                                            <label class="focus-label">{{$t('register.email')}}</label>
+                                            <input type="text" v-model.trim="data.email" class="form-control floating">
+                                            <label class="focus-label">{{$t('register.emailPhone')}}</label>
                                         </div>
                                         <div class="form-group form-focus">
-                                            <input type="password" v-model="data.password" class="form-control floating">
+                                            <input type="password" v-model.trim="data.password" class="form-control floating">
                                             <label class="focus-label">{{$t('register.password')}}</label>
                                         </div>
                                         <div class="form-group">

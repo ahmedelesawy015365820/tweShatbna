@@ -1,6 +1,12 @@
 <template>
     <div class="col-xl-3 col-md-4 theiaStickySidebar">
         <loader v-if="loading" />
+        <div
+            class="email-verify"
+            @click.once="verify"
+            v-if="!user.email_verified_at"
+        >تاكيد البريد الالكتروني
+        </div>
         <div class="settings-widget">
             <div v-if="user" class="settings-header imageUser d-sm-flex flex-row flex-wrap text-center text-sm-start align-items-center">
                 <a  href="#" @click="image">
@@ -20,10 +26,10 @@
                     <h3 class="mb-0">
                         {{user.custom_name}}
                     </h3>
-                    <p  class="mb-0 editProfile" v-if="partner.trust && roles.includes('design')">
+                    <p  class="mb-0 editProfile" v-if="partner.trust && roles.includes('design') && user.email_verified_at">
                         <router-link :to="{name:'profile',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>
                     </p>
-                    <p  class="mb-0 editProfile" v-if="partner.trust && roles.includes('company')">
+                    <p  class="mb-0 editProfile" v-if="partner.trust && roles.includes('company') && user.email_verified_at">
                         <router-link  :to="{name:'profileCompany',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>
                     </p>
                 </div>
@@ -54,22 +60,22 @@
                                 <i class="material-icons">person_pin</i> تاكيد الحساب
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="manage-projects.html" class="nav-link">
                                 <i class="material-icons">business_center</i> Projects
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="favourites.html" class="nav-link">
                                 <i class="material-icons">local_play</i> Favourites
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="review.html" class="nav-link">
                                 <i class="material-icons">record_voice_over</i> Reviews
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="chats.html" class="nav-link">
                                 <i class="material-icons">chat</i> Messages
                             </a>
@@ -102,42 +108,42 @@
                                 <i class="material-icons">person_pin</i> تاكيد الحساب
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="manage-projects.html" class="nav-link">
                                 <i class="material-icons">business_center</i> Projects
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="favourites.html" class="nav-link">
                                 <i class="material-icons">local_play</i> Favourites
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="review.html" class="nav-link">
                                 <i class="material-icons">record_voice_over</i> Reviews
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="chats.html" class="nav-link">
                                 <i class="material-icons">chat</i> Messages
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="membership-plans.html" class="nav-link">
                                 <i class="material-icons">person_add</i> Membership
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="milestones.html" class="nav-link">
                                 <i class="material-icons">pie_chart</i> Milestones
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="deposit-funds.html" class="nav-link">
                                 <i class="material-icons">wifi_tethering</i> Payments
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust">
+                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
                             <a href="profile-settings.html" class="nav-link">
                                 <i class="material-icons">settings</i> Settings
                             </a>
@@ -160,7 +166,7 @@
                             </router-link>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item" v-if="user.email_verified_at">
                             <router-link
                                 :to="{name:'packages',params: {lang:this.$i18n.locale}}"
                                 :class="['nav-link',$route.name == 'packages' ? 'active' : '']"
@@ -189,6 +195,7 @@ import {useStore} from "vuex";
 import {ref, computed, onBeforeMount, onMounted} from 'vue';
 import webApi from "../../api/webAxios";
 import { useRoute } from 'vue-router'
+import router from "../../router/webRoute";
 
 export default {
     name: "Sidebar",
@@ -197,7 +204,6 @@ export default {
 
         const partner = computed(() => store.getters['auth/partner']);
         const user = computed(() => store.getters['auth/user']);
-        const route = useRoute();
         let roles = ref([]);
 
         let sendData = () => {
@@ -207,6 +213,21 @@ export default {
                 confirmButtonColor: '#fcb00c',
                 confirmButtonText: 'موافق',
             });
+        };
+
+        let verify = function (){
+            loading.value = true;
+            webApi.get(`/v1/web/email/verification-notification`)
+                .then((res) => {
+
+                })
+                .catch((err) => {
+                    console.log(err.response)
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
+            console.log('ahmed')
         };
 
         onBeforeMount(() => {
@@ -261,19 +282,36 @@ export default {
                     });
             }
 
-        }
-
+        };
 
         function logout(){
             store.dispatch('auth/logout');
         }
 
-        return {logout,partner,user,sendData,image,changeImageProfile,file,loading,roles}
+        return {logout,verify,partner,user,sendData,image,changeImageProfile,file,loading,roles}
     }
 }
 </script>
 
 <style scoped>
+.email-verify{
+    text-align: center;
+    font-size: 20px;
+    color: #fcb00c;
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid;
+    transition: all .3s ease-in-out;
+}
+
+.email-verify:hover{
+    background: #fcb00c;
+    color: #fff
+}
+
 .settings-menu ul li a i {
     margin-left: 8px;
 }

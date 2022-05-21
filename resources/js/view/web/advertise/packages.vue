@@ -680,8 +680,4 @@ input[type="file"] {
     background-color: #f7f7f7;
     left: 20px;
 }
-
-
-
-
 </style>

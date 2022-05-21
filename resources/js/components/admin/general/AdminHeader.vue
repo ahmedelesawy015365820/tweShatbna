@@ -169,7 +169,7 @@ export default {
             }
         });
 
-        Echo.private(`App.Models.User.${userId.value}`)
+        Echo.private(`App.Models.User.1`)
             .notification((notification) => {
                 console.log(notification);
             });

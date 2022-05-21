@@ -16,6 +16,7 @@
         "advertiser": "ADVERTISER",
         "companies": "COMPANY",
         "full_name" : "Full Name",
+        "emailPhone": "Email or Phone",
         "email" : "Email",
         "password": "Password",
         "confirm": "Confirm Password",

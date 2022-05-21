@@ -16,6 +16,7 @@ class UserResource extends JsonResource
             'status' => $this->status,
             'role_name' => $this->role_name,
             'image' => $this->media->file_name,
+            'email_verified_at' => $this->email_verified_at,
             'custom_name' => $this->custom_name
         ];
     }

@@ -19,9 +19,10 @@ class CreateComplementsTable extends Migration
             $table->string('nameCompany')->nullable()->unique();
             $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
             $table->foreignId('state_id')->constrained('states')->cascadeOnDelete();
-            $table->string('phone')->unique();
             $table->string('phone_second')->nullable();
             $table->boolean('sendEmail')->default(false);
+            $table->boolean('device')->default(false);
+
             $table->timestamps();
         });
     }

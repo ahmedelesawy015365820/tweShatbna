@@ -37,7 +37,7 @@ class AuthController extends Controller
 
             // Validator request
             $v = Validator::make($request->all(),[
-                'email' => 'required|string|email',
+                'email' => 'required|string',
                 'password' => 'required|string',
                 'remember_me' => 'boolean'
             ]);
@@ -45,8 +45,21 @@ class AuthController extends Controller
             if($v->fails()) {
                 return $this->sendError(trans('general.forget'),$v->errors(),401);
             }
+
+            $credentials = [];
+
+            if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+                //start access token
+                $credentials = $request->only("email", "password");
+            }else{
+                 $phone = User::wherePhone($request->email)->first();
+
+                 if($phone){
+                     $credentials = ["email" => $phone->email, "password" => $request->password];
+                 }
+            }
+
             //start access token
-            $credentials = $request->only("email", "password");
 
             if ($token = Auth::guard('api')->attempt($credentials)) {
 
@@ -184,7 +197,7 @@ class AuthController extends Controller
     public function sendVerificationEmail(Request $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return  $this->sendResponse([],'Already Verified');
+            return  $this->sendError([],'Already Verified');
         }
 
         $request->user()->sendEmailVerificationNotification();
@@ -197,17 +210,14 @@ class AuthController extends Controller
     public function verify(EmailVerificationRequest $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
-
-            return  $this->sendResponse([],'Email already verified');
-
+            return  redirect('http://shatbna.com/'.app()->getLocale());
         }
 
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
 
-        return  $this->sendResponse([],'Email has been verified');
-
+        return  redirect('http://shatbna.com/'.app()->getLocale());
     }//end verify
 
     public function changeImage(Request $request)

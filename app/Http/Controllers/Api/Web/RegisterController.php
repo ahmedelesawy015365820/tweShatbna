@@ -69,6 +69,7 @@ class RegisterController extends Controller
                 "auth_id" => 2,
                 'role_name'=> ['company'],
                 "status" => 1,
+                'phone' => $request->code . $request->phone,
             ]);
 
             $user->complement()->create([
@@ -77,6 +78,7 @@ class RegisterController extends Controller
                 'phone' => $request->code . $request->phone,
                 'phone_second' => $phone_second,
                 'nameCompany' => $request->nameCompany,
+                'device' => ($request->device  == 1 ? 1:0)
             ]);
 
             $user->company()->create(['location' => $request->location]);
@@ -139,12 +141,13 @@ class RegisterController extends Controller
                 "auth_id" => 2,
                 'role_name'=> ['design'],
                 "status" => 1,
+                'phone' => $request->code . $request->phone,
             ]);
 
             $user->complement()->create([
                 'country_id' => $request->country,
                 'state_id' => $request->state,
-                'phone' => $request->code . $request->phone
+                'device' => ($request->device  == 1 ? 1:0)
             ]);
 
             $user->designer()->create([
@@ -206,13 +209,14 @@ class RegisterController extends Controller
                 "auth_id" => 2,
                 'role_name' => ['advertiser'],
                 "status" => 1,
+                'phone' => $request->code . $request->phone,
             ]);
 
             $user->complement()->create([
                 'country_id' => $request->country,
                 'state_id' => $request->state,
-                'phone' => $request->code . $request->phone,
-                'nameCompany' => $request->nameCompany
+                'nameCompany' => $request->nameCompany,
+                'device' => ($request->device  == 1 ? 1:0)
             ]);
 
             Advertiser::create([

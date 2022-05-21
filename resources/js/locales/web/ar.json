@@ -16,6 +16,7 @@
         "advertiser": "معلن",
         "companies": "شركه",
         "full_name" : "الاسم كامل",
+        "emailPhone": "الايميل او رقم التليفون",
         "email" : "الايميل",
         "password": "رقم السري",
         "birth": "تاريخ الميلاد",

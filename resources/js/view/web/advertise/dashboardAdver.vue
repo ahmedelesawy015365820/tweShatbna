@@ -1,9 +1,15 @@
 <template>
     <!-- Page Content -->
-    <div class="content">
+    <div :class="['content', !user.email_verified_at ?'trust':'']">
         <loader v-if="loading" />
         <div class="container-fluid">
-            <div class="row">
+            <div class="row justify-content-center">
+
+                <div class="error-trust alert-danger" v-if="!user.email_verified_at">
+                    يجب عليك تاكيد البريد الالكتروني
+                    لشراء الحزم .
+                </div>
+
                 <!-- sidebar -->
                 <Sidebar />
                 <!--   /sidebar -->
@@ -351,9 +357,11 @@ export default {
     setup(){
 
         const emitter = inject('emitter');
+        const store = useStore();
         let salePackages = ref([]);
         let nuMalePackages = ref(0);
         let loading = ref(false);
+        const user = computed(() => store.getters['auth/user']);
 
         let getSalePackage =  () => {
 
@@ -405,7 +413,7 @@ export default {
 
         let dateFormate = (item) => new Date(item).toDateString();
 
-        return {salePackages,nuMalePackages,loading,openModel,closeModel,dateFormate,getSalePackages};
+        return {salePackages,user,nuMalePackages,loading,openModel,closeModel,dateFormate,getSalePackages};
     }
 }
 </script>
@@ -413,6 +421,22 @@ export default {
 <style scoped>
 .content {
     padding: 120px 0 30px;
+    position: relative;
+    min-height: 100vh;
+}
+
+.content.trust{
+    padding: 150px 0 30px;
+}
+
+.error-trust{
+    margin: 0 auto;
+    position: absolute;
+    top: -35px;
+    transform: translate(0%, 65%);
+    padding: 10px;
+    text-align: center;
+    width: 43%;
 }
 
 .model_sale{

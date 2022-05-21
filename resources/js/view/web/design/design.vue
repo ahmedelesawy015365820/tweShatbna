@@ -1,14 +1,14 @@
 <template>
     <!-- Page Content -->
-    <div class="content">
+    <div :class="['content', !partner.trust ?'trust':'']">
         <loader2 v-if="loading2" />
 
         <div class="container-fluid">
             <div class="row justify-content-center">
 
-
                 <div class="error-trust alert-danger" v-if="!partner.send">
-                    يجب عليك توثيق حسابك لعرض مشاريع العملاء عليك
+                    يجب عليك توثيق حسابك و تاكيد البريد الالكتروني
+                    لعرض مشاريع العملاء عليك
                     <router-link
                         :to="{name:'trust',params:{lang:this.$i18n.locale}}"
                         :class="['nav-link',$route.name == 'trust' ? 'active' : '']"
@@ -326,6 +326,9 @@ export default {
     padding: 120px 0 30px;
     position: relative;
     min-height: 100vh;
+}
+.content.trust{
+    padding: 150px 0 30px;
 }
 
 .error-trust{

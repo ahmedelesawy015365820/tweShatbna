@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Route;
 
     // api token_access
 
-     Route::middleware(['auth:api','verified'])->group(function () {
+     Route::middleware(['auth:api'])->group(function () {
 
         // start Dashboard
          Route::group(['prefix' => 'dashboard','namespace' => 'Dashboard'],function () {
@@ -82,8 +82,8 @@ use Illuminate\Support\Facades\Route;
          Route::group(['prefix' => 'web','namespace' => 'Web'],function () {
 
              // start verify[company,design,advertiser]
-            //  Route::post('email/verification-notification', 'AuthController@sendVerificationEmail');
-            //  Route::get('verify-email/{id}/{hash}',  'AuthController@verify')->name('verification.verify');
+              Route::post('email/verification-notification', 'AuthController@sendVerificationEmail');
+              Route::get('verify-email/{id}/{hash}',  'AuthController@verify')->name('verification.verify');
 
             //auth User
              Route::get('user',  'AuthController@user');

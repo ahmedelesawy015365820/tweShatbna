@@ -44,7 +44,7 @@ class RegisterController extends Controller
                 'confirmtion' => 'required|same:password',
                 'country'  => 'required|integer|exists:countries,id',
                 'state'  => 'required|integer|exists:states,id',
-                'phone' => 'required|string|unique:complements',
+                'phone' => 'required|string|unique:users',
                 'phone_second' => 'present',
                 'nameCompany' => 'required|string|unique:complements',
                 'location' => 'required|url'
@@ -113,7 +113,7 @@ class RegisterController extends Controller
 
         DB::beginTransaction();
 
-        try {
+//        try {
 
             // Validator request
             $v = Validator::make($request->all(), [
@@ -123,7 +123,7 @@ class RegisterController extends Controller
                 'confirmtion' => 'required|same:password',
                 'country'  => 'required|integer|exists:countries,id',
                 'state'  => 'required|integer|exists:states,id',
-                'phone' => 'required|string|unique:complements',
+                'phone' => 'required|string|unique:users',
                 'gender' => 'required|in:male,female',
                 'birth' => 'required|date'
             ]);
@@ -169,12 +169,12 @@ class RegisterController extends Controller
             DB::commit();
             return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
 
-        }catch(\Exception $e){
-
-            DB::rollBack();
-            return $this->sendError('An error occurred in the system');
-
-        }
+//        }catch(\Exception $e){
+//
+//            DB::rollBack();
+//            return $this->sendError('An error occurred in the system');
+//
+//        }
     }// end designRegister
 
     public function advertiserRegister(Request $request)
@@ -194,7 +194,7 @@ class RegisterController extends Controller
                 'country'  => 'required|integer|exists:countries,id',
                 'state'  => 'required|integer|exists:states,id',
                 'nameCompany' => 'required|string|unique:complements,nameCompany',
-                'phone' => 'required|string|unique:complements,phone',
+                'phone' => 'required|string|unique:users,phone',
             ]);
 
             if ($v->fails()) {

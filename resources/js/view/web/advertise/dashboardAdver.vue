@@ -432,7 +432,7 @@ export default {
 .error-trust{
     margin: 0 auto;
     position: absolute;
-    top: -35px;
+    top: 0;
     transform: translate(0%, 65%);
     padding: 10px;
     text-align: center;

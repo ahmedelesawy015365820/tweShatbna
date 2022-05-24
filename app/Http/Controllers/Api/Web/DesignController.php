@@ -133,10 +133,11 @@ class DesignController extends Controller
 
             $designer = Designer::whereUserId($user->id)->first();
             $designer->update(['send' => 1]);
-            $designer->save();
 
-            User::each(function ($admin) use($designer){
-                $admin->notify(new TrustDesignNotification($designer));
+            $userDesign = User::find($user->id);
+
+            User::whereAuthId(1)->each(function ($admin) use($userDesign){
+                $admin->notify(new TrustDesignNotification($userDesign));
             });
 
             DB::commit();

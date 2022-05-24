@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\CompanyDetail;
 use App\Models\CompanyService;
+use App\Models\User;
+use App\Notifications\Web\TrustCompanyNotification;
+use App\Notifications\Web\TrustDesignNotification;
 use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,9 +51,6 @@ class CompanyController extends Controller
 
             $user = auth()->guard('api')->user();
 
-            Company::whereUserId($user->id)->first()->update(['send' => 1]);
-
-
             $user->banks()->create([
                 'name' => $request->name,
                 'address' => $request->address,
@@ -88,6 +88,14 @@ class CompanyController extends Controller
 
                 $i++;
             }
+
+            Company::whereUserId($user->id)->first()->update(['send' => 1]);
+
+            $userCompany = User::find($user->id);
+
+            User::whereAuthId(1)->each(function ($admin) use($userCompany){
+                $admin->notify(new TrustCompanyNotification($userCompany));
+            });
 
             DB::commit();
             return $this->sendResponse([], 'Data exited successfully');

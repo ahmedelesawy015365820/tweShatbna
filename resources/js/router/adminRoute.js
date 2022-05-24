@@ -2,6 +2,9 @@ import {createRouter, createWebHistory} from 'vue-router';
 import Index from '../view/admin/Dashboard.vue';
 import packages from './adminRoute/package';
 import salePackage from './adminRoute/salePackage';
+import trustCompany from './adminRoute/trustCompany';
+import trustAdvertise from './adminRoute/trustAdvertise';
+import trustDesign from './adminRoute/trustDesign';
 import schedule from './adminRoute/schedule';
 import Page404 from '../view/admin/Page404.vue';
 import i18n from '../lang/admin';
@@ -83,7 +86,10 @@ const routes = [
                     },
                     ...packages,
                     ...salePackage,
-                    ...schedule
+                    ...schedule,
+                    ...trustCompany,
+                    ...trustDesign,
+                    ...trustAdvertise
                 ]
             },
         ]

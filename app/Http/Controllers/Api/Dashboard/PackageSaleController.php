@@ -244,8 +244,6 @@ class PackageSaleController extends Controller
                 $packageSale->update(['accept' => $request->accept]);
 
 
-
-
             }else{
                 return $this->sendError('ID is not exist');
             }

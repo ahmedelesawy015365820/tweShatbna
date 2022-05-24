@@ -17,7 +17,7 @@
     <div v-if="v$.email.$error || errors.email">
         <span class="text-danger" v-if="v$.email.required.$invalid">email is required.<br /> </span>
         <span class="text-danger" v-if="v$.email.email.$invalid">must be a valid email address. </span>
-        <span class="text-danger" v-if="errors.email">{{errors.email[0]}}</span>
+        <span class="text-danger" v-if="errors.email">email already exists</span>
     </div>
 
     <div class="form-group form-focus">
@@ -50,7 +50,7 @@
             <div v-if="v$.nameCompany.$error || errors.nameCompany">
                 <span class="text-danger" v-if="v$.nameCompany.required.$invalid">name company is required.<br /> </span>
                 <span class="text-danger" v-if="v$.nameCompany.maxLength.$invalid">nameCompany is must have at most {{ v$.nameCompany.maxLength.$params.max }} letters. </span>
-                <span class="text-danger" v-if="errors.nameCompany">{{errors.nameCompany[0]}}</span>
+                <span class="text-danger" v-if="errors.nameCompany">nameCompany already exists</span>
             </div>
         </div>
 
@@ -101,7 +101,7 @@
                 <span class="text-danger" v-if="v$.phone.required.$invalid">phone is required.<br /> </span>
                 <span class="text-danger" v-if="v$.phone.maxLength.$invalid">phone is must have at most {{ v$.phone.maxLength.$params.max }} numbers.<br/> </span>
                 <span class="text-danger" v-if="v$.phone.integer.$invalid">must be number.<br /> </span>
-                <span class="text-danger" v-if="errors.phone">{{errors.phone[0]}}</span>
+                <span class="text-danger" v-if="errors.phone">phone already exists</span>
             </div>
         </div>
 
@@ -115,9 +115,10 @@
                         <img v-if="this.$i18n.locale == 'ar'" :src="'/web/img/country/'+ count.media.file_name">
                 </span>
             </div>
-            <div v-if="v$.phone_second.$error">
+            <div v-if="v$.phone_second.$error || errors.phone_second">
                 <span class="text-danger" v-if="v$.phone_second.maxLength.$invalid">phone is must have at most {{ v$.phone.maxLength.$params.max }} numbers.<br/> </span>
                 <span class="text-danger" v-if="v$.phone_second.integer.$invalid">must be number.<br /> </span>
+                <span class="text-danger" v-if="errors.phone_second"> must not to be similar to phone</span>
             </div>
         </div>
 
@@ -127,9 +128,10 @@
         <input type="url" v-model="dataCompany.location" class="form-control floating">
         <label class="focus-label">{{$t('register.location')}}</label>
     </div>
-    <div v-if="v$.location.$error">
+    <div v-if="v$.location.$error || errors.location">
         <span class="text-danger" v-if="v$.location.required.$invalid">location is required.<br /> </span>
         <span class="text-danger" v-if="v$.location.url.$invalid"> must be URL. <br /></span>
+        <span class="text-danger" v-if="errors.location">should start with (https://www.google.com/maps)</span>
     </div>
 
     <div class="dont-have">
@@ -195,6 +197,7 @@ export default {
                 nameCompany: '',
                 location:'',
                 agree: false,
+                code: ''
             }
         });
 
@@ -262,10 +265,11 @@ export default {
 
             if(!this.v$.$error && this.dataCompany.agree){
 
+                this.$store.commit('auth/editErrors',{});
+
                 let item = document.getElementById('codeCountry').innerHTML;
 
-                this.dataCompany.phone = item + this.dataCompany.phone ;
-
+                this.dataCompany.code = item;
                 // var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
 
                 // if (re.test(this.dataCompany.phone)) {

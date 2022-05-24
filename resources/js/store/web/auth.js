@@ -245,8 +245,7 @@ const actions = {
                 }
             })
             .catch((err) => {
-                commit('editErrors',err.response.data.errors)
-                console.log(err.response)
+                commit('editErrors',err.response.data.errors);
             })
             .finally(() => {
                 commit('editLoading',false);

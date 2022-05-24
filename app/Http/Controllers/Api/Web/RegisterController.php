@@ -34,8 +34,6 @@ class RegisterController extends Controller
 
         try {
 
-//            return response()->json($request->all());
-
             // Validator request
             $v = Validator::make($request->all(), [
                 'name' => 'required|string',
@@ -45,21 +43,18 @@ class RegisterController extends Controller
                 'country'  => 'required|integer|exists:countries,id',
                 'state'  => 'required|integer|exists:states,id',
                 'phone' => 'required|string|unique:users',
-                'phone_second' => 'present',
+                'phone_second' => 'present|different:phone',
                 'nameCompany' => 'required|string|unique:complements',
-                'location' => 'required|url'
+                'location' => 'required|url|starts_with:https://www.google.com/maps',
+                'code' => 'required'
             ]);
 
             if($v->fails()) {
                 return $this->sendError('There is an error in the data',$v->errors());
             }
 
-            $phone_second  = $request->phone_second != '' ?
-                $request->code . $request->phone_second : null;
+            $phone_second  = $request->phone_second != '' ? $request->code . $request->phone_second : null;
 
-            if($request->phone_second != ''){
-                $phone_second = $request->code . $request->phone_second;
-            }
 
             // start create user
             $user =  User::create([
@@ -69,13 +64,13 @@ class RegisterController extends Controller
                 "auth_id" => 2,
                 'role_name'=> ['company'],
                 "status" => 1,
-                'phone' => $request->code . $request->phone,
+                'phone' => $request->phone,
+                "code" => $request->code
             ]);
 
             $user->complement()->create([
                 'country_id' => $request->country,
                 'state_id' => $request->state,
-                'phone' => $request->code . $request->phone,
                 'phone_second' => $phone_second,
                 'nameCompany' => $request->nameCompany,
                 'device' => ($request->device  == 1 ? 1:0)
@@ -113,7 +108,7 @@ class RegisterController extends Controller
 
         DB::beginTransaction();
 
-//        try {
+        try {
 
             // Validator request
             $v = Validator::make($request->all(), [
@@ -125,7 +120,8 @@ class RegisterController extends Controller
                 'state'  => 'required|integer|exists:states,id',
                 'phone' => 'required|string|unique:users',
                 'gender' => 'required|in:male,female',
-                'birth' => 'required|date'
+                'birth' => 'required|date|after:'. now()->subYears(50),
+                'code' => 'required'
             ]);
 
             if($v->fails()) {
@@ -141,7 +137,8 @@ class RegisterController extends Controller
                 "auth_id" => 2,
                 'role_name'=> ['design'],
                 "status" => 1,
-                'phone' => $request->code . $request->phone,
+                'phone' => $request->phone,
+                "code" => $request->code
             ]);
 
             $user->complement()->create([
@@ -156,7 +153,7 @@ class RegisterController extends Controller
             ]);
 
             $user->media()->create([
-                'file_name' => 'img-04.jpg' ,
+                'file_name' => '' ,
                 'file_size' => 7664,
                 'file_type' => 'png/image',
                 'file_sort' => 1
@@ -169,12 +166,12 @@ class RegisterController extends Controller
             DB::commit();
             return $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
 
-//        }catch(\Exception $e){
-//
-//            DB::rollBack();
-//            return $this->sendError('An error occurred in the system');
-//
-//        }
+        }catch(\Exception $e){
+
+            DB::rollBack();
+            return $this->sendError('An error occurred in the system');
+
+        }
     }// end designRegister
 
     public function advertiserRegister(Request $request)
@@ -195,6 +192,7 @@ class RegisterController extends Controller
                 'state'  => 'required|integer|exists:states,id',
                 'nameCompany' => 'required|string|unique:complements,nameCompany',
                 'phone' => 'required|string|unique:users,phone',
+                'code' => 'required'
             ]);
 
             if ($v->fails()) {
@@ -209,7 +207,8 @@ class RegisterController extends Controller
                 "auth_id" => 2,
                 'role_name' => ['advertiser'],
                 "status" => 1,
-                'phone' => $request->code . $request->phone,
+                'phone' => $request->phone,
+                "code" => $request->code
             ]);
 
             $user->complement()->create([
@@ -224,7 +223,7 @@ class RegisterController extends Controller
             ]);
 
             $user->media()->create([
-                'file_name' => 'img-04.jpg' ,
+                'file_name' => '' ,
                 'file_size' => 7664,
                 'file_type' => 'png/image',
                 'file_sort' => 1

@@ -56,6 +56,13 @@ use Illuminate\Support\Facades\Route;
          Route::group(['prefix' => 'dashboard','namespace' => 'Dashboard'],function () {
 
              // start User
+             Route::get('getAllNot','NotificationController@getAllNot');
+             Route::get('getNotNotRead','NotificationController@getNotNotRead');
+             Route::post('clearItem/{id}','NotificationController@clearItem');
+             Route::post('getNotNotRead','NotificationController@clearAll');
+
+
+             // start User
              Route::apiResource('user','UserController');
 
              // start role
@@ -75,6 +82,19 @@ use Illuminate\Support\Facades\Route;
              // start Advertise Schedule
              Route::resource('scheduleAdvertise','AdvertiserScheduleController')->except('show');
              Route::get('scheduleAdvertise/getALL','AdvertiserScheduleController@getALL');
+
+             // start company
+             Route::resource('trustCompany','CompanyController')->except(['destroy']);
+             Route::post('trustCompany/status','CompanyController@status');
+             Route::post('trustCompany/trust','CompanyController@trust');
+
+             // start design
+             Route::resource('trustDesign','DesignController')->except(['destroy']);
+             Route::post('trustDesign/status','DesignController@status');
+             Route::post('trustDesign/trust','DesignController@trust');
+
+             // start advertise
+             Route::resource('trustAdvertise','AdvertiseController')->except(['destroy']);
 
          });
 

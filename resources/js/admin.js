@@ -44,9 +44,3 @@ if(localStorage.getItem("langAdmin") == 'ar'){
     styleLink.setAttribute('href','')
 }
 
-Echo.private(`App.Models.User.1`)
-    .notification((notification) => {
-        console.log(notification);
-        console.log('khaled');
-    });
-

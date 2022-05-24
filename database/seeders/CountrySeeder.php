@@ -14,10 +14,9 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        Country::create([ 'en'=> ['name'=>  'Egypt'],'ar'=> ['name'=>  'مصر'], 'status' => true,'code' => '+20']) ;
+        Country::create([ 'en'=> ['name'=>  'Egypt'],'ar'=> ['name'=>  'مصر'], 'status' => true,'code' => '+2']) ;
         Country::create(['en'=> ['name'=>  'Emirates'],'ar'=> ['name'=>  'الامارات'], 'status' => true,'code' => '+967']);
         Country::create(['en'=>['name'=>  'Sadui'],'ar'=> ['name'=>  'السعوديه'], 'status' => true,'code' => '+966']) ;
-
 
 
         $mediaCO1 = Country::whereId(1)->first();

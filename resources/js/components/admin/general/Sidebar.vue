@@ -17,6 +17,15 @@
                     <li :class="[$route.name == 'scheduleGet'? 'active': '']">
                         <router-link :to="{name:'scheduleGet',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Advertise Schedule</span></router-link>
                     </li>
+                    <li :class="[$route.name == 'indexCompany'? 'active': '']">
+                        <router-link :to="{name:'indexCompany',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Trust Company</span></router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexDesign'? 'active': '']">
+                        <router-link :to="{name:'indexDesign',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Trust Designer</span></router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexAdvertise'? 'active': '']">
+                        <router-link :to="{name:'indexAdvertise',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Trust Advertise</span></router-link>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -137,8 +137,7 @@ class User extends Authenticatable implements JWTSubject ,MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
 
-
-        $url = 'http://shatbna.com/ar/reset-password?token=' . $token;
+        $url = 'http://shatbna.com/'.app()->getLocale().'/reset-password?token=' . $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }

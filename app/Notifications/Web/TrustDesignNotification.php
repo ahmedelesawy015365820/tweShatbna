@@ -2,27 +2,27 @@
 
 namespace App\Notifications\Web;
 
-use App\Models\Designer;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TrustDesignNotification extends Notification
+class TrustDesignNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $designer;
+    protected $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Designer $designer)
+    public function __construct(User $user)
     {
-        $this->designer = $designer;
+        $this->user = $user;
     }
 
     /**
@@ -46,9 +46,10 @@ class TrustDesignNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'design_id' => $this->designer->id,
-            'amount' => $this->designer->updated_at->format('jS \of F Y h:i A'),
-            'name' => 'trustDesign'
+            'company_id' => $this->user->id,
+            'image' => $this->user->media->file_name,
+            'timeDate' => now()->format('jS \of F  h:i'),
+            'name' => 'trustDesgin'
         ];
     }
 
@@ -56,9 +57,10 @@ class TrustDesignNotification extends Notification
     {
         return new BroadcastMessage([
             'data' => [
-                'design_id' => $this->designer->id,
-                'amount' => $this->designer->updated_at->format('jS \of F Y h:i A'),
-                'name' => 'trustDesign'
+                'company_id' => $this->user->id,
+                'image' => $this->user->media->file_name,
+                'timeDate' => now()->format('jS \of F  h:i'),
+                'name' => 'trustDesgin'
             ]
         ]);
     }

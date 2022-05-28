@@ -283,9 +283,9 @@ export default {
                     let l = res.data.data;
 
                     valuePackage.value = l.packageSale.package;
-                    check.value = l.packageSale.check;
-                    complete.value = l.packageSale.complete;
-                    accept.value = l.packageSale.accept;
+                    check.value = parseInt(l.packageSale.check);
+                    complete.value = parseInt(l.packageSale.complete);
+                    accept.value = parseInt(l.packageSale.accept);
                     sale.value = l.packageSale;
 
                 })

@@ -58,7 +58,7 @@
                                             <td>{{item.period}}</td>
                                             <td>{{item.price}}</td>
                                             <td>{{item.visiter_num}}</td>
-                                            <td><span :class="[item.status ? 'text-success': 'text-danger']">{{item.status ? 'Active': 'Inactive'}}</span></td>
+                                            <td><span :class="[parseInt(item.status) ? 'text-success': 'text-danger']">{{parseInt(item.status) ? 'Active': 'Inactive'}}</span></td>
                                             <td>
                                                 <router-link :to="{name: 'showPackage', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-info me-2">
                                                     <i class="fas fa-book-open"></i>

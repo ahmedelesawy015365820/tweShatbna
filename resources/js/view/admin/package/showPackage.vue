@@ -105,7 +105,7 @@ export default {
                     let l = res.data.data;
 
                     Package.value = l.package;
-                    status.value = l.package.status;
+                    status.value = parseInt(l.package.status);
                     pageWeb.value = l.package.page_view;
                     pageMobile.value = l.package.page_view_mobile;
                 })

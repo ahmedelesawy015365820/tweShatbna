@@ -708,7 +708,7 @@ export default {
         }
     },
     beforeRouteEnter(to, from,next) {
-        let send = JSON.parse(localStorage.getItem('partner')).send;
+        let send = parseInt(JSON.parse(localStorage.getItem('partner')).send);
         if(!send){
             return next();
         }else{

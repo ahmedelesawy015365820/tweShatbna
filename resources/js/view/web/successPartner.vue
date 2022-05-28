@@ -5,7 +5,7 @@
             <div class="embed-responsive embed-responsive-21by9">
                 <iframe
                     class="embed-responsive-item"
-                    src="https://www.youtube.com/embed/kxPCFljwJws"
+                    src="https://www.youtube.com/embed/zNrdllT1Z5s"
                     allowfullscreen
                 >
                 </iframe>
@@ -30,7 +30,12 @@
                         <div class="nav-outer clearfix">
                             <div class="outer-box">
                                 <div class="d-flex">
-                                    <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}"  class="theme-btn btn-style-one"><span class="txt">{{$t('partner.register')}}</span></router-link>
+                                    <router-link
+                                        :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}"
+                                        :class="['theme-btn','btn-style-one',this.$i18n.locale != 'ar'?'btn-style-one-en':'']"
+                                    >
+                                        <span class="txt">{{$t('partner.register')}}</span>
+                                    </router-link>
                                     <div :class="['lang', this.$i18n.locale == 'ar'? 'lang-ar':'']">
                                         <lang />
                                     </div>
@@ -1097,6 +1102,23 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     .register-info a{
         padding: 4px 23px;
         font-size: 14px;
+    }
+    .banner-section .newsletter-form .form-group button {
+        right: 0;
+    }
+}
+
+@media only screen and (max-width: 415px) {
+    .btn-style-one{
+        font-size: 11px;
+        padding: 10px 3px 5px;
+    }
+    .log-btn {
+        font-size: 11px !important;
+    }
+    .btn-style-one-en[data-v-52ade008] {
+        font-size: 7px;
+        padding: 0;
     }
 }
 

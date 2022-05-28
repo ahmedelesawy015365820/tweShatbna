@@ -58,13 +58,14 @@
                                         <td>{{item.email}}</td>
                                         <td>Design</td>
                                         <td>{{item.code + item.phone}}</td>
-                                        <td><span :class="[item.status ? 'text-success': 'text-danger']">{{item.status ? 'Active': 'Inactive'}}</span></td>
+                                        <td>{{parseInt(item.complement.device) ? 'Mobile':'Web'}}</td>
+                                        <td><span :class="[parseInt(item.status) ? 'text-success': 'text-danger']">{{parseInt(item.status) ? 'Active': 'Inactive'}}</span></td>
                                         <td></td>
                                         <td>
                                             <router-link
                                                 :to="{name: 'showDesign', params: {lang: locale || 'ar',id:item.id}}"
                                                 class="btn btn-sm btn-info me-2"
-                                                v-if="item.designer.send"
+                                                v-if="parseInt(item.designer.send)"
                                             >
                                                 <i class="fas fa-book-open"></i>
                                             </router-link>

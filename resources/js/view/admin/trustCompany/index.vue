@@ -46,6 +46,7 @@
                                         <th>Email</th>
                                         <th>Role</th>
                                         <th>Phone</th>
+                                        <th>Device</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -57,12 +58,13 @@
                                         <td>{{item.email}}</td>
                                         <td>Company</td>
                                         <td>{{item.code + item.phone}}</td>
-                                        <td><span :class="[item.status ? 'text-success': 'text-danger']">{{item.status ? 'Active': 'Inactive'}}</span></td>
+                                        <td>{{parseInt(item.complement.device) ? 'Mobile':'Web'}}</td>
+                                        <td><span :class="[parseInt(item.status) ? 'text-success': 'text-danger']">{{parseInt(item.status) ? 'Active': 'Inactive'}}</span></td>
                                         <td>
                                             <router-link
                                                 :to="{name: 'showCompany',params: {lang: locale || 'ar',id:item.id}}"
                                                 class="btn btn-sm btn-info me-2"
-                                                v-if="item.company.send"
+                                                v-if="parseInt(item.company.send)"
                                                 >
                                                 <i class="fas fa-book-open"></i>
                                             </router-link>

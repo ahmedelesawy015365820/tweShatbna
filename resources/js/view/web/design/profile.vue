@@ -732,7 +732,7 @@ export default {
         }
     },
     beforeRouteEnter(to, from,next) {
-        let trust = JSON.parse(localStorage.getItem('partner')).trust;
+        let trust = parseInt(JSON.parse(localStorage.getItem('partner')).trust);
         if(trust){
             return next();
         }else{

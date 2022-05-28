@@ -5,7 +5,7 @@ import router from "../../router/webRoute";
 // state
 const state = {
     token: Cookies.get("token") || null,
-    user: localStorage.getItem('user') || {},
+    user: JSON.parse(localStorage.getItem('user')) || {},
     complement:  {},
     partner:  {},
     loading: false,

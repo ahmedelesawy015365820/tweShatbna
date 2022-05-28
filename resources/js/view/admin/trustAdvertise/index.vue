@@ -46,6 +46,7 @@
                                         <th>Email</th>
                                         <th>Role</th>
                                         <th>Phone</th>
+                                        <th>Device</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -57,15 +58,9 @@
                                         <td>{{item.email}}</td>
                                         <td>Advertise</td>
                                         <td>{{item.code + item.phone}}</td>
-                                        <td><span :class="[item.status ? 'text-success': 'text-danger']">{{item.status ? 'Active': 'Inactive'}}</span></td>
-                                        <td>
-                                            <router-link
-                                                :to="{name: 'showPackage', params: {lang: locale || 'ar',id:item.id}}"
-                                                class="btn btn-sm btn-info me-2"
-                                                >
-                                                <i class="fas fa-book-open"></i>
-                                            </router-link>
-                                        </td>
+                                        <td>{{parseInt(item.complement.device) ? 'Mobile':'Web'}}</td>
+                                        <td><span :class="[parseInt(item.status)? 'text-success': 'text-danger']">{{parseInt(item.status) ? 'Active': 'Inactive'}}</span></td>
+                                        <td></td>
                                     </tr>
                                     <tr v-else>
                                         <th class="text-center" colspan="7">No Data Found</th>

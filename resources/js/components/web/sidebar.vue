@@ -1,12 +1,12 @@
 <template>
     <div class="col-xl-3 col-md-4 theiaStickySidebar">
         <loader v-if="loading" />
-        <div
-            class="email-verify"
-            @click.once="verify"
-            v-if="!user.email_verified_at"
-        >تاكيد البريد الالكتروني
-        </div>
+<!--        <div-->
+<!--            class="email-verify"-->
+<!--            @click.once="verify"-->
+<!--            v-if="!user.email_verified_at"-->
+<!--        >تاكيد البريد الالكتروني-->
+<!--        </div>-->
         <div class="settings-widget">
             <div v-if="user" class="settings-header imageUser d-sm-flex flex-row flex-wrap text-center text-sm-start align-items-center">
                 <a  href="#" @click="image">
@@ -26,10 +26,10 @@
                     <h3 class="mb-0">
                         {{user.custom_name}}
                     </h3>
-                    <p  class="mb-0 editProfile" v-if="partner.trust && roles.includes('design') && user.email_verified_at">
+                    <p  class="mb-0 editProfile" v-if="parseInt(partner.trust) && roles.includes('design') && !user.email_verified_at">
                         <router-link :to="{name:'profile',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>
                     </p>
-                    <p  class="mb-0 editProfile" v-if="partner.trust && roles.includes('company') && user.email_verified_at">
+                    <p  class="mb-0 editProfile" v-if="parseInt(partner.trust) && roles.includes('company') && !user.email_verified_at">
                         <router-link  :to="{name:'profileCompany',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>
                     </p>
                 </div>
@@ -47,37 +47,17 @@
                                 <i class="material-icons">verified_user</i> الرئيسيه
                             </router-link>
                         </li>
-                        <li class="nav-item" v-if="!partner.send || !partner.trust">
+                        <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
                             <router-link
                                 :to="{name:'trustCompany',params:{lang:this.$i18n.locale}}"
                                 :class="['nav-link',$route.name == 'trustCompany' ? 'active' : '']"
-                                v-if="!partner.send"
+                                v-if="!parseInt(partner.send)"
                             >
                                 <i class="material-icons">person_pin</i> تاكيد الحساب
                             </router-link>
 
                             <a href="javascript:void(0);" @click="sendData"  class="nav-link" v-else>
                                 <i class="material-icons">person_pin</i> تاكيد الحساب
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="manage-projects.html" class="nav-link">
-                                <i class="material-icons">business_center</i> Projects
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="favourites.html" class="nav-link">
-                                <i class="material-icons">local_play</i> Favourites
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="review.html" class="nav-link">
-                                <i class="material-icons">record_voice_over</i> Reviews
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="chats.html" class="nav-link">
-                                <i class="material-icons">chat</i> Messages
                             </a>
                         </li>
                     </div>
@@ -95,11 +75,11 @@
                                 <i class="material-icons">verified_user</i> الرئيسيه
                             </router-link>
                         </li>
-                        <li class="nav-item" v-if="!partner.send || !partner.trust">
+                        <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
                             <router-link
                                 :to="{name:'trust',params:{lang:this.$i18n.locale}}"
                                 :class="['nav-link',$route.name == 'trust' ? 'active' : '']"
-                                v-if="!partner.send"
+                                v-if="!parseInt(partner.send)"
                             >
                                 <i class="material-icons">person_pin</i> تاكيد الحساب
                             </router-link>
@@ -108,47 +88,6 @@
                                 <i class="material-icons">person_pin</i> تاكيد الحساب
                             </a>
                         </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="manage-projects.html" class="nav-link">
-                                <i class="material-icons">business_center</i> Projects
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="favourites.html" class="nav-link">
-                                <i class="material-icons">local_play</i> Favourites
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="review.html" class="nav-link">
-                                <i class="material-icons">record_voice_over</i> Reviews
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="chats.html" class="nav-link">
-                                <i class="material-icons">chat</i> Messages
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="membership-plans.html" class="nav-link">
-                                <i class="material-icons">person_add</i> Membership
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="milestones.html" class="nav-link">
-                                <i class="material-icons">pie_chart</i> Milestones
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="deposit-funds.html" class="nav-link">
-                                <i class="material-icons">wifi_tethering</i> Payments
-                            </a>
-                        </li>
-                        <li class="nav-item" v-if="partner.trust && user.email_verified_at">
-                            <a href="profile-settings.html" class="nav-link">
-                                <i class="material-icons">settings</i> Settings
-                            </a>
-                        </li>
-
                     </div>
 
                     <!--   end design  -->
@@ -165,8 +104,8 @@
                                 <i class="material-icons">verified_user</i> الرئيسيه
                             </router-link>
                         </li>
-
-                        <li class="nav-item" v-if="user.email_verified_at">
+1
+                        <li class="nav-item" v-if="!user.email_verified_at">
                             <router-link
                                 :to="{name:'packages',params: {lang:this.$i18n.locale}}"
                                 :class="['nav-link',$route.name == 'packages' ? 'active' : '']"

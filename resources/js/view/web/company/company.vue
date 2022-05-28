@@ -6,16 +6,18 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
 
-                <div class="error-trust alert-danger" v-if="!partner.send">
-                    يجب عليك توثيق حسابك لعرض مشاريع العملاء عليك
+                <div class="error-trust alert-danger" v-if="!parseInt(partner.send) && !user.email_verified_at">
+                    يجب عليك توثيق حسابك و تاكيد البريد الالكتروني
+                    لعرض مشاريع العملاء عليك
                     <router-link
                         :to="{name:'trustCompany',params:{lang:this.$i18n.locale}}"
                         :class="['nav-link',$route.name == 'trust' ? 'active' : '']"
+                        v-if="!parseInt(partner.send)"
                     >
                         انقر هنا
                     </router-link>
                 </div>
-                <div class="error-trust send alert-danger" v-else-if="partner.send && !partner.trust">
+                <div class="error-trust send alert-danger" v-else-if="parseInt(partner.send) && !parseInt(partner.trust)">
                     يتم الان مراجعه بيانات حسابك لتاكيد من صحتها
                 </div>
 
@@ -310,9 +312,10 @@ export default {
 
         const store = useStore();
         const partner = computed(() => store.getters['auth/partner']);
+        const user = computed(() => store.getters['auth/user']);
         let loading2 = computed(() => store.getters['auth/loading'] );
 
-        return {partner,loading2};
+        return {partner,loading2,user};
     }
 }
 </script>

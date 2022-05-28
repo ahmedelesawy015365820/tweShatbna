@@ -218,8 +218,8 @@ export default {
                     userDesigner.value = l.designer;
                     designDetail.value = l.design_detail;
                     designDesScience.value = l.design_des_science;
-                    status.value = l.status;
-                    trust.value = l.designer.trust;
+                    status.value = parseInt(l.status);
+                    trust.value =  parseInt(l.designer.trust);
                 })
                 .catch((err) => {
                     Swal.fire({

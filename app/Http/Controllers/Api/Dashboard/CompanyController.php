@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\User;
+use App\Notifications\Web\VerifyDCNotification;
 use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -22,7 +23,7 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $company = User::with('company:send,user_id')->whereAuthId(2)->whereJsonContains('role_name','company')
+        $company = User::with(['company:send,user_id','complement:user_id,device'])->whereAuthId(2)->whereJsonContains('role_name','company')
             ->where(function ($q) use($request){
                $q->when($request->search,function ($q) use($request){
                    return $q->OrWhere('email','like','%'.$request->search.'%')
@@ -140,6 +141,8 @@ class CompanyController extends Controller
                 }
 
                 $user->company()->update(['trust' => $request->trust]);
+
+                $user->notify(new VerifyDCNotification());
 
             }else{
                 return $this->sendError('ID is not exist');

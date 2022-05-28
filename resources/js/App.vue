@@ -15,7 +15,7 @@
         </router-view>
 
         <!-- Footer -->
-        <layout-footer />
+        <layout-footer v-if="!link2.includes($route.name)" />
         <!-- /Footer -->
     </div>
     <!-- /Main Wrapper -->
@@ -41,7 +41,8 @@
         },
         data(){
             return {
-                link : ['partners']
+                link : ['partners','home'],
+                link2 : ['home']
             }
         }
     }

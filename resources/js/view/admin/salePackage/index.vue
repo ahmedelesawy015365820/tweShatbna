@@ -56,15 +56,15 @@
                                         <td>{{item.package.name}}</td>
                                         <td>{{item.user[0].name}}</td>
                                         <td>
-                                            <span v-if="item.check" class="badge badge-success">Checked</span>
+                                            <span v-if="parseInt(item.check)" class="badge badge-success">Checked</span>
                                             <span v-else class="badge badge-danger">Not Checked</span>
                                         </td>
                                         <td>
-                                            <span v-if="item.complete" class="badge badge-success">Complete</span>
+                                            <span v-if="parseInt(item.complete)" class="badge badge-success">Complete</span>
                                             <span v-else class="badge badge-danger">Not complete</span>
                                         </td>
                                         <td>
-                                            <router-link v-if="!item.complete" :to="{name: 'showSale', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-info me-2">
+                                            <router-link v-if="!parseInt(item.complete)" :to="{name: 'showSale', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-info me-2">
                                                 <i class="fas fa-book-open"></i>
                                             </router-link>
                                             <router-link :to="{name: 'editSale', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2"><i class="far fa-edit"></i></router-link>

@@ -18,7 +18,7 @@ class AdvertiseController extends Controller
      */
     public function index(Request $request)
     {
-        $advertise = User::whereAuthId(2)->whereJsonContains('role_name','advertiser')
+        $advertise = User::with('complement:user_id,device')->whereAuthId(2)->whereJsonContains('role_name','advertiser')
             ->where(function ($q) use($request){
                 $q->when($request->search,function ($q) use($request){
                     return $q->OrWhere('email','like','%'.$request->search.'%')

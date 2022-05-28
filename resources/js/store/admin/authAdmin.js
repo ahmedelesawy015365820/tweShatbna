@@ -66,7 +66,7 @@ const actions = {
 
             })
             .catch((err) => {
-                console.log(err.response.data);
+                console.log(err.response);
             }).finally(() => {
                 commit('editLoading',false);
             });

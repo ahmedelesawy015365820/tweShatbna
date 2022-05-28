@@ -218,8 +218,8 @@ export default {
                     companyDetail.value = l.company_detail;
                     companyService.value = l.company_service;
                     complement.value = l.complement
-                    status.value = l.status;
-                    trust.value = l.company.trust;
+                    status.value = parseInt(l.status);
+                    trust.value =  parseInt(l.company.trust);
                 })
                 .catch((err) => {
                     Swal.fire({

@@ -6,8 +6,8 @@ import router from "../../router/webRoute";
 const state = {
     token: Cookies.get("token") || null,
     user: JSON.parse(localStorage.getItem('user')) || {},
-    complement:  {},
-    partner:  {},
+    complement:  JSON.parse(localStorage.getItem('complement')) || {},
+    partner:  JSON.parse(localStorage.getItem('partner')) || {},
     loading: false,
     country: [],
     newState: [],
@@ -132,6 +132,8 @@ const actions = {
                     return router.push({name: 'dashboardDesign', params: {lang: locale || 'ar'}});
                 }else if(l.user.role_name[0] == 'advertiser'){
                     return router.push({name: 'dashboardAdvertise', params: {lang: locale || 'ar'}});
+                }else if(l.user.role_name[0] == 'client'){
+                    return router.push({name: 'dashboardClient', params: {lang: locale || 'ar'}});
                 }
 
             })
@@ -273,6 +275,33 @@ const actions = {
             })
             .catch((err) => {
                 commit('editErrors',err.response.data.errors)
+            })
+            .finally(() => {
+                commit('editLoading',false);
+            });
+    },
+    clientRegister({commit},preload){
+
+        commit('editLoading',true);
+
+        webApi.post(`/v1/web/client`,preload)
+            .then((res) => {
+
+                let l = res.data.data;
+                commit('editToken', l.access_token);
+                commit('editUser', l.user);
+                commit('editComplement', l.complement);
+                commit('editPartner', l.partner);
+
+                let locale = localStorage.getItem("langWeb");
+
+                if (l.user.role_name[0] == 'client'){
+                    return router.push({name: 'dashboardClient', params: {lang: locale || 'ar'}});
+                }
+            })
+            .catch((err) => {
+                // commit('editErrors',err.response.data.errors);
+                console.log(err.response);
             })
             .finally(() => {
                 commit('editLoading',false);

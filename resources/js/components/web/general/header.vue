@@ -57,7 +57,7 @@
                         </router-link>
                     </li>
                     <li v-if="!token" :class="[$route.name == 'registerPartiner' ? 'active' : '']">
-                        <router-link :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}" class="reg-btn custom">
+                        <router-link :to="{name:'registerClient',params: {lang:this.$i18n.locale}}" class="reg-btn custom">
                             <i class="fas fa-user"></i> {{$t('header.register')}}
                         </router-link>
                     </li>

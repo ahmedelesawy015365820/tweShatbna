@@ -1,8 +1,4 @@
-import Cookies from "js-cookie";
-
 require('./bootstrap');
-
-
 
 import { createApp } from 'vue';
 import  router  from './router/webRoute';
@@ -10,6 +6,7 @@ import i18n from './lang/web';
 import App from "./App.vue";
 import store from './store/web';
 import mitt from 'mitt';
+import VueSocialauth from 'vue-social-auth'
 
 
 const emitter = mitt();
@@ -29,6 +26,16 @@ web.component('layout-footer', footer);
 web.component('loader', loader);
 web.component('loader2', loader2);
 web.component('Pagination', LaravelVuePagination);
+
+// web.use(VueSocialauth,{
+//     providers: {
+//         google: {
+//             clientId: '953215675652-2e1do520dv7ogoq5haod1l0p0h2gjmt6.apps.googleusercontent.com',
+//             client_secret: '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',
+//             redirectUri: 'register/google/callback' // Your client app URL
+//         }
+//     }
+// });
 
 
 //end web component global

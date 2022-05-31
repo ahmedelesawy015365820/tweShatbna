@@ -12,7 +12,6 @@ class ComplementResource extends JsonResource
         return [
             'country' => new CountryResource($this->country),
             'state' => new StateResource($this->state),
-            'phone' => $this->phone,
             'phoneSecond' => $this->phone_second,
             'nameCompany' => $this->nameCompany
         ];

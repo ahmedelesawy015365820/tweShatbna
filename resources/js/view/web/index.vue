@@ -1,612 +1,602 @@
 <template>
-<!--    <div>-->
-<!--        &lt;!&ndash; Home Banner &ndash;&gt;-->
-<!--        <section class="section home-banner row-middle">-->
-<!--            <div class="container">-->
-<!--                <div class="row align-items-center custom-row">-->
-<!--                    <div class="col-md-9 col-lg-8 custom-col">-->
-<!--                        <div class="banner-content">-->
-<!--                            <div class="rating d-flex">-->
-<!--                                <i class="fas fa-star checked"></i>-->
-<!--                                <i class="fas fa-star checked"></i>-->
-<!--                                <i class="fas fa-star checked"></i>-->
-<!--                                <i class="fas fa-star checked"></i>-->
-<!--                                <i class="fas fa-star checked"></i>-->
-<!--                                <h5>{{$t('index.trused')}}</h5>-->
-<!--                            </div>-->
-<!--                            <h1>{{$t('index.best')}}</h1>-->
-<!--                            <p>{{$t('index.finishing')}}</p>-->
-<!--                            <form class="form" id="store">-->
-<!--                                <div class="form-inner">-->
-<!--                                    <div class="input-group">-->
-<!--											<span class="drop-detail">-->
-<!--                                                <span class="border-cutom-en" v-show="this.$i18n.locale != 'ar'"></span>-->
-<!--												<select class="form-control select" name="storeID">-->
-<!--													<option value="project.html">{{$t('index.company')}}</option>-->
-<!--												</select>-->
-<!--                                                <span class="border-cutom-ar" v-show="this.$i18n.locale == 'ar'"></span>-->
-<!--											</span>-->
-<!--                                        <input type="text" class="form-control" :placeholder="$t('index.search')">-->
-<!--                                        <button class="btn btn-primary sub-btn" type="submit">{{ $t('index.search-new') }}</button>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-<!--        &lt;!&ndash; /Home Banner &ndash;&gt;-->
+    <div>
+        <!-- Home Banner -->
+        <section class="section home-banner row-middle">
+            <div class="container">
+                <div class="row align-items-center custom-row">
+                    <div class="col-md-9 col-lg-8 custom-col">
+                        <div class="banner-content">
+                            <div class="rating d-flex">
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <i class="fas fa-star checked"></i>
+                                <h5>{{$t('index.trused')}}</h5>
+                            </div>
+                            <h1>{{$t('index.best')}}</h1>
+                            <p>{{$t('index.finishing')}}</p>
+                            <form class="form" id="store">
+                                <div class="form-inner">
+                                    <div class="input-group">
+											<span class="drop-detail">
+                                                <span class="border-cutom-en" v-show="this.$i18n.locale != 'ar'"></span>
+												<select class="form-control select" name="storeID">
+													<option value="project.html">{{$t('index.company')}}</option>
+												</select>
+                                                <span class="border-cutom-ar" v-show="this.$i18n.locale == 'ar'"></span>
+											</span>
+                                        <input type="text" class="form-control" :placeholder="$t('index.search')">
+                                        <button class="btn btn-primary sub-btn" type="submit">{{ $t('index.search-new') }}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Home Banner -->
 
-<!--        &lt;!&ndash; Our Feature &ndash;&gt;-->
-<!--        <section class="section feature">-->
-<!--            <div class="container container-custom">-->
-<!--                <div class="row">-->
+        <!-- Our Feature -->
+        <section class="section feature">
+            <div class="container container-custom">
+                <div class="row">
 
-<!--                    &lt;!&ndash; Feature Item &ndash;&gt;-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="feature-item">-->
-<!--                            <div class="feature-icon">-->
-<!--                                <img src="/web/img/icon/FreeDesignerOrange.svg" class="img-fluid" alt="">-->
-<!--                            </div>-->
-<!--                            <div class="feature-content">-->
-<!--                                <h3 id="counter-1"></h3>-->
-<!--                                <p>{{$t('index.freelancer')}}</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; /Feature Item &ndash;&gt;-->
+                    <!-- Feature Item -->
+                    <div class="col-md-4">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <img src="/web/img/icon/FreeDesignerOrange.svg" class="img-fluid" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h3 id="counter-1"></h3>
+                                <p>{{$t('index.freelancer')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Feature Item -->
 
-<!--                    &lt;!&ndash; Feature Item &ndash;&gt;-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="feature-item">-->
-<!--                            <div class="feature-icon middle">-->
-<!--                                <img src="/web/img/icon/CompanyFreeOrange.svg" class="img-fluid" alt="">-->
-<!--                            </div>-->
-<!--                            <div class="feature-content">-->
-<!--                                <h3 id="counter-2"></h3>-->
-<!--                                <p>{{$t('index.finish')}}</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; /Feature Item &ndash;&gt;-->
+                    <!-- Feature Item -->
+                    <div class="col-md-4">
+                        <div class="feature-item">
+                            <div class="feature-icon middle">
+                                <img src="/web/img/icon/CompanyFreeOrange.svg" class="img-fluid" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h3 id="counter-2"></h3>
+                                <p>{{$t('index.finish')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Feature Item -->
 
-<!--                    &lt;!&ndash; Feature Item &ndash;&gt;-->
-<!--                    <div class="col-md-4">-->
-<!--                        <div class="feature-item">-->
-<!--                            <div class="feature-icon last">-->
-<!--                                <img src="/web/img/icon/ProjectOrange.svg" class="img-fluid" alt="">-->
-<!--                            </div>-->
-<!--                            <div class="feature-content">-->
-<!--                                <h3 id="counter-3"></h3>-->
-<!--                                <p>{{$t('index.project')}}</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; /Feature Item &ndash;&gt;-->
+                    <!-- Feature Item -->
+                    <div class="col-md-4">
+                        <div class="feature-item">
+                            <div class="feature-icon last">
+                                <img src="/web/img/icon/ProjectOrange.svg" class="img-fluid" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h3 id="counter-3"></h3>
+                                <p>{{$t('index.project')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Feature Item -->
 
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-<!--        &lt;!&ndash; /Our Feature &ndash;&gt;-->
+                </div>
+            </div>
+        </section>
+        <!-- /Our Feature -->
 
-<!--        &lt;!&ndash;- Developed Project  &ndash;&gt;-->
-<!--        <section class="section work">-->
-<!--            <div class="container-fluid">-->
-<!--                <div class="row">-->
+        <!--- Developed Project  -->
+        <section class="section work">
+            <div class="container-fluid">
+                <div class="row">
 
-<!--                    &lt;!&ndash; Feature Item &ndash;&gt;-->
-<!--                    <div class="col-md-6 work-box bg12">-->
-<!--                        <div class="work-content">-->
-<!--                            <h2>{{$t('index.search-company')}}</h2>-->
-<!--                            <p>{{$t('index.parge-company')}}</p>-->
-<!--                            <div class="row justify-content-between align-items-end">-->
-<!--                                <div class="col-4">-->
-<!--                                    <img src="/web/img/icon/AHMED12.svg">-->
-<!--                                </div>-->
-<!--                                <a href="#" class="col-2">-->
-<!--                                    <i :class="['fas',this.$i18n.locale != 'ar'?'fa-long-arrow-alt-right':'fa-long-arrow-alt-left','long-arrow']"></i>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; /Feature Item &ndash;&gt;-->
+                    <!-- Feature Item -->
+                    <div class="col-md-6 work-box bg12">
+                        <div class="work-content">
+                            <h2>{{$t('index.search-company')}}</h2>
+                            <p>{{$t('index.parge-company')}}</p>
+                            <div class="row justify-content-between align-items-end">
+                                <div class="col-4">
+                                    <img src="/web/img/icon/AHMED12.svg">
+                                </div>
+                                <a href="#" class="col-2">
+                                    <i :class="['fas',this.$i18n.locale != 'ar'?'fa-long-arrow-alt-right':'fa-long-arrow-alt-left','long-arrow']"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Feature Item -->
 
-<!--                    <div class="col-md-6 work-box bg10">-->
-<!--                        <div class="work-content">-->
-<!--                            <h2>{{$t('index.search-design')}}</h2>-->
-<!--                            <p>{{$t('index.parge-company')}}</p>-->
-<!--                            <div class="row justify-content-between align-items-end">-->
-<!--                                <div class="col-4">-->
-<!--                                    <img src="/web/img/icon/DesignerSearchBlack.svg">-->
-<!--                                </div>-->
-<!--                                <a href="#" class="col-2">-->
-<!--                                    <i :class="['fas',this.$i18n.locale != 'ar'?'fa-long-arrow-alt-right':'fa-long-arrow-alt-left','long-arrow']"></i>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-<!--        &lt;!&ndash;- /Developed Project  &ndash;&gt;-->
+                    <div class="col-md-6 work-box bg10">
+                        <div class="work-content">
+                            <h2>{{$t('index.search-design')}}</h2>
+                            <p>{{$t('index.parge-company')}}</p>
+                            <div class="row justify-content-between align-items-end">
+                                <div class="col-4">
+                                    <img src="/web/img/icon/DesignerSearchBlack.svg">
+                                </div>
+                                <a href="#" class="col-2">
+                                    <i :class="['fas',this.$i18n.locale != 'ar'?'fa-long-arrow-alt-right':'fa-long-arrow-alt-left','long-arrow']"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--- /Developed Project  -->
 
-<!--        &lt;!&ndash; Projects &ndash;&gt;-->
-<!--        <section class="section projects">-->
-<!--            <div class="container container-custom">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-12 col-md-12 mx-auto">-->
-<!--                        <div class="section-header text-center">-->
-<!--                            <div class="section-line"></div>-->
-<!--                            <h2 class="header-title">{{$t('index.bargain')}}</h2>-->
-<!--                            <div class="row justify-content-center">-->
-<!--                                <p>{{$t('index.decBargain')}}</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+        <!-- Projects -->
+        <section class="section projects">
+            <div class="container container-custom">
+                <div class="row">
+                    <div class="col-12 col-md-12 mx-auto">
+                        <div class="section-header text-center">
+                            <div class="section-line"></div>
+                            <h2 class="header-title">{{$t('index.bargain')}}</h2>
+                            <div class="row justify-content-center">
+                                <p>{{$t('index.decBargain')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<!--                <div class="row">-->
+                <div class="row">
 
-<!--                    &lt;!&ndash;- Project Item  &ndash;&gt;-->
-<!--                    <div class="col-lg-6 col-md-6 col-sm-12">-->
-<!--                        <div class="project-item">-->
-<!--                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">-->
-<!--                                <div>-->
-<!--                                    <span>500</span>-->
-<!--                                    <span class="coin">EGP</span>-->
-<!--                                </div>-->
-<!--                            </span>-->
-<!--                            <div class="row">-->
-<!--                                <div class="project-img col-6">-->
-<!--                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>-->
-<!--                                </div>-->
-<!--                                <div class="col-6 row align-items-center">-->
-<!--                                    <h4>-->
-<!--                                        {{$t('index.decProduct')}}-->
-<!--                                    </h4>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex  align-items-center">-->
-<!--                                <div class="project-content button">-->
-<!--                                    <button class="subscribe">-->
-<!--                                        <span>{{$t('index.subscribe')}}</span>-->
-<!--                                        <div><img src="/web/img/icon/AHMED11.svg"></div>-->
-<!--                                    </button>-->
-<!--                                    <button class="share">-->
-<!--                                        <span>{{$t('index.share')}}</span>-->
-<!--                                        <div><img src="/web/img/icon/share.svg"></div>-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                                <div class="project-content">-->
-<!--                                    <div class="time-container">-->
-<!--                                        <h4>{{$t('index.show')}}</h4>-->
-<!--                                        <div class="time">-->
-<!--                                            <div class="second">-->
-<!--                                                <span>05</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="minute">-->
-<!--                                                <span>23</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="hour">-->
-<!--                                                <span>33</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="day">-->
-<!--                                                <span>15</span>-->
-<!--                                                <small>{{$t('index.day')}}</small>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;- /Project Item  &ndash;&gt;-->
+                    <!--- Project Item  -->
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="project-item">
+                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
+                                <div>
+                                    <span>500</span>
+                                    <span class="coin">EGP</span>
+                                </div>
+                            </span>
+                            <div class="row">
+                                <div class="project-img col-6">
+                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
+                                </div>
+                                <div class="col-6 row align-items-center">
+                                    <h4>
+                                        {{$t('index.decProduct')}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="d-flex  align-items-center">
+                                <div class="project-content button">
+                                    <button class="subscribe">
+                                        <span>{{$t('index.subscribe')}}</span>
+                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
+                                    </button>
+                                    <button class="share">
+                                        <span>{{$t('index.share')}}</span>
+                                        <div><img src="/web/img/icon/share.svg"></div>
+                                    </button>
+                                </div>
+                                <div class="project-content">
+                                    <div class="time-container">
+                                        <h4>{{$t('index.show')}}</h4>
+                                        <div class="time">
+                                            <div class="second">
+                                                <span>05</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="minute">
+                                                <span>23</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="hour">
+                                                <span>33</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="day">
+                                                <span>15</span>
+                                                <small>{{$t('index.day')}}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--- /Project Item  -->
 
-<!--                    &lt;!&ndash;- Project Item  &ndash;&gt;-->
-<!--                    <div class="col-lg-6 col-md-6 col-sm-12">-->
-<!--                        <div class="project-item">-->
-<!--                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">-->
-<!--                                <div>-->
-<!--                                    <span>500</span>-->
-<!--                                    <span class="coin">EGP</span>-->
-<!--                                </div>-->
-<!--                            </span>-->
-<!--                            <div class="row">-->
-<!--                                <div class="project-img col-6">-->
-<!--                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>-->
-<!--                                </div>-->
-<!--                                <div class="col-6 row align-items-center">-->
-<!--                                    <h4>-->
-<!--                                        {{$t('index.decProduct')}}-->
-<!--                                    </h4>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex  align-items-center">-->
-<!--                                <div class="project-content button">-->
-<!--                                    <button class="subscribe">-->
-<!--                                        <span>{{$t('index.subscribe')}}</span>-->
-<!--                                        <div><img src="/web/img/icon/AHMED11.svg"></div>-->
-<!--                                    </button>-->
-<!--                                    <button class="share">-->
-<!--                                        <span>{{$t('index.share')}}</span>-->
-<!--                                        <div><img src="/web/img/icon/share.svg"></div>-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                                <div class="project-content">-->
-<!--                                    <div class="time-container">-->
-<!--                                        <h4>{{$t('index.show')}}</h4>-->
-<!--                                        <div class="time">-->
-<!--                                            <div class="second">-->
-<!--                                                <span>05</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="minute">-->
-<!--                                                <span>23</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="hour">-->
-<!--                                                <span>33</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="day">-->
-<!--                                                <span>15</span>-->
-<!--                                                <small>{{$t('index.day')}}</small>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;- /Project Item  &ndash;&gt;-->
+                    <!--- Project Item  -->
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="project-item">
+                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
+                                <div>
+                                    <span>500</span>
+                                    <span class="coin">EGP</span>
+                                </div>
+                            </span>
+                            <div class="row">
+                                <div class="project-img col-6">
+                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
+                                </div>
+                                <div class="col-6 row align-items-center">
+                                    <h4>
+                                        {{$t('index.decProduct')}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="d-flex  align-items-center">
+                                <div class="project-content button">
+                                    <button class="subscribe">
+                                        <span>{{$t('index.subscribe')}}</span>
+                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
+                                    </button>
+                                    <button class="share">
+                                        <span>{{$t('index.share')}}</span>
+                                        <div><img src="/web/img/icon/share.svg"></div>
+                                    </button>
+                                </div>
+                                <div class="project-content">
+                                    <div class="time-container">
+                                        <h4>{{$t('index.show')}}</h4>
+                                        <div class="time">
+                                            <div class="second">
+                                                <span>05</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="minute">
+                                                <span>23</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="hour">
+                                                <span>33</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="day">
+                                                <span>15</span>
+                                                <small>{{$t('index.day')}}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--- /Project Item  -->
 
-<!--                    &lt;!&ndash;- Project Item  &ndash;&gt;-->
-<!--                    <div class="col-lg-6 col-md-6 col-sm-12">-->
-<!--                        <div class="project-item">-->
-<!--                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">-->
-<!--                                <div>-->
-<!--                                    <span>500</span>-->
-<!--                                    <span class="coin">EGP</span>-->
-<!--                                </div>-->
-<!--                            </span>-->
-<!--                            <div class="row">-->
-<!--                                <div class="project-img col-6">-->
-<!--                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>-->
-<!--                                </div>-->
-<!--                                <div class="col-6 row align-items-center">-->
-<!--                                    <h4>-->
-<!--                                        {{$t('index.decProduct')}}-->
-<!--                                    </h4>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex  align-items-center">-->
-<!--                                <div class="project-content button">-->
-<!--                                    <button class="subscribe">-->
-<!--                                        <span>{{$t('index.subscribe')}}</span>-->
-<!--                                        <div><img src="/web/img/icon/AHMED11.svg"></div>-->
-<!--                                    </button>-->
-<!--                                    <button class="share">-->
-<!--                                        <span>{{$t('index.share')}}</span>-->
-<!--                                        <div><img src="/web/img/icon/share.svg"></div>-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                                <div class="project-content">-->
-<!--                                    <div class="time-container">-->
-<!--                                        <h4>{{$t('index.show')}}</h4>-->
-<!--                                        <div class="time">-->
-<!--                                            <div class="second">-->
-<!--                                                <span>05</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="minute">-->
-<!--                                                <span>23</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="hour">-->
-<!--                                                <span>33</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="day">-->
-<!--                                                <span>15</span>-->
-<!--                                                <small>{{$t('index.day')}}</small>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;- /Project Item  &ndash;&gt;-->
+                    <!--- Project Item  -->
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="project-item">
+                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
+                                <div>
+                                    <span>500</span>
+                                    <span class="coin">EGP</span>
+                                </div>
+                            </span>
+                            <div class="row">
+                                <div class="project-img col-6">
+                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
+                                </div>
+                                <div class="col-6 row align-items-center">
+                                    <h4>
+                                        {{$t('index.decProduct')}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="d-flex  align-items-center">
+                                <div class="project-content button">
+                                    <button class="subscribe">
+                                        <span>{{$t('index.subscribe')}}</span>
+                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
+                                    </button>
+                                    <button class="share">
+                                        <span>{{$t('index.share')}}</span>
+                                        <div><img src="/web/img/icon/share.svg"></div>
+                                    </button>
+                                </div>
+                                <div class="project-content">
+                                    <div class="time-container">
+                                        <h4>{{$t('index.show')}}</h4>
+                                        <div class="time">
+                                            <div class="second">
+                                                <span>05</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="minute">
+                                                <span>23</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="hour">
+                                                <span>33</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="day">
+                                                <span>15</span>
+                                                <small>{{$t('index.day')}}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--- /Project Item  -->
 
-<!--                    &lt;!&ndash;- Project Item  &ndash;&gt;-->
-<!--                    <div class="col-lg-6 col-md-6 col-sm-12">-->
-<!--                        <div class="project-item">-->
-<!--                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">-->
-<!--                                <div>-->
-<!--                                    <span>500</span>-->
-<!--                                    <span class="coin">EGP</span>-->
-<!--                                </div>-->
-<!--                            </span>-->
-<!--                            <div class="row">-->
-<!--                                <div class="project-img col-6">-->
-<!--                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>-->
-<!--                                </div>-->
-<!--                                <div class="col-6 row align-items-center">-->
-<!--                                    <h4>-->
-<!--                                        {{$t('index.decProduct')}}-->
-<!--                                    </h4>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex  align-items-center">-->
-<!--                                <div class="project-content button">-->
-<!--                                    <button class="subscribe">-->
-<!--                                        <span>{{$t('index.subscribe')}}</span>-->
-<!--                                        <div><img src="/web/img/icon/AHMED11.svg"></div>-->
-<!--                                    </button>-->
-<!--                                    <button class="share">-->
-<!--                                        <span>{{$t('index.share')}}</span>-->
-<!--                                        <div><img src="/web/img/icon/share.svg"></div>-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                                <div class="project-content">-->
-<!--                                    <div class="time-container">-->
-<!--                                        <h4>{{$t('index.show')}}</h4>-->
-<!--                                        <div class="time">-->
-<!--                                            <div class="second">-->
-<!--                                                <span>05</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="minute">-->
-<!--                                                <span>23</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="hour">-->
-<!--                                                <span>33</span>-->
-<!--                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>-->
-<!--                                            </div>-->
-<!--                                            <span class="point">:</span>-->
-<!--                                            <div class="day">-->
-<!--                                                <span>15</span>-->
-<!--                                                <small>{{$t('index.day')}}</small>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;- /Project Item  &ndash;&gt;-->
+                    <!--- Project Item  -->
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="project-item">
+                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
+                                <div>
+                                    <span>500</span>
+                                    <span class="coin">EGP</span>
+                                </div>
+                            </span>
+                            <div class="row">
+                                <div class="project-img col-6">
+                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
+                                </div>
+                                <div class="col-6 row align-items-center">
+                                    <h4>
+                                        {{$t('index.decProduct')}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="d-flex  align-items-center">
+                                <div class="project-content button">
+                                    <button class="subscribe">
+                                        <span>{{$t('index.subscribe')}}</span>
+                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
+                                    </button>
+                                    <button class="share">
+                                        <span>{{$t('index.share')}}</span>
+                                        <div><img src="/web/img/icon/share.svg"></div>
+                                    </button>
+                                </div>
+                                <div class="project-content">
+                                    <div class="time-container">
+                                        <h4>{{$t('index.show')}}</h4>
+                                        <div class="time">
+                                            <div class="second">
+                                                <span>05</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="minute">
+                                                <span>23</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="hour">
+                                                <span>33</span>
+                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
+                                            </div>
+                                            <span class="point">:</span>
+                                            <div class="day">
+                                                <span>15</span>
+                                                <small>{{$t('index.day')}}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--- /Project Item  -->
 
-<!--                </div>-->
+                </div>
 
-<!--                <div class="row">-->
-<!--                    <div class="col-md-12 text-center">-->
-<!--                        <div class="see-all">-->
-<!--                            <a href="project.html" class="btn all-btn">{{$t('index.productEver')}}</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-<!--        &lt;!&ndash; /Projects &ndash;&gt;-->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="see-all">
+                            <a href="project.html" class="btn all-btn">{{$t('index.productEver')}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+         /Projects
 
-<!--        &lt;!&ndash; Subscribe &ndash;&gt;-->
-<!--        <section class="section subscribe">-->
-<!--            <div class="container">-->
-<!--                <div class="row align-items-center justify-content-center">-->
-<!--                    <div class="col-5 "><h1 class="text-center">مساحه اعلانيه</h1></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-<!--        &lt;!&ndash; End Subscribe &ndash;&gt;-->
+        <!-- Subscribe -->
+        <section class="section subscribe">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-5 "><h1 class="text-center">مساحه اعلانيه</h1></div>
+                </div>
+            </div>
+        </section>
+        <!-- End Subscribe -->
 
-<!--        &lt;!&ndash; Top Instructor &ndash;&gt;-->
-<!--        <section class="section developer">-->
-<!--            <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-7 col-sm-12 col-12 mx-auto">-->
-<!--                        <div class="section-header text-center">-->
-<!--                            <div class="section-line"></div>-->
-<!--                            <h2 class="header-title">{{$t('index.patrons')}}</h2>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+        <!-- Top Instructor -->
+        <section class="section developer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-sm-12 col-12 mx-auto">
+                        <div class="section-header text-center">
+                            <div class="section-line"></div>
+                            <h2 class="header-title">{{$t('index.patrons')}}</h2>
+                        </div>
+                    </div>
+                </div>
 
-<!--                <div id="developers-slider" class="owl-carousel owl-theme developers-slider">-->
-<!--                    <div class="freelance-widget">-->
-<!--                        <div class="freelance-content">-->
-<!--                            <a-->
-<!--                                data-toggle="modal"-->
-<!--                               href="#rating"-->
-<!--                               :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"-->
-<!--                            >-->
-<!--                                <i class="fas fa-star"></i>-->
-<!--                            </a>-->
-<!--                            <div class="freelance-img">-->
-<!--                                <a href="#">-->
-<!--                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="freelance-info">-->
-<!--                                <h3><a href="#">Sponser Name</a></h3>-->
-<!--                                <div class="freelance-specific row justify-content-center">-->
-<!--                                    <span>-->
-<!--                                        من اكبر مصنعي الاساس في مصر-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="cart-hover">-->
-<!--                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="freelance-widget">-->
-<!--                        <div class="freelance-content">-->
-<!--                            <a-->
-<!--                                data-toggle="modal"-->
-<!--                                href="#rating"-->
-<!--                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"-->
-<!--                            >-->
-<!--                                <i class="fas fa-star"></i>-->
-<!--                            </a>-->
-<!--                            <div class="freelance-img">-->
-<!--                                <a href="#">-->
-<!--                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="freelance-info">-->
-<!--                                <h3><a href="#">Sponser Name</a></h3>-->
-<!--                                <div class="freelance-specific row justify-content-center">-->
-<!--                                    <span>-->
-<!--                                        من اكبر مصنعي الاساس في مصر-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="cart-hover">-->
-<!--                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="freelance-widget">-->
-<!--                        <div class="freelance-content">-->
-<!--                            <a-->
-<!--                                data-toggle="modal"-->
-<!--                                href="#rating"-->
-<!--                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"-->
-<!--                            >-->
-<!--                                <i class="fas fa-star"></i>-->
-<!--                            </a>-->
-<!--                            <div class="freelance-img">-->
-<!--                                <a href="#">-->
-<!--                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="freelance-info">-->
-<!--                                <h3><a href="#">Sponser Name</a></h3>-->
-<!--                                <div class="freelance-specific row justify-content-center">-->
-<!--                                    <span>-->
-<!--                                        من اكبر مصنعي الاساس في مصر-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="cart-hover">-->
-<!--                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="freelance-widget">-->
-<!--                        <div class="freelance-content">-->
-<!--                            <a-->
-<!--                                data-toggle="modal"-->
-<!--                                href="#rating"-->
-<!--                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"-->
-<!--                            >-->
-<!--                                <i class="fas fa-star"></i>-->
-<!--                            </a>-->
-<!--                            <div class="freelance-img">-->
-<!--                                <a href="#">-->
-<!--                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="freelance-info">-->
-<!--                                <h3><a href="#">Sponser Name</a></h3>-->
-<!--                                <div class="freelance-specific row justify-content-center">-->
-<!--                                    <span>-->
-<!--                                        من اكبر مصنعي الاساس في مصر-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="cart-hover">-->
-<!--                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="freelance-widget">-->
-<!--                        <div class="freelance-content">-->
-<!--                            <a-->
-<!--                                data-toggle="modal"-->
-<!--                                href="#rating"-->
-<!--                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"-->
-<!--                            >-->
-<!--                                <i class="fas fa-star"></i>-->
-<!--                            </a>-->
-<!--                            <div class="freelance-img">-->
-<!--                                <a href="#">-->
-<!--                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="freelance-info">-->
-<!--                                <h3><a href="#">Sponser Name</a></h3>-->
-<!--                                <div class="freelance-specific row justify-content-center">-->
-<!--                                    <span>-->
-<!--                                        من اكبر مصنعي الاساس في مصر-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="cart-hover">-->
-<!--                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="freelance-widget">-->
-<!--                        <div class="freelance-content">-->
-<!--                            <a-->
-<!--                                data-toggle="modal"-->
-<!--                                href="#rating"-->
-<!--                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"-->
-<!--                            >-->
-<!--                                <i class="fas fa-star"></i>-->
-<!--                            </a>-->
-<!--                            <div class="freelance-img">-->
-<!--                                <a href="#">-->
-<!--                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            <div class="freelance-info">-->
-<!--                                <h3><a href="#">Sponser Name</a></h3>-->
-<!--                                <div class="freelance-specific row justify-content-center">-->
-<!--                                    <span>-->
-<!--                                        من اكبر مصنعي الاساس في مصر-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="cart-hover">-->
-<!--                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div id="developers-slider" class="owl-carousel owl-theme developers-slider">
+                    <div class="freelance-widget">
+                        <div class="freelance-content">
+                            <a
+                                data-toggle="modal"
+                               href="#rating"
+                               :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="freelance-img">
+                                <a href="#">
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
+                                </a>
+                            </div>
+                            <div class="freelance-info">
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-hover">
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
+                        </div>
+                    </div>
+                    <div class="freelance-widget">
+                        <div class="freelance-content">
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="freelance-img">
+                                <a href="#">
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
+                                </a>
+                            </div>
+                            <div class="freelance-info">
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-hover">
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
+                        </div>
+                    </div>
+                    <div class="freelance-widget">
+                        <div class="freelance-content">
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="freelance-img">
+                                <a href="#">
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
+                                </a>
+                            </div>
+                            <div class="freelance-info">
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-hover">
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
+                        </div>
+                    </div>
+                    <div class="freelance-widget">
+                        <div class="freelance-content">
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="freelance-img">
+                                <a href="#">
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
+                                </a>
+                            </div>
+                            <div class="freelance-info">
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-hover">
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
+                        </div>
+                    </div>
+                    <div class="freelance-widget">
+                        <div class="freelance-content">
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="freelance-img">
+                                <a href="#">
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
+                                </a>
+                            </div>
+                            <div class="freelance-info">
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-hover">
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
+                        </div>
+                    </div>
+                    <div class="freelance-widget">
+                        <div class="freelance-content">
+                            <a
+                                data-toggle="modal"
+                                href="#rating"
+                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
+                            >
+                                <i class="fas fa-star"></i>
+                            </a>
+                            <div class="freelance-img">
+                                <a href="#">
+                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
+                                </a>
+                            </div>
+                            <div class="freelance-info">
+                                <h3><a href="#">Sponser Name</a></h3>
+                                <div class="freelance-specific row justify-content-center">
+                                    <span>
+                                        من اكبر مصنعي الاساس في مصر
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-hover">
+                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
+                        </div>
+                    </div>
+                </div>
 
-<!--            </div>-->
-<!--        </section>-->
-<!--        &lt;!&ndash; End Developer &ndash;&gt;-->
+            </div>
+        </section>
+        <!-- End Developer -->
 
-<!--    </div >-->
-    <div class="row justify-content-center align-items-center home">
-        <div class="col-md-6 text-center">
-            <img src="/web/img/logo.png" class="img-fluid" alt="Logo"><br/>
-            <h1 class="show-h">Coming soon</h1>
-            <p class="show-p">Be Ready . Shatabna For Clients Will Be Launched Soon</p>
-            <router-link :to="{name:'partners',params: {lang:this.$i18n.locale}}" class="partner">
-                success partner
-            </router-link>
-        </div>
-    </div>
+    </div >
 
 </template>
 
@@ -652,9 +642,9 @@ export default {
 
         onMounted(() => {
             carousel();
-            // counter(20600,1,0)
-            // counter(67000,2,0)
-            // counter(105340,3,0)
+            counter(20600,1,0)
+            counter(67000,2,0)
+            counter(105340,3,0)
         });
 
         emitter.on('get_lang_web', () => {
@@ -698,45 +688,6 @@ export default {
 </script>
 
 <style scoped>
-.home {
-   height: 80vh;
-}
-
-.home h1{
-    font-size: 60px;
-}
-
-.home p{
-    font-size: 21px;
-}
-
-.home a{
-    font-size: 20px;
-    padding: 10px 20px;
-    display: inline-block;
-    margin-top: 11px;
-    color: #fcb00c;
-    border: 1px solid;
-}
-
-.home a:hover{
-    color: #fff;
-    background-color:#fcb00c ;
-}
-
-@media only screen and (max-width: 600px) {
-    .home h1 {
-        font-size: 45px;
-    }
-    .home p {
-        font-size: 18px;
-    }
-    .home a{
-        font-size: 17px;
-        padding: 7px 16px;
-    }
-}
-
 
 section{
    overflow: hidden;

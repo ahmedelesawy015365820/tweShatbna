@@ -51,7 +51,8 @@
         "rememberP": "Remember your password?",
         "first-account": "First, let's find your account",
         "enter": "Please enter your email",
-        "reset":  "RESET PASAWORD"
+        "reset":  "RESET PASAWORD",
+        "client": "CLIENT"
     },
     "index": {
         "trused": "Trused by over 2M+ users",

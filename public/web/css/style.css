@@ -1390,9 +1390,7 @@ label {
 .bg-navy {
 	color: #11099F;
 }
-.user-tabs ul li + li {
-	margin-left: 26px;
-}
+
 .user-tabs .nav-pills .nav-link {
     background: #fff;
     border-radius: 3px;

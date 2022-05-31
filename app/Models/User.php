@@ -64,7 +64,12 @@ class User extends Authenticatable implements JWTSubject ,MustVerifyEmail
         return $this->morphOne(Media::class,'mediable');
     }
 
-    public function complement()
+    public function accounts() {
+        return $this->hasMany(SocialAccount::class);
+    }
+
+
+        public function complement()
     {
         return $this->hasOne(Complement::class);
     }

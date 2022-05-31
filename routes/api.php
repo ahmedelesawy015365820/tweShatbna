@@ -28,11 +28,12 @@ use Illuminate\Support\Facades\Route;
      // start web auth
      Route::group(['prefix' => 'web','namespace' => 'Web'],function () {
 
-         // start Register[company,design,advertiser]
+         // start Register[company,design,advertiser,client]
 
          Route::post('company','RegisterController@companyRegister');
          Route::post('design','RegisterController@designRegister');
          Route::post('advertiser','RegisterController@advertiserRegister');
+         Route::post('client','RegisterController@clientRegister');
          Route::get('country','RegisterController@country');
          Route::get('state/{state}','RegisterController@state');
 
@@ -117,7 +118,7 @@ use Illuminate\Support\Facades\Route;
              Route::post('buy_package',  'AdvertiseController@buy_package');
              Route::get('numPackage',  'AdvertiseController@numPackage');
              Route::get('salePackage',  'AdvertiseController@package');
-             Route::get('getALL',  'AdvertiseController@getALL');
+             Route::get('getAll/{id}',  'AdvertiseController@getALL');
 
              // start DeSign
              Route::get('degreeService',  'DesignController@degreeService');
@@ -139,6 +140,9 @@ use Illuminate\Support\Facades\Route;
              Route::get('getCompanyDetails',  'CompanyController@getCompanyDetails');
              Route::post('storeCompanyDetail',  'CompanyController@storeCompanyDetail');
              Route::post('trustCompanyOne',  'CompanyController@companyOne');
+
+             // start  client and profile
+             Route::post('clientData',  'ClientController@clientOne');
 
          });
 

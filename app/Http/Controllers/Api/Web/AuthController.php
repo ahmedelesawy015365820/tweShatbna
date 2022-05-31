@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AdvertiserResource;
+use App\Http\Resources\ClientResource;
 use App\Http\Resources\CompanyResource;
 use App\Http\Resources\ComplementResource;
 use App\Http\Resources\DesignResource;
 use App\Http\Resources\UserResource;
 use App\Models\Advertiser;
+use App\Models\Client;
 use App\Models\Company;
 use App\Models\Complement;
 use App\Models\Designer;
@@ -115,6 +117,8 @@ class AuthController extends Controller
             $partner = new DesignResource(Designer::whereUserId($user->id)->first());
         }elseif ($user->role_name[0] == 'advertiser'){
             $partner = new AdvertiserResource(Advertiser::whereUserId($user->id)->first());
+        }elseif ($user->role_name[0] == 'client'){
+            $partner = new ClientResource(Client::whereUserId($user->id)->first());
         }
 
         return  $this->sendResponse(['partner' => $partner],'Data exited successfully');
@@ -287,6 +291,8 @@ class AuthController extends Controller
             $partner = new DesignResource(Designer::whereUserId($user->id)->first());
         }elseif ($user->role_name[0] == 'advertiser'){
             $partner = new AdvertiserResource(Advertiser::whereUserId($user->id)->first());
+        }elseif ($user->role_name[0] == 'client'){
+            $partner = new ClientResource(Client::whereUserId($user->id)->first());
         }
 
         return [

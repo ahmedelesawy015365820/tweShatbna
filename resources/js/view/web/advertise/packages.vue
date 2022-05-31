@@ -518,7 +518,7 @@ export default {
         let getCalender = (packageId)=> {
 
             allEvents.value = [];
-            webApi.get(`/v1/web/getALL?package=${packageId}`)
+            webApi.get(`/v1/web/getAll/${packageId}`)
                 .then((res) => {
 
                     let l = res.data.data;

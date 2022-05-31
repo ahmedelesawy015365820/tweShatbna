@@ -6,13 +6,12 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
 
-                <div class="error-trust alert-danger" v-if="!parseInt(partner.send) && !user.email_verified_at">
+                <div class="error-trust alert-danger" v-if="!parseInt(partner.send)">
                     يجب عليك توثيق حسابك و تاكيد البريد الالكتروني
                     لعرض مشاريع العملاء عليك
                     <router-link
                         :to="{name:'trustCompany',params:{lang:this.$i18n.locale}}"
                         :class="['nav-link',$route.name == 'trust' ? 'active' : '']"
-                        v-if="!parseInt(partner.send)"
                     >
                         انقر هنا
                     </router-link>

@@ -127,7 +127,7 @@ export default {
 
                 })
                 .catch((err) => {
-
+                    console.log(err.response);
                 })
                 .finally(() => {
                     loading.value = false;
@@ -137,7 +137,7 @@ export default {
         emitter.on('get_lang', () => {
             getSalePackages();
         });
-        //
+
         const search = ref('');
         watch(search, (search, prevSearch) => {
             if(search.length > 0){

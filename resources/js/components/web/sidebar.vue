@@ -104,7 +104,7 @@
                                 <i class="material-icons">verified_user</i> الرئيسيه
                             </router-link>
                         </li>
-1
+
                         <li class="nav-item" v-if="!user.email_verified_at">
                             <router-link
                                 :to="{name:'packages',params: {lang:this.$i18n.locale}}"
@@ -117,6 +117,30 @@
                     </div>
 
                     <!--    end advertise    -->
+
+                    <div class="mb-4" v-if="roles.includes('client')">
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'dashboardClient',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link', $route.name != 'dashboardClient'? 'main-adver': '']"
+                            >
+                                <i class="material-icons">verified_user</i> الرئيسيه
+                            </router-link>
+                        </li>
+                        <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
+                            <router-link
+                                :to="{name:'trustClient',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link',$route.name == 'trustClient' ? 'active' : '']"
+                                v-if="!parseInt(partner.send)"
+                            >
+                                <i class="material-icons">person_pin</i> تاكيد الحساب
+                            </router-link>
+
+                            <a href="javascript:void(0);" @click="sendData"  class="nav-link" v-else>
+                                <i class="material-icons">person_pin</i> تاكيد الحساب
+                            </a>
+                        </li>
+                    </div>
 
                     <li class="nav-item">
                         <button @click="logout" type="submit"  class="nav-link">

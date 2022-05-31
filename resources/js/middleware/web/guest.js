@@ -8,8 +8,11 @@ export default function guest({ next,store}){
         }else if(roles[0] == 'company'){
             return next({name:'dashboardCompany',params: {lang: localStorage.getItem("langWeb") || 'ar'}});
         }else if(roles[0] == 'advertiser'){
-            return next({name:'dashboardAdvertise',params: {lang: localStorage.getItem("langWeb") || 'ar'}});
+                return next({name:'dashboardAdvertise',params: {lang: localStorage.getItem("langWeb") || 'ar'}});
+        }else if(roles[0] == 'client'){
+            return next({name:'dashboardClient',params: {lang: localStorage.getItem("langWeb") || 'ar'}});
         }
+
 
     } else {
         return next();

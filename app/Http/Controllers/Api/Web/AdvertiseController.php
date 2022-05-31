@@ -135,12 +135,12 @@ class AdvertiseController extends Controller
 
     }//**********end Packages************/
 
-    public function  getALL(Request $request)
+    public function  getALL($id)
     {
         try{
             $schedule = AdvertiseSchedule::
                 where([
-                        ['advertising_package_id', $request->package],
+                        ['advertising_package_id', $id],
                     ])
                 ->whereBetween('created_at', [now()->subMonth(), now()->addMonths(5)])
                 ->get();

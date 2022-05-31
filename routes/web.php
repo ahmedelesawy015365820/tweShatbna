@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// auth google
+
+Route::get('register/{provider}', 'Api\Web\SocialAccountController@redirectToProvider');
+Route::get('register/{provider}/callback', 'Api\Web\SocialAccountController@handleProviderCallback');
+
+
 // Dashboard admin
 
 Route::domain('admin.shatbna.com')->group(function () {

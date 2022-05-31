@@ -62,6 +62,11 @@ return [
         'root' => public_path('web/img/trustCompany'),
         ],
 
+        'trustClient' => [
+            'driver' => 'local',
+            'root' => public_path('web/img/trustClient'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

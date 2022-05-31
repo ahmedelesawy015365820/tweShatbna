@@ -4,6 +4,7 @@ import i18n from '../lang/web';
 import Index from '../view/web/index.vue';
 import successPartner from '../view/web/successPartner.vue';
 import registerPartiner from '../view/web/registerPartiner.vue';
+import registerClient from '../view/web/registerClient.vue'
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
 import forgetPassword from '../view/web/forgetPassword.vue';
@@ -16,6 +17,8 @@ import auth from "../middleware/web/auth";
 import advertise from "./webRoute/advertise";
 import design from "./webRoute/design";
 import company from "./webRoute/company";
+import client from "./webRoute/client";
+
 
 
 const routes = [
@@ -38,9 +41,17 @@ const routes = [
                 component: Index
             },
             {
-                path: 'register',
+                path: 'register-partiner',
                 name: 'registerPartiner',
                 component: registerPartiner,
+                meta: {
+                    middleware: [guest]
+                }
+            },
+            {
+                path: 'register',
+                name: 'registerClient',
+                component: registerClient,
                 meta: {
                     middleware: [guest]
                 }
@@ -92,6 +103,8 @@ const routes = [
                     ...company
                     ,
                     ...advertise
+                    ,
+                    ...client
                 ]
             },
         ]

@@ -62,7 +62,7 @@ class AdvertiseController extends Controller
     {
         try {
 
-            $advertise = User::with([''])->find($id);
+            $advertise = User::find($id);
 
             return $this->sendResponse(['advertise'=> $advertise],'Data exited successfully');
 

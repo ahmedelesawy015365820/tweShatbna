@@ -185,7 +185,7 @@
 
                                             <div class="row justify-content-between">
                                                 <button type="button" @click="step1FuncBack1" class="btn back">السابق</button>
-                                                <button type="submit" v-if="!valueComplement" class="btn next">ارسال</button>
+                                                <button type="submit" name="button-1" v-if="!valueComplement" class="btn next">ارسال</button>
                                                 <button type="button" v-else @click="step2Func" class="btn next">التالي</button>
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@
 
                                                 <div class="row justify-content-between">
                                                     <button type="button" @click="step1FuncBack2" class="btn back">السابق</button>
-                                                    <button type="submit"  class="btn next">ارسال</button>
+                                                    <button type="submit" name="button-2" v-if="valueComplement"  class="btn next">ارسال</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -466,7 +466,7 @@ export default {
         },
         step3Resault (){
             if(this.person.phone){
-                this.v$.bank.$validate();
+                this.v$.person.$validate();
 
                 let item = document.getElementById('phoneClient').innerHTML;
 
@@ -478,7 +478,7 @@ export default {
                     this.validatePhone = false;
                 }
 
-                if(!this.v$.bank.$error && this.validatePhone){
+                if(!this.v$.person.$error && this.validatePhone){
                     Swal.fire({
                         title: 'هل انت متاكد من البيانات ؟',
                         icon: 'info',
@@ -506,7 +506,6 @@ export default {
                             formData.append('state',this.person.state);
                             formData.append('code',this.person.code);
 
-
                             webApi.post(`/v1/web/clientData`,formData)
                                 .then((res) => {
                                     Swal.fire(
@@ -520,26 +519,32 @@ export default {
                                     },1000);
                                 })
                                 .catch((err) => {
-                                    // this.step = 1;
-                                    // this.button = false;
-                                    // Swal.fire({
-                                    //     icon: 'error',
-                                    //     title: 'يوجد خطا في الصور...',
-                                    //     text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !',
-                                    // });
 
-                                    // Swal.fire({
-                                    //     icon: 'error',
-                                    //     title: 'يوجد خطا في النظام...',
-                                    //     text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
-                                    // });
+                                    if(err.response.data.errors['files.0'] || err.response.data.errors['files.1'] || err.response.data.errors['files.2']  ){
+                                        this.step = 1;
+                                        this.button = false;
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'يوجد خطا في الصور...',
+                                            text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !',
+                                        });
 
-                                    console.log(err.response);
-
-
+                                    }else if(err.response.data.errors.phone){
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'يوجد خطا في رقم التليفون...',
+                                            text: 'رقم التليفون مستخدم من  قبل.',
+                                        });
+                                    }else{
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'يوجد خطا في النظام...',
+                                            text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
+                                        });
+                                    }
                                 })
                                 .finally(() => {
-                                this.loading = false;
+                                    this.loading = false;
                                 });
 
                         }
@@ -547,9 +552,10 @@ export default {
                     });
                 }
             }else {
-                this.v$.person.$validate();
 
-                if(!this.v$.person.$error){
+                this.v$.bank.$validate();
+
+                if(!this.v$.bank.$error){
                     Swal.fire({
                         title: 'هل انت متاكد من البيانات ؟',
                         icon: 'info',
@@ -562,22 +568,22 @@ export default {
 
                         if (result.isConfirmed) {
 
-                            let formData = new FormData();
+                            let formData2 = new FormData();
                             this.loading = true;
 
-                            formData.append('name',this.bank.name);
-                            formData.append('address',this.bank.address);
-                            formData.append('iban',this.bank.iban);
-                            formData.append('swift',this.bank.swift);
-                            formData.append('files[0]',this.bank.file1);
-                            formData.append('files[1]',this.bank.file2);
-                            formData.append('files[2]',this.bank.file3);
-                            formData.append('phone',this.person.phone);
-                            formData.append('country',this.person.country);
-                            formData.append('state',this.person.state);
+                            formData2.append('name',this.bank.name);
+                            formData2.append('address',this.bank.address);
+                            formData2.append('iban',this.bank.iban);
+                            formData2.append('swift',this.bank.swift);
+                            formData2.append('files[0]',this.bank.file1);
+                            formData2.append('files[1]',this.bank.file2);
+                            formData2.append('files[2]',this.bank.file3);
+                            formData2.append('phone',this.person.phone);
+                            formData2.append('country',this.person.country);
+                            formData2.append('state',this.person.state);
+                            formData2.append('code',this.person.code);
 
-
-                            webApi.post(`/v1/web/clientData`,formData)
+                            webApi.post(`/v1/web/clientData`,formData2)
                                 .then((res) => {
                                     Swal.fire(
                                         'تم الاضافه بنجاح',
@@ -598,16 +604,9 @@ export default {
                                         text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !',
                                     });
 
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'يوجد خطا في النظام...',
-                                        text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
-                                    });
-
-
                                 }).finally(() => {
-                                this.loading = false;
-                            });
+                                    this.loading = false;
+                                });
 
                         }
 
@@ -622,7 +621,7 @@ export default {
         if(!send){
             return next();
         }else{
-            return next({name:'dashboardDesign',params:{lang:localStorage.getItem('langWeb') || 'ar'}});
+            return next({name:'dashboardClient',params:{lang:localStorage.getItem('langWeb') || 'ar'}});
         }
     }
 }

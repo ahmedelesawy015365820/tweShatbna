@@ -136,6 +136,11 @@ class User extends Authenticatable implements JWTSubject ,MustVerifyEmail
         return $this->hasOne(Designer::class);
     }
 
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
     //end raletions
 
 

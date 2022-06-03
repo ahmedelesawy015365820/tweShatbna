@@ -97,6 +97,11 @@ use Illuminate\Support\Facades\Route;
              // start advertise
              Route::resource('trustAdvertise','AdvertiseController')->except(['destroy']);
 
+             // start client
+             Route::resource('trustClient','ClientController')->except(['destroy']);
+             Route::post('trustClient/status','ClientController@status');
+             Route::post('trustClient/trust','ClientController@trust');
+
          });
 
          // start web

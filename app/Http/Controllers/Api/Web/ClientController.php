@@ -17,6 +17,7 @@ class ClientController extends Controller
 
     public function clientOne(Request  $request)
     {
+
         DB::beginTransaction();
         try {
 
@@ -29,8 +30,8 @@ class ClientController extends Controller
                 'files' => 'required',
                 'files.*' => 'file|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100px,min_height=100,max_width=1000,max_height=1000',
                 'phone' => 'nullable|unique:users,phone',
-                'country' => 'nullable|exists:countries,id',
-                'state' => 'nullable|exists:states,id',
+                'country' => 'nullable',
+                'state' => 'nullable',
                 'code' => 'nullable',
             ]);
 

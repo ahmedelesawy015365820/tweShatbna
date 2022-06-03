@@ -4,10 +4,10 @@ import packages from './adminRoute/package';
 import salePackage from './adminRoute/salePackage';
 import trustCompany from './adminRoute/trustCompany';
 import trustAdvertise from './adminRoute/trustAdvertise';
+import trustClient from './adminRoute/trustClient';
 import trustDesign from './adminRoute/trustDesign';
 import schedule from './adminRoute/schedule';
 import Page404 from '../view/admin/Page404.vue';
-import i18n from '../lang/admin';
 import lang from  '../middleware/admin/lang';
 import middlewarePipeline from "./middlewarePipeline";
 import store from "../store/admin";
@@ -89,7 +89,8 @@ const routes = [
                     ...schedule,
                     ...trustCompany,
                     ...trustDesign,
-                    ...trustAdvertise
+                    ...trustAdvertise,
+                    ...trustClient
                 ]
             },
         ]

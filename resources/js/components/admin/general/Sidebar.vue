@@ -26,6 +26,9 @@
                     <li :class="[$route.name == 'indexAdvertise'? 'active': '']">
                         <router-link :to="{name:'indexAdvertise',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Trust Advertise</span></router-link>
                     </li>
+                    <li :class="[$route.name == 'indexClient'? 'active': '']">
+                        <router-link :to="{name:'indexClient',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Trust Client</span></router-link>
+                    </li>
                 </ul>
             </div>
         </div>

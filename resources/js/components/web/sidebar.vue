@@ -32,6 +32,9 @@
                     <p  class="mb-0 editProfile" v-if="parseInt(partner.trust) && roles.includes('company') && !user.email_verified_at">
                         <router-link  :to="{name:'profileCompany',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>
                     </p>
+                    <p  class="mb-0 editProfile" v-if="parseInt(partner.trust) && roles.includes('client') && !user.email_verified_at">
+                        <router-link  :to="{name:'profileClient',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>
+                    </p>
                 </div>
             </div>
             <div class="settings-menu">

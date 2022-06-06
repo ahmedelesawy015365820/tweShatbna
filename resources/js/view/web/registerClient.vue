@@ -98,10 +98,11 @@
                                                             <img v-if="this.$i18n.locale == 'ar'" :src="'/web/img/country/'+ count.media.file_name">
                                                         </span>
                                                     </div>
-                                                    <div v-if="v$.phone.$error || errors.phone">
+                                                    <div v-if="v$.phone.$error || errors.phone || !validPhone">
                                                         <span class="text-danger" v-if="v$.phone.required.$invalid">phone is required.<br /> </span>
                                                         <span class="text-danger" v-if="v$.phone.maxLength.$invalid">phone is must have at most {{ v$.phone.maxLength.$params.max }} numbers.<br/> </span>
                                                         <span class="text-danger" v-if="v$.phone.integer.$invalid">must be number.<br /> </span>
+                                                        <span class="text-danger" v-if="!validPhone">phone is not valid.<br /> </span>
                                                         <span class="text-danger" v-if="errors.phone">{{errors.phone[0]}}</span>
                                                     </div>
                                                 </div>
@@ -154,7 +155,7 @@
 </template>
 
 <script>
-import {toRefs, reactive, onMounted, ref, computed, inject} from 'vue';
+import {toRefs, reactive, onMounted, ref, computed, inject, watch} from 'vue';
 import { useStore } from 'vuex';
 import {alphaNum, email, integer, maxLength, minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
@@ -179,6 +180,7 @@ export default {
         let conutryState =  () => {
 
             foucsCountry.value = countries._value.filter(country => country.id == client.dataClient.country);
+            client.dataClient.code = foucsCountry.value[0].code;
             store.dispatch('auth/stateRegister',client.dataClient.country);
         };
 
@@ -198,6 +200,18 @@ export default {
         });
 
         const mustBeCool = (value) => value ;
+
+        const  validPhone = ref(true);
+
+        watch(() => client.dataClient.phone, (currentValue, oldValue) => {
+            var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
+
+            if (re.test(client.dataClient.code+currentValue)) {
+                validPhone.value = true;
+            }else{
+                validPhone.value = false;
+            }
+        });
 
         const rules = computed(() => {
             return {
@@ -252,21 +266,23 @@ export default {
             }
         });
 
-        return {loading,v$,...toRefs(client),countries,conutryState,states,foucsCountry,errors};
+        return {validPhone,loading,v$,...toRefs(client),countries,conutryState,states,foucsCountry,errors};
 
     },
     methods:{
         clientsubmit (){
             this.v$.$validate();
 
-            if(!this.v$.$error && this.dataClient.agree){
-
-                let item = document.querySelector('.codeClient').innerHTML;
-
-                this.dataClient.code = item ;
+            if(!this.v$.$error && this.validPhone && this.dataClient.phone ){
 
                 this.$store.dispatch('auth/clientRegister', this.dataClient);
 
+            }else {
+                var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
+
+                if (!re.test(this.dataClient.code+this.dataClient.phone)) {
+                    this.validPhone = false;
+                }
             }
         }
     }

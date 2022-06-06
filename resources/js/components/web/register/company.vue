@@ -97,10 +97,11 @@
                         <img v-if="this.$i18n.locale == 'ar'" :src="'/web/img/country/'+ count.media.file_name">
                 </span>
             </div>
-            <div v-if="v$.phone.$error || errors.phone">
+            <div v-if="v$.phone.$error || errors.phone || !validPhone">
                 <span class="text-danger" v-if="v$.phone.required.$invalid">phone is required.<br /> </span>
                 <span class="text-danger" v-if="v$.phone.maxLength.$invalid">phone is must have at most {{ v$.phone.maxLength.$params.max }} numbers.<br/> </span>
                 <span class="text-danger" v-if="v$.phone.integer.$invalid">must be number.<br /> </span>
+                <span class="text-danger" v-if="!validPhone">phone is not valid.<br /> </span>
                 <span class="text-danger" v-if="errors.phone">phone already exists</span>
             </div>
         </div>
@@ -179,6 +180,7 @@ export default {
         let conutryState =  () => {
 
             foucsCountry.value = countries._value.filter(country => country.id == company.dataCompany.country);
+            company.dataCompany.code = foucsCountry.value[0].code;
             store.dispatch('auth/stateRegister',company.dataCompany.country);
         };
 
@@ -208,10 +210,10 @@ export default {
 
         const  validPhone = ref(true);
 
-        watch(() => design.dataDesign.phone, (currentValue, oldValue) => {
+        watch(() => company.dataCompany.phone, (currentValue, oldValue) => {
             var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
 
-            if (re.test(design.dataDesign.code+currentValue)) {
+            if (re.test(company.dataCompany.code+currentValue)) {
                 validPhone.value = true;
             }else{
                 validPhone.value = false;

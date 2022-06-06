@@ -29,6 +29,12 @@
                     <li :class="[$route.name == 'indexClient'? 'active': '']">
                         <router-link :to="{name:'indexClient',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Trust Client</span></router-link>
                     </li>
+                    <li :class="[$route.name == 'indexNewLetter'? 'active': '']">
+                        <router-link :to="{name:'indexNewLetter',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>News Letter</span></router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexSupport'? 'active': '']">
+                        <router-link :to="{name:'indexSupport',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Support</span></router-link>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -46,6 +46,11 @@ use Illuminate\Support\Facades\Route;
          Route::post('forgot-password', 'AuthController@forgotPassword');
          Route::post('reset-password', 'AuthController@reset');
 
+         // start newLetter
+         Route::post('newLetter','NewsLetterController@newsLetter');
+         Route::post('support','NewsLetterController@support');
+
+
      });
 
 
@@ -101,6 +106,12 @@ use Illuminate\Support\Facades\Route;
              Route::resource('trustClient','ClientController')->except(['destroy']);
              Route::post('trustClient/status','ClientController@status');
              Route::post('trustClient/trust','ClientController@trust');
+
+             // start New Letter
+             Route::resource('newLetter','NewsLetterController')->except('show');
+
+             // start New Letter
+             Route::resource('support','SupportController')->except(['create','update','edit','store']);
 
          });
 

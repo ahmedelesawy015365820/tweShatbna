@@ -92,10 +92,11 @@
                         <img v-if="this.$i18n.locale == 'ar'" :src="'/web/img/country/'+ count.media.file_name">
                     </span>
                 </div>
-                <div v-if="v$.phone.$error || errors.phone">
+                <div v-if="v$.phone.$error || errors.phone || !validPhone">
                     <span class="text-danger" v-if="v$.phone.required.$invalid">phone is required.<br /> </span>
                     <span class="text-danger" v-if="v$.phone.maxLength.$invalid">phone is must have at most {{ v$.phone.maxLength.$params.max }} numbers.<br/> </span>
                     <span class="text-danger" v-if="v$.phone.integer.$invalid">must be number.<br /> </span>
+                    <span class="text-danger" v-if="!validPhone">phone is not valid.<br /> </span>
                     <span class="text-danger" v-if="errors.phone">{{errors.phone[0]}}</span>
                 </div>
             </div>
@@ -149,11 +150,13 @@
 
         </div>
 
-
         <div class="dont-have">
             <label class="custom_check">
                 <input type="checkbox" v-model="dataDesign.agree">
-                <span class="checkmark"></span> {{$t('register.agree')}} <router-link to="/privacy-policy"> {{$t('register.Privacy')}} </router-link> {{$t('register.and')}} <router-link to="/privacy-policy"> {{$t('register.cookie')}} </router-link>.
+                <span class="checkmark"></span> {{$t('register.agree')}} <router-link to="/privacy-policy"> {{$t('register.Privacy')}} </router-link>
+                <div v-if="v$.agree.$error">
+                    <span class="text-danger" v-if="v$.agree.mustBeCool.$invalid">You must agree to the terms and conditions.<br /> </span>
+                </div>
             </label>
         </div>
 
@@ -170,7 +173,7 @@
 </template>
 
 <script>
-import {reactive, inject, toRefs, computed, ref} from "vue";
+import {reactive, inject, toRefs, computed, ref,watch} from "vue";
 import { useStore } from 'vuex';
 import { maxLength, minLength, required,email,sameAs,alphaNum,integer} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
@@ -190,6 +193,7 @@ export default {
         let conutryState =  () => {
 
             foucsCountry.value = countries._value.filter(country => country.id == design.dataDesign.country);
+            design.dataDesign.code = foucsCountry.value[0].code;
             store.dispatch('auth/stateRegister',design.dataDesign.country);
         };
 
@@ -213,6 +217,20 @@ export default {
                 agree: false
             }
         });
+
+        const  validPhone = ref(true);
+
+        watch(() => design.dataDesign.phone, (currentValue, oldValue) => {
+            var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
+
+            if (re.test(design.dataDesign.code+currentValue)) {
+                validPhone.value = true;
+            }else{
+                validPhone.value = false;
+            }
+        });
+
+        const mustBeCool = (value) => value ;
 
         const rules = computed(() => {
             return {
@@ -252,6 +270,9 @@ export default {
                 },
                 gender:{
                     required
+                },
+                agree:{
+                    mustBeCool
                 }
             }
         });
@@ -259,20 +280,22 @@ export default {
         const v$ = useVuelidate(rules,design.dataDesign);
 
 
-        return {v$,...toRefs(design),countries,conutryState,states,foucsCountry,errors}
+        return {v$,validPhone,...toRefs(design),countries,conutryState,states,foucsCountry,errors}
     },
     methods: {
         Designsubmit(){
             this.v$.$validate();
 
-            if(!this.v$.$error && this.dataDesign.agree){
-
-                let item = document.querySelector('.codeCountry').innerHTML;
-
-                this.dataDesign.code = item;
+            if(!this.v$.$error && this.validPhone && this.dataDesign.phone){
 
                 this.$store.dispatch('auth/DesignRegister', this.dataDesign);
 
+            }else {
+                var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
+
+                if (!re.test(this.dataDesign.code+this.dataDesign.phone)) {
+                    this.validPhone = false;
+                }
             }
 
         }

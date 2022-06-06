@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Shatbna</title>
+        <title>Shatabna</title>
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="{{asset('web/img/favicon.png')}}" type="image/x-icon">
+        <link rel="icon" href="{{asset('web/img/icon/favicon.ico')}}" type="image/x-icon">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{asset('web/css/bootstrap.min.css')}}">

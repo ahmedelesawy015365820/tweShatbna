@@ -111,7 +111,10 @@
                                             <div class="dont-have">
                                                 <label class="custom_check">
                                                     <input type="checkbox" v-model="dataClient.agree">
-                                                    <span class="checkmark"></span> {{$t('register.agree')}} <router-link to="/privacy-policy"> {{$t('register.Privacy')}} </router-link> {{$t('register.and')}} <router-link to="/privacy-policy"> {{$t('register.cookie')}} </router-link>.
+                                                    <span class="checkmark"></span> {{$t('register.agree')}} <router-link to="/privacy-policy"> {{$t('register.Privacy')}} </router-link>
+                                                    <div v-if="v$.agree.$error">
+                                                        <span class="text-danger" v-if="v$.agree.mustBeCool.$invalid">You must agree to the terms and conditions.<br /> </span>
+                                                    </div>
                                                 </label>
                                             </div>
 
@@ -194,6 +197,8 @@ export default {
             }
         });
 
+        const mustBeCool = (value) => value ;
+
         const rules = computed(() => {
             return {
                 name: {
@@ -227,6 +232,9 @@ export default {
                 state:{
                     required
                 },
+                agree: {
+                mustBeCool
+            }
             }
         });
 

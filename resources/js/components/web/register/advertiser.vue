@@ -104,7 +104,10 @@
         <div class="dont-have">
             <label class="custom_check">
                 <input type="checkbox" v-model="dataAdvertiser.agree">
-                <span class="checkmark"></span> {{$t('register.agree')}} <router-link to="/privacy-policy"> {{$t('register.Privacy')}} </router-link> {{$t('register.and')}} <router-link to="/privacy-policy"> {{$t('register.cookie')}} </router-link>.
+                <span class="checkmark"></span> {{$t('register.agree')}} <router-link to="/privacy-policy"> {{$t('register.Privacy')}} </router-link>
+                <div v-if="v$.agree.$error">
+                    <span class="text-danger" v-if="v$.agree.mustBeCool.$invalid">You must agree to the terms and conditions.<br /> </span>
+                </div>
             </label>
         </div>
 
@@ -121,7 +124,7 @@
 </template>
 
 <script>
-import {computed, reactive, toRefs,inject,ref} from "vue";
+import {computed, reactive, toRefs, inject, ref, watch} from "vue";
 import { maxLength, minLength, required,email,sameAs,alphaNum,integer} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import {useStore} from 'vuex';
@@ -164,6 +167,20 @@ export default {
             }
         });
 
+        const mustBeCool = (value) => value ;
+
+        const  validPhone = ref(true);
+
+        watch(() => design.dataDesign.phone, (currentValue, oldValue) => {
+            var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
+
+            if (re.test(design.dataDesign.code+currentValue)) {
+                validPhone.value = true;
+            }else{
+                validPhone.value = false;
+            }
+        });
+
         const rules = computed(() => {
             return {
                 name: {
@@ -201,25 +218,30 @@ export default {
                 state:{
                     required
                 },
+                agree: {
+                    mustBeCool
+                }
             }
         });
 
         const v$ = useVuelidate(rules,advertiser.dataAdvertiser);
 
-        return {v$,...toRefs(advertiser),countries,conutryState,states,foucsCountry,errors};
+        return {v$,validPhone,...toRefs(advertiser),countries,conutryState,states,foucsCountry,errors};
     },
     methods: {
          Advertisersubmit (){
              this.v$.$validate();
 
-            if(!this.v$.$error && this.dataAdvertiser.agree){
-
-                let item = document.querySelector('.codeCountry').innerHTML;
-
-                this.dataAdvertiser.code = item ;
+            if(!this.v$.$error && this.validPhone && this.dataAdvertiser.phone){
 
                 this.$store.dispatch('auth/advertiserRegister', this.dataAdvertiser);
 
+            }else {
+                var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
+
+                if (!re.test(this.dataAdvertiser.code+this.dataAdvertiser.phone)) {
+                    this.validPhone = false;
+                }
             }
         }
     }

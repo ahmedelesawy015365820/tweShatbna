@@ -2,7 +2,9 @@ import {createRouter, createWebHistory} from 'vue-router';
 import Index from '../view/admin/Dashboard.vue';
 import packages from './adminRoute/package';
 import salePackage from './adminRoute/salePackage';
+import newsLetters from './adminRoute/newLetter';
 import trustCompany from './adminRoute/trustCompany';
+import support from './adminRoute/support';
 import trustAdvertise from './adminRoute/trustAdvertise';
 import trustClient from './adminRoute/trustClient';
 import trustDesign from './adminRoute/trustDesign';
@@ -90,7 +92,9 @@ const routes = [
                     ...trustCompany,
                     ...trustDesign,
                     ...trustAdvertise,
-                    ...trustClient
+                    ...trustClient,
+                    ...newsLetters,
+                    ...support
                 ]
             },
         ]

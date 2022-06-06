@@ -1,6 +1,8 @@
 <template>
     <div class="page-wrapper">
 
+        <loader v-if="loading" />
+
         <div class="position-fixed overlay" v-if="show" @click.self="show = !show">
             <div class="embed-responsive embed-responsive-21by9">
                 <iframe
@@ -70,14 +72,24 @@
                             <h1>{{$t('partner.banner-h1')}}</h1>
                             <div class="text">{{$t('partner.banner-p1')}}</div>
                             <div class="newsletter-form">
-                                <form>
+                                <form @submit.prevent="newsLetter">
                                     <div class="form-group">
-                                        <input type="email" :class="[this.$i18n.locale == 'ar'?'email-ar':'']" name="email" value="" :placeholder="$t('partner.banner-email')" required>
+                                        <input
+                                            type="email"
+                                            :class="[this.$i18n.locale == 'ar'?'email-ar':'']"
+                                            :placeholder="$t('partner.banner-email')"
+                                            required
+                                            v-model.trim="v$.newsLatter.email.$model"
+                                        >
                                         <button
                                                 type="submit"
                                                 :class="['theme-btn btn-style-two', this.$i18n.locale == 'ar'? 'btn-ar' : '']">
                                             <span class="txt">{{$t('partner.free')}}</span>
                                         </button>
+                                        <div v-if="v$.newsLatter.email.$error">
+                                            <span class="text-danger" v-if="v$.newsLatter.email.required.$invalid">email is required.<br /> </span>
+                                            <span class="text-danger" v-if="v$.newsLatter.email.$invalid">must be a valid email address. </span>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -315,8 +327,8 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <div class="image titlt" data-tilt data-tilt-max="8">
-                                        <a href="/web/page/images/resource/app-1.png" class="app-1 lightbox-image">
-                                            <img src="/web/img/dash-board.jfif" alt="" /></a>
+                                        <a href="/web/img/dashboard-2.jfif" class="app-1 lightbox-image">
+                                            <img src="/web/img/dashboard-2.jfif" alt="" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -363,10 +375,9 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <div class="image titlt" data-tilt data-tilt-max="8">
-                                        <a href="/web/page/images/resource/app-2.png" class="app-2 lightbox-image"><img src="/web/page/images/resource/app-2.png" alt="" /></a>
-                                    </div>
-                                    <div class="small-image titlt wow slideInRight" data-wow-delay="300ms" data-wow-duration="1500ms" data-tilt data-tilt-max="15">
-                                        <a href="/web/page/images/resource/app-3.png" class="app-2 lightbox-image"><img  src="/web/img/dash-board.jfif" alt="" /></a>
+                                        <a href="/web/img/dash-board.jfif" class="app-2 lightbox-image">
+                                            <img  src="/web/img/dash-board.jfif" alt="" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -519,14 +530,14 @@
                                 <li>
                                     <span :class="['icon','flaticon-telephone',this.$i18n.locale == 'ar'?'icon-ar':'']"></span>
                                     <strong>{{$t('partner.call')}}</strong>
-                                    <a href="tel:469-537-2410">469-537-2410</a><br>
-                                    <a href="tel:469-537-2410">469-537-2410</a>
+                                    <a href="tel:01102500000">01102500000</a><br>
+                                    <a href="tel:01004007542">01004007542</a>
                                 </li>
                                 <li>
                                     <span :class="['icon','flaticon-invite',this.$i18n.locale == 'ar'?'icon-ar':'']"></span>
                                     <strong>{{$t('partner.mail')}}</strong>
-                                    <a class="mailto:noreply@envato.com" href="#">noreply@envato.com</a><br>
-                                    <a class="mailto:noreply@envato.com" href="#">noreply@topapp.com</a>
+                                    <a  href="mailto:info@shatabna.net">info@shatabna.net</a><br>
+                                    <a  href="mailto:Sales@shatabna.net">Sales@shatabna.net</a>
                                 </li>
                             </ul>
                         </div>
@@ -537,38 +548,82 @@
                         <div class="inner-column">
                             <div class="sec-title style-three">
                                 <div :class="['title',this.$i18n.locale == 'ar'?'title-ar':'']"><span>{{$t('partner.co')}}</span>{{$t('partner.ntact')}}</div>
-                                <h2>{{$t('partner.from-h')}} <br> {{$t('partner.during')}}
-                                    <span>{{$t('partner.emer')}}</span>{{$t('partner.g')}}<span>{{$t('partner.enc')}}</span>{{$t('partner.y')}}
-                                </h2>
+                                <h2>{{$t('partner.from-h')}}</h2>
                             </div>
 
                             <!-- Default Form -->
                             <div class="default-form">
-                                <form method="post"  id="contact-form">
+                                <form @submit.prevent="support"  id="contact-form">
                                     <div class="row clearfix">
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="username" :placeholder="$t('partner.first')" required>
+                                            <input
+                                                type="text"
+                                                :placeholder="$t('partner.first')"
+
+                                                v-model.trim="v$.support.first.$model"
+                                            >
+                                            <div v-if="v$.support.first.$error">
+                                                <span class="text-danger" v-if="v$.support.first.required.$invalid">first name is required.<br /> </span>
+                                                <span class="text-danger" v-if="v$.support.first.minLength.$invalid">first name is must have at least {{ v$.support.first.minLength.$params.min }} letters. <br /></span>
+                                                <span class="text-danger" v-if="v$.support.first.maxLength.$invalid">first name is must have at most {{ v$.support.first.maxLength.$params.max }} letters. <br /></span>
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="lastname" :placeholder="$t('partner.last')" required>
+                                            <input
+                                                type="text"
+                                                :placeholder="$t('partner.last')"
+
+                                                v-model.trim="v$.support.last.$model"
+                                            >
+                                            <div v-if="v$.support.last.$error">
+                                                <span class="text-danger" v-if="v$.support.last.required.$invalid">last name is required.<br /> </span>
+                                                <span class="text-danger" v-if="v$.support.last.minLength.$invalid">last name is must have at least {{ v$.support.last.minLength.$params.min }} letters. <br /></span>
+                                                <span class="text-danger" v-if="v$.support.last.maxLength.$invalid">last name is must have at most {{ v$.support.last.maxLength.$params.max }} letters. <br /></span>
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="email" name="email" :placeholder="$t('partner.mail-contact')" required>
+                                            <input
+                                                type="email"
+                                                :placeholder="$t('partner.mail-contact')"
+
+                                                v-model.trim="v$.support.email.$model"
+                                            >
+                                            <div v-if="v$.support.email.$error">
+                                                <span class="text-danger" v-if="v$.support.email.required.$invalid">email is required.<br /> </span>
+                                                <span class="text-danger" v-if="v$.support.email.$invalid">must be a valid email address. </span>
+                                                <span class="text-danger" v-if="v$.support.email.maxLength.$invalid">email is must have at most {{ v$.support.email.maxLength.$params.max }} letters. <br /></span>
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <input type="text" name="phone" :placeholder="$t('partner.phone')" required>
+                                            <input
+                                                type="text"
+                                                :placeholder="$t('partner.phone')"
+
+                                                v-model.trim="v$.support.phone.$model"
+                                            >
+                                            <div v-if="v$.support.phone.$error">
+                                                <span class="text-danger" v-if="v$.support.phone.required.$invalid">phone is required.<br /> </span>
+                                                <span class="text-danger" v-if="v$.support.phone.maxLength.$invalid">phone is must have at most {{ v$.support.phone.maxLength.$params.max }} numbers.<br/> </span>
+                                                <span class="text-danger" v-if="v$.support.phone.integer.$invalid">must be number.<br /> </span>
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <textarea name="message" :placeholder="$t('partner.message')"></textarea>
+                                            <textarea
+                                                :placeholder="$t('partner.message')"
+                                                v-model.trim="v$.support.description.$model"
+                                            ></textarea>
+                                            <div v-if="v$.support.description.$error">
+                                                <span class="text-danger" v-if="v$.support.description.required.$invalid">message is required.<br /> </span>
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <button class="theme-btn submit-btn" type="submit" name="submit-form"><span class="txt">
+                                            <button class="theme-btn submit-btn" type="submit"><span class="txt">
                                                 <i class="fa fa-arrow-circle-right"></i> &nbsp; {{ $t('partner.send') }}</span>
                                             </button>
                                         </div>
@@ -591,7 +646,10 @@
 
 <script>
 import lang from "../../components/web/general/LangWeb";
-import {onMounted} from 'vue'
+import {computed, onMounted, reactive, ref, toRefs} from 'vue'
+import {alphaNum, email, integer, maxLength, minLength, required, sameAs} from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
+import webApi from "../../api/webAxios";
 
 export default {
     components:{
@@ -609,21 +667,24 @@ export default {
         document.querySelector("html").classList.remove("menu-opened");
     },
     setup(){
+
+        const loading = ref(false);
+
         let counter = (num,id,time = 1000) => {
 
             let number = 0;
 
             if(num > 10000 && num < 20000 ){
-                number = num - 1500;
+                number = num - 1000;
             }
             else if(num > 20000 && num < 30000){
-                number = num - 2000;
+                number = num - 1000;
             }
             else if(num > 50000 && num < 100000){
-                number =  num - 40000;
+                number =  num - 1000;
             }
             else if(num > 100000){
-                number = 90000 - 3500;
+                number = num - 1000;
             }
 
             let count = setInterval(() =>{
@@ -640,11 +701,131 @@ export default {
 
         };
 
+        let data =  reactive({
+            newsLatter:{
+                email:''
+            },
+            support:{
+                first: '',
+                last: '',
+                phone: '',
+                email:'',
+                description:''
+            }
+        });
+
+        const rules = computed(() => {
+            return {
+                newsLatter: {
+                    email: {
+                        required,
+                        email
+                    }
+                },
+                support:{
+                    first: {
+                        minLength: minLength(3),
+                        maxLength:maxLength(40),
+                        required,
+                    },
+                    last: {
+                        minLength: minLength(3),
+                        maxLength:maxLength(40),
+                        required,
+                    },
+                    email: {
+                        required,
+                        email,
+                        maxLength:maxLength(80),
+                    },
+                    phone:{
+                        required,
+                        maxLength:maxLength(25),
+                        integer
+                    },
+                    description:{
+                        required,
+                    }
+                }
+            }
+        });
+
+        const v$ = useVuelidate(rules,data);
+
         onMounted(() => {
             counter(20600,1,0);
             counter(67000,2,0);
             counter(105340,3,0);
         });
+
+        return {...toRefs(data),v$,loading};
+    },
+    methods: {
+        newsLetter(){
+
+            this.v$.newsLatter.$validate();
+
+            if(!this.v$.newsLatter.$error){
+                this.loading = true;
+
+                webApi.post(`/v1/web/newLetter`,this.newsLatter)
+                    .then((res) => {
+                        Swal.fire(
+                            'تم الاضافه بنجاح',
+                            'انت الان مشترك في القائمه البريديه .',
+                            'نجاح'
+                        );
+
+                        this.newsLatter.email = '';
+                        this.$nextTick(() => { this.v$.$reset() });
+                    })
+                    .catch((err) => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'يوجد خطا ...',
+                            text: 'يوجد خطاء في النظام يرجي اعاده الماوله مره اخري  !',
+                        });
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+            }
+        },
+        support(){
+            this.v$.support.$validate();
+
+            if(!this.v$.support.$error) {
+
+                this.loading = true;
+
+                webApi.post(`/v1/web/support`, this.support)
+                    .then((res) => {
+                        Swal.fire(
+                            'تم الاضافه بنجاح',
+                            'تم ارسال الرساله بنجاح الي الدعم .',
+                            'نجاح'
+                        );
+
+                        this.support.email = '';
+                        this.support.first = '';
+                        this.support.last = '';
+                        this.support.phone = '';
+                        this.support.description = '';
+                        this.$nextTick(() => {this.v$.$reset()});
+                    })
+                    .catch((err) => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'يوجد خطا ...',
+                            text: 'يوجد خطاء في النظام يرجي اعاده الماوله مره اخري  !',
+                        });
+                        console.log(err.response)
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+            }
+        }
     }
 }
 </script>
@@ -722,7 +903,7 @@ export default {
 }
 .banner-section .newsletter-form .form-group button.btn-ar {
     right: unset;
-    left: 55px;
+    left: 75px;
 }
 section .newsletter-form .form-group input[type="email"].email-ar {
     left: 195px;
@@ -748,6 +929,10 @@ section .newsletter-form .form-group input[type="email"].email-ar {
 .banner-section .newsletter-form .form-group button {
     right: 10px;
 }
+
+.banner-section .content-column .text {
+    width: 65%;
+}
 /*end banner*/
 
 /*start register*/
@@ -772,9 +957,6 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     color: #fff;
     font-size: 16px;
     margin: 25px 0 0;
-}
-.register-container.one p {
-    margin-bottom: 5px;
 }
 .register-info p{
     color: #fff;
@@ -838,13 +1020,12 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     padding-bottom: 0;
 }
 
-.swiper-slide img{
-    width: 721px !important;
-}
 .swiper-wrapper {
-    height: 630px;
     width: auto;
+    padding: 30px 0 100px;
 }
+
+
 
 .screenshots-section .sec-title h2 {
     max-width: 532px;
@@ -928,8 +1109,10 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     word-spacing: 1px;
 }
 
-
-
+iframe {
+    width: 100% !important;
+    height: 100% !important;
+}
 
 @media only screen and (min-width: 1140px) {
     .banner-section .carousel-column .inner-column .pager-box .pager.one.one-ar{
@@ -952,7 +1135,10 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     }
     .banner-section .newsletter-form .form-group button.btn-ar {
         right: unset;
-        left: 45px;
+        left: 65px;
+    }
+    .banner-section .content-column .text {
+        width: 75%;
     }
 }
 @media only screen and (max-width: 1115px){
@@ -1074,6 +1260,9 @@ section .newsletter-form .form-group input[type="email"].email-ar {
         max-width: 320px;
         font-size: 24px;
     }
+    .banner-section .content-column .text {
+        width: 85%;
+    }
 }
 
 @media only screen and (max-width: 479px){
@@ -1106,19 +1295,29 @@ section .newsletter-form .form-group input[type="email"].email-ar {
     .banner-section .newsletter-form .form-group button {
         right: 0;
     }
+    .lang {
+        margin: 15px 10px 0 0px;
+    }
+    .btn-style-one-en {
+        padding: 10px 4px 7px;
+        font-size: 11px;
+    }
 }
 
 @media only screen and (max-width: 415px) {
     .btn-style-one{
-        font-size: 11px;
-        padding: 10px 3px 5px;
+        font-size: 13px;
+        padding: 10px 9px 5px;
+    }
+    .btn-style-one-en{
+        font-size: 9px;
+        padding: 10px 6px 5px;
     }
     .log-btn {
         font-size: 11px !important;
     }
-    .btn-style-one-en[data-v-52ade008] {
-        font-size: 7px;
-        padding: 0;
+    .lang.lang-ar {
+        margin: 15px 10px 0 4px;
     }
 }
 

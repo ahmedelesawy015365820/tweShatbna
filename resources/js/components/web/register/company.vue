@@ -137,7 +137,10 @@
     <div class="dont-have">
         <label class="custom_check">
             <input type="checkbox" v-model="dataCompany.agree">
-            <span class="checkmark"></span> {{$t('register.agree')}} <router-link to="/privacy-policy"> {{$t('register.Privacy')}} </router-link> {{$t('register.and')}} <router-link to="/privacy-policy"> {{$t('register.cookie')}} </router-link>.
+            <span class="checkmark"></span> {{$t('register.agree')}} <router-link to="/privacy-policy"> {{$t('register.Privacy')}} </router-link>
+            <div v-if="v$.agree.$error">
+                <span class="text-danger" v-if="v$.agree.mustBeCool.$invalid">You must agree to the terms and conditions.<br /> </span>
+            </div>
         </label>
     </div>
 
@@ -201,6 +204,20 @@ export default {
             }
         });
 
+        const mustBeCool = (value) => value ;
+
+        const  validPhone = ref(true);
+
+        watch(() => design.dataDesign.phone, (currentValue, oldValue) => {
+            var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
+
+            if (re.test(design.dataDesign.code+currentValue)) {
+                validPhone.value = true;
+            }else{
+                validPhone.value = false;
+            }
+        });
+
         const rules = computed(() => {
             return {
                 name: {
@@ -245,13 +262,16 @@ export default {
                 location:{
                     required,
                     url
+                },
+                agree: {
+                    mustBeCool
                 }
             }
         });
 
         const v$ = useVuelidate(rules,company.dataCompany);
 
-        return  {...toRefs(company),v$,countries,conutryState,states,foucsCountry,errors};
+        return  {...toRefs(company),validPhone,v$,countries,conutryState,states,foucsCountry,errors};
 
     },
     computed: {
@@ -263,18 +283,18 @@ export default {
         Companysubmit(){
             this.v$.$validate();
 
-            if(!this.v$.$error && this.dataCompany.agree){
+            if(!this.v$.$error && this.validPhone && this.dataCompany.phone){
 
                 this.$store.commit('auth/editErrors',{});
 
-                let item = document.getElementById('codeCountry').innerHTML;
-
-                this.dataCompany.code = item;
-                // var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
-
-                // if (re.test(this.dataCompany.phone)) {
                 this.$store.dispatch('auth/CompanyRegister',this.dataCompany);
 
+            }else {
+                var re = /^\+(20\d{10}|971\d{8}|966\d{9}|964\d{8}|249\d{9}|218\d{8})$/;
+
+                if (!re.test(this.dataCompany.code+this.dataCompany.phone)) {
+                    this.validPhone = false;
+                }
             }
         }
     }

@@ -22,7 +22,8 @@
 											<span class="drop-detail">
                                                 <span class="border-cutom-en" v-show="this.$i18n.locale != 'ar'"></span>
 												<select class="form-control select" name="storeID">
-													<option value="project.html">{{$t('index.company')}}</option>
+													<option value="project.html" class="option">{{$t('index.company')}}</option>
+                                                    <option value="project.html" class="option">{{$t('index.design')}}</option>
 												</select>
                                                 <span class="border-cutom-ar" v-show="this.$i18n.locale == 'ar'"></span>
 											</span>
@@ -403,7 +404,6 @@
                 </div>
             </div>
         </section>
-         /Projects
 
         <!-- Subscribe -->
         <section class="section subscribe">
@@ -656,16 +656,16 @@ export default {
             let number = 0;
 
             if(num > 10000 && num < 20000 ){
-                number = num - 1500;
+                number = num - 1000;
             }
             else if(num > 20000 && num < 30000){
-                number = num - 2000;
+                number = num - 1000;
             }
             else if(num > 50000 && num < 100000){
-                number =  num - 40000;
+                number =  num - 1000;
             }
             else if(num > 100000){
-                number = 90000 - 3500;
+                number = num - 1000;
             }
 
              let count = setInterval(() =>{
@@ -1120,6 +1120,7 @@ input.form-control{
     }
     .project-content button.share{
         margin: 0 3px 13px;
+        padding: 1px 8px 2px 3px;
     }
 }
 
@@ -1190,6 +1191,9 @@ input.form-control{
     }
     .project-content h4{
         padding: 0 6px;
+    }
+    .custom-row {
+        height: 90vh;
     }
 }
 </style>

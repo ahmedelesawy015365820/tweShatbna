@@ -113,6 +113,15 @@ use Illuminate\Support\Facades\Route;
              // start New Letter
              Route::resource('support','SupportController')->except(['create','update','edit','store']);
 
+             // start country
+             Route::resource('country','CountryController')->except(['show','create']);
+
+             // start country
+             Route::resource('state','StateController')->except(['show']);
+
+             // start country
+             Route::resource('privacy','PrivacyController')->except(['show','create']);
+
          });
 
          // start web

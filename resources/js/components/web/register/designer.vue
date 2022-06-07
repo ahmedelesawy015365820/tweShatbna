@@ -173,7 +173,7 @@
 </template>
 
 <script>
-import {reactive, inject, toRefs, computed, ref,watch} from "vue";
+import {reactive, inject, toRefs, computed, ref,watch,onMounted} from "vue";
 import { useStore } from 'vuex';
 import { maxLength, minLength, required,email,sameAs,alphaNum,integer} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
@@ -278,7 +278,6 @@ export default {
         });
 
         const v$ = useVuelidate(rules,design.dataDesign);
-
 
         return {v$,validPhone,...toRefs(design),countries,conutryState,states,foucsCountry,errors}
     },

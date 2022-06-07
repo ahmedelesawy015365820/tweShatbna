@@ -35,6 +35,15 @@
                     <li :class="[$route.name == 'indexSupport'? 'active': '']">
                         <router-link :to="{name:'indexSupport',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Support</span></router-link>
                     </li>
+                    <li :class="[$route.name == 'indexCountry'? 'active': '']">
+                        <router-link :to="{name:'indexCountry',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Country</span></router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexState'? 'active': '']">
+                        <router-link :to="{name:'indexState',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>State</span></router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexPrivacy'? 'active': '']">
+                        <router-link :to="{name:'indexPrivacy',params: {lang:this.$i18n.locale}}"><i class="fa fa-home" aria-hidden="true"></i> <span>Privacy</span></router-link>
+                    </li>
                 </ul>
             </div>
         </div>

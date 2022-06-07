@@ -4,6 +4,9 @@ import packages from './adminRoute/package';
 import salePackage from './adminRoute/salePackage';
 import newsLetters from './adminRoute/newLetter';
 import trustCompany from './adminRoute/trustCompany';
+import country from './adminRoute/country';
+import state from './adminRoute/state';
+import privacy from './adminRoute/previcy';
 import support from './adminRoute/support';
 import trustAdvertise from './adminRoute/trustAdvertise';
 import trustClient from './adminRoute/trustClient';
@@ -94,7 +97,10 @@ const routes = [
                     ...trustAdvertise,
                     ...trustClient,
                     ...newsLetters,
-                    ...support
+                    ...support,
+                    ...country,
+                    ...privacy,
+                    ...state
                 ]
             },
         ]

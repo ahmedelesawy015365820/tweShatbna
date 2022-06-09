@@ -91,6 +91,8 @@ export default {
             // get country
             getCountry();
 
+            store.commit('auth/editErrors',[]);
+
         });
 
         emitter.on('get_lang_web', () => {

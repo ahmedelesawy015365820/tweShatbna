@@ -222,7 +222,7 @@ const actions = {
 
             })
             .catch((err) => {
-                console.log(err.response.data);
+                commit('editErrors',err.response.data.errors);
             })
             .finally(() => {
             commit('editLoading',false);

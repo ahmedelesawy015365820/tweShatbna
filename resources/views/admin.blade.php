@@ -36,6 +36,9 @@
 		<!-- Datatables CSS -->
 		<link rel="stylesheet" href="{{asset('admin/plugins/datatables/datatables.min.css')}}">
 
+        <!-- Summernote CSS -->
+        <link rel="stylesheet" href="{{asset('admin/plugins/summernote/dist/summernote-lite.css')}}">
+
         {{--font arabic--}}
         <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=hanimation" />
 
@@ -71,14 +74,18 @@
         <script src="{{asset('admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('admin/plugins/datatables/datatables.min.js')}}"></script>
 
+        <!-- Summernote JS -->
+        <script src="{{asset('admin/plugins/summernote/dist/summernote-lite.min.js')}}"></script>
+
         <!-- sweet alert -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script src="{{asset('admin/js/script.js')}}"></script>
 
-        <script src="{{mix('control/js/admin.js')}}"></script>
         <!-- Custom JS -->
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+        <script src="{{mix('control/js/admin.js')}}"></script>
 
     </body>
 </html>

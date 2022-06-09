@@ -41,6 +41,6 @@ if(localStorage.getItem("langAdmin") == 'ar'){
     styleLink.setAttribute('href', 'https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css');
 }else{
     tagHtml.setAttribute('dir', 'ltr');
-    styleLink.setAttribute('href','')
+    styleLink.setAttribute('href','');
 }
 

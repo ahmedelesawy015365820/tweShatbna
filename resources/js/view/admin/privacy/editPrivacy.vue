@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
 
         <div class="content container-fluid">
 
@@ -72,8 +72,7 @@
                                             <div class="col-md-12 mb-3">
                                                 <label>Description En</label>
                                                 <textarea
-                                                    class="form-control"
-                                                    style="height: 200px"
+                                                    class="form-control summernote"
                                                     rows="6"
                                                     v-model.trim="v$.en.description.$model"
                                                     :class="{'is-invalid':v$.en.description.$error,'is-valid':!v$.en.description.$invalid}"
@@ -86,8 +85,7 @@
                                             <div class="col-md-12 mb-3">
                                                 <label>Description Ar</label>
                                                 <textarea
-                                                    class="form-control"
-                                                    style="height: 200px"
+                                                    class="form-control summernote"
                                                     rows="6"
                                                     v-model.trim="v$.ar.description.$model"
                                                     :class="{'is-invalid':v$.ar.description.$error,'is-valid':!v$.ar.description.$invalid}"
@@ -185,8 +183,31 @@ export default {
                 })
         }
 
+        let SummernoteEdit = () => {
+            // Summernote
+
+            $('.summernote').summernote({
+                height: 400,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: false ,
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]			// set focus to editable area after initializing summernote
+            });
+        }
+
         onMounted(() => {
             getPrivacy();
+
+            // Summernote
+            SummernoteEdit();
         });
 
         const v$ = useVuelidate(rules,addPrivacy.data);

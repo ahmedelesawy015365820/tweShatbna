@@ -19,13 +19,6 @@ class State extends Model implements TranslatableContract
 
     protected $hidden = ['translations'];
 
-    // get status (active or inactive)
-
-    public function getStatusAttribute($q)
-    {
-        return $q == 1? 'Active' : "InActive";
-    }
-
     //start raletions
 
     public function country()

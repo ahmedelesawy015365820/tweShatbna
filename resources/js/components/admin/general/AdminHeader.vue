@@ -3,12 +3,12 @@
     <div class="header">
 
         <!-- Logo -->
-        <div class="header-left">
+        <div :class="['header-left',this.$i18n.locale == 'ar'?'header-left-ar':'']">
             <a href="index.html" class="logo">
                 <img src="/web/img/logo.png" class="big" alt="Logo">
             </a>
             <a href="index.html" class="logo logo-small">
-                <img src="/web/img/logo.png" alt="Logo" width="30" height="30">
+                <img src="/web/img/logo.png" :class="[this.$i18n.locale == 'ar'?'img-ar' : '']" alt="Logo" width="30" height="30">
             </a>
             <!-- Sidebar Toggle -->
             <a href="javascript:void(0);" id="toggle_btn">
@@ -25,7 +25,7 @@
         <!-- /Logo -->
 
         <!-- Search -->
-        <div class="top-nav-search">
+        <div :class="['top-nav-search',this.$i18n.locale == 'ar'?'top-nav-search-ar':'']">
             <form>
                 <input type="text" class="form-control" placeholder="Start typing your Search...">
                 <button class="btn" type="submit"><i class="feather-search"></i></button>
@@ -34,7 +34,7 @@
         <!-- /Search -->
 
         <!-- Header Menu -->
-        <ul class="nav user-menu">
+        <ul :class="['nav user-menu',this.$i18n.locale == 'ar'?'user-menu-ar':'']">
 
             <!-- Notifications -->
             <Notification />
@@ -108,7 +108,15 @@ export default {
 
 <style>
 .big {
-    max-height: 80px !important;
+    max-height: 90px !important;
     width: auto;
+}
+.mini-sidebar .header-left .logo img.img-ar{
+    margin-left: 3px;
+    margin-right: -22px;
+}
+
+.header .header-left{
+    background: #ffeec9;
 }
 </style>

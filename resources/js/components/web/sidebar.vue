@@ -121,6 +121,8 @@
 
                     <!--    end advertise    -->
 
+                    <!--    start client    -->
+
                     <div class="mb-4" v-if="roles.includes('client')">
                         <li class="nav-item">
                             <router-link
@@ -143,7 +145,20 @@
                                 <i class="material-icons">person_pin</i> تاكيد الحساب
                             </a>
                         </li>
+                        <li
+                            class="nav-item"
+                            v-if="parseInt(partner.trust)"
+                        >
+                            <router-link
+                                :to="{name:'addProject',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link', $route.name == 'addProject'? 'active': '']"
+                            >
+                                <i class="material-icons">person_add</i> اضافه مشروع
+                            </router-link>
+                        </li>
                     </div>
+
+                    <!--    end client    -->
 
                     <li class="nav-item">
                         <button @click="logout" type="submit"  class="nav-link">

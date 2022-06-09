@@ -89,7 +89,17 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+
+            $country = Country::with('media:mediable_id,file_name')->find($id)->makeVisible('translations');
+
+            return $this->sendResponse(['country' => $country],'Data exited successfully');
+
+        }catch (\Exception $e){
+
+            return $this->sendError('An error occurred in the system');
+
+        }
     }
 
     /**
@@ -101,7 +111,60 @@ class CountryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $country = Country::find($id);
+
+            // Validator request
+            $v = Validator::make($request->all(), [
+                'ar' => ['required', Rule::unique('country_translations','name')->whereNot('country_id',$id)],
+                'en' => ['required', Rule::unique('country_translations','name')->whereNot('country_id',$id)],
+                'code'    => 'required',
+                'status'        => 'present',
+                'file' => 'nullable'.($request->hasFile('file')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=10,min_height=10,max_width=50,max_height=50':''),
+            ]);
+
+            if ($v->fails()) {
+                return $this->sendError('There is an error in the data', $v->errors());
+            }
+
+            $country->update([
+                'ar'=> ['name' => $request->ar],
+                'en' => ['name' => $request->en],
+                'code' => $request->code,
+                'status' => $request->status
+            ]);
+
+            if($request->hasFile('file')){
+
+                if(File::exists('web/img/country/'.$country->media->file_name)){
+                    unlink('web/img/country/'. $country->media->file_name);
+                }
+                $country->media->delete();
+
+                $file_size = $request->file->getSize();
+                $file_type = $request->file->getMimeType();
+                $image = time().'.'. $request->file->getClientOriginalName();
+
+                // picture move
+                $request->file->storeAs('country', $image,'country');
+
+                $country->media()->create([
+                    'file_name' => $image ,
+                    'file_size' => $file_size,
+                    'file_type' => $file_type,
+                    'file_sort' => 1
+                ]);
+            }
+
+            DB::commit();
+            return $this->sendResponse([],'Data exited successfully');
+        }catch (\Exception $e){
+
+            DB::rollBack();
+            return $this->sendError('An error occurred in the system');
+        }
     }
 
     /**
@@ -122,7 +185,7 @@ class CountryController extends Controller
                     if(File::exists('web/img/country/'.$country->media->file_name)){
                         unlink('web/img/country/'. $country->media->file_name);
                     }
-                    $country->media->first()->delete();
+                    $country->media->delete();
 
                     $country->delete();
 

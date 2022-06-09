@@ -1842,6 +1842,10 @@ button.bg-danger:hover {
 	align-items: center;
 	background: #FFF8F7;
 }
+.header .header-left-ar{
+    float: right;
+}
+
 .header .header-left .logo {
 	display: inline-block;
 	line-height: 60px;
@@ -1893,6 +1897,9 @@ button.bg-danger:hover {
 	z-index: 99;
 	display: flex !important;
 	padding-left: 20px;
+}
+.user-menu-ar{
+    float: left;
 }
 .user-menu.nav > li > a {
 	color: #333;
@@ -2615,8 +2622,12 @@ html.menu-opened body {
 
 .top-nav-search {
 	float: left;
-	margin-left: 20px;
+	margin:0 20px;
 }
+.top-nav-search-ar {
+    float: right;
+}
+
 .top-nav-search form {
 	margin-top: 10px;
 	position: relative;
@@ -3238,6 +3249,10 @@ table.table-inbox tbody tr.checked {
 	padding-top: 60px;
 	position: relative;
 	transition: all 0.4s ease;
+}
+.page-wrapper-ar{
+    margin-right: 240px;
+    margin-left: unset;
 }
 .page-wrapper > .content {
 	padding: 1.875rem 1.875rem 0;
@@ -4908,6 +4923,7 @@ table.table-inbox tbody tr.checked {
 		height: auto;
 		max-height: 40px;
 		width: auto;
+        margin-left: -36px;
 	}
 	.mini-sidebar .header .header-left .logo {
 		display: none;

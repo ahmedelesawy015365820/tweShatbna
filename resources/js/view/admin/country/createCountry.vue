@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
 
         <div class="content container-fluid">
 
@@ -34,9 +34,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <div class="alert alert-danger text-center" v-if="errors['en.name']">{{ errors['en.name'][0] }}<br /> </div>
-                                    <div class="alert alert-danger text-center" v-if="errors['ar.name']">{{ errors['ar.name'][0] }}<br /> </div>
-                                    <div class="alert alert-danger text-center" v-if="errors['file']">{{ errors['file'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['en']">{{ errors['en'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['ar']">{{ errors['ar'][0]  }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['file']">{{ errors['file'][0]  }}<br /> </div>
                                     <form @submit.prevent="storeCountry" class="needs-validation">
                                         <div class="form-row row">
                                             <div class="col-md-4 mb-3">
@@ -274,8 +274,6 @@ export default {
                     })
                     .catch((err) => {
                         this.errors = err.response.data.errors;
-
-                        console.log(err.response);
                     })
                     .finally(() => {
                         this.loading = false;

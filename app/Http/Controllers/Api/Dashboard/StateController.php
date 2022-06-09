@@ -111,8 +111,8 @@ class StateController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        DB::beginTransaction();
-//        try {
+        DB::beginTransaction();
+        try {
             $state = State::find($id);
             if($state){
                 // Validator request
@@ -136,11 +136,11 @@ class StateController extends Controller
             }else{
                 return $this->sendError('ID is not exist');
             }
-//        }catch (\Exception $e){
-//
-//            DB::rollBack();
-//            return $this->sendError('An error occurred in the system');
-//        }
+        }catch (\Exception $e){
+
+            DB::rollBack();
+            return $this->sendError('An error occurred in the system');
+        }
     }
 
     /**

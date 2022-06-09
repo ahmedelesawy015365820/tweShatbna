@@ -638,18 +638,16 @@ export default {
                 });
             }
             //end owl-carousel
-        }
+        };
 
         onMounted(() => {
             carousel();
-            counter(20600,1,0)
-            counter(67000,2,0)
-            counter(105340,3,0)
+            counter(20600,1,0);
+            counter(67000,2,0);
+            counter(105340,3,0);
         });
 
-        emitter.on('get_lang_web', () => {
-
-        });
+        emitter.on('get_lang_web', () => {});
 
         let counter = (num,id,time = 1000) => {
 

@@ -1,5 +1,6 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
+
         <div class="content container-fluid">
 
             <notifications :position="this.$i18n.locale == 'ar'? 'top left': 'top right'"  />
@@ -8,13 +9,12 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Package</h3>
+                        <h3 class="page-title">Edit</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><router-link :to="{name: 'package', params: {lang: locale || 'ar'}}">{{$t('dashboard.Dashboard')}}</router-link></li>
-                            <li class="breadcrumb-item active">Edit Package</li>
+                            <li class="breadcrumb-item"><router-link :to="{name: 'indexCountry', params: {lang: locale || 'ar'}}">Country</router-link></li>
+                            <li class="breadcrumb-item active">Edit Country</li>
                         </ul>
                     </div>
-
                 </div>
             </div>
             <!-- /Page Header -->
@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <div class="card-header pt-0 mb-4">
                                 <router-link
-                                    :to="{name: 'package', params: {lang: locale || 'ar'}}"
+                                    :to="{name: 'indexCountry', params: {lang: locale || 'ar'}}"
                                     class="btn btn-custom btn-dark"
                                 >
                                     back
@@ -34,29 +34,30 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <form @submit.prevent="editPackage" class="needs-validation">
+                                    <div class="alert alert-danger text-center" v-if="errors['en']">{{ errors['en'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['ar']">{{ errors['ar'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['file']">{{ errors['file'][0] }}<br /> </div>
+                                    <form @submit.prevent="editCountry" class="needs-validation">
                                         <div class="form-row row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="validationCustom01">Name En</label>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="validationCustom01">Country En</label>
                                                 <input type="text" class="form-control"
                                                        v-model.trim="v$.en.name.$model"
                                                        id="validationCustom01"
-                                                       name="name_en"
                                                        placeholder="Name En"
                                                        :class="{'is-invalid':v$.en.name.$error,'is-valid':!v$.en.name.$invalid}"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="!v$.en.name.required.$invalid">name en is required. <br></span>
-                                                    <span v-if="!v$.en.name.minLength.$invalid">name en is must have at least {{ v$.en.name.minLength.$params.min }} letters. <br></span>
-                                                    <span v-if="!v$.en.name.maxLength.$invalid">name en is must have at least {{ v$.en.name.maxLength.$params.max }} letters. <br></span>
+                                                    <span v-if="v$.en.name.required.$invalid">name en is required.<br /> </span>
+                                                    <span v-if="v$.en.name.minLength.$invalid">name en is must have at least {{ v$.en.name.minLength.$params.min }} letters. <br /></span>
+                                                    <span v-if="v$.en.name.maxLength.$invalid">name en is must have at most {{ v$.en.name.maxLength.$params.max }} letters. </span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="validationCustom02">Name Ar</label>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="validationCustom02">Country Ar</label>
                                                 <input type="text"
                                                        class="form-control"
-                                                       name="name_ar"
                                                        v-model.trim="v$.ar.name.$model"
                                                        id="validationCustom02"
                                                        :class="{'is-invalid':v$.ar.name.$error,'is-valid':!v$.ar.name.$invalid}"
@@ -64,125 +65,65 @@
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="!v$.ar.name.required.$invalid">name en is required. <br></span>
-                                                    <span v-if="!v$.ar.name.minLength.$invalid">name en is must have at least {{ v$.ar.name.minLength.$params.min }} letters.<br> </span>
-                                                    <span v-if="!v$.ar.name.maxLength.$invalid">name en is must have at least {{ v$.ar.name.maxLength.$params.max }} letters.<br> </span>
+                                                    <span v-if="v$.ar.name.required.$invalid">name en is required. <br /></span>
+                                                    <span v-if="v$.ar.name.minLength.$invalid">name en is must have at least {{ v$.ar.name.minLength.$params.min }} letters. <br /></span>
+                                                    <span v-if="v$.ar.name.maxLength.$invalid">name en is must have at most {{ v$.ar.name.maxLength.$params.max }} letters. </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-row row">
                                             <div class="col-md-4 mb-3">
-                                                <label for="validationCustom04">Period</label>
-                                                <input type="number"
+                                                <label for="validationCustom03">Code</label>
+                                                <input type="text"
                                                        class="form-control"
-                                                       v-model.number.lazy="v$.period.$model"
-                                                       id="validationCustom04"
-                                                       name="period"
-                                                       placeholder="Period"
-                                                       :class="{'is-invalid':v$.period.$error,'is-valid':!v$.period.$invalid}"
+                                                       v-model.trim="v$.code.$model"
+                                                       id="validationCustom03"
+                                                       :class="{'is-invalid':v$.code.$error,'is-valid':!v$.code.$invalid}"
+                                                       placeholder="code"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="!v$.period.required.$invalid">name en is required. <br></span>
-                                                    <span v-if="!v$.period.between.$invalid">must be between {{ v$.period.between.$params.min }} and {{ v$.period.between.$params.max }}. <br></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 mb-3">
-                                                <label for="validationCustom05">Visiter Num</label>
-                                                <input
-                                                    type="number"
-                                                    class="form-control"
-                                                    v-model.number.lazy="v$.visiter_num.$model"
-                                                    id="validationCustom05"
-                                                    name="visiter_num"
-                                                    :class="{'is-invalid':v$.visiter_num.$error,'is-valid':!v$.visiter_num.$invalid}"
-                                                    placeholder="Visiter Num"
-                                                >
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">
-                                                    <span v-if="!v$.visiter_num.required.$invalid">name en is required. <br></span>
-                                                    <span v-if="!v$.visiter_num.between.$invalid">must be between {{ v$.visiter_num.between.$params.min }} and {{ v$.visiter_num.between.$params.max }}. <br></span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 mb-3">
-                                                <label for="validationCustom05">Price</label>
-                                                <input
-                                                    type="number"
-                                                    class="form-control"
-                                                    name="price"
-                                                    v-model.number.lazy="v$.price.$model"
-                                                    id="validationCustom06"
-                                                    placeholder="Price"
-                                                    :class="{'is-invalid':v$.price.$error,'is-valid':!v$.price.$invalid}"
-                                                >
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">
-                                                    <span v-if="!v$.price.required.$invalid">name en is required. <br></span>
-                                                    <span v-if="!v$.price.between.$invalid">must be between {{ v$.price.between.$params.min }} and {{ v$.price.between.$params.max }}. <br></span>
+                                                    <span v-if="v$.code.required.$invalid">code is required. <br /></span>
+                                                    <span v-if="v$.code.minLength.$invalid">code is must have at least {{ v$.code.minLength.$params.min }} letters. <br /></span>
+                                                    <span v-if="v$.code.maxLength.$invalid">code is must have at most {{ v$.code.maxLength.$params.max }} letters. </span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-row row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="WebsitePages">Website Pages</label>
-                                                    <select
-                                                        multiple
-                                                        :class="['form-control coustom-select',{'is-invalid':v$.pageView_id.$error,'is-valid':!v$.pageView_id.$invalid}]"
-                                                        id="WebsitePages"
-                                                        v-if="pageWeb"
-                                                        required
-                                                        v-model="v$.pageView_id.$model"
-                                                    >
-                                                        <optgroup
-                                                            v-for="page in pageWeb"
-                                                            :key="page.id"
-                                                            :label="page.name"
-                                                        >
-                                                            <option
-                                                                v-for="view in page.views"
-                                                                :value="view.pivot.id"
-                                                                v-show="(notWebId.includes(view.pivot.id) && webId.includes(view.pivot.id)) || !notWebId.includes(view.pivot.id)"
-                                                            >
-                                                                {{ page.name+ ' -- ' + view.type}}
-                                                            </option>
-                                                        </optgroup>
-                                                    </select>
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                    <div class="invalid-feedback">
-                                                        <span v-if="v$.pageView_id.required.$invalid">pageView  is required.</span>
-                                                    </div>
+                                        <div class="row justify-content-center">
+                                            <div class="card col-md-4" style="height: 138px;">
+                                                <div class="card-body p-3 text-center">
+                                                    <p class="card-text f-12">Active</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <label class="form-group toggle-switch mb-0" for="notification_switch1">
+                                                        <input type="checkbox" v-model="data.status" :checked="parseInt(data.status)"  class="toggle-switch-input" id="notification_switch1">
+                                                        <span class="toggle-switch-label mx-auto">
+                                                        <span class="toggle-switch-indicator"></span></span>
+                                                    </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="MobilePages">Mobile Pages</label>
-                                                    <select
-                                                        multiple
-                                                        :class="['form-control coustom-select',{'is-invalid':v$.pageViewMobile_id.$error,'is-valid':!v$.pageViewMobile_id.$invalid}]"
-                                                        id="MobilePages"
-                                                        v-if="pageMobile"
-                                                        required
-                                                        v-model="v$.pageViewMobile_id.$model"
+
+                                            <div class="col-md-4 row flex-fill">
+                                                <div class="btn btn-outline-primary waves-effect">
+                                                    <span>
+                                                        Choose files
+                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                                    </span>
+                                                    <input
+                                                        name="mediaPackage"
+                                                        type="file"
+                                                        @change="preview"
+                                                        id="mediaPackage"
+                                                        accept="image/png,jepg,jpg"
                                                     >
-                                                        <optgroup
-                                                            v-for="page in pageMobile"
-                                                            :key="page.id"
-                                                            :label="page.name"
-                                                        >
-                                                            <option
-                                                                v-for="view in page.views"
-                                                                :value="view.pivot.id"
-                                                                v-show="(notMobileId.includes(view.pivot.id) && mobileId.includes(view.pivot.id)) || !notMobileId.includes(view.pivot.id)"
-                                                            >
-                                                                {{ page.name+ ' -- '  +view.type}}
-                                                            </option>
-                                                        </optgroup>
-                                                    </select>
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                    <div class="invalid-feedback">
-                                                        <span v-if="v$.pageViewMobile_id.required.$invalid">pageView mobile is required.</span>
-                                                    </div>
+                                                </div>
+                                                <p class="num-of-files">{{numberOfImage ? numberOfImage + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                <span class="text-danger text-center" v-if="requiredn">images is must have at least 1 photos<br /></span>
+                                                <div class="container-images" id="container-images" v-show="image && numberOfImage"></div>
+                                                <div class="container-images" v-show="!numberOfImage">
+                                                    <figure>
+                                                        <figcaption>
+                                                            <img :src="`/web/img/country/${imageUpload}`">
+                                                        </figcaption>
+                                                    </figure>
                                                 </div>
                                             </div>
                                         </div>
@@ -200,83 +141,69 @@
 </template>
 
 <script>
-import {computed, onMounted, reactive,toRefs,ref} from "vue";
-import {useStore} from "vuex";
+import {computed, onMounted, reactive, toRefs, ref, watch} from "vue";
 import useVuelidate from '@vuelidate/core';
-import {required, minLength, between, maxLength, alpha, integer} from '@vuelidate/validators';
+import {required,minLength,maxLength} from '@vuelidate/validators';
 import adminApi from "../../../api/adminAxios";
-import {notify} from "@kyvg/vue3-notification";
+import { notify } from "@kyvg/vue3-notification";
+
 
 export default {
-    name: "editPackage",
+    name: "createPackage",
+    data(){
+        return {
+            errors:{}
+        }
+    },
     props: ['id'],
     setup(props){
-        const store = useStore();
-
+        // get create Package
+        let loading = ref(false);
         const { id } = toRefs(props);
 
-        // get create Package
-        let pageWeb = ref({});
-        let pageMobile = ref({});
-        let notWebId = ref([]);
-        let notMobileId = ref([]);
-        let webId = ref([]);
-        let mobileId = ref([]);
-        let loading = ref(false);
         //start design
-        let editPackageDate =  reactive({
+        let addCountry =  reactive({
             data:{
                 en:{ name : ''},
                 ar:{ name : ''},
-                period:0,
-                visiter_num: 0,
-                price: 0,
-                pageView_id: [],
-                pageViewMobile_id: [],
-                _method:'PUT'
+                code: '',
+                status: false
             }
         });
 
+        const numberOfImage = ref(0);
+        const image = ref({});
+        const imageUpload = ref({});
 
-        let getPagesViews = () => {
-            loading.value = true;
+        let preview = (e) => {
 
-            adminApi.get(`/v1/dashboard/advertiserPackage/${id.value}/edit`)
-                .then((res) => {
-                    let l = res.data.data;
-                    pageWeb.value = l.pageView;
-                    pageMobile.value = l.pageViewMobile;
+            let containerImages = document.querySelector('#container-images');
+            if(numberOfImage.value){
+                containerImages.innerHTML = '';
+            }
+            image.value = {};
 
-                    editPackageDate.data.en.name = l.Package.translations[1].name;
-                    editPackageDate.data.ar.name = l.Package.translations[0].name;
-                    editPackageDate.data.period = l.Package.period;
-                    editPackageDate.data.visiter_num = l.Package.visiter_num;
-                    editPackageDate.data.price = l.Package.price;
+            numberOfImage.value = e.target.files.length;
 
-                    l.Package.page_view.forEach((view) => {
-                        editPackageDate.data.pageView_id.push(view.pivot.page_view_id);
-                        webId.value.push(view.pivot.page_view_id);
-                    });
-                    l.Package.page_view_mobile.forEach((view) => {
-                        editPackageDate.data.pageViewMobile_id.push(view.pivot.page_view_mobile_id);
-                        mobileId.value.push(view.pivot.page_view_mobile_id);
-                    });
-                    notWebId.value = l.notWebId;
-                    notMobileId.value = l.notMobileId;
+            image.value = e.target.files[0];
 
-                    console.log(l)
-                })
-                .catch((err) => {
-                    console.log(err.response.data);
-                })
-                .finally(() => {
-                    loading.value = false;
-                })
-        }
+            let reader = new FileReader();
+            let figure = document.createElement('figure');
+            let figcap = document.createElement('figcaption');
 
-         onMounted(() => {
-            getPagesViews();
-        });
+            figcap.innerText = image.value.name;
+            figure.appendChild(figcap);
+
+            reader.onload = () => {
+                let img = document.createElement('img');
+                img.setAttribute('src',reader.result);
+                figure.insertBefore(img,figcap);
+            }
+
+            containerImages.appendChild(figure);
+            reader.readAsDataURL(image.value);
+
+        };
 
         const rules = computed(() => {
             return {
@@ -285,7 +212,6 @@ export default {
                         minLength: minLength(3),
                         maxLength:maxLength(40),
                         required,
-                        alpha
                     }
                 },
                 ar:{
@@ -295,50 +221,65 @@ export default {
                         required
                     }
                 },
-                period: {
-                    between: between(1, 360),
+                code: {
                     required,
-                    integer
-                },
-                price: {
-                    required,
-                    between: between(1, 4000),
-                    integer
-                }
-                ,
-                visiter_num: {
-                    required,
-                    between: between(1, 4000),
-                    integer
-                },
-                pageView_id:{
-                    required
-                },
-                pageViewMobile_id:{
-                    required
+                    minLength: minLength(1),
+                    maxLength:maxLength(5),
                 }
             }
         });
 
+        let getDATA = () => {
+            loading.value = true;
 
-        const v$ = useVuelidate(rules,editPackageDate.data);
+            adminApi.get(`/v1/dashboard/country/${id.value}/edit`)
+                .then((res) => {
+                    let l = res.data.data;
+                    addCountry.data.en.name = l.country.translations[1].name;
+                    addCountry.data.ar.name = l.country.translations[0].name;
+                    addCountry.data.code = l.country.code;
+                    addCountry.data.status = l.country.status;
+                    imageUpload.value = l.country.media.file_name;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                })
+        };
+
+        onMounted(() => {
+            getDATA();
+        });
+
+        const v$ = useVuelidate(rules,addCountry.data);
 
 
-        return {pageWeb,pageMobile,loading,v$,...toRefs(editPackageDate),notWebId,notMobileId,mobileId,webId};
+        return {loading,id,preview,imageUpload,image,...toRefs(addCountry),v$,numberOfImage};
     },
-    methods:{
-        editPackage (){
-
+    methods: {
+        editCountry(){
             this.v$.$validate();
-            this.loading = true;
 
             if(!this.v$.$error){
 
-                adminApi.post(`/v1/dashboard/advertiserPackage/${this.id}`,this.data)
+                this.loading = true;
+                this.errors = {};
+
+                let formData = new FormData();
+                formData.append('en',this.data.en.name);
+                formData.append('ar',this.data.ar.name);
+                formData.append('code',this.data.code);
+                formData.append('status',this.data.status ? 1 : 0);
+                formData.append('file',this.image);
+                formData.append('_method','PUT');
+
+                adminApi.post(`/v1/dashboard/country/${this.id}`,formData)
                     .then((res) => {
 
                         notify({
-                            title: `Edited successfully <i class="fas fa-check-circle"></i>`,
+                            title: `Successfully Edited <i class="fas fa-check-circle"></i>`,
                             type: "success",
                             duration: 5000,
                             speed: 2000
@@ -346,7 +287,8 @@ export default {
 
                     })
                     .catch((err) => {
-                        commit('errorsEdit',err.response.data.errors);
+                        this.errors = err.response.data.errors;
+
                     })
                     .finally(() => {
                         this.loading = false;
@@ -359,13 +301,78 @@ export default {
 </script>
 
 <style scoped>
-.page-wrapper{
-    min-height: 100vh;
-}
 .coustom-select {
     height: 100px;
 }
 .card{
     position: relative;
+}
+
+.package-feature ul li:first-child {
+    margin-top: 10px;
+}
+
+.package-feature ul li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    color: #4B9F18;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.package-feature ul li:last-child {
+    margin-bottom: 10px;
+}
+
+.ml-3{
+    margin-left: 1.5rem;
+}
+
+.waves-effect {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    line-height: 34px;
+    margin: auto;
+}
+
+input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+.num-of-files{
+    text-align: center;
+    margin: 20px 0 30px;
+}
+
+.container-images {
+    width: 90%;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #f7f7f7;
 }
 </style>

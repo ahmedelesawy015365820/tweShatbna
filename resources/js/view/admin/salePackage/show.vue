@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
         <div class="content container-fluid">
 
             <!-- Page Header -->

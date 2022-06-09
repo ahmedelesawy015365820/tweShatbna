@@ -19,12 +19,6 @@ class Country extends Model implements TranslatableContract
 
     protected $hidden = ['translations'];
 
-    // get status (active or inactive)
-
-    public function getStatusAttribute($q)
-    {
-        return $q == 1? 'Active' : "InActive";
-    }
 
     protected $appends = [
         'image_path'

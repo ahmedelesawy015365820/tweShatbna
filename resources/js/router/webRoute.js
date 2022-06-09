@@ -1,5 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import i18n from '../lang/web';
 
 import Index from '../view/web/index.vue';
 import successPartner from '../view/web/successPartner.vue';
@@ -119,7 +118,15 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     linkActiveClass: 'active',
-    routes
+    routes,
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { top: 0, behavior: 'smooth' }
+
+        }
+    },
 });
 
 router.beforeEach((to, from, next) => {

@@ -68,7 +68,20 @@
                         </router-link >
                     </li>
                     <lang  />
-                    <li><a href="post-project.html" class="login-btn">{{$t('header.project')}}</a></li>
+                    <li v-if="token">
+                        <router-link
+                            :to="{name:'addProject',params: {lang:this.$i18n.locale}}"
+                            v-if="role.role_name.includes('client')"
+                            class="login-btn"
+                        >
+                            {{$t('header.project')}}
+                        </router-link >
+                    </li>
+                    <li v-if="!token">
+                        <router-link :to="{name:'addProject',params: {lang:this.$i18n.locale}}" class="login-btn">
+                            {{$t('header.project')}}
+                        </router-link >
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -88,12 +101,14 @@ export default {
     },
     data(){
         return {
+            roles: localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')).role_name : []
         }
     },
     setup(){
 
         const store = useStore();
         const token = computed(() => store.getters['auth/token']);
+        const role = computed(() => store.getters['auth/user'] || []);
 
         let scroll = ref(false);
         window.onscroll = function (){
@@ -104,7 +119,7 @@ export default {
          }
         };
 
-        return {token,scroll};
+        return {token,scroll,role};
     }
 }
 </script>

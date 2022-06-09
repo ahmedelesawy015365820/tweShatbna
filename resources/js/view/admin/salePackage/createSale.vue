@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
         <div class="content container-fluid">
 
             <notifications :position="this.$i18n.locale == 'ar'? 'top left': 'top right'"  />

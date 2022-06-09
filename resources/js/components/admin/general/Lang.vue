@@ -90,6 +90,7 @@ export default {
     width: 33px;
     margin-left: 10px;
 }
+
 </style>
 
 

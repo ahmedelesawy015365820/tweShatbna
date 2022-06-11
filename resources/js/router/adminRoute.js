@@ -4,6 +4,9 @@ import packages from './adminRoute/package';
 import salePackage from './adminRoute/salePackage';
 import newsLetters from './adminRoute/newLetter';
 import trustCompany from './adminRoute/trustCompany';
+import comService from './adminRoute/companyService';
+import desService from './adminRoute/designService';
+import desDegree from './adminRoute/dedreeDesign';
 import country from './adminRoute/country';
 import state from './adminRoute/state';
 import privacy from './adminRoute/previcy';
@@ -100,7 +103,10 @@ const routes = [
                     ...support,
                     ...country,
                     ...privacy,
-                    ...state
+                    ...state,
+                    ...comService,
+                    ...desService,
+                    ...desDegree
                 ]
             },
         ]

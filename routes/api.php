@@ -116,11 +116,20 @@ use Illuminate\Support\Facades\Route;
              // start country
              Route::resource('country','CountryController')->except(['show','create']);
 
-             // start country
+             // start state
              Route::resource('state','StateController')->except(['show']);
 
-             // start country
+             // start privacy
              Route::resource('privacy','PrivacyController')->except(['show','create']);
+
+             // start companyService
+             Route::resource('companyService','CompanyServiceController')->except(['show','create']);
+
+             // start degreeDesign
+             Route::resource('degreeDesign','DegreeDesignController')->except(['show','create']);
+
+             // start designService
+             Route::resource('designService','DesignServiceController')->except(['show','create']);
 
          });
 

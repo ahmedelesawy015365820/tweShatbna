@@ -1,5 +1,23 @@
 {
     "dashboard":{
         "Dashboard":"الرئيسيه"
+    },
+    "sidebar": {
+        "Dashboard":"الرئيسيه",
+        "Package": "الحزم",
+        "Sale_Pack": "حزم البيع",
+        "Schedule" : "جدول الاعلانات",
+        "company" : "توثيق الشركه",
+        "design" : "توثيق الديزاينر",
+        "advertise" : "توثيق المعلن",
+        "client" : "توثيق العميل",
+        "news": "القائمه البريديه",
+        "support": "الدعم",
+        "country": "الدوله",
+        "state": "المحافظه",
+        "privacy": "سياسه الخصوصيه",
+        "comServ": "خدمات الشركه",
+        "desServ": "خدمات الديزاينر",
+        "acdDegree": "الدرجة العلمية"
     }
 }

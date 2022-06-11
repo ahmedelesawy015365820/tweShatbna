@@ -284,8 +284,7 @@ export default {
                     name: {
                         minLength: minLength(3),
                         maxLength:maxLength(40),
-                        required,
-                        alpha
+                        required
                     }
                 },
                 ar:{

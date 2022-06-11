@@ -1,5 +1,23 @@
 {
     "dashboard":{
         "Dashboard":"Dashboard"
+    },
+    "sidebar": {
+        "Dashboard":"Dashboard",
+        "Package": "Package",
+        "Sale_Pack": "Sale Package",
+        "Schedule" : "Advertise Schedule",
+        "company" : "Verify Company",
+        "design" : "Verify designer",
+        "advertise" : "Verify advertiser",
+        "client" : "Verify Client",
+        "news": "News Letter",
+        "support": "Support",
+        "country": "Country",
+        "state": "State",
+        "privacy": "Privacy",
+        "comServ": "Company Services",
+        "desServ": "Design Services",
+        "acdDegree": "Academic Degree"
     }
 }

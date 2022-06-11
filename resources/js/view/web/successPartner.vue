@@ -229,7 +229,7 @@
                         <!-- Carousel Column -->
                         <div class="carousel-column col-lg-6 col-md-12 col-sm-12">
                             <!-- Slides -->
-                            <div class="carousel-inner" role="listbox" style="background-image: url(/web/page/images/resource/mobile.png)">
+                            <div class="carousel-inner" role="listbox">
                                 <div class="slides">
 
                                     <div class="carousel-item active">
@@ -494,14 +494,14 @@
                     </h2>
                 </div>
 
-                <div class="row justify-content-center appScreenshotCarousel-container swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="/web/img/screen-mobile.png" alt="screen-mobile">
-                        </div>
-                    </div>
-                    <!-- Add Arrows -->
-                </div>
+<!--                <div class="row justify-content-center appScreenshotCarousel-container swiper-container">-->
+<!--                    <div class="swiper-wrapper">-->
+<!--                        <div class="swiper-slide">-->
+<!--                            <img src="/web/img/screen-mobile.png" alt="screen-mobile">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Add Arrows &ndash;&gt;-->
+<!--                </div>-->
 
             </div>
         </section>

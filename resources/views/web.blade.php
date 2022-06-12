@@ -30,8 +30,8 @@
         <link rel="stylesheet" href="{{asset('web/css/owl.carousel.min.css')}}">
         <link rel="stylesheet" href="{{asset('web/css/owl.theme.default.min.css')}}">
 
-        <!-- Select2 CSS -->
-        <link rel="stylesheet" href="{{asset('web/plugins/select2/css/select2.min.css')}}">
+        <!-- Summernote CSS -->
+        <link rel="stylesheet" href="{{asset('admin/plugins/summernote/dist/summernote-lite.css')}}">
 
         {{--  page سجل لاان  --}}
         <link href="{{asset('web/page/css/main.css')}}" rel="stylesheet">
@@ -57,18 +57,15 @@
         <!-- Owl Carousel -->
         <script src="{{asset('web/js/owl.carousel.min.js')}}"></script>
 
-        <!-- Select2 JS -->
-        <script src="{{asset('web/plugins/select2/js/select2.min.js')}}"></script>
-
-        <!-- Slick JS -->
-        <script src="{{asset('web/js/slick.js')}}"></script>
-
         {{--  page سجل لاان  --}}
         <script src="{{asset('web/page/js/script.js')}}"></script>
 
         <!-- Sticky Sidebar JS -->
         <script src="{{asset('web/plugins/theia-sticky-sidebar/ResizeSensor.js')}}"></script>
         <script src="{{asset('web/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js')}}"></script>
+
+        <!-- Summernote JS -->
+        <script src="{{asset('admin/plugins/summernote/dist/summernote-lite.min.js')}}"></script>
 
         <!-- Chart JS -->
         <script src="{{asset('web/plugins/apexchart/apexcharts.min.js')}}"></script>

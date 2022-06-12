@@ -15,6 +15,8 @@ class CreateExpectedBudgetsTable extends Migration
     {
         Schema::create('expected_budgets', function (Blueprint $table) {
             $table->id();
+            $table->string('to');
+            $table->string('from');
             $table->timestamps();
         });
     }

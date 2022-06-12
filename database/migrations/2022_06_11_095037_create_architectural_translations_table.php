@@ -15,6 +15,10 @@ class CreateArchitecturalTranslationsTable extends Migration
     {
         Schema::create('architectural_translations', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('locale')->index();
+            $table->foreignId('architectural_id')->constrained('architecturals')->cascadeOnDelete();
+            $table->unique(['architectural_id', 'locale']);
             $table->timestamps();
         });
     }

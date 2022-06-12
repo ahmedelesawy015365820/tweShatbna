@@ -15,6 +15,7 @@ class CreateArchitecturalsTable extends Migration
     {
         Schema::create('architecturals', function (Blueprint $table) {
             $table->id();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

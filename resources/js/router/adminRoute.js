@@ -7,6 +7,7 @@ import trustCompany from './adminRoute/trustCompany';
 import comService from './adminRoute/companyService';
 import desService from './adminRoute/designService';
 import desDegree from './adminRoute/dedreeDesign';
+import treasury from './adminRoute/treasury';
 import country from './adminRoute/country';
 import state from './adminRoute/state';
 import privacy from './adminRoute/previcy';
@@ -106,7 +107,8 @@ const routes = [
                     ...state,
                     ...comService,
                     ...desService,
-                    ...desDegree
+                    ...desDegree,
+                    ...treasury
                 ]
             },
         ]

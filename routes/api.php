@@ -131,6 +131,10 @@ use Illuminate\Support\Facades\Route;
              // start designService
              Route::resource('designService','DesignServiceController')->except(['show','create']);
 
+             // treasury management
+             Route::resource('treasury','TreasuryController');
+             Route::post('mainTreasury','TreasuryController@mainTreasury');
+
          });
 
          // start web

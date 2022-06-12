@@ -86,6 +86,11 @@
                             <i class="fas fa-book-dead"></i> <span>{{$t('sidebar.acdDegree')}}</span>
                         </router-link>
                     </li>
+                    <li :class="[$route.name == 'treasury'? 'active': '']">
+                        <router-link :to="{name:'indexTreasury',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-book-dead"></i> <span>treasury</span>
+                        </router-link>
+                    </li>
                 </ul>
             </div>
         </div>

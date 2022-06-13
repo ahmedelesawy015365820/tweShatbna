@@ -13,15 +13,15 @@
                             <nav class="user-tabs mb-4">
                                 <ul role="tablist" class="nav nav-pills nav-justified">
                                     <li class="nav-item">
-                                        <a href="#client" data-bs-toggle="tab"  :class="['nav-link','active']">شركات التشطيبات</a>
+                                        <a href="#company" data-bs-toggle="tab"  :class="['nav-link','active']">شركات التشطيبات</a>
                                     </li>
                                     <li :class="['nav-item','stop-margin',$i18n.locale == 'ar'?'tab-ar' : 'tab-en']">
-                                        <a href="#success-partiner" data-bs-toggle="tab" :class="['nav-link']">ديزاينير</a>
+                                        <a href="#design" data-bs-toggle="tab" :class="['nav-link']">ديزاينير</a>
                                     </li>
                                 </ul>
                             </nav>
                             <div class="tab-content pt-0">
-                                <div role="tabpanel" id="client" :class="['tab-pane','fade active show']">
+                                <div role="tabpanel" id="company" :class="['tab-pane','fade active show']">
                                     <form>
                                         <div class="title-box widget-box">
 
@@ -181,7 +181,7 @@
 
                                     </form>
                                 </div>
-                                <div role="tabpanel" id="success-partiner" :class="['tab-pane','fade']">
+                                <div role="tabpanel" id="design" :class="['tab-pane','fade']">
                                     <form>
                                         <div class="title-box widget-box">
 

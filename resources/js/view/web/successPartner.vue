@@ -327,8 +327,8 @@
                             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                                 <div class="inner-column wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <div class="image titlt" data-tilt data-tilt-max="8">
-                                        <a href="/web/img/dashboard-2.jfif" class="app-1 lightbox-image">
-                                            <img src="/web/img/dashboard-2.jfif" alt="" /></a>
+                                        <a href="/web/img/Statstics.png" class="app-1 lightbox-image">
+                                            <img src="/web/img/Statstics.png" alt="" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -831,6 +831,16 @@ export default {
 </script>
 
 <style scoped>
+
+.app-block .inner-box .image-column .image img {
+    position: relative;
+    width: 95%;
+    height: 340px;
+    display: block;
+}
+.content {
+     background-color: transparent !important;
+}
 .fa {
     font-size: 39px;
 }

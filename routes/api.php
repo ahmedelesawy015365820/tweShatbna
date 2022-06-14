@@ -50,6 +50,9 @@ use Illuminate\Support\Facades\Route;
          Route::post('newLetter','NewsLetterController@newsLetter');
          Route::post('support','NewsLetterController@support');
 
+         // start  privacy
+         Route::get('privacy',  'PrivacyController@index');
+
 
      });
 
@@ -177,6 +180,7 @@ use Illuminate\Support\Facades\Route;
 
              // start  client and profile
              Route::post('clientData',  'ClientController@clientOne');
+
 
          });
 

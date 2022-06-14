@@ -9,7 +9,8 @@
         "login":"الدخول",
         "register":"التسجيل",
         "project":"اضافة مشروعك",
-        "advisor": "مستشار شطبنا"
+        "advisor": "مستشار شطبنا",
+        "PRIVACY" : "سياسه الخصوصيه"
     },
     "register" :{
         "design": "ديزينر",

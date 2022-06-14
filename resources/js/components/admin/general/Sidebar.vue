@@ -26,26 +26,6 @@
                             <i class="fas fa-ad"></i> <span>{{$t('sidebar.Schedule')}}</span>
                         </router-link>
                     </li>
-                    <li :class="[$route.name == 'indexCompany'? 'active': '']">
-                        <router-link :to="{name:'indexCompany',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-user-check"></i> <span>{{$t('sidebar.company')}}</span>
-                        </router-link>
-                    </li>
-                    <li :class="[$route.name == 'indexDesign'? 'active': '']">
-                        <router-link :to="{name:'indexDesign',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-user-check"></i><span>{{$t('sidebar.design')}}</span>
-                        </router-link>
-                    </li>
-                    <li :class="[$route.name == 'indexAdvertise'? 'active': '']">
-                        <router-link :to="{name:'indexAdvertise',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-user-check"></i> <span>{{$t('sidebar.advertise')}}</span>
-                        </router-link>
-                    </li>
-                    <li :class="[$route.name == 'indexClient'? 'active': '']">
-                        <router-link :to="{name:'indexClient',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-users"></i> <span>{{$t('sidebar.client')}}</span>
-                        </router-link>
-                    </li>
                     <li :class="[$route.name == 'indexNewLetter'? 'active': '']">
                         <router-link :to="{name:'indexNewLetter',params: {lang:this.$i18n.locale}}">
                             <i class="fab fa-hacker-news"></i> <span>{{$t('sidebar.news')}}</span>
@@ -66,6 +46,33 @@
                             <i class="fas fa-flag-usa"></i> <span>{{$t('sidebar.state')}}</span>
                         </router-link>
                     </li>
+
+                    <li class="submenu">
+                        <a href="#" ><i class="fas fa-users"></i> <span> {{$t('sidebar.user')}}</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li :class="[$route.name == 'indexCompany'? 'active': '']">
+                                <router-link :to="{name:'indexCompany',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.company')}}
+                                </router-link>
+                            </li>
+                            <li :class="[$route.name == 'indexDesign'? 'active': '']">
+                                <router-link :to="{name:'indexDesign',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.design')}}
+                                </router-link>
+                            </li>
+                            <li :class="[$route.name == 'indexAdvertise'? 'active': '']">
+                                <router-link :to="{name:'indexAdvertise',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.advertise')}}
+                                </router-link>
+                            </li>
+                            <li :class="[$route.name == 'indexClient'? 'active': '']">
+                                <router-link :to="{name:'indexClient',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.client')}}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li :class="[$route.name == 'indexPrivacy'? 'active': '']">
                         <router-link :to="{name:'indexPrivacy',params: {lang:this.$i18n.locale}}">
                             <i class="fas fa-book-dead"></i> <span>{{$t('sidebar.privacy')}}</span>
@@ -73,17 +80,17 @@
                     </li>
                     <li :class="[$route.name == 'indexComService'? 'active': '']">
                         <router-link :to="{name:'indexComService',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-book-dead"></i> <span>{{$t('sidebar.comServ')}}</span>
+                            <i class="fas fa-building"></i> <span>{{$t('sidebar.comServ')}}</span>
                         </router-link>
                     </li>
                     <li :class="[$route.name == 'indexService'? 'active': '']">
                         <router-link :to="{name:'indexService',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-book-dead"></i> <span>{{$t('sidebar.desServ')}}</span>
+                            <i class="fas fa-drafting-compass"></i> <span>{{$t('sidebar.desServ')}}</span>
                         </router-link>
                     </li>
                     <li :class="[$route.name == 'indexDegree'? 'active': '']">
                         <router-link :to="{name:'indexDegree',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-book-dead"></i> <span>{{$t('sidebar.acdDegree')}}</span>
+                            <i class="fas fa-folder"></i> <span>{{$t('sidebar.acdDegree')}}</span>
                         </router-link>
                     </li>
                 </ul>
@@ -133,6 +140,36 @@ export default {
         }
     }
 }
+
+
+window.onload = (event) => {
+    var Sidemenu = function () {
+        this.$menuItem = $('#sidebar-menu a');
+    };
+    function init() {
+    var $this = Sidemenu;
+        $('#sidebar-menu a').on('click', function (e) {
+            if ($(this).parent().hasClass('submenu')) {
+                e.preventDefault();
+            }
+            if (!$(this).hasClass('subdrop')) {
+                $('ul', $(this).parents('ul:first')).slideUp(350);
+                $('a', $(this).parents('ul:first')).removeClass('subdrop');
+                $(this).next('ul').slideDown(350);
+                $(this).addClass('subdrop');
+            } else if ($(this).hasClass('subdrop')) {
+                $(this).removeClass('subdrop');
+                $(this).next('ul').slideUp(350);
+            }
+        });
+        $('#sidebar-menu ul li.submenu a.active').parents('li:last').children('a:first').addClass('active').trigger('click');
+    }
+
+// Sidebar Initiate
+    init();
+
+};
+
 </script>
 
 <style>

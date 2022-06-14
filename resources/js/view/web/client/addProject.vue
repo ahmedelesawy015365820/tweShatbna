@@ -1,6 +1,18 @@
 <template>
     <!-- Page Content -->
     <div class="content">
+
+        <div class="position-fixed overlay" v-if="show" @click.self="show = !show">
+            <div class="embed-responsive embed-responsive-21by9">
+                <iframe
+                    class="embed-responsive-item"
+                    src="https://www.youtube.com/embed/zNrdllT1Z5s"
+                    allowfullscreen
+                >
+                </iframe>
+            </div>
+        </div>
+
         <loader2 v-if="loading2" />
         <div class="container-fluid">
             <div class="row">
@@ -25,6 +37,14 @@
                                     <form>
                                         <div class="title-box widget-box">
 
+                                            <button
+                                                type="button"
+                                                @click.self="show = !show"
+                                                class="btn next-btn btn-item-custom"
+                                            >
+                                                كيف تضيف مشروع ؟
+                                            </button>
+
                                             <div class="row">
 
                                                 <!-- Project Title -->
@@ -138,7 +158,7 @@
                                                             <input type="file" class="custom-file-input">
                                                             <label class="custom-file-label"></label>
                                                         </div>
-                                                        <p class="mb-0">Size of the Document should be Below 2MB</p>
+                                                        <p class="mb-0 text-danger">Size of the Document should be Below 2MB</p>
                                                     </div>
                                                 </div>
                                                 <!-- /Add Document -->
@@ -151,7 +171,7 @@
                                                             <input type="file" class="custom-file-input">
                                                             <label class="custom-file-label"></label>
                                                         </div>
-                                                        <p class="mb-0">Size of the Document should be Below 15MB</p>
+                                                        <p class="mb-0 text-danger">Size of the Document should be Below 15MB</p>
                                                     </div>
                                                 </div>
                                                 <!-- /Add Document -->
@@ -169,9 +189,11 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-12 text-end">
+                                                <div class="col-md-12 text-center">
                                                     <div class="btn-item">
-                                                        <button type="submit" class="btn next-btn">Submit</button>
+                                                        <button type="submit" class="btn next-btn">نشر المشروع عالي العام</button>
+
+                                                        <button type="button" class="btn next-btn send">ارسل المشروع لشركة محدد</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -184,6 +206,13 @@
                                 <div role="tabpanel" id="design" :class="['tab-pane','fade']">
                                     <form>
                                         <div class="title-box widget-box">
+                                            <button
+                                                type="button"
+                                                @click.self="show = !show"
+                                                class="btn next-btn btn-item-custom"
+                                            >
+                                                كيف تضيف مشروع ؟
+                                            </button>
 
                                             <div class="row">
 
@@ -298,7 +327,7 @@
                                                             <input type="file" class="custom-file-input">
                                                             <label class="custom-file-label"></label>
                                                         </div>
-                                                        <p class="mb-0">Size of the Document should be Below 2MB</p>
+                                                        <p class="mb-0 text-danger">Size of the Document should be Below 2MB</p>
                                                     </div>
                                                 </div>
                                                 <!-- /Add Document -->
@@ -311,7 +340,7 @@
                                                             <input type="file" class="custom-file-input">
                                                             <label class="custom-file-label"></label>
                                                         </div>
-                                                        <p class="mb-0">Size of the Document should be Below 15MB</p>
+                                                        <p class="mb-0 text-danger">Size of the Document should be Below 15MB</p>
                                                     </div>
                                                 </div>
                                                 <!-- /Add Document -->
@@ -329,9 +358,11 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-12 text-end">
+                                                <div class="col-md-12 text-center">
                                                     <div class="btn-item">
-                                                        <button type="submit" class="btn next-btn">Submit</button>
+                                                        <button type="submit" class="btn next-btn">نشر المشروع عالي العام</button>
+
+                                                        <button type="button" class="btn next-btn send">ارسل المشروع لديزاينر محدد</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -363,7 +394,7 @@ export default {
     setup(){
 
         let loading2 = ref(false);
-
+        let show = ref(false);
 
 
         let  summernote = () => {
@@ -390,7 +421,7 @@ export default {
         });
 
 
-       return {loading2};
+       return {loading2,show};
     },
     beforeRouteEnter(to, from,next) {
         let trust = parseInt(JSON.parse(localStorage.getItem('partner')).trust);
@@ -432,5 +463,54 @@ input:focus, select:focus , textarea:focus{
 
 .user-tabs {
     width: 50% !important;
+}
+
+.nav-justified .nav-item, .nav-justified >.nav-link{
+    margin: 0 2px
+}
+
+.next-btn {
+    margin: 0 1px;
+    padding: 10px 15px;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.send {
+    background-color: transparent;
+    color: #fcb00c;
+}
+
+.btn-item-custom {
+    margin: 0 1px;
+    padding: 10px 15px;
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 50px;
+    background-color: transparent;
+    color: #fcb00c;
+}
+
+.btn-item-custom:hover {
+    color: #fff;
+    background-color: #fcb00c;
+}
+
+.overlay{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    background-color: rgba(0,0,0,.5);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.embed-responsive {
+    width: 75%;
+    height: 65%;
 }
 </style>

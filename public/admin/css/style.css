@@ -4293,7 +4293,7 @@ table.table-inbox tbody tr.checked {
 	color: #333;
 }
 .note-editor.note-frame .note-editing-area .note-editable {
-	height: 86px !important;
+	height: 300px !important;
 }
 .star-red {
 	color: #ff0000;

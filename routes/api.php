@@ -181,6 +181,11 @@ use Illuminate\Support\Facades\Route;
              // start  client and profile
              Route::post('clientData',  'ClientController@clientOne');
 
+             // start  addCompany and addDesign
+             Route::get('getProject',  'AddProjectController@getService');
+             Route::post('addCompany',  'AddProjectController@addCompany');
+             Route::post('addDesign',  'AddProjectController@addDesign');
+
 
          });
 

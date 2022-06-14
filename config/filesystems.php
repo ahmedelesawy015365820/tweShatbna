@@ -72,6 +72,11 @@ return [
             'root' => public_path('web/img/'),
         ],
 
+        'general' => [
+            'driver' => 'local',
+            'root' => public_path('web/img/'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

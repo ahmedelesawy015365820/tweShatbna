@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 class NewsLetterController extends Controller
 {
-    public function index(){
-
-        return 1;
-    }
 
     use Message;
 

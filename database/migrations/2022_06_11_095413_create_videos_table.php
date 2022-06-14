@@ -15,6 +15,12 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
+            $table->string('file_name');
+            $table->string('file_type');
+            $table->string('file_size');
+            $table->unsignedBigInteger('file_sort')->default(0);
+            $table->unsignedBigInteger('mediable_id');
+            $table->string('mediable_type');
             $table->timestamps();
         });
     }

@@ -72,7 +72,7 @@
                         <router-link
                             :to="{name:'addProject',params: {lang:this.$i18n.locale}}"
                             v-if="role.role_name.includes('client')"
-                            class="login-btn"
+                            class="login-btn addProject"
                         >
                             {{$t('header.project')}}
                         </router-link >
@@ -193,6 +193,10 @@ export default {
 
     .active{
         color: #fcb00c;
+    }
+
+    .addProject{
+        color: #fff !important;
     }
 
     @media only screen and (max-width: 1115px){

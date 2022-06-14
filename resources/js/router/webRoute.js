@@ -6,6 +6,7 @@ import registerPartiner from '../view/web/registerPartiner.vue';
 import registerClient from '../view/web/registerClient.vue'
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
+import privacy from '../view/web/privacy';
 import forgetPassword from '../view/web/forgetPassword.vue';
 import resetPassword from '../view/web/resetPassword.vue';
 import middlewarePipeline from "./middlewarePipeline";
@@ -86,6 +87,14 @@ const routes = [
                 meta: {
                     middleware: [guest]
                 },
+            },
+            {
+                path: 'privacy',
+                name: 'privacy',
+                component: privacy,
+                meta: {
+                    middleware: [guest]
+                }
             },
             {
                 path: 'p',

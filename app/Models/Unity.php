@@ -17,4 +17,16 @@ class Unity extends Model implements TranslatableContract
 
     protected $guarded = ['id'];
     protected $hidden = ['translations'];
+
+    //  start relation
+
+    public function designProject()
+    {
+        return $this->hasMany(DesignProject::class);
+    }
+
+    public function companyProject()
+    {
+        return $this->hasMany(CompanyProject::class);
+    }
 }

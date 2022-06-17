@@ -31,18 +31,18 @@
                                     </div>
                                     <div class="tab-content pt-0">
                                         <div role="tabpanel" id="client" :class="['tab-pane','fade active show']">
-                                            <form @submit.prevent='Loginsubmit'>
+                                            <form @submit.prevent='LoginClient'>
                                                 <div class="form-group form-focus">
-                                                    <input type="text" v-model.trim="data.email" class="form-control floating">
+                                                    <input type="text" v-model.trim="dataClient.email" class="form-control floating">
                                                     <label class="focus-label">{{$t('register.emailPhone')}}</label>
                                                 </div>
                                                 <div class="form-group form-focus">
-                                                    <input type="password" v-model.trim="data.password" class="form-control floating">
+                                                    <input type="password" v-model.trim="dataClient.password" class="form-control floating">
                                                     <label class="focus-label">{{$t('register.password')}}</label>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="custom_check">
-                                                        <input type="checkbox" v-model="data.remmeber_me">
+                                                        <input type="checkbox" v-model="dataClient.remmeber_me">
                                                         <span class="checkmark"></span> {{$t('register.remember')}}
                                                     </label>
                                                 </div>
@@ -122,11 +122,20 @@ export default {
                 email:'',
                 password:'',
                 remmeber_me: false
+            },
+            dataClient:{
+                email:'',
+                password:'',
+                remmeber_me: false
             }
         });
 
         function Loginsubmit (){
             store.dispatch('auth/login',login.data);
+        }
+
+        function LoginClient(){
+            store.dispatch('auth/loginClient',login.dataClient);
         }
 
         function authSocial($social){
@@ -155,7 +164,7 @@ export default {
             store.commit('auth/editErrors', {});
         });
 
-        return {Loginsubmit,...toRefs(login),errors,loading,authSocial};
+        return {Loginsubmit,...toRefs(login),errors,loading,authSocial,LoginClient};
 
     },
 }

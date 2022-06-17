@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Route;
          // start Login[company,design,advertiser]
 
          Route::post('login','AuthController@login');
+         Route::post('loginClient','AuthController@loginClient');
 
          // start reset[Dashboard,company,design,advertiser,client]
 

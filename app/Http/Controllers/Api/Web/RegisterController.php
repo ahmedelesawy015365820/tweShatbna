@@ -249,7 +249,7 @@ class RegisterController extends Controller
     public function clientRegister(Request $request)
     {
 
-//        DB::beginTransaction();
+        DB::beginTransaction();
 
         try {
 
@@ -274,7 +274,7 @@ class RegisterController extends Controller
                 "name" => $request->name,
                 "email" => $request->email,
                 "password" => $request->password,
-                "auth_id" => 2,
+                "auth_id" => 3,
                 'role_name' => ['client'],
                 "status" => 1,
                 'phone' => $request->phone,
@@ -313,13 +313,13 @@ class RegisterController extends Controller
 
     public function country()
     {
-        $country = Country::with('media:file_name,mediable_id')->get();
+        $country = Country::with('media:file_name,mediable_id')->whereStatus(true)->get();
         return $this->sendResponse(['country' => $country],'Data exited successfully');
     }
 
     public function state($id)
     {
-        $state = State::whereCountryId($id)->get();
+        $state = State::whereCountryId($id)->whereStatus(true)->get();
         return $this->sendResponse(['state' => StateResource::collection($state)],'Data exited successfully');
     }
 

@@ -93,6 +93,21 @@
                             <i class="fas fa-folder"></i> <span>{{$t('sidebar.acdDegree')}}</span>
                         </router-link>
                     </li>
+                    <li :class="[$route.name == 'indexUnity'? 'active': '']">
+                        <router-link :to="{name:'indexUnity',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-suitcase"></i> <span>{{$t('sidebar.unity')}}</span>
+                        </router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexArchitectural'? 'active': '']">
+                        <router-link :to="{name:'indexArchitectural',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-archway"></i> <span>{{$t('sidebar.architectural')}}</span>
+                        </router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexExpected'? 'active': '']">
+                        <router-link :to="{name:'indexExpected',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-dharmachakra"></i> <span>{{$t('sidebar.expected')}}</span>
+                        </router-link>
+                    </li>
                 </ul>
             </div>
         </div>

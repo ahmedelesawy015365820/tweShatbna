@@ -134,6 +134,15 @@ use Illuminate\Support\Facades\Route;
              // start designService
              Route::resource('designService','DesignServiceController')->except(['show','create']);
 
+             // start unity
+             Route::resource('unity','UnityController')->except(['show','create']);
+
+             // start architectural
+             Route::resource('architectural','ArchitecturalController')->except(['show','create']);
+
+             // start expected budget
+             Route::resource('expected','ExpectedBudgetController')->except(['show','create']);
+
          });
 
          // start web

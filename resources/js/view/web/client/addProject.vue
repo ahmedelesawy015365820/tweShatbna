@@ -222,7 +222,14 @@
                                                     <div class="title-detail">
                                                         <h3>اضف صور لمشروع (اختياري)</h3>
                                                         <div class="custom-file">
-                                                            <input multiple type="file" class="custom-file-input">
+                                                            <input
+                                                                multiple
+                                                                name="fileComp[]"
+                                                                @change="previewCompany"
+                                                                type="file"
+                                                                class="custom-file-input"
+                                                                accept="image/png,jepg,jpg"
+                                                            >
                                                             <label class="custom-file-label"></label>
                                                         </div>
                                                         <p class="mb-0 text-danger">Size of the Document should be Below 2MB</p>
@@ -235,7 +242,7 @@
                                                     <div class="title-detail">
                                                         <h3>اضف فديو لمشروع (اختياري)</h3>
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input">
+                                                            <input @change="vedioCompany" type="file" class="custom-file-input">
                                                             <label class="custom-file-label"></label>
                                                         </div>
                                                         <p class="mb-0 text-danger">Size of the Document should be Below 15MB(mp4,webm)</p>
@@ -465,7 +472,7 @@
                                                     <div class="title-detail">
                                                         <h3>اضف صور لمشروع (اختياري)</h3>
                                                         <div class="custom-file">
-                                                            <input multiple type="file" class="custom-file-input">
+                                                            <input @change="previewDesign" multiple type="file" class="custom-file-input">
                                                             <label class="custom-file-label"></label>
                                                         </div>
                                                         <p class="mb-0 text-danger">Size of the Document should be Below 2MB</p>
@@ -478,7 +485,7 @@
                                                     <div class="title-detail">
                                                         <h3>اضف فديو لمشروع (اختياري)</h3>
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input">
+                                                            <input @change="vedioDesign"  type="file" class="custom-file-input">
                                                             <label class="custom-file-label"></label>
                                                         </div>
                                                         <p class="mb-0 text-danger">Size of the Document should be Below 15MB(mp4,webm)</p>
@@ -582,9 +589,9 @@ export default {
                 room: '',
                 bathroom:'',
                 description: "",
-                unity: 0,
-                architectural: 0,
-                expected_budget: 0,
+                unity: null,
+                architectural: null,
+                expected_budget: null,
                 files:[],
                 vedio:{}
             },
@@ -595,9 +602,9 @@ export default {
                 room: '',
                 bathroom:'',
                 description: "",
-                unity: 0,
-                architectural: 0,
-                expected_budget: 0,
+                unity: null,
+                architectural: null,
+                expected_budget: null,
                 files:[],
                 vedio:{}
             }
@@ -668,6 +675,38 @@ export default {
 
         const v$ = useVuelidate(rules,data);
 
+        let previewCompany = (e) => {
+
+            data.company.files = [];
+
+            for(let i of e.target.files){
+                data.company.files.push(i);
+            }
+        }
+
+        let previewDesign = (e) => {
+
+            data.design.files = [];
+
+            for(let i of e.target.files){
+                data.design.files.push(i);
+            }
+        }
+
+        let vedioCompany = (e) => {
+
+            data.company.vedio = {};
+
+            data.company.vedio = e.target.files[0];
+        }
+
+        let vedioDesign = (e) => {
+
+            data.design.vedio = {};
+
+            data.design.vedio = e.target.files[0];
+        }
+
         onMounted(() => {
             getService();
         });
@@ -677,14 +716,14 @@ export default {
         });
 
 
-       return {loading2,show,v$,...toRefs(data),budgets,unities,architecturals};
+       return {vedioCompany,vedioDesign,previewCompany,previewDesign,loading2,show,v$,...toRefs(data),budgets,unities,architecturals};
     },
     methods: {
        designProject() {
 
-          this.v$.company.$validate();
+          this.v$.design.$validate();
 
-          if(!this.v$.company.$error){
+          if(!this.v$.design.$error){
 
               Swal.fire({
                   title: 'هل انت متاكد من البيانات ؟',
@@ -699,7 +738,7 @@ export default {
                   if (result.isConfirmed) {
 
                       let formData = new FormData();
-                      this.loading = true;
+                      this.loading2 = true;
 
                       formData.append('name',this.design.name);
                       formData.append('area',this.design.area);
@@ -710,7 +749,10 @@ export default {
                       formData.append('unity',this.design.unity);
                       formData.append('architectural',this.design.architectural);
                       formData.append('expected_budget',this.design.expected_budget);
-                      formData.append('files',this.design.files);
+                      for( var i = 0; i < this.design.files.length; i++ ){
+                          let file = this.design.files[i];
+                          formData.append('files[' + i + ']', file);
+                      }
                       formData.append('vedio',this.design.vedio);
 
                       webApi.post(`/v1/web/addDesign`,formData)
@@ -718,38 +760,36 @@ export default {
 
                               Swal.fire(
                                   'تم الاضافه بنجاح',
-                                  'سيتم مراجعه ملفك و سنرسل رساله الي البريد الالكتروني بعد الانتهاء من المراجعه .',
+                                  'تم اضافه المشروع بنجاح .',
                                   'نجاح'
                               );
 
+                              this.resetDesign();
 
                           })
                           .catch((err) => {
 
-                              console.log(err.response)
-                              // if(err.response.data.errors.error == 'image'){
-                              //
-                              //     this.step = 1;
-                              //     this.button = false;
-                              //     Swal.fire({
-                              //         icon: 'error',
-                              //         title: 'يوجد خطا في الصور...',
-                              //         text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !'
-                              //     });
-                              //
-                              // }else {
-                              //
-                              //     Swal.fire({
-                              //         icon: 'error',
-                              //         title: 'يوجد خطا في النظام...',
-                              //         text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
-                              //     });
-                              //
-                              // }
+                              if(err.response.data.errors.vedio){
+
+                                  Swal.fire({
+                                      icon: 'error',
+                                      title: 'يوجد خطا في الفديو...',
+                                      text: 'اقصي   حجم لافديو لايتعدي 15mb !'
+                                  });
+
+                              }else {
+
+                                  Swal.fire({
+                                      icon: 'error',
+                                      title: 'يوجد خطا في الصور...',
+                                      text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !'
+                                  });
+
+                              }
 
                           }).finally(() => {
-                          this.loading = false;
-                      });
+                                this.loading2 = false;
+                          });
 
                   }
 
@@ -757,7 +797,7 @@ export default {
 
           }
       },
-        companyProject() {
+       companyProject() {
           this.v$.company.$validate();
 
           if(!this.v$.company.$error){
@@ -775,7 +815,7 @@ export default {
                   if (result.isConfirmed) {
 
                       let formData = new FormData();
-                      this.loading = true;
+                      this.loading2 = true;
 
                       formData.append('name',this.company.name);
                       formData.append('area',this.company.area);
@@ -786,7 +826,10 @@ export default {
                       formData.append('unity',this.company.unity);
                       formData.append('architectural',this.company.architectural);
                       formData.append('expected_budget',this.company.expected_budget);
-                      formData.append('files',this.company.files);
+                      for( var i = 0; i < this.company.files.length; i++ ){
+                          let file = this.company.files[i];
+                          formData.append('files[' + i + ']', file);
+                      }
                       formData.append('vedio',this.company.vedio);
 
                       webApi.post(`/v1/web/addCompany`,formData)
@@ -794,45 +837,69 @@ export default {
 
                               Swal.fire(
                                   'تم الاضافه بنجاح',
-                                  'سيتم مراجعه ملفك و سنرسل رساله الي البريد الالكتروني بعد الانتهاء من المراجعه .',
+                                  'تم اضافه المشروع بنجاح .',
                                   'نجاح'
                               );
 
+                              this.resetCompany();
 
                           })
                           .catch((err) => {
 
-                              console.log(err.response)
-                              // if(err.response.data.errors.error == 'image'){
-                              //
-                              //     this.step = 1;
-                              //     this.button = false;
-                              //     Swal.fire({
-                              //         icon: 'error',
-                              //         title: 'يوجد خطا في الصور...',
-                              //         text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !'
-                              //     });
-                              //
-                              // }else {
-                              //
-                              //     Swal.fire({
-                              //         icon: 'error',
-                              //         title: 'يوجد خطا في النظام...',
-                              //         text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
-                              //     });
-                              //
-                              // }
+                              if(err.response.data.errors.vedio){
+
+                                  Swal.fire({
+                                      icon: 'error',
+                                      title: 'يوجد خطا في الفديو...',
+                                      text: 'اقصي   حجم لافديو لايتعدي 15mb !'
+                                  });
+
+                              }else {
+
+                                  Swal.fire({
+                                      icon: 'error',
+                                      title: 'يوجد خطا في الصور...',
+                                      text: 'اقصي ارتفاع للصوره يكون 1000px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb !'
+                                  });
+
+                              }
 
                           }).finally(() => {
-                          this.loading = false;
-                      });
+                            this.loading2 = false;
+                         });
 
                   }
 
               });
 
           }
-      }
+      },
+       resetCompany() {
+           this.company.name = '';
+           this.company.area = '';
+           this.company.height = '';
+           this.company.room = '';
+           this.company.bathroom = '';
+           this.company.description = '';
+           this.company.unity = 0;
+           this.company.architectural = 0;
+           this.company.expected_budget = 0;
+           this.company.files = [];
+           this.company.vedio = {};
+       },
+       resetDesign() {
+            this.design.name = '';
+            this.design.area = '';
+            this.design.height = '';
+            this.design.room = '';
+            this.design.bathroom = '';
+            this.design.description = '';
+            this.design.unity = 0;
+            this.design.architectural = 0;
+            this.design.expected_budget = 0;
+            this.design.files = [];
+            this.design.vedio = {};
+        }
     },
     beforeRouteEnter(to, from,next) {
         let trust = parseInt(JSON.parse(localStorage.getItem('partner')).trust);

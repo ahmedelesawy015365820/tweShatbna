@@ -19,6 +19,9 @@
         "privacy": "Privacy",
         "comServ": "Company Services",
         "desServ": "Design Services",
-        "acdDegree": "Academic Degree"
+        "acdDegree": "Academic Degree",
+        "unity": "Unity Type",
+        "architectural": "Architectural Type",
+        "expected": "Expected Budget"
     }
 }

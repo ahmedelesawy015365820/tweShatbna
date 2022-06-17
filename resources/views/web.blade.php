@@ -30,9 +30,6 @@
         <link rel="stylesheet" href="{{asset('web/css/owl.carousel.min.css')}}">
         <link rel="stylesheet" href="{{asset('web/css/owl.theme.default.min.css')}}">
 
-        <!-- Summernote CSS -->
-        <link rel="stylesheet" href="{{asset('admin\css\ckeditor.css')}}">
-
         {{--  page سجل لاان  --}}
         <link href="{{asset('web/page/css/main.css')}}" rel="stylesheet">
         <link href="{{asset('web/page/css/responsive.css')}}" rel="stylesheet">

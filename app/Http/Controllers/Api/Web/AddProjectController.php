@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Architectural;
 use App\Models\CompanyProject;
+use App\Models\DesignProject;
 use App\Models\ExpectedBudget;
 use App\Models\Unity;
 use App\Traits\Message;
@@ -20,8 +21,8 @@ class AddProjectController extends Controller
     public function getService()
     {
         $budgets = ExpectedBudget::select('to','id','from')->get();
-        $unities = Unity::get();
-        $architecturals = Architectural::get();
+        $unities = Unity::whereStatus(true)->get();
+        $architecturals = Architectural::whereStatus(true)->get();
 
         return $this->sendResponse(['Budgets' => $budgets,'unities'=> $unities,'architecturals' => $architecturals], 'Data exited successfully');
     }
@@ -43,7 +44,8 @@ class AddProjectController extends Controller
                 'unity' => 'required|integer|exists:unities,id',
                 'architectural' => 'required|integer|exists:architecturals,id',
                 'expected_budget' => 'required|integer|exists:expected_budgets,id',
-                'files' => 'nullable'.($request->hasFile('files')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000':''),
+                'files' => 'nullable',
+                'files.*' => 'nullable'.($request->hasFile('files')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000':''),
                 'vedio' => 'nullable'.($request->hasFile('vedio')?'mimes:mp4,webm|max:20480':''),
             ]);
 
@@ -134,9 +136,11 @@ class AddProjectController extends Controller
                 'unity' => 'required|integer|exists:unities,id',
                 'architectural' => 'required|integer|exists:architecturals,id',
                 'expected_budget' => 'required|integer|exists:expected_budgets,id',
-                'files' => 'nullable'.($request->hasFile('files')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000':''),
-                'vedio' => 'nullable'.($request->hasFile('vedio')?'mimes:mp4,webm|max:20480':''),
+                'files' => 'nullable',
+                'files.*' => 'nullable'.($request->hasFile('files')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000':''),
+                'vedio' => 'nullable'.($request->hasFile('vedio')?'|mimes:mp4,webm|max:20480':''),
             ]);
+
 
             if ($v->fails()) {
                 return $this->sendError('There is an error in the data', $v->errors());
@@ -144,7 +148,7 @@ class AddProjectController extends Controller
 
             $user = auth()->guard('api')->user()->id;
 
-            $company = CompanyProject::create([
+            $company = DesignProject::create([
                 'name' => $request->name,
                 'area' => $request->area,
                 'height' => $request->height,
@@ -164,7 +168,7 @@ class AddProjectController extends Controller
                 $vedio = time() .'.'. $request->file->getClientOriginalName();
 
                 // picture move
-                $request->vedio->storeAs('companyProject/'.$company->id, $vedio,'general');
+                $request->vedio->storeAs('designProject/'.$company->id, $vedio,'general');
 
                 $company->media()->create([
                     'file_name' => $vedio ,
@@ -184,7 +188,7 @@ class AddProjectController extends Controller
                     $image = time() .'.'. $file->getClientOriginalName();
 
                     // picture move
-                    $file->storeAs('companyProject/'.$company->id, $image,'general');
+                    $file->storeAs('designProject/'.$company->id, $image,'general');
 
                     $company->media()->create([
                         'file_name' => $image ,

@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
         <div class="content container-fluid">
 
             <!-- Page Header -->
@@ -48,8 +48,7 @@
                                         <th>#</th>
                                         <th>{{$t('treasury.Name')}}</th>
                                         <th>{{$t('treasury.RelatedTo')}}</th>
-                                        <th>{{$t('treasury.Incomes')}}</th>
-                                        <th>{{$t('treasury.Expenses')}}</th>
+
                                         <th>{{$t('treasury.Status')}}</th>
                                         <th>{{$t('treasury.Action')}}</th>
                                     </tr>
@@ -59,8 +58,7 @@
                                         <td>{{ index + 1 }}</td>
                                         <td>{{ item.name }}</td>
                                         <td>{{ item.treasury_parent ? item.treasury_parent.name :  $t('treasury.NotRelated')}}</td>
-                                        <td>{{ item.income }}</td>
-                                        <td>{{ item.expense }}</td>
+
                                         <td><span
                                             :class="[parseInt(item.active) ? 'text-success': 'text-danger']">{{ parseInt(item.active) ? $t('treasury.Active') : $t('treasury.Inactive') }}</span>
                                         </td>
@@ -92,10 +90,10 @@
             <!-- start Pagination -->
             <Pagination :data="treasuriesPaginate" @pagination-change-page="getTreasuries">
                 <template #prev-nav>
-                    <span>&lt; Previous</span>
+                    <span>&lt; {{$t('global.Previous')}}</span>
                 </template>
                 <template #next-nav>
-                    <span>Next &gt;</span>
+                    <span>{{$t('global.Next')}} &gt;</span>
                 </template>
             </Pagination>
             <!-- end Pagination -->

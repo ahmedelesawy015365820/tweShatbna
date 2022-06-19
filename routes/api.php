@@ -136,7 +136,36 @@ use Illuminate\Support\Facades\Route;
 
              // treasury management
              Route::resource('treasury','TreasuryController');
-             Route::post('mainTreasury','TreasuryController@mainTreasury');
+             Route::get('mainTreasury','TreasuryController@mainTreasury');
+             Route::get('activationTreasury/{id}','TreasuryController@activationTreasury');
+
+             // income
+             Route::resource('income','IncomeController');
+             Route::get('mainIncome','IncomeController@mainIncome');
+             Route::get('activeIncome','IncomeController@activeIncome');
+             Route::get('activationIncome/{id}','IncomeController@activationIncome');
+
+             // expense
+             Route::resource('expense','ExpenseController');
+             Route::get('mainExpense','ExpenseController@mainExpense');
+             Route::get('activeExpense','ExpenseController@activeExpense');
+             Route::get('activationExpense/{id}','ExpenseController@activationExpense');
+
+             // income and expense
+             Route::resource('incomeAndExpense','IncomeAndExpenseController');
+             Route::get('calcIncome','IncomeAndExpenseController@calcIncome');
+             Route::get('editExpense/{id}/edit','IncomeAndExpenseController@editExpense');
+             Route::get('calcExpense','IncomeAndExpenseController@calcExpense');
+
+             // department
+             Route::resource('department','DepartmentController');
+             Route::get('activeDepartment','DepartmentController@activeDepartment');
+             Route::get('activationDepartment/{id}','DepartmentController@activationDepartment');
+
+             // job
+             Route::resource('job','JobController');
+             Route::get('activeJob','JobController@activeJob');
+             Route::get('activationJob/{id}','JobController@activationJob');
 
          });
 

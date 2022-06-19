@@ -1,19 +1,19 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
         <div class="content container-fluid">
 
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">{{ $t('treasury.TreasuryManagement') }}</h3>
+                        <h3 class="page-title">{{ $t('global.Incomes') }}</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <router-link :to="{name: 'dashboard', params: {lang: locale || 'ar'}}">
                                     {{ $t('dashboard.Dashboard') }}
                                 </router-link>
                             </li>
-                            <li class="breadcrumb-item active">{{ $t('treasury.TreasuryManagement') }}</li>
+                            <li class="breadcrumb-item active">{{ $t('global.Incomes') }}</li>
                         </ul>
                     </div>
 
@@ -29,14 +29,14 @@
                             <div class="card-header pt-0">
                                 <div class="row justify-content-between">
                                     <div class="col-5">
-                                        {{ $t('treasury.Search') }}:
+                                        {{ $t('global.Search') }}:
                                         <input type="search" v-model="search" class="custom"/>
                                     </div>
                                     <div class="col-5 row justify-content-end">
                                         <router-link
                                             :to="{name: 'createIncome', params: {lang: locale || 'ar'}}"
                                             class="btn btn-custom btn-warning">
-                                            {{ $t('treasury.Add') }}
+                                            {{ $t('global.Add') }}
                                         </router-link>
                                     </div>
                                 </div>
@@ -46,11 +46,10 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ $t('treasury.Name') }}</th>
-                                        <th>{{ $t('treasury.RelatedTo') }}</th>
-                                        <th>{{ $t('treasury.Incomes') }}</th>
-                                        <th>{{ $t('treasury.Status') }}</th>
-                                        <th>{{ $t('treasury.Action') }}</th>
+                                        <th>{{ $t('global.Name') }}</th>
+                                        <th>{{ $t('global.RelatedTo') }}</th>
+                                        <th>{{ $t('global.Status') }}</th>
+                                        <th>{{ $t('global.Action') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -58,20 +57,19 @@
                                         <td>{{ index + 1 }}</td>
                                         <td>{{ item.name }}</td>
                                         <td>
-                                            {{ item.parent ? item.parent.name : $t('treasury.NotRelated') }}
+                                            {{ item.parent ? item.parent.name : $t('global.NotRelated') }}
                                         </td>
-                                        <td>{{ item.income }}</td>
                                         <td>
                                             <a href="#" @click="activationIncome(item.id,item.name,item.active,index)">
                                                 <span :class="[parseInt(item.active) ? 'text-success hover': 'text-danger hover']">{{
-                                                        parseInt(item.active) ? $t('treasury.Active') : $t('treasury.Inactive')
+                                                        parseInt(item.active) ? $t('global.Active') : $t('global.Inactive')
                                                     }}</span>
                                             </a>
                                         </td>
                                         <td>
 
                                             <router-link
-                                                :to="{name: 'editTreasury', params: {lang: locale || 'ar',id:item.id}}"
+                                                :to="{name: 'editIncome', params: {lang: locale || 'ar',id:item.id}}"
                                                 class="btn btn-sm btn-success me-2">
                                                 <i class="far fa-edit"></i>
                                             </router-link>
@@ -83,7 +81,7 @@
 
                                     </tr>
                                     <tr v-else>
-                                        <th class="text-center" colspan="7">{{ $t('treasury.NoDataFound') }}</th>
+                                        <th class="text-center" colspan="7">{{ $t('global.NoDataFound') }}</th>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -94,12 +92,12 @@
             </div>
             <!-- /Table -->
             <!-- start Pagination -->
-            <Pagination :data="incomesPaginate" @pagination-change-page="getTreasuries">
+            <Pagination :data="incomesPaginate" @pagination-change-page="getIncome">
                 <template #prev-nav>
-                    <span>&lt; Previous</span>
+                    <span>&lt; {{$t('global.Previous')}}</span>
                 </template>
                 <template #next-nav>
-                    <span>Next &gt;</span>
+                    <span>{{$t('global.Next')}} &gt;</span>
                 </template>
             </Pagination>
             <!-- end Pagination -->
@@ -160,8 +158,8 @@ export default {
 
         function deleteIncome(id, incomeName, index) {
             Swal.fire({
-                title: `${t('treasury.AreYouSureDelete')} (${incomeName})`,
-                text: `${t("treasury.YouWontBeAbleToRevertThis")}`,
+                title: `${t('global.AreYouSureDelete')} (${incomeName})`,
+                text: `${t("global.YouWontBeAbleToRevertThis")}`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -172,11 +170,11 @@ export default {
 
                     adminApi.delete(`/v1/dashboard/income/${id}`)
                         .then((res) => {
-                            treasuries.value.splice(index, index + 1);
+                            incomes.value.splice(index, index + 1);
 
                             Swal.fire({
                                 icon: 'success',
-                                title: `${t("treasury.DeletedSuccessfully")}`,
+                                title: `${t("global.DeletedSuccessfully")}`,
                                 showConfirmButton: false,
                                 timer: 1500
                             });
@@ -184,8 +182,8 @@ export default {
                         .catch((err) => {
                             Swal.fire({
                                 icon: 'error',
-                                title: `${t('treasury.ThereIsAnErrorInTheSystem')}`,
-                                text: `${t('treasury.YouCanNotDeleteThisTreasury')}`,
+                                title: `${t('global.ThereIsAnErrorInTheSystem')}`,
+                                text: `${t('global.YouCanNotDelete')}`,
                             });
                         });
                 }
@@ -194,8 +192,8 @@ export default {
 
         function activationIncome(id, incomeName, active,index) {
             Swal.fire({
-                title: `${active ? t('treasury.AreYouSureInactive') :t('treasury.AreYouSureActive')}  (${incomeName})`,
-                text: `${t("treasury.YouWontBeAbleToRevertThis")}`,
+                title: `${active ? t('global.AreYouSureInactive') :t('global.AreYouSureActive')}  (${incomeName})`,
+                text: `${t("global.YouWontBeAbleToRevertThis")}`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -208,17 +206,17 @@ export default {
                         .then((res) => {
                             Swal.fire({
                                 icon: 'success',
-                                title: `${active ? t('treasury.YourTreasuryHasBeenInactive') :t('treasury.YourTreasuryHasBeenActive')}`,
+                                title: `${active ? t('global.InactiveSuccessfully') :t('global.ActiveSuccessfully')}`,
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            treasuries.value[index]['active'] =  active ? 0:1
+                            incomes.value[index]['active'] =  active ? 0:1
                         })
                         .catch((err) => {
                             Swal.fire({
                                 icon: 'error',
-                                title: `${t('treasury.ThereIsAnErrorInTheSystem')}`,
-                                text: `${t('treasury.YouCanNotModifyThisSafe')}`,
+                                title: `${t('global.ThereIsAnErrorInTheSystem')}`,
+                                text: `${t('global.YouCanNotModifyThisSafe')}`,
                             });
                         });
                 }

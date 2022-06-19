@@ -31,7 +31,6 @@ class PackageController extends Controller
 
     }
 
-
     public function create()
     {
         try {

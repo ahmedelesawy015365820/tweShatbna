@@ -61,8 +61,9 @@ class TreasuryController extends Controller
             if ($v->fails()) {
                 return $this->sendError('There is an error in the data', $v->errors());
             }
+            $data = $request->only(['ar','en','treasury_id']);
 
-            Treasury::create($request->all());
+            Treasury::create($data);
 
             DB::commit();
 
@@ -129,8 +130,8 @@ class TreasuryController extends Controller
             if ($v->fails()) {
                 return $this->sendError('There is an error in the data', $v->errors());
             }
-
-            $treasury->update($request->all());
+            $data = $request->only(['ar','en','treasury_id']);
+            $treasury->update($data);
 
             DB::commit();
 

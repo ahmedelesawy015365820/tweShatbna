@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
 
         <div class="content container-fluid">
 
@@ -9,10 +9,10 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">{{$t('treasury.TreasuryManagement')}}</h3>
+                        <h3 class="page-title">{{$t('global.Incomes')}}</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><router-link :to="{name: 'indexTreasury', params: {lang: locale || 'ar'}}">{{$t('treasury.TreasuryManagement')}}</router-link></li>
-                            <li class="breadcrumb-item active">{{$t('treasury.CreateTreasury')}}</li>
+                            <li class="breadcrumb-item"><router-link :to="{name: 'indexIncome', params: {lang: locale || 'ar'}}">{{$t('global.Incomes')}}</router-link></li>
+                            <li class="breadcrumb-item active">{{$t('income.CreateIncome')}}</li>
                         </ul>
                     </div>
                 </div>
@@ -26,10 +26,10 @@
                         <div class="card-body">
                             <div class="card-header pt-0 mb-4">
                                 <router-link
-                                    :to="{name: 'indexTreasury', params: {lang: locale || 'ar'}}"
+                                    :to="{name: 'indexIncome', params: {lang: locale || 'ar'}}"
                                     class="btn btn-custom btn-dark"
                                 >
-                                    {{$t('treasury.back')}}
+                                    {{$t('global.back')}}
                                 </router-link>
                             </div>
                             <div class="row">
@@ -39,40 +39,40 @@
                                     <form @submit.prevent="storeIncome" class="needs-validation">
                                         <div class="form-row row">
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom01">{{$t('treasury.NameEn')}}</label>
+                                                <label for="validationCustom01">{{$t('global.NameEn')}}</label>
                                                 <input type="text" class="form-control"
                                                        v-model.trim="v$.en.name.$model"
                                                        id="validationCustom01"
-                                                       :placeholder="$t('treasury.NameEn')"
+                                                       :placeholder="$t('global.NameEn')"
                                                        :class="{'is-invalid':v$.en.name.$error,'is-valid':!v$.en.name.$invalid}"
                                                 >
-                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.en.name.required.$invalid">name en is required.<br /> </span>
-                                                    <span v-if="v$.en.name.minLength.$invalid">name en is must have at least {{ v$.en.name.minLength.$params.min }} letters. <br /></span>
-                                                    <span v-if="v$.en.name.maxLength.$invalid">name en is must have at most {{ v$.en.name.maxLength.$params.max }} letters. </span>
+                                                    <span v-if="v$.en.name.required.$invalid">{{$t('global.NameEnIsRequired')}}<br /> </span>
+                                                    <span v-if="v$.en.name.minLength.$invalid">{{$t('global.NameEnIsMustHaveAtLeast')}} {{ v$.en.name.minLength.$params.min }} {{$t('global.Letters')}} <br /></span>
+                                                    <span v-if="v$.en.name.maxLength.$invalid">{{$t('global.NameEnIsMustHaveAtMost')}} {{ v$.en.name.maxLength.$params.max }} {{$t('global.Letters')}} </span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom02">{{$t('treasury.NameAr')}}</label>
+                                                <label for="validationCustom02">{{$t('global.NameAr')}}</label>
                                                 <input type="text"
                                                        class="form-control"
                                                        v-model.trim="v$.ar.name.$model"
                                                        id="validationCustom02"
                                                        :class="{'is-invalid':v$.ar.name.$error,'is-valid':!v$.ar.name.$invalid}"
-                                                       :placeholder="$t('treasury.NameAr')"
+                                                       :placeholder="$t('global.NameAr')"
                                                 >
-                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.ar.name.required.$invalid">name en is required. <br /></span>
-                                                    <span v-if="v$.ar.name.minLength.$invalid">name en is must have at least {{ v$.ar.name.minLength.$params.min }} letters. <br /></span>
-                                                    <span v-if="v$.ar.name.maxLength.$invalid">name en is must have at most {{ v$.ar.name.maxLength.$params.max }} letters. </span>
+                                                    <span v-if="v$.ar.name.required.$invalid">{{$t('global.NameArIsRequired')}} <br /></span>
+                                                    <span v-if="v$.ar.name.minLength.$invalid">{{$t('global.NameArIsMustHaveAtLeast')}} {{ v$.ar.name.minLength.$params.min }} {{$t('global.Letters')}} <br /></span>
+                                                    <span v-if="v$.ar.name.maxLength.$invalid">{{$t('global.NameArIsMustHaveAtMost')}} {{ v$.ar.name.maxLength.$params.max }} {{$t('global.Letters')}} </span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-row row">
                                             <div class="form-group row">
-                                                <label class="col-lg-3 col-form-label">{{$t('treasury.ChooseTreasury')}}</label>
+                                                <label class="col-lg-3 col-form-label">{{$t('income.ChooseIncome')}}</label>
                                                 <div class="col-lg-9">
                                                     <select v-model="data.income_id" class="form-select">
                                                         <option v-for="income in mainIncome" :kay="income.id" :value="income.id">{{income.name}}</option>
@@ -82,7 +82,7 @@
 
                                         </div>
 
-                                        <button class="btn btn-primary" type="submit">{{$t('treasury.Submit')}}</button>
+                                        <button class="btn btn-primary" type="submit">{{$t('global.Submit')}}</button>
                                     </form>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@ export default {
                     .then((res) => {
 
                         notify({
-                            title: `${this.t('treasury.AddedSuccessfully')} <i class="fas fa-check-circle"></i>`,
+                            title: `${this.t('global.AddedSuccessfully')} <i class="fas fa-check-circle"></i>`,
                             type: "success",
                             duration: 5000,
                             speed: 2000

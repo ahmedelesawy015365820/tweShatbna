@@ -1,5 +1,5 @@
 <template>
-    <div class="page-wrapper">
+    <div :class="['page-wrapper',this.$i18n.locale == 'ar'? 'page-wrapper-ar':'']">
 
         <div class="content container-fluid">
 
@@ -39,34 +39,34 @@
                                     <form @submit.prevent="editTreasury" class="needs-validation">
                                         <div class="form-row row">
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom01">{{$t('treasury.NameEn')}}</label>
+                                                <label for="validationCustom01">{{$t('global.NameEn')}}</label>
                                                 <input type="text" class="form-control"
                                                        v-model.trim="v$.en.name.$model"
                                                        id="validationCustom01"
-                                                       :placeholder="$t('treasury.NameEn')"
+                                                       :placeholder="$t('global.NameEn')"
                                                        :class="{'is-invalid':v$.en.name.$error,'is-valid':!v$.en.name.$invalid}"
                                                 >
-                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.en.name.required.$invalid">name en is required.<br /> </span>
-                                                    <span v-if="v$.en.name.minLength.$invalid">name en is must have at least {{ v$.en.name.minLength.$params.min }} letters. <br /></span>
-                                                    <span v-if="v$.en.name.maxLength.$invalid">name en is must have at most {{ v$.en.name.maxLength.$params.max }} letters. </span>
+                                                    <span v-if="v$.en.name.required.$invalid">{{$t('global.NameEnIsRequired')}}<br /> </span>
+                                                    <span v-if="v$.en.name.minLength.$invalid">{{$t('global.NameEnIsMustHaveAtLeast')}} {{ v$.en.name.minLength.$params.min }} {{$t('global.Letters')}} <br /></span>
+                                                    <span v-if="v$.en.name.maxLength.$invalid">{{$t('global.NameEnIsMustHaveAtMost')}} {{ v$.en.name.maxLength.$params.max }} {{$t('global.Letters')}} </span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom02">{{$t('treasury.NameAr')}}</label>
+                                                <label for="validationCustom02">{{$t('global.NameAr')}}</label>
                                                 <input type="text"
                                                        class="form-control"
                                                        v-model.trim="v$.ar.name.$model"
                                                        id="validationCustom02"
                                                        :class="{'is-invalid':v$.ar.name.$error,'is-valid':!v$.ar.name.$invalid}"
-                                                       :placeholder="$t('treasury.NameAr')"
+                                                       :placeholder="$t('global.NameAr')"
                                                 >
-                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.ar.name.required.$invalid">name en is required. <br /></span>
-                                                    <span v-if="v$.ar.name.minLength.$invalid">name en is must have at least {{ v$.ar.name.minLength.$params.min }} letters. <br /></span>
-                                                    <span v-if="v$.ar.name.maxLength.$invalid">name en is must have at most {{ v$.ar.name.maxLength.$params.max }} letters. </span>
+                                                    <span v-if="v$.ar.name.required.$invalid">{{$t('global.NameArIsRequired')}} <br /></span>
+                                                    <span v-if="v$.ar.name.minLength.$invalid">{{$t('global.NameArIsMustHaveAtLeast')}} {{ v$.ar.name.minLength.$params.min }} {{$t('global.Letters')}} <br /></span>
+                                                    <span v-if="v$.ar.name.maxLength.$invalid">{{$t('global.NameArIsMustHaveAtMost')}} {{ v$.ar.name.maxLength.$params.max }} {{$t('global.Letters')}} </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -101,6 +101,7 @@ import useVuelidate from '@vuelidate/core';
 import {required,minLength,between,maxLength,alpha,integer} from '@vuelidate/validators';
 import adminApi from "../../../api/adminAxios";
 import { notify } from "@kyvg/vue3-notification";
+import {useI18n} from "vue-i18n";
 
 
 export default {
@@ -113,10 +114,9 @@ export default {
     props:["id"],
     setup(props){
         const emitter = inject('emitter');
-
+        const {t} = useI18n({});
         const {id} = toRefs(props)
-
-        // get create Package
+        // get edit treasury
         let mainTreasury = ref([]);
         let treasury = ref({});
         let loading = ref(false);
@@ -133,7 +133,6 @@ export default {
                     addTreasury.data.ar.name = l.treasury.translations[0].name;
                     addTreasury.data.active = l.treasury.active;
                     addTreasury.data.treasury_id = l.treasury.treasury_id;
-                    console.log(l)
                 })
                 .catch((err) => {
                     console.log(err.response);
@@ -182,7 +181,7 @@ export default {
         const v$ = useVuelidate(rules,addTreasury.data);
 
 
-        return {mainTreasury,loading,...toRefs(addTreasury),v$};
+        return {t,mainTreasury,loading,...toRefs(addTreasury),v$};
     },
     methods: {
         editTreasury(){
@@ -197,7 +196,7 @@ export default {
                     .then((res) => {
 
                         notify({
-                            title: `Successfully added <i class="fas fa-check-circle"></i>`,
+                            title: `${this.t('global.EditSuccessfully')} <i class="fas fa-check-circle"></i>`,
                             type: "success",
                             duration: 5000,
                             speed: 2000

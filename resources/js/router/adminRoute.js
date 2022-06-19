@@ -8,6 +8,11 @@ import comService from './adminRoute/companyService';
 import desService from './adminRoute/designService';
 import desDegree from './adminRoute/dedreeDesign';
 import treasury from './adminRoute/treasury';
+import department from './adminRoute/department';
+import job from './adminRoute/job';
+import income from './adminRoute/income';
+import expense from './adminRoute/expense';
+import incomeAndExpense from './adminRoute/incomeAndExpense';
 import country from './adminRoute/country';
 import state from './adminRoute/state';
 import privacy from './adminRoute/previcy';
@@ -108,7 +113,12 @@ const routes = [
                     ...comService,
                     ...desService,
                     ...desDegree,
-                    ...treasury
+                    ...treasury,
+                    ...income,
+                    ...expense,
+                    ...incomeAndExpense,
+                    ...department,
+                    ...job
                 ]
             },
         ]

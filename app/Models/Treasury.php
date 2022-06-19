@@ -19,20 +19,6 @@ class Treasury extends Model implements TranslatableContract
 
     protected $hidden = ['translations'];
 
-    //append
-    protected $appends = [
-        'income','expense'
-    ];
-
-    public function getExpenseAttribute()
-    {
-        return 0;
-    }
-    public function getIncomeAttribute()
-    {
-        return 0;
-    }
-
     //relations
 
     public function treasuryParent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -45,5 +31,9 @@ class Treasury extends Model implements TranslatableContract
         return $this->hasMany(Treasury::class,'treasury_id');
     }
 
+    public function incomeAndExpense(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(IncomeAndExpense::class);
+    }
 
 }

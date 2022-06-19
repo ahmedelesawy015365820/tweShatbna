@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DegreeDesignSeeder::class);
         $this->call(CompanyServiceSeeder::class);
         $this->call(ProjectSeeder::class);
+        $this->call(JobSeeder::class);
 
     }
 }

@@ -93,11 +93,52 @@
                             <i class="fas fa-folder"></i> <span>{{$t('sidebar.acdDegree')}}</span>
                         </router-link>
                     </li>
-                    <li :class="[$route.name == 'treasury'? 'active': '']">
-                        <router-link :to="{name:'indexTreasury',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-book-dead"></i> <span>treasury</span>
-                        </router-link>
+                    <li class="submenu">
+                        <a href="#" ><i class="fas fa-suitcase"></i> <span> {{$t('sidebar.Management')}}</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li :class="[$route.name == 'indexDepartment'? 'active': '']">
+                                <router-link :to="{name:'indexDepartment',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.Department')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexJob'? 'active': '']">
+                                <router-link :to="{name:'indexJob',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.Jobs')}}
+                                </router-link>
+                            </li>
+                        </ul>
                     </li>
+                    <li class="submenu">
+                        <a href="#" ><i class="fas fa-coins"></i> <span> {{$t('sidebar.Accounts')}}</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li :class="[$route.name == 'indexTreasury'? 'active': '']">
+                                <router-link :to="{name:'indexTreasury',params: {lang:this.$i18n.locale}}">
+                                     {{$t('sidebar.TreasuryManagement')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexIncome'? 'active': '']">
+                                <router-link :to="{name:'indexIncome',params: {lang:this.$i18n.locale}}">
+                                     {{$t('sidebar.IncomeManagement')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexExpense'? 'active': '']">
+                                <router-link :to="{name:'indexExpense',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.Expense')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexIncomeAndExpense'? 'active': '']">
+                                <router-link :to="{name:'indexIncomeAndExpense',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.IncomeAndExpense')}}
+                                </router-link>
+                            </li>
+
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div>

@@ -30,4 +30,10 @@ class Income extends Model implements TranslatableContract
     {
         return $this->hasMany(Income::class,'income_id');
     }
+
+    public function incomeAndExpense(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(IncomeAndExpense::class);
+    }
+
 }

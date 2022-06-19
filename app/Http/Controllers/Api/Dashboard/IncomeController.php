@@ -15,7 +15,17 @@ class IncomeController extends Controller
     use Message;
 
     /**
-     * get main treasury
+     * get active Income
+     */
+    public function activeIncome()
+    {
+        $incomes = Income::where('active', 1)->get();
+        return $this->sendResponse(['incomes' => $incomes], 'Data exited successfully');
+    }
+
+
+    /**
+     * get main Income
      */
     public function mainIncome()
     {
@@ -27,7 +37,7 @@ class IncomeController extends Controller
     }
 
     /**
-     * activation treasury
+     * activation Income
      */
     public function activationIncome($id)
     {
@@ -43,8 +53,6 @@ class IncomeController extends Controller
                 "active" => 1
             ]);
         }
-
-
         return $this->sendResponse([], 'Data exited successfully');
     }
 
@@ -57,7 +65,7 @@ class IncomeController extends Controller
     {
         $incomes = Income::with('parent')->when($request->search, function ($q) use ($request) {
             return $q->whereRelation('translations', 'name', 'like', '%' . $request->search . '%');
-        })->paginate(5);
+        })->latest()->paginate(5);
 
         return $this->sendResponse(['incomes' => $incomes], 'Data exited successfully');
     }
@@ -83,8 +91,9 @@ class IncomeController extends Controller
             if ($v->fails()) {
                 return $this->sendError('There is an error in the data', $v->errors());
             }
+            $data = $request->only(['ar','en','income_id']);
 
-            Income::create($request->all());
+            Income::create($data);
 
             DB::commit();
 
@@ -151,8 +160,9 @@ class IncomeController extends Controller
             if ($v->fails()) {
                 return $this->sendError('There is an error in the data', $v->errors());
             }
+            $data = $request->only(['ar','en','income_id']);
 
-            $income->update($request->all());
+            $income->update($data);
 
             DB::commit();
 
@@ -172,6 +182,11 @@ class IncomeController extends Controller
      */
     public function destroy(Income $income)
     {
+        if (count($income->incomeAndExpense) > 0)
+        {
+            return $this->sendError('can not delete');
+        }
+
         $income->delete();
 
         return $this->sendResponse([], 'Data exited successfully');

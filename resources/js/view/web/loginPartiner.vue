@@ -48,7 +48,7 @@
                                                 </div>
                                                 <button class="btn btn-color btn-primary btn-block btn-lg login-btn text-center" type="submit">{{$t('register.login')}}</button>
                                                 <div class="login-or">
-                                                    <p>Or login with</p>
+                                                    <p>{{$t('register.google')}}</p>
                                                 </div>
                                                 <div class="row justify-content-center social-login">
                                                     <div class="col-6 google">
@@ -60,7 +60,7 @@
                                                         <router-link  :to="{name:'forgetPassword',params: {lang:this.$i18n.locale}}">{{$t('register.forget')}}</router-link>
                                                     </div>
                                                     <div :class="['col-6','text-end','click',this.$i18n.locale == 'ar'?'login-register': '']">{{$t('register.new')}}
-                                                        <router-link  :to="{name:'registerPartiner',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
+                                                        <router-link  :to="{name:'registerClient',params: {lang:this.$i18n.locale}}">{{$t('register.click')}}</router-link>
                                                     </div>
                                                 </div>
                                             </form>

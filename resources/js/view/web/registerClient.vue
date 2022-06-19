@@ -122,7 +122,7 @@
                                             <button class="btn btn-primary btn-block btn-lg login-btn text-center btn-color" type="submit">{{$t('register.join')}}</button>
 
                                             <div class="login-or">
-                                                <p>Or login with</p>
+                                                <p>{{$t('register.google')}}</p>
                                             </div>
 
                                             <div class="row justify-content-center social-login">

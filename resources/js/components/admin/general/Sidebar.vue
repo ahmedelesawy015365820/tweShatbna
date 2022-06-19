@@ -48,7 +48,11 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#" ><i class="fas fa-users"></i> <span> {{$t('sidebar.user')}}</span> <span class="menu-arrow"></span></a>
+                        <a href="#" >
+                            <i class="fas fa-users"></i>
+                            <span> {{$t('sidebar.user')}}</span>
+                            <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span>
+                        </a>
                         <ul>
                             <li :class="[$route.name == 'indexCompany'? 'active': '']">
                                 <router-link :to="{name:'indexCompany',params: {lang:this.$i18n.locale}}">
@@ -217,5 +221,10 @@ window.onload = (event) => {
 }
 .sidebar{
     background-color: #fcb00c38;
+}
+
+.sidebar-menu .menu-arrow.menu-arrow-ar{
+    left: 15px;
+    right: unset;
 }
 </style>

@@ -51,7 +51,8 @@
         "first-account": "First, let's find your account",
         "enter": "Please enter your email",
         "reset":  "RESET PASAWORD",
-        "client": "CLIENT"
+        "client": "CLIENT",
+        "google": "Sign in with google account"
     },
     "index": {
         "trused": "Trused by over 2M+ users",

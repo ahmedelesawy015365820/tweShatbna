@@ -54,7 +54,7 @@
                                     <tbody>
                                     <tr v-for="(item,index) in advertises" v-if="advertises" :key="item.id">
                                         <td>{{index + 1}}</td>
-                                        <td>{{item.custom_name}}</td>
+                                        <td>{{item.name}}</td>
                                         <td>{{item.email}}</td>
                                         <td>Advertise</td>
                                         <td>{{item.code + item.phone}}</td>

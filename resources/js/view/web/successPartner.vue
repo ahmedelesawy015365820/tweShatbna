@@ -770,11 +770,13 @@ export default {
 
                 webApi.post(`/v1/web/newLetter`,this.newsLatter)
                     .then((res) => {
-                        Swal.fire(
-                            'تم الاضافه بنجاح',
-                            'انت الان مشترك في القائمه البريديه .',
-                            'نجاح'
-                        );
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'انت الان مشترك في القائمه البريديه .',
+                            confirmButtonColor: '#ffbc34',
+                            confirmButtonText: 'نجاح'
+                        });
 
                         this.newsLatter.email = '';
                         this.$nextTick(() => { this.v$.$reset() });
@@ -800,11 +802,12 @@ export default {
 
                 webApi.post(`/v1/web/support`, this.support)
                     .then((res) => {
-                        Swal.fire(
-                            'تم الاضافه بنجاح',
-                            'تم ارسال الرساله بنجاح الي الدعم .',
-                            'نجاح'
-                        );
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'انت الان مشترك في القائمه البريديه .',
+                            confirmButtonColor: '#ffbc34',
+                            confirmButtonText: 'نجاح'
+                        });
 
                         this.support.email = '';
                         this.support.first = '';

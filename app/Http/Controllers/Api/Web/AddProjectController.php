@@ -63,10 +63,12 @@ class AddProjectController extends Controller
                 'bathroom' => $request->bathroom,
                 'description' => $request->description,
                 "user_id" => $user,
-                'unity_id' => $request->unity,
-                'architectural_id' => $request->architectural,
                 'expected_budget_id' => $request->expected_budget,
             ]);
+
+            $company->unity()->attach($request->unity);
+
+            $company->architectural()->attach($request->architectural);
 
             if($request->hasFile('vedio')){
 
@@ -148,7 +150,7 @@ class AddProjectController extends Controller
 
             $user = auth()->guard('api')->user()->id;
 
-            $company = DesignProject::create([
+            $desgin = DesignProject::create([
                 'name' => $request->name,
                 'area' => $request->area,
                 'height' => $request->height,
@@ -156,10 +158,12 @@ class AddProjectController extends Controller
                 'bathroom' => $request->bathroom,
                 'description' => $request->description,
                 "user_id" => $user,
-                'unity_id' => $request->unity,
-                'architectural_id' => $request->architectural,
                 'expected_budget_id' => $request->expected_budget,
             ]);
+
+            $desgin->unity()->attach($request->unity);
+
+            $desgin->architectural()->attach($request->architectural);
 
             if($request->hasFile('vedio')){
 
@@ -168,9 +172,9 @@ class AddProjectController extends Controller
                 $vedio = time() .'.'. $request->file->getClientOriginalName();
 
                 // picture move
-                $request->vedio->storeAs('designProject/'.$company->id, $vedio,'general');
+                $request->vedio->storeAs('designProject/'.$desgin->id, $vedio,'general');
 
-                $company->media()->create([
+                $desgin->media()->create([
                     'file_name' => $vedio ,
                     'file_size' => $file_size,
                     'file_type' => $file_type,
@@ -188,9 +192,9 @@ class AddProjectController extends Controller
                     $image = time() .'.'. $file->getClientOriginalName();
 
                     // picture move
-                    $file->storeAs('designProject/'.$company->id, $image,'general');
+                    $file->storeAs('designProject/'.$desgin->id, $image,'general');
 
-                    $company->media()->create([
+                    $desgin->media()->create([
                         'file_name' => $image ,
                         'file_size' => $file_size,
                         'file_type' => $file_type,

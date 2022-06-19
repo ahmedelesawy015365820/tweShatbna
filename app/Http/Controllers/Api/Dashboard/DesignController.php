@@ -23,7 +23,8 @@ class DesignController extends Controller
      */
     public function index(Request $request)
     {
-        $design = User::with(['designer:send,user_id','complement:user_id,device'])->whereAuthId(2)->whereJsonContains('role_name','design')
+        $design = User::
+        with(['designer:send,user_id','complement:user_id,device'])->whereAuthId(2)->whereJsonContains('role_name','design')
             ->where(function ($q) use($request){
                 $q->when($request->search,function ($q) use($request){
                     return $q->OrWhere('email','like','%'.$request->search.'%')

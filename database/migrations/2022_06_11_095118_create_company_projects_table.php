@@ -22,8 +22,6 @@ class CreateCompanyProjectsTable extends Migration
             $table->string('bathroom');
             $table->text('description');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('unity_id')->constrained('unities')->cascadeOnDelete();
-            $table->foreignId('architectural_id')->constrained('architecturals')->cascadeOnDelete();
             $table->foreignId('expected_budget_id')->constrained('expected_budgets')->cascadeOnDelete();
             $table->timestamps();
         });

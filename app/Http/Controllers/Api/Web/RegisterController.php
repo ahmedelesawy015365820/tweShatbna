@@ -39,7 +39,7 @@ class RegisterController extends Controller
             // Validator request
             $v = Validator::make($request->all(), [
                 'name' => 'required|string',
-                'email' => 'required|string|email|unique:users',
+                'email' => 'required|string|email|unique:users,email',
                 'password' => 'required|string|min:8',
                 'confirmtion' => 'required|same:password',
                 'country'  => 'required|integer|exists:countries,id',
@@ -87,7 +87,6 @@ class RegisterController extends Controller
                 'file_sort' => 1
             ]);
 
-            DB::commit();
 
             $credentials = $request->only("email", "password");
             $token = Auth::guard('api')->attempt($credentials);
@@ -329,13 +328,13 @@ class RegisterController extends Controller
         $user = auth()->guard('api')->user();
         $complement = Complement::whereUserId($user->id)->first();
 
-        if($user->role_name[0] == 'company'){
+        if(collect($user->role_name)->toArray()[0] == 'company'){
             $partner = new CompanyResource(Company::whereUserId($user->id)->first());
-        }elseif ($user->role_name[0] == 'design'){
+        }elseif (collect($user->role_name)->toArray()[0] == 'design'){
             $partner = new DesignResource(Designer::whereUserId($user->id)->first());
-        }elseif ($user->role_name[0] == 'advertiser'){
+        }elseif (collect($user->role_name)->toArray()[0] == 'advertiser'){
             $partner = new AdvertiserResource(Advertiser::whereUserId($user->id)->first());
-        }elseif ($user->role_name[0] == 'client'){
+        }elseif (collect($user->role_name)->toArray()[0] == 'client'){
             $partner = new ClientResource(Client::whereUserId($user->id)->first());
         }
 

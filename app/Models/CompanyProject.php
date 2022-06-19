@@ -21,12 +21,12 @@ class CompanyProject extends Model
 
     public function unity()
     {
-        return $this->belongsTo(Unity::class);
+        return $this->belongsToMany(Unity::class,'company_project_unities');
     }
 
     public function architectural()
     {
-        return $this->belongsTo(Architectural::class);
+        return $this->belongsToMany(Architectural::class,'company_project_architecturals');
     }
 
     public function ExpectedBadget()

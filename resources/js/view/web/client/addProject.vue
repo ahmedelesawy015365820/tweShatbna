@@ -155,6 +155,8 @@
                                                             <select
                                                                 class="form-control select"
                                                                 v-model="v$.company.unity.$model"
+                                                                style="height: 150px"
+                                                                multiple
                                                             >
                                                                 <option disabled>Select</option>
                                                                 <option
@@ -179,6 +181,8 @@
                                                             <select
                                                                 class="form-control select"
                                                                 v-model="v$.company.architectural.$model"
+                                                                style="height: 150px"
+                                                                multiple
                                                             >
                                                                 <option disabled>Select</option>
                                                                 <option
@@ -405,6 +409,8 @@
                                                             <select
                                                                 class="form-control select"
                                                                 v-model="v$.design.unity.$model"
+                                                                multiple
+                                                                style="height: 150px"
                                                             >
                                                                 <option disabled>Select</option>
                                                                 <option
@@ -429,6 +435,8 @@
                                                             <select
                                                                 class="form-control select"
                                                                 v-model="v$.design.architectural.$model"
+                                                                multiple
+                                                                style="height: 150px"
                                                             >
                                                                 <option disabled>Select</option>
                                                                 <option
@@ -589,8 +597,8 @@ export default {
                 room: '',
                 bathroom:'',
                 description: "",
-                unity: null,
-                architectural: null,
+                unity: [],
+                architectural: [],
                 expected_budget: null,
                 files:[],
                 vedio:{}
@@ -602,8 +610,8 @@ export default {
                 room: '',
                 bathroom:'',
                 description: "",
-                unity: null,
-                architectural: null,
+                unity: [],
+                architectural: [],
                 expected_budget: null,
                 files:[],
                 vedio:{}
@@ -746,8 +754,8 @@ export default {
                       formData.append('room',this.design.room);
                       formData.append('bathroom',this.design.bathroom);
                       formData.append('description',this.design.description);
-                      formData.append('unity',this.design.unity);
-                      formData.append('architectural',this.design.architectural);
+                      formData.append('unity[]',this.design.unity);
+                      formData.append('architectural[]',this.design.architectural);
                       formData.append('expected_budget',this.design.expected_budget);
                       for( var i = 0; i < this.design.files.length; i++ ){
                           let file = this.design.files[i];
@@ -765,9 +773,12 @@ export default {
                               );
 
                               this.resetDesign();
+                              this.$nextTick(() => { this.v$.design.$reset() });
 
                           })
                           .catch((err) => {
+
+                              console.log(err.response);
 
                               if(err.response.data.errors.vedio){
 
@@ -823,8 +834,8 @@ export default {
                       formData.append('room',this.company.room);
                       formData.append('bathroom',this.company.bathroom);
                       formData.append('description',this.company.description);
-                      formData.append('unity',this.company.unity);
-                      formData.append('architectural',this.company.architectural);
+                      formData.append('unity[]',this.company.unity);
+                      formData.append('architectural[]',this.company.architectural);
                       formData.append('expected_budget',this.company.expected_budget);
                       for( var i = 0; i < this.company.files.length; i++ ){
                           let file = this.company.files[i];
@@ -840,12 +851,13 @@ export default {
                                   'تم اضافه المشروع بنجاح .',
                                   'نجاح'
                               );
-
+                                console.log(res);
                               this.resetCompany();
+                              this.$nextTick(() => { this.v$.company.$reset() });
 
                           })
                           .catch((err) => {
-
+                              console.log(err.response);
                               if(err.response.data.errors.vedio){
 
                                   Swal.fire({
@@ -881,8 +893,8 @@ export default {
            this.company.room = '';
            this.company.bathroom = '';
            this.company.description = '';
-           this.company.unity = 0;
-           this.company.architectural = 0;
+           this.company.unity = [];
+           this.company.architectural = [];
            this.company.expected_budget = 0;
            this.company.files = [];
            this.company.vedio = {};
@@ -895,8 +907,8 @@ export default {
             this.design.bathroom = '';
             this.design.description = '';
             this.design.unity = 0;
-            this.design.architectural = 0;
-            this.design.expected_budget = 0;
+            this.company.unity = [];
+            this.company.architectural = [];
             this.design.files = [];
             this.design.vedio = {};
         }

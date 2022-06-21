@@ -3,7 +3,10 @@ import {createRouter, createWebHistory} from 'vue-router';
 import Index from '../view/web/index.vue';
 import successPartner from '../view/web/successPartner.vue';
 import registerPartiner from '../view/web/registerPartiner.vue';
-import registerClient from '../view/web/registerClient.vue'
+import registerClient from '../view/web/registerClient.vue';
+import browseProject from '../view/web/browse-project.vue';
+import browseCompany from "../view/web/browse-company";
+import browseDesgin from "../view/web/browse-design";
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
 import privacy from '../view/web/privacy';
@@ -87,6 +90,21 @@ const routes = [
                 meta: {
                     middleware: [guest]
                 },
+            },
+            {
+                path: 'browse-project',
+                name: 'browse-project',
+                component: browseProject,
+            },
+            {
+                path: 'browse-company',
+                name: 'browse-company',
+                component: browseCompany,
+            },
+            {
+                path: 'browse-desgin',
+                name: 'browse-desgin',
+                component: browseDesgin,
             },
             {
                 path: 'privacy',

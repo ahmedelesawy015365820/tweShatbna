@@ -30,11 +30,16 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <a href="index.html">{{$t('header.company')}}</a>
+                        <router-link :to="{name:'browse-project',params: {lang:this.$i18n.locale}}">
+                            {{$t('header.browse')}}
+                        </router-link>
                     </li>
                     <li class="nav-item">
-                        <a href="index.html">{{$t('header.desgin')}}</a>
+                        <a href="index.html">{{$t('header.company')}}</a>
                     </li>
+<!--                    <li class="nav-item">-->
+<!--                        <a href="index.html">{{$t('header.desgin')}}</a>-->
+<!--                    </li>-->
                     <li class="nav-item">
                         <a href="index.html">{{$t('header.bargain')}}</a>
                     </li>

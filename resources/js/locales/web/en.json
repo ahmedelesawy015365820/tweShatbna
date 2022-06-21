@@ -10,7 +10,8 @@
         "register":"Register",
         "project":"Add Project",
         "advisor": "Advisor Shatbna",
-        "PRIVACY" : "PRIVACY POLICY"
+        "PRIVACY" : "PRIVACY POLICY",
+        "browse": "Browse Project"
     },
     "register" :{
         "design": "DESIGNER",

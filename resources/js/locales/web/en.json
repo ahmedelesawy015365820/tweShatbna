@@ -131,6 +131,15 @@
         "join": "Join the largest community for decoration and finishes in Egypt",
         "joinp": "Join hundreds of companies and hundreds of designers. All you have to do is download the application and create an account."
     },
+    "browse": {
+        "company": "Company Projects",
+        "design": "Designer Projects",
+        "budget": "proposed budget",
+        "skill": "Required Skills",
+        "more": "Readmore",
+        "description": "Description",
+        "add": "Add Your Offer Now"
+    },
     "footer": {
         "adress": "Addresses Shatbna",
         "captial": "Cairo",

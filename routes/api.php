@@ -54,6 +54,9 @@ use Illuminate\Support\Facades\Route;
          // start  privacy
          Route::get('privacy',  'PrivacyController@index');
 
+        // start show project
+         Route::get('allComProject',  'ShowProjectController@showCompany');
+         Route::get('allDesProject',  'ShowProjectController@showDesign');
 
      });
 

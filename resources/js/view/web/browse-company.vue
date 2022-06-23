@@ -1,21 +1,27 @@
 <template>
     <div class="content">
+        <loader v-if="loading" />
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <!-- Proposals list -->
                     <div class="proposals-section">
-                        <h3 class="page-subtitle">My Proposals</h3>
+                        <div class="page-subtitle d-flex align-items-center justify-content-center">
+                            <div>
+                                <i class="fas fa-ethernet"></i><br>
+                                <p>{{$t("browse.company")}}</p>
+                            </div>
+                        </div>
 
                         <div class="row">
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" v-for="company in companies"  >
                                 <!-- Proposals -->
                                 <div class="freelancer-proposals">
                                     <div class="project-proposals align-items-center freelancer">
 
                                         <div class="row">
-                                            <h3 class="col-7">عمل مخطط منزلي لبيت</h3>
+                                            <h3 class="col-7">{{company.name}}</h3>
                                             <div class="col-5">
                                                 <div class="info-icon">
                                                     <i class="fas fa-heart"></i>
@@ -27,11 +33,11 @@
                                                 <div class="d-flex">
                                                     <div class="col">
                                                         <i class="fas fa-user-alt"></i>
-                                                        <h5>مصطفي احمد</h5>
+                                                        <h5>{{company.user.name.substr(0,9)}}</h5>
                                                     </div>
                                                     <div class="col">
                                                         <i class="fas fa-clock"></i>
-                                                        <h5>منذ ساعتين</h5>
+                                                        <h5>{{company.customDate}}</h5>
                                                     </div>
                                                     <div class="col">
                                                         <i class="fas fa-book-open"></i>
@@ -43,33 +49,23 @@
 
                                         <div class="skill">
                                             <div class="row">
-                                                <div class="col-3">
+
+                                                <div class="col-sm-3 col-12">
                                                     <div class="budget">
                                                         <i class="fas fa-coins"></i>
-                                                        <span class="budget-pound">الميزتنيه المقترحة <br> 1000 جنيه</span>
+                                                        <span class="budget-pound">{{$t("browse.budget")}} <br> {{ company.expected_badget.to }} جنيه</span>
                                                     </div>
                                                 </div>
-                                                <div class="col-9">
+
+                                                <div class="col-sm-9 col-12">
                                                     <div class="skill-group">
-                                                        <h5><span><i class="fas fa-drafting-compass"></i></span>  المهارات المطلوبة</h5>
+                                                        <h5><span><i class="fas fa-drafting-compass"></i></span>  {{$t("browse.skill")}}</h5>
                                                         <div class="row design-skills">
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">رسم معماري</div>
+                                                            <div class="col-sm-4 col-6" v-for="unity in company.unity">
+                                                                <div class="design-skill">{{unity.name}}</div>
                                                             </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم داخلي</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم اثاث</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">رسم معماري</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم داخلي</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم اثاث</div>
+                                                            <div class="col-sm-4 col-6" v-for="architectural in company.architectural">
+                                                                <div class="design-skill">{{architectural.name}}</div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -78,244 +74,19 @@
                                         </div>
 
                                         <div class="description-proposal">
-                                            <h5 class="desc-title">Description</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At diam sit erat et eros. Et cursus tellus viverra adipiscing suspendisse. Semper arcu est eget eleifend. Faucibus elit massa sollicitudin elementum ut feugiat nunc ac. Turpis quam sed in sed curabitur netus laoreet. In tortor neque sapien praesent porttitor cursus sed cum....<a href="#" class="text-primary font-bold">Readmore</a></p>
+                                            <h5 class="desc-title">{{$t("browse.description")}}</h5>
+                                            <p>{{company.description.substr(0,250)}}....<router-link to=""  class="text-primary font-bold">
+                                                {{$t("browse.more")}}</router-link></p>
+                                        </div>
+
+                                        <div class="show-project">
+                                            <router-link to="" class='btn'>{{$t("browse.add")}}</router-link>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Proposals -->
                             </div>
 
-                            <div class="col-lg-6">
-                                <!-- Proposals -->
-                                <div class="freelancer-proposals">
-                                    <div class="project-proposals align-items-center freelancer">
-
-                                        <div class="row">
-                                            <h3 class="col-7">عمل مخطط منزلي لبيت</h3>
-                                            <div class="col-5">
-                                                <div class="info-icon">
-                                                    <i class="fas fa-heart"></i>
-                                                    <i class="fas fa-thumbs-down"></i>
-                                                    <i class="fas fa-flag"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-xl-8 info-person">
-                                                <div class="d-flex">
-                                                    <div class="col">
-                                                        <i class="fas fa-user-alt"></i>
-                                                        <h5>مصطفي احمد</h5>
-                                                    </div>
-                                                    <div class="col">
-                                                        <i class="fas fa-clock"></i>
-                                                        <h5>منذ ساعتين</h5>
-                                                    </div>
-                                                    <div class="col">
-                                                        <i class="fas fa-book-open"></i>
-                                                        <h5>10 عروض</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="skill">
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <div class="budget">
-                                                        <i class="fas fa-coins"></i>
-                                                        <span class="budget-pound">الميزتنيه المقترحة <br> 1000 جنيه</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <div class="skill-group">
-                                                        <h5><span><i class="fas fa-drafting-compass"></i></span>  المهارات المطلوبة</h5>
-                                                        <div class="row design-skills">
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">رسم معماري</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم داخلي</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم اثاث</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">رسم معماري</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم داخلي</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم اثاث</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="description-proposal">
-                                            <h5 class="desc-title">Description</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At diam sit erat et eros. Et cursus tellus viverra adipiscing suspendisse. Semper arcu est eget eleifend. Faucibus elit massa sollicitudin elementum ut feugiat nunc ac. Turpis quam sed in sed curabitur netus laoreet. In tortor neque sapien praesent porttitor cursus sed cum....<a href="#" class="text-primary font-bold">Readmore</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Proposals -->
-                            </div>
-
-                            <div class="col-lg-6">
-                                <!-- Proposals -->
-                                <div class="freelancer-proposals">
-                                    <div class="project-proposals align-items-center freelancer">
-
-                                        <div class="row">
-                                            <h3 class="col-7">عمل مخطط منزلي لبيت</h3>
-                                            <div class="col-5">
-                                                <div class="info-icon">
-                                                    <i class="fas fa-heart"></i>
-                                                    <i class="fas fa-thumbs-down"></i>
-                                                    <i class="fas fa-flag"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-xl-8 info-person">
-                                                <div class="d-flex">
-                                                    <div class="col">
-                                                        <i class="fas fa-user-alt"></i>
-                                                        <h5>مصطفي احمد</h5>
-                                                    </div>
-                                                    <div class="col">
-                                                        <i class="fas fa-clock"></i>
-                                                        <h5>منذ ساعتين</h5>
-                                                    </div>
-                                                    <div class="col">
-                                                        <i class="fas fa-book-open"></i>
-                                                        <h5>10 عروض</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="skill">
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <div class="budget">
-                                                        <i class="fas fa-coins"></i>
-                                                        <span class="budget-pound">الميزتنيه المقترحة <br> 1000 جنيه</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <div class="skill-group">
-                                                        <h5><span><i class="fas fa-drafting-compass"></i></span>  المهارات المطلوبة</h5>
-                                                        <div class="row design-skills">
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">رسم معماري</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم داخلي</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم اثاث</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">رسم معماري</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم داخلي</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم اثاث</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="description-proposal">
-                                            <h5 class="desc-title">Description</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At diam sit erat et eros. Et cursus tellus viverra adipiscing suspendisse. Semper arcu est eget eleifend. Faucibus elit massa sollicitudin elementum ut feugiat nunc ac. Turpis quam sed in sed curabitur netus laoreet. In tortor neque sapien praesent porttitor cursus sed cum....<a href="#" class="text-primary font-bold">Readmore</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Proposals -->
-                            </div>
-
-                            <div class="col-lg-6">
-                                <!-- Proposals -->
-                                <div class="freelancer-proposals">
-                                    <div class="project-proposals align-items-center freelancer">
-
-                                        <div class="row">
-                                            <h3 class="col-7">عمل مخطط منزلي لبيت</h3>
-                                            <div class="col-5">
-                                                <div class="info-icon">
-                                                    <i class="fas fa-heart"></i>
-                                                    <i class="fas fa-thumbs-down"></i>
-                                                    <i class="fas fa-flag"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-xl-8 info-person">
-                                                <div class="d-flex">
-                                                    <div class="col">
-                                                        <i class="fas fa-user-alt"></i>
-                                                        <h5>مصطفي احمد</h5>
-                                                    </div>
-                                                    <div class="col">
-                                                        <i class="fas fa-clock"></i>
-                                                        <h5>منذ ساعتين</h5>
-                                                    </div>
-                                                    <div class="col">
-                                                        <i class="fas fa-book-open"></i>
-                                                        <h5>10 عروض</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="skill">
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <div class="budget">
-                                                        <i class="fas fa-coins"></i>
-                                                        <span class="budget-pound">الميزتنيه المقترحة <br> 1000 جنيه</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-9">
-                                                    <div class="skill-group">
-                                                        <h5><span><i class="fas fa-drafting-compass"></i></span>  المهارات المطلوبة</h5>
-                                                        <div class="row design-skills">
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">رسم معماري</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم داخلي</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم اثاث</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">رسم معماري</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم داخلي</div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-6">
-                                                                <div class="design-skill">تصميم اثاث</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="description-proposal">
-                                            <h5 class="desc-title">Description</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. At diam sit erat et eros. Et cursus tellus viverra adipiscing suspendisse. Semper arcu est eget eleifend. Faucibus elit massa sollicitudin elementum ut feugiat nunc ac. Turpis quam sed in sed curabitur netus laoreet. In tortor neque sapien praesent porttitor cursus sed cum....<a href="#" class="text-primary font-bold">Readmore</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Proposals -->
-                            </div>
                         </div>
 
                     </div>
@@ -324,14 +95,7 @@
                     <!-- pagination -->
                     <div class="row">
                         <div class="col-md-12">
-                            <ul class="paginations freelancer">
-                                <li><a href="#"> <i class="fas fa-angle-left"></i> Previous</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#" class="active">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next <i class="fas fa-angle-right"></i></a></li>
-                            </ul>
+
                         </div>
                     </div>
                     <!-- /pagination -->
@@ -343,8 +107,51 @@
 </template>
 
 <script>
+import webApi from "../../api/webAxios";
+import {inject, onMounted, ref} from "vue";
+
 export default {
     name: "browse-company",
+    setup(){
+
+        const emitter = inject('emitter');
+        let loading  = ref(false);
+        let companies  = ref([]);
+        let companiesPaginate  = ref({});
+
+        let getProject = () => {
+            loading.value = true;
+
+            webApi.get(`/v1/web/allComProject`)
+                .then((res) => {
+                    let l = res.data.data;
+                    companiesPaginate.value = l.companies;
+                    companies.value = l.companies.data;
+
+                    console.log(l.companies.data);
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا ...',
+                        text: 'يوجد خطاء في النظام يرجي اعاده الماوله مره اخري  !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
+        }
+
+        onMounted(() => {
+            getProject();
+        });
+
+        emitter.on('get_lang_web', () => {
+            getProject();
+        });
+
+        return {companies,companiesPaginate,loading};
+    }
 }
 </script>
 
@@ -354,7 +161,7 @@ export default {
 }
 .project-proposals{
     background: #fff;
-    border: 1px solid #fcbd33;
+    border: 2px solid #fcbd33;
     border-radius: 10px;
 }
 
@@ -458,5 +265,68 @@ export default {
     color: #fcbd33;
 }
 
+.show-project a{
+    border-radius: 9px;
+    border: 1px solid #fcbd33;
+    color: #fcbd33;
+    font-weight: 600;
+    transition: all .4s ease-in-out;
+}
+
+.show-project a:hover {
+    background-color: #fcbd33;
+    color: #fff;
+}
+
+.font-bold:hover{
+    color: #fcbd33;
+}
+
+.page-subtitle {
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.page-subtitle div{
+    display: inline-block;
+    height: 168px;
+    width: 168px;
+    box-shadow: 1px 0px 17px -4px rgb(0 0 0 / 25%);
+    border-radius: 50%;
+    color: #fcbd33;
+}
+
+.page-subtitle div i{
+    font-size: 50px;
+    display: inline-block;
+    margin: 23% 0 0px;
+}
+
+@media only screen and (max-width: 574px){
+    .skill .budget {
+        margin: 20px auto;
+    }
+
+    .skill-group h5 {
+        font-size: 22px;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .info-icon i {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+
+    .project-proposals h3 {
+        color: #fcbd33;
+        font-size: 16px;
+    }
+
+    .info-person h5{
+        font-size: 11px;
+    }
+}
 
 </style>

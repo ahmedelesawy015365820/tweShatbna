@@ -8,7 +8,7 @@
                         <div class="browse-details">
                             <i class="fas fa-drafting-compass"></i>
                             <h3>
-                                مشاريع ديزاينر
+                               {{$t("browse.design")}}
                             </h3>
                         </div>
                     </router-link>
@@ -18,7 +18,7 @@
                        <div class="browse-details">
                            <i class="fas fa-building"></i>
                            <h3>
-                               مشاريع الشركات
+                               {{$t("browse.company")}}
                            </h3>
                        </div>
                    </router-link>
@@ -42,7 +42,7 @@ export default {
     height: 100%;
 }
 .content {
-    height: 80vh !important;
+    min-height: 80vh !important;
      padding: 60px 0;
     background-color: #fff;
 }
@@ -52,7 +52,9 @@ export default {
     padding: 50px 0;
     position: relative;
     border-radius: 10px;
-    border: 1px solid #fcbd33;
+    border: 2px solid #fcbd33;
+    overflow: hidden;
+    margin-top: 30px;
 }
 
 .browse .browse-details::after{
@@ -78,7 +80,6 @@ export default {
     background-color: #fcbd33;
     transition: all .4s ease-in-out;
     z-index: 0;
-    border-radius: 10px;
 }
 
 .browse .browse-details i{

@@ -3900,10 +3900,8 @@ html.menu-opened body header:before {
 -----------------------*/
 
 .breadcrumb-bar {
-    background: url(../../assets/img/inner-banner.jpg);
     background-size: cover;
     padding-top: 84px;
-	background-repeat: no-repeat;
 	min-height: 304px;
 }
 .breadcrumb-bar .breadcrumb-title {

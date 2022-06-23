@@ -5,7 +5,8 @@ import successPartner from '../view/web/successPartner.vue';
 import registerPartiner from '../view/web/registerPartiner.vue';
 import registerClient from '../view/web/registerClient.vue';
 import browseProject from '../view/web/browse-project.vue';
-import browseCompany from "../view/web/browse-company";
+import browseCompany from "../view/web/browse-company.vue";
+import browseDetails from  "../view/web/browse-details.vue";
 import browseDesgin from "../view/web/browse-design";
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
@@ -95,6 +96,11 @@ const routes = [
                 path: 'browse-project',
                 name: 'browse-project',
                 component: browseProject,
+            },
+            {
+                path: 'browse-details',
+                name: 'browse-details',
+                component: browseDetails,
             },
             {
                 path: 'browse-company',

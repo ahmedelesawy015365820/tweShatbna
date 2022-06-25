@@ -2,21 +2,22 @@
 <div>
     <!-- Page Content -->
     <div class="content">
+        <loader v-if="loading" />
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="profile">
                         <div class="profile-box">
-                            <div class="provider-widget row">
-                                <div class="pro-info-left col-md-8">
+                            <div class="row">
+                                <div class="col-md-8">
                                     <div class="profile-info">
-                                        <h2 class="profile-title">3D Renders and Amazon Product Store </h2>
+                                        <h2 class="profile-title">{{ detail.name }}</h2>
                                         <div></div>
                                     </div>
                                 </div>
-                                <div class="pro-info-right profile-inf col-md-4">
+                                <div class="col-md-4">
                                     <div class="d-flex align-items-center justify-content-md-end justify-content-center">
-                                        <a data-bs-toggle="modal" href="#file" class="btn bid-btn">Send Proposal</a>
+                                        <a data-bs-toggle="modal" href="#file" class="btn bid-btn">{{$t("browse.add")}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -29,60 +30,28 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="pro-view">
 
-                        <!-- Job Detail -->
-                        <div class="post-widget">
-                            <div class="pro-content">
-                                <div class="row">
-                                    <div class="col-12 col-sm-6 col-md-3">
-                                        <div class="pro-post job-type">
-                                            <p>Job Expiry </p>
-                                            <h6>4 Days Left</h6>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-3">
-                                        <div class="pro-post job-type">
-                                            <p>Location</p>
-                                            <h6> Germany</h6>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-3">
-                                        <div class="pro-post job-type">
-                                            <p>Proposals</p>
-                                            <h6>15 Received</h6>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-3">
-                                        <div class="pro-post job-type">
-                                            <p>Price type</p>
-                                            <h6>Fixed</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Job Detail -->
-
                         <!-- Senior Animator  -->
                         <div class="pro-post widget-box">
-                            <h3 class="pro-title">Senior Animator</h3>
+                            <h3 class="pro-title">{{$t("browse.description")}}</h3>
                             <div class="pro-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. Nunc eu augue nec arcu efficitur faucibus. Aliquam accumsan ac magna convallis bibendum. Quisque laoreet augue eget augue fermentum scelerisque. Vivamus dignissim mollis est dictum blandit. Nam porta auctor neque sed congue. Nullam rutrum eget ex at maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget vestibulum lorem.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. Nunc eu augue nec arcu efficitur faucibus. </p>
+                                <p>
+                                    {{detail.description}}
+                                </p>
                             </div>
                         </div>
                         <!-- /Senior Animator  -->
 
                         <!-- Skills Required  -->
                         <div class="pro-post project-widget widget-box">
-                            <h3 class="pro-title">Skills Required</h3>
+                            <h3 class="pro-title">{{$t("browse.skill")}}</h3>
                             <div class="pro-content">
                                 <div class="tags">
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">After Effects</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Illustrator</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">HTML</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Whiteboard</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">HTML</span></a>
-                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Whiteboard</span></a>
+                                    <a href="javascript:void(0);" v-for="unity in detail.unity">
+                                        <span class="badge badge-pill badge-design">{{unity.name}}</span>
+                                    </a>
+                                    <a href="javascript:void(0);" v-for="architectural in detail.architectural">
+                                        <span class="badge badge-pill badge-design">{{architectural.name}}</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -206,39 +175,35 @@
                             <div class="author-heading">
                                 <div class="profile-img">
                                     <a href="#">
-                                        <img src="/web/img/company/img-1.png" alt="author">
+                                        <img
+                                            :src="user.imagePath"
+                                            onerror="src='/web/img/company/img-1.png'"
+                                            alt="author"
+                                        >
                                     </a>
                                 </div>
                                 <div class="profile-name">
-                                    <div class="author-location">Amaze Tech <i class="fas fa-check-circle text-success verified"></i></div>
-                                </div>
-                                <div class="freelance-info">
-                                    <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Georgia, USA</div>
-                                    <div class="rating">
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star filled"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span class="average-rating">4.7 (32)</span>
+                                    <div class="author-location">
+                                        {{user['name']}}
+                                        <i class="fas fa-check-circle text-success verified"></i>
                                     </div>
                                 </div>
 
                                 <div class="">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="text-sm text-start mb-0">
+                                            <h6 class="text-sm  mb-0">
                                                 Member Since
                                             </h6>
                                         </div>
                                         <div class="col-auto">
-                                            <span class="text-sm">January 1, 2021</span>
+                                            <span class="text-sm">{{ detail.customDate }}</span>
                                         </div>
                                     </div>
                                     <hr class="my-3">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="text-sm text-start mb-0">
+                                            <h6 class="text-sm  mb-0">
                                                 Total Jobs
                                             </h6>
                                         </div>
@@ -262,8 +227,54 @@
 </template>
 
 <script>
+import {inject, ref, toRefs,onMounted} from "vue";
+import webApi from "../../api/webAxios";
+
 export default {
-    name: "browse-details"
+    name: "browse-details",
+    props:['id'],
+    setup(props){
+
+        // get create Package
+        const { id } = toRefs(props);
+        const emitter = inject('emitter');
+        let loading  = ref(false);
+        let detail  = ref({});
+        let user  = ref({});
+
+        let getDetails = () => {
+            loading.value = true;
+
+            webApi.get(`/v1/web/showComDetail/${id.value}`)
+                .then((res) => {
+                    let l = res.data.data;
+                    detail.value = l.detail;
+                    user.value = l.detail.user;
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا ...',
+                        text: 'يوجد خطاء في النظام يرجي اعاده الماوله مره اخري  !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
+        };
+
+        onMounted(() => {
+            getDetails();
+        });
+
+
+        emitter.on('get_lang_web', () => {
+            getDetails();
+        });
+
+        return {loading,detail,user};
+
+    }
 }
 </script>
 
@@ -275,5 +286,17 @@ export default {
 
 .profile {
     box-shadow: 0 4px 14px rgb(0 0 0 / 15%) !important;
+}
+
+.profile-box {
+    margin-top: 100px;
+}
+
+.bid-btn {
+    background-color: #fcbd33;
+}
+
+.profile-title {
+    font-size: 30px !important;
 }
 </style>

@@ -98,9 +98,10 @@ const routes = [
                 component: browseProject,
             },
             {
-                path: 'browse-details',
+                path: 'browse-details/:id(\\d+)',
                 name: 'browse-details',
                 component: browseDetails,
+                props: true
             },
             {
                 path: 'browse-company',

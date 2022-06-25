@@ -851,7 +851,6 @@ export default {
                                   'تم اضافه المشروع بنجاح .',
                                   'نجاح'
                               );
-                                console.log(res);
                               this.resetCompany();
                               this.$nextTick(() => { this.v$.company.$reset() });
 

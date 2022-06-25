@@ -6,6 +6,7 @@
                 <div class="col-12">
                     <!-- Proposals list -->
                     <div class="proposals-section">
+
                         <div class="page-subtitle d-flex align-items-center justify-content-center">
                             <div>
                                 <i class="fas fa-ethernet"></i><br>
@@ -75,12 +76,21 @@
 
                                         <div class="description-proposal">
                                             <h5 class="desc-title">{{$t("browse.description")}}</h5>
-                                            <p>{{company.description.substr(0,250)}}....<router-link to=""  class="text-primary font-bold">
-                                                {{$t("browse.more")}}</router-link></p>
+                                            <p>{{company.description.substr(0,250)}}....
+                                                <router-link
+                                                    :to="{name:'browse-details',params:{lang:this.$i18n.locale,id:company.id}}"
+                                                    class="text-primary font-bold"
+                                                >
+                                                    {{$t("browse.more")}}
+                                                </router-link>
+                                            </p>
                                         </div>
 
                                         <div class="show-project">
-                                            <router-link to="" class='btn'>{{$t("browse.add")}}</router-link>
+                                            <router-link :to="{name:'browse-details',params:{lang:this.$i18n.locale,id:company.id}}"
+                                                         class='btn'
+                                            >{{$t("browse.add")}}
+                                            </router-link>
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +138,6 @@ export default {
                     companiesPaginate.value = l.companies;
                     companies.value = l.companies.data;
 
-                    console.log(l.companies.data);
                 })
                 .catch((err) => {
                     Swal.fire({
@@ -140,7 +149,7 @@ export default {
                 .finally(() => {
                     loading.value = false;
                 });
-        }
+        };
 
         onMounted(() => {
             getProject();
@@ -301,6 +310,7 @@ export default {
     display: inline-block;
     margin: 23% 0 0px;
 }
+
 
 @media only screen and (max-width: 574px){
     .skill .budget {

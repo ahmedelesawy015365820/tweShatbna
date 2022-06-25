@@ -87,4 +87,29 @@ class ShowProjectController extends Controller
 
         return $this->sendResponse(['designs' => $designs],'Data exited successfully');
     }
+
+    public function showDesDetail($id)
+    {
+
+        $detail = DesignProject::
+        with('user:id,name','unity','architectural','ExpectedBadget:id,to,from')
+        ->find($id);
+
+
+        return $this->sendResponse(['detail' => $detail],'Data exited successfully');
+
+    }
+
+    public function showComDetail($id)
+    {
+
+        $detail = CompanyProject::
+        with('user:id,name','unity','architectural','ExpectedBadget:id,to,from')
+        ->find($id);
+
+
+        return $this->sendResponse(['detail' => $detail],'Data exited successfully');
+
+    }
+
 }

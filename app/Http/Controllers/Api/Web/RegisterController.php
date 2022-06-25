@@ -39,7 +39,7 @@ class RegisterController extends Controller
             // Validator request
             $v = Validator::make($request->all(), [
                 'name' => 'required|string',
-                'email' => 'required|string|email|unique:users',
+                'email' => 'required|string|email|unique:users,email',
                 'password' => 'required|string|min:8',
                 'confirmtion' => 'required|same:password',
                 'country'  => 'required|integer|exists:countries,id',
@@ -87,7 +87,6 @@ class RegisterController extends Controller
                 'file_sort' => 1
             ]);
 
-            DB::commit();
 
             $credentials = $request->only("email", "password");
             $token = Auth::guard('api')->attempt($credentials);
@@ -249,7 +248,7 @@ class RegisterController extends Controller
     public function clientRegister(Request $request)
     {
 
-//        DB::beginTransaction();
+        DB::beginTransaction();
 
         try {
 
@@ -274,7 +273,7 @@ class RegisterController extends Controller
                 "name" => $request->name,
                 "email" => $request->email,
                 "password" => $request->password,
-                "auth_id" => 2,
+                "auth_id" => 3,
                 'role_name' => ['client'],
                 "status" => 1,
                 'phone' => $request->phone,
@@ -313,13 +312,13 @@ class RegisterController extends Controller
 
     public function country()
     {
-        $country = Country::with('media:file_name,mediable_id')->get();
+        $country = Country::with('media:file_name,mediable_id')->whereStatus(true)->get();
         return $this->sendResponse(['country' => $country],'Data exited successfully');
     }
 
     public function state($id)
     {
-        $state = State::whereCountryId($id)->get();
+        $state = State::whereCountryId($id)->whereStatus(true)->get();
         return $this->sendResponse(['state' => StateResource::collection($state)],'Data exited successfully');
     }
 
@@ -329,13 +328,13 @@ class RegisterController extends Controller
         $user = auth()->guard('api')->user();
         $complement = Complement::whereUserId($user->id)->first();
 
-        if($user->role_name[0] == 'company'){
+        if(collect($user->role_name)->toArray()[0] == 'company'){
             $partner = new CompanyResource(Company::whereUserId($user->id)->first());
-        }elseif ($user->role_name[0] == 'design'){
+        }elseif (collect($user->role_name)->toArray()[0] == 'design'){
             $partner = new DesignResource(Designer::whereUserId($user->id)->first());
-        }elseif ($user->role_name[0] == 'advertiser'){
+        }elseif (collect($user->role_name)->toArray()[0] == 'advertiser'){
             $partner = new AdvertiserResource(Advertiser::whereUserId($user->id)->first());
-        }elseif ($user->role_name[0] == 'client'){
+        }elseif (collect($user->role_name)->toArray()[0] == 'client'){
             $partner = new ClientResource(Client::whereUserId($user->id)->first());
         }
 

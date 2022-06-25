@@ -6,6 +6,7 @@ import registerPartiner from '../view/web/registerPartiner.vue';
 import registerClient from '../view/web/registerClient.vue'
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
+import advisorShatabna from '../view/web/advisorShatabna';
 import privacy from '../view/web/privacy';
 import forgetPassword from '../view/web/forgetPassword.vue';
 import resetPassword from '../view/web/resetPassword.vue';
@@ -39,6 +40,11 @@ const routes = [
                 path: '',
                 name: 'home',
                 component: Index
+            },
+            {
+                path: 'advisor-shatabna',
+                name: 'advisorShatabna',
+                component: advisorShatabna
             },
             {
                 path: 'register-partiner',

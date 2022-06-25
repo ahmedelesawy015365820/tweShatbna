@@ -62,6 +62,7 @@
                                         <th>{{ $t('global.Amount') }}</th>
                                         <th>{{ $t('global.PaymentDate') }}</th>
                                         <th>{{ $t('global.TransactionDate') }}</th>
+                                        <th>{{ $t('global.ProcessWriter') }}</th>
                                         <th>{{ $t('global.Action') }}</th>
                                     </tr>
                                     </thead>
@@ -73,6 +74,7 @@
                                         <td>{{ item.amount }}</td>
                                         <td>{{ item.payment_date }}</td>
                                         <td>{{dateFormat(item.created_at)}}</td>
+                                        <td>{{ item.user ? item.user.name :"-----" }}</td>
 
                                         <td>
 
@@ -130,6 +132,7 @@
                                         <th>{{ $t('global.Amount') }}</th>
                                         <th>{{ $t('global.PaymentDate') }}</th>
                                         <th>{{ $t('global.TransactionDate') }}</th>
+                                        <th>{{ $t('global.ProcessWriter') }}</th>
                                         <th>{{ $t('global.Action') }}</th>
                                     </tr>
                                     </thead>
@@ -141,8 +144,8 @@
                                         <td>{{ item.amount }}</td>
                                         <td>{{ item.payment_date }}</td>
                                         <td>{{dateFormat(item.created_at)}}</td>
+                                        <td>{{ item.user ? item.user.name :"-----" }}</td>
                                         <td>
-
                                             <router-link
                                                 :to="{name: 'editExpenseData', params: {lang: locale || 'ar',id:item.id}}"
                                                 class="btn btn-sm btn-success me-2">

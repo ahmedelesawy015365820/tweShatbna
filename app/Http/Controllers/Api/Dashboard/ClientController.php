@@ -20,7 +20,7 @@ class ClientController extends Controller
      */
     public function index(Request $request)
     {
-        $clients = User::with(['complement:user_id,device','client:user_id,send'])->whereAuthId(2)->whereJsonContains('role_name','client')
+        $clients = User::with(['complement:user_id,device','client:user_id,send'])->whereAuthId(3)->whereJsonContains('role_name','client')
             ->where(function ($q) use($request){
                 $q->when($request->search,function ($q) use($request){
                     return $q->OrWhere('email','like','%'.$request->search.'%')

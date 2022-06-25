@@ -105,7 +105,7 @@
         <div class="dont-have">
             <label class="custom_check">
                 <input type="checkbox" v-model="dataAdvertiser.agree">
-                <span class="checkmark"></span> {{$t('register.agree')}} <router-link :to="{name:'privacy',params: {lang:this.$i18n.locale}}"> {{$t('register.Privacy')}} </router-link>
+                <span class="checkmark"></span> {{$t('register.agree')}} <router-link :to="{name:'privacy',params: {lang:this.$i18n.locale}}" > {{$t('register.Privacy')}} </router-link>
                 <div v-if="v$.agree.$error">
                     <span class="text-danger" v-if="v$.agree.mustBeCool.$invalid">You must agree to the terms and conditions.<br /> </span>
                 </div>

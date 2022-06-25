@@ -72,7 +72,7 @@
 
                                             <div class="col-md-6 mb-3">
                                                 <label for="validationCustom02">{{$t('global.AllowAddingToSalesTeam')}}</label>
-                                                <input type="checkbox" v-model="v$.Allow_adding_to_sales_team.$model" class="m-5" :checked="v$.Allow_adding_to_sales_team.$model">
+                                                <input type="checkbox" v-model="data.Allow_adding_to_sales_team" class="m-5" :checked="data.Allow_adding_to_sales_team">
                                             </div>
 
                                         </div>

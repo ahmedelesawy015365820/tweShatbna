@@ -84,6 +84,11 @@ class User extends Authenticatable implements JWTSubject ,MustVerifyEmail
         return $this->hasOne(Advertiser::class);
     }
 
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
 
     public function  packageSale()
     {
@@ -149,6 +154,11 @@ class User extends Authenticatable implements JWTSubject ,MustVerifyEmail
     public function companyProject()
     {
         return $this->hasMany(CompanyProject::class);
+    }
+
+    public function incomeAndExpense(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(IncomeAndExpense::class);
     }
 
     //end raletions

@@ -165,8 +165,12 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        $department->delete();
-
-        return $this->sendResponse([], 'Data exited successfully');
+        if (count($department->employees) == 0)
+        {
+            $department->delete();
+            return $this->sendResponse([],'Deleted successfully');
+        }else{
+            return $this->sendError('ID is not exist');
+        }
     }
 }

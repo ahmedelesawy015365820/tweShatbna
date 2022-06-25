@@ -18,9 +18,9 @@ class RoleController extends Controller
     public function index(){
 
         try {
-            $roles = Role::select('name','id')->with('permissions:name')->paginate(10);
+            $roles = Role::select('name','id')->with('permissions:name')->latest()->paginate(10);
 
-            return $this->sendResponse($roles,'Data exited successfully');
+            return $this->sendResponse(['roles' => $roles],'Data exited successfully');
 
         }catch (\Exception $e){
             return $this->sendError('An error occurred in the system');
@@ -141,16 +141,20 @@ class RoleController extends Controller
 
         try {
             $role = Role::find($id);
-            if ($role){
+
+            if ($role && count($role->users) == 0){
 
                 DB::table("roles")->where('id', $role->id)->delete();
                 return $this->sendResponse([],'Deleted successfully');
+
             }else{
                 return $this->sendError('ID is not exist');
             }
 
         }catch (\Exception $e){
+
             return $this->sendError('An error occurred in the system');
+
         }
 
     }// ******* end destroy

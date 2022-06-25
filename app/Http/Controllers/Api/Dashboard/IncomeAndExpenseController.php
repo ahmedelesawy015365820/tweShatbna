@@ -17,7 +17,7 @@ class IncomeAndExpenseController extends Controller
     // get calculate income
     public function calcIncome(Request $request)
     {
-        $incomeAndExpense = IncomeAndExpense::with('income')->whereNotNull('income_id')
+        $incomeAndExpense = IncomeAndExpense::with('income','user')->whereNotNull('income_id')
             ->where(function ($q) use($request){
                 $q->when($request->search,function ($q) use($request){
                     return $q->OrWhere('notes','like','%'.$request->search.'%')
@@ -35,7 +35,7 @@ class IncomeAndExpenseController extends Controller
 
     public function calcExpense(Request $request)
     {
-        $incomeAndExpense = IncomeAndExpense::with('expense')->whereNotNull('expense_id')
+        $incomeAndExpense = IncomeAndExpense::with('expense','user')->whereNotNull('expense_id')
             ->where(function ($q) use($request){
                 $q->when($request->search,function ($q) use($request){
                     return $q->OrWhere('notes','like','%'.$request->search.'%')
@@ -82,7 +82,10 @@ class IncomeAndExpenseController extends Controller
                 return $this->sendError('There is an error in the data', $v->errors());
             }
 
-            IncomeAndExpense::create($request->all());
+            $request_data = $request->all();
+            $request_data['user_id']=auth()->user()->id;
+
+            IncomeAndExpense::create($request_data);
 
             DB::commit();
 
@@ -167,7 +170,10 @@ class IncomeAndExpenseController extends Controller
             }
             $income_and_expense = IncomeAndExpense::find($id);
 
-            $income_and_expense->update($request->all());
+            $request_data = $request->all();
+            $request_data['user_id']=auth()->user()->id;
+
+            $income_and_expense->update($request_data);
 
             DB::commit();
 
@@ -188,7 +194,14 @@ class IncomeAndExpenseController extends Controller
     public function destroy($id)
     {
         $income_and_expense = IncomeAndExpense::find($id);
-        $income_and_expense->delete();
-        return $this->sendResponse([], 'Data exited successfully');
+        if ($income_and_expense->treasury)
+        {
+            return $this->sendError('ID is not exist');
+
+        }else{
+
+            $income_and_expense->delete();
+            return $this->sendResponse([],'Deleted successfully');
+        }
     }
 }

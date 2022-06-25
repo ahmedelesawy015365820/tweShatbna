@@ -115,8 +115,8 @@
                                                         accept="image/png,jepg,jpg"
                                                     >
                                                 </div>
+                                                <span class="text-danger text-center">اقصي ارتفاع للصوره يكون 50px و اقصي عرض 50px و ان حجمها لا يتعدي 2mb</span>
                                                 <p class="num-of-files">{{numberOfImage ? numberOfImage + ' Files Selected' : 'No Files Chosen' }}</p>
-                                                <span class="text-danger text-center" v-if="requiredn">images is must have at least 1 photos<br /></span>
                                                 <div class="container-images" id="container-images" v-show="image && numberOfImage"></div>
                                                 <div class="container-images" v-show="!numberOfImage">
                                                     <figure>

@@ -30,9 +30,6 @@
         <link rel="stylesheet" href="{{asset('web/css/owl.carousel.min.css')}}">
         <link rel="stylesheet" href="{{asset('web/css/owl.theme.default.min.css')}}">
 
-        <!-- Summernote CSS -->
-        <link rel="stylesheet" href="{{asset('admin/plugins/summernote/dist/summernote-lite.css')}}">
-
         {{--  page سجل لاان  --}}
         <link href="{{asset('web/page/css/main.css')}}" rel="stylesheet">
         <link href="{{asset('web/page/css/responsive.css')}}" rel="stylesheet">
@@ -64,8 +61,6 @@
         <script src="{{asset('web/plugins/theia-sticky-sidebar/ResizeSensor.js')}}"></script>
         <script src="{{asset('web/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js')}}"></script>
 
-        <!-- Summernote JS -->
-        <script src="{{asset('admin/plugins/summernote/dist/summernote-lite.min.js')}}"></script>
 
         <!-- Chart JS -->
         <script src="{{asset('web/plugins/apexchart/apexcharts.min.js')}}"></script>
@@ -79,6 +74,10 @@
         <script src="{{asset('web/js/script.js')}}"></script>
 
         <script src="{{mix('js/app.js')}}"></script>
+
+
+        <!-- ckeditor JS -->
+        <script src="{{asset('web/plugins/ckeditor5-build-classic/ckeditor.js')}}"></script>
 
     </body>
 </html>

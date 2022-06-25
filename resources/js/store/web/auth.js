@@ -144,6 +144,32 @@ const actions = {
                 commit('editLoading',false);
             });
     },
+    loginClient({commit},preload) {
+        commit('editLoading',true);
+        commit('editErrors', {});
+
+        webApi.post(`/v1/web/loginClient`,preload)
+            .then((res) => {
+                let l = res.data.data;
+                commit('editToken', l.access_token);
+                commit('editUser', l.user);
+                commit('editComplement', l.complement);
+                commit('editPartner', l.partner);
+
+                let locale = localStorage.getItem("langWeb");
+
+                if(l.user.role_name[0] == 'client'){
+                    return router.push({name: 'dashboardClient', params: {lang: locale || 'ar'}});
+                }
+
+            })
+            .catch((err) => {
+                commit('editErrors',err.response.data);
+            })
+            .finally(() => {
+                commit('editLoading',false);
+            });
+    },
     userUpdate({commit}){
 
         commit('editLoading',true);

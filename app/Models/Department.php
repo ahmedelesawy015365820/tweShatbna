@@ -18,4 +18,8 @@ class Department extends Model implements TranslatableContract
     protected $translationForeignKey = 'department_id';
 
     protected $hidden = ['departments'];
+
+    public function employees(){
+        $this->hasMany(Employee::class);
+    }
 }

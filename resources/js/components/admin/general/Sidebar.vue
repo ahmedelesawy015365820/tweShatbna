@@ -48,7 +48,11 @@
                     </li>
 
                     <li class="submenu">
-                        <a href="#" ><i class="fas fa-users"></i> <span> {{$t('sidebar.user')}}</span> <span class="menu-arrow"></span></a>
+                        <a href="#" >
+                            <i class="fas fa-users"></i>
+                            <span> {{$t('sidebar.user')}}</span>
+                            <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span>
+                        </a>
                         <ul>
                             <li :class="[$route.name == 'indexCompany'? 'active': '']">
                                 <router-link :to="{name:'indexCompany',params: {lang:this.$i18n.locale}}">
@@ -93,6 +97,19 @@
                             <i class="fas fa-folder"></i> <span>{{$t('sidebar.acdDegree')}}</span>
                         </router-link>
                     </li>
+
+                    <li class="submenu">
+                        <a href="#" ><i class="fas fa-hard-hat"></i> <span> {{$t('sidebar.Advisor')}}</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li :class="[$route.name == 'indexAdvisorPackage'? 'active': '']">
+                                <router-link :to="{name:'indexAdvisorPackage',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.AdvisorPackage')}}
+                                </router-link>
+                            </li>
+
+                        </ul>
+                    </li>
+
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-suitcase"></i> <span> {{$t('sidebar.Management')}}</span> <span class="menu-arrow"></span></a>
                         <ul>
@@ -109,6 +126,24 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="submenu">
+                        <a href="#" ><i class="fas fa-user-tie"></i> <span> {{$t('sidebar.Employees')}}</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li :class="[$route.name == 'indexRole'? 'active': '']">
+                                <router-link :to="{name:'indexRole',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.Roles')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexEmployee'? 'active': '']">
+                                <router-link :to="{name:'indexEmployee',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.Employees')}}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-coins"></i> <span> {{$t('sidebar.Accounts')}}</span> <span class="menu-arrow"></span></a>
                         <ul>
@@ -139,6 +174,21 @@
                         </ul>
                     </li>
 
+                    <li :class="[$route.name == 'indexUnity'? 'active': '']">
+                        <router-link :to="{name:'indexUnity',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-suitcase"></i> <span>{{$t('sidebar.unity')}}</span>
+                        </router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexArchitectural'? 'active': '']">
+                        <router-link :to="{name:'indexArchitectural',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-archway"></i> <span>{{$t('sidebar.architectural')}}</span>
+                        </router-link>
+                    </li>
+                    <li :class="[$route.name == 'indexExpected'? 'active': '']">
+                        <router-link :to="{name:'indexExpected',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-dharmachakra"></i> <span>{{$t('sidebar.expected')}}</span>
+                        </router-link>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -248,5 +298,10 @@ window.onload = (event) => {
 }
 .sidebar{
     background-color: #fcb00c38;
+}
+
+.sidebar-menu .menu-arrow.menu-arrow-ar{
+    left: 15px;
+    right: unset;
 }
 </style>

@@ -89,6 +89,63 @@ class AuthController extends Controller
         }
     }//**********end login************//
 
+    // login Client
+    public function loginClient(Request $request)
+    {
+        try{
+
+            // Validator request
+            $v = Validator::make($request->all(),[
+                'email' => 'required|string',
+                'password' => 'required|string',
+                'remember_me' => 'boolean'
+            ]);
+
+            if($v->fails()) {
+                return $this->sendError(trans('general.forget'),$v->errors(),401);
+            }
+
+            $credentials = [];
+
+            if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+                //start access token
+                $credentials = $request->only("email", "password");
+            }else{
+                $phone = User::wherePhone($request->email)->first();
+
+                if($phone){
+                    $credentials = ["email" => $phone->email, "password" => $request->password];
+                }
+            }
+
+            //start access token
+
+            if ($token = Auth::guard('api')->attempt($credentials)) {
+
+                $user = Auth::guard('api')->user();
+
+                if( $user->auth_id == 3){
+
+                    if($user->status  == 1){
+                        return  $this->sendResponse($this->respondWithToken($token),'Data exited successfully');
+                    }else {
+                        return $this->sendError(trans('general.approved'));
+                    }
+
+                }else{
+                    return $this->sendError(trans('general.forget'));
+                }
+
+            }else{
+
+                return $this->sendError(trans('general.forget'));
+            }
+
+        }catch (\Exception $e){
+            return $this->sendError(trans('general.forget'));
+        }
+    }//**********end login Client************//
+
     public function user()
     {
         $user = auth()->guard('api')->user();

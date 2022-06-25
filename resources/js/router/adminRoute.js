@@ -5,14 +5,20 @@ import salePackage from './adminRoute/salePackage';
 import newsLetters from './adminRoute/newLetter';
 import trustCompany from './adminRoute/trustCompany';
 import comService from './adminRoute/companyService';
+import unity from './adminRoute/unity';
 import desService from './adminRoute/designService';
 import desDegree from './adminRoute/dedreeDesign';
 import treasury from './adminRoute/treasury';
 import department from './adminRoute/department';
 import job from './adminRoute/job';
+import role from './adminRoute/role';
+import advisorPackage from './adminRoute/advisorPackage';
+import employee from './adminRoute/employee';
 import income from './adminRoute/income';
 import expense from './adminRoute/expense';
 import incomeAndExpense from './adminRoute/incomeAndExpense';
+import architectural from './adminRoute/architectural';
+import expected from './adminRoute/Expected';
 import country from './adminRoute/country';
 import state from './adminRoute/state';
 import privacy from './adminRoute/previcy';
@@ -118,7 +124,13 @@ const routes = [
                     ...expense,
                     ...incomeAndExpense,
                     ...department,
-                    ...job
+                    ...job,
+                    ...unity,
+                    ...architectural,
+                    ...expected,
+                    ...employee,
+                    ...role,
+                    ...advisorPackage
                 ]
             },
         ]

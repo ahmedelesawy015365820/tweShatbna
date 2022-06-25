@@ -88,11 +88,6 @@ export default {
             }
         });
 
-        Echo.private(`App.Models.User.1`)
-            .notification((notification) => {
-                console.log(notification);
-            });
-
         function logout(){
             store.dispatch('authAdmin/logout');
         }

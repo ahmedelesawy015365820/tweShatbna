@@ -20,11 +20,8 @@ class CreateDesignProjectsTable extends Migration
             $table->string('height');
             $table->string('room');
             $table->string('bathroom');
-            $table->string('Expected_duration');
             $table->text('description');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('unity_id')->constrained('unities')->cascadeOnDelete();
-            $table->foreignId('architectural_id')->constrained('architecturals')->cascadeOnDelete();
             $table->foreignId('expected_budget_id')->constrained('expected_budgets')->cascadeOnDelete();
             $table->timestamps();
         });

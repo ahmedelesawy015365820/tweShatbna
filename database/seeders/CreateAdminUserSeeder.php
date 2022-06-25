@@ -24,7 +24,6 @@ class CreateAdminUserSeeder extends Seeder
             'Status' => true,
             'auth_id'  => 1
         ]);
-
         $role = Role::create(['name' => 'SuperAdmin']);
         $permissions = Permission::pluck('id','id')->all();
         $role->syncPermissions($permissions);
@@ -36,5 +35,10 @@ class CreateAdminUserSeeder extends Seeder
             'file_type' => 'png/image',
             'file_sort' => 1
         ]);
+
+        $role2 = Role::create(['name' => 'Accountant']);
+        $permissions2 = Permission::pluck('id','id')->all();
+        $role2->syncPermissions($permissions2);
+
     }
 }

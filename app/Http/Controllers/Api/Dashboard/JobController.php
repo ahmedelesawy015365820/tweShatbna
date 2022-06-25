@@ -165,8 +165,12 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        $job->delete();
-
-        return $this->sendResponse([], 'Data exited successfully');
+        if (count($job->employees) == 0)
+        {
+            $job->delete();
+            return $this->sendResponse([],'Deleted successfully');
+        }else{
+            return $this->sendError('ID is not exist');
+        }
     }
 }

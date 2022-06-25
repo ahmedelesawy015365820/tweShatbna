@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Route;
          // start Login[company,design,advertiser]
 
          Route::post('login','AuthController@login');
+         Route::post('loginClient','AuthController@loginClient');
 
          // start reset[Dashboard,company,design,advertiser,client]
 
@@ -134,6 +135,7 @@ use Illuminate\Support\Facades\Route;
              // start designService
              Route::resource('designService','DesignServiceController')->except(['show','create']);
 
+
              // treasury management
              Route::resource('treasury','TreasuryController');
              Route::get('mainTreasury','TreasuryController@mainTreasury');
@@ -166,6 +168,24 @@ use Illuminate\Support\Facades\Route;
              Route::resource('job','JobController');
              Route::get('activeJob','JobController@activeJob');
              Route::get('activationJob/{id}','JobController@activationJob');
+
+             // start unity
+             Route::resource('unity','UnityController')->except(['show','create']);
+
+             // start architectural
+             Route::resource('architectural','ArchitecturalController')->except(['show','create']);
+
+             // start expected budget
+             Route::resource('expected','ExpectedBudgetController')->except(['show','create']);
+
+             // employee
+             Route::resource('employee','EmployeeController');
+             Route::get('activationEmployee/{id}','EmployeeController@activationEmployee');
+             Route::post('employee/changePassword/{id}','EmployeeController@changePassword');
+             Route::get('role','EmployeeController@role');
+
+             // advisor Package
+             Route::resource('advisorPackage','AdvisorPackageController');
 
          });
 
@@ -214,6 +234,10 @@ use Illuminate\Support\Facades\Route;
              // start  client and profile
              Route::post('clientData',  'ClientController@clientOne');
 
+             // start  addCompany and addDesign
+             Route::get('getProject',  'AddProjectController@getService');
+             Route::post('addCompany',  'AddProjectController@addCompany');
+             Route::post('addDesign',  'AddProjectController@addDesign');
 
          });
 

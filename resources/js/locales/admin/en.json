@@ -34,7 +34,8 @@
         "Employees": "Employees",
         "Roles": "Roles",
         "Advisor": "Advisor Shatbna",
-        "AdvisorPackage": "Advisor Package"
+        "AdvisorPackage": "Advisor Package",
+        "setting": "Settings"
     },
     "global": {
         "Search":"Search",

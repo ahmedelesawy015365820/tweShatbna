@@ -19,6 +19,7 @@ import expense from './adminRoute/expense';
 import incomeAndExpense from './adminRoute/incomeAndExpense';
 import architectural from './adminRoute/architectural';
 import expected from './adminRoute/Expected';
+import setting from './adminRoute/setting';
 import country from './adminRoute/country';
 import state from './adminRoute/state';
 import privacy from './adminRoute/previcy';
@@ -130,7 +131,8 @@ const routes = [
                     ...expected,
                     ...employee,
                     ...role,
-                    ...advisorPackage
+                    ...advisorPackage,
+                    ...setting
                 ]
             },
         ]

@@ -34,7 +34,8 @@
         "Employees": "الموظفين",
         "Roles": "ادوار الموظفين",
         "Advisor": "مستشار شطبنا",
-        "AdvisorPackage": "باقات المستشار"
+        "AdvisorPackage": "باقات المستشار",
+        "setting": "إعدادات"
     },
     "global": {
         "Search":"بحث",

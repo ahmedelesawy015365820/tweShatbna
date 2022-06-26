@@ -189,6 +189,11 @@
                             <i class="fas fa-dharmachakra"></i> <span>{{$t('sidebar.expected')}}</span>
                         </router-link>
                     </li>
+                    <li :class="[$route.name == 'indexSetting'? 'active': '']">
+                        <router-link :to="{name:'indexSetting',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-cogs"></i> <span>{{$t('sidebar.setting')}}</span>
+                        </router-link>
+                    </li>
                 </ul>
             </div>
         </div>

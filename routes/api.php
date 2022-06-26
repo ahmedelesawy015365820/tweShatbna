@@ -193,6 +193,9 @@ use Illuminate\Support\Facades\Route;
              Route::resource('advisorPackage','AdvisorPackageController');
              Route::resource('advisorDetail','AdvisorPackageDetailController');
 
+             // Settings
+             Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
+
          });
 
          // start web

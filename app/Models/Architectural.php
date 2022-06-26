@@ -22,11 +22,12 @@ class Architectural extends Model implements TranslatableContract
 
     public function designProject()
     {
-        return $this->hasMany(DesignProject::class);
+        return $this->belongsToMany(DesignProject::class,'design_project_architecturals','architectural_id','design_project_id');
+
     }
 
     public function companyProject()
     {
-        return $this->hasMany(CompanyProject::class);
+        return $this->belongsToMany(CompanyProject::class,'company_project_architecturals','architectural_id','company_project_id');
     }
 }

@@ -21,11 +21,11 @@ class AdvisorPackageDetailController extends Controller
      */
     public function index(Request $request)
     {
-        $packages = AdvisorDetail::when($request->search, function ($q) use ($request) {
-            return $q->whereRelation('translations', 'name', 'like', '%' . $request->search . '%');
-        })->latest()->paginate(5);
-
-        return $this->sendResponse(['packages' => $packages], 'Data exited successfully');
+//        $packages = AdvisorDetail::when($request->search, function ($q) use ($request) {
+//            return $q->whereRelation('translations', 'name', 'like', '%' . $request->search . '%');
+//        })->latest()->paginate(5);
+//
+//        return $this->sendResponse(['packages' => $packages], 'Data exited successfully');
     }
 
     /**
@@ -41,19 +41,17 @@ class AdvisorPackageDetailController extends Controller
 
             // Validator request
             $v = Validator::make($request->all(), [
-                'ar.name' => ['required', Rule::unique('advisor_package_translations', 'name')],
-                'en.name' => ['required', Rule::unique('advisor_package_translations', 'name')],
-                'ar.description' => ['required'],
-                'en.description' => ['required'],
-                'price' => ['required'],
+                'ar.name' => ['required', Rule::unique('advisor_detail_translations', 'name')],
+                'en.name' => ['required', Rule::unique('advisor_detail_translations', 'name')],
+                'advisor_package_id' => ['required'],
             ]);
 
             if ($v->fails()) {
                 return $this->sendError('There is an error in the data', $v->errors());
             }
-            $data = $request->only(['ar','en','price']);
+            $data = $request->only(['ar','en','advisor_package_id']);
 
-            AdvisorPackage::create($data);
+            AdvisorDetail::create($data);
 
             DB::commit();
 
@@ -70,7 +68,7 @@ class AdvisorPackageDetailController extends Controller
     {
         try {
 
-            $package = AdvisorPackage::find($id)->makeVisible('translations');
+            $package = AdvisorDetail::find($id)->makeVisible('translations');
 
             return $this->sendResponse(['package' => $package], 'Data exited successfully');
 
@@ -88,9 +86,13 @@ class AdvisorPackageDetailController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
-        //
+        $packages = AdvisorDetail::where('advisor_package_id',$id)->when($request->search, function ($q) use ($request) {
+            return $q->whereRelation('translations', 'name', 'like', '%' . $request->search . '%');
+        })->latest()->paginate(5);
+
+        return $this->sendResponse(['packages' => $packages], 'Data exited successfully');
     }
 
     /**
@@ -100,7 +102,7 @@ class AdvisorPackageDetailController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdvisorPackage $advisorPackage)
+    public function update(Request $request, AdvisorDetail $advisorDetail)
     {
         try {
 
@@ -108,11 +110,9 @@ class AdvisorPackageDetailController extends Controller
 
             // Validator request
             $v = Validator::make($request->all(), [
-                'ar.name' => ['required', Rule::unique('advisor_package_translations', 'name')->whereNot('advisor_package_id', $advisorPackage->id)],
-                'en.name' => ['required', Rule::unique('advisor_package_translations', 'name')->whereNot('advisor_package_id', $advisorPackage->id)],
-                'ar.description' => ['required'],
-                'en.description' => ['required'],
-                'price' => ['required'],
+                'ar.name' => ['required', Rule::unique('advisor_detail_translations', 'name')->whereNot('advisor_detail_id', $advisorDetail->id)],
+                'en.name' => ['required', Rule::unique('advisor_detail_translations', 'name')->whereNot('advisor_detail_id', $advisorDetail->id)],
+                'advisor_package_id' => ['required'],
             ]);
 
 
@@ -120,9 +120,9 @@ class AdvisorPackageDetailController extends Controller
                 return $this->sendError('There is an error in the data', $v->errors());
             }
 
-            $data = $request->only(['ar','en','price']);
+            $data = $request->only(['ar','en','advisor_package_id']);
 
-            $advisorPackage->update($data);
+            $advisorDetail->update($data);
 
             DB::commit();
 
@@ -140,10 +140,10 @@ class AdvisorPackageDetailController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdvisorPackage $advisor_package)
+    public function destroy(AdvisorDetail $advisorDetail)
     {
 
-        $advisor_package->delete();
+        $advisorDetail->delete();
         return $this->sendResponse([],'Deleted successfully');
 
     }

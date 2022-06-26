@@ -41,8 +41,10 @@ class AddProjectController extends Controller
                 'room' => 'required',
                 'bathroom' => 'required',
                 'description' => 'required',
-                'unity' => 'required|integer|exists:unities,id',
-                'architectural' => 'required|integer|exists:architecturals,id',
+                'unity' => 'required',
+                'unity.* ' => 'exists:unities,id',
+                'architectural' => 'required',
+                'architectural.*' => 'exists:architecturals,id',
                 'expected_budget' => 'required|integer|exists:expected_budgets,id',
                 'files' => 'nullable',
                 'files.*' => 'nullable'.($request->hasFile('files')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000':''),
@@ -52,6 +54,7 @@ class AddProjectController extends Controller
             if ($v->fails()) {
                 return $this->sendError('There is an error in the data', $v->errors());
             }
+
 
             $user = auth()->guard('api')->user()->id;
 
@@ -66,9 +69,10 @@ class AddProjectController extends Controller
                 'expected_budget_id' => $request->expected_budget,
             ]);
 
-            $company->unity()->attach($request->unity);
-
-            $company->architectural()->attach($request->architectural);
+            $unity = explode(',',$request->unity[0]);
+            $company->unity()->attach($unity);
+            $architectural = explode(',',$request->architectural[0]);
+            $company->architectural()->attach($architectural);
 
             if($request->hasFile('vedio')){
 
@@ -135,8 +139,10 @@ class AddProjectController extends Controller
                 'room' => 'required',
                 'bathroom' => 'required',
                 'description' => 'required',
-                'unity' => 'required|integer|exists:unities,id',
-                'architectural' => 'required|integer|exists:architecturals,id',
+                'unity' => 'required',
+                'unity.* ' => 'required|integer|exists:unities,id',
+                'architectural' => 'required',
+                'architectural.*' => 'exists:architecturals,id',
                 'expected_budget' => 'required|integer|exists:expected_budgets,id',
                 'files' => 'nullable',
                 'files.*' => 'nullable'.($request->hasFile('files')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000':''),
@@ -161,9 +167,10 @@ class AddProjectController extends Controller
                 'expected_budget_id' => $request->expected_budget,
             ]);
 
-            $desgin->unity()->attach($request->unity);
-
-            $desgin->architectural()->attach($request->architectural);
+            $unity= explode(',',$request->unity[0]);
+            $desgin->unity()->attach($unity);
+            $architectural = explode(',',$request->architectural[0]);
+            $desgin->architectural()->attach($architectural);
 
             if($request->hasFile('vedio')){
 

@@ -37,7 +37,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni delectus soluta adipisci
                                 beatae ullam quisquam, quia recusandae rem assumenda, praesentium porro sequi eaque
                                 doloremque tenetur incidunt officiis explicabo optio perferendis.</p>
-                            <a href="project.html" class="btn learn-btn">LEARN MORE</a>
+                            <a href="#card" class="btn learn-btn">LEARN MORE</a>
                         </div>
                     </div>
                     <div class=" col-lg-5">
@@ -49,79 +49,118 @@
             </div>
         </section>
         <!-- /About -->
-        <section class="section advisor">
-            <div class="container">
+            <div class="container" id="card">
                 <div class="row">
-                    <div class="col-12 col-md-12 mx-auto">
-                        <div class="section-header text-center">
-                            <div class="section-line"></div>
-                            <h2 class="header-title">Get Inspired<br> By Development Projects</h2>
-                            <p>High Performing Solutions To Your</p>
+                    <div class="col-xl-9 col-md-8 mx-auto">
+                        <div class="freelance-title" id="plan">
+                            <h3>Employer Packages</h3>
+                            <p> Choose the best pricing that suites your requirements</p>
                         </div>
-                    </div>
-                    <div class="col-lg-12 mb-3">
-                        <div class="projects-delete-details align-items-center">
-                            <div class="project-info">
-                                <h2>Create website wordpress for a Brand </h2>
-                                <span>Dreamguystech</span>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="package-detail">
+                                    <h4>Basic Plan</h4>
+                                    <p>Go Pro, Best for the individuals</p>
+                                    <h3 class="package-price">$19.00</h3>
+                                    <div class="package-feature">
+                                        <ul>
+                                            <li>12 Project Credits</li>
+                                            <li>10 Allowed Services</li>
+                                            <li>20 Days visibility</li>
+                                            <li>5 Featured Services</li>
+                                            <li>20 Days visibility</li>
+                                            <li>30 Days Package Expiry</li>
+                                            <li class="non-check">Profile Featured</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="btn btn-primary price-btn btn-block">Select Plan</a>
+                                </div>
+                            </div>
 
-                            </div>
-                            <div class="project-hire-info">
-                                <div class="content-divider"></div>
-                                <div class="projects-amount">
-                                    <h3>$500.00</h3>
+                            <div class="col-lg-4">
+                                <div class="package-detail">
+                                    <h4>Business </h4>
+                                    <p>Highest selling package features</p>
+                                    <h3 class="package-price">$29.00</h3>
+                                    <div class="package-feature">
+                                        <ul>
+                                            <li>15 Project Credits</li>
+                                            <li>12 Allowed Services</li>
+                                            <li>25 Days visibility</li>
+                                            <li>10 Featured Services</li>
+                                            <li>30 Days visibility</li>
+                                            <li>40 Days Package Expiry</li>
+                                            <li>Profile Featured</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="btn btn-primary price-btn btn-block">Select Plan</a>
                                 </div>
-                                <div class="content-divider"></div>
-                                <div class="projects-action text-center">
-                                    <a href="#" class="projects-btn">Repost </a>
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 mb-3">
-                        <div class="projects-delete-details align-items-center">
-                            <div class="project-info">
-                                <h2>Create website wordpress for a Brand </h2>
-                                <span>Dreamguystech</span>
 
-                            </div>
-                            <div class="project-hire-info">
-                                <div class="content-divider"></div>
-                                <div class="projects-amount">
-                                    <h3>$500.00</h3>
-                                </div>
-                                <div class="content-divider"></div>
-                                <div class="projects-action text-center">
-                                    <a href="#" class="projects-btn">Repost </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 mb-3">
-                        <div class="projects-delete-details align-items-center">
-                            <div class="project-info">
-                                <h2>Create website wordpress for a Brand </h2>
-                                <span>Dreamguystech</span>
-
-                            </div>
-                            <div class="project-hire-info">
-                                <div class="content-divider"></div>
-                                <div class="projects-amount">
-                                    <h3>$500.00</h3>
-                                </div>
-                                <div class="content-divider"></div>
-                                <div class="projects-action text-center">
-                                    <a href="#" class="projects-btn">Repost </a>
+                            <div class="col-lg-4">
+                                <div class="package-detail">
+                                    <h4>The Unlimita </h4>
+                                    <p>Drive crazy, unlimited on the go</p>
+                                    <h3 class="package-price">$79.00</h3>
+                                    <div class="package-feature">
+                                        <ul>
+                                            <li>Unlimited Project Credits</li>
+                                            <li>Unlimited Services</li>
+                                            <li>Services Never Expire</li>
+                                            <li>20 Featured Services</li>
+                                            <li>Services Never Expire</li>
+                                            <li>Package Never Expire</li>
+                                            <li>Profile Featured</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#" class="btn btn-primary price-btn btn-block">Select Plan</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
     </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="select-project mb-4">
+                    <form action="dashboard.html">
+                        <div class="title-box widget-box">
+
+                            <!-- Project Title -->
+                            <div class="title-content">
+                                <div class="title-detail">
+                                    <h3>Project Name</h3>
+                                    <div class="form-group mb-0">
+                                        <input type="text" class="form-control" placeholder="Enter Project title">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Project Title -->
+
+                            <div class="row">
+                                <div class="col-md-12 text-end">
+                                    <div class="btn-item">
+                                        <button type="submit" class="btn next-btn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Project Title -->
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- /Page Content -->
+
+
 </template>
 <script>
 import {toRefs, reactive, computed, onMounted} from 'vue';
@@ -198,10 +237,8 @@ export default {
     background: url("/web/img/inner-banner.jpg");
     padding-top: 0px !important;
 }
-.advisor{
-    margin: 0px 40px 0px 40px;
-}
-.project-info span{
+
+.project-info span {
     font-size: 16px;
 }
 

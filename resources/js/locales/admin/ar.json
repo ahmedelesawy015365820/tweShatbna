@@ -164,7 +164,16 @@
         "DescriptionEnIsMustHaveAtLeast": "الوصف باللغة الانجليزية يجب ان يحتوى على الاقل",
         "DescriptionEnIsMustHaveAtMost": "الوصف باللغة الانجليزية يجب ان يحتوى على الاكثر",
         "DescriptionAr": "الوصف باللغة العربية",
-        "DescriptionEn": "الوصف باللغة الانجليزية"
+        "DescriptionEn": "الوصف باللغة الانجليزية",
+        "AdvisorShatbnaPackageDetails": "تفاصيل باقة مستشار شطبنا",
+        "TitleArIsRequired": "العنوان باللغة العربية مطلوب .",
+        "TitleArIsMustHaveAtLeast": "العنوان باللغة العربية يجب ان يحتوى على الاقل",
+        "TitleArIsMustHaveAtMost": "العنوان باللغة العربية يجب ان يحتوى على الاكثر",
+        "TitleEnIsRequired": "العنوان باللغة الانجليزية مطلوب .",
+        "TitleEnIsMustHaveAtLeast": "العنوان باللغة الانجليزية يجب ان يحتوى على الاقل",
+        "TitleEnIsMustHaveAtMost": "العنوان باللغة الانجليزية يجب ان يحتوى على الاكثر",
+        "TitleAr": "العنوان باللغة العربية",
+        "TitleEn": "العنوان باللغة الانجليزية"
     },
 
     "treasury": {
@@ -237,5 +246,9 @@
         "CreateAdvisorPackage": "اضافة باقات مستشار شطبنا",
         "EditAdvisorPackage": "تعديل باقات مستشار شطبنا",
         "ShowAdvisorPackage": "عرض باقات مستشار شطبنا"
+    },
+    "advisorDetail": {
+        "AddAdvisorShatbnaPackageDetails": "اضافة تفاصيل باقات مستشار شطبنا",
+        "EditAdvisorShatbnaPackageDetails": "تعديل تفاصيل باقات مستشار شطبنا"
     }
 }

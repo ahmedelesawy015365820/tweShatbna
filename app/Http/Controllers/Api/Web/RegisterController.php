@@ -154,7 +154,7 @@ class RegisterController extends Controller
             ]);
 
             $user->media()->create([
-                'file_name' => '' ,
+                'file_name' => 'img-04.jpg' ,
                 'file_size' => 7664,
                 'file_type' => 'png/image',
                 'file_sort' => 1
@@ -224,7 +224,7 @@ class RegisterController extends Controller
             ]);
 
             $user->media()->create([
-                'file_name' => '' ,
+                'file_name' => 'img-04.jpg' ,
                 'file_size' => 7664,
                 'file_type' => 'png/image',
                 'file_sort' => 1
@@ -291,7 +291,7 @@ class RegisterController extends Controller
             ]);
 
             $user->media()->create([
-                'file_name' => '' ,
+                'file_name' => 'img-04.jpg' ,
                 'file_size' => 7664,
                 'file_type' => 'png/image',
                 'file_sort' => 1

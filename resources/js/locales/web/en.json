@@ -10,7 +10,8 @@
         "register":"Register",
         "project":"Add Project",
         "advisor": "Advisor Shatbna",
-        "PRIVACY" : "PRIVACY POLICY"
+        "PRIVACY" : "PRIVACY POLICY",
+        "browse": "Browse Project"
     },
     "register" :{
         "design": "DESIGNER",
@@ -129,6 +130,15 @@
         "opportunityp":"Seize hundreds of opportunities for projects that suit you, as there are hundreds of clients and thousands of projects waiting for you to participate in them.",
         "join": "Join the largest community for decoration and finishes in Egypt",
         "joinp": "Join hundreds of companies and hundreds of designers. All you have to do is download the application and create an account."
+    },
+    "browse": {
+        "company": "Company Projects",
+        "design": "Designer Projects",
+        "budget": "proposed budget",
+        "skill": "Required Skills",
+        "more": "Readmore",
+        "description": "Description",
+        "add": "Add Your Offer Now"
     },
     "footer": {
         "adress": "Addresses Shatbna",

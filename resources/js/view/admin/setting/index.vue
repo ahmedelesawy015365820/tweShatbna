@@ -6,10 +6,10 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Unity</h3>
+                        <h3 class="page-title">Settings</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><router-link :to="{name: 'dashboard', params: {lang: locale || 'ar'}}">{{$t('dashboard.Dashboard')}}</router-link></li>
-                            <li class="breadcrumb-item active">Unity</li>
+                            <li class="breadcrumb-item active">Settings</li>
                         </ul>
                     </div>
 
@@ -22,38 +22,21 @@
                     <div class="card">
                         <loader v-if="loading" />
                         <div class="card-body">
-                            <div class="card-header pt-0">
-                                <div class="row justify-content-between">
-                                    <div class="col-5">
-                                        Search:
-                                        <input type="search" v-model="search" class="custom" />
-                                    </div>
-                                    <div class="col-5 row justify-content-end">
-                                        <router-link
-                                            :to="{name: 'createUnity', params: {lang: locale || 'ar'}}"
-                                            class="btn btn-custom btn-warning"
-                                        >
-                                            Add
-                                        </router-link>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="table-responsive">
                                 <table class="table mb-0">
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Name</th>
-                                        <th>Status</th>
+                                        <th>Commission</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody v-if="setting">
-                                        <tr>
-                                            <td>1</td>
-                                            <td>{{setting.name}}</td>
+                                        <tr v-for="item in setting">
+                                            <td>{{item.id}}</td>
+                                            <td>{{item.commission_design}} %</td>
                                             <td>
-                                                <router-link :to="{name: 'editUnity', params: {lang: locale || 'ar',id:setting.id}}" class="btn btn-sm btn-success me-2">
+                                                <router-link :to="{name: 'editSetting', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2">
                                                     <i class="far fa-edit"></i>
                                                 </router-link>
                                             </td>
@@ -79,7 +62,7 @@
 </template>
 
 <script>
-import {onBeforeMount,inject,watch,ref} from "vue";
+import {onMounted,inject,watch,ref} from "vue";
 import adminApi from "../../../api/adminAxios";
 
 export default {
@@ -90,10 +73,10 @@ export default {
         let setting = ref({});
         let loading = ref(false);
 
-        let getSetting = (page = 1) => {
+        let getSetting = () => {
             loading.value = true;
 
-            adminApi.get(`/v1/dashboard/setting`)
+            adminApi.get('/v1/dashboard/setting')
                 .then((res) => {
                     let l = res.data.data;
                     setting.value = l.setting;
@@ -106,7 +89,7 @@ export default {
                 });
         }
 
-        onBeforeMount(() => {
+        onMounted(() => {
             getSetting();
         });
 

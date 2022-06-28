@@ -9,5 +9,5 @@ class Setting extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['commission_design'];
+    protected $guarded = ['id'];
 }

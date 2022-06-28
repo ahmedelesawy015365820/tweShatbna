@@ -138,7 +138,8 @@
         "skill": "Required Skills",
         "more": "Readmore",
         "description": "Description",
-        "add": "Add Your Offer Now"
+        "add": "Add Your Offer Now",
+        "submit": "Submit"
     },
     "footer": {
         "adress": "Addresses Shatbna",

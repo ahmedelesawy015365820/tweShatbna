@@ -9,10 +9,10 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Unity</h3>
+                        <h3 class="page-title">Setting</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><router-link :to="{name: 'indexUnity', params: {lang: locale || 'ar'}}">Unity</router-link></li>
-                            <li class="breadcrumb-item active">Edit Unity</li>
+                            <li class="breadcrumb-item"><router-link :to="{name: 'indexSetting', params: {lang: locale || 'ar'}}">Setting</router-link></li>
+                            <li class="breadcrumb-item active">Edit Setting</li>
                         </ul>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <div class="card-header pt-0 mb-4">
                                 <router-link
-                                    :to="{name: 'indexUnity', params: {lang: locale || 'ar'}}"
+                                    :to="{name: 'indexSetting', params: {lang: locale || 'ar'}}"
                                     class="btn btn-custom btn-dark"
                                 >
                                     back
@@ -34,53 +34,24 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <div class="alert alert-danger text-center" v-if="errors['en.name']">{{ errors['en.name'][0] }}<br /> </div>
-                                    <div class="alert alert-danger text-center" v-if="errors['ar.name']">{{ errors['ar.name'][0]  }}<br /> </div>
-                                    <form @submit.prevent="editUnity" class="needs-validation">
+                                    <form @submit.prevent="editSetting" class="needs-validation">
                                         <div class="form-row row">
+
                                             <div class="col-md-4 mb-3">
-                                                <label for="validationCustom01">Unity En</label>
+                                                <label for="validationCustom01">Commission Design</label>
                                                 <input type="text" class="form-control"
-                                                       v-model.trim="v$.en.name.$model"
+                                                       v-model.number="v$.commission_design.$model"
                                                        id="validationCustom01"
                                                        placeholder="Name En"
-                                                       :class="{'is-invalid':v$.en.name.$error,'is-valid':!v$.en.name.$invalid}"
+                                                       :class="{'is-invalid':v$.commission_design.$error,'is-valid':!v$.commission_design.$invalid}"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.en.name.required.$invalid">name en is required.<br /> </span>
-                                                    <span v-if="v$.en.name.minLength.$invalid">name en is must have at least {{ v$.en.name.minLength.$params.min }} letters. <br /></span>
-                                                    <span v-if="v$.en.name.maxLength.$invalid">name en is must have at most {{ v$.en.name.maxLength.$params.max }} letters. </span>
+                                                    <span v-if="v$.commission_design.required.$invalid">commission design is required.<br /> </span>
+                                                    <span v-if="v$.commission_design.numeric.$invalid">commission design is number.<br /> </span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 mb-3">
-                                                <label for="validationCustom02">Unity Ar</label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       v-model.trim="v$.ar.name.$model"
-                                                       id="validationCustom02"
-                                                       :class="{'is-invalid':v$.ar.name.$error,'is-valid':!v$.ar.name.$invalid}"
-                                                       placeholder="Name Ar"
-                                                >
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">
-                                                    <span v-if="v$.ar.name.required.$invalid">name en is required. <br /></span>
-                                                    <span v-if="v$.ar.name.minLength.$invalid">name en is must have at least {{ v$.ar.name.minLength.$params.min }} letters. <br /></span>
-                                                    <span v-if="v$.ar.name.maxLength.$invalid">name en is must have at most {{ v$.ar.name.maxLength.$params.max }} letters. </span>
-                                                </div>
-                                            </div>
-                                            <div class="card col-md-4" style="height: 138px;">
-                                                <div class="card-body p-3 text-center">
-                                                    <p class="card-text f-12">Active</p>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <label class="form-group toggle-switch mb-0" for="notification_switch1">
-                                                        <input type="checkbox" v-model="data.status" :checked="parseInt(data.status)" class="toggle-switch-input" id="notification_switch1">
-                                                        <span class="toggle-switch-label mx-auto">
-                                                        <span class="toggle-switch-indicator"></span></span>
-                                                    </label>
-                                                </div>
-                                            </div>
+
                                         </div>
                                         <button class="btn btn-primary" type="submit">Submit</button>
                                     </form>
@@ -98,7 +69,7 @@
 <script>
 import {computed, onMounted, reactive, toRefs, inject, ref, watch} from "vue";
 import useVuelidate from '@vuelidate/core';
-import {required,minLength,between,maxLength,alpha,integer} from '@vuelidate/validators';
+import {required,numeric} from '@vuelidate/validators';
 import adminApi from "../../../api/adminAxios";
 import { notify } from "@kyvg/vue3-notification";
 
@@ -117,30 +88,18 @@ export default {
         const { id } = toRefs(props);
 
         //start design
-        let addUnity =  reactive({
+        let addSetting =  reactive({
             data:{
-                en:{ name : ''},
-                ar:{ name : ''},
-                status: false
+                commission_design: null
             }
         });
 
 
         const rules = computed(() => {
             return {
-                en:{
-                    name: {
-                        minLength: minLength(3),
-                        maxLength:maxLength(40),
-                        required,
-                    }
-                },
-                ar:{
-                    name: {
-                        minLength: minLength(3),
-                        maxLength:maxLength(40),
-                        required
-                    }
+                commission_design:{
+                    required,
+                    numeric
                 }
             }
         });
@@ -148,12 +107,10 @@ export default {
         let getDATA = () => {
             loading.value = true;
 
-            adminApi.get(`/v1/dashboard/unity/${id.value}/edit`)
+            adminApi.get(`/v1/dashboard/setting/${id.value}/edit`)
                 .then((res) => {
                     let l = res.data.data;
-                    addUnity.data.en.name = l.unity.translations[1].name;
-                    addUnity.data.ar.name = l.unity.translations[0].name;
-                    addUnity.data.status = l.unity.status;
+                    addSetting.data.commission_design = l.setting.commission_design;
                 })
                 .catch((err) => {
                     console.log(err.response.data);
@@ -167,13 +124,13 @@ export default {
             getDATA();
         })
 
-        const v$ = useVuelidate(rules,addUnity.data);
+        const v$ = useVuelidate(rules,addSetting.data);
 
 
-        return {loading,...toRefs(addUnity),id,v$};
+        return {loading,...toRefs(addSetting),id,v$};
     },
     methods: {
-        editUnity(){
+        editSetting(){
             this.v$.$validate();
 
             if(!this.v$.$error){
@@ -181,7 +138,7 @@ export default {
                 this.loading = true;
                 this.errors = {};
 
-                adminApi.put(`/v1/dashboard/unity/${this.id}`,this.data)
+                adminApi.put(`/v1/dashboard/setting/${this.id}`,this.data)
                     .then((res) => {
 
                         notify({

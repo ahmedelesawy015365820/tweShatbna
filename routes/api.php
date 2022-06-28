@@ -59,6 +59,7 @@ use Illuminate\Support\Facades\Route;
          Route::get('allDesProject',  'ShowProjectController@showDesign');
          Route::get('showDesDetail/{id}',  'ShowProjectController@showDesDetail');
          Route::get('showComDetail/{id}',  'ShowProjectController@showComDetail');
+         Route::post('addShow/{id}',  'ShowProjectController@addShow');
 
      });
 

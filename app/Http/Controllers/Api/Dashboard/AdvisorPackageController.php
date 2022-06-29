@@ -21,7 +21,7 @@ class AdvisorPackageController extends Controller
      */
     public function index(Request $request)
     {
-        $packages = AdvisorPackage::when($request->search, function ($q) use ($request) {
+        $packages = AdvisorPackage::with('advisorDetails')->when($request->search, function ($q) use ($request) {
             return $q->whereRelation('translations', 'name', 'like', '%' . $request->search . '%');
         })->latest()->paginate(5);
 

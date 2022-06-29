@@ -63,6 +63,13 @@
                                                 class="btn btn-sm btn-success me-2">
                                                 <i class="far fa-edit"></i>
                                             </router-link>
+
+                                            <router-link
+                                                :to="{name: 'indexAdvisorDetail', params: {lang: locale || 'ar',id:item.id}}"
+                                                class="btn btn-sm btn-info me-2">
+                                                <i class="fas fa-braille"></i>
+                                            </router-link>
+
                                             <a href="javascript:void(0);"
                                                class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#edit-category">
                                                 <i class="fab fa-leanpub"></i>
@@ -90,6 +97,15 @@
                                                             <div class="form-group col-lg-12">
                                                                 <h5>{{$t('global.DescriptionEn')}}</h5>
                                                                 <p>{{item.translations[1].description}}</p>
+                                                                <hr class="hr-show">
+                                                            </div>
+                                                            <div class="form-group col-lg-12">
+                                                                <ul>
+                                                                    <h5>{{$t('global.AdvisorShatbnaPackageDetails')}}</h5>
+                                                                    <li v-for="detail in item.advisor_details">
+                                                                        {{detail.translations[1].name}}
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </div>
 
@@ -102,6 +118,15 @@
                                                             <div class="form-group col-lg-12">
                                                                 <h5>{{$t('global.DescriptionAr')}}</h5>
                                                                 <p>{{item.translations[0].description}}</p>
+                                                                <hr class="hr-show">
+                                                            </div>
+                                                            <div class="form-group col-lg-12">
+                                                                <ul>
+                                                                    <h5>{{$t('global.AdvisorShatbnaPackageDetails')}}</h5>
+                                                                    <li v-for="detail in item.advisor_details">
+                                                                        {{detail.translations[0].name}}
+                                                                    </li>
+                                                                </ul>
                                                             </div>
 
                                                         </div>
@@ -110,9 +135,7 @@
                                                             <div class="show-price">
                                                                 <h5>{{$t('global.Price')}} :</h5>
                                                                 <p>{{item.price}}</p>
-
                                                             </div>
-
                                                         </div>
 
                                                     </div>
@@ -176,6 +199,7 @@ export default {
                     let l = res.data.data;
                     AdvisorsPaginate.value = l.packages;
                     advisors.value = l.packages.data;
+                    console.log(l.packages.data);
                 })
                 .catch((err) => {
                     console.log(err.response.data);

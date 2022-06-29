@@ -101,6 +101,13 @@
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-hard-hat"></i> <span> {{$t('sidebar.Advisor')}}</span> <span class="menu-arrow"></span></a>
                         <ul>
+
+                            <li :class="[$route.name == 'indexAdvisorOne'? 'active': '']">
+                                <router-link :to="{name:'indexAdvisorOne',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.FirstSectionData')}}
+                                </router-link>
+                            </li>
+
                             <li :class="[$route.name == 'indexAdvisorPackage'? 'active': '']">
                                 <router-link :to="{name:'indexAdvisorPackage',params: {lang:this.$i18n.locale}}">
                                     {{$t('sidebar.AdvisorPackage')}}

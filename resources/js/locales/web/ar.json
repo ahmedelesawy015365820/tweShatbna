@@ -3,14 +3,15 @@
         "home": "الرئيسية",
         "company": "شركات التشطيبات",
         "desgin": "المصممين",
-        "size": "خدمه رفع المقاسات",
+        "size": "خدمة رفع المقاسات",
         "bargain": "لقطة",
         "partner":"كن من شركاء النجاح",
         "login":"الدخول",
         "register":"التسجيل",
         "project":"اضافة مشروعك",
         "advisor": "مستشار شطبنا",
-        "PRIVACY" : "سياسه الخصوصيه"
+        "PRIVACY" : "سياسه الخصوصيه",
+        "browse": "تصفح المشاريع"
     },
     "register" :{
         "design": "ديزينر",
@@ -18,7 +19,7 @@
         "companies": "شركه",
         "full_name" : "الاسم كامل",
         "emailPhone": "الايميل او رقم التليفون",
-        "email" : "الايميل",
+        "email" : "البريد الالكترونى",
         "password": "رقم السري",
         "birth": "تاريخ الميلاد",
         "confirm": "اعاده الرقم السري",
@@ -125,6 +126,15 @@
         "join": "انضم لاكبر مجتمع للديكور و التشطيبات في مصر.",
         "joinp": "انضم لمئات الشركات و مئات الديزاينير كل ما هو عليك تحميل التطبيق و ان شاء حساب."
     },
+    "browse": {
+        "company": "مشاريع شركات",
+        "design": "مشاريع ديزاينر",
+        "budget": "الميزتنيه المقترحة",
+        "skill": "المهارات المطلوبة",
+        "more": "المزيد",
+        "description": "الوصف",
+        "add": "اضف عرضك الان"
+    },
     "footer": {
         "adress": "عناوين شطبنا",
         "captial":"القاهره",
@@ -150,6 +160,38 @@
     },
     "advisor": {
         "Advisor": "مستشار",
-        "Shatbna": "شطبنا"
+        "Shatbna": "شطبنا",
+        "BookNow": "احجز الان",
+        "AdvisorShatbnaPackages": "باقات مستشار شطبنا",
+        "WeHelpYouToGetTheBestQualityThroughOurShutbanaConsultant": "نساعدك فى الحصول على أفضل جوده من خلال مستشار شطبنا",
+        "address": "العنوان",
+        "Notes": "ملاحظات",
+        "Submit":"تأكيد",
+        "SentSuccessfully": "تم ارسال بنجاح",
+        "YouWillBeContactedByOurStaffWithin4WorkingDays": "سيتم التواصل معك من خلال فريق عمل شطبنا خلال 4 ایام عمل",
+        "Success": "نجاح",
+        "error": "خطأ",
+        "ThereIsAnErrorInTheSystem": "يوجد خطا في النظام....",
+        "PleaseTryAgainLater": "يرجاء المحاوله لاحقا ....",
+        "ForAnyFurtherEmail": "لمزيد من التفاصيل يرجى إرسال بريد إلكتروني إلى:",
+        "ForAnyFurtherCallUS": "لمزيد من التفاصيل ، يرجى الاتصال بنا:",
+        "SelectPlan": "اختيار الباقة",
+        "NameIsRequired": "الاسم مطلوب .",
+        "NameIsMustHaveAtLeast": "الاسم يجب ان يحتوى على الاقل",
+        "Letters": "حروف",
+        "EmailIsRequired": "البريد الالكترونى مطلوب .",
+        "ThisFieldMastBeEmail": "هذا الحقل يجب ان يحتوى على بريد الكترونى .",
+        "PhoneIsRequired": "رقم الهاتف مطلوب .",
+        "PhoneIsMustHaveAtLeast": "رقم الهاتف يجب ان يحتوى على الاقل",
+        "ThisFieldMastBeInteger": "هذا الحقل يجب ان يكون ارقام .",
+        "CountryIsRequired": "البلد مطلوب .",
+        "AddressIsRequired": "العنوان مطلوب .",
+        "AddressIsMustHaveAtLeast": "العنوان يجب ان يحتوى على الاقل",
+        "NotesIsRequired": "الملاحظات مطلوب .",
+        "NotesIsMustHaveAtLeast": "الملاحظات يجب ان يحتوى على الاقل"
+    },
+    "SizingService": {
+        "Sizing": "رفع المقاسات",
+        "Service": "خدمة"
     }
 }

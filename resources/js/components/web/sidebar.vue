@@ -24,7 +24,7 @@
                 <div class="ms-sm-3 ms-md-0 infoUser mt-2 mt-sm-0 mt-md-2 mt-lg-0">
                     <p class="mb-2">مرحبا بك,</p>
                     <h3 class="mb-0">
-                        {{user.custom_name}}
+                        {{user.name}}
                     </h3>
                     <p  class="mb-0 editProfile" v-if="parseInt(partner.trust) && roles.includes('design') && !user.email_verified_at">
                         <router-link :to="{name:'profile',params:{lang:this.$i18n.locale}}">تعديل الحساب</router-link>

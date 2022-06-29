@@ -34,7 +34,8 @@
         "Employees": "الموظفين",
         "Roles": "ادوار الموظفين",
         "Advisor": "مستشار شطبنا",
-        "AdvisorPackage": "باقات المستشار"
+        "AdvisorPackage": "باقات المستشار",
+        "FirstSectionData": "بيانات السكشن الاول"
     },
     "global": {
         "Search":"بحث",
@@ -164,7 +165,17 @@
         "DescriptionEnIsMustHaveAtLeast": "الوصف باللغة الانجليزية يجب ان يحتوى على الاقل",
         "DescriptionEnIsMustHaveAtMost": "الوصف باللغة الانجليزية يجب ان يحتوى على الاكثر",
         "DescriptionAr": "الوصف باللغة العربية",
-        "DescriptionEn": "الوصف باللغة الانجليزية"
+        "DescriptionEn": "الوصف باللغة الانجليزية",
+        "AdvisorShatbnaPackageDetails": "تفاصيل باقة مستشار شطبنا",
+        "TitleArIsRequired": "العنوان باللغة العربية مطلوب .",
+        "TitleArIsMustHaveAtLeast": "العنوان باللغة العربية يجب ان يحتوى على الاقل",
+        "TitleArIsMustHaveAtMost": "العنوان باللغة العربية يجب ان يحتوى على الاكثر",
+        "TitleEnIsRequired": "العنوان باللغة الانجليزية مطلوب .",
+        "TitleEnIsMustHaveAtLeast": "العنوان باللغة الانجليزية يجب ان يحتوى على الاقل",
+        "TitleEnIsMustHaveAtMost": "العنوان باللغة الانجليزية يجب ان يحتوى على الاكثر",
+        "TitleAr": "العنوان باللغة العربية",
+        "TitleEn": "العنوان باللغة الانجليزية",
+        "FirstSectionData": "بيانات السكشن الاول"
     },
 
     "treasury": {
@@ -237,5 +248,14 @@
         "CreateAdvisorPackage": "اضافة باقات مستشار شطبنا",
         "EditAdvisorPackage": "تعديل باقات مستشار شطبنا",
         "ShowAdvisorPackage": "عرض باقات مستشار شطبنا"
+    },
+    "advisorDetail": {
+        "AddAdvisorShatbnaPackageDetails": "اضافة تفاصيل باقات مستشار شطبنا",
+        "EditAdvisorShatbnaPackageDetails": "تعديل تفاصيل باقات مستشار شطبنا"
+    },
+    "advisorOne": {
+        "AddAdvisorOne": "اضافة بيانات السكشن الاول",
+        "EditAdvisorOne": "تعديل بيانات السكشن الاول",
+        "ShowAdvisorOne": "عرض بيانات السكشن الاول"
     }
 }

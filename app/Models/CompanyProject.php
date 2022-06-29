@@ -11,6 +11,14 @@ class CompanyProject extends Model
 
     protected $guarded = ['id'];
 
+
+    protected $appends = ['customDate'];
+
+    public function getCustomDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
     //start raletions
 
 
@@ -21,17 +29,17 @@ class CompanyProject extends Model
 
     public function unity()
     {
-        return $this->belongsToMany(Unity::class,'company_project_unities');
+        return $this->belongsToMany(Unity::class,'company_project_unities','company_project_id','unity_id');
     }
 
     public function architectural()
     {
-        return $this->belongsToMany(Architectural::class,'company_project_architecturals');
+        return $this->belongsToMany(Architectural::class,'company_project_architecturals','company_project_id','architectural_id');
     }
 
     public function ExpectedBadget()
     {
-        return $this->belongsTo(ExpectedBudget::class);
+        return $this->belongsTo(ExpectedBudget::class,'expected_budget_id','id');
     }
 
     public function media()

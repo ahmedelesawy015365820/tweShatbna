@@ -23,4 +23,9 @@ class AdvisorPackage extends Model implements TranslatableContract
     {
         return $this->hasMany(AdvisorDetail::class,'advisor_package_id');
     }
+
+    public function advisorClient()
+    {
+        return $this->hasMany(AdvisorClient::class,'advisor_package_id');
+    }
 }

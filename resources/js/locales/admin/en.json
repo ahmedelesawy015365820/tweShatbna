@@ -34,7 +34,8 @@
         "Employees": "Employees",
         "Roles": "Roles",
         "Advisor": "Advisor Shatbna",
-        "AdvisorPackage": "Advisor Package"
+        "AdvisorPackage": "Advisor Package",
+        "FirstSectionData": "First Section Data"
     },
     "global": {
         "Search":"Search",
@@ -164,7 +165,17 @@
         "DescriptionEnIsMustHaveAtLeast": "English Description Is Must Have At Least",
         "DescriptionEnIsMustHaveAtMost": "English Description Is Must Have At Most",
         "DescriptionAr": "Arabic Description",
-        "DescriptionEn": "English Description"
+        "DescriptionEn": "English Description",
+        "AdvisorShatbnaPackageDetails": "Advisor Shatbna Package Details",
+        "TitleArIsRequired": "Arabic Title Is Required .",
+        "TitleArIsMustHaveAtLeast": "Arabic Title Is Must Have At Least",
+        "TitleArIsMustHaveAtMost": "Arabic Title Is Must Have At Most",
+        "TitleEnIsRequired": "English Title Is Required .",
+        "TitleEnIsMustHaveAtLeast": "English Title Is Must Have At Least",
+        "TitleEnIsMustHaveAtMost": "English Title Is Must Have At Most",
+        "TitleAr": "Arabic Title",
+        "TitleEn": "English Title",
+        "FirstSectionData": "First Section Data"
     },
     "treasury": {
         "TreasuryManagement":"Treasury Management",
@@ -238,5 +249,14 @@
         "CreateAdvisorPackage": "Create Advisor Package",
         "EditAdvisorPackage": "Edit Advisor Package",
         "ShowAdvisorPackage": "Show Advisor Package"
+    },
+    "advisorDetail": {
+        "AddAdvisorShatbnaPackageDetails": "Add Advisor Shatbna Package Details",
+        "EditAdvisorShatbnaPackageDetails": "Edit Advisor Shatbna Package Details"
+    },
+    "advisorOne": {
+        "AddAdvisorOne": "Add First Section Data",
+        "EditAdvisorOne": "Edit First Section Data",
+        "ShowAdvisorOne": "Show First Section Data"
     }
 }

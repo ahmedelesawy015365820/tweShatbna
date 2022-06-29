@@ -48,4 +48,9 @@ class Country extends Model implements TranslatableContract
         return $this->hasMany(Complement::class,'country_id');
     }
 
+    public function advisorClient()
+    {
+        return $this->hasMany(AdvisorClient::class,'country_id');
+    }
+
 }

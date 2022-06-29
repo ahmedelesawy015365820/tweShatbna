@@ -38,17 +38,16 @@ class User extends Authenticatable implements JWTSubject ,MustVerifyEmail
         'role_name' => 'array'
     ];
 
+    protected $appends = ['imagePath'];
+
+    public function getImagePathAttribute(): string
+    {
+        return asset('web/img/user/'.$this->id .'/'.$this->media->file_name);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
-    }
-
-    protected $appends = ['custom_name'];
-
-    // first_name + last_name = full_name
-    public function getCustomNameAttribute()
-    {
-        return substr($this->name,0,12);
     }
 
 

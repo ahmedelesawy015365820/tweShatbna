@@ -54,6 +54,16 @@ use Illuminate\Support\Facades\Route;
          // start  privacy
          Route::get('privacy',  'PrivacyController@index');
 
+        // start show project
+         Route::get('allComProject',  'ShowProjectController@showCompany');
+         Route::get('allDesProject',  'ShowProjectController@showDesign');
+         Route::get('showDesDetail/{id}',  'ShowProjectController@showDesDetail');
+         Route::get('showComDetail/{id}',  'ShowProjectController@showComDetail');
+
+         //advisor client
+         Route::get('getAdvisor',  'AdvisorClientController@index');
+         Route::get('sectionOne',  'AdvisorClientController@sectionOne');
+         Route::post('advisorClientStore',  'AdvisorClientController@store');
 
      });
 
@@ -186,6 +196,10 @@ use Illuminate\Support\Facades\Route;
 
              // advisor Package
              Route::resource('advisorPackage','AdvisorPackageController');
+             Route::resource('advisorDetail','AdvisorPackageDetailController');
+
+             // advisor section one
+             Route::resource('advisorOne','AdvisorOneController');
 
          });
 
@@ -238,6 +252,8 @@ use Illuminate\Support\Facades\Route;
              Route::get('getProject',  'AddProjectController@getService');
              Route::post('addCompany',  'AddProjectController@addCompany');
              Route::post('addDesign',  'AddProjectController@addDesign');
+
+
 
          });
 

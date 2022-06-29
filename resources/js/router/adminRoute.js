@@ -13,6 +13,7 @@ import department from './adminRoute/department';
 import job from './adminRoute/job';
 import role from './adminRoute/role';
 import advisorPackage from './adminRoute/advisorPackage';
+import advisorOne from './adminRoute/advisorOne';
 import employee from './adminRoute/employee';
 import income from './adminRoute/income';
 import expense from './adminRoute/expense';
@@ -130,7 +131,8 @@ const routes = [
                     ...expected,
                     ...employee,
                     ...role,
-                    ...advisorPackage
+                    ...advisorPackage,
+                    ...advisorOne
                 ]
             },
         ]

@@ -79,5 +79,7 @@
         <!-- ckeditor JS -->
         <script src="{{asset('web/plugins/ckeditor5-build-classic/ckeditor.js')}}"></script>
 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmX3cxNy7VH9WLrzoh6FLGkjtZ0g3tLSE&callback=initAutocomplete&libraries=places&v=weekly" async ></script>
+
     </body>
 </html>

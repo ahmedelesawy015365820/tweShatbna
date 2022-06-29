@@ -3,10 +3,15 @@ import {createRouter, createWebHistory} from 'vue-router';
 import Index from '../view/web/index.vue';
 import successPartner from '../view/web/successPartner.vue';
 import registerPartiner from '../view/web/registerPartiner.vue';
-import registerClient from '../view/web/registerClient.vue'
+import registerClient from '../view/web/registerClient.vue';
+import browseProject from '../view/web/browse-project.vue';
+import browseCompany from "../view/web/browse-company.vue";
+import browseDetails from  "../view/web/browse-details.vue";
+import browseDesgin from "../view/web/browse-design";
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
 import advisorShatabna from '../view/web/advisorShatabna';
+import sizingService from '../view/web/sizingService';
 import privacy from '../view/web/privacy';
 import forgetPassword from '../view/web/forgetPassword.vue';
 import resetPassword from '../view/web/resetPassword.vue';
@@ -45,6 +50,11 @@ const routes = [
                 path: 'advisor-shatabna',
                 name: 'advisorShatabna',
                 component: advisorShatabna
+            },
+            {
+                path: 'sizing-service',
+                name: 'sizingService',
+                component: sizingService
             },
             {
                 path: 'register-partiner',
@@ -93,6 +103,27 @@ const routes = [
                 meta: {
                     middleware: [guest]
                 },
+            },
+            {
+                path: 'browse-project',
+                name: 'browse-project',
+                component: browseProject,
+            },
+            {
+                path: 'browse-details/:id(\\d+)',
+                name: 'browse-details',
+                component: browseDetails,
+                props: true
+            },
+            {
+                path: 'browse-company',
+                name: 'browse-company',
+                component: browseCompany,
+            },
+            {
+                path: 'browse-desgin',
+                name: 'browse-desgin',
+                component: browseDesgin,
             },
             {
                 path: 'privacy',

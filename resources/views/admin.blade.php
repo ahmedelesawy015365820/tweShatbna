@@ -85,6 +85,8 @@
         <!-- Custom JS -->
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmX3cxNy7VH9WLrzoh6FLGkjtZ0g3tLSE&callback=initAutocomplete&libraries=places&v=weekly" async ></script>
+
         <script src="{{mix('control/js/admin.js')}}"></script>
 
     </body>

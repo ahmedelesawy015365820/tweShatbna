@@ -11,6 +11,13 @@ class DesignProject extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['customDate'];
+
+    public function getCustomDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
     //start raletions
 
 
@@ -31,7 +38,7 @@ class DesignProject extends Model
 
     public function ExpectedBadget()
     {
-        return $this->belongsTo(ExpectedBudget::class);
+        return $this->belongsTo(ExpectedBudget::class,'expected_budget_id','id');
     }
 
     public function media()

@@ -223,12 +223,80 @@
         </div>
     </div>
     <!-- /Page Content -->
+
+    <!-- The Modal -->
+    <div class="modal fade" id="file">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{$t("browse.add")}}</h4>
+                    <span class="modal-close"><a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times-circle orange-text"></i></a></span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-info">
+                        <form @submit.prevent="addShow">
+                            <div class="feedback-form">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label> مده التسليم بالايام او بالشهور</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="بعد يوم او شهر"
+                                            v-model="v$.day.$model"
+                                        >
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>قيمه العرض</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="بجنيه المصري"
+                                            v-model="v$.value.$model"
+                                        >
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>مستحقاتك بعد خصم عموله شطبنا</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            readOnly
+                                            v-model="v$.commission.$model"
+                                        >
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <label>تفاصيل العرض</label>
+                                        <textarea
+                                            rows="5"
+                                            class="form-control"
+                                            placeholder="تفاصيل العرض"
+                                            v-model="v$.description.$model"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 submit-section text-end">
+                                    <button class="btn btn-primary submit-btn" type="submit">
+                                        {{$t("browse.submit")}}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /The Modal -->
 </div>
 </template>
 
 <script>
-import {inject, ref, toRefs,onMounted} from "vue";
+import {inject, ref, toRefs, onMounted, watch, reactive, computed} from "vue";
 import webApi from "../../api/webAxios";
+import {numeric, maxLength, minLength, required} from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 
 export default {
     name: "browse-details",
@@ -239,17 +307,19 @@ export default {
         const { id } = toRefs(props);
         const emitter = inject('emitter');
         let loading  = ref(false);
+        let setting = ref(0);
         let detail  = ref({});
         let user  = ref({});
 
         let getDetails = () => {
             loading.value = true;
 
-            webApi.get(`/v1/web/showComDetail/${id.value}`)
+            webApi.get(`/v1/web/showDesDetail/${id.value}`)
                 .then((res) => {
                     let l = res.data.data;
                     detail.value = l.detail;
                     user.value = l.detail.user;
+                    setting.value = l.setting.commission_design;
                 })
                 .catch((err) => {
                     Swal.fire({
@@ -261,7 +331,44 @@ export default {
                 .finally(() => {
                     loading.value = false;
                 });
+
         };
+
+        let data =  reactive({
+            add:{
+                day: '',
+                value: null,
+                commission: null,
+                description: '',
+            }
+        });
+
+        const rules = computed(() => {
+            return {
+                day: {
+                    minLength: minLength(1),
+                    maxLength:maxLength(100),
+                    required,
+                },
+                value: {
+                    required,
+                    numeric
+                },
+                commission: {
+                    required,
+                    numeric
+                },
+                description:{
+                    required,
+                }
+            }
+        });
+
+        const v$ = useVuelidate(rules,data.add);
+
+        watch(() => data.add.value,(newValue,oldValue) => {
+            data.add.commission = newValue * (setting.value / 100);
+        });
 
         onMounted(() => {
             getDetails();
@@ -272,8 +379,45 @@ export default {
             getDetails();
         });
 
-        return {loading,detail,user};
+        return {...toRefs(data),v$,loading,detail,user,setting};
 
+    },
+    methods:{
+        addShow(){
+            this.v$.$validate();
+
+            if(!this.v$.$error) {
+
+                this.loading = true;
+
+                webApi.post(`/v1/web/addShow/${this.id}`, this.add)
+                    .then((res) => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم اضافه عرض بنجاح .',
+                            confirmButtonColor: '#ffbc34',
+                            confirmButtonText: 'نجاح'
+                        });
+
+                        this.add.day = '';
+                        this.add.value = null;
+                        this.add.commission = null;
+                        this.add.description = '';
+                        this.$nextTick(() => {this.v$.$reset()});
+                    })
+                    .catch((err) => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'يوجد خطا ...',
+                            text: 'يوجد خطاء في النظام يرجي اعاده الماوله مره اخري  !',
+                        });
+                        console.log(err.response)
+                    })
+                    .finally(() => {
+                        this.loading = false;
+                    });
+            }
+        }
     }
 }
 </script>

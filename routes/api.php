@@ -59,6 +59,7 @@ use Illuminate\Support\Facades\Route;
          Route::get('allDesProject',  'ShowProjectController@showDesign');
          Route::get('showDesDetail/{id}',  'ShowProjectController@showDesDetail');
          Route::get('showComDetail/{id}',  'ShowProjectController@showComDetail');
+         Route::post('addShow/{id}',  'ShowProjectController@addShow');
 
          //advisor client
          Route::get('getAdvisor',  'AdvisorClientController@index');
@@ -200,6 +201,8 @@ use Illuminate\Support\Facades\Route;
 
              // advisor section one
              Route::resource('advisorOne','AdvisorOneController');
+             // Settings
+             Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
 
          });
 

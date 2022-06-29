@@ -35,7 +35,8 @@
         "Roles": "ادوار الموظفين",
         "Advisor": "مستشار شطبنا",
         "AdvisorPackage": "باقات المستشار",
-        "FirstSectionData": "بيانات السكشن الاول"
+        "FirstSectionData": "بيانات السكشن الاول",
+        "setting": "إعدادات"
     },
     "global": {
         "Search":"بحث",
@@ -174,6 +175,7 @@
         "TitleEnIsMustHaveAtLeast": "العنوان باللغة الانجليزية يجب ان يحتوى على الاقل",
         "TitleEnIsMustHaveAtMost": "العنوان باللغة الانجليزية يجب ان يحتوى على الاكثر",
         "TitleAr": "العنوان باللغة العربية",
+
         "TitleEn": "العنوان باللغة الانجليزية",
         "FirstSectionData": "بيانات السكشن الاول"
     },
@@ -257,5 +259,6 @@
         "AddAdvisorOne": "اضافة بيانات السكشن الاول",
         "EditAdvisorOne": "تعديل بيانات السكشن الاول",
         "ShowAdvisorOne": "عرض بيانات السكشن الاول"
+
     }
 }

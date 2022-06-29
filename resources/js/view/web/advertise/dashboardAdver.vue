@@ -5,11 +5,6 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
 
-                <div class="error-trust alert-danger" v-if="!user.email_verified_at">
-                    يجب عليك تاكيد البريد الالكتروني
-                    لشراء الحزم .
-                </div>
-
                 <!-- sidebar -->
                 <Sidebar />
                 <!--   /sidebar -->

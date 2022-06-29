@@ -51,4 +51,9 @@ class DesignProject extends Model
         return $this->morphOne(Video::class,'mediable');
     }
 
+    public function addShowDesign()
+    {
+        return $this->hasMany(AddShowDesign::class,'design_project_id');
+    }
+
 }

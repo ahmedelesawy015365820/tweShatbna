@@ -28,22 +28,27 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 d-flex align-items-center">
                         <div class="about-content">
+
                             <h2>{{$t('advisor.Advisor')}} <span class="orange-text">{{$t('advisor.Shatbna')}}</span></h2>
                             <div v-for="item in ones">
                                 <h5>{{item.name}}</h5>
                                 <p>{{item.description}}</p>
                             </div>
                             <a href="#card" class="btn learn-btn">{{$t('advisor.BookNow')}}</a>
+
+
                         </div>
                     </div>
                     <div class=" col-lg-5">
                         <div class="about-img">
                             <img class="img-fluid" src="/web/img/advisor.jpg" alt="Post Image">
+
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- /About -->
 
         <div class="container" id="card">
             <div class="row">
@@ -199,6 +204,7 @@
             </div>
         </div>
     </transition>
+
 
     <!-- /Page Content -->
 

@@ -35,7 +35,9 @@
         "Roles": "Roles",
         "Advisor": "Advisor Shatbna",
         "AdvisorPackage": "Advisor Package",
-        "FirstSectionData": "First Section Data"
+        "FirstSectionData": "First Section Data",
+        "setting": "Settings"
+
     },
     "global": {
         "Search":"Search",

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Api\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\AddShowDesign;
 use App\Models\CompanyProject;
 use App\Models\DesignProject;
+use App\Models\Setting;
 use App\Traits\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ShowProjectController extends Controller
 {
@@ -95,8 +99,9 @@ class ShowProjectController extends Controller
         with('user:id,name','unity','architectural','ExpectedBadget:id,to,from')
         ->find($id);
 
+        $setting = Setting::select('commission_design')->first();
 
-        return $this->sendResponse(['detail' => $detail],'Data exited successfully');
+        return $this->sendResponse(['detail' => $detail,'setting' => $setting],'Data exited successfully');
 
     }
 
@@ -110,6 +115,44 @@ class ShowProjectController extends Controller
 
         return $this->sendResponse(['detail' => $detail],'Data exited successfully');
 
+    }
+
+    public function addShow(Request $request,$id)
+    {
+
+        try{
+            DB::beginTransaction();
+
+            // Validator request
+            $v = Validator::make($request->all(), [
+                'day' => 'required',
+                'value' => 'required',
+                'description' => 'required',
+            ]);
+
+            if ($v->fails()) {
+                return $this->sendError('There is an error in the data', $v->errors());
+            }
+
+            $setting = Setting::get()->first()->commission_design;
+
+            $commission = $request->value * ($setting/100);
+
+            DesignProject::find($id)->addShowDesign()->create([
+                'day' => $request->day,
+                'value' => $request->value,
+                'commission' => $commission,
+                'description' => $request->description,
+                'user_id' => auth()->guard('api')->user()->id,
+            ]);
+
+            DB::commit();
+            return $this->sendResponse([],'Data exited successfully');
+
+        }catch (\Exception $e){
+            DB::rollBack();
+            return $this->sendError('An error occurred in the system');
+        }
     }
 
 }

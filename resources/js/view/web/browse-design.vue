@@ -75,12 +75,17 @@
 
                                         <div class="description-proposal">
                                             <h5 class="desc-title">{{$t("browse.description")}}</h5>
-                                            <p>{{design.description.substr(0,250)}}....<router-link to=""  class="text-primary font-bold">
+                                            <p>{{design.description.substr(0,250)}}....<router-link :to="{name:'browse-details',params:{lang:this.$i18n.locale,id:design.id}}"  class="text-primary font-bold">
                                                 {{$t("browse.more")}}</router-link></p>
                                         </div>
 
                                         <div class="show-project">
-                                            <router-link to="" class='btn'>{{$t("browse.add")}}</router-link>
+                                            <router-link
+                                                :to="{name:'browse-details',params:{lang:this.$i18n.locale,id:design.id}}"
+                                                class='btn'
+                                            >
+                                                {{$t("browse.add")}}
+                                            </router-link>
                                         </div>
                                     </div>
                                 </div>

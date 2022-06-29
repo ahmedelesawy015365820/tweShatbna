@@ -41,8 +41,12 @@ class AdvisorPackageDetailController extends Controller
 
             // Validator request
             $v = Validator::make($request->all(), [
+
                 'ar.name' => ['required'],
                 'en.name' => ['required'],
+
+                'ar.name' => ['required', Rule::unique('advisor_detail_translations', 'name')],
+                'en.name' => ['required', Rule::unique('advisor_detail_translations', 'name')],
                 'advisor_package_id' => ['required'],
             ]);
 
@@ -112,6 +116,8 @@ class AdvisorPackageDetailController extends Controller
             $v = Validator::make($request->all(), [
                 'ar.name' => ['required'],
                 'en.name' => ['required'],
+                'ar.name' => ['required', Rule::unique('advisor_detail_translations', 'name')->whereNot('advisor_detail_id', $advisorDetail->id)],
+                'en.name' => ['required', Rule::unique('advisor_detail_translations', 'name')->whereNot('advisor_detail_id', $advisorDetail->id)],
                 'advisor_package_id' => ['required'],
             ]);
 

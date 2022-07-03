@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('role_name');
             $table->tinyInteger('auth_id')->default(3);
             $table->boolean('status')->default(false);
+            $table->text('token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

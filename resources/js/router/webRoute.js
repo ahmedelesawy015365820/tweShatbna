@@ -5,9 +5,11 @@ import successPartner from '../view/web/successPartner.vue';
 import registerPartiner from '../view/web/registerPartiner.vue';
 import registerClient from '../view/web/registerClient.vue';
 import browseProject from '../view/web/browse-project.vue';
+import companyPartiner from '../view/web/company-partiner.vue';
 import browseCompany from "../view/web/browse-company.vue";
 import browseDetails from  "../view/web/browse-details.vue";
 import browseDesgin from "../view/web/browse-design";
+import designPartiner from "../view/web/design-partiner.vue";
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
 import advisorShatabna from '../view/web/advisorShatabna';
@@ -113,6 +115,16 @@ const routes = [
                 path: 'browse-company',
                 name: 'browse-company',
                 component: browseCompany,
+            },
+            {
+                path: 'company-partiner',
+                name: 'company-partiner',
+                component: companyPartiner,
+            },
+            {
+                path: 'design-partiner',
+                name: 'design-partiner',
+                component: designPartiner,
             },
             {
                 path: 'browse-desgin',

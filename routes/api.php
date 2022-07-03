@@ -195,7 +195,6 @@ use Illuminate\Support\Facades\Route;
              Route::resource('advisorPackage','AdvisorPackageController');
              Route::resource('advisorDetail','AdvisorPackageDetailController');
 
-<<<<<<< HEAD
 
             //projects managemet*****************
             //designers fines
@@ -226,10 +225,10 @@ use Illuminate\Support\Facades\Route;
             Route::resource('phaseBands','PhaseBandsController');
 
 
-=======
              // Settings
              Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
->>>>>>> 54412780681b6f21c84e57845438443568e48d4a
+             // Settings
+             Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
 
          });
 

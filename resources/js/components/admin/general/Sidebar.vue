@@ -55,22 +55,28 @@
                         </a>
                         <ul>
                             <li :class="[$route.name == 'indexCompany'? 'active': '']">
-                                <router-link :to="{name:'indexCompany',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                <router-link :to="{name:'indexCompany',params: {lang:this.$i18n.locale}}">
+
                                     {{$t('sidebar.company')}}
                                 </router-link>
                             </li>
                             <li :class="[$route.name == 'indexDesign'? 'active': '']">
-                                <router-link :to="{name:'indexDesign',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                <router-link :to="{name:'indexDesign',params: {lang:this.$i18n.locale}}">
+
                                     {{$t('sidebar.design')}}
                                 </router-link>
                             </li>
                             <li :class="[$route.name == 'indexAdvertise'? 'active': '']">
-                                <router-link :to="{name:'indexAdvertise',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+
+                                <router-link :to="{name:'indexAdvertise',params: {lang:this.$i18n.locale}}">
+
                                     {{$t('sidebar.advertise')}}
                                 </router-link>
                             </li>
                             <li :class="[$route.name == 'indexClient'? 'active': '']">
-                                <router-link :to="{name:'indexClient',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+
+                                <router-link :to="{name:'indexClient',params: {lang:this.$i18n.locale}}">
+
                                     {{$t('sidebar.client')}}
                                 </router-link>
                             </li>
@@ -115,6 +121,7 @@
                         <ul>
                             <li :class="[$route.name == 'indexDepartment'? 'active': '']">
                                 <router-link :to="{name:'indexDepartment',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+
                                     {{$t('sidebar.Department')}}
                                 </router-link>
                             </li>
@@ -126,6 +133,7 @@
                             </li>
                         </ul>
                     </li>
+
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-suitcase"></i>
                          <span> {{$t("sidebar.Projects Management")}}</span> <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span></a>

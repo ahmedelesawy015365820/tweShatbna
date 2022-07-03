@@ -23,6 +23,9 @@ admin.component('loader', loader);
 admin.component('Pagination', LaravelVuePagination);
 admin.component('Breadcrumb', breadcrumb);
 
+admin.component('loader', loader);
+admin.component('Pagination', LaravelVuePagination);
+
 admin.use(i18n).use(store).use(router).use(Notifications).mount('#admin');
 
 

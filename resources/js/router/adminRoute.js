@@ -152,6 +152,7 @@ const router = createRouter({
     routes
 });
 
+
 router.beforeEach((to, from, next) => {
 
     if (!to.meta.middleware) return next();

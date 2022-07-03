@@ -43,7 +43,6 @@
     "global": {
         "Search":"Search",
         "back":"back",
-
         "Design Criteria":"Design Criteria",
         "Company Criteria":"Company Criteria",
         "Create Company Criteria":"Create Company Criteria",
@@ -116,6 +115,7 @@
         "Inactive":"Inactive",
         "NameEn":"English Name",
         "NameAr":"Arabic Name",
+        "Submit":"Submit",
         "EditSuccessfully": "Edit Successfully",
         "AddedSuccessfully": "Added Successfully",
         "LooksGood": "Looks good!",

@@ -52,5 +52,9 @@ class Country extends Model implements TranslatableContract
     {
         return $this->hasMany(AdvisorClient::class,'country_id');
     }
+    public function sizingClient()
+    {
+        return $this->hasMany(SizingClient::class,'country_id');
+    }
 
 }

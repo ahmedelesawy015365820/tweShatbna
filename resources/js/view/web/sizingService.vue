@@ -49,8 +49,8 @@
             <div class="row">
                 <div class="col-xl-12 col-md-12 mx-auto text-center">
                     <div class="freelance-title" id="plan">
-                        <h3>{{$t('advisor.AdvisorShatbnaPackages')}}</h3>
-                        <p> {{$t('advisor.WeHelpYouToGetTheBestQualityThroughOurShutbanaConsultant')}}</p>
+                        <h3>{{$t('SizingService.upload your property size now')}}</h3>
+                        <p> {{$t('SizingService.The best way to get more accurate Your unit details')}}</p>
                     </div>
                     <div class="row card-foerm">
                         <div class="col-md-8">
@@ -65,7 +65,7 @@
                                             <div class="title-detail">
                                                 <h3>{{$t('register.country')}}</h3>
                                                 <div class="form-group mb-0">
-                                                    <select v-model="data.country_id"
+                                                    <select v-model="data.country_id" @change="countryState"
                                                             class="form-control select select2-hidden-accessible">
                                                         <option :value="country.id" v-for="country in countries">
                                                             {{country.name}}
@@ -74,6 +74,25 @@
                                                     <div v-if="v$.country_id.$error">
                                                         <span class="text-danger"
                                                               v-if="v$.country_id.required.$invalid">{{ $t('advisor.CountryIsRequired') }}<br/> </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="title-content col-md-6">
+                                            <div class="title-detail">
+                                                <h3>{{$t('register.state')}}</h3>
+                                                <div class="form-group mb-0">
+                                                    <select v-model="data.state_id"
+                                                            class="form-control select select2-hidden-accessible">
+                                                        <option v-if="states" :value="state.id" v-for="state in states">
+                                                            {{state.name}}
+                                                        </option>
+                                                    </select>
+                                                    <div v-if="v$.state_id.$error">
+                                                        <span class="text-danger"
+                                                              v-if="v$.state_id.required.$invalid">{{ $t('advisor.CountryIsRequired') }}<br/> </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,28 +100,36 @@
 
                                         <div class="title-content col-md-6">
                                             <div class="title-detail">
-                                                <h3>{{$t('register.country')}}</h3>
+                                                <h3>{{$t('SizingService.location')}}</h3>
                                                 <div class="form-group mb-0">
-                                                    <select v-model="data.country_id"
-                                                            class="form-control select select2-hidden-accessible">
-                                                        <option :value="country.id" v-for="country in countries">
-                                                            {{country.name}}
-                                                        </option>
-                                                    </select>
-                                                    <div v-if="v$.country_id.$error">
-                                                        <span class="text-danger"
-                                                              v-if="v$.country_id.required.$invalid">{{ $t('advisor.CountryIsRequired') }}<br/> </span>
+                                                    <input type="text" v-model.trim="data.location" class="form-control"
+                                                           :placeholder="$t('SizingService.location')">
+                                                    <div v-if="v$.location.$error">
+                                                        <span class="text-danger" v-if="v$.location.required.$invalid">{{ $t('advisor.AddressIsRequired') }}<br/> </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-<!--                                        <div class="form-group  col-sm-12">-->
-<!--                                            <input id="pac-input" class="form-control col-4" type="text"-->
-<!--                                                   placeholder="Search"/>-->
-<!--                                            <label for="map">*</label>-->
-<!--                                            <div id="map" style="height:350px"></div>-->
-<!--                                        </div>-->
+                                        <div class="title-content col-md-6">
+                                            <div class="title-detail">
+                                                <h3>{{$t('SizingService.Unit area in meters')}}</h3>
+                                                <div class="form-group mb-0">
+                                                    <input type="number" v-model.trim="data.space" class="form-control"
+                                                           :placeholder="$t('SizingService.Unit area in meters')">
+                                                       <div class="sizing-service" v-if="data.space">
+                                                           <h6>{{$t('SizingService.cost')}} : {{data.space * priceSizing}}</h6>
+                                                           <h6>{{$t('SizingService.date uploaded')}} : {{contactSizing}}</h6>
+                                                       </div>
+
+
+                                                    <div v-if="v$.space.$error">
+                                                        <span class="text-danger" v-if="v$.space.required.$invalid">{{ $t('SizingService.Unit area in meters iS required') }}<br/> </span>
+                                                        <span class="text-danger" v-if="v$.space.integer.$invalid">{{ $t('advisor.ThisFieldMastBeInteger') }}<br/> </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
                                         <!-- Project Title -->
@@ -125,20 +152,6 @@
 
                                         <div class="title-content col-md-6">
                                             <div class="title-detail">
-                                                <h3>{{$t('register.email')}}</h3>
-                                                <div class="form-group mb-0">
-                                                    <input type="email" v-model.trim="data.email" class="form-control"
-                                                           :placeholder="$t('register.email')">
-                                                    <div v-if="v$.email.$error">
-                                                        <span class="text-danger" v-if="v$.email.required.$invalid">{{ $t('advisor.EmailIsRequired') }}<br/> </span>
-                                                        <span class="text-danger" v-if="v$.email.email.$invalid">{{ $t('advisor.ThisFieldMastBeEmail') }}<br/> </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="title-content col-md-6">
-                                            <div class="title-detail">
                                                 <h3>{{$t('register.phone')}}</h3>
                                                 <div class="form-group mb-0">
                                                     <input type="text" v-model.trim="data.phone" class="form-control"
@@ -152,39 +165,9 @@
                                             </div>
                                         </div>
 
-                                        <div class="title-content col-md-6">
-                                            <div class="title-detail">
-                                                <h3>{{$t('register.country')}}</h3>
-                                                <div class="form-group mb-0">
-                                                    <select v-model="data.country_id"
-                                                            class="form-control select select2-hidden-accessible">
-                                                        <option :value="country.id" v-for="country in countries">
-                                                            {{country.name}}
-                                                        </option>
-                                                    </select>
-                                                    <div v-if="v$.country_id.$error">
-                                                        <span class="text-danger"
-                                                              v-if="v$.country_id.required.$invalid">{{ $t('advisor.CountryIsRequired') }}<br/> </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="title-content col-md-6">
-                                            <div class="title-detail">
-                                                <h3>{{$t('advisor.address')}}</h3>
-                                                <div class="form-group mb-0">
-                                                    <input type="text" v-model.trim="data.address" class="form-control"
-                                                           :placeholder="$t('advisor.address')">
-                                                    <div v-if="v$.address.$error">
-                                                        <span class="text-danger" v-if="v$.address.required.$invalid">{{ $t('advisor.AddressIsRequired') }}<br/> </span>
-                                                        <span class="text-danger" v-if="v$.address.minLength.$invalid">{{ $t('advisor.AddressIsMustHaveAtLeast') }} {{v$.address.minLength.$params.min}} {{ $t('advisor.Letters') }} <br/></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="title-content col-md-6">
+                                        <div class="title-content col-md-12 ">
                                             <div class="title-detail">
                                                 <h3>{{$t('advisor.Notes')}}</h3>
                                                 <div class="form-group mb-0">
@@ -192,17 +175,16 @@
                                                               :placeholder="$t('advisor.Notes')"></textarea>
                                                     <div v-if="v$.note.$error">
                                                         <span class="text-danger" v-if="v$.note.required.$invalid">{{ $t('advisor.NotesIsRequired') }}<br/> </span>
-                                                        <span class="text-danger" v-if="v$.address.minLength.$invalid">{{ $t('advisor.NotesIsMustHaveAtLeast') }} {{v$.address.minLength.$params.min}} {{ $t('advisor.Letters') }} <br/></span>
+                                                        <span class="text-danger" v-if="v$.note.minLength.$invalid">{{ $t('advisor.NotesIsMustHaveAtLeast') }} {{v$.note.minLength.$params.min}} {{ $t('advisor.Letters') }} <br/></span>
 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-
                                         <div class="row">
                                             <div class="col-md-12 text-end">
-                                                <div class="btn-item">
+                                                <div class="btn-item text-center">
                                                     <button type="submit" class="btn next-btn">
                                                         {{$t('advisor.Submit')}}
                                                     </button>
@@ -222,139 +204,6 @@
         </div>
     </div>
 
-
-
-    <transition name="active" mode="out-in" @click.self="show= !show">
-
-        <div class="position-fixed overlay" v-if="show">
-            <div class="container">
-                <div class="row card-foerm">
-                    <div class="col-md-6">
-                        <!-- Modal Header -->
-                        <div class="select-project mb-4">
-
-                            <form @submit.prevent='storeAdvisor'>
-
-                                <div class="title-box widget-box row">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">{{$t('header.advisor')}}</h4>
-
-                                        <button type="button" @click="show= !show" class="close"
-                                                data-bs-dismiss="modal"><span>&times;</span></button>
-                                    </div>
-                                    <!-- Project Title -->
-                                    <div class="title-content col-md-6">
-                                        <div class="title-detail">
-                                            <h3> {{$t('register.full_name')}}</h3>
-                                            <div class="form-group mb-0">
-                                                <input type="text" v-model.trim="data.name" class="form-control"
-                                                       :placeholder="$t('register.full_name')">
-                                                <div v-if="v$.name.$error">
-                                                    <span class="text-danger" v-if="v$.name.required.$invalid">{{$t('advisor.NameIsRequired')}}<br/> </span>
-                                                    <span class="text-danger" v-if="v$.name.minLength.$invalid">{{$t('advisor.NameIsMustHaveAtLeast')}} {{ v$.name.minLength.$params.min }} {{$t('advisor.Letters')}} <br/></span>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- /Project Title -->
-
-                                    <div class="title-content col-md-6">
-                                        <div class="title-detail">
-                                            <h3>{{$t('register.email')}}</h3>
-                                            <div class="form-group mb-0">
-                                                <input type="email" v-model.trim="data.email" class="form-control"
-                                                       :placeholder="$t('register.email')">
-                                                <div v-if="v$.email.$error">
-                                                    <span class="text-danger" v-if="v$.email.required.$invalid">{{ $t('advisor.EmailIsRequired') }}<br/> </span>
-                                                    <span class="text-danger" v-if="v$.email.email.$invalid">{{ $t('advisor.ThisFieldMastBeEmail') }}<br/> </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="title-content col-md-6">
-                                        <div class="title-detail">
-                                            <h3>{{$t('register.phone')}}</h3>
-                                            <div class="form-group mb-0">
-                                                <input type="text" v-model.trim="data.phone" class="form-control"
-                                                       :placeholder="$t('register.phone')">
-                                                <div v-if="v$.phone.$error">
-                                                    <span class="text-danger" v-if="v$.phone.required.$invalid">{{ $t('advisor.PhoneIsRequired') }}<br/> </span>
-                                                    <span class="text-danger" v-if="v$.phone.minLength.$invalid">{{ $t('advisor.PhoneIsMustHaveAtLeast') }} {{v$.phone.minLength.$params.min }} {{ $t('advisor.Letters') }} <br/></span>
-                                                    <span class="text-danger" v-if="v$.phone.integer.$invalid">{{ $t('advisor.ThisFieldMastBeInteger') }}<br/> </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="title-content col-md-6">
-                                        <div class="title-detail">
-                                            <h3>{{$t('register.country')}}</h3>
-                                            <div class="form-group mb-0">
-                                                <select v-model="data.country_id"
-                                                        class="form-control select select2-hidden-accessible">
-                                                    <option :value="country.id" v-for="country in countries">
-                                                        {{country.name}}
-                                                    </option>
-                                                </select>
-                                                <div v-if="v$.country_id.$error">
-                                                    <span class="text-danger" v-if="v$.country_id.required.$invalid">{{ $t('advisor.CountryIsRequired') }}<br/> </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="title-content col-md-6">
-                                        <div class="title-detail">
-                                            <h3>{{$t('advisor.address')}}</h3>
-                                            <div class="form-group mb-0">
-                                                <input type="text" v-model.trim="data.address" class="form-control"
-                                                       :placeholder="$t('advisor.address')">
-                                                <div v-if="v$.address.$error">
-                                                    <span class="text-danger" v-if="v$.address.required.$invalid">{{ $t('advisor.AddressIsRequired') }}<br/> </span>
-                                                    <span class="text-danger" v-if="v$.address.minLength.$invalid">{{ $t('advisor.AddressIsMustHaveAtLeast') }} {{v$.address.minLength.$params.min}} {{ $t('advisor.Letters') }} <br/></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="title-content col-md-6">
-                                        <div class="title-detail">
-                                            <h3>{{$t('advisor.Notes')}}</h3>
-                                            <div class="form-group mb-0">
-                                                <textarea class="form-control" v-model.trim="data.note"
-                                                          :placeholder="$t('advisor.Notes')"></textarea>
-                                                <div v-if="v$.note.$error">
-                                                    <span class="text-danger" v-if="v$.note.required.$invalid">{{ $t('advisor.NotesIsRequired') }}<br/> </span>
-                                                    <span class="text-danger" v-if="v$.address.minLength.$invalid">{{ $t('advisor.NotesIsMustHaveAtLeast') }} {{v$.address.minLength.$params.min}} {{ $t('advisor.Letters') }} <br/></span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col-md-12 text-end">
-                                            <div class="btn-item">
-                                                <button type="submit" class="btn next-btn">{{$t('advisor.Submit')}}
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- Project Title -->
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </transition>
 
     <!-- /Page Content -->
 
@@ -376,20 +225,17 @@ export default {
         let errors = computed(() => store.getters['auth/errors']);
         let loading = computed(() => store.getters['auth/loading']);
         let countries = computed(() => store.getters['auth/country']);
-        let Packages = ref([]);
         let ones = ref([]);
-        let show = ref(false);
+        let contactSizing = ref(0);
+        let priceSizing= ref(0);
         const {t} = useI18n({});
-        let map;
-        let input;
-        let searchBox;
-        let markers = [];
+        let states = computed(()=> store.getters['auth/newState']);
 
         let getSectionOne = () => {
 
             loading.value = true;
 
-            webApi.get(`/v1/web/sectionOne`)
+            webApi.get(`/v1/web/SizingSectionOne`)
                 .then((res) => {
                     let l = res.data.data;
                     ones.value = l.advisorOnes;
@@ -404,14 +250,16 @@ export default {
                 loading.value = false;
             });
         }
-        let getPackage = () => {
+        let getSetting = () => {
 
             loading.value = true;
 
-            webApi.get(`/v1/web/getAdvisor`)
+            webApi.get(`/v1/web/SizingSetting`)
                 .then((res) => {
-                    let l = res.data.data;
-                    Packages.value = l.packages;
+
+                    let l =res.data.data;
+                    contactSizing.value = l.setting.contact_sizing;
+                    priceSizing.value = l.setting.price_sizing;
                 })
                 .catch((err) => {
                     Swal.fire({
@@ -423,39 +271,48 @@ export default {
                 loading.value = false;
             });
         }
-
         onBeforeMount(() => {
-            getPackage();
             getSectionOne();
+            getSetting();
         });
 
         emitter.on('get_lang_web', () => {
-            getPackage();
             getCountry();
             getSectionOne();
+            getSetting();
         });
 
         let getCountry = () => {
             store.dispatch('auth/countryRegister');
         };
 
+        let countryState =  () => {
+            store.dispatch('auth/stateRegister',addAdvisor.data.country_id);
+        };
+
         let addAdvisor = reactive({
             data: {
                 country_id: '',
-                email: '',
-                phone: '',
-                address: '',
-                note: '',
-                advisor_package_id: '',
+                state_id: '',
+                location: '',
+                space: '',
                 name: '',
+                phone: '',
+                note: '',
             }
         });
 
         const rules = computed(() => {
             return {
                 country_id: {required},
-                email: {
-                    email,
+                state_id: {required},
+                location: {required},
+                space: {
+                    required,
+                    integer
+                },
+                name: {
+                    minLength: minLength(3),
                     required
                 },
                 phone: {
@@ -463,18 +320,10 @@ export default {
                     integer,
                     required
                 },
-                address: {
-                    required,
-                    minLength: minLength(5),
-                },
+
                 note: {
                     required,
                     minLength: minLength(5),
-                },
-                advisor_package_id: {required},
-                name: {
-                    minLength: minLength(3),
-                    required
                 },
             }
         });
@@ -483,96 +332,17 @@ export default {
 
         onMounted(() => {
             getCountry();
-            initAutocomplete();
         });
 
-        const initAutocomplete = () => {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: {lat: 21.543333, lng: 39.172779},
-                zoom: 13,
-                mapTypeId: "roadmap",
-                mapTypeControl: false,
-                fullscreenControl: false
-            });
-            // This event listener will call addMarker() when the map is clicked.
-            map.addListener("click", (event) => {
-                setMapOnAll(null);
-                // Clear out the old markers.
-                markers.forEach((marker) => {
-                    marker.setMap(null);
-                });
-                markers = [];
-                addMarker(event.latLng);
-            });
-            // Create the search box and link it to the UI element.
-            createSearchBox();
-            // Bias the SearchBox results towards current map's viewport.
-            map.addListener("bounds_changed", () => {
-                searchBox.setBounds(map.getBounds());
-            });
-            // Listen for the event fired when the user selects a prediction and retrieve
-            // more details for that place.
-            searchBox.addListener("places_changed", () => {
-                const places = searchBox.getPlaces();
-                if (places.length == 0) {
-                    return;
-                }
-                // Clear out the old markers.
-                markers.forEach((marker) => {
-                    marker.setMap(null);
-                });
-                markers = [];
-                // For each place, get the icon, name and location.
-                const bounds = new google.maps.LatLngBounds();
-                places.forEach((place) => {
-                    if (!place.geometry || !place.geometry.location) {
-                        console.log("Returned place contains no geometry");
-                        return;
-                    }
-                    // Create a marker for each place.
-                    addMarker(place.geometry.location);
-                    if (place.geometry.viewport) {
-                        // Only geocodes have viewport.
-                        bounds.union(place.geometry.viewport);
-                    } else {
-                        bounds.extend(place.geometry.location);
-                    }
-                });
-                map.fitBounds(bounds);
-            });
-        }
-        // Adds a marker to the map and push to the array.
-        const addMarker = (position) => {
-            const marker = new google.maps.Marker({
-                position,
-                map,
-            });
-            markers.push(marker);
-            //  @this.set('geoLocation',marker.getPosition().lat()+","+marker.getPosition().lng())
-        }
-        // Sets the map on all markers in the array.
-        const setMapOnAll = (variable) => {
-            for (let i = 0; i < Object.keys(markers).length; i++) {
-                markers[i].setMap(variable);
+        emitter.on('get_lang_web', () => {
+            getCountry();
+            if(addAdvisor.data.country_id){
+                countryState();
             }
-            markers = []
-
-        }
-
-        // Create the search box and link it to the UI element.
-        const createSearchBox = () => {
-            input = document.getElementById("pac-input");
-            searchBox = new google.maps.places.SearchBox(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        }
+        });
 
 
-        let showStore = (id) => {
-            addAdvisor.data.advisor_package_id = id;
-            show.value = true;
-        }
-
-        return {...toRefs(addAdvisor), t, Packages, errors, ones, loading, countries, v$, showStore, show};
+        return {...toRefs(addAdvisor), t, errors, ones,countryState,states, loading,contactSizing,priceSizing, countries, v$};
 
     },
     methods: {
@@ -585,17 +355,12 @@ export default {
                 this.loading = true;
                 // this.errors = {};
 
-                webApi.post(`/v1/web/advisorClientStore`, this.data)
+                webApi.post(`/v1/web/SizingClientStore`, this.data)
                     .then((res) => {
-                        this.show = false;
                         Swal.fire(
                             `${this.t('advisor.SentSuccessfully')}`,
-                            `${this.t('advisor.YouWillBeContactedByOurStaffWithin4WorkingDays')}
-                             <br>
-                             ${this.t('advisor.ForAnyFurtherEmail')} info@shatbna.net
-                             <br>
-                             ${this.t('advisor.ForAnyFurtherCallUS')} 011111111111
-                            `,
+                            `${this.t('advisor.YouWillBeContactedByOurStaff')}
+                             `,
                             `${this.t('advisor.Success')}`
                         );
 
@@ -605,7 +370,6 @@ export default {
                         });
                     })
                     .catch((err) => {
-                        this.show = false;
                         Swal.fire({
                             icon: `${this.t('advisor.error')}`,
                             title: `${this.t('advisor.ThereIsAnErrorInTheSystem')}`,
@@ -623,12 +387,12 @@ export default {
         },
         resetForm() {
             this.data.country_id = '';
-            this.data.email = '';
-            this.data.phone = '';
-            this.data.address = '';
-            this.data.note = '';
-            this.data.advisor_package_id = '';
+            this.data.state_id = '';
+            this.data.location = '';
+            this.data.space = '';
             this.data.name = '';
+            this.data.phone = '';
+            this.data.note = '';
         }
     }
 }
@@ -654,7 +418,7 @@ export default {
 
 .active-enter-active,
 .active-leave-active {
-    transition: opacity 1s ease;
+    transition: opacity 0.1s ease;
 }
 
 .active-enter-from,
@@ -681,6 +445,14 @@ export default {
 
 .modal-header .close {
     margin: 0 !important;
+}
+.sizing-service{
+    width: 100%;
+    height: 100%;
+    border: 5px dotted #fcb00cd6;
+}
+textarea{
+    height: 150px !important;
 }
 
 </style>

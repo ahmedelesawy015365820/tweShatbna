@@ -22,7 +22,8 @@
         "acdDegree": "Academic Degree",
         "TreasuryManagement": "Treasury Management",
         "IncomeManagement": "Incomes",
-        "Accounts": "Accounts",
+        "Accounts": "Platform Accounts",
+        "FinancialAccounts": "Financial Accounts",
         "Expense": "Expense",
         "IncomeAndExpense": "Income & Expense",
         "Management": "Management",
@@ -36,7 +37,8 @@
         "Advisor": "Advisor Shatbna",
         "AdvisorPackage": "Advisor Package",
         "FirstSectionData": "First Section Data",
-        "setting": "Settings"
+        "setting": "Settings",
+        "Assets": "Assets"
 
     },
     "global": {
@@ -177,7 +179,22 @@
         "TitleEnIsMustHaveAtMost": "English Title Is Must Have At Most",
         "TitleAr": "Arabic Title",
         "TitleEn": "English Title",
-        "FirstSectionData": "First Section Data"
+        "FirstSectionData": "First Section Data",
+        "CommissionDesign": "Commission Design",
+        "CommissionDesignIsRequired": "Commission Design Is Required .",
+        "ThisFieldMustBeANumber": "This Field Must Be A Number .",
+        "The price per meter in the service of lifting sizes": "The price per meter in the service of lifting sizes",
+        "The price per meter in the service of lifting sizes Is Required": "The price per meter in the service of lifting sizes Is Required .",
+        "Time to contact the sizing service": "Time to contact the sizing service",
+        "Time to contact the sizing service Is Required": "Time to contact the sizing service Is Required .",
+        "Sizing service data": "Sizing service data",
+        "Assets": "Assets",
+        "AddedDate": "Added Date",
+        "Edit": "Edit",
+        "Debit": "Debit",
+        "Creditor": "Creditor",
+        "AccountType": "Account type",
+        "NumberOfElements": "Number Of Elements"
     },
     "treasury": {
         "TreasuryManagement":"Treasury Management",
@@ -260,5 +277,13 @@
         "AddAdvisorOne": "Add First Section Data",
         "EditAdvisorOne": "Edit First Section Data",
         "ShowAdvisorOne": "Show First Section Data"
+    },
+    "SizingService": {
+        "Add": "Add Sizing service data",
+        "Edit": "Edit Sizing service data"
+    },
+    "Assets": {
+        "Add": "Add the first items",
+        "Edit": "Edit the first items"
     }
 }

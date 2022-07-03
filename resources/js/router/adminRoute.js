@@ -38,6 +38,8 @@ import auth from "../middleware/admin/auth";
 import login from "../view/admin/login";
 import forgetPassword from "../view/admin/forgetPassword";
 import resetPassword from "../view/admin/resetPassword";
+import sizingOne from "./adminRoute/sizingOne";
+import Assets from "./adminRoute/Assets";
 
 
 const routes = [
@@ -133,6 +135,8 @@ const routes = [
                     ...employee,
                     ...role,
                     ...advisorPackage,
+                    ...sizingOne,
+                    ...Assets,
                     ...advisorOne,
                     ...setting
                 ]

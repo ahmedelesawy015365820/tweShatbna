@@ -66,6 +66,12 @@ use Illuminate\Support\Facades\Route;
          Route::get('sectionOne',  'AdvisorClientController@sectionOne');
          Route::post('advisorClientStore',  'AdvisorClientController@store');
 
+         //Sizing Service client
+
+         Route::get('SizingSectionOne',  'SizingServiceController@sectionOne');
+         Route::get('SizingSetting',  'SizingServiceController@index');
+         Route::post('SizingClientStore',  'SizingServiceController@store');
+
      });
 
 
@@ -201,9 +207,22 @@ use Illuminate\Support\Facades\Route;
 
              // advisor section one
              Route::resource('advisorOne','AdvisorOneController');
+
+             // sizing service section one
+             Route::resource('sizingOne','SizingOneController');
+
              // Settings
              Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
 
+             // Main Account
+             Route::resource('mainAccount','MainAccountController');
+
+             // Sub Account
+             Route::get('subAccount/{main}/{id}','SubAccountController@index');
+             Route::get('getMainSub/{id}','SubAccountController@getMainSub');
+             Route::post('storeSubAccount/{main}/{id}','SubAccountController@store');
+             Route::put('updateSubAccount/{id}','SubAccountController@update');
+             Route::get('editSubAccount/{id}','SubAccountController@edit');
          });
 
          // start web

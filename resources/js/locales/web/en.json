@@ -174,7 +174,7 @@
         "Notes": "Notes",
         "Submit":"Submit",
         "SentSuccessfully": "Sent Successfully",
-        "YouWillBeContactedByOurStaffWithin4WorkingDays": "You will be contacted by our staff within 4 working days",
+        "YouWillBeContactedByOurStaff": "You will be contacted by our staff",
         "Success": "Success",
         "error": "Error",
         "ThereIsAnErrorInTheSystem": "There is an error in the system ......",
@@ -198,6 +198,14 @@
     },
     "SizingService": {
         "Sizing": "Sizing",
-        "Service": "Service"
+        "Service": "Service",
+        "location": "Location",
+        "Unit area in meters iS required": "Unit area in meters iS required .",
+        "Unit area in meters": "Unit area in meters",
+        "cost": "cost",
+        "date uploaded":"date uploaded",
+        "The best way to get more accurate Your unit details": "The best way to get more accurate Your unit details",
+        "Please fill in the following information": "Please fill in the following information",
+        "upload your property size now": "upload your property size now"
     }
 }

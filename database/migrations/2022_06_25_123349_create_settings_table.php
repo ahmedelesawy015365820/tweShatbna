@@ -16,6 +16,8 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->double('commission_design',8,2)->default(10);
+            $table->double('price_sizing',8,2)->default(1);
+            $table->integer('contact_sizing')->default(7);
             $table->timestamps();
         });
     }

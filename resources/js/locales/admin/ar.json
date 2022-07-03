@@ -22,7 +22,8 @@
         "acdDegree": "الدرجة العلمية",
         "TreasuryManagement": "ادارة الخزن",
         "IncomeManagement": "الايرادات",
-        "Accounts": "الحسابات",
+        "Accounts": "حسابات المنصة",
+        "FinancialAccounts": "حسابات المالية",
         "Expense": "المصروفات",
         "IncomeAndExpense": "الايرادات والمصروفات",
         "Management": "ادارة",
@@ -36,7 +37,8 @@
         "Advisor": "مستشار شطبنا",
         "AdvisorPackage": "باقات المستشار",
         "FirstSectionData": "بيانات السكشن الاول",
-        "setting": "إعدادات"
+        "setting": "إعدادات",
+        "Assets": "أصول"
     },
     "global": {
         "Search":"بحث",
@@ -175,9 +177,23 @@
         "TitleEnIsMustHaveAtLeast": "العنوان باللغة الانجليزية يجب ان يحتوى على الاقل",
         "TitleEnIsMustHaveAtMost": "العنوان باللغة الانجليزية يجب ان يحتوى على الاكثر",
         "TitleAr": "العنوان باللغة العربية",
-
         "TitleEn": "العنوان باللغة الانجليزية",
-        "FirstSectionData": "بيانات السكشن الاول"
+        "FirstSectionData": "بيانات السكشن الاول",
+        "CommissionDesign": "عمولة المصمم",
+        "CommissionDesignIsRequired": "عمولة المصمم مطلوبه .",
+        "ThisFieldMustBeANumber": "هذا الحقل يجب ان يكون ارقام",
+        "The price per meter in the service of lifting sizes": "سعر المتر فى خدمة رفع المقاسات",
+        "The price per meter in the service of lifting sizes Is Required": "سعر المتر فى خدمة رفع المقاسات مطلوبه .",
+        "Time to contact the sizing service": "وقت التواصل فى خدمة رفع المقاسات",
+        "Time to contact the sizing service Is Required": "وقت التواصل فى خدمة رفع المقاسات مطلوبه .",
+        "Sizing service data": "بيانات خدمة رفع المقاسات",
+        "Assets": "أصول",
+        "AddedDate": "تاريخ الاضافة",
+        "Edit": "تعديل",
+        "Debit": "مدين",
+        "Creditor": "دائن",
+        "AccountType": "نوع الحساب",
+        "NumberOfElements": "عدد العناصر"
     },
 
     "treasury": {
@@ -213,6 +229,7 @@
         "YouCanNotDeleteThisTreasury":"لا تستطيع حذف هذه الخزنة !",
         "EditSuccessfully": "تم التعديل بنجاح",
         "AddedSuccessfully": "تمت الاضافة بنجاح"
+
     },
     "income": {
         "CreateIncome": "اضافة بنود الايرادات",
@@ -260,5 +277,13 @@
         "EditAdvisorOne": "تعديل بيانات السكشن الاول",
         "ShowAdvisorOne": "عرض بيانات السكشن الاول"
 
+    },
+    "SizingService": {
+        "Add": "اضافة بيانات خدمة رفع المقاسات",
+        "Edit": "تعديل بيانات خدمة رفع المقاسات"
+    },
+    "Assets": {
+        "Add": "اضافة البنود الاولى",
+        "Edit": "تعديل البنود الاولى"
     }
 }

@@ -80,6 +80,7 @@ export default {
                 .then((res) => {
                     let l = res.data.data;
                     setting.value = l.setting;
+                    // console.log(l)
                 })
                 .catch((err) => {
                     console.log(err.response);

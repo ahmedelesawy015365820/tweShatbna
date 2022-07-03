@@ -170,6 +170,7 @@
         "Submit":"تأكيد",
         "SentSuccessfully": "تم ارسال بنجاح",
         "YouWillBeContactedByOurStaffWithin4WorkingDays": "سيتم التواصل معك من خلال فريق عمل شطبنا خلال 4 ایام عمل",
+        "YouWillBeContactedByOurStaff": "سيتم التواصل معك من خلال فريق عمل شطبنا ",
         "Success": "نجاح",
         "error": "خطأ",
         "ThereIsAnErrorInTheSystem": "يوجد خطا في النظام....",
@@ -193,6 +194,14 @@
     },
     "SizingService": {
         "Sizing": "رفع المقاسات",
-        "Service": "خدمة"
+        "Service": "خدمة",
+        "location": "الموقع",
+        "Unit area in meters": "مساحة الوحدة بالمتر",
+        "Unit area in meters iS required": "مساحة الوحدة بالمتر مطلوبة .",
+        "cost": "التكلفة",
+        "date uploaded": "تاريخ رفع المقاسات",
+        "The best way to get more accurate Your unit details": "افضل الطرق للحصول على أدق تفاصيل وحدتك",
+        "Please fill in the following information": "برجاء ملاء البيانات التالية ",
+        "upload your property size now": "ارفع مقاسات وحدتك الان"
     }
 }

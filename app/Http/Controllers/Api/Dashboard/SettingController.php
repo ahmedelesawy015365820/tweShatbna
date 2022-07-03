@@ -51,6 +51,8 @@ class SettingController extends Controller
                 // Validator request
                 $v = Validator::make($request->all(), [
                     'commission_design' => 'required',
+                    'price_sizing' => 'required',
+                    'contact_sizing' => 'required',
                 ]);
 
                 if ($v->fails()) {

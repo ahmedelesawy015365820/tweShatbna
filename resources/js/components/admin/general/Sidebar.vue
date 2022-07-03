@@ -98,6 +98,12 @@
                         </router-link>
                     </li>
 
+                    <li :class="[$route.name == 'indexSizingOne'? 'active': '']">
+                        <router-link :to="{name:'indexSizingOne',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-app-store"></i> <span>{{$t('global.Sizing service data')}}</span>
+                        </router-link>
+                    </li>
+
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-hard-hat"></i> <span> {{$t('sidebar.Advisor')}}</span> <span class="menu-arrow"></span></a>
                         <ul>
@@ -175,6 +181,19 @@
                             <li :class="[$route.name == 'indexIncomeAndExpense'? 'active': '']">
                                 <router-link :to="{name:'indexIncomeAndExpense',params: {lang:this.$i18n.locale}}">
                                     {{$t('sidebar.IncomeAndExpense')}}
+                                </router-link>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="submenu">
+                        <a href="#" ><i class="fas fa-boxes"></i> <span> {{$t('sidebar.FinancialAccounts')}}</span> <span class="menu-arrow"></span></a>
+                        <ul>
+
+                            <li :class="[$route.name == 'indexAssets'? 'active': '']">
+                                <router-link :to="{name:'indexAssets',params: {lang:this.$i18n.locale}}">
+                                    {{$t('sidebar.Assets')}}
                                 </router-link>
                             </li>
 

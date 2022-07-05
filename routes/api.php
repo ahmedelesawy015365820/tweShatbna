@@ -72,6 +72,7 @@ use Illuminate\Support\Facades\Route;
         // start Dashboard
          Route::group(['prefix' => 'dashboard','namespace' => 'Dashboard'],function () {
 
+
              // start User
              Route::get('getAllNot','NotificationController@getAllNot');
              Route::get('getNotNotRead','NotificationController@getNotNotRead');
@@ -227,8 +228,7 @@ use Illuminate\Support\Facades\Route;
 
              // Settings
              Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
-             // Settings
-             Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
+
 
          });
 

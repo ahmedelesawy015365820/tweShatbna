@@ -9,11 +9,17 @@ use App\Traits\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Kreait\Firebase\Database;
 
 class TreasuryController extends Controller
 {
     use Message;
+    public function __construct(Database $database)
+    {
+        $this->database = $database;
+        $this->tableName = 'ali';
 
+    }
     /**
      * get main treasury
      */
@@ -64,6 +70,16 @@ class TreasuryController extends Controller
             $data = $request->only(['ar','en','treasury_id']);
 
             Treasury::create($data);
+
+            //Firebase
+
+             $postData = [
+                 "id" => 1,
+                 "img" =>  'ali.png',
+                 "img_path" =>  'ali/ali.png',
+             ];
+
+             $this->database->getReference($this->tableName)->push($postData);
 
             DB::commit();
 

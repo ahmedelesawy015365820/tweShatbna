@@ -30,7 +30,7 @@ class NotificationController extends Controller
     public function clearItem($id)
     {
 
-        DB::table('notifications')->find($id)->update(['read_at' => now()]);
+        DB::table('notifications')->where('id', $id)->update(['read_at' => now()]);
 
         return $this->sendResponse([], 'Data exited successfully');
     }

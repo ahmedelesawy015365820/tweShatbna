@@ -35,6 +35,7 @@
 </style>
 
 <script>
+
     export default {
         mounted() {
             console.log('web.')
@@ -43,6 +44,6 @@
             return {
                 link : ['partners'],
             }
-        }
+        },
     }
 </script>

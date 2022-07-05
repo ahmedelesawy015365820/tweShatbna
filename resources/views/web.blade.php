@@ -73,6 +73,8 @@
         <!-- Custom JS -->
         <script src="{{asset('web/js/script.js')}}"></script>
 
+        <script src="https://js.pusher.com/7.1/pusher.min.js"></script>
+
         <script src="{{mix('js/app.js')}}"></script>
 
 

@@ -320,5 +320,11 @@
     "advisorDetail": {
         "AddAdvisorShatbnaPackageDetails": "Add Advisor Shatbna Package Details",
         "EditAdvisorShatbnaPackageDetails": "Edit Advisor Shatbna Package Details"
+    },
+    "notification": {
+        "trustDesign": "confirm account",
+        "Notifications": "Notifications",
+        "all": "View all Notifications",
+        "clear": "Mark All As Read"
     }
 }

@@ -255,5 +255,11 @@
     "advisorDetail": {
         "AddAdvisorShatbnaPackageDetails": "اضافة تفاصيل باقات مستشار شطبنا",
         "EditAdvisorShatbnaPackageDetails": "تعديل تفاصيل باقات مستشار شطبنا"
+    },
+    "notification": {
+        "trustDesign": "تاكيد الحساب",
+        "Notifications": "اشعارات",
+        "all": "عرض جميع الاشعارات",
+        "clear": "قراه الكل"
     }
 }

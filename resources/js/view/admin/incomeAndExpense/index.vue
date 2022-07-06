@@ -57,9 +57,11 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ $t('global.Title') }}</th>
-                                        <th>{{ $t('global.Notes') }}</th>
+                                        <th>{{ $t('global.Band Name') }}</th>
                                         <th>{{ $t('global.Amount') }}</th>
+                                        <th>{{ $t('global.NameOfThePayer') }}</th>
+                                        <th>{{ $t('global.For') }}</th>
+
                                         <th>{{ $t('global.PaymentDate') }}</th>
                                         <th>{{ $t('global.TransactionDate') }}</th>
                                         <th>{{ $t('global.ProcessWriter') }}</th>
@@ -70,11 +72,13 @@
                                     <tr v-for="(item,index) in incomes" v-if="incomes" :key="item.id">
                                         <td>{{ index + 1 }}</td>
                                         <td>{{ item.income.name }}</td>
-                                        <td>{{ item.notes }}</td>
                                         <td>{{ item.amount }}</td>
+                                        <td>{{ item.payer }}</td>
+                                        <td>{{ item.notes }}</td>
+
                                         <td>{{ item.payment_date }}</td>
-                                        <td>{{dateFormat(item.created_at)}}</td>
-                                        <td>{{ item.user ? item.user.name :"-----" }}</td>
+                                        <td>{{ dateFormat(item.created_at) }}</td>
+                                        <td>{{ item.user ? item.user.name : "-----" }}</td>
 
                                         <td>
 
@@ -87,7 +91,103 @@
                                                data-bs-target="#staticBackdrop" class="btn btn-sm btn-danger me-2">
                                                 <i class="far fa-trash-alt"></i>
                                             </a>
+                                            <a href="javascript:void(0);"
+                                               class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal"
+                                               :data-bs-target="'#edit-category'+item.id">
+                                                <i class="fa fa-print"></i>
+                                            </a>
                                         </td>
+                                        <!-- Edit Modal -->
+                                        <div class="modal fade custom-modal" :id="'edit-category'+item.id">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content" id="print">
+
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">
+                                                            {{ $t('global.PrintReceiptVoucher') }}</h4>
+                                                        <button  type="button" class="close print-button" data-bs-dismiss="modal">
+                                                            <span>&times;</span></button>
+                                                    </div>
+
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body row" >
+
+                                                        <div class="col-md-6 ">
+                                                            <div class="form-group col-lg-12">
+                                                                <img src="/web/img/logo.png">
+                                                                <p>{{ $t('global.CommercialRegistrationNo') }} :
+                                                                    {{ setting.commercial_record }}</p>
+                                                                <hr class="hr-show">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group col-lg-12 text-center">
+                                                                <h5>{{ $t('global.ReceiptVoucherNumber') }} :
+                                                                    {{ item.id }}</h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12 mt-3">
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-12 col-md-12">
+                                                                    <h5>{{ $t('global.WeReceivedFromMr') }} :
+                                                                        {{ item.payer }}</h5>
+                                                                </div>
+
+                                                                <div class="form-group col-lg-12 col-md-12">
+                                                                    <h5>{{ $t('global.Amount') }} : {{
+                                                                            item.amount
+                                                                        }}</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-12 col-md-12">
+                                                                    <h5>{{ $t('global.Date') }} :
+                                                                        {{ item.payment_date }}</h5>
+                                                                </div>
+
+                                                                <div class="form-group col-lg-12 col-md-12">
+                                                                    <h5>{{ $t('global.For') }} : {{ item.notes }}</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6 make-border ">
+                                                                    <h5 class="mt-2 mb-2">{{
+                                                                            $t('global.RecipientsSignature')
+                                                                        }} : </h5>
+                                                                </div>
+                                                                <div class="form-group col-md-6 make-border ">
+                                                                    <h5 class="mt-2 mb-2">{{
+                                                                            $t('global.TreasurersSignature')
+                                                                        }} : </h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                    <button @click="printReset" class="btn btn-success print-button">
+                                                                        {{$t('global.Print')}}
+                                                                        <i class="fa fa-print"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Edit Modal -->
                                     </tr>
                                     <tr v-else>
                                         <th class="text-center" colspan="7">{{ $t('global.NoDataFound') }}</th>
@@ -127,9 +227,11 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ $t('global.Title') }}</th>
-                                        <th>{{ $t('global.Notes') }}</th>
+                                        <th>{{ $t('global.Band Name') }}</th>
                                         <th>{{ $t('global.Amount') }}</th>
+                                        <th>{{ $t('global.RecipientsName') }}</th>
+                                        <th>{{ $t('global.For') }}</th>
+
                                         <th>{{ $t('global.PaymentDate') }}</th>
                                         <th>{{ $t('global.TransactionDate') }}</th>
                                         <th>{{ $t('global.ProcessWriter') }}</th>
@@ -140,11 +242,13 @@
                                     <tr v-for="(item,index) in expenses" v-if="expenses" :key="item.id">
                                         <td>{{ index + 1 }}</td>
                                         <td>{{ item.expense.name }}</td>
-                                        <td>{{ item.notes }}</td>
                                         <td>{{ item.amount }}</td>
+                                        <td>{{ item.payer }}</td>
+                                        <td>{{ item.notes }}</td>
+
                                         <td>{{ item.payment_date }}</td>
-                                        <td>{{dateFormat(item.created_at)}}</td>
-                                        <td>{{ item.user ? item.user.name :"-----" }}</td>
+                                        <td>{{ dateFormat(item.created_at) }}</td>
+                                        <td>{{ item.user ? item.user.name : "-----" }}</td>
                                         <td>
                                             <router-link
                                                 :to="{name: 'editExpenseData', params: {lang: locale || 'ar',id:item.id}}"
@@ -155,7 +259,103 @@
                                                data-bs-target="#staticBackdrop" class="btn btn-sm btn-danger me-2">
                                                 <i class="far fa-trash-alt"></i>
                                             </a>
+                                            <a href="javascript:void(0);"
+                                               class="btn btn-sm btn-secondary me-2" data-bs-toggle="modal"
+                                               :data-bs-target="'#edit-category'+item.id">
+                                                <i class="fa fa-print"></i>
+                                            </a>
                                         </td>
+                                        <!-- Edit Modal -->
+                                        <div class="modal fade custom-modal" :id="'edit-category'+item.id">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content" id="printExpense">
+
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">
+                                                            {{ $t('global.VoucherPrinting') }}</h4>
+                                                        <button  type="button" class="close print-button" data-bs-dismiss="modal">
+                                                            <span>&times;</span></button>
+                                                    </div>
+
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body row" >
+
+                                                        <div class="col-md-6 ">
+                                                            <div class="form-group col-lg-12">
+                                                                <img src="/web/img/logo.png">
+                                                                <p>{{ $t('global.CommercialRegistrationNo') }} :
+                                                                    {{ setting.commercial_record }}</p>
+                                                                <hr class="hr-show">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group col-lg-12 text-center">
+                                                                <h5>{{ $t('global.VoucherNumber') }} :
+                                                                    {{ item.id }}</h5>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12 mt-3">
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-12 col-md-12">
+                                                                    <h5>{{ $t('global.SendToMr') }} :
+                                                                        {{ item.payer }}</h5>
+                                                                </div>
+
+                                                                <div class="form-group col-lg-12 col-md-12">
+                                                                    <h5>{{ $t('global.Amount') }} : {{
+                                                                            item.amount
+                                                                        }}</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-12 col-md-12">
+                                                                    <h5>{{ $t('global.Date') }} :
+                                                                        {{ item.payment_date }}</h5>
+                                                                </div>
+
+                                                                <div class="form-group col-lg-12 col-md-12">
+                                                                    <h5>{{ $t('global.For') }} : {{ item.notes }}</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6 make-border ">
+                                                                    <h5 class="mt-2 mb-2">{{
+                                                                            $t('global.RecipientsSignature')
+                                                                        }} : </h5>
+                                                                </div>
+                                                                <div class="form-group col-md-6 make-border ">
+                                                                    <h5 class="mt-2 mb-2">{{
+                                                                            $t('global.TreasurersSignature')
+                                                                        }} : </h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-6">
+                                                                    <button @click="printExpense" class="btn btn-success print-button">
+                                                                        {{$t('global.Print')}}
+                                                                        <i class="fa fa-print"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Edit Modal -->
                                     </tr>
                                     <tr v-else>
                                         <th class="text-center" colspan="7">{{ $t('global.NoDataFound') }}</th>
@@ -206,6 +406,7 @@ export default {
         //get expense
         let expenses = ref([]);
         let expensesPaginate = ref({});
+        let setting = ref({});
         const searchExpense = ref('');
 
         let getIncome = (page = 1) => {
@@ -216,6 +417,22 @@ export default {
                     let l = res.data.data;
                     incomesPaginate.value = l.calcIncome;
                     incomes.value = l.calcIncome.data;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
+        }
+
+        let getSetting = (page = 1) => {
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/setting`)
+                .then((res) => {
+                    let l = res.data.data;
+                    setting.value = l.setting[0];
                 })
                 .catch((err) => {
                     console.log(err.response.data);
@@ -253,11 +470,13 @@ export default {
         onMounted(() => {
             getIncome();
             getExpense();
+            getSetting();
         });
 
         emitter.on('get_lang', () => {
             getIncome();
             getExpense();
+            getSetting();
         });
 
         watch(searchExpense, (searchExpense, prevSearch) => {
@@ -268,6 +487,23 @@ export default {
 
         let dateFormat = (item) => {
             return new Date(item).toDateString();
+        }
+
+        let printReset = () => {
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
+        let printExpense = () => {
+            var printContents = document.getElementById('printExpense').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
         }
 
         function deleteIncome(id, index) {
@@ -338,8 +574,24 @@ export default {
             });
         }
 
-        return {dateFormat,incomes, loading, getIncome, searchIncome, deleteIncome, incomesPaginate,searchExpense,getExpense,expenses
-        ,expensesPaginate,deleteExpense};
+        return {
+            printExpense,
+            printReset,
+            setting,
+            dateFormat,
+            incomes,
+            loading,
+            getIncome,
+            searchIncome,
+            deleteIncome,
+            incomesPaginate,
+            searchExpense,
+            getExpense,
+            expenses
+            ,
+            expensesPaginate,
+            deleteExpense
+        };
 
     },
     data() {
@@ -374,6 +626,49 @@ export default {
     border: 2px solid;
     padding: 3px;
     border-radius: 7px;
+}
+
+.modal-dialog {
+    max-width: 700px !important;
+}
+
+.hr-show {
+    color: #fcb00c;
+    height: 5px;
+}
+
+.show-price {
+    display: flex;
+    justify-content: center;
+}
+
+.show-price h5 {
+    margin: 0px 5px 0px 5px;
+}
+
+.custom-modal .close span {
+    top: 0 !important;
+}
+
+.form-group img {
+    width: 70% !important;
+}
+
+.border-left {
+    border-left: 2px solid #000;
+}
+
+.border-right-non {
+    border-right: none !important;
+}
+
+.make-border {
+    border: 2px solid #000000;
+}
+@media print {
+    .print-button {
+        display: none;
+    }
 }
 
 </style>

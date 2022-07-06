@@ -52,8 +52,11 @@
                     <li class="nav-item">
                         <a href="index.html">{{$t('header.bargain')}}</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="index.html">{{$t('header.size')}}</a>
+
+                    <li :class="[$route.name == 'sizingService' ? 'active' : '','nav-item']">
+                        <router-link :to="{name:'sizingService',params: {lang:this.$i18n.locale}}" class="partner">
+                            {{$t('header.size')}}
+                        </router-link>
                     </li>
                     <li :class="[$route.name == 'advisorShatabna' ? 'active' : '','nav-item']">
                         <router-link :to="{name:'advisorShatabna',params: {lang:this.$i18n.locale}}" class="partner">

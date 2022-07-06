@@ -22,6 +22,6 @@ class Employee extends Model
 
     public function job()
     {
-        return $this->belongsTo(Job::class,'user_id');
+        return $this->belongsTo(Job::class,'job_id');
     }
 }

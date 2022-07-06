@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(JobSeeder::class);
         $this->call(AdvisorPackageSeeder::class);
         $this->call(SettingSeeder::class);
+        $this->call(MainAccountTableSeeder::class);
         $this->call(DesignerSeeder::class);
     }
 }

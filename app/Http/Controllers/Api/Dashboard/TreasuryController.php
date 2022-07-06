@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\IncomeAndExpense;
 use App\Models\Treasury;
 use Illuminate\Http\Request;
 use App\Traits\Message;
@@ -20,6 +21,57 @@ class TreasuryController extends Controller
         $this->tableName = 'ali';
 
     }
+    /**
+     * get treasuries expense
+     */
+    public function treasuriesExpense(Request $request,$id)
+    {
+        $incomeAndExpense = IncomeAndExpense::with('expense', 'user')->whereNotNull('expense_id')->where('treasury_id',$id)
+            ->where(function ($q) use ($request) {
+                $q->when($request->search, function ($q) use ($request) {
+                    return $q->OrWhere('notes', 'like', '%' . $request->search . '%')
+                        ->orWhere('amount', 'like', '%' . $request->search . '%')
+                        ->orWhere('payment_date', 'like', '%' . $request->search . '%')
+                        ->orWhere('payer', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('user', 'name', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('expense.translations', 'name', 'like', '%' . $request->search . '%');
+                });
+
+            })->latest()->paginate(5);
+
+        return $this->sendResponse(['incomes' => $incomeAndExpense], 'Data exited successfully');
+    }
+
+    /**
+     * get treasuries income
+     */
+    public function treasuriesIncome(Request $request,$id)
+    {
+        $incomeAndExpense = IncomeAndExpense::with('income', 'user')->whereNotNull('income_id')->where('treasury_id',$id)
+            ->where(function ($q) use ($request) {
+                $q->when($request->search, function ($q) use ($request) {
+                    return $q->OrWhere('notes', 'like', '%' . $request->search . '%')
+                        ->orWhere('amount', 'like', '%' . $request->search . '%')
+                        ->orWhere('payment_date', 'like', '%' . $request->search . '%')
+                        ->orWhere('payer', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('user', 'name', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('income.translations', 'name', 'like', '%' . $request->search . '%');
+                });
+
+            })->latest()->paginate(5);
+
+        return $this->sendResponse(['incomes' => $incomeAndExpense], 'Data exited successfully');
+    }
+
+    /**
+     * get active treasury
+     */
+    public function activeTreasury()
+    {
+        $treasuries = Treasury::where('active', 1)->get();
+        return $this->sendResponse(['treasuries' => $treasuries], 'Data exited successfully');
+    }
+
     /**
      * get main treasury
      */
@@ -167,6 +219,12 @@ class TreasuryController extends Controller
      */
     public function destroy(Treasury $treasury)
     {
+        if (count($treasury->incomeAndExpense) > 0)
+        {
+            return $this->sendError('can not delete');
+        }
+
         $treasury->delete();
+        return $this->sendResponse([],'Deleted successfully');
     }
 }

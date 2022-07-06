@@ -22,7 +22,8 @@
         "acdDegree": "الدرجة العلمية",
         "TreasuryManagement": "ادارة الخزن",
         "IncomeManagement": "الايرادات",
-        "Accounts": "الحسابات",
+        "Accounts": "حسابات المنصة",
+        "FinancialAccounts": "حسابات المالية",
         "Expense": "المصروفات",
         "IncomeAndExpense": "الايرادات والمصروفات",
         "Management": "ادارة",
@@ -35,10 +36,13 @@
         "Roles": "ادوار الموظفين",
         "Advisor": "مستشار شطبنا",
         "AdvisorPackage": "باقات المستشار",
+        "FirstSectionData": "بيانات السكشن الاول",
+        "setting": "إعدادات",
+        "Assets": "أصول",
         "Projects Management": "ادارة المشاريع",
         "Internal Projects": "مشاريع شطبنا",
         "External Projects": "المشاريع الخارجية",
-        "setting": "إعدادات"
+        "treasuriesIncome": "وارد الخزن"
     },
     "global": {
         "Search":"بحث",
@@ -178,7 +182,63 @@
         "TitleEnIsMustHaveAtLeast": "العنوان باللغة الانجليزية يجب ان يحتوى على الاقل",
         "TitleEnIsMustHaveAtMost": "العنوان باللغة الانجليزية يجب ان يحتوى على الاكثر",
         "TitleAr": "العنوان باللغة العربية",
-        "TitleEn": "العنوان باللغة الانجليزية"
+        "TitleEn": "العنوان باللغة الانجليزية",
+        "FirstSectionData": "بيانات السكشن الاول",
+        "CommissionDesign": "عمولة المصمم",
+        "CommissionDesignIsRequired": "عمولة المصمم مطلوبه .",
+        "ThisFieldMustBeANumber": "هذا الحقل يجب ان يكون ارقام",
+        "The price per meter in the service of lifting sizes": "سعر المتر فى خدمة رفع المقاسات",
+        "The price per meter in the service of lifting sizes Is Required": "سعر المتر فى خدمة رفع المقاسات مطلوبه .",
+        "Time to contact the sizing service": "وقت التواصل فى خدمة رفع المقاسات",
+        "Time to contact the sizing service Is Required": "وقت التواصل فى خدمة رفع المقاسات مطلوبه .",
+        "Sizing service data": "بيانات خدمة رفع المقاسات",
+        "Assets": "أصول",
+        "AddedDate": "تاريخ الاضافة",
+        "Edit": "تعديل",
+        "Debit": "مدين",
+        "Creditor": "دائن",
+        "AccountType": "نوع الحساب",
+        "NumberOfElements": "عدد العناصر",
+        "TreasuryIsRequired": "الخزنة مطلوبه .",
+        "NameOfThePayer": "أسم مسدد المبلغ",
+        "NameOfThePayerIsRequired": "أسم مسدد المبلغ مطلوب .",
+        "NameOfThePayerIsMustHaveAtLeast": "أسم مسدد المبلغ يجب ان يحتوى على الاقل",
+        "RecipientsName": "أسم مستلم المبلغ",
+        "RecipientsNameIsRequired": "أسم مستلم المبلغ مطلوب .",
+        "RecipientsNameIsMustHaveAtLeast": "أسم مستلم المبلغ يجب ان يحتوى على الاقل",
+        "Band Name":"اسم البند",
+        "CommercialRecord": "السجل التجاري",
+        "PrintReceiptVoucher": "طباعة سند قبض",
+        "CommercialRegistrationNo":"رقم السجل التجاري",
+        "ReceiptVoucherNumber": "سند قبض رقم",
+        "WeReceivedFromMr": "استلمنا من السيد",
+        "Date": "التاريخ",
+        "For": "مقابل",
+        "RecipientsSignature" : "توقيع المستلم",
+        "TreasurersSignature": "توقيع أمين الصندوق",
+        "Print": "طباعة",
+        "VoucherPrinting": "طباعة سند صرف",
+        "VoucherNumber": "سند صرف رقم",
+        "SendToMr": "اصرفوا الى السید",
+        "treasuriesIncome": "وارد الخزن",
+        "NetTreasury": "صافي الخزنة",
+        "treasuriesExpense": "منصرف الخزن",
+        "TransferringTreasury": "تحویلات الخزن",
+        "TransferringForTreasury": "النقل من خزنة",
+        "TransferringToTreasury": "النقل الي خزنة",
+        "RemainingAmountInTreasury": "المبلغ المتبقي بالخزنة",
+        "AmountTransfer": "المبلغ المنقول",
+        "AccountsTree": "شجرة الحسابات",
+        "Opponents": "الخصوم",
+        "Reports": "التقارير",
+        "PlatformIncome": "ايرادات المنصة",
+        "FromDate": "من تاریخ",
+        "ToDate": "الى تاریخ",
+        "PlatformExpense": "مصروفات المنصة",
+        "IncomeTreasuries": "متحصلات الخزن",
+        "ExpenseTreasuries": "مصرؤفات الخزن",
+        "DailyBalance": "الحافظة اليومية",
+        "Total": "الاجمالى"
     },
 
     "treasury": {
@@ -214,6 +274,7 @@
         "YouCanNotDeleteThisTreasury":"لا تستطيع حذف هذه الخزنة !",
         "EditSuccessfully": "تم التعديل بنجاح",
         "AddedSuccessfully": "تمت الاضافة بنجاح"
+
     },
     "income": {
         "CreateIncome": "اضافة بنود الايرادات",
@@ -255,6 +316,20 @@
     "advisorDetail": {
         "AddAdvisorShatbnaPackageDetails": "اضافة تفاصيل باقات مستشار شطبنا",
         "EditAdvisorShatbnaPackageDetails": "تعديل تفاصيل باقات مستشار شطبنا"
+    },
+    "advisorOne": {
+        "AddAdvisorOne": "اضافة بيانات السكشن الاول",
+        "EditAdvisorOne": "تعديل بيانات السكشن الاول",
+        "ShowAdvisorOne": "عرض بيانات السكشن الاول"
+
+    },
+    "SizingService": {
+        "Add": "اضافة بيانات خدمة رفع المقاسات",
+        "Edit": "تعديل بيانات خدمة رفع المقاسات"
+    },
+    "Assets": {
+        "Add": "اضافة البنود الاولى",
+        "Edit": "تعديل البنود الاولى"
     },
     "notification": {
         "trustDesign": "تاكيد الحساب",

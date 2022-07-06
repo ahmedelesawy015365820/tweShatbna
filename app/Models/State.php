@@ -30,5 +30,9 @@ class State extends Model implements TranslatableContract
     {
         return $this->hasMany(Complement::class);
     }
+    public function sizingClient()
+    {
+        return $this->hasMany(SizingClient::class);
+    }
 
 }

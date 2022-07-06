@@ -13,6 +13,7 @@ import designPartiner from "../view/web/design-partiner.vue";
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
 import advisorShatabna from '../view/web/advisorShatabna';
+import sizingService from '../view/web/sizingService';
 import privacy from '../view/web/privacy';
 import forgetPassword from '../view/web/forgetPassword.vue';
 import resetPassword from '../view/web/resetPassword.vue';
@@ -51,6 +52,11 @@ const routes = [
                 path: 'advisor-shatabna',
                 name: 'advisorShatabna',
                 component: advisorShatabna
+            },
+            {
+                path: 'sizing-service',
+                name: 'sizingService',
+                component: sizingService
             },
             {
                 path: 'register-partiner',

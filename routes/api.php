@@ -61,6 +61,16 @@ use Illuminate\Support\Facades\Route;
          Route::get('showComDetail/{id}',  'ShowProjectController@showComDetail');
          Route::post('addShow/{id}',  'ShowProjectController@addShow');
 
+         //advisor client
+         Route::get('getAdvisor',  'AdvisorClientController@index');
+         Route::get('sectionOne',  'AdvisorClientController@sectionOne');
+         Route::post('advisorClientStore',  'AdvisorClientController@store');
+
+         //Sizing Service client
+
+         Route::get('SizingSectionOne',  'SizingServiceController@sectionOne');
+         Route::get('SizingSetting',  'SizingServiceController@index');
+         Route::post('SizingClientStore',  'SizingServiceController@store');
 
      });
 
@@ -147,7 +157,10 @@ use Illuminate\Support\Facades\Route;
              // treasury management
              Route::resource('treasury','TreasuryController');
              Route::get('mainTreasury','TreasuryController@mainTreasury');
+             Route::get('activeTreasury','TreasuryController@activeTreasury');
              Route::get('activationTreasury/{id}','TreasuryController@activationTreasury');
+             Route::get('treasuriesIncome/{id}','TreasuryController@treasuriesIncome');
+             Route::get('treasuriesExpense/{id}','TreasuryController@treasuriesExpense');
 
              // income
              Route::resource('income','IncomeController');
@@ -166,6 +179,9 @@ use Illuminate\Support\Facades\Route;
              Route::get('calcIncome','IncomeAndExpenseController@calcIncome');
              Route::get('editExpense/{id}/edit','IncomeAndExpenseController@editExpense');
              Route::get('calcExpense','IncomeAndExpenseController@calcExpense');
+
+             //// Transferring Treasury management
+             Route::resource('transferringTreasury','TransferringTreasuryController');
 
              // department
              Route::resource('department','DepartmentController');
@@ -196,6 +212,12 @@ use Illuminate\Support\Facades\Route;
              Route::resource('advisorPackage','AdvisorPackageController');
              Route::resource('advisorDetail','AdvisorPackageDetailController');
 
+             // advisor section one
+             Route::resource('advisorOne','AdvisorOneController');
+
+             // sizing service section one
+             Route::resource('sizingOne','SizingOneController');
+
 
             //projects managemet*****************
             //designers fines
@@ -204,11 +226,8 @@ use Illuminate\Support\Facades\Route;
             //client complaints from desigers
             Route::resource('complaints','ComplaintsController');
 
-
             //criteria for design
             Route::resource('designCriteria','CriteriaForEvaluatingDesignProjectsController');
-
-
 
             //criteria for company
             Route::resource('companyCriteria','CriteriaForEvaluatingCompanyProjectsController');
@@ -217,10 +236,8 @@ use Illuminate\Support\Facades\Route;
             //design phases
             Route::resource('designPhases','DesignPhasesController');
 
-
             //company phases
             Route::resource('companyPhases','CompanyPhasesController');
-
 
             //phaseS BANDS
             Route::resource('phaseBands','PhaseBandsController');
@@ -230,6 +247,23 @@ use Illuminate\Support\Facades\Route;
              Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
 
 
+             // Main Account
+             Route::resource('mainAccount','MainAccountController');
+
+             // Sub Account
+             Route::get('subAccount/{main}/{id}','SubAccountController@index');
+             Route::get('getMainSub/{id}','SubAccountController@getMainSub');
+             Route::post('storeSubAccount/{main}/{id}','SubAccountController@store');
+             Route::put('updateSubAccount/{id}','SubAccountController@update');
+             Route::get('editSubAccount/{id}','SubAccountController@edit');
+
+             // Report
+             Route::get('incomePlatformReport','ReportController@incomePlatformReport');
+             Route::get('expensePlatformReport','ReportController@expensePlatformReport');
+             Route::get('transferringTreasuryPlatformReport','ReportController@transferringTreasuryPlatformReport');
+             Route::get('incomeTreasuryPlatformReport','ReportController@incomeTreasuryPlatformReport');
+             Route::get('expenseTreasuryPlatformReport','ReportController@expenseTreasuryPlatformReport');
+             Route::get('dailyBalancePlatformReport','ReportController@dailyBalancePlatformReport');
          });
 
          // start web
@@ -281,6 +315,8 @@ use Illuminate\Support\Facades\Route;
              Route::get('getProject',  'AddProjectController@getService');
              Route::post('addCompany',  'AddProjectController@addCompany');
              Route::post('addDesign',  'AddProjectController@addDesign');
+
+
 
          });
 

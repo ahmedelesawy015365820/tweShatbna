@@ -421,18 +421,9 @@ export default {
 }
 
 .content.trust{
-    padding: 150px 0 30px;
+    padding: 200px 0 30px;
 }
 
-.error-trust{
-    margin: 0 auto;
-    position: absolute;
-    top: 0;
-    transform: translate(0%, 65%);
-    padding: 10px;
-    text-align: center;
-    width: 43%;
-}
 
 .model_sale{
     display: none;

@@ -2,7 +2,7 @@ import dashboardClient from "../../view/web/client/client.vue";
 import trust from "../../view/web/client/trust";
 import profile from "../../view/web/client/profile";
 import AddProject from "../../view/web/client/addProject";
-
+import clientNotification from "../../view/web/notifications";
 
 export default [
     {
@@ -40,7 +40,12 @@ export default [
                 path: 'add-project',
                 name: 'addProject',
                 component: AddProject
-            }
+            },
+            {
+                path: 'notification',
+                name: 'clientNotification',
+                component: clientNotification
+            },
         ]
     },
 ];

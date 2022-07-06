@@ -516,7 +516,7 @@ export default {
 
 <style scoped>
 .content {
-    padding: 120px 0 30px;
+    padding: 220px 0 30px;
     position: relative;
     min-height: 100vh;
 }
@@ -524,7 +524,7 @@ export default {
 .error-trust{
     margin: 0 auto;
     position: absolute;
-    top: 0px;
+    top: 6%;
     transform: translate(0%, 65%);
     padding: 10px;
     text-align: center;

@@ -15,7 +15,7 @@ class NotificationController extends Controller
     {
         $user = auth()->guard('api')->user();
 
-        return $this->sendResponse(['Notifications' => $user->notifications ], 'Data exited successfully');
+        return $this->sendResponse(['Notifications' => $user->notifications()->latest()->paginate(15) ], 'Data exited successfully');
     }
 
     public function getNotNotRead()

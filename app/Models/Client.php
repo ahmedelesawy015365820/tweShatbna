@@ -23,4 +23,11 @@ class Client extends Model
         return $this->morphMany(Media::class,'mediable');
     }
 
+
+    //designers complaints
+    public function designersComplaints()
+    {
+        return $this->hasMany(DesignersComplaint::class);
+    }
+
 }

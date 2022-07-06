@@ -53,6 +53,7 @@ class SettingController extends Controller
                     'commission_design' => 'required',
                     'price_sizing' => 'required',
                     'contact_sizing' => 'required',
+                    'commercial_record' => 'required',
                 ]);
 
                 if ($v->fails()) {

@@ -28,6 +28,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Commission</th>
+                                        <th>{{$t('global.CommercialRecord')}}</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -35,6 +36,7 @@
                                         <tr v-for="item in setting">
                                             <td>{{item.id}}</td>
                                             <td>{{item.commission_design}} %</td>
+                                            <td>{{item.commercial_record}}</td>
                                             <td>
                                                 <router-link :to="{name: 'editSetting', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2">
                                                     <i class="far fa-edit"></i>

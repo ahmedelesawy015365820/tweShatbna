@@ -75,8 +75,8 @@
                                                     <label class="col-lg-3 col-form-label">{{$t('global.AccountType')}}</label>
                                                     <div class="col-lg-9">
                                                         <select v-model="data.debit" class="form-select">
-                                                            <option  :value="0">{{$t('global.Debit')}}</option>
-                                                            <option  :value="1">{{$t('global.Creditor')}}</option>
+                                                            <option  :value="1">{{$t('global.Debit')}}</option>
+                                                            <option  :value="0">{{$t('global.Creditor')}}</option>
                                                         </select>
                                                     </div>
                                                 </div>

@@ -12,7 +12,11 @@ import treasury from './adminRoute/treasury';
 import department from './adminRoute/department';
 import job from './adminRoute/job';
 import role from './adminRoute/role';
+import projectsManagement from '../router/adminRoute/projectsManagement';
 import advisorPackage from './adminRoute/advisorPackage';
+import treasuriesIncome from './adminRoute/treasuriesIncome';
+import treasuriesExpense from './adminRoute/treasuriesExpense';
+import transferringTreasury from './adminRoute/transferringTreasury';
 import advisorOne from './adminRoute/advisorOne';
 import employee from './adminRoute/employee';
 import income from './adminRoute/income';
@@ -40,6 +44,10 @@ import forgetPassword from "../view/admin/forgetPassword";
 import resetPassword from "../view/admin/resetPassword";
 import sizingOne from "./adminRoute/sizingOne";
 import Assets from "./adminRoute/Assets";
+import Opponents from "./adminRoute/Opponents";
+import ExpenseAccounts from "./adminRoute/ExpenseAccounts";
+import IncomeAccounts from "./adminRoute/IncomeAccounts";
+import Report from "./adminRoute/report";
 
 
 const routes = [
@@ -137,7 +145,15 @@ const routes = [
                     ...advisorPackage,
                     ...sizingOne,
                     ...Assets,
+                    ...Opponents,
+                    ...ExpenseAccounts,
+                    ...IncomeAccounts,
+                    ...Report,
                     ...advisorOne,
+                    ...treasuriesIncome,
+                    ...treasuriesExpense,
+                    ...projectsManagement,
+                    ...transferringTreasury,
                     ...setting
                 ]
             },
@@ -155,6 +171,7 @@ const router = createRouter({
     linkActiveClass: 'active',
     routes
 });
+
 
 router.beforeEach((to, from, next) => {
 

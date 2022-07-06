@@ -60,9 +60,7 @@ const actions = {
                 commit('editPermission',l.permission);
                 commit('editUser',l.user);
 
-                let locale = localStorage.getItem("langAdmin");
-
-                return router.push({name: 'dashboard', params: {lang: locale || 'ar'}});
+                window.location.reload();
 
             })
             .catch((err) => {

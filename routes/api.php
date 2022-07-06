@@ -156,7 +156,10 @@ use Illuminate\Support\Facades\Route;
              // treasury management
              Route::resource('treasury','TreasuryController');
              Route::get('mainTreasury','TreasuryController@mainTreasury');
+             Route::get('activeTreasury','TreasuryController@activeTreasury');
              Route::get('activationTreasury/{id}','TreasuryController@activationTreasury');
+             Route::get('treasuriesIncome/{id}','TreasuryController@treasuriesIncome');
+             Route::get('treasuriesExpense/{id}','TreasuryController@treasuriesExpense');
 
              // income
              Route::resource('income','IncomeController');
@@ -175,6 +178,9 @@ use Illuminate\Support\Facades\Route;
              Route::get('calcIncome','IncomeAndExpenseController@calcIncome');
              Route::get('editExpense/{id}/edit','IncomeAndExpenseController@editExpense');
              Route::get('calcExpense','IncomeAndExpenseController@calcExpense');
+
+             //// Transferring Treasury management
+             Route::resource('transferringTreasury','TransferringTreasuryController');
 
              // department
              Route::resource('department','DepartmentController');
@@ -211,6 +217,30 @@ use Illuminate\Support\Facades\Route;
              // sizing service section one
              Route::resource('sizingOne','SizingOneController');
 
+
+            //projects managemet*****************
+            //designers fines
+            Route::resource('designersFines','DesignersFinesController');
+
+            //client complaints from desigers
+            Route::resource('complaints','ComplaintsController');
+
+            //criteria for design
+            Route::resource('designCriteria','CriteriaForEvaluatingDesignProjectsController');
+
+            //criteria for company
+            Route::resource('companyCriteria','CriteriaForEvaluatingCompanyProjectsController');
+
+
+            //design phases
+            Route::resource('designPhases','DesignPhasesController');
+
+            //company phases
+            Route::resource('companyPhases','CompanyPhasesController');
+
+            //phaseS BANDS
+            Route::resource('phaseBands','PhaseBandsController');
+
              // Settings
              Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
 
@@ -223,6 +253,14 @@ use Illuminate\Support\Facades\Route;
              Route::post('storeSubAccount/{main}/{id}','SubAccountController@store');
              Route::put('updateSubAccount/{id}','SubAccountController@update');
              Route::get('editSubAccount/{id}','SubAccountController@edit');
+
+             // Report
+             Route::get('incomePlatformReport','ReportController@incomePlatformReport');
+             Route::get('expensePlatformReport','ReportController@expensePlatformReport');
+             Route::get('transferringTreasuryPlatformReport','ReportController@transferringTreasuryPlatformReport');
+             Route::get('incomeTreasuryPlatformReport','ReportController@incomeTreasuryPlatformReport');
+             Route::get('expenseTreasuryPlatformReport','ReportController@expenseTreasuryPlatformReport');
+             Route::get('dailyBalancePlatformReport','ReportController@dailyBalancePlatformReport');
          });
 
          // start web

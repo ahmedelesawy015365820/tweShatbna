@@ -34,12 +34,21 @@
                             {{$t('header.browse')}}
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <a href="index.html">{{$t('header.company')}}</a>
+                    <li class="has-submenu">
+                        <a href="#">{{$t('header.service')}}<i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li>
+                                <router-link :to="{name:'company-partiner',params: {lang:this.$i18n.locale}}">
+                                    {{$t('header.company')}}
+                                </router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{name:'design-partiner',params: {lang:this.$i18n.locale}}">
+                                    {{$t('header.desgin')}}
+                                </router-link>
+                            </li>
+                        </ul>
                     </li>
-<!--                    <li class="nav-item">-->
-<!--                        <a href="index.html">{{$t('header.desgin')}}</a>-->
-<!--                    </li>-->
                     <li class="nav-item">
                         <a href="index.html">{{$t('header.bargain')}}</a>
                     </li>
@@ -102,7 +111,7 @@
 <script>
 import lang from './LangWeb.vue';
 import {useStore} from 'vuex';
-import {computed,ref} from 'vue';
+import {computed,ref,onMounted} from 'vue';
 
 export default {
     name: "layout-header",
@@ -120,14 +129,29 @@ export default {
         const token = computed(() => store.getters['auth/token']);
         const role = computed(() => store.getters['auth/user'] || []);
 
-        let scroll = ref(false);
-        window.onscroll = function (){
-         if(window.pageYOffset > 400){
-             scroll.value = true;
-         }else{
-             scroll.value = false;
-         }
-        };
+
+        function init() {
+            var $this = $('.main-nav a');
+            $('.main-nav a').on('click', function(e) {
+                if($(this).parent().hasClass('has-submenu')) {
+                    e.preventDefault();
+                }
+                if(!$(this).hasClass('submenu')) {
+                    $('ul', $(this).parents('ul:first')).slideUp(350);
+                    $('a', $(this).parents('ul:first')).removeClass('submenu');
+                    $(this).next('ul').slideDown(350);
+                    $(this).addClass('submenu');
+                } else if($(this).hasClass('submenu')) {
+                    $(this).removeClass('submenu');
+                    $(this).next('ul').slideUp(350);
+                }
+            });
+        }
+
+
+        onMounted(() => {
+            init();
+        });
 
         return {token,scroll,role};
     }
@@ -209,12 +233,17 @@ export default {
         color: #fff !important;
     }
 
+    .main-nav > li > a > i {
+        font-size: 15px;
+        margin: 0 5px !important;
+    }
+
     @media only screen and (max-width: 1115px){
         .main-nav > li {
             margin-right: 11px;
         }
         .main-nav li a {
-            font-size: 14px !important;
+            font-size: 13px !important;
         }
         .header-navbar-rht .login-btn {
             padding: 5px 8px;
@@ -260,6 +289,9 @@ export default {
         .navbar-header {
             width: 100%;
             justify-content: space-between;
+        }
+        .main-nav > li .submenu li a {
+            background-color: #FFf;
         }
     }
 

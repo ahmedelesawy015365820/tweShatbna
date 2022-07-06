@@ -37,6 +37,8 @@
                                     <div class="alert alert-danger text-center" v-if="errors['payment_date']">{{ errors['payment_date'][0] }}<br /> </div>
                                     <div class="alert alert-danger text-center" v-if="errors['expense_id']">{{ errors['expense_id'][0] }}<br /> </div>
                                     <div class="alert alert-danger text-center" v-if="errors['notes']">{{ errors['notes'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['treasury_id']">{{ errors['treasury_id'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['payer']">{{ errors['payer'][0] }}<br /> </div>
                                     <form @submit.prevent="storeExpense" class="needs-validation">
                                         <div class="form-group row">
                                             <div class="col-md-6 mb-3">
@@ -51,6 +53,18 @@
                                                 </div>
 
                                             </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>{{$t('treasury.ChooseTreasury')}} <span v-if="data.treasury_id" class="amount">{{$t('global.Amount')}} : {{amount}}</span> </label>
+                                                <select @change="amountTreasury" v-model="data.treasury_id" class="form-select" :class="{'is-invalid':v$.treasury_id.$error,'is-valid':!v$.treasury_id.$invalid}">
+                                                    <option v-for="treasury in treasuries" :kay="treasury.id" :value="treasury.id">{{treasury.name}}</option>
+                                                </select>
+
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.treasury_id.required.$invalid">{{$t('global.TreasuryIsRequired')}}<br /> </span>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-6 mb-3">
                                                 <label for="validationCustom01">{{$t('global.Amount')}}</label>
                                                 <input type="number" class="form-control"
@@ -67,8 +81,23 @@
                                             </div>
 
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom01">{{$t('global.Notes')}}</label>
-                                                <textarea rows="4" cols="5" v-model.trim="v$.notes.$model" :class="['form-control',{'is-invalid':v$.notes.$error,'is-valid':!v$.notes.$invalid}]" :placeholder="$t('global.Notes')"></textarea>
+                                                <label for="validationCustom01">{{$t('global.RecipientsName')}}</label>
+                                                <input type="text" class="form-control"
+                                                       v-model.trim="v$.payer.$model"
+                                                       id="validationCustom09"
+                                                       :placeholder="$t('global.RecipientsName')"
+                                                       :class="{'is-invalid':v$.payer.$error,'is-valid':!v$.payer.$invalid}"
+                                                >
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.payer.required.$invalid">{{$t('global.RecipientsNameIsRequired')}}<br /> </span>
+                                                    <span v-if="v$.payer.minLength.$invalid">{{$t('global.RecipientsNameIsMustHaveAtLeast')}} {{ v$.payer.minLength.$params.max }} {{$t('global.Letters')}} <br /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationCustom01">{{$t('global.For')}}</label>
+                                                <textarea rows="4" cols="5" v-model.trim="v$.notes.$model" :class="['form-control',{'is-invalid':v$.notes.$error,'is-valid':!v$.notes.$invalid}]" :placeholder="$t('global.For')"></textarea>
                                                 <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
                                                 <div class="invalid-feedback">
                                                     <span v-if="v$.notes.required.$invalid">{{$t('global.NotesIsRequired')}}<br /> </span>
@@ -124,7 +153,25 @@ export default {
         const {t} = useI18n({});
         let mainExpense = ref([]);
         let loading = ref(false);
+        let treasuries = ref([]);
+        let amount = ref(0);
 
+        let getTreasuries = () => {
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/activeTreasury`)
+                .then((res) => {
+                    let l = res.data.data;
+                    console.log(l);
+                    treasuries.value= l.treasuries;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                })
+        }
 
         let getMainExpenseViews = () => {
             loading.value = true;
@@ -133,7 +180,6 @@ export default {
                 .then((res) => {
                     let l = res.data.data;
                     mainExpense.value= l.expenses;
-                    console.log(l)
                 })
                 .catch((err) => {
                     console.log(err.response.data);
@@ -145,10 +191,12 @@ export default {
 
          onMounted(() => {
              getMainExpenseViews();
+             getTreasuries();
         });
 
         emitter.on('get_lang', () => {
             getMainExpenseViews();
+            getTreasuries();
         });
 
         //start design
@@ -157,9 +205,16 @@ export default {
                 amount:null,
                 notes:null,
                 payment_date: null,
+                treasury_id: null,
+                payer:null,
                 expense_id: null
             }
         });
+
+        let amountTreasury =()=>{
+            let v = treasuries.value.filter((el)=> el.id == addExpense.data.treasury_id);
+            amount.value = v[0].amount;
+        }
 
         const rules = computed(() => {
             return {
@@ -167,6 +222,13 @@ export default {
                     required,
                     numeric
 
+                },
+                treasury_id:{
+                    required
+                },
+                payer:{
+                    required,
+                    minLength: minLength(3),
                 },
                 expense_id:{
                     required
@@ -186,7 +248,7 @@ export default {
         const v$ = useVuelidate(rules,addExpense.data);
 
 
-        return {t,mainExpense,loading,...toRefs(addExpense),v$};
+        return {amountTreasury,amount,treasuries,t,mainExpense,loading,...toRefs(addExpense),v$};
     },
     methods: {
         storeExpense(){
@@ -224,6 +286,8 @@ export default {
             this.data.payment_date = '';
             this.data.amount = '';
             this.data.expense_id = '';
+            this.data.treasury_id = '';
+            this.data.payer = '';
         }
     }
 }
@@ -235,5 +299,10 @@ export default {
 }
 .card{
     position: relative;
+}
+.amount{
+    background-color: #fcb00c;
+    color: #000;
+    margin: 50px;
 }
 </style>

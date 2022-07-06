@@ -143,7 +143,6 @@ export default {
             adminApi.get(`/v1/dashboard/employee?page=${page}&search=${search.value}`)
                 .then((res) => {
                     let l = res.data.data;
-
                     employeesPaginate.value = l.employees;
                     employees.value = l.employees.data;
                 })

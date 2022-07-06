@@ -48,6 +48,7 @@
                                         <th>#</th>
                                         <th>{{ $t('global.Name') }}</th>
                                         <th>{{ $t('global.RelatedTo') }}</th>
+                                        <th>{{ $t('global.AddedDate') }}</th>
                                         <th>{{ $t('global.Status') }}</th>
                                         <th>{{ $t('global.Action') }}</th>
                                     </tr>
@@ -58,6 +59,9 @@
                                         <td>{{ item.name }}</td>
                                         <td>
                                             {{ item.parent ? item.parent.name : $t('global.NotRelated') }}
+                                        </td>
+                                        <td>
+                                            {{ dateFormat(item.created_at) }}
                                         </td>
                                         <td>
                                             <a href="#" @click="activationExpense(item.id,item.name,item.active,index)">
@@ -223,7 +227,11 @@ export default {
             });
         }
 
-        return {expenses, loading, getExpense, search, deleteExpense, activationExpense, expensesPaginate};
+        let dateFormat = (item) => {
+            return new Date(item).toDateString();
+        }
+
+        return {expenses, loading, getExpense, search,dateFormat, deleteExpense, activationExpense, expensesPaginate};
 
     },
     data() {

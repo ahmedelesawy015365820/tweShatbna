@@ -57,6 +57,18 @@ return [
         "array" => "يجب أن يحتوي الحقل :attribute على الأقل على :min عُنصرًا/عناصر",
     ],
     "not_in" => "الحقل :attribute لاغٍ",
+    'lt'                   => [
+        'numeric' => 'يجب أن تكون قيمة :attribute أصغر من :value.',
+        'file'    => 'يجب أن يكون حجم الملف :attribute أصغر من :value كيلوبايت.',
+        'string'  => 'يجب أن يكون طول النّص :attribute أقل من :value حروفٍ/حرفًا.',
+        'array'   => 'يجب أن يحتوي :attribute على أقل من :value عناصر/عنصر.',
+    ],
+    'lte'                  => [
+        'numeric' => 'يجب أن تكون قيمة :attribute مساوية أو أصغر من :value.',
+        'file'    => 'يجب أن لا يتجاوز حجم الملف :attribute :value كيلوبايت.',
+        'string'  => 'يجب أن لا يتجاوز طول النّص :attribute :value حروفٍ/حرفًا.',
+        'array'   => 'يجب أن لا يحتوي :attribute على أكثر من :value عناصر/عنصر.',
+    ],
     "numeric" => "يجب على الحقل :attribute أن يكون رقمًا",
     "regex" => "صيغة الحقل :attribute .غير صحيحة",
     "required" => "الحقل :attribute مطلوب.",
@@ -113,6 +125,11 @@ return [
         "password" => "كلمة السر",
         "password_confirmation" => "تأكيد كلمة السر",
         "image" => "الصورة",
+        "to" => "الي",
+        "from" => "من",
+        "from" => "من",
+        "ar.name" => "الاسم باللغة العربية",
+        "en.name" => "الاسم باللغة الانجليزية",
+        "percentage" => "النسبة المئوية",
     ],
-
 ];

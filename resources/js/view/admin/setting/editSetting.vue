@@ -81,6 +81,20 @@
                                                     <span v-if="v$.contact_sizing.numeric.$invalid">{{$t('global.ThisFieldMustBeANumber')}}<br /> </span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="validationCustom01">{{$t('global.CommercialRecord')}}</label>
+                                                <input type="text" class="form-control"
+                                                       v-model.number="v$.commercial_record.$model"
+                                                       id="validationCustom12"
+                                                       :placeholder="$t('global.CommercialRecord')"
+                                                       :class="{'is-invalid':v$.commercial_record.$error,'is-valid':!v$.commercial_record.$invalid}"
+                                                >
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.commercial_record.required.$invalid">{{$t('global.Time to contact the sizing service Is Required')}}<br /> </span>
+                                                    <span v-if="v$.commercial_record.numeric.$invalid">{{$t('global.ThisFieldMustBeANumber')}}<br /> </span>
+                                                </div>
+                                            </div>
 
                                         </div>
                                         <button class="btn btn-primary" type="submit">{{$t('global.Submit')}}</button>
@@ -123,7 +137,9 @@ export default {
             data:{
                 commission_design: null,
                 price_sizing:null,
+                commercial_record:null,
                 contact_sizing:null
+
             }
         });
 
@@ -135,6 +151,10 @@ export default {
                     numeric
                 },
                 price_sizing:{
+                    required,
+                    numeric
+                },
+                commercial_record:{
                     required,
                     numeric
                 },
@@ -153,6 +173,7 @@ export default {
                     let l = res.data.data;
                     addSetting.data.commission_design = l.setting.commission_design;
                     addSetting.data.price_sizing = l.setting.price_sizing;
+                    addSetting.data.commercial_record = l.setting.commercial_record;
                     addSetting.data.contact_sizing = l.setting.contact_sizing;
                 })
                 .catch((err) => {

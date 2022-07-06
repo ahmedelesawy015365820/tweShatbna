@@ -99,8 +99,8 @@
                                                 <label class="col-lg-3 col-form-label">{{$t('global.AccountType')}}</label>
                                                 <div class="col-lg-9">
                                                     <select v-model="data.debit" class="form-select">
-                                                        <option  :value="0">{{$t('global.Debit')}}</option>
-                                                        <option  :value="1">{{$t('global.Creditor')}}</option>
+                                                        <option  :value="1">{{$t('global.Debit')}}</option>
+                                                        <option  :value="0">{{$t('global.Creditor')}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -144,14 +144,12 @@ export default {
         let mainData = ref([]);
         const {id,mainId} = toRefs(props);
 
-        let getMAinSub = (page = 1) => {
+        let getMAinSub = () => {
             loading.value = true;
 
             adminApi.get(`/v1/dashboard/getMainSub/${id.value}`)
                 .then((res) => {
                     let l = res.data.data;
-                    console.log(l.data);
-
                     mainData.value = l.data;
                 })
                 .catch((err) => {

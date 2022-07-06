@@ -37,6 +37,8 @@
                                     <div class="alert alert-danger text-center" v-if="errors['payment_date']">{{ errors['payment_date'][0] }}<br /> </div>
                                     <div class="alert alert-danger text-center" v-if="errors['income_id']">{{ errors['income_id'][0] }}<br /> </div>
                                     <div class="alert alert-danger text-center" v-if="errors['notes']">{{ errors['notes'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['treasury_id']">{{ errors['treasury_id'][0] }}<br /> </div>
+                                    <div class="alert alert-danger text-center" v-if="errors['payer']">{{ errors['payer'][0] }}<br /> </div>
                                     <form @submit.prevent="storeIncome" class="needs-validation">
                                         <div class="form-group row">
                                             <div class="col-md-6 mb-3">
@@ -47,6 +49,17 @@
                                                 <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
                                                 <div class="invalid-feedback">
                                                     <span v-if="v$.income_id.required.$invalid">{{$t('global.IncomeIsRequired')}}<br /> </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>{{$t('treasury.ChooseTreasury')}} <span v-if="data.treasury_id" class="amount">{{$t('global.Amount')}} : {{amount}}</span> </label>
+                                                <select @change="amountTreasury" v-model="data.treasury_id" class="form-select" :class="{'is-invalid':v$.treasury_id.$error,'is-valid':!v$.treasury_id.$invalid}">
+                                                    <option v-for="treasury in treasuries" :kay="treasury.id" :value="treasury.id">{{treasury.name}}</option>
+                                                </select>
+
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.treasury_id.required.$invalid">{{$t('global.TreasuryIsRequired')}}<br /> </span>
                                                 </div>
                                             </div>
 
@@ -64,10 +77,24 @@
                                                     <span v-if="v$.amount.numeric.$invalid">{{$t('global.AmountIsNumeric')}} <br /></span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationCustom01">{{$t('global.NameOfThePayer')}}</label>
+                                                <input type="text" class="form-control"
+                                                       v-model.trim="v$.payer.$model"
+                                                       id="validationCustom09"
+                                                       :placeholder="$t('global.NameOfThePayer')"
+                                                       :class="{'is-invalid':v$.payer.$error,'is-valid':!v$.payer.$invalid}"
+                                                >
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.payer.required.$invalid">{{$t('global.NameOfThePayerIsRequired')}}<br /> </span>
+                                                    <span v-if="v$.payer.minLength.$invalid">{{$t('global.NameOfThePayerIsMustHaveAtLeast')}} {{ v$.payer.minLength.$params.max }} {{$t('global.Letters')}} <br /></span>
+                                                </div>
+                                            </div>
 
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom01">{{$t('global.Notes')}}</label>
-                                                <textarea rows="4" cols="5" v-model.trim="v$.notes.$model" :class="['form-control',{'is-invalid':v$.notes.$error,'is-valid':!v$.notes.$invalid}]" :placeholder="$t('global.Notes')"></textarea>
+                                                <label for="validationCustom01">{{$t('global.For')}}</label>
+                                                <textarea rows="4" cols="5" v-model.trim="v$.notes.$model" :class="['form-control',{'is-invalid':v$.notes.$error,'is-valid':!v$.notes.$invalid}]" :placeholder="$t('global.For')"></textarea>
                                                 <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
                                                 <div class="invalid-feedback">
                                                     <span v-if="v$.notes.required.$invalid">{{$t('global.NotesIsRequired')}}<br /> </span>
@@ -104,7 +131,7 @@
 </template>
 
 <script>
-import {computed, onMounted, reactive,toRefs,inject,ref} from "vue";
+import {computed, onMounted, reactive,toRefs,inject,ref,watch} from "vue";
 import useVuelidate from '@vuelidate/core';
 import {required,minLength,numeric} from '@vuelidate/validators';
 import adminApi from "../../../api/adminAxios";
@@ -124,8 +151,25 @@ export default {
         const {t} = useI18n({});
         // get create Package
         let mainIncome = ref([]);
+        let treasuries = ref([]);
+        let amount = ref(0);
         let loading = ref(false);
 
+        let getTreasuries = () => {
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/activeTreasury`)
+                .then((res) => {
+                    let l = res.data.data;
+                    treasuries.value= l.treasuries;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                })
+        }
 
         let getMainIncomeViews = () => {
             loading.value = true;
@@ -145,10 +189,12 @@ export default {
 
          onMounted(() => {
              getMainIncomeViews();
+             getTreasuries();
         });
 
         emitter.on('get_lang', () => {
             getMainIncomeViews();
+            getTreasuries();
         });
 
         //start design
@@ -156,10 +202,17 @@ export default {
             data:{
                 amount:null,
                 income_id: null,
+                treasury_id: null,
                 notes:null,
+                payer:null,
                 payment_date: null
             }
         });
+
+        let amountTreasury =()=>{
+            let v = treasuries.value.filter((el)=> el.id == addIncome.data.treasury_id);
+            amount.value = v[0].amount;
+        }
 
         const rules = computed(() => {
             return {
@@ -171,7 +224,14 @@ export default {
                 income_id:{
                     required
                 },
+                treasury_id:{
+                    required
+                },
                 notes:{
+                    required,
+                    minLength: minLength(3),
+                },
+                payer:{
                     required,
                     minLength: minLength(3),
                 },
@@ -186,7 +246,7 @@ export default {
         const v$ = useVuelidate(rules,addIncome.data);
 
 
-        return {t,mainIncome,loading,...toRefs(addIncome),v$};
+        return {amountTreasury,amount,t,mainIncome,treasuries,loading,...toRefs(addIncome),v$};
     },
     methods: {
         storeIncome(){
@@ -224,6 +284,8 @@ export default {
             this.data.payment_date = '';
             this.data.amount = '';
             this.data.income_id = '';
+            this.data.treasury_id = '';
+            this.data.payer = '';
         }
     }
 }
@@ -235,5 +297,10 @@ export default {
 }
 .card{
     position: relative;
+}
+.amount{
+    background-color: #fcb00c;
+    color: #000;
+    margin: 50px;
 }
 </style>

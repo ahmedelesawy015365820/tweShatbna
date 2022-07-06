@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Income;
 use App\Models\IncomeAndExpense;
+use App\Models\Treasury;
 use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,16 +15,19 @@ use Illuminate\Validation\Rule;
 class IncomeAndExpenseController extends Controller
 {
     use Message;
+
     // get calculate income
     public function calcIncome(Request $request)
     {
-        $incomeAndExpense = IncomeAndExpense::with('income','user')->whereNotNull('income_id')
-            ->where(function ($q) use($request){
-                $q->when($request->search,function ($q) use($request){
-                    return $q->OrWhere('notes','like','%'.$request->search.'%')
-                        ->orWhere('amount','like','%'.$request->search.'%')
-                        ->orWhere('payment_date','like','%'.$request->search.'%')
-                        ->orWhereRelation('income.translations','name','like','%'.$request->search.'%');
+        $incomeAndExpense = IncomeAndExpense::with('income', 'user')->whereNotNull('income_id')
+            ->where(function ($q) use ($request) {
+                $q->when($request->search, function ($q) use ($request) {
+                    return $q->OrWhere('notes', 'like', '%' . $request->search . '%')
+                        ->orWhere('amount', 'like', '%' . $request->search . '%')
+                        ->orWhere('payment_date', 'like', '%' . $request->search . '%')
+                        ->orWhere('payer', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('user', 'name', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('income.translations', 'name', 'like', '%' . $request->search . '%');
                 });
 
             })->latest()->paginate(5);
@@ -35,13 +39,15 @@ class IncomeAndExpenseController extends Controller
 
     public function calcExpense(Request $request)
     {
-        $incomeAndExpense = IncomeAndExpense::with('expense','user')->whereNotNull('expense_id')
-            ->where(function ($q) use($request){
-                $q->when($request->search,function ($q) use($request){
-                    return $q->OrWhere('notes','like','%'.$request->search.'%')
-                        ->orWhere('amount','like','%'.$request->search.'%')
-                        ->orWhere('payment_date','like','%'.$request->search.'%')
-                        ->orWhereRelation('expense.translations','name','like','%'.$request->search.'%');
+        $incomeAndExpense = IncomeAndExpense::with('expense', 'user')->whereNotNull('expense_id')
+            ->where(function ($q) use ($request) {
+                $q->when($request->search, function ($q) use ($request) {
+                    return $q->OrWhere('notes', 'like', '%' . $request->search . '%')
+                        ->orWhere('amount', 'like', '%' . $request->search . '%')
+                        ->orWhere('payment_date', 'like', '%' . $request->search . '%')
+                        ->orWhere('payer', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('user', 'name', 'like', '%' . $request->search . '%')
+                        ->orWhereRelation('expense.translations', 'name', 'like', '%' . $request->search . '%');
                 });
 
             })->latest()->paginate(5);
@@ -76,6 +82,8 @@ class IncomeAndExpenseController extends Controller
                 'income_id' => 'nullable|exists:incomes,id',
                 'expense_id' => 'nullable|exists:expenses,id',
                 'notes' => 'required|string|min:3',
+                'payer' => 'required|string|min:3',
+                'treasury_id' => 'required|exists:treasuries,id',
             ]);
 
             if ($v->fails()) {
@@ -83,7 +91,7 @@ class IncomeAndExpenseController extends Controller
             }
 
             $request_data = $request->all();
-            $request_data['user_id']=auth()->user()->id;
+            $request_data['user_id'] = auth()->user()->id;
 
             IncomeAndExpense::create($request_data);
 
@@ -105,8 +113,9 @@ class IncomeAndExpenseController extends Controller
             $income = IncomeAndExpense::find($id)->makeVisible('translations');
 
             $mainIncome = Income::where('active', 1)->get();
+            $treasuries = Treasury::where('active', 1)->get();
 
-            return $this->sendResponse(['income' => $income, 'mainIncome' => $mainIncome], 'Data exited successfully');
+            return $this->sendResponse(['income' => $income, 'mainIncome' => $mainIncome,'treasuries' => $treasuries], 'Data exited successfully');
 
         } catch (\Exception $e) {
 
@@ -122,8 +131,9 @@ class IncomeAndExpenseController extends Controller
             $expense = IncomeAndExpense::find($id)->makeVisible('translations');
 
             $mainExpense = Income::where('active', 1)->get();
+            $treasuries = Treasury::where('active', 1)->get();
 
-            return $this->sendResponse(['expense' => $expense, 'mainExpense' => $mainExpense], 'Data exited successfully');
+            return $this->sendResponse(['expense' => $expense, 'mainExpense' => $mainExpense,'treasuries' => $treasuries], 'Data exited successfully');
 
         } catch (\Exception $e) {
 
@@ -151,7 +161,7 @@ class IncomeAndExpenseController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         try {
 
@@ -163,6 +173,8 @@ class IncomeAndExpenseController extends Controller
                 'income_id' => 'nullable|exists:incomes,id',
                 'expense_id' => 'nullable|exists:expenses,id',
                 'notes' => 'required|string|min:3',
+                'payer' => 'required|string|min:3',
+                'treasury_id' => 'required|exists:treasuries,id',
             ]);
 
             if ($v->fails()) {
@@ -171,7 +183,7 @@ class IncomeAndExpenseController extends Controller
             $income_and_expense = IncomeAndExpense::find($id);
 
             $request_data = $request->all();
-            $request_data['user_id']=auth()->user()->id;
+            $request_data['user_id'] = auth()->user()->id;
 
             $income_and_expense->update($request_data);
 
@@ -194,14 +206,8 @@ class IncomeAndExpenseController extends Controller
     public function destroy($id)
     {
         $income_and_expense = IncomeAndExpense::find($id);
-        if ($income_and_expense->treasury)
-        {
-            return $this->sendError('ID is not exist');
+        $income_and_expense->delete();
+        return $this->sendResponse([], 'Deleted successfully');
 
-        }else{
-
-            $income_and_expense->delete();
-            return $this->sendResponse([],'Deleted successfully');
-        }
     }
 }

@@ -10,8 +10,8 @@
                             <h3 class="page-title col-md-3">{{ $t('global.Assets') }}</h3>
                             <p class=" col-md-3" v-if="main.debit == 1">{{ $t('global.AccountType') }} :: {{ $t('global.Debit') }}</p>
                             <p class=" col-md-3" v-if="main.debit == 0">{{ $t('global.AccountType') }} :: {{ $t('global.Creditor') }}</p>
-                            <p class=" col-md-3">{{ $t('global.NumberOfElements') }} :: {{main.count}}</p>
-                            <p class="col-md-3">{{ $t('global.Amount') }} :: {{main.amount}}</p>
+                            <p class=" col-md-3" v-if="main.count">{{ $t('global.NumberOfElements') }} :: {{main.count}}</p>
+                            <p class="col-md-3" v-if="main.amount">{{ $t('global.Amount') }} :: {{main.amount}}</p>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -169,14 +169,18 @@ export default {
 
             adminApi.get(`/v1/dashboard/subAccount/${mainId.value}/${id.value}?page=${page}&search=${search.value}`)
                 .then((res) => {
+                    main.value ={};
                     let l = res.data.data;
-                    console.log(l.data);
-
                     incomesPaginate.value = l.subAccounts;
                     incomes.value = l.subAccounts.data;
                     mainData.value = l.data;
 
-                    main.value = l.subAccounts.data[0].parent;
+                    if (l.subAccounts.data[0].parent)
+                    {
+                        main.value = l.subAccounts.data[0].parent;
+                    }else {
+                        main.value ={};
+                    }
                 })
                 .catch((err) => {
                     console.log(err.response.data);

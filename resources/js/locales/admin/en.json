@@ -392,5 +392,11 @@
     "Assets": {
         "Add": "Add the first items",
         "Edit": "Edit the first items"
+    },
+    "notification": {
+        "trustDesign": "confirm account",
+        "Notifications": "Notifications",
+        "all": "View all Notifications",
+        "clear": "Mark All As Read"
     }
 }

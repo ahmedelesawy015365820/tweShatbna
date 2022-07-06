@@ -641,7 +641,6 @@ export default {
         };
 
         onMounted(() => {
-
             carousel();
             counter(20600,1,0);
             counter(67000,2,0);

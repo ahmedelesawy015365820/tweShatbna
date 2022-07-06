@@ -720,7 +720,7 @@ export default {
 
 <style scoped>
 .content {
-    padding: 120px 0 30px;
+    padding: 250px 0 30px;
     position: relative;
     min-height: 100vh;
 }
@@ -728,7 +728,7 @@ export default {
 .error-trust{
     margin: 0 auto;
     position: absolute;
-    top: 0px;
+    top: 6%;
     transform: translate(0%, 65%);
     padding: 10px;
     text-align: center;
@@ -895,7 +895,7 @@ export default {
 .wazard3::after {
     right: 22.2%;
     width: 14%;
-    top: 18%;
+    top: 29%;
 }
 
 

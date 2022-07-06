@@ -1,6 +1,7 @@
 import dashboardCompany from "../../view/web/company/company";
 import trust from "../../view/web/company/trust";
 import profile from "../../view/web/company/profile";
+import companyNotification from "../../view/web/notifications";
 
 export default [
     {
@@ -33,6 +34,11 @@ export default [
                 path: 'profile',
                 name: 'profileCompany',
                 component: profile
+            },
+            {
+                path: 'notification',
+                name: 'companyNotification',
+                component: companyNotification
             },
         ]
     },

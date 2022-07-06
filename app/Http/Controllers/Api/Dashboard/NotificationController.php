@@ -15,7 +15,7 @@ class NotificationController extends Controller
     {
         $user = auth()->guard('api')->user();
 
-        return $this->sendResponse(['Notifications' => $user->notifications ], 'Data exited successfully');
+        return $this->sendResponse(['Notifications' => $user->notifications()->latest()->paginate(15) ], 'Data exited successfully');
     }
 
     public function getNotNotRead()
@@ -30,7 +30,7 @@ class NotificationController extends Controller
     public function clearItem($id)
     {
 
-        DB::table('notifications')->find($id)->update(['read_at' => now()]);
+        DB::table('notifications')->where('id', $id)->update(['read_at' => now()]);
 
         return $this->sendResponse([], 'Data exited successfully');
     }

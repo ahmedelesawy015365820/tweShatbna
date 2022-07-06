@@ -1,5 +1,6 @@
 import dashboardAdver from "../../view/web/advertise/dashboardAdver.vue";
 import packages from "../../view/web/advertise/packages.vue";
+import advertiseNotification from "../../view/web/notifications";
 
 
 export default [
@@ -28,7 +29,12 @@ export default [
                 path: 'package',
                 name: 'packages',
                 component: packages
-            }
+            },
+            {
+                path: 'notification',
+                name: 'advertiseNotification',
+                component: advertiseNotification
+            },
         ]
     },
 ];

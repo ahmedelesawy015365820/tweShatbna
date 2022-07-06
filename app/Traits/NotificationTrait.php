@@ -12,7 +12,6 @@ trait NotificationTrait
     public function notification($tokens,$body,$title,$type,$productData){
 
         $SERVER_API_KEY = 'AAAA5NvLe_I:APA91bFD3ci5FV6Ow92LYIm7NWLcLPqvo65r5dKSG93xnSJWMgvwpS6ad_KHBVLDmn6bhkKIWl_pSUtKYJ9WyOkZV1NViRxP7vt4pbhCnzd4qVzTvyKbc1RrMXJTMekXIUPLxHS4QDzn';
-
         $data = [
 
             "registration_ids" => $tokens,

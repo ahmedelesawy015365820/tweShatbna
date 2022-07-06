@@ -9,6 +9,7 @@ import mitt from 'mitt';
 import VueSocialauth from 'vue-social-auth'
 
 
+
 const emitter = mitt();
 
 const web = createApp(App);

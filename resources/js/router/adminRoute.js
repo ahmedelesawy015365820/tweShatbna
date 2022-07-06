@@ -22,6 +22,7 @@ import employee from './adminRoute/employee';
 import income from './adminRoute/income';
 import expense from './adminRoute/expense';
 import incomeAndExpense from './adminRoute/incomeAndExpense';
+import notification from '../view/admin/notifications';
 import architectural from './adminRoute/architectural';
 import expected from './adminRoute/Expected';
 import setting from './adminRoute/setting';
@@ -115,6 +116,11 @@ const routes = [
                         path: '',
                         name: 'dashboard',
                         component: Index,
+                    },
+                    {
+                        path: 'notification',
+                        name: 'notification',
+                        component: notification,
                     },
                     ...packages,
                     ...salePackage,

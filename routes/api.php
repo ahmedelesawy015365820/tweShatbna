@@ -82,6 +82,7 @@ use Illuminate\Support\Facades\Route;
         // start Dashboard
          Route::group(['prefix' => 'dashboard','namespace' => 'Dashboard'],function () {
 
+
              // start User
              Route::get('getAllNot','NotificationController@getAllNot');
              Route::get('getNotNotRead','NotificationController@getNotNotRead');
@@ -241,8 +242,10 @@ use Illuminate\Support\Facades\Route;
             //phaseS BANDS
             Route::resource('phaseBands','PhaseBandsController');
 
+
              // Settings
              Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
+
 
              // Main Account
              Route::resource('mainAccount','MainAccountController');

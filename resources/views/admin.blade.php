@@ -42,6 +42,8 @@
         {{--font arabic--}}
         <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=hanimation" />
 
+        <link rel="stylesheet" href="{{asset('admin/css/vanillatoasts.css')}}">
+
         <!-- Main CSS -->
 		<link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
 
@@ -84,6 +86,10 @@
 
         <!-- Custom JS -->
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+        <script src="https://js.pusher.com/7.1/pusher.min.js"></script>
+
+        <script src="{{asset('admin/js/vanillatoasts.js')}}"></script>
 
         <script src="{{mix('control/js/admin.js')}}"></script>
 

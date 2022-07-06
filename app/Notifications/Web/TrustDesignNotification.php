@@ -46,10 +46,11 @@ class TrustDesignNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'company_id' => $this->user->id,
-            'image' => $this->user->media->file_name,
+            'design_id' => $this->user->id,
+            'name_user' => substr($this->user->name,0, 15),
+            'image' => $this->user->imagePath,
             'timeDate' => now()->format('jS \of F  h:i'),
-            'name' => 'trustDesgin'
+            'name' => 'showDesign'
         ];
     }
 
@@ -57,10 +58,11 @@ class TrustDesignNotification extends Notification implements ShouldQueue
     {
         return new BroadcastMessage([
             'data' => [
-                'company_id' => $this->user->id,
-                'image' => $this->user->media->file_name,
+                'design_id' => $this->user->id,
+                'name_user' => substr($this->user->name,0, 15),
+                'image' => $this->user->imagePath,
                 'timeDate' => now()->format('jS \of F  h:i'),
-                'name' => 'trustDesgin'
+                'name' => 'showDesign'
             ]
         ]);
     }

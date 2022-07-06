@@ -1,0 +1,72 @@
+body {
+    font-family:'hanimation'
+}
+
+
+/* start header */
+
+.main-nav > li:last-child {
+    margin-right: 30px;
+}
+/* end header */
+
+
+/* start register */
+.forget-login{
+    margin-top: 30px;
+    font-size: 17px;
+}
+.form-focus .focus-label {
+    right: 12px
+}
+
+.forget-register{
+    text-align: right !important;
+}
+
+.login-register{
+    text-align: left !important;
+}
+
+.custom_check {
+    padding-right: 30px;
+}
+
+
+.custom_check .checkmark{
+    right: 0;
+}
+
+.custom_check .checkmark::after {
+    right: 4px;
+}
+
+.custom_check input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom_check input{
+    right: 0;
+}
+
+.btn-color:active, .btn-color:focus{
+    background-color: #fcb00c !important;
+    border: 1px solid #fcb00c;
+}
+
+/* end register */
+
+/* start index */
+.banner-content .rating h5 {
+    padding-right: 15px;
+}
+
+.fc .fc-scrollgrid-section table ,
+.fc-scrollgrid-sync-table ,
+.fc .fc-daygrid-body-natural
+{
+    width : 100% !important;
+}
+
+/* end index */
+

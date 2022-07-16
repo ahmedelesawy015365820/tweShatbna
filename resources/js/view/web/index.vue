@@ -697,7 +697,7 @@ section{
     background-image: url(/web/img/Slider.jfif);
     height: 100vh !important;
     background-position: unset;
-    padding-top: 0;
+    padding-top: 5%;
 }
 
 .custom-row{

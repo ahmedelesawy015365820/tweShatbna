@@ -1,6 +1,7 @@
 import dashboardAdver from "../../view/web/advertise/dashboardAdver.vue";
 import packages from "../../view/web/advertise/packages.vue";
 import advertiseNotification from "../../view/web/notifications";
+import store from '../../store/web';
 
 
 export default [
@@ -11,7 +12,7 @@ export default [
             template:'<router-view />',
         },
         beforeEnter: (to, from,next) => {
-            let roles = JSON.parse(localStorage.getItem('user')).role_name;
+            let roles = store.state.auth.user.role_name;
 
             if(roles.includes('advertiser')){
                 return next();

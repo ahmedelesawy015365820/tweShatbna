@@ -208,5 +208,8 @@
         "The best way to get more accurate Your unit details": "The best way to get more accurate Your unit details",
         "Please fill in the following information": "Please fill in the following information",
         "upload your property size now": "upload your property size now"
+    },
+    "notification": {
+        "verify": "Your account has been successfully verified and the mother can use all the features ."
     }
 }

@@ -204,5 +204,8 @@
         "The best way to get more accurate Your unit details": "افضل الطرق للحصول على أدق تفاصيل وحدتك",
         "Please fill in the following information": "برجاء ملاء البيانات التالية ",
         "upload your property size now": "ارفع مقاسات وحدتك الان"
+    },
+    "notification": {
+        "verify": "تم توثيق حسابك بنجاح و تستطيع الأم استخدام جميع المميزات ."
     }
 }

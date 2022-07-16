@@ -134,7 +134,11 @@ export default {
 }
 
 .notifications ul.notification-list > li.read-at{
-    background-color: #fafafa;
+    background-color: #fcb00c24;
+}
+
+.notifications ul.notification-list > li a:hover{
+    background-color: #fcb00c24;
 }
 
 .notifications .media > .avatar {
@@ -146,7 +150,34 @@ export default {
 }
 
 .border-media{
-    border: 1px solid #c0bdbd;
+    border: 1px solid #fcb00c;
     padding: 25px;
+    box-shadow: 0px 1px 6px 0px #fcb00c;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.notifications ul.notification-list > li a {
+    border-bottom: 1px solid #fcb00c4d;
+    border-radius: 0px;
+}
+
+.topnav-dropdown-header .clear-noti {
+    color: #fcb00c;
+    font-size: 16px;
+}
+
+.page-wrapper > .content {
+    min-height: 90vh;
+    background-color: #fcb00c1c;
+}
+
+.topnav-dropdown-header {
+    border-bottom: 1px solid #fcb00c;
+    text-align: center;
+}
+
+.topnav-dropdown-header .notification-title {
+    font-size: 18px;
 }
 </style>

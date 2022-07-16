@@ -28,6 +28,13 @@ class DatabaseSeeder extends Seeder
         $this->call(AdvisorPackageSeeder::class);
         $this->call(SettingSeeder::class);
         $this->call(MainAccountTableSeeder::class);
-        $this->call(DesignerSeeder::class);
+//        $this->call(DesignerSeeder::class);
+//        $this->call(CompanySeeder::class);
+//        $this->call(AdvertiseSeeder::class);
+//        $this->call(ClientSeeder::class);
+        $this->call(ConverstionSeeder::class);
+        $this->call(MessagerSeeder::class);
+
+
     }
 }

@@ -12456,6 +12456,12 @@ figcaption {
     margin-top: .5vmin;
 }
 
+figure.chat {
+    width: 50px;
+    display: inline-block;
+    margin: 10px;
+}
+
 img{
     width: 100%;
 }

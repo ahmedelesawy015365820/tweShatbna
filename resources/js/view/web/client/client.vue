@@ -341,4 +341,8 @@ export default {
     text-align: center;
     width: 43%;
 }
+
+.error-trust.send{
+    top: 58px;
+}
 </style>

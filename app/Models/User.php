@@ -166,6 +166,10 @@ class User extends Authenticatable implements JWTSubject ,MustVerifyEmail
         return $this->hasMany(AddShowDesign::class);
     }
 
+    public function conversation()
+    {
+        return $this->belongsToMany(Conversation::class,'conversation_users');
+    }
 
     //end raletions
 

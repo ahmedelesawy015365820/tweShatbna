@@ -83,7 +83,7 @@ use Illuminate\Support\Facades\Route;
          Route::group(['prefix' => 'dashboard','namespace' => 'Dashboard'],function () {
 
 
-             // start User
+             // start Notification
              Route::get('getAllNot','NotificationController@getAllNot');
              Route::get('getNotNotRead','NotificationController@getNotNotRead');
              Route::post('clearItem/{id}','NotificationController@clearItem');
@@ -268,6 +268,17 @@ use Illuminate\Support\Facades\Route;
 
          // start web
          Route::group(['prefix' => 'web','namespace' => 'Web'],function () {
+
+             // start Notification
+             Route::get('getAllNot','NotificationController@getAllNot');
+             Route::get('getNotNotRead','NotificationController@getNotNotRead');
+             Route::post('clearItem/{id}','NotificationController@clearItem');
+             Route::post('getNotNotRead','NotificationController@clearAll');
+
+             //  start chat
+             Route::get('conversation','ConversationController@index');
+             Route::get('conversation/{id}','ConversationController@show');
+             Route::post('addmessage','ConversationController@addMessage');
 
              // start verify[company,design,advertiser]
               Route::post('email/verification-notification', 'AuthController@sendVerificationEmail');

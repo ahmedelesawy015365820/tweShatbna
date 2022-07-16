@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Designer;
 use App\Models\User;
-use App\Notifications\Web\VerifyDCNotification;
+use App\Notifications\Admin\VerifyDCNotification;
 use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;

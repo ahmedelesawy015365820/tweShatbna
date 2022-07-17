@@ -337,7 +337,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onchange: "event.stopPropagation()"
   }, null, 8
   /* PROPS */
-  , _hoisted_48), _hoisted_49])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /project list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start Pagination "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Pagination :data=\"privacyPaginate\" @pagination-change-page=\"getprivacies\">\r\n                            <template #prev-nav>\r\n                                <span>&lt; Previous</span>\r\n                            </template>\r\n                            <template #next-nav>\r\n                                <span>Next &gt;</span>\r\n                            </template>\r\n                        </Pagination> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end Pagination ")])])])], 2
+  , _hoisted_48), _hoisted_49])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /project list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start Pagination "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Pagination :data=\"privacyPaginate\" @pagination-change-page=\"getprivacies\">\n                            <template #prev-nav>\n                                <span>&lt; Previous</span>\n                            </template>\n                            <template #next-nav>\n                                <span>Next &gt;</span>\n                            </template>\n                        </Pagination> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end Pagination ")])])])], 2
   /* CLASS */
   )], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */

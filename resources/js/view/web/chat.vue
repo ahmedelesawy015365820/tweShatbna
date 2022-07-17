@@ -257,7 +257,7 @@ export default {
         };
 
         const scrollBottom = () =>{
-            if(converstion.value.length >= 0){
+            if(converstion.value.length > 0){
                 let el = hasScrolledToBottom.value;
                 console.log(el.scrollHeight);
                 el.scrollTop = el.scrollHeight;

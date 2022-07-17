@@ -42,7 +42,8 @@
         "Projects Management": "ادارة المشاريع",
         "Internal Projects": "مشاريع شطبنا",
         "External Projects": "المشاريع الخارجية",
-        "treasuriesIncome": "وارد الخزن"
+        "treasuriesIncome": "وارد الخزن",
+        "banner": "البانر"
     },
     "global": {
         "Search":"بحث",

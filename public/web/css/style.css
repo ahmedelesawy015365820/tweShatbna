@@ -2221,7 +2221,6 @@ html.menu-opened body header:before {
 -----------------------*/
 
 .home-banner {
-    background-image: url(../img/banner2.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -72,6 +72,9 @@ use Illuminate\Support\Facades\Route;
          Route::get('SizingSetting',  'SizingServiceController@index');
          Route::post('SizingClientStore',  'SizingServiceController@store');
 
+         // start  banner
+         Route::get('banner',  'BannerController@banner');
+
      });
 
 
@@ -264,6 +267,10 @@ use Illuminate\Support\Facades\Route;
              Route::get('incomeTreasuryPlatformReport','ReportController@incomeTreasuryPlatformReport');
              Route::get('expenseTreasuryPlatformReport','ReportController@expenseTreasuryPlatformReport');
              Route::get('dailyBalancePlatformReport','ReportController@dailyBalancePlatformReport');
+
+             // start  banner
+             Route::resource('banner',  'BannerController')->except(['show','create','store','destroy']);
+
          });
 
          // start web
@@ -327,7 +334,8 @@ use Illuminate\Support\Facades\Route;
              Route::post('addCompany',  'AddProjectController@addCompany');
              Route::post('addDesign',  'AddProjectController@addDesign');
 
-
+             // start  banner
+             Route::get('banner',  'BannerController@banner');
 
          });
 

@@ -1,7 +1,11 @@
 <template>
     <div>
+        <loader2 v-if="loading" />
         <!-- Home Banner -->
-        <section class="section home-banner row-middle">
+        <section
+            class="section home-banner row-middle"
+            :style="{'background-image': media ? 'url(/web/img/banner/'+media.file_name+')' : '' }"
+        >
             <div class="container">
                 <div class="row align-items-center custom-row">
                     <div class="col-md-9 col-lg-8 custom-col">
@@ -12,10 +16,10 @@
                                 <i class="fas fa-star checked"></i>
                                 <i class="fas fa-star checked"></i>
                                 <i class="fas fa-star checked"></i>
-                                <h5>{{$t('index.trused')}}</h5>
+                                <h5>{{banners.title1}}</h5>
                             </div>
-                            <h1>{{$t('index.best')}}</h1>
-                            <p>{{$t('index.finishing')}}</p>
+                            <h1>{{banners.title2}}</h1>
+                            <p>{{banners.title3}}</p>
                             <form class="form" id="store">
                                 <div class="form-inner">
                                     <div class="input-group">
@@ -602,11 +606,15 @@
 
 <script>
 import {onMounted,onBeforeMount,inject,ref} from 'vue';
+import webApi from "../../api/webAxios";
 
 export default {
     setup(){
 
         const emitter = inject('emitter');
+        const loading = ref(false);
+        const banners = ref({});
+        const media = ref({});
 
         let carousel = () => {
             $('#developers-slider').removeClass('owl-hidden');
@@ -642,12 +650,34 @@ export default {
 
         onMounted(() => {
             carousel();
+            banner();
             counter(20600,1,0);
             counter(67000,2,0);
             counter(105340,3,0);
         });
 
-        emitter.on('get_lang_web', () => {});
+        let banner = () => {
+            loading.value = true;
+            webApi.get(`/v1/web/banner`)
+                .then((res) => {
+                    banners.value = res.data.data.banner;
+                    media.value = res.data.data.banner.media
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا ...',
+                        text: 'يوجد خطاء في النظام يرجي اعاده الماوله مره اخري  !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
+        };
+
+        emitter.on('get_lang_web', () => {
+            banner();
+        });
 
         let counter = (num,id,time = 1000) => {
 
@@ -680,7 +710,7 @@ export default {
 
         };
 
-        return {counter};
+        return {counter,loading,banners,media};
     }
 }
 </script>
@@ -694,7 +724,6 @@ section{
 /*start banner*/
 
 .home-banner {
-    background-image: url(/web/img/Slider.jfif);
     height: 100vh !important;
     background-position: unset;
     padding-top: 5%;

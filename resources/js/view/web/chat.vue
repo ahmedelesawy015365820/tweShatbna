@@ -1,10 +1,33 @@
 <template>
     <!-- Content -->
     <div class="content">
+        <loader2 v-if="loading" />
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 back-text">
-                    <router-link to="" class="btn btn-custom">
+                    <router-link
+                        :to="{name:'dashboardClient',params: {lang:this.$i18n.locale}}"
+                        v-if="admin.role_name.includes('client')"
+                        class="btn btn-custom"
+                    >
+                        <i class="fa fa-chevron-left"></i>
+                        Back
+                    </router-link>
+
+                    <router-link
+                        :to="{name:'dashboardCompany',params: {lang:this.$i18n.locale}}"
+                        v-if="admin.role_name.includes('company')"
+                        class="btn btn-custom"
+                    >
+                        <i class="fa fa-chevron-left"></i>
+                        Back
+                    </router-link>
+
+                    <router-link
+                        :to="{name:'dashboardDesign',params: {lang:this.$i18n.locale}}"
+                        v-if="admin.role_name.includes('design')"
+                        class="btn btn-custom"
+                    >
                         <i class="fa fa-chevron-left"></i>
                         Back
                     </router-link>
@@ -21,7 +44,12 @@
                                         <div :class="['input-group-prepend',this.$i18n.locale == 'ar'?'search-ar':'']">
                                             <i class="fas fa-search icon-circle"></i>
                                         </div>
-                                        <input type="text" class="form-control rounded-pill" placeholder="Search">
+                                        <input
+                                               type="text"
+                                               class="form-control rounded-pill"
+                                               placeholder="Search"
+                                               v-model="search"
+                                        >
                                     </div>
                                 </form>
                             </div>
@@ -31,7 +59,7 @@
                                         href="javascript:void(0);"
                                         @click="showMessage(item.uuid,item.id)"
                                         v-for="item in converstions" :key="item.uuid"
-                                        :class="['media','d-flex',item.uuid == uuid? 'active' : '']"
+                                        :class="['media','d-flex',item.uuid == uuid? 'active no-event' : '']"
                                     >
                                         <div class="media-img-wrap flex-shrink-0">
                                             <div class="avatar avatar-away" v-for="client in item.users">
@@ -101,6 +129,16 @@
                                                     <div :class="['msg-box',this.$i18n.locale == 'ar'?'arrow-user':'']">
                                                         <div class="width-message">
                                                             <p>{{message.body}}</p>
+
+                                                            <div class="message" v-if="message.media.length">
+                                                                <a :href="`/web/img/${media.file_name}`"
+                                                                   download
+                                                                   v-for="media in message.media"
+                                                                >
+                                                                    <img :src="`/web/img/attachment/${media.file_name}`" />
+                                                                </a>
+                                                            </div>
+
                                                             <ul class="chat-msg-info">
                                                                 <li>
                                                                     <div class="chat-time">
@@ -126,6 +164,16 @@
                                                     <div :class="['msg-box',this.$i18n.locale == 'ar'?'message-client':'']">
                                                         <div class="width-message">
                                                             <p>{{message.body}}</p>
+
+                                                            <div class="message" v-if="message.media.length">
+                                                                <a :href="`/web/img/${media.file_name}`"
+                                                                   download
+                                                                   v-for="media in message.media"
+                                                                >
+                                                                    <img :src="`/web/img/attachment/${media.file_name}`" />
+                                                                </a>
+                                                            </div>
+
                                                             <ul class="chat-msg-info">
                                                                 <li>
                                                                     <div class="chat-time">
@@ -166,7 +214,7 @@
                                             type="file"
                                             id="attachment"
                                             multiple
-                                            accept=".png, .gif, .bmp .svg, .mav, .mp4, .mov, .avi, .m4a, .jpg, .jpeg, .mpga, .webp, .wna"
+                                            accept=".png, .gif,.svg, .mav, .jpg, .jpeg"
                                             @change="attachmentFun"
                                         >
                                     </div>
@@ -190,7 +238,7 @@
 </template>
 
 <script>
-import {onMounted,ref,onUpdated} from 'vue';
+import {onMounted,ref,onUpdated,watch,onBeforeMount} from 'vue';
 import webApi from "../../api/webAxios";
 import { useStore } from 'vuex';
 
@@ -199,6 +247,7 @@ export default {
     setup() {
 
         const store = useStore();
+        let loading = ref(false);
         const converstions = ref([]);
         const converstion = ref({});
         const converstion_id = ref(null);
@@ -208,12 +257,14 @@ export default {
         const hasScrolledToBottom = ref('');
         const show = ref(false);
         const uuid = ref('');
+        const search = ref('');
         const numberOfImage = ref(0);
         const attachment = ref([]);
 
         const body= ref('');
 
         let getConversation = () => {
+            loading.value = true;
             webApi.get(`/v1/web/conversation`)
                 .then((res) => {
 
@@ -233,6 +284,10 @@ export default {
                 .catch((err) => {
                     console.log(err);
                 })
+                .finally(() => {
+                    loading.value = false;
+                })
+
         };
 
         let showMessage = (uid,id) => {
@@ -240,6 +295,16 @@ export default {
             uuid.value = uid;
             converstion_id.value = id;
             show.value = false;
+            converstion.value = [];
+
+            Echo.private(`Conversation.${id}`)
+                .listen('MessageAddEvent', (e) => {
+                    converstion.value.push({
+                        body: e.message.body,
+                        media: e.media,
+                        user_id: e.message.user_id
+                    });
+                });
 
             user.value = converstions.value.find((q) => q.uuid == uuid.value).users[0]
 
@@ -248,16 +313,13 @@ export default {
                     show.value = true;
                     let l = res.data.data.conversation;
                     converstion.value = l;
-                    setTimeout(()=> {
-                        scrollBottom();
-                    },1);
                 })
                 .catch((err) => {})
 
         };
 
         const scrollBottom = () =>{
-            if(converstion.value.length >= 0){
+            if(converstion.value.length > 0){
                 let el = hasScrolledToBottom.value;
                 console.log(el.scrollHeight);
                 el.scrollTop = el.scrollHeight;
@@ -294,6 +356,7 @@ export default {
 
         let replayFun = () => {
 
+            let containerImages = document.querySelector('#container-images-1');
             const formData = new FormData();
             formData.append('uuid',uuid.value);
             for( var i = 0; i < attachment.value.length; i++ ){
@@ -302,45 +365,28 @@ export default {
             }
             formData.append('body',body.value);
 
+            body.value = '';
+            containerImages.innerHTML = '';
+            attachment.value = [];
+            numberOfImage.value = 0;
+
             if(body.value || attachment.value){
                 webApi.post(`/v1/web/addmessage`,formData)
-                    .then((res) => {
-                        converstion.value.push({
-                            body: body.value,
-                            attachment: attachment.value,
-                            user_id: admin.value.id
-                        });
-                    })
+                    .then((res) => {})
                     .catch((err) => {
                         console.log(err);
                     })
-                    .finally(() => {
-                        body.value = '';
-                        attachment.value = '';
-                    });
-
-                setTimeout(()=> {
-                    scrollBottom();
-                },1);
 
             }
         };
 
-        if(converstion_id.value){
-            Echo.private(`Conversation.${converstion_id.value}`)
-                .listen('MessageAddEvent', (e) => {
-                    converstion.value.push({
-                        body: e.message.body,
-                        attachment: e.message.attachment,
-                        user_id: e.message.user_id
-                    });
-                    console.log(e);
-                });
-        }
 
         onMounted(() => {
-            admin.value = store.state.auth.user;
             getConversation();
+        });
+
+        onBeforeMount(() => {
+            admin.value = store.state.auth.user;
         });
 
         onUpdated(() => {
@@ -362,7 +408,9 @@ export default {
             attachmentFun,
             showAttchment,
             replayFun,
-            numberOfImage
+            search,
+            numberOfImage,
+            loading
         };
     }
 }
@@ -448,13 +496,34 @@ export default {
     width: 90%;
     position: relative;
     margin: auto;
-    justify-content: space-evenly;
     gap: 20px;
     flex-wrap: wrap;
     padding: 10px;
     border-radius: 20px;
     background-color: #f7f7f7;
     margin-bottom: 6px;
+}
+
+.message{
+    position: relative;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 3px;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.message img{
+    display: inline-block;
+    width: 100px;
+    margin: 0 5px 4px;
+    height: auto;
+}
+
+.no-event {
+    pointer-events: none;
 }
 
 

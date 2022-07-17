@@ -16,10 +16,12 @@ class MessageAddEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
+    public $media;
 
-    public function __construct(Message $message)
+    public function __construct(Message $message,$media)
     {
         $this->message = $message;
+        $this->media = $media;
     }
 
     /**

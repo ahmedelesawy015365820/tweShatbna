@@ -43,7 +43,7 @@ class TrustDesignNotification extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toDatabse($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
             'design_id' => $this->user->id,

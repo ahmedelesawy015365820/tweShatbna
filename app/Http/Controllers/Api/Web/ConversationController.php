@@ -16,7 +16,7 @@ class ConversationController extends Controller
 
     public function index(Request $request)
     {
-//        $conversations = auth('api')->user()->conversation;
+
         $user_id = auth('api')->user()->id;
 
         $conversations = Conversation::
@@ -28,7 +28,11 @@ class ConversationController extends Controller
 
     public function show($id)
     {
-        $conversation = Conversation::where('uuid',$id)->first()->message;
+        $conversation = \App\Models\Message::
+        with('media')
+        ->whereRelation('conversation','uuid',$id)
+        ->get();
+
         return $this->sendResponse(['conversation' => $conversation ],'Data exited successfully');
     }
 
@@ -39,7 +43,8 @@ class ConversationController extends Controller
         $v = Validator::make($request->all(), [
             'body' => 'nullable|string',
             'uuid' => 'required',
-            'attachment.*' => 'nullable'.($request->hasFile('attachment')?'|mimes:jpeg,jpg,png,gif,bmp,svg,mav,mp4,mov,avi,m4a,mpga,webp,wna|max:102400':''),
+            'attachment' => 'nullable',
+            'attachment.*' => 'nullable'.($request->hasFile('attachment')?'|mimes:jpeg,jpg,png,gif,bmp,svg|max:202400':''),
         ]);
 
         if ($v->fails()) {
@@ -82,7 +87,7 @@ class ConversationController extends Controller
             'last_message_at' => now()
         ]);
 
-        broadcast(new MessageAddEvent($message))->toOthers();
+        broadcast(new MessageAddEvent($message,$message->media))->toOthers();
 
     }
 

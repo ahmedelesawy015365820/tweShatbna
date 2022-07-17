@@ -21,7 +21,12 @@ class ConversationController extends Controller
 
         $conversations = Conversation::
             whereRelation('users', 'user_id',$user_id)
-            ->with('users')->get();
+            ->with('users')
+            ->when($request->search,function ($q) use($request,$user_id){
+                return $q->whereRelation('users', 'name','like','%'.$request->search.'%')
+                        ->whereRelation('users', 'user_id',$user_id);
+            })
+            ->get();
 
         return $this->sendResponse(['conversations' => $conversations,'user' => $user_id],'Data exited successfully');
     }

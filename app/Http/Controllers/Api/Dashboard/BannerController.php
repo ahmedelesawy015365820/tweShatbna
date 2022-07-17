@@ -92,7 +92,7 @@ class BannerController extends Controller
                 $image = time().'.'. $request->file->getClientOriginalName();
 
                 // picture move
-                $request->file->storeAs('country', $image,'country');
+                $request->file->storeAs('banner', $image,'general');
 
                 $banner->media()->create([
                     'file_name' => $image ,

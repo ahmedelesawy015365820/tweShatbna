@@ -260,6 +260,7 @@ export default {
         const search = ref('');
         const numberOfImage = ref(0);
         const attachment = ref([]);
+        let debounce = ref({});
 
         const body= ref('');
 
@@ -391,6 +392,13 @@ export default {
 
         onUpdated(() => {
             scrollBottom();
+        });
+
+        watch(search,(search,oldSearch) => {
+            clearTimeout(debounce.value);
+            debounce.value= setTimeout(() => {
+                getConversation();
+            },500)
         });
 
         return {

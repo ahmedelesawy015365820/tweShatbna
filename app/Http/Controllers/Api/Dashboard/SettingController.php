@@ -8,6 +8,7 @@ use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class SettingController extends Controller
 {
@@ -54,6 +55,8 @@ class SettingController extends Controller
                     'price_sizing' => 'required',
                     'contact_sizing' => 'required',
                     'commercial_record' => 'required',
+                    'ar.account_currency' => 'required',
+                    'en.account_currency' => 'required',
                 ]);
 
                 if ($v->fails()) {

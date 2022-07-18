@@ -125,8 +125,6 @@ export default {
                     addJob.data.en.name = l.job.translations[1].name;
                     addJob.data.ar.name = l.job.translations[0].name;
                     addJob.data.Allow_adding_to_sales_team = l.job.Allow_adding_to_sales_team;
-
-                    console.log(l)
                 })
                 .catch((err) => {
                     console.log(err.response);
@@ -184,14 +182,12 @@ export default {
 
                 adminApi.put(`/v1/dashboard/job/${this.id}`,this.data)
                     .then((res) => {
-
                         notify({
                             title: `${this.t('global.EditSuccessfully')} <i class="fas fa-check-circle"></i>`,
                             type: "success",
                             duration: 5000,
                             speed: 2000
                         });
-
                     })
                     .catch((err) => {
                         this.errors = err.response.data.errors;

@@ -16,7 +16,9 @@ class SettingSeeder extends Seeder
     {
 
         Setting::create([
-            'commission_design' => 10
+            'commission_design' => 10,
+            'ar' => ["account_currency" => 'جنيه'],
+            'en' => ["account_currency"=> "L.E"],
         ]);
 
     }

@@ -48,6 +48,8 @@ import Assets from "./adminRoute/Assets";
 import Opponents from "./adminRoute/Opponents";
 import ExpenseAccounts from "./adminRoute/ExpenseAccounts";
 import IncomeAccounts from "./adminRoute/IncomeAccounts";
+import DailyRestriction from "./adminRoute/dailyRestriction";
+import trialBalance from "./adminRoute/trialBalance";
 import Report from "./adminRoute/report";
 
 
@@ -160,6 +162,8 @@ const routes = [
                     ...treasuriesExpense,
                     ...projectsManagement,
                     ...transferringTreasury,
+                    ...DailyRestriction,
+                    ...trialBalance,
                     ...setting
                 ]
             },

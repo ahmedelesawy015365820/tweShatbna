@@ -220,6 +220,7 @@ use Illuminate\Support\Facades\Route;
 
 
             //projects managemet*****************
+
             //designers fines
             Route::resource('designersFines','DesignersFinesController');
 
@@ -232,7 +233,6 @@ use Illuminate\Support\Facades\Route;
             //criteria for company
             Route::resource('companyCriteria','CriteriaForEvaluatingCompanyProjectsController');
 
-
             //design phases
             Route::resource('designPhases','DesignPhasesController');
 
@@ -242,13 +242,14 @@ use Illuminate\Support\Facades\Route;
             //phaseS BANDS
             Route::resource('phaseBands','PhaseBandsController');
 
-
              // Settings
              Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
 
-
              // Main Account
              Route::resource('mainAccount','MainAccountController');
+
+             // Daily Restriction
+             Route::resource('dailyRestriction','DailyRestrictionController');
 
              // Sub Account
              Route::get('subAccount/{main}/{id}','SubAccountController@index');

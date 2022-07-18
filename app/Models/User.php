@@ -166,6 +166,11 @@ class User extends Authenticatable implements JWTSubject ,MustVerifyEmail
         return $this->hasMany(AddShowDesign::class);
     }
 
+    public function restrictionRecord(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(RestrictionRecord::class);
+    }
+
 
     //end raletions
 

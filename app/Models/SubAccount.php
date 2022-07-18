@@ -61,6 +61,7 @@ class SubAccount extends Model implements TranslatableContract
         }
         return $num;
     }
+
     public function getAmountAttribute()
     {
         $num = $this->amount_transaction;
@@ -101,7 +102,7 @@ class SubAccount extends Model implements TranslatableContract
 
     public function getAmountTransactionAttribute()
     {
-        return  100 ;
+        return  $this->restriction()->get()->sum('amount') ;
     }
 
 
@@ -120,5 +121,15 @@ class SubAccount extends Model implements TranslatableContract
     public function mainAccount(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(MainAccount::class,'main_account_id');
+    }
+
+    public function restriction(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Restriction::class,'sub_account_id');
+    }
+
+    public function restrictionRecord(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(RestrictionRecord::class);
     }
 }

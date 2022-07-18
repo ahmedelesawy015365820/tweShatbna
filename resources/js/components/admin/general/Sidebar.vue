@@ -312,6 +312,18 @@
                                 </ul>
                             </li>
 
+                            <li :class="[$route.name == 'indexDailyRestriction'? 'active': '']">
+                                <router-link :to="{name:'indexDailyRestriction',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    {{$t('global.DailyRestriction')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexTrialBalance'? 'active': '']">
+                                <router-link :to="{name:'indexTrialBalance',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    {{$t('global.TrialBalance')}}
+                                </router-link>
+                            </li>
+
                         </ul>
                     </li>
 
@@ -339,7 +351,6 @@
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-book-reader"></i> <span> {{$t('global.Reports')}}</span>  <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span></a>
                         <ul>
-
                             <li>
                                 <a  href="#" :class="['drop-child',this.$i18n.locale == 'ar'?'menu-arrow-ar ml-4':'padding-en']" >
                                     <i  :class="['fas fa-coins',this.$i18n.locale == 'ar'?'t-right':'']"></i>
@@ -382,7 +393,6 @@
 
                                 </ul>
                             </li>
-
                         </ul>
                     </li>
 

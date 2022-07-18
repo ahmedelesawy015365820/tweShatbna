@@ -233,7 +233,12 @@
         "Reports": "التقارير",
         "PlatformIncome": "ايرادات المنصة",
         "FromDate": "من تاریخ",
-        "ToDate": "الى تاریخ"
+        "ToDate": "الى تاریخ",
+        "PlatformExpense": "مصروفات المنصة",
+        "IncomeTreasuries": "متحصلات الخزن",
+        "ExpenseTreasuries": "مصرؤفات الخزن",
+        "DailyBalance": "الحافظة اليومية",
+        "Total": "الاجمالى"
     },
 
     "treasury": {
@@ -324,5 +329,11 @@
     "Assets": {
         "Add": "اضافة البنود الاولى",
         "Edit": "تعديل البنود الاولى"
+    },
+    "notification": {
+        "trustDesign": "تاكيد الحساب",
+        "Notifications": "اشعارات",
+        "all": "عرض جميع الاشعارات",
+        "clear": "قراه الكل"
     }
 }

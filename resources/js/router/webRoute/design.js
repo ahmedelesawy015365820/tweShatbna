@@ -1,6 +1,7 @@
 import dashboardDesign from "../../view/web/design/design";
 import trust from "../../view/web/design/trust";
 import profile from "../../view/web/design/profile";
+import designNotification from "../../view/web/notifications";
 
 export default [
     {
@@ -33,6 +34,11 @@ export default [
                 path: 'profile',
                 name: 'profile',
                 component: profile
+            },
+            {
+                path: 'notification',
+                name: 'designNotification',
+                component: designNotification
             },
         ]
     },

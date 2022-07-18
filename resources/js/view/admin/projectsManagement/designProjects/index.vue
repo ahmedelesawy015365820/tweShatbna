@@ -87,7 +87,7 @@
 																<li>
 																	<div class="slot">
 																		<p>Location</p>
-																		<h5><img src="/assets/img/en.png" height="13" alt="Lang"> UK</h5>
+																		<h5><img src="assets/img/en.png" height="13" alt="Lang"> UK</h5>
 																	</div>
 																</li>
 																<li>

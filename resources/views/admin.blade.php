@@ -90,6 +90,7 @@
         <script src="https://js.pusher.com/7.1/pusher.min.js"></script>
 
         <script src="{{asset('admin/js/vanillatoasts.js')}}"></script>
+        <script src="{{asset('admin/js/printThis.js')}}"></script>
 
         <script src="{{mix('control/js/admin.js')}}"></script>
 

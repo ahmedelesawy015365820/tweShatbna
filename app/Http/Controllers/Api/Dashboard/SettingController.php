@@ -54,6 +54,7 @@ class SettingController extends Controller
                     'price_sizing' => 'required',
                     'contact_sizing' => 'required',
                     'commercial_record' => 'required',
+                    'refund_allowed_days' => 'required', //Number of days allowed to return the order
                 ]);
 
                 if ($v->fails()) {

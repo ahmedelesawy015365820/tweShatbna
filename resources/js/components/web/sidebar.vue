@@ -50,6 +50,17 @@
                                 <i class="material-icons">verified_user</i> الرئيسيه
                             </router-link>
                         </li>
+
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'companyNotification',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link',$route.name == 'companyNotification'? 'active' : '']"
+                            >
+                                <i class="material-icons">wifi_tethering</i> الاشعارات
+                            </router-link>
+                            <span class="notifiation">5</span>
+                        </li>
+
                         <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
                             <router-link
                                 :to="{name:'trustCompany',params:{lang:this.$i18n.locale}}"
@@ -78,6 +89,18 @@
                                 <i class="material-icons">verified_user</i> الرئيسيه
                             </router-link>
                         </li>
+
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'designNotification',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link',$route.name == 'designNotification'? 'active' : '']"
+                            >
+                                <i class="material-icons">wifi_tethering</i> الاشعارات
+                                <span class="notifiation">5</span>
+                            </router-link>
+                        </li>
+
+
                         <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
                             <router-link
                                 :to="{name:'trust',params:{lang:this.$i18n.locale}}"
@@ -108,6 +131,16 @@
                             </router-link>
                         </li>
 
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'advertiseNotification',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link',$route.name == 'advertiseNotification'? 'active' : '']"
+                            >
+                                <i class="material-icons">wifi_tethering</i> الاشعارات
+                            </router-link>
+                            <span class="notifiation">5</span>
+                        </li>
+
                         <li class="nav-item" v-if="!user.email_verified_at">
                             <router-link
                                 :to="{name:'packages',params: {lang:this.$i18n.locale}}"
@@ -132,6 +165,17 @@
                                 <i class="material-icons">verified_user</i> الرئيسيه
                             </router-link>
                         </li>
+
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'clientNotification',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link', $route.name == 'clientNotification'? 'active': '']"
+                            >
+                                <i class="material-icons">wifi_tethering</i> الاشعارات
+                            </router-link>
+                            <span class="notifiation">5</span>
+                        </li>
+
                         <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
                             <router-link
                                 :to="{name:'trustClient',params:{lang:this.$i18n.locale}}"
@@ -154,6 +198,17 @@
                                 :class="['nav-link', $route.name == 'addProject'? 'active': '']"
                             >
                                 <i class="material-icons">person_add</i> اضافه مشروع
+                            </router-link>
+                        </li>
+                        <li
+                            class="nav-item"
+                            v-if="parseInt(partner.trust)"
+                        >
+                            <router-link
+                                :to="{name:'orders',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link', $route.name == 'orders'? 'active': '']"
+                            >
+                                <i class="fa fa-list-ul"></i>{{$t('global.Orders')}}
                             </router-link>
                         </li>
                     </div>
@@ -186,6 +241,7 @@ export default {
         const partner = computed(() => store.getters['auth/partner']);
         const user = computed(() => store.getters['auth/user']);
         let roles = ref([]);
+        let count = ref(0);
 
         let sendData = () => {
             Swal.fire({
@@ -219,6 +275,11 @@ export default {
         onMounted(() => {
             roles.value = JSON.parse(localStorage.getItem('user')).role_name;
         });
+
+        Echo.private('App.Models.User.'+JSON.parse(localStorage.getItem("user")).id)
+            .notification((notification) => {
+                count.value += 1;
+            });
 
         const file = ref({});
         const loading = ref(false);
@@ -266,6 +327,7 @@ export default {
         };
 
         function logout(){
+            localStorage.setItem('cart',[])
             store.dispatch('auth/logout');
         }
 
@@ -335,6 +397,18 @@ export default {
 .settings-menu ul li a.main-adver:hover {
     color: #fcb00c !important;
     border: 0;
+}
+
+.notifiation{
+    margin: 0 63px;
+    border: 1px solid #f00;
+    color: #fff;
+    background-color: #f00;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
 }
 
 </style>

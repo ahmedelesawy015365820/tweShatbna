@@ -26,6 +26,8 @@ import advertise from "./webRoute/advertise";
 import design from "./webRoute/design";
 import company from "./webRoute/company";
 import client from "./webRoute/client";
+import loata from "./webRoute/loata";
+
 
 
 
@@ -164,6 +166,7 @@ const routes = [
                     ...client
                 ]
             },
+            ...loata,
         ]
     },
     {

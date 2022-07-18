@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Dashboard\AreaController;
+use App\Http\Controllers\Api\Dashboard\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -60,7 +62,7 @@ use Illuminate\Support\Facades\Route;
          Route::get('showComDetail/{id}',  'ShowProjectController@showComDetail');
          Route::post('addShow/{id}',  'ShowProjectController@addShow');
 
-         //advisor clie
+         //advisor client
          Route::get('getAdvisor',  'AdvisorClientController@index');
          Route::get('sectionOne',  'AdvisorClientController@sectionOne');
          Route::post('advisorClientStore',  'AdvisorClientController@store');
@@ -70,6 +72,22 @@ use Illuminate\Support\Facades\Route;
          Route::get('SizingSectionOne',  'SizingServiceController@sectionOne');
          Route::get('SizingSetting',  'SizingServiceController@index');
          Route::post('SizingClientStore',  'SizingServiceController@store');
+
+
+
+         //  start loata routes
+         Route::post('latestProducts','ProductController@latestProducts');
+         Route::post('products','ProductController@index');
+         Route::post('product/details/{id}','ProductController@show');
+         Route::get('getAllCategories',[CategoryController::class,'getAllCategories']);
+
+
+         Route::get('get_countries',[AreaController::class,'get_countries']);
+         Route::get('country_states/{country_id}',[AreaController::class,'country_states']);
+         Route::get('state_areas/{state_id}',[AreaController::class,'state_areas']);
+
+
+
 
      });
 
@@ -138,6 +156,13 @@ use Illuminate\Support\Facades\Route;
 
              // start state
              Route::resource('state','StateController')->except(['show']);
+
+
+            // start areas
+            Route::resource('area','AreaController')->except(['show']);
+            Route::get('get_countries','AreaController@get_countries');
+            Route::get('country_states/{country_id}','AreaController@country_states');
+            Route::get('state_areas/{state_id}','AreaController@state_areas');
 
              // start privacy
              Route::resource('privacy','PrivacyController')->except(['show','create']);
@@ -243,6 +268,30 @@ use Illuminate\Support\Facades\Route;
             //sizes services
             Route::resource('sizesService','SizesServiceController');
 
+
+            //loata products
+            Route::resource('products','ProductController');
+            //loata categories
+            Route::resource('categories','CategoryController');
+
+
+            // orders
+            Route::resource('orders','OrderController');
+
+            // update orders
+            Route::post('updateOrderStatus/{id}','OrderController@updateOrderStatus');
+            //hold orders
+            Route::post('holdOrder/{id}','OrderController@holdOrder');
+            // cancel order
+            Route::post('cancelOrder/{id}','OrderController@cancelOrder');
+
+
+            //loata weight cost
+            Route::resource('weightCost','WeightCostController');
+
+            //loata area cost
+            Route::resource('areaCost','AreaCostController');
+
              // Settings
              Route::resource('setting','SettingController')->except(['show','create','store','destroy']);
 
@@ -258,6 +307,11 @@ use Illuminate\Support\Facades\Route;
 
              // Report
              Route::get('incomePlatformReport','ReportController@incomePlatformReport');
+             Route::get('expensePlatformReport','ReportController@expensePlatformReport');
+             Route::get('transferringTreasuryPlatformReport','ReportController@transferringTreasuryPlatformReport');
+             Route::get('incomeTreasuryPlatformReport','ReportController@incomeTreasuryPlatformReport');
+             Route::get('expenseTreasuryPlatformReport','ReportController@expenseTreasuryPlatformReport');
+             Route::get('dailyBalancePlatformReport','ReportController@dailyBalancePlatformReport');
          });
 
          // start web
@@ -310,6 +364,20 @@ use Illuminate\Support\Facades\Route;
              Route::post('addCompany',  'AddProjectController@addCompany');
              Route::post('addDesign',  'AddProjectController@addDesign');
 
+
+            //auth for client
+            //orders
+            Route::post('/create-order','OrderController@createOrder');
+            Route::post('/orders','OrderController@getOrders');
+            Route::post('/order-details/{order}','OrderController@getOrderDetails');
+            Route::post('/getTotalWithShoppingCost/{area_id}','OrderController@getTotalWithShoppingCost');
+
+
+            //cart routes
+            Route::post('/get_cart','CartController@getCart');
+            Route::post('/add_item','CartController@addToCart');
+            Route::post('/update_item','CartController@updateCart');
+            Route::post('/delete_item','CartController@delete');
 
 
          });

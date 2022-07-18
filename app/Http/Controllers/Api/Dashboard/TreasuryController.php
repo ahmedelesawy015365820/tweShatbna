@@ -14,7 +14,6 @@ use Illuminate\Validation\Rule;
 class TreasuryController extends Controller
 {
     use Message;
-
     /**
      * get treasuries expense
      */

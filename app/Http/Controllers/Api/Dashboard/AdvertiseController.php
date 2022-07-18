@@ -48,7 +48,7 @@ class AdvertiseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //ali;
     }
 
     /**

@@ -16,7 +16,7 @@ class SettingSeeder extends Seeder
     {
 
         Setting::create([
-            'commission_design' => 10
+            'commission_design' => 10,
         ]);
 
     }

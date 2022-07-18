@@ -43,6 +43,12 @@ class Country extends Model implements TranslatableContract
         return $this->hasMany(State::class);
     }
 
+
+    public function areas()
+    {
+        return $this->hasManyThrough(Area::class,State::class);
+    }
+
     public function complement()
     {
         return $this->hasMany(Complement::class,'country_id');

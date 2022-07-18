@@ -70,7 +70,6 @@ export default {
                     .then((res) => {
                         notifications.value = res.data.data.Notifications;
                         count.value = res.data.data.count;
-                        console.log(res.data.data.Notifications);
                     })
                     .catch((err) => {
                         console.log(err.response);

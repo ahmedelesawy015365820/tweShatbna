@@ -96,6 +96,20 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-4 mb-3">
+                                                <label for="validationCustom13">{{$t('global.Number of days allowed to return the order')}}</label>
+                                                <input type="text" class="form-control"
+                                                       v-model.number="v$.refund_allowed_days.$model"
+                                                       id="validationCustom13"
+                                                       :class="{'is-invalid':v$.refund_allowed_days.$error,'is-valid':!v$.refund_allowed_days.$invalid}"
+                                                >
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.refund_allowed_days.required.$invalid">{{$t('global.Required')}}<br /> </span>
+                                                    <span v-if="v$.refund_allowed_days.numeric.$invalid">{{$t('global.ThisFieldMustBeANumber')}}<br /> </span>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <button class="btn btn-primary" type="submit">{{$t('global.Submit')}}</button>
                                     </form>
@@ -138,7 +152,8 @@ export default {
                 commission_design: null,
                 price_sizing:null,
                 commercial_record:null,
-                contact_sizing:null
+                contact_sizing:null,
+                refund_allowed_days:null,
 
             }
         });
@@ -161,6 +176,10 @@ export default {
                 contact_sizing:{
                     required,
                     numeric
+                },
+                refund_allowed_days:{
+                    required,
+                    numeric
                 }
             }
         });
@@ -175,6 +194,7 @@ export default {
                     addSetting.data.price_sizing = l.setting.price_sizing;
                     addSetting.data.commercial_record = l.setting.commercial_record;
                     addSetting.data.contact_sizing = l.setting.contact_sizing;
+                    addSetting.data.refund_allowed_days = l.setting.refund_allowed_days;
                 })
                 .catch((err) => {
                     console.log(err.response.data);

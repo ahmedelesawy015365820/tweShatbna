@@ -52,7 +52,7 @@
                                             <div class="form-row justify-content-center">
                                                 <div class="col-lg-4 text-center">
 
-                                                    <label class="text-center d-block">قم برفع صوره الوجه الامامي لوثيقه الهويه <br/> تظهر فيها جميع المعلومات واضحة</label>
+                                                    <label class="text-center d-block  mt-4">قم برفع صوره الوجه الامامي لوثيقه الهويه <br/> تظهر فيها جميع المعلومات واضحة</label>
                                                     <div class="btn btn-outline-primary waves-effect">
                                                     <span>
                                                         Choose files
@@ -71,7 +71,7 @@
                                                 </div>
 
                                                 <div class="col-lg-4 text-center">
-                                                    <label class="text-center d-block">قم برفع صوره الوجه الخلفي لوثيقه الهويه <br/> تظهر فيها جميع المعلومات واضحة</label>
+                                                    <label class="text-center d-block  mt-4">قم برفع صوره الوجه الخلفي لوثيقه الهويه <br/> تظهر فيها جميع المعلومات واضحة</label>
                                                     <div class="btn btn-outline-primary waves-effect">
                                                     <span>
                                                         Choose files
@@ -90,7 +90,7 @@
                                                 </div>
 
                                                 <div class="col-lg-4 text-center">
-                                                    <label class="text-center d-block">قم برفع سيلفي لك مع  وثيقة الهوية  حيث <br /> تظهر ملامح وجهك  الوثيقه</label>
+                                                    <label class="text-center d-block mt-4">قم برفع سيلفي لك مع  وثيقة الهوية  حيث <br /> تظهر ملامح وجهك  الوثيقه</label>
                                                     <div class="btn btn-outline-primary waves-effect">
                                                     <span>
                                                         Choose files
@@ -124,7 +124,7 @@
                                         <div :class="['col-lg-7', step == 2?'active' : '']">
                                             <h3 class="know-you">بيانات الحسابات البنكيه</h3>
 
-                                            <div class="form-row">
+                                            <div class="col-12">
                                                 <div class="col-md-12 mb-3">
                                                     <label for="validationServer01">اسم البنك</label>
                                                     <input type="text"
@@ -195,7 +195,7 @@
                                             <h3 class="know-you">معلومات عنك</h3>
 
                                             <div>
-                                                <div class="form-row">
+                                                <div class="d-flex col-12">
 
                                                     <div class="col-md-4 mb-3">
                                                         <label for="validationCustom021">الدوله</label>
@@ -629,7 +629,7 @@ export default {
 
 <style scoped>
 .content {
-    padding: 120px 0 30px;
+    padding: 220px 0 30px;
     position: relative;
     min-height: 100vh;
 }
@@ -637,11 +637,11 @@ export default {
 .error-trust{
     margin: 0 auto;
     position: absolute;
-    top: 0px;
+    top: 10%;
     transform: translate(0%, 65%);
     padding: 10px;
     text-align: center;
-    width: 43%;
+    width: 55%;
 }
 
 .main-page{
@@ -968,6 +968,9 @@ input:focus, select:focus , textarea:focus{
 @media only screen and (max-width: 630px){
     .main-page {
         margin-top: 30px;
+    }
+    .error-trust {
+        top: 7%;
     }
 }
 

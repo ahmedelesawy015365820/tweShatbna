@@ -35,14 +35,20 @@
 </style>
 
 <script>
+import webApi from "./api/webAxios";
+
     export default {
         mounted() {
             console.log('web.')
+            webApi.post("/v1/web/get_cart")
+            .then((result) => {
+               localStorage.setItem('cart',JSON.stringify(result.data.cart))
+            })
         },
         data(){
             return {
                 link : ['partners'],
             }
-        }
+        },
     }
 </script>

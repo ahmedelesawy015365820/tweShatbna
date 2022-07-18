@@ -329,13 +329,13 @@ export default {
 }
 
 .content.trust{
-    padding: 150px 0 30px;
+    padding: 220px 0 30px;
 }
 
 .error-trust{
     margin: 0 auto;
     position: absolute;
-    top: -1.8%;
+    top: 31px;
     transform: translate(0%, 65%);
     padding: 10px;
     text-align: center;

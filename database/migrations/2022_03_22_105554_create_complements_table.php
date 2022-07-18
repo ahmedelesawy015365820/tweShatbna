@@ -17,11 +17,12 @@ class CreateComplementsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('nameCompany')->nullable()->unique();
-            $table->foreignId('country_id')->nullable()->constrained('countries')->cascadeOnDelete();
-            $table->foreignId('state_id')->nullable()->constrained('states')->cascadeOnDelete();
+            $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
+            $table->foreignId('state_id')->constrained('states')->cascadeOnDelete();
             $table->string('phone_second')->nullable();
             $table->boolean('sendEmail')->default(false);
             $table->boolean('device')->default(false);
+
             $table->timestamps();
         });
     }

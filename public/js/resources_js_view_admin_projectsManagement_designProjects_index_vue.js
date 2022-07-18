@@ -168,7 +168,7 @@ var _hoisted_34 = {
   "class": "projects-details align-items-center"
 };
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"project-info\"><span>Dreamguystech</span><h2>Landing Page Redesign / Sales Page Redesign (Not Entire Web) </h2><div class=\"customer-info\"><ul class=\"list-details\"><li><div class=\"slot\"><p>Price type</p><h5>Fixed</h5></div></li><li><div class=\"slot\"><p>Location</p><h5><img src=\"/assets/img/en.png\" height=\"13\" alt=\"Lang\"> UK</h5></div></li><li><div class=\"slot\"><p>Expiry</p><h5>4 Days Left</h5></div></li></ul></div></div>", 1);
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"project-info\"><span>Dreamguystech</span><h2>Landing Page Redesign / Sales Page Redesign (Not Entire Web) </h2><div class=\"customer-info\"><ul class=\"list-details\"><li><div class=\"slot\"><p>Price type</p><h5>Fixed</h5></div></li><li><div class=\"slot\"><p>Location</p><h5><img src=\"assets/img/en.png\" height=\"13\" alt=\"Lang\"> UK</h5></div></li><li><div class=\"slot\"><p>Expiry</p><h5>4 Days Left</h5></div></li></ul></div></div>", 1);
 
 var _hoisted_36 = {
   "class": "project-hire-info"

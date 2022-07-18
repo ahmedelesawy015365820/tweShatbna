@@ -38,7 +38,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-if="companyPhases.data" v-for="(item,index) in companyPhases.data" :key="item.id" >
+                                        <tr v-if="Object.keys(companyPhases.data?? {} ).length" v-for="(item,index) in companyPhases.data" :key="item.id" >
                                             <td>{{index + 1}}</td>
                                             <td><a :href="'/web/img/general/'+item.image" target="_blank"><img :src="'/web/img/general/'+item.image" alt="" style="width:100px;height:70px"></a></td>
                                             <td>{{item.name}}</td>

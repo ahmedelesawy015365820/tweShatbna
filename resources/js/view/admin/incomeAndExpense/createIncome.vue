@@ -298,7 +298,6 @@ export default {
 .card{
     position: relative;
 }
-
 .amount{
     background-color: #fcb00c;
     color: #000;

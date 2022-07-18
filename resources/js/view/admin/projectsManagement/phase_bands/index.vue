@@ -35,7 +35,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr  v-for="(item,index) in phaseBands.data" v-if="phaseBands.data" :key="item.id" >
+                                        <tr  v-for="(item,index) in phaseBands.data" v-if="Object.keys(phaseBands.data?? {} ).length" :key="item.id" >
                                             <td>{{index + 1}}</td>
                                             <td>{{item.name}}</td>
                                             <td>

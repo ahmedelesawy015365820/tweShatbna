@@ -155,7 +155,10 @@ const actions = {
                 commit('editUser', l.user);
                 commit('editComplement', l.complement);
                 commit('editPartner', l.partner);
-
+                webApi.post("/v1/web/get_cart")
+                    .then((result) => {
+                    localStorage.setItem('cart',JSON.stringify(result.data.cart))
+                })
                 let locale = localStorage.getItem("langWeb");
 
                 if(l.user.role_name[0] == 'client'){

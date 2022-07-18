@@ -1,6 +1,6 @@
 <template>
     <!-- Page Content -->
-    <div class="content">
+    <div :class="['content', !parseInt(partner.trust) ?'trust':'']">
         <loader2 v-if="loading2" />
 
         <div class="container-fluid">
@@ -321,20 +321,25 @@ export default {
 
 <style scoped>
 .content {
-    padding: 120px 0 30px;
+    padding: 200px 0 30px;
     position: relative;
     min-height: 100vh;
+}
+
+.content.trust{
+    padding: 250px 0 30px;
 }
 
 .error-trust{
     margin: 0 auto;
     position: absolute;
-    top: -35px;
+    top: 31px;
     transform: translate(0%, 65%);
     padding: 10px;
     text-align: center;
-    width: 43%;
+    width: 55%;
 }
+
 .error-trust  .nav-link:hover {
     color: #fcb00c;
 }

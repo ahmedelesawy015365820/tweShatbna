@@ -33,19 +33,19 @@
                                         <form @submit.prevent="getByDate" class="needs-validation">
                                             <div class="form-group row">
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <label >{{$t('global.FromDate')}}</label>
                                                     <input type="date" class="form-control date-input"
-                                                           v-model="fromDate">
+                                                           v-model="fromDate" required>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <label >{{$t('global.ToDate')}}</label>
                                                     <input type="date" class="form-control date-input"
-                                                           v-model="toDate">
+                                                           v-model="toDate" required>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-2">
                                                     <button class="btn btn-primary" type="submit">{{$t('global.Submit')}}</button>
                                                 </div>
 
@@ -54,11 +54,11 @@
                                         </form>
                                     </div>
                                     <div class="col-12 row mt-3">
-                                        <div class="col-4">
+                                        <div class="col-6">
                                             {{ $t('global.Search') }}:
                                             <input type="search" v-model="search" class="custom"/>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-6 d-flex justify-content-end">
                                         <button @click="printExpense" class="btn btn-success print-button">
                                             {{$t('global.Print')}}
                                             <i class="fa fa-print"></i>
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="printExpense">
                                 <table class="table mb-0">
                                     <thead>
                                     <tr>
@@ -145,7 +145,7 @@ export default {
 
            loading.value = true;
 
-           adminApi.get(`/v1/dashboard/incomePlatformReport?page=${page}&search=${search.value}`)
+           adminApi.get(`/v1/dashboard/incomePlatformReport?page=${page}&search=${search.value}&from_date=${fromDate.value}&to_date=${toDate.value}`)
                .then((res) => {
                    let l = res.data.data;
                    incomesPaginate.value = l.incomes;
@@ -192,12 +192,21 @@ export default {
             }
         });
 
+        let printExpense = () => {
+            var printContents = document.getElementById('printExpense').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
+
 
         let dateFormat = (item) => {
             return new Date(item).toDateString();
         }
 
-        return {fromDate,toDate,getByDate,incomes,treasuries, loading, getIncome,dateFormat, search, incomesPaginate};
+        return {printExpense,fromDate,toDate,getByDate,incomes,treasuries, loading, getIncome,dateFormat, search, incomesPaginate};
 
     },
     data() {
@@ -247,7 +256,7 @@ export default {
     margin-top: 38px !important;
 }
 .date-input{
-    width: 150px !important;
+    width: 300px !important;
     display: inline-block !important;
     margin: 0px 8px 0 8px !important;
 }

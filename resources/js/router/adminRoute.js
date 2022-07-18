@@ -13,6 +13,7 @@ import department from './adminRoute/department';
 import job from './adminRoute/job';
 import role from './adminRoute/role';
 import projectsManagement from '../router/adminRoute/projectsManagement';
+import loata from '../router/adminRoute/Loata';
 import advisorPackage from './adminRoute/advisorPackage';
 import treasuriesIncome from './adminRoute/treasuriesIncome';
 import treasuriesExpense from './adminRoute/treasuriesExpense';
@@ -28,6 +29,7 @@ import expected from './adminRoute/Expected';
 import setting from './adminRoute/setting';
 import country from './adminRoute/country';
 import state from './adminRoute/state';
+import area from './adminRoute/area';
 import privacy from './adminRoute/previcy';
 import support from './adminRoute/support';
 import trustAdvertise from './adminRoute/trustAdvertise';
@@ -134,6 +136,7 @@ const routes = [
                     ...country,
                     ...privacy,
                     ...state,
+                    ...area,
                     ...comService,
                     ...desService,
                     ...desDegree,
@@ -159,6 +162,7 @@ const routes = [
                     ...treasuriesIncome,
                     ...treasuriesExpense,
                     ...projectsManagement,
+                    ...loata,
                     ...transferringTreasury,
                     ...setting
                 ]

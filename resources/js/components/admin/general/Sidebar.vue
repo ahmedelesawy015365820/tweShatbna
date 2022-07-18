@@ -106,7 +106,7 @@
 
                     <li :class="[$route.name == 'indexBanner'? 'active': '']">
                         <router-link :to="{name:'indexBanner',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-folder"></i> <span>{{$t('sidebar.banner')}}</span>
+                            <i class="fas fa-carrot"></i> <span>{{$t('sidebar.banner')}}</span>
                         </router-link>
                     </li>
 

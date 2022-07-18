@@ -432,7 +432,7 @@
                 </div>
 
                 <div id="developers-slider" class="owl-carousel owl-theme developers-slider">
-                    <div class="freelance-widget">
+                    <div v-for="sponser in sponsers" class="freelance-widget">
                         <div class="freelance-content">
                             <a
                                 data-toggle="modal"
@@ -443,149 +443,14 @@
                             </a>
                             <div class="freelance-img">
                                 <a href="#">
-                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
+                                    <img :src="`/web/img/sponser/${sponser.media.file_name}`" alt="User Image">
                                 </a>
                             </div>
                             <div class="freelance-info">
-                                <h3><a href="#">Sponser Name</a></h3>
+                                <h3><a href="#">{{ sponser.name }}</a></h3>
                                 <div class="freelance-specific row justify-content-center">
                                     <span>
-                                        من اكبر مصنعي الاساس في مصر
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a
-                                data-toggle="modal"
-                                href="#rating"
-                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
-                            >
-                                <i class="fas fa-star"></i>
-                            </a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Sponser Name</a></h3>
-                                <div class="freelance-specific row justify-content-center">
-                                    <span>
-                                        من اكبر مصنعي الاساس في مصر
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a
-                                data-toggle="modal"
-                                href="#rating"
-                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
-                            >
-                                <i class="fas fa-star"></i>
-                            </a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Sponser Name</a></h3>
-                                <div class="freelance-specific row justify-content-center">
-                                    <span>
-                                        من اكبر مصنعي الاساس في مصر
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a
-                                data-toggle="modal"
-                                href="#rating"
-                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
-                            >
-                                <i class="fas fa-star"></i>
-                            </a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Sponser Name</a></h3>
-                                <div class="freelance-specific row justify-content-center">
-                                    <span>
-                                        من اكبر مصنعي الاساس في مصر
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a
-                                data-toggle="modal"
-                                href="#rating"
-                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
-                            >
-                                <i class="fas fa-star"></i>
-                            </a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Sponser Name</a></h3>
-                                <div class="freelance-specific row justify-content-center">
-                                    <span>
-                                        من اكبر مصنعي الاساس في مصر
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
-                        </div>
-                    </div>
-                    <div class="freelance-widget">
-                        <div class="freelance-content">
-                            <a
-                                data-toggle="modal"
-                                href="#rating"
-                                :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
-                            >
-                                <i class="fas fa-star"></i>
-                            </a>
-                            <div class="freelance-img">
-                                <a href="#">
-                                    <img src="/web/img/user/avatar-1.jpg" alt="User Image">
-                                </a>
-                            </div>
-                            <div class="freelance-info">
-                                <h3><a href="#">Sponser Name</a></h3>
-                                <div class="freelance-specific row justify-content-center">
-                                    <span>
-                                        من اكبر مصنعي الاساس في مصر
+                                        {{ sponser.description }}
                                     </span>
                                 </div>
                             </div>
@@ -615,6 +480,7 @@ export default {
         const loading = ref(false);
         const banners = ref({});
         const media = ref({});
+        const sponsers = ref([]);
 
         let carousel = () => {
             $('#developers-slider').removeClass('owl-hidden');
@@ -648,20 +514,23 @@ export default {
             //end owl-carousel
         };
 
-        onMounted(() => {
-            carousel();
-            banner();
+        onBeforeMount(() => {
+            getData();
             counter(20600,1,0);
             counter(67000,2,0);
             counter(105340,3,0);
         });
 
-        let banner = () => {
+        let getData = () => {
             loading.value = true;
-            webApi.get(`/v1/web/banner`)
+            webApi.get(`/v1/web/home`)
                 .then((res) => {
                     banners.value = res.data.data.banner;
-                    media.value = res.data.data.banner.media
+                    media.value = res.data.data.banner.media;
+                    sponsers.value = res.data.data.sponser;
+                    setTimeout(() => {
+                        carousel();
+                    },500)
                 })
                 .catch((err) => {
                     Swal.fire({
@@ -676,7 +545,7 @@ export default {
         };
 
         emitter.on('get_lang_web', () => {
-            banner();
+            getData();
         });
 
         let counter = (num,id,time = 1000) => {
@@ -710,7 +579,7 @@ export default {
 
         };
 
-        return {counter,loading,banners,media};
+        return {counter,loading,banners,media,sponsers};
     }
 }
 </script>

@@ -334,8 +334,9 @@ use Illuminate\Support\Facades\Route;
              Route::post('addCompany',  'AddProjectController@addCompany');
              Route::post('addDesign',  'AddProjectController@addDesign');
 
-             // start  banner
-             Route::get('banner',  'BannerController@banner');
+             // start  home
+             Route::get('home',  'HomeController@get');
+
 
          });
 

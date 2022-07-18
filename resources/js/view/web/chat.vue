@@ -266,6 +266,7 @@ export default {
 
         let getConversation = () => {
             loading.value = true;
+            converstions.value = [];
             webApi.get(`/v1/web/conversation`)
                 .then((res) => {
 

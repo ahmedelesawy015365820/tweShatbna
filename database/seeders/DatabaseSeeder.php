@@ -34,7 +34,8 @@ class DatabaseSeeder extends Seeder
 //        $this->call(ClientSeeder::class);
         $this->call(ConverstionSeeder::class);
         $this->call(MessagerSeeder::class);
-
+        $this->call(BannerSeeder::class);
+        $this->call(SponserSeeder::class);
 
     }
 }

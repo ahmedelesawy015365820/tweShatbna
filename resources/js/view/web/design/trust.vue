@@ -684,6 +684,7 @@ export default {
                                             title: 'يوجد خطا في النظام...',
                                             text: 'يرجا اعاده تحميل الصفحه و المحاوله مره اخري !',
                                         });
+                                        console.log(err.response)
                                     });
 
                             })

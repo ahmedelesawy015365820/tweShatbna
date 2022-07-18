@@ -2,6 +2,8 @@ import dashboardDesign from "../../view/web/design/design";
 import trust from "../../view/web/design/trust";
 import profile from "../../view/web/design/profile";
 import designNotification from "../../view/web/notifications";
+import chat from "../../view/web/chat";
+import store from '../../store/web';
 
 export default [
     {
@@ -11,7 +13,7 @@ export default [
             template:'<router-view />',
         },
         beforeEnter: (to, from,next) => {
-           let roles = JSON.parse(localStorage.getItem('user')).role_name;
+            let roles = store.state.auth.user.role_name;
 
             if(roles.includes('design')){
                 return next();
@@ -39,6 +41,11 @@ export default [
                 path: 'notification',
                 name: 'designNotification',
                 component: designNotification
+            },
+            {
+                path: 'chats',
+                name: 'chatDesign',
+                component: chat,
             },
         ]
     },

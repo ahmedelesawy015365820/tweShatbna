@@ -104,9 +104,15 @@
                         </router-link>
                     </li>
 
+                    <li :class="[$route.name == 'indexBanner'? 'active': '']">
+                        <router-link :to="{name:'indexBanner',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-carrot"></i> <span>{{$t('sidebar.banner')}}</span>
+                        </router-link>
+                    </li>
+
                     <li :class="[$route.name == 'indexSizingOne'? 'active': '']">
                         <router-link :to="{name:'indexSizingOne',params: {lang:this.$i18n.locale}}">
-                            <i class="fas fa-app-store"></i> <span>{{$t('global.Sizing service data')}}</span>
+                            <i class="fas fa-campground"></i> <span>{{$t('global.Sizing service data')}}</span>
                         </router-link>
                     </li>
 

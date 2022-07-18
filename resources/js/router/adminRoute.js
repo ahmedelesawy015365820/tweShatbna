@@ -7,6 +7,7 @@ import trustCompany from './adminRoute/trustCompany';
 import comService from './adminRoute/companyService';
 import unity from './adminRoute/unity';
 import desService from './adminRoute/designService';
+import banner from './adminRoute/banner';
 import desDegree from './adminRoute/dedreeDesign';
 import treasury from './adminRoute/treasury';
 import department from './adminRoute/department';
@@ -164,7 +165,9 @@ const routes = [
                     ...transferringTreasury,
                     ...DailyRestriction,
                     ...trialBalance,
-                    ...setting
+                    ...setting,
+                    ...banner
+
                 ]
             },
         ]

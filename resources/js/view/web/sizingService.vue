@@ -399,8 +399,8 @@ export default {
 </script>
 
 <style scoped>
-.content {
-    padding: 0px !important;
+.content{
+    padding: 86px 0 !important;
 }
 
 .breadcrumb-bar {

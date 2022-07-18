@@ -302,8 +302,9 @@
 
 <script>
 import Sidebar from '../../../components/web/sidebar';
-import {computed, ref} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {useStore} from 'vuex';
+import webAxios from "../../../api/webAxios";
 
 export default {
     name: "dashboard",
@@ -316,6 +317,7 @@ export default {
         const partner = computed(() => store.getters['auth/partner']);
         const user = computed(() => store.getters['auth/user']);
         let loading2 = computed(() => store.getters['auth/loading'] );
+
 
         return {partner,loading2,user};
     }
@@ -346,7 +348,7 @@ export default {
     color: #fcb00c;
 }
 .error-trust.send{
-    top: 0px;
+    top: 58px;
 }
 
 </style>

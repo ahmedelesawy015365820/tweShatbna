@@ -2221,7 +2221,6 @@ html.menu-opened body header:before {
 -----------------------*/
 
 .home-banner {
-    background-image: url(../img/banner2.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12454,6 +12453,12 @@ figcaption {
     text-align: center;
     font-size: 2.4vmin ;
     margin-top: .5vmin;
+}
+
+figure.chat {
+    width: 50px;
+    display: inline-block;
+    margin: 10px;
 }
 
 img{

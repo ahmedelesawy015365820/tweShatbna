@@ -14,6 +14,7 @@ class CompanyServiceSeeder extends Seeder
      */
     public function run()
     {
+
         CompanyService::create([
             'ar' => ["name" => 'مقاولات'],
             'en' => ["name"=> "Construction"],
@@ -24,7 +25,6 @@ class CompanyServiceSeeder extends Seeder
             'en' => ["name"=> "General finishes"],
             'status' => true
         ]);
-
 
     }
 }

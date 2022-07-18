@@ -42,7 +42,8 @@
         "FirstSectionData": "First Section Data",
         "setting": "Settings",
         "Assets": "Assets",
-        "treasuriesIncome": "Treasuries Income"
+        "treasuriesIncome": "Treasuries Income",
+        "banner": "Banner"
     },
     "global": {
         "Search":"Search",

@@ -156,6 +156,7 @@ class CountryController extends Controller
                     'file_type' => $file_type,
                     'file_sort' => 1
                 ]);
+
             }
 
             DB::commit();

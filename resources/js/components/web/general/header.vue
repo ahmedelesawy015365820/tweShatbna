@@ -66,20 +66,51 @@
                 </ul>
                 <ul class="nav header-navbar-rht">
                     <li v-if="token">
-                        <router-link :to="{name:'home',params: {lang:this.$i18n.locale}}" class="partner">
-                            Ahmed Mohamed
+                        <router-link
+                            :to="{name:'dashboardClient',params: {lang:this.$i18n.locale}}"
+                            v-if="user.role_name.includes('client')"
+                            class="partner"
+                        >
+                            {{ user.name.substr(0,12) }}
+                        </router-link>
+
+                        <router-link
+                            :to="{name:'dashboardAdvertise',params: {lang:this.$i18n.locale}}"
+                            v-if="user.role_name.includes('advertiser')"
+                            class="partner"
+                        >
+                            {{ user.name.substr(0,12) }}
+                        </router-link>
+
+                        <router-link
+                            :to="{name:'dashboardCompany',params: {lang:this.$i18n.locale}}"
+                            v-if="user.role_name.includes('company')"
+                            class="partner"
+                        >
+                            {{ user.name.substr(0,12) }}
+                        </router-link>
+
+                        <router-link
+                            :to="{name:'dashboardDesign',params: {lang:this.$i18n.locale}}"
+                            v-if="user.role_name.includes('design')"
+                            class="partner"
+                        >
+                            {{ user.name.substr(0,12) }}
                         </router-link>
                     </li>
+
                     <li v-if="!token">
                         <router-link :to="{name:'partners',params: {lang:this.$i18n.locale}}" class="partner">
                             {{$t('header.partner')}}
                         </router-link>
                     </li>
+
                     <li v-if="!token" :class="[$route.name == 'registerPartiner' ? 'active' : '']">
                         <router-link :to="{name:'registerClient',params: {lang:this.$i18n.locale}}" class="reg-btn custom">
                             <i class="fas fa-user"></i> {{$t('header.register')}}
                         </router-link>
                     </li>
+
                     <li v-if="!token" :class="[$route.name == 'loginPartiner' ? 'active' : '']">
                         <router-link :to="{name:'loginPartiner',params: {lang:this.$i18n.locale}}" class="log-btn custom">
                             <i class="fas fa-lock"></i>
@@ -95,12 +126,13 @@
                     <li v-if="token">
                         <router-link
                             :to="{name:'addProject',params: {lang:this.$i18n.locale}}"
-                            v-if="role.role_name.includes('client')"
+                            v-if="user.role_name.includes('client')"
                             class="login-btn addProject"
                         >
                             {{$t('header.project')}}
                         </router-link >
                     </li>
+
                     <li v-if="!token">
                         <router-link :to="{name:'addProject',params: {lang:this.$i18n.locale}}" class="login-btn">
                             {{$t('header.project')}}
@@ -116,7 +148,7 @@
 <script>
 import lang from './LangWeb.vue';
 import {useStore} from 'vuex';
-import {computed,ref,onMounted} from 'vue';
+import {computed,ref,onMounted,onBeforeMount} from 'vue';
 
 export default {
     name: "layout-header",
@@ -132,7 +164,8 @@ export default {
 
         const store = useStore();
         const token = computed(() => store.getters['auth/token']);
-        const role = computed(() => store.getters['auth/user'] || []);
+        const user = computed(() => store.getters['auth/user'] || []);
+        const name = ref('');
 
 
         function init() {
@@ -158,7 +191,7 @@ export default {
             init();
         });
 
-        return {token,scroll,role};
+        return {token,scroll,user};
     }
 }
 </script>

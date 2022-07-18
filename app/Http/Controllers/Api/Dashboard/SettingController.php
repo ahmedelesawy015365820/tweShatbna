@@ -8,6 +8,7 @@ use App\Traits\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class SettingController extends Controller
 {
@@ -55,6 +56,8 @@ class SettingController extends Controller
                     'contact_sizing' => 'required',
                     'commercial_record' => 'required',
                     'refund_allowed_days' => 'required', //Number of days allowed to return the order
+                    'ar.account_currency' => 'required',
+                    'en.account_currency' => 'required',
                 ]);
 
                 if ($v->fails()) {

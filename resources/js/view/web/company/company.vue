@@ -344,6 +344,6 @@ export default {
     color: #fcb00c;
 }
 .error-trust.send{
-    top: 0px;
+    top: 58px;
 }
 </style>

@@ -7,6 +7,7 @@ import trustCompany from './adminRoute/trustCompany';
 import comService from './adminRoute/companyService';
 import unity from './adminRoute/unity';
 import desService from './adminRoute/designService';
+import banner from './adminRoute/banner';
 import desDegree from './adminRoute/dedreeDesign';
 import treasury from './adminRoute/treasury';
 import department from './adminRoute/department';
@@ -50,6 +51,8 @@ import Assets from "./adminRoute/Assets";
 import Opponents from "./adminRoute/Opponents";
 import ExpenseAccounts from "./adminRoute/ExpenseAccounts";
 import IncomeAccounts from "./adminRoute/IncomeAccounts";
+import DailyRestriction from "./adminRoute/dailyRestriction";
+import trialBalance from "./adminRoute/trialBalance";
 import Report from "./adminRoute/report";
 
 
@@ -164,7 +167,11 @@ const routes = [
                     ...projectsManagement,
                     ...loata,
                     ...transferringTreasury,
-                    ...setting
+                    ...DailyRestriction,
+                    ...trialBalance,
+                    ...setting,
+                    ...banner
+
                 ]
             },
         ]

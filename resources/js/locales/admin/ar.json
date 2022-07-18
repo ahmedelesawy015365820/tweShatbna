@@ -42,7 +42,8 @@
         "Projects Management": "ادارة المشاريع",
         "Internal Projects": "مشاريع شطبنا",
         "External Projects": "المشاريع الخارجية",
-        "treasuriesIncome": "وارد الخزن"
+        "treasuriesIncome": "وارد الخزن",
+        "banner": "البانر"
     },
     "global": {
         "Search":"بحث",
@@ -238,7 +239,36 @@
         "IncomeTreasuries": "متحصلات الخزن",
         "ExpenseTreasuries": "مصرؤفات الخزن",
         "DailyBalance": "الحافظة اليومية",
-        "Total": "الاجمالى"
+        "Total": "الاجمالى",
+        "AccountCurrencyAr": "عملة الحسابات باللغة العربية",
+        "AccountCurrencyEn": "عملة الحسابات باللغة الانجليزية",
+        "DailyRestriction": "قيود يومية",
+        "AccountingEntryNumber": "رقم القيد المحاسبي",
+        "Description": "الوصف",
+        "FromAccount": "من حساب",
+        "ToAccount": "الي حساب",
+        "RegistrationDate": "تاریخ القید",
+        "DescriptionIsRequired": "الوصف مطلوب .",
+        "DescriptionIsMustHaveAtLeast": "الوصف يجب ان يحتوى على الاقل",
+        "AccountName": "أسم الحساب",
+        "RestrictionDescription": "وصف القيد",
+        "Delete": "حذف",
+        "AddANewLine": "اضافة سطر جديد ",
+        "The total of the debit must be equal to the total of the creditor after posting all the accounting entries in all the previous operations": "یجب ان یكون اجمالي المدین یساوي اجمالي الدائن بعد ترحیل كافة القیود المحاسبیة فى كل العملیات السابقة",
+        "TotalDebit": "اجمالى المدين",
+        "TotalCreditor": "اجمالى الدائن",
+        "Show": "عرض",
+        "AccountingEntry": "القيد المحاسبي",
+        "AccountingEntryRecord": "سجل القيد المحاسبي",
+        "Number": "رقم",
+        "ProcedureDate": "تاريخ الإجراء",
+        "Procedure": "الإجراء",
+        "Employee": "الموظف",
+        "TrialBalance": "ميزان المراجعة",
+        "Totals": "مجاميع",
+        "Holding": "ارصدة",
+        "TotalsDifference": "فرق المجامیع",
+        "BalanceDifference": "فرق الارصدة"
     },
 
     "treasury": {

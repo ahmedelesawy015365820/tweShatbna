@@ -89,6 +89,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
+        // start  home
+        Route::get('home',  'HomeController@get');
+
      });
 
 
@@ -99,7 +102,8 @@ use Illuminate\Support\Facades\Route;
         // start Dashboard
          Route::group(['prefix' => 'dashboard','namespace' => 'Dashboard'],function () {
 
-             // start User
+
+             // start Notification
              Route::get('getAllNot','NotificationController@getAllNot');
              Route::get('getNotNotRead','NotificationController@getNotNotRead');
              Route::post('clearItem/{id}','NotificationController@clearItem');
@@ -243,6 +247,7 @@ use Illuminate\Support\Facades\Route;
 
 
             //projects managemet*****************
+
             //designers fines
             Route::resource('designersFines','DesignersFinesController');
 
@@ -254,7 +259,6 @@ use Illuminate\Support\Facades\Route;
 
             //criteria for company
             Route::resource('companyCriteria','CriteriaForEvaluatingCompanyProjectsController');
-
 
             //design phases
             Route::resource('designPhases','DesignPhasesController');
@@ -298,6 +302,9 @@ use Illuminate\Support\Facades\Route;
              // Main Account
              Route::resource('mainAccount','MainAccountController');
 
+             // Daily Restriction
+             Route::resource('dailyRestriction','DailyRestrictionController');
+
              // Sub Account
              Route::get('subAccount/{main}/{id}','SubAccountController@index');
              Route::get('getMainSub/{id}','SubAccountController@getMainSub');
@@ -312,10 +319,25 @@ use Illuminate\Support\Facades\Route;
              Route::get('incomeTreasuryPlatformReport','ReportController@incomeTreasuryPlatformReport');
              Route::get('expenseTreasuryPlatformReport','ReportController@expenseTreasuryPlatformReport');
              Route::get('dailyBalancePlatformReport','ReportController@dailyBalancePlatformReport');
+
+             // start  banner
+             Route::resource('banner',  'BannerController')->except(['show','create','store','destroy']);
+
          });
 
          // start web
          Route::group(['prefix' => 'web','namespace' => 'Web'],function () {
+
+             // start Notification
+             Route::get('getAllNot','NotificationController@getAllNot');
+             Route::get('getNotNotRead','NotificationController@getNotNotRead');
+             Route::post('clearItem/{id}','NotificationController@clearItem');
+             Route::post('getNotNotRead','NotificationController@clearAll');
+
+             //  start chat
+             Route::get('conversation','ConversationController@index');
+             Route::get('conversation/{id}','ConversationController@show');
+             Route::post('addmessage','ConversationController@addMessage');
 
              // start verify[company,design,advertiser]
               Route::post('email/verification-notification', 'AuthController@sendVerificationEmail');

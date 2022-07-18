@@ -58,7 +58,16 @@
                             >
                                 <i class="material-icons">wifi_tethering</i> الاشعارات
                             </router-link>
-                            <span class="notifiation">5</span>
+                            <span class="notifiation" v-if="count">{{count}}</span>
+                        </li>
+
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'chatCompany',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link', $route.name == 'chatCompany'? 'active': '']"
+                            >
+                                <i class="material-icons" >chat</i> شات
+                            </router-link>
                         </li>
 
                         <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
@@ -96,10 +105,18 @@
                                 :class="['nav-link',$route.name == 'designNotification'? 'active' : '']"
                             >
                                 <i class="material-icons">wifi_tethering</i> الاشعارات
-                                <span class="notifiation">5</span>
+                                <span class="notifiation" v-if="count">{{count}}</span>
                             </router-link>
                         </li>
 
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'chatDesign',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link', $route.name == 'chatDesign'? 'active': '']"
+                            >
+                                <i class="material-icons" >chat</i> شات
+                            </router-link>
+                        </li>
 
                         <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
                             <router-link
@@ -138,7 +155,7 @@
                             >
                                 <i class="material-icons">wifi_tethering</i> الاشعارات
                             </router-link>
-                            <span class="notifiation">5</span>
+                            <span class="notifiation"  v-if="count">{{count}}</span>
                         </li>
 
                         <li class="nav-item" v-if="!user.email_verified_at">
@@ -171,9 +188,18 @@
                                 :to="{name:'clientNotification',params:{lang:this.$i18n.locale}}"
                                 :class="['nav-link', $route.name == 'clientNotification'? 'active': '']"
                             >
-                                <i class="material-icons">wifi_tethering</i> الاشعارات
+                                <i class="material-icons" >wifi_tethering</i> الاشعارات
                             </router-link>
-                            <span class="notifiation">5</span>
+                            <span class="notifiation" v-if="count">{{count}}</span>
+                        </li>
+
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'chatClient',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link', $route.name == 'chatClient'? 'active': '']"
+                            >
+                                <i class="material-icons" >chat</i> شات
+                            </router-link>
                         </li>
 
                         <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
@@ -215,6 +241,7 @@
 
                     <!--    end client    -->
 
+
                     <li class="nav-item">
                         <button @click="logout" type="submit"  class="nav-link">
                             <i class="material-icons">power_settings_new</i> Logout
@@ -228,20 +255,21 @@
 
 <script>
 import {useStore} from "vuex";
-import {ref, computed, onBeforeMount, onMounted} from 'vue';
+import {ref, computed, onBeforeMount, onMounted,toRefs} from 'vue';
 import webApi from "../../api/webAxios";
 import { useRoute } from 'vue-router'
 import router from "../../router/webRoute";
+import webAxios from "../../api/webAxios";
 
 export default {
     name: "Sidebar",
     setup(){
         const store = useStore();
+        const count = ref(0);
 
         const partner = computed(() => store.getters['auth/partner']);
         const user = computed(() => store.getters['auth/user']);
         let roles = ref([]);
-        let count = ref(0);
 
         let sendData = () => {
             Swal.fire({
@@ -273,7 +301,8 @@ export default {
         });
 
         onMounted(() => {
-            roles.value = JSON.parse(localStorage.getItem('user')).role_name;
+            roles.value = store.state.auth.user.role_name;
+            notificationNotRead();
         });
 
         Echo.private('App.Models.User.'+JSON.parse(localStorage.getItem("user")).id)
@@ -326,12 +355,22 @@ export default {
 
         };
 
+        let notificationNotRead = () => {
+            webAxios.get(`/v1/web/getNotNotRead`)
+                .then((res) => {
+                    count.value = res.data.data.count;
+                })
+                .catch((err) => {
+                    console.log(err.response);
+                })
+        };
+
         function logout(){
             localStorage.setItem('cart',[])
             store.dispatch('auth/logout');
         }
 
-        return {logout,verify,partner,user,sendData,image,changeImageProfile,file,loading,roles}
+        return {logout,verify,partner,user,sendData,image,changeImageProfile,file,loading,roles,count}
     }
 }
 </script>
@@ -401,14 +440,13 @@ export default {
 
 .notifiation{
     margin: 0 63px;
-    border: 1px solid #f00;
     color: #fff;
     background-color: #f00;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
     text-align: center;
     line-height: 20px;
+    padding: 0px 2.8%;
 }
+
 
 </style>

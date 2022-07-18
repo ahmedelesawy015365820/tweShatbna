@@ -81,6 +81,8 @@
                                                     <span v-if="v$.contact_sizing.numeric.$invalid">{{$t('global.ThisFieldMustBeANumber')}}<br /> </span>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-4 mb-3">
                                                 <label for="validationCustom01">{{$t('global.CommercialRecord')}}</label>
                                                 <input type="text" class="form-control"
@@ -107,6 +109,38 @@
                                                 <div class="invalid-feedback">
                                                     <span v-if="v$.refund_allowed_days.required.$invalid">{{$t('global.Required')}}<br /> </span>
                                                     <span v-if="v$.refund_allowed_days.numeric.$invalid">{{$t('global.ThisFieldMustBeANumber')}}<br /> </span>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="validationCustom01">{{$t('global.AccountCurrencyEn')}}</label>
+                                                <input type="text" class="form-control"
+                                                       v-model.trim="v$.en.account_currency.$model"
+                                                       id="validationCustom26"
+                                                       :placeholder="$t('global.AccountCurrencyEn')"
+                                                       :class="{'is-invalid':v$.en.account_currency.$error,'is-valid':!v$.en.account_currency.$invalid}"
+                                                >
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.en.account_currency.required.$invalid">{{$t('global.NameEnIsRequired')}}<br /> </span>
+                                                    <span v-if="v$.en.account_currency.minLength.$invalid">{{$t('global.NameEnIsMustHaveAtLeast')}} {{ v$.en.account_currency.minLength.$params.min }} {{$t('global.Letters')}} <br /></span>
+                                                    <span v-if="v$.en.account_currency.maxLength.$invalid">{{$t('global.NameEnIsMustHaveAtMost')}} {{ v$.en.account_currency.maxLength.$params.max }} {{$t('global.Letters')}} </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="validationCustom02">{{$t('global.AccountCurrencyAr')}}</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       v-model.trim="v$.ar.account_currency.$model"
+                                                       id="validationCustom02"
+                                                       :class="{'is-invalid':v$.ar.account_currency.$error,'is-valid':!v$.ar.account_currency.$invalid}"
+                                                       :placeholder="$t('global.AccountCurrencyAr')"
+                                                >
+                                                <div class="valid-feedback">{{$t('global.LooksGood')}}</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.ar.account_currency.required.$invalid">{{$t('global.NameArIsRequired')}} <br /></span>
+                                                    <span v-if="v$.ar.account_currency.minLength.$invalid">{{$t('global.NameArIsMustHaveAtLeast')}} {{ v$.ar.account_currency.minLength.$params.min }} {{$t('global.Letters')}} <br /></span>
+                                                    <span v-if="v$.ar.account_currency.maxLength.$invalid">{{$t('global.NameArIsMustHaveAtMost')}} {{ v$.ar.account_currency.maxLength.$params.max }} {{$t('global.Letters')}} </span>
                                                 </div>
                                             </div>
 
@@ -127,7 +161,7 @@
 <script>
 import {computed, onMounted, reactive, toRefs, inject, ref, watch} from "vue";
 import useVuelidate from '@vuelidate/core';
-import {required,numeric} from '@vuelidate/validators';
+import {required, numeric, minLength, maxLength} from '@vuelidate/validators';
 import adminApi from "../../../api/adminAxios";
 import { notify } from "@kyvg/vue3-notification";
 import {useI18n} from "vue-i18n";
@@ -154,6 +188,8 @@ export default {
                 commercial_record:null,
                 contact_sizing:null,
                 refund_allowed_days:null,
+                en:{ account_currency : ''},
+                ar:{ account_currency : ''},
 
             }
         });
@@ -180,6 +216,20 @@ export default {
                 refund_allowed_days:{
                     required,
                     numeric
+                },
+                en:{
+                    account_currency: {
+                        minLength: minLength(3),
+                        maxLength:maxLength(40),
+                        required
+                    }
+                },
+                ar:{
+                    account_currency: {
+                        minLength: minLength(3),
+                        maxLength:maxLength(40),
+                        required
+                    }
                 }
             }
         });
@@ -195,6 +245,8 @@ export default {
                     addSetting.data.commercial_record = l.setting.commercial_record;
                     addSetting.data.contact_sizing = l.setting.contact_sizing;
                     addSetting.data.refund_allowed_days = l.setting.refund_allowed_days;
+                    addSetting.data.en.account_currency = l.setting.translations[1].account_currency;
+                    addSetting.data.ar.account_currency = l.setting.translations[0].account_currency;
                 })
                 .catch((err) => {
                     console.log(err.response.data);

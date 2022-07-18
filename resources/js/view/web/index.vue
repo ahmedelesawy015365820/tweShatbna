@@ -533,6 +533,7 @@ export default {
                     },500)
                 })
                 .catch((err) => {
+                    console.log(err.response);
                     Swal.fire({
                         icon: 'error',
                         title: 'يوجد خطا ...',

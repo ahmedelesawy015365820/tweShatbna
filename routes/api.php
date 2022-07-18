@@ -72,8 +72,9 @@ use Illuminate\Support\Facades\Route;
          Route::get('SizingSetting',  'SizingServiceController@index');
          Route::post('SizingClientStore',  'SizingServiceController@store');
 
-         // start  banner
-         Route::get('banner',  'BannerController@banner');
+         
+             // start  home
+             Route::get('home',  'HomeController@get');
 
      });
 
@@ -334,10 +335,6 @@ use Illuminate\Support\Facades\Route;
              Route::get('getProject',  'AddProjectController@getService');
              Route::post('addCompany',  'AddProjectController@addCompany');
              Route::post('addDesign',  'AddProjectController@addDesign');
-
-             // start  home
-             Route::get('home',  'HomeController@get');
-
 
          });
 

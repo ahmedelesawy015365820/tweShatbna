@@ -74,7 +74,7 @@ export default {
     setup(){
 
         // get packages
-        let banner = ref({});
+        let banner = ref([]);
         let loading = ref(false);
 
         let getSetting = () => {
@@ -84,7 +84,6 @@ export default {
                 .then((res) => {
                     let l = res.data.data;
                     banner.value = l.banner;
-                    console.log(l)
                 })
                 .catch((err) => {
                     console.log(err.response);

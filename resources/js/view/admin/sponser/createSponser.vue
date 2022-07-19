@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <div class="card-header pt-0 mb-4">
                                 <router-link
-                                    :to="{name: 'indexBanner', params: {lang: locale || 'ar'}}"
+                                    :to="{name: 'indexSponser', params: {lang: locale || 'ar'}}"
                                     class="btn btn-custom btn-dark"
                                 >
                                     back
@@ -34,115 +34,200 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <form @submit.prevent="editBanner" class="needs-validation">
+                                    <form @submit.prevent="storeSponser" class="needs-validation">
                                         <div class="form-row row">
+
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom01">Title 1 (EN)</label>
+                                                <label for="validationCustom01">Name (EN)</label>
                                                 <input type="text" class="form-control"
-                                                       v-model.trim="v$.en.title1.$model"
+                                                       v-model.trim="v$.en.name_en.$model"
                                                        id="validationCustom01"
                                                        placeholder="Name En"
-                                                       :class="{'is-invalid':v$.en.title1.$error,'is-valid':!v$.en.title1.$invalid}"
+                                                       :class="{'is-invalid':v$.en.name_en.$error,'is-valid':!v$.en.name_en.$invalid}"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.en.title1.required.$invalid">name en is required.<br /> </span>
+                                                    <span v-if="v$.en.name_en.required.$invalid">name en is required.<br /> </span>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom02">Title 1 (AR)</label>
+                                                <label for="validationCustom02">Name (AR)</label>
                                                 <input type="text"
                                                        class="form-control"
-                                                       v-model.trim="v$.ar.title1.$model"
+                                                       v-model.trim="v$.ar.name_ar.$model"
                                                        id="validationCustom02"
-                                                       :class="{'is-invalid':v$.ar.title1.$error,'is-valid':!v$.ar.title1.$invalid}"
+                                                       :class="{'is-invalid':v$.ar.name_ar.$error,'is-valid':!v$.ar.name_ar.$invalid}"
                                                        placeholder="Name Ar"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.ar.title1.required.$invalid">name en is required. <br /></span>
+                                                    <span v-if="v$.ar.name_ar.required.$invalid">name ar is required. <br /></span>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom03">Title 2 (EN)</label>
-                                                <input type="text" class="form-control"
-                                                       v-model.trim="v$.en.title2.$model"
-                                                       id="validationCustom03"
-                                                       placeholder="Name En"
-                                                       :class="{'is-invalid':v$.en.title2.$error,'is-valid':!v$.en.title2.$invalid}"
-                                                >
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">
-                                                    <span v-if="v$.en.title2.required.$invalid">name en is required.<br /> </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="validationCustom04">Title 2 (AR)</label>
+                                                <label for="validationCustom04">Title (en)</label>
                                                 <input type="text"
                                                        class="form-control"
-                                                       v-model.trim="v$.ar.title2.$model"
+                                                       v-model.trim="v$.en.description1_en.$model"
                                                        id="validationCustom04"
-                                                       :class="{'is-invalid':v$.ar.title2.$error,'is-valid':!v$.ar.title2.$invalid}"
-                                                       placeholder="Name Ar"
+                                                       :class="{'is-invalid':v$.en.description1_en.$error,'is-valid':!v$.en.description1_en.$invalid}"
+                                                       placeholder="Title En"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.ar.title2.required.$invalid">name en is required. <br /></span>
+                                                    <span v-if="v$.en.description1_en.required.$invalid">Title en is required. <br /></span>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6 mb-3">
-                                                <label for="validationCustom05">Title 3 (EN)</label>
-                                                <input type="text" class="form-control"
-                                                       v-model.trim="v$.en.title3.$model"
-                                                       id="validationCustom05"
-                                                       placeholder="Name En"
-                                                       :class="{'is-invalid':v$.en.title3.$error,'is-valid':!v$.en.title3.$invalid}"
-                                                >
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">
-                                                    <span v-if="v$.en.title3.required.$invalid">name en is required.<br /> </span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="validationCustom06">Title 3 (AR)</label>
+                                                <label for="validationCustom03">Title (AR)</label>
                                                 <input type="text"
                                                        class="form-control"
-                                                       v-model.trim="v$.ar.title3.$model"
-                                                       id="validationCustom06"
-                                                       :class="{'is-invalid':v$.ar.title3.$error,'is-valid':!v$.ar.title3.$invalid}"
-                                                       placeholder="Name Ar"
+                                                       v-model.trim="v$.ar.description1_ar.$model"
+                                                       id="validationCustom03"
+                                                       :class="{'is-invalid':v$.ar.description1_ar.$error,'is-valid':!v$.ar.description1_ar.$invalid}"
+                                                       placeholder="Title Ar"
                                                 >
                                                 <div class="valid-feedback">Looks good!</div>
                                                 <div class="invalid-feedback">
-                                                    <span v-if="v$.ar.title3.required.$invalid">name en is required. <br /></span>
+                                                    <span v-if="v$.ar.description1_ar.required.$invalid">Title ar is required. <br /></span>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 row flex-fill">
-                                                <div class="btn btn-outline-primary waves-effect">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationCustom07">Location (en)</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       v-model.trim="v$.en.location_en.$model"
+                                                       id="validationCustom07"
+                                                       :class="{'is-invalid':v$.en.location_en.$error,'is-valid':!v$.en.location_en.$invalid}"
+                                                       placeholder="Location En"
+                                                >
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.en.location_en.required.$invalid">Location en is required. <br /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationCustom08">Location (AR)</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       v-model.trim="v$.ar.location_ar.$model"
+                                                       id="validationCustom08"
+                                                       :class="{'is-invalid':v$.ar.location_ar.$error,'is-valid':!v$.ar.location_ar.$invalid}"
+                                                       placeholder="Location Ar"
+                                                >
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.ar.location_ar.required.$invalid">Location ar is required. <br /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationCustom00">Email</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       v-model.trim="v$.email.$model"
+                                                       id="validationCustom00"
+                                                       :class="{'is-invalid':v$.email.$error,'is-valid':!v$.email.$invalid}"
+                                                       placeholder="Location Ar"
+                                                >
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.email.required.$invalid">Email is required. <br /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationCustom000">Phone</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       v-model.trim="v$.phone.$model"
+                                                       id="validationCustom000"
+                                                       :class="{'is-invalid':v$.phone.$error,'is-valid':!v$.phone.$invalid}"
+                                                       placeholder="Location Ar"
+                                                >
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.phone.required.$invalid">Phone ar is required. <br /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationCustom05">Description (en)</label>
+                                                <textarea type="text"
+                                                       class="form-control"
+                                                       v-model.trim="v$.en.description2_en.$model"
+                                                       id="validationCustom05"
+                                                       :class="{'is-invalid':v$.en.description2_en.$error,'is-valid':!v$.en.description2_en.$invalid}"
+                                                       placeholder="Description En"
+                                                ></textarea>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.en.description2_en.required.$invalid">Description en is required. <br /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationCustom06">Description (AR)</label>
+                                                <textarea type="text"
+                                                       class="form-control"
+                                                       v-model.trim="v$.ar.description2_ar.$model"
+                                                       id="validationCustom06"
+                                                       :class="{'is-invalid':v$.ar.description2_ar.$error,'is-valid':!v$.ar.description2_ar.$invalid}"
+                                                       placeholder="Description Ar"
+                                                ></textarea>
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">
+                                                    <span v-if="v$.ar.description2_ar.required.$invalid">Description ar is required. <br /></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex-fill col-md-3">
+                                                <div class="row">
+                                                    <div class="btn btn-outline-primary waves-effect">
                                                     <span>
                                                         Choose files
                                                         <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
                                                     </span>
-                                                    <input
-                                                        name="mediaPackage"
-                                                        type="file"
-                                                        @change="preview"
-                                                        id="mediaPackage"
-                                                        accept="image/png,jepg,jpg"
-                                                    >
+                                                        <input
+
+                                                            type="file"
+                                                            @change="preview1"
+                                                            id="mediaPackage1"
+                                                            accept="image/png,jepg,jpg"
+                                                        >
+                                                    </div>
+                                                    <p class="num-of-files">{{numberOfImage1 ? numberOfImage1 + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                    <span class="text-danger text-center" v-if="min1">images is required. <br /></span>
+                                                    <span class="text-danger text-center" v-if="requiredn1">images is must have at least 1 photos<br /></span>
+                                                    <div class="container-images" id="container-images1" v-show="numberOfImage1"></div>
                                                 </div>
-                                                <span class="text-danger text-center">اقصي ارتفاع للصوره يكون 600px و اقصي عرض 1000px و ان حجمها لا يتعدي 2mb</span>
-                                                <p class="num-of-files">{{numberOfImage ? numberOfImage + ' Files Selected' : 'No Files Chosen' }}</p>
-                                                <div class="container-images" id="container-images" v-show="data.file && numberOfImage"></div>
-                                                <div class="container-images" v-show="!numberOfImage">
-                                                    <figure>
-                                                        <figcaption>
-                                                            <img :src="`/web/img/banner/${image}`">
-                                                        </figcaption>
-                                                    </figure>
+                                            </div>
+
+                                            <div class="flex-fill col-md-9">
+                                                <div class="row">
+                                                    <div class="btn btn-outline-primary waves-effect">
+                                                    <span>
+                                                        Choose files
+                                                        <i class="fas fa-cloud-upload-alt ml-3" aria-hidden="true"></i>
+                                                    </span>
+                                                        <input
+                                                            multiple
+                                                            type="file"
+                                                            @change="preview2"
+                                                            id="mediaPackage2"
+                                                            accept="image/png,jepg,jpg"
+                                                        >
+                                                    </div>
+                                                    <p class="num-of-files">{{numberOfImage2 ? numberOfImage2 + ' Files Selected' : 'No Files Chosen' }}</p>
+                                                    <span class="text-danger text-center" v-if="min2">images is required. <br /></span>
+                                                    <span class="text-danger text-center" v-if="requiredn2">images is must have at least 1 photos<br /></span>
+                                                    <span class="text-danger text-center" v-if="max2">images is must have at most 5 photos. <br /></span>
+                                                    <div class="container-images" id="container-images2" v-show="numberOfImage2"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,9 +245,9 @@
 </template>
 
 <script>
-import {computed, onMounted, reactive, toRefs, inject, ref, watch} from "vue";
+import {computed, reactive, toRefs, ref, watch} from "vue";
 import useVuelidate from '@vuelidate/core';
-import {required,minLength,between,maxLength,alpha,integer} from '@vuelidate/validators';
+import {required} from '@vuelidate/validators';
 import adminApi from "../../../api/adminAxios";
 import { notify } from "@kyvg/vue3-notification";
 
@@ -173,98 +258,125 @@ export default {
             errors:{}
         }
     },
-    props: ['id'],
-    setup(props){
+    setup(){
         // get create Package
         let loading = ref(false);
-        const { id } = toRefs(props);
-        const image = ref('');
 
         //start design
-        let banner =  reactive({
+        let sponser =  reactive({
             data:{
-                en:{ title1 : '',title2 : '',title3 : ''},
-                ar:{ title1 : '',title2 : '',title3 : ''},
-                file: {}
+                ar:{ name_ar : '',description1_ar : '',description2_ar : '',location_ar : ''},
+                en:{ name_en : '',description1_en : '',description2_en : '',location_en : ''},
+                phone: '',
+                email: '',
+                file: {},
+                banners: []
             }
         });
 
-
         const rules = computed(() => {
             return {
-                en:{
-                    title1: {
+                ar:{
+                    name_ar: {
                         required,
                     },
-                    title2: {
+                    description1_ar: {
                         required,
                     },
-                    title3: {
+                    description2_ar: {
+                        required,
+                    },
+                    location_ar: {
                         required,
                     }
                 },
-                ar:{
-                    title1: {
+                en:{
+                    name_en: {
                         required,
                     },
-                    title2: {
+                    description1_en: {
                         required,
                     },
-                    title3: {
+                    description2_en: {
+                        required,
+                    },
+                    location_en: {
                         required,
                     }
+                },
+                phone: {
+                    required,
+                },
+                email: {
+                    required,
                 }
             }
         });
 
-        let getDATA = () => {
-            loading.value = true;
+        const v$ = useVuelidate(rules,sponser.data);
 
-            adminApi.get(`/v1/dashboard/banner/${id.value}/edit`)
-                .then((res) => {
-                    let l = res.data.data;
-                    banner.data.en.title1 = l.banner.translations[1].title1;
-                    banner.data.ar.title1 = l.banner.translations[0].title1;
-                    banner.data.en.title2 = l.banner.translations[1].title2;
-                    banner.data.ar.title2 = l.banner.translations[0].title2;
-                    banner.data.en.title3 = l.banner.translations[1].title3;
-                    banner.data.ar.title3 = l.banner.translations[0].title3;
-                    image.value = l.banner.media.file_name;
+        const numberOfImage1 = ref(0);
+        const numberOfImage2 = ref(0);
+        // validation image
+        const min1 = ref(false);
+        const requiredn1 = ref(false);
+        const max2 = ref(false);
+        const min2 = ref(false);
+        const requiredn2 = ref(false);
 
-                })
-                .catch((err) => {
-                    console.log(err.response.data);
-                })
-                .finally(() => {
-                    loading.value = false;
-                })
-        };
+        watch(numberOfImage1, (count, prevCount) => {
+            if(!count || count < 1){
+                min1.value = true;
+                requiredn1.value = true;
+            }else {
+                min1.value = false;
+                requiredn1.value = false;
+            }
+        });
 
-        onMounted(() => {
-            getDATA();
-        })
+        watch(numberOfImage2, (count, prevCount) => {
+            if(!count || count < 1){
+                min2.value = true;
+                requiredn2.value = true;
+            }else {
+                min2.value = false;
+                requiredn2.value = false;
+                max2.value = false;
+            }
+        });
 
-        const v$ = useVuelidate(rules,banner.data);
+        let empty1 = () => {
+            numberOfImage1.value = 0;
+            let clearInput = document.querySelector('#mediaPackage1').value = '';
+            min1.value = false;
+            requiredn1.value = false;
+        }
 
-        const numberOfImage = ref(0);
+        let empty2 = () => {
+            numberOfImage2.value = 0;
+            let clearInput = document.querySelector('#mediaPackage2').value = '';
+            min2.value = false;
+            requiredn2.value = false;
+            max2.value = false;
+        }
 
-        let preview = (e) => {
+        let preview1 = (e) => {
 
-            let containerImages = document.querySelector('#container-images');
-            if(numberOfImage.value){
+            let containerImages = document.querySelector('#container-images1');
+            if(numberOfImage1.value){
                 containerImages.innerHTML = '';
             }
-            banner.data.file = {};
+            sponser.data.file = {};
 
-            numberOfImage.value = e.target.files.length;
+            numberOfImage1.value = e.target.files.length;
 
-            banner.data.file = e.target.files[0];
+            sponser.data.file = e.target.files[0];
 
             let reader = new FileReader();
             let figure = document.createElement('figure');
             let figcap = document.createElement('figcaption');
 
-            figcap.innerText = banner.data.file.name;
+            figcap.innerText = sponser.data.file.name;
             figure.appendChild(figcap);
 
             reader.onload = () => {
@@ -274,33 +386,90 @@ export default {
             }
 
             containerImages.appendChild(figure);
-            reader.readAsDataURL(banner.data.file);
+            reader.readAsDataURL(sponser.data.file);
 
         };
 
+        let preview2 = (e) => {
 
-        return {loading,...toRefs(banner),id,v$,preview,numberOfImage,image};
+            let containerImages = document.querySelector('#container-images2');
+            if(numberOfImage2.value){
+                containerImages.innerHTML = '';
+            }
+            sponser.data.banners = [];
+
+            numberOfImage2.value = e.target.files.length;
+
+            for(let i of e.target.files){
+
+                sponser.data.banners.push(i);
+
+                let reader = new FileReader();
+                let figure = document.createElement('figure');
+                let figcap = document.createElement('figcaption');
+
+                figcap.innerText = i.name;
+                figure.appendChild(figcap);
+
+                reader.onload = () => {
+                    let img = document.createElement('img');
+                    img.setAttribute('src',reader.result);
+                    figure.insertBefore(img,figcap);
+                }
+
+                containerImages.appendChild(figure);
+                reader.readAsDataURL(i);
+
+            }
+
+        };
+
+        return {
+            loading,
+            ...toRefs(sponser),
+            v$,
+            preview1,
+            preview2,
+            numberOfImage1,
+            numberOfImage2,
+            empty1,
+            empty2,
+            min1,
+            max2,
+            min2,
+            requiredn1,
+            requiredn2
+        };
     },
     methods: {
-        editBanner(){
+        storeSponser(){
             this.v$.$validate();
 
-            if(!this.v$.$error){
+            if(!this.v$.$error && this.numberOfImage1 && this.numberOfImage2){
 
                 this.loading = true;
                 this.errors = {};
 
                 let formData = new FormData();
-                formData.append('title1_ar',this.data.en.title1);
-                formData.append('title1_en',this.data.ar.title1);
-                formData.append('title2_ar',this.data.en.title2);
-                formData.append('title2_en',this.data.ar.title2);
-                formData.append('title3_ar',this.data.en.title3);
-                formData.append('title3_en',this.data.ar.title3);
+                formData.append('name_en',this.data.en.name_en);
+                formData.append('name_ar',this.data.ar.name_ar);
+                formData.append('description1_en',this.data.en.description1_en);
+                formData.append('description1_ar',this.data.ar.description1_ar);
+                formData.append('description2_en',this.data.en.description2_en);
+                formData.append('description2_ar',this.data.ar.description2_ar);
+                formData.append('location_en',this.data.en.location_en);
+                formData.append('location_ar',this.data.ar.location_ar);
+                formData.append('phone',this.data.phone);
+                formData.append('email',this.data.email);
                 formData.append('file',this.data.file);
-                formData.append('_method','PUT');
 
-                adminApi.put(`/v1/dashboard/banner/${this.id}`,formData)
+                for(let i;i < this.data.banners.length ; ++i){
+                    let file = this.data.banners[i];
+
+                    formData.append('banners[' + i + ']', file);
+                }
+
+                adminApi.post(`/v1/dashboard/sponser`,formData)
                     .then((res) => {
 
                         notify({
@@ -310,15 +479,43 @@ export default {
                             speed: 2000
                         });
 
+                        this.resetForm();
+                        this.empty1();
+                        this.empty2();
+                        this.$nextTick(() => { this.v$.$reset() });
+
                     })
                     .catch((err) => {
                         this.errors = err.response.data.errors;
+                        console.log(err.response);
                     })
                     .finally(() => {
                         this.loading = false;
                     });
 
+            }else {
+                if(!this.numberOfImage1 || !this.numberOfImage2){
+                    this.min1 = true;
+                    this.requiredn1 = true;
+                    this.max2 = true;
+                    this.min2 = true;
+                    this.requiredn2 = true;
+                }
             }
+        },
+        resetForm(){
+            this.data.en.name_en = '';
+            this.data.ar.name_ar = '';
+            this.data.en.description1_en = '';
+            this.data.ar.description1_ar = '';
+            this.data.en.description2_en = '';
+            this.data.ar.description2_ar = '';
+            this.data.en.location_en = '';
+            this.data.ar.location_ar = '';
+            this.data.phone = '';
+            this.data.email = '';
+            this.data.file = {};
+            this.data.banners = [];
         }
     }
 }
@@ -400,4 +597,7 @@ input[type="file"] {
     background-color: #f7f7f7;
 }
 
+textarea {
+    height: 175px;
+}
 </style>

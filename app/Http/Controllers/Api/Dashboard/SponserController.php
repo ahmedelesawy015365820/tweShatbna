@@ -36,8 +36,8 @@ class SponserController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        try {
+//        DB::beginTransaction();
+//        try {
 
             // Validator request
             $v = Validator::make($request->all(), [
@@ -47,13 +47,17 @@ class SponserController extends Controller
                 'description1_en' => 'required|string',
                 'description2_ar' => 'required|string',
                 'description2_en' => 'required|string',
+                'location_ar' => 'required|string',
+                'location_en' => 'required|string',
                 'email' => 'required|string',
-                'location' => 'required|string',
                 'phone' => 'required|string',
-                'file' => 'nullable'.($request->hasFile('file')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=10,min_height=10,max_width=50,max_height=50':''),
-                'banners' => 'nullable'.($request->hasFile('banners')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=10,min_height=10,max_width=50,max_height=50':''),
+                'file' => 'required|mimes:jpeg,jpg,png,webp',
+                'banners' => 'required',
+                'banners.*' => 'required|mimes:jpeg,jpg,png,webp',
             ]);
 
+//            |max:2048|dimensions:min_width=170,min_height=120,max_width=170,max_height=120
+//            |max:2048|dimensions:min_width=275,min_height=275,max_width=275,max_height=275
 
             $sponser = Sponser::create([
                 'ar'=> [
@@ -66,52 +70,62 @@ class SponserController extends Controller
                 ],
             ]);
 
-            $sponser->details()->create([
-                
+            $Details = $sponser->details()->create([
+                'ar'=> [
+                    "location" => $request->location_ar,
+                    "description" => $request->description2_ar
+                ],
+                'en' => [
+                    "location" => $request->location_en,
+                    "description" => $request->description2_en
+                ],
+                "email" => $request->email,
+                "phone" => $request->phone
             ]);
 
-            if($request->hasFile('file')){
+            $file_size = $request->file->getSize();
+            $file_type = $request->file->getMimeType();
+            $image = time().'.'. $request->file->getClientOriginalName();
 
-                if(File::exists('web/img/banner/'.$banner->media->file_name)){
-                    unlink('web/img/banner/'. $banner->media->file_name);
-                }
-                $banner->media->delete();
+            // picture move
+            $request->file->storeAs('sponser', $image,'general');
 
-                $file_size = $request->file->getSize();
-                $file_type = $request->file->getMimeType();
-                $image = time().'.'. $request->file->getClientOriginalName();
+            $sponser->media()->create([
+                'file_name' => $image ,
+                'file_size' => $file_size,
+                'file_type' => $file_type,
+                'file_sort' => 1
+            ]);
+
+            $i = 0;
+            foreach($request->file('banners') as $index => $file){
+
+                $file_size = $file->getSize();
+                $file_type = $file->getMimeType();
+                $image = time().$i.'.'. $file->getClientOriginalName();
 
                 // picture move
-                $request->file->storeAs('banner', $image,'general');
+                $file->storeAs('sponser', $image,'general');
 
-                $banner->media()->create([
+                $Details->media()->create([
                     'file_name' => $image ,
                     'file_size' => $file_size,
                     'file_type' => $file_type,
-                    'file_sort' => 1
+                    'file_sort' => $i
                 ]);
 
+                $i++;
             }
 
             DB::commit();
             return $this->sendResponse([],'Data exited successfully');
-        }catch (\Exception $e){
-
-            DB::rollBack();
-            return $this->sendError('An error occurred in the system');
-        }
+//        }catch (\Exception $e){
+//
+//            DB::rollBack();
+//            return $this->sendError('An error occurred in the system');
+//        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -133,7 +147,31 @@ class SponserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        'file' => 'nullable'.($request->hasFile('file')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=10,min_height=10,max_width=50,max_height=50':''),
+//                'banners.*' => 'nullable'.($request->hasFile('banners')?'|mimes:jpeg,jpg,png,webp|max:2048|dimensions:min_width=10,min_height=10,max_width=50,max_height=50':''),
+//        if($request->hasFile('file')){
+//
+//            if(File::exists('web/img/banner/'.$sponser->media->file_name)){
+//                unlink('web/img/banner/'. $sponser->media->file_name);
+//            }
+//            $banner->media->delete();
+//
+//            $file_size = $request->file->getSize();
+//            $file_type = $request->file->getMimeType();
+//            $image = time().'.'. $request->file->getClientOriginalName();
+//
+//            // picture move
+//            $request->file->storeAs('banner', $image,'general');
+//
+//            $banner->media()->create([
+//                'file_name' => $image ,
+//                'file_size' => $file_size,
+//                'file_type' => $file_type,
+//                'file_sort' => 1
+//            ]);
+//
+//        }
+
     }
 
     /**

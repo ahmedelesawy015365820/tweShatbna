@@ -43,7 +43,8 @@
         "setting": "Settings",
         "Assets": "Assets",
         "treasuriesIncome": "Treasuries Income",
-        "banner": "Banner"
+        "banner": "Banner",
+        "sponser": "Sponser"
     },
     "global": {
         "Search":"Search",

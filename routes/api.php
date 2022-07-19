@@ -86,9 +86,6 @@ use Illuminate\Support\Facades\Route;
          Route::get('country_states/{country_id}',[AreaController::class,'country_states']);
          Route::get('state_areas/{state_id}',[AreaController::class,'state_areas']);
 
-
-
-
         // start  home
         Route::get('home',  'HomeController@get');
 
@@ -323,6 +320,9 @@ use Illuminate\Support\Facades\Route;
              // start  banner
              Route::resource('banner',  'BannerController')->except(['show','create','store','destroy']);
 
+             //start sponser
+             Route::resource('sponser','SponserController');
+
          });
 
          // start web
@@ -400,7 +400,6 @@ use Illuminate\Support\Facades\Route;
             Route::post('/add_item','CartController@addToCart');
             Route::post('/update_item','CartController@updateCart');
             Route::post('/delete_item','CartController@delete');
-
 
          });
 

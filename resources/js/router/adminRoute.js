@@ -54,6 +54,7 @@ import IncomeAccounts from "./adminRoute/IncomeAccounts";
 import DailyRestriction from "./adminRoute/dailyRestriction";
 import trialBalance from "./adminRoute/trialBalance";
 import Report from "./adminRoute/report";
+import sponser from "./adminRoute/sponser";
 
 
 const routes = [
@@ -170,8 +171,8 @@ const routes = [
                     ...DailyRestriction,
                     ...trialBalance,
                     ...setting,
-                    ...banner
-
+                    ...banner,
+                    ...sponser
                 ]
             },
         ]

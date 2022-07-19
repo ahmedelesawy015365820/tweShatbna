@@ -32,7 +32,7 @@
                                         <th>Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody v-if="banner">
+                                    <tbody v-if="banner.length">
                                         <tr v-for="item in banner">
                                             <td>{{item.id + 1}}</td>
                                             <td>{{item.title1}} </td>
@@ -76,6 +76,7 @@ export default {
         // get packages
         let banner = ref([]);
         let loading = ref(false);
+        const emitter = inject('emitter');
 
         let getSetting = () => {
             loading.value = true;
@@ -97,6 +98,9 @@ export default {
             getSetting();
         });
 
+        emitter.on('get_lang', () => {
+            getSetting();
+        });
 
         return {loading,banner};
 

@@ -411,6 +411,13 @@
                             <i class="fas fa-cogs"></i> <span>{{$t('sidebar.setting')}}</span>
                         </router-link>
                     </li>
+
+                    <li :class="[$route.name == 'indexSponser'? 'active': '']">
+                        <router-link :to="{name:'indexSponser',params: {lang:this.$i18n.locale}}">
+                            <i class="fas fa-cogs"></i> <span>{{$t('sidebar.sponser')}}</span>
+                        </router-link>
+                    </li>
+
                     <!--  Report -->
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-book-reader"></i> <span> {{$t('global.Reports')}}</span>  <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span></a>

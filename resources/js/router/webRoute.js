@@ -14,6 +14,7 @@ import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
 import advisorShatabna from '../view/web/advisorShatabna';
 import sizingService from '../view/web/sizingService';
+import sponser from '../view/web/sponser-details';
 import privacy from '../view/web/privacy';
 import forgetPassword from '../view/web/forgetPassword.vue';
 import resetPassword from '../view/web/resetPassword.vue';
@@ -138,6 +139,11 @@ const routes = [
                 path: 'browse-desgin',
                 name: 'browse-desgin',
                 component: browseDesgin,
+            },
+            {
+                path: 'sponser/:id(\\d+)',
+                name: 'sponser',
+                component: sponser,
             },
             {
                 path: 'privacy',

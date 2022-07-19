@@ -924,6 +924,12 @@ export default {
 </script>
 
 <style scoped>
+.content {
+    padding: 220px 0 30px;
+    position: relative;
+    min-height: 100vh;
+}
+
 .title-content{
     margin-bottom: 4%;
 }

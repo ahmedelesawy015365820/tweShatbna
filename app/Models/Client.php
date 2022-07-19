@@ -30,4 +30,14 @@ class Client extends Model
         return $this->hasMany(DesignersComplaint::class);
     }
 
+
+
+    public function cart(){
+        return $this->belongsToMany(Product::class,'cart')->withPivot(['qty']);
+    }
+    public function orders(){
+        return $this->hasMany(Order::class,'client_id','id');
+    }
+
+
 }

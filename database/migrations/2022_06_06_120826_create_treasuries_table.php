@@ -18,7 +18,6 @@ class CreateTreasuriesTable extends Migration
             $table->boolean('active')->default(1);
             $table->bigInteger('treasury_id')->unsigned()->nullable();
             $table->foreign('treasury_id')->references('id')->on('treasuries')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

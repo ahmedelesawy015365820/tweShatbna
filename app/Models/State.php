@@ -26,6 +26,11 @@ class State extends Model implements TranslatableContract
         return $this->belongsTo(Country::class);
     }
 
+    public function areas()
+    {
+        return $this->hasMany(Area::class);
+    }
+
     public function complement()
     {
         return $this->hasMany(Complement::class);

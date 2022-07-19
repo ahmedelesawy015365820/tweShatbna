@@ -47,6 +47,7 @@
                         </router-link>
                     </li>
 
+
                     <li class="submenu">
                         <a href="#" >
                             <i class="fas fa-users"></i>
@@ -140,7 +141,6 @@
                         <ul>
                             <li :class="[$route.name == 'indexDepartment'? 'active': '']">
                                 <router-link :to="{name:'indexDepartment',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
-
                                     {{$t('sidebar.Department')}}
                                 </router-link>
                             </li>
@@ -153,6 +153,9 @@
                         </ul>
                     </li>
 
+
+
+                    <!-- projects managements -->
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-suitcase"></i>
                          <span> {{$t("sidebar.Projects Management")}}</span> <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span></a>
@@ -172,6 +175,12 @@
                             <li :class="[$route.name == 'ExternalProjects'? 'active': '']">
                                 <router-link :to="{name:'ExternalProjects',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
                                     {{$t('global.External Projects')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexSizingService'? 'active': '']">
+                                <router-link :to="{name:'indexSizingService',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    {{$t('global.Sizes Service')}}
                                 </router-link>
                             </li>
 
@@ -216,6 +225,55 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- loata -->
+                         <li class="submenu">
+                        <a href="#" ><i class="fas fa-suitcase"></i>
+                         <span> {{$t("global.Loata")}}</span> <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span></a>
+
+                       <ul>
+
+                            <li :class="[$route.name == 'Categories'? 'active': '']">
+                                <router-link :to="{name:'Categories',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    {{$t('global.Categories')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'Products'? 'active': '']">
+                                <router-link :to="{name:'Products',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    {{$t('global.Products')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'Orders'? 'active': '']">
+                                <router-link :to="{name:'Orders',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    {{$t('global.Orders')}}
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexArea'? 'active': '']">
+                                <router-link :to="{name:'indexArea',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    <i class="fas fa-flag-usa"></i> <span>{{$t('global.Area')}}</span>
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexAreaCost'? 'active': '']">
+                                <router-link :to="{name:'indexAreaCost',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    <i class="fas fa-coin"></i> <span>{{$t('global.Area Cost')}}</span>
+                                </router-link>
+                            </li>
+
+                            <li :class="[$route.name == 'indexWeightCost'? 'active': '']">
+                                <router-link :to="{name:'indexWeightCost',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">
+                                    <i class="fas fa-coin"></i> <span>{{$t('global.Weight Cost')}}</span>
+                                </router-link>
+                            </li>
+
+
+
+                        </ul>
+                    </li>
+
 
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-user-tie"></i> <span> {{$t('sidebar.Employees')}}</span>  <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span></a>

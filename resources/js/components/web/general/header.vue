@@ -50,7 +50,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="index.html">{{$t('header.bargain')}}</a>
+                        <router-link :to="{name:'LoataProducts',params: {lang:this.$i18n.locale}}">{{$t('header.bargain')}}</router-link>
                     </li>
 
                     <li :class="[$route.name == 'sizingService' ? 'active' : '','nav-item']">
@@ -116,6 +116,11 @@
                             <i class="fas fa-lock"></i>
                             {{$t('header.login')}}
                         </router-link >
+                    </li>
+                    <li v-if="token">
+                        <router-link :to="{name:'cart',params: {lang:this.$i18n.locale}}" >
+                            <i class="fa fa-shopping-cart"></i>
+                        </router-link>
                     </li>
                     <lang  />
                     <li v-if="token">

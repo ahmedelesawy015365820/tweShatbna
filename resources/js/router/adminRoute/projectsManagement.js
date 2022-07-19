@@ -41,6 +41,25 @@ export default [
         ]
     },
     {
+        path: 'sizing_service',
+        component:  {
+            template:'<router-view />',
+        },
+        children:[
+            {
+                path:'',
+                name:'indexSizingService',
+                component: () => import('../../view/admin/projectsManagement/sizingService/index.vue'),
+            },
+            {
+                path:'service_details/:id',
+                name:'sizingServiceDetails',
+                props:true,
+                component: () => import('../../view/admin/projectsManagement/sizingService/details.vue'),
+            }
+        ]
+    },
+    {
         path: 'external_projects',
         name: 'ExternalProjects',
         component: () => import('../../view/admin/projectsManagement/externalProjects/index.vue')

@@ -40,5 +40,9 @@ class CreateAdminUserSeeder extends Seeder
         $permissions2 = Permission::pluck('id','id')->all();
         $role2->syncPermissions($permissions2);
 
+        $role3 = Role::create(['name' => 'shatabna_consultant']);
+        $permissions3 = Permission::pluck('id','id')->all();
+        $role3->syncPermissions($permissions3);
+
     }
 }

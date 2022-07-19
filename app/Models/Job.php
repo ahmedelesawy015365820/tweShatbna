@@ -17,7 +17,7 @@ class Job extends Model implements TranslatableContract
 
     protected $translationForeignKey = 'job_id';
 
-    protected $hidden = ['jobs'];
+    protected $hidden = ['job_translations'];
 
     public function employees(){
         $this->hasMany(Employee::class);

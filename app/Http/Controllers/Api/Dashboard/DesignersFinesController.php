@@ -20,8 +20,8 @@ class DesignersFinesController extends Controller
         where(function($q) use($request){
             $q->when($request->search,function($q) use($request){
                 $q->where('from',$request->search)
-                ->orWhere('to',$request->to)
-                ->orWhere('percentage',$request->percentage);
+                ->orWhere('to',$request->search)
+                ->orWhere('percentage',$request->search);
             });
         })
         ->where(function($q) use($request){

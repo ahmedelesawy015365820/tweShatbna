@@ -23,6 +23,7 @@ class CreateCompanyProjectsTable extends Migration
             $table->text('description');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('expected_budget_id')->constrained('expected_budgets')->cascadeOnDelete();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

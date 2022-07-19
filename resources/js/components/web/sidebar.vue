@@ -42,7 +42,6 @@
 
                     <!-- start company  -->
                     <div class="mb-4"  v-if="roles.includes('company')">
-
                         <li class="nav-item">
                             <router-link
                                 :to="{name:'dashboardCompany',params:{lang:this.$i18n.locale}}"
@@ -84,7 +83,6 @@
                                 <i class="material-icons">person_pin</i> تاكيد الحساب
                             </a>
                         </li>
-
                     </div>
                     <!-- end company  -->
 
@@ -228,6 +226,17 @@
                                 <i class="material-icons">person_add</i> اضافه مشروع
                             </router-link>
                         </li>
+                        <li
+                            class="nav-item"
+                            v-if="parseInt(partner.trust)"
+                        >
+                            <router-link
+                                :to="{name:'orders',params:{lang:this.$i18n.locale}}"
+                                :class="['nav-link', $route.name == 'orders'? 'active': '']"
+                            >
+                                <i class="fa fa-list-ul"></i>{{$t('global.Orders')}}
+                            </router-link>
+                        </li>
                     </div>
 
                     <!--    end client    -->
@@ -357,6 +366,7 @@ export default {
         };
 
         function logout(){
+            localStorage.setItem('cart',[])
             store.dispatch('auth/logout');
         }
 

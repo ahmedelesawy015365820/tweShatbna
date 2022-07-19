@@ -23,7 +23,6 @@ class CreateIncomeAndExpensesTable extends Migration
             $table->bigInteger('treasury_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string("payer");
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('expense_id')->references('id')->on('expenses')->onDelete('cascade');
             $table->foreign('income_id')->references('id')->on('incomes')->onDelete('cascade');

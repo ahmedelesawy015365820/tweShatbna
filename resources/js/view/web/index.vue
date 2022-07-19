@@ -136,278 +136,25 @@
         </section>
         <!--- /Developed Project  -->
 
-        <!-- Projects -->
-        <section class="section projects">
-            <div class="container container-custom">
-                <div class="row">
-                    <div class="col-12 col-md-12 mx-auto">
-                        <div class="section-header text-center">
-                            <div class="section-line"></div>
-                            <h2 class="header-title">{{$t('index.bargain')}}</h2>
-                            <div class="row justify-content-center">
-                                <p>{{$t('index.decBargain')}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
 
-                    <!--- Project Item  -->
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="project-item">
-                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
-                                <div>
-                                    <span>500</span>
-                                    <span class="coin">EGP</span>
-                                </div>
-                            </span>
-                            <div class="row">
-                                <div class="project-img col-6">
-                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
-                                </div>
-                                <div class="col-6 row align-items-center">
-                                    <h4>
-                                        {{$t('index.decProduct')}}
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="d-flex  align-items-center">
-                                <div class="project-content button">
-                                    <button class="subscribe">
-                                        <span>{{$t('index.subscribe')}}</span>
-                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
-                                    </button>
-                                    <button class="share">
-                                        <span>{{$t('index.share')}}</span>
-                                        <div><img src="/web/img/icon/share.svg"></div>
-                                    </button>
-                                </div>
-                                <div class="project-content">
-                                    <div class="time-container">
-                                        <h4>{{$t('index.show')}}</h4>
-                                        <div class="time">
-                                            <div class="second">
-                                                <span>05</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="minute">
-                                                <span>23</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="hour">
-                                                <span>33</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="day">
-                                                <span>15</span>
-                                                <small>{{$t('index.day')}}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- /Project Item  -->
 
-                    <!--- Project Item  -->
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="project-item">
-                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
-                                <div>
-                                    <span>500</span>
-                                    <span class="coin">EGP</span>
-                                </div>
-                            </span>
-                            <div class="row">
-                                <div class="project-img col-6">
-                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
-                                </div>
-                                <div class="col-6 row align-items-center">
-                                    <h4>
-                                        {{$t('index.decProduct')}}
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="d-flex  align-items-center">
-                                <div class="project-content button">
-                                    <button class="subscribe">
-                                        <span>{{$t('index.subscribe')}}</span>
-                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
-                                    </button>
-                                    <button class="share">
-                                        <span>{{$t('index.share')}}</span>
-                                        <div><img src="/web/img/icon/share.svg"></div>
-                                    </button>
-                                </div>
-                                <div class="project-content">
-                                    <div class="time-container">
-                                        <h4>{{$t('index.show')}}</h4>
-                                        <div class="time">
-                                            <div class="second">
-                                                <span>05</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="minute">
-                                                <span>23</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="hour">
-                                                <span>33</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="day">
-                                                <span>15</span>
-                                                <small>{{$t('index.day')}}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- /Project Item  -->
 
-                    <!--- Project Item  -->
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="project-item">
-                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
-                                <div>
-                                    <span>500</span>
-                                    <span class="coin">EGP</span>
-                                </div>
-                            </span>
-                            <div class="row">
-                                <div class="project-img col-6">
-                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
-                                </div>
-                                <div class="col-6 row align-items-center">
-                                    <h4>
-                                        {{$t('index.decProduct')}}
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="d-flex  align-items-center">
-                                <div class="project-content button">
-                                    <button class="subscribe">
-                                        <span>{{$t('index.subscribe')}}</span>
-                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
-                                    </button>
-                                    <button class="share">
-                                        <span>{{$t('index.share')}}</span>
-                                        <div><img src="/web/img/icon/share.svg"></div>
-                                    </button>
-                                </div>
-                                <div class="project-content">
-                                    <div class="time-container">
-                                        <h4>{{$t('index.show')}}</h4>
-                                        <div class="time">
-                                            <div class="second">
-                                                <span>05</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="minute">
-                                                <span>23</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="hour">
-                                                <span>33</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="day">
-                                                <span>15</span>
-                                                <small>{{$t('index.day')}}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- /Project Item  -->
 
-                    <!--- Project Item  -->
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="project-item">
-                            <span :class="[this.$i18n.locale == 'ar'? 'price-ar':'price']">
-                                <div>
-                                    <span>500</span>
-                                    <span class="coin">EGP</span>
-                                </div>
-                            </span>
-                            <div class="row">
-                                <div class="project-img col-6">
-                                    <a href="project.html"><img src="/web/img/icon/chair.svg"></a>
-                                </div>
-                                <div class="col-6 row align-items-center">
-                                    <h4>
-                                        {{$t('index.decProduct')}}
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="d-flex  align-items-center">
-                                <div class="project-content button">
-                                    <button class="subscribe">
-                                        <span>{{$t('index.subscribe')}}</span>
-                                        <div><img src="/web/img/icon/AHMED11.svg"></div>
-                                    </button>
-                                    <button class="share">
-                                        <span>{{$t('index.share')}}</span>
-                                        <div><img src="/web/img/icon/share.svg"></div>
-                                    </button>
-                                </div>
-                                <div class="project-content">
-                                    <div class="time-container">
-                                        <h4>{{$t('index.show')}}</h4>
-                                        <div class="time">
-                                            <div class="second">
-                                                <span>05</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.second')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="minute">
-                                                <span>23</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.minute')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="hour">
-                                                <span>33</span>
-                                                <small :class="[this.$i18n.locale != 'ar'?'en':'']">{{$t('index.hour')}}</small>
-                                            </div>
-                                            <span class="point">:</span>
-                                            <div class="day">
-                                                <span>15</span>
-                                                <small>{{$t('index.day')}}</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--- /Project Item  -->
 
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="see-all">
-                            <a href="project.html" class="btn all-btn">{{$t('index.productEver')}}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+
+        <!-- products section  -->
+        <productSection />
+
+
+
+
+
+
+
+
 
         <!-- Subscribe -->
         <section class="section subscribe">
@@ -471,9 +218,13 @@
 
 <script>
 import {onMounted,onBeforeMount,inject,ref} from 'vue';
+import productSection from "./loata/products.vue"
 import webApi from "../../api/webAxios";
 
 export default {
+    components:{
+        productSection
+    },
     setup(){
 
         const emitter = inject('emitter');
@@ -681,6 +432,8 @@ input.form-control{
     margin-top: 10px;
 }
 
+
+
 /*end banner*/
 
 .feature-item {
@@ -792,155 +545,7 @@ input.form-control{
 /*start work-content*/
 
 
-/*start product*/
-.container-custom{
-    max-width: 1160px;
-}
-.projects .header-title{
-    color: #fcb00c;
-}
 
-.projects  .section-header p{
-    width: 30%;
-    font-size: 28px;
-}
-
-.project-item {
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 5px -2px rgb(0 0 0 / 37%);
-}
-.project-item{
-    position: relative;
-}
-.project-item .price{
-    position: absolute;
-    color: #fcb00c;
-    right: 3%;
-    font-size: 35px;
-    top: 7%;
-    font-weight: 600;
-}
-.project-item .price-ar{
-    position: absolute;
-    color: #fcb00c;
-    left: 3%;
-    top: 7%;
-    font-size: 35px;
-    font-weight: 600;
-}
-.price .coin ,.price-ar .coin {
-    font-size: 18px;
-    margin: 0 10px;
-    font-weight: 500;
-}
-.project-item h4{
-    font-size: 19px;
-    color: #4e4949;
-}
-
-.project-content {
-    margin: 0 auto;
-}
-.project-content.button{
-    position: relative;
-    top: 20px;
-}
-
-.project-content button.subscribe{
-    margin: 5px 3px;
-    padding: 3px 3px;
-    font-size: 15px;
-    background: #fcb00c;
-    color: #fff;
-    border-radius: 22px;
-}
-.project-content button.share{
-    margin: 0 3px;
-    padding: 2px 0;
-    font-size: 15px;
-    color: #fcb00c;
-    border: 1px solid  #fcb00c;
-    background-color: transparent;
-    border-radius: 22px;
-}
-
-.project-content button div{
-    display: inline-block;
-    border-radius: 50%;
-    padding: 0 5px;
-}
-
-.project-content button.share div {
-    border: 1px solid #fcb00c;
-}
-.project-content button.subscribe div {
-    border: 1px solid #fff;
-}
-.project-content button.subscribe span{
-    margin: 0 8px;
-}
-.project-content button.share span{
-    margin: 0 20px;
-}
-.project-content button img{
-    width: 13px;
-}
-.project-content h4 {
-    font-weight: bold;
-    font-size: 11px;
-    text-transform: lowercase;
-    color: #fcb00c;
-    text-align: start;
-    padding: 0 20px;
-}
-.project-content .time-container{
-    position: relative;
-    right: 42px;
-}
-.project-content .time{
-    position: relative;
-}
-.project-content .time .point{
-    top: 6px;
-    position: relative;
-    font-size: 19px;
-    color: #000;
-    font-weight: 600;
-}
-.project-content .time div{
-    display: inline-block;
-    background: #000;
-    position: relative;
-    color: #fff;
-    border-radius: 5px;
-    margin: 2px 4px;
-    text-align: center;
-    padding: 0px 10px 9px;
-}
-.project-content .time div.day{
-    padding: 0 11px 9px;
-}
-.project-content .time div small {
-    display: block;
-    position: absolute;
-    top: 13px;
-    margin: 0;
-    font-size: 9px;
-}
-.project-content .time div.minute small {
-    left: 7px;
-}
-.project-content .time div.hour small.en {
-    left: 10px;
-}
-.project-content .time div.minute small.en, .project-content .time div small.en{
-    left: 5px;
-}
-.project-content .time div.hour small {
-    left: 7px;
-}
-/*end product*/
 
 
 .header-title {

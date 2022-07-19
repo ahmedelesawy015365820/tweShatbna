@@ -7,7 +7,8 @@ import App from "./App.vue";
 import store from './store/web';
 import mitt from 'mitt';
 import VueSocialauth from 'vue-social-auth'
-
+import Notifications from '@kyvg/vue3-notification';
+import VueSocialSharing from 'vue-social-sharing'
 
 
 const emitter = mitt();
@@ -22,10 +23,15 @@ import loader from './components/loader';
 import loader2 from './components/loader2';
 import LaravelVuePagination from 'laravel-vue-pagination';
 
+import breadcrumb from './view/web/loata/utilize/breadcrumb.vue'
+import notfound404 from './view/web/404.vue'
+
 web.component('layout-header', header);
 web.component('layout-footer', footer);
 web.component('loader', loader);
 web.component('loader2', loader2);
+web.component('breadcrumb', breadcrumb);
+web.component('notfound404', notfound404);
 web.component('Pagination', LaravelVuePagination);
 
 // web.use(VueSocialauth,{
@@ -41,7 +47,7 @@ web.component('Pagination', LaravelVuePagination);
 
 //end web component global
 
-web.use(i18n).use(store).use(router).mount('#app');
+web.use(i18n).use(store).use(router).use(Notifications).use(VueSocialSharing).mount('#app');
 
 // set lang
 if(!localStorage.getItem("langWeb")){

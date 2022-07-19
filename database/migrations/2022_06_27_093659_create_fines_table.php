@@ -18,7 +18,7 @@ class CreateFinesTable extends Migration
             $table->integer('from');
             $table->integer('to');
             $table->enum('type',[0,1])->comment('0 for designers 1 for companies');
-            $table->float('percentage',4,2);
+            $table->float('percentage');
             $table->timestamps();
         });
     }

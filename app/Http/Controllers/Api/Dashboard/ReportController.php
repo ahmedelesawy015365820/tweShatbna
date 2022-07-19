@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 class ReportController extends Controller
 {
     use Message;
-
     // income platform report
     public function incomePlatformReport(Request $request)
     {

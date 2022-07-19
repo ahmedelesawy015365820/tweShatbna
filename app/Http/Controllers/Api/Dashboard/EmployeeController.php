@@ -322,8 +322,14 @@ class EmployeeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(Income $income)
     {
-      //
+        if (count($income->incomeAndExpense) > 0) {
+            return $this->sendError('can not delete');
+        }
+
+        $income->delete();
+
+        return $this->sendResponse([], 'Data exited successfully');
     }
 }

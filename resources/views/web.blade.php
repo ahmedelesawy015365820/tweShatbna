@@ -37,6 +37,8 @@
         {{--font arabic--}}
         <link rel="stylesheet" type="text/css" href="https://www.fontstatic.com/f=hanimation" />
 
+        {{-- loata css --}}
+        <link rel="stylesheet" href="{{asset('css/loata.css')}}">
         <!-- Main CSS -->
         <link rel="stylesheet" href="{{asset('web/css/style.css')}}">
 

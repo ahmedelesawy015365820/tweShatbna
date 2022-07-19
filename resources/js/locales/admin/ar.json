@@ -304,7 +304,6 @@
         "YouCanNotDeleteThisTreasury":"لا تستطيع حذف هذه الخزنة !",
         "EditSuccessfully": "تم التعديل بنجاح",
         "AddedSuccessfully": "تمت الاضافة بنجاح"
-
     },
     "income": {
         "CreateIncome": "اضافة بنود الايرادات",

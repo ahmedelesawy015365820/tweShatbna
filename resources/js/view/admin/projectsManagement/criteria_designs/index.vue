@@ -36,7 +36,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr  v-for="(item,index) in designCriteria.data" v-if="designCriteria.data" :key="item.id" >
+                                        <tr  v-for="(item,index) in designCriteria.data" v-if="Object.keys(designCriteria.data?? {} ).length" :key="item.id" >
                                             <td>{{index + 1}}</td>
                                             <td>{{item.name}}</td>
                                             <td><span class="text-success">{{item.percentage}}%</span></td>

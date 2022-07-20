@@ -290,8 +290,8 @@ export default {
             adminApi.get(`/v1/dashboard/dailyRestriction/create`)
                 .then((res) => {
                     let l = res.data.data;
-                    debits.value = l.debits;
-                    creditor.value = l.creditor;
+                    debits.value = l.subAccount;
+                    creditor.value = l.subAccount;
                 })
                 .catch((err) => {
                     console.log(err.response.data);

@@ -583,7 +583,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $setup.formData.payment_method]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"form-group row\">\n                                        <label class=\"col-md-3\" for=\"paypal\">{{\n                                            $t(\"PayPal\")\n                                        }}</label>\n                                        <div class=\"col-md-6\">\n                                            <input\n                                            id=\"paypal\"\n                                            class=\"mt-4\"\n                                            type=\"radio\"\n                                            value=\"PayPal\"\n                                            v-model=\"formData.payment_method\"\n                                            />\n                                        </div>\n                                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("global.Paymob Accept")), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $setup.formData.payment_method]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"form-group row\">\r\n                                        <label class=\"col-md-3\" for=\"paypal\">{{\r\n                                            $t(\"PayPal\")\r\n                                        }}</label>\r\n                                        <div class=\"col-md-6\">\r\n                                            <input\r\n                                            id=\"paypal\"\r\n                                            class=\"mt-4\"\r\n                                            type=\"radio\"\r\n                                            value=\"PayPal\"\r\n                                            v-model=\"formData.payment_method\"\r\n                                            />\r\n                                        </div>\r\n                                    </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$t("global.Paymob Accept")), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "paymob",
@@ -650,7 +650,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.product-close[data-v-d510d5fa]:hover {\n  cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.product-close[data-v-d510d5fa]:hover {\r\n  cursor: pointer;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -698,13 +698,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _input_error_vue_vue_type_template_id_4bd68080__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./input_error.vue?vue&type=template&id=4bd68080 */ "./resources/js/view/admin/projectsManagement/utilize/input_error.vue?vue&type=template&id=4bd68080");
 /* harmony import */ var _input_error_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./input_error.vue?vue&type=script&lang=js */ "./resources/js/view/admin/projectsManagement/utilize/input_error.vue?vue&type=script&lang=js");
-/* harmony import */ var C_xampp_htdocs_tweShatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_tweShatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_input_error_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_input_error_vue_vue_type_template_id_4bd68080__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/view/admin/projectsManagement/utilize/input_error.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_input_error_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_input_error_vue_vue_type_template_id_4bd68080__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/view/admin/projectsManagement/utilize/input_error.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -726,7 +726,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _checkout_vue_vue_type_template_id_d510d5fa_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./checkout.vue?vue&type=template&id=d510d5fa&scoped=true */ "./resources/js/view/web/loata/cart_and_order/checkout.vue?vue&type=template&id=d510d5fa&scoped=true");
 /* harmony import */ var _checkout_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkout.vue?vue&type=script&lang=js */ "./resources/js/view/web/loata/cart_and_order/checkout.vue?vue&type=script&lang=js");
 /* harmony import */ var _checkout_vue_vue_type_style_index_0_id_d510d5fa_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./checkout.vue?vue&type=style&index=0&id=d510d5fa&scoped=true&lang=css */ "./resources/js/view/web/loata/cart_and_order/checkout.vue?vue&type=style&index=0&id=d510d5fa&scoped=true&lang=css");
-/* harmony import */ var C_xampp_htdocs_tweShatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -734,7 +734,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_tweShatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_checkout_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_checkout_vue_vue_type_template_id_d510d5fa_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-d510d5fa"],['__file',"resources/js/view/web/loata/cart_and_order/checkout.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_checkout_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_checkout_vue_vue_type_template_id_d510d5fa_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-d510d5fa"],['__file',"resources/js/view/web/loata/cart_and_order/checkout.vue"]])
 /* hot reload */
 if (false) {}
 

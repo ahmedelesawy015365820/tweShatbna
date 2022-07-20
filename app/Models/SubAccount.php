@@ -20,13 +20,14 @@ class SubAccount extends Model implements TranslatableContract
     protected $hidden = ['sub_accounts'];
 
     protected $appends = [
-        'count',
-        'amount'
+        'credit_amount',
+        'debit_amount',
+        'count_elements'
     ];
 
-    public function getCountAttribute()
+    public function getCreditAmountAttribute()
     {
-        $num = 0;
+        $num = $this->credit_transaction;
         foreach ($this->children as $first){
             if (count($first->children)>0)
             {
@@ -44,27 +45,27 @@ class SubAccount extends Model implements TranslatableContract
                                     {
                                         foreach ($four->children as $five)
                                         {
-                                           $num += 1;
+                                            $num += $five->credit_transaction;
                                         }
                                     }
-                                    $num += 1;
+                                    $num += $four->credit_transaction;
                                 }
                             }
-                            $num += 1;
+                            $num += $three->credit_transaction;
                         }
                     }
-                    $num += 1;
+                    $num += $two->credit_transaction;
                 }
             }
-            $num += 1;
+            $num += $first->credit_transaction;
 
         }
         return $num;
     }
 
-    public function getAmountAttribute()
+    public function getDebitAmountAttribute()
     {
-        $num = $this->amount_transaction;
+        $num = $this->debit_transaction;
         foreach ($this->children as $first){
             if (count($first->children)>0)
             {
@@ -82,27 +83,36 @@ class SubAccount extends Model implements TranslatableContract
                                     {
                                         foreach ($four->children as $five)
                                         {
-                                            $num += $five->amount_transaction;
+                                            $num += $five->debit_transaction;
                                         }
                                     }
-                                    $num += $four->amount_transaction;
+                                    $num += $four->debit_transaction;
                                 }
                             }
-                            $num += $three->amount_transaction;
+                            $num += $three->debit_transaction;
                         }
                     }
-                    $num += $two->amount_transaction;
+                    $num += $two->debit_transaction;
                 }
             }
-            $num += $first->amount_transaction;
+            $num += $first->debit_transaction;
 
         }
         return $num;
     }
-
-    public function getAmountTransactionAttribute()
+    public function getCountElementsAttribute()
     {
-        return  $this->restriction()->get()->sum('amount') ;
+        return  $this->children()->count() ;
+    }
+
+    public function getDebitTransactionAttribute()
+    {
+        return  $this->restriction()->where('debit',1)->get()->sum('amount') ;
+    }
+
+    public function getCreditTransactionAttribute()
+    {
+        return  $this->restriction()->where('debit',0)->get()->sum('amount') ;
     }
 
 

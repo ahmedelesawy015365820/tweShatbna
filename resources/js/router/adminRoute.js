@@ -52,7 +52,9 @@ import Opponents from "./adminRoute/Opponents";
 import ExpenseAccounts from "./adminRoute/ExpenseAccounts";
 import IncomeAccounts from "./adminRoute/IncomeAccounts";
 import DailyRestriction from "./adminRoute/dailyRestriction";
+import targetPlan from "./adminRoute/targetPlan";
 import trialBalance from "./adminRoute/trialBalance";
+import financialCenter from "./adminRoute/financialCenter";
 import Report from "./adminRoute/report";
 
 
@@ -169,6 +171,8 @@ const routes = [
                     ...transferringTreasury,
                     ...DailyRestriction,
                     ...trialBalance,
+                    ...financialCenter,
+                    ...targetPlan,
                     ...setting,
                     ...banner
 

@@ -33,19 +33,29 @@
                                         <form @submit.prevent="getByDate" class="needs-validation">
                                             <div class="form-group row">
 
-                                                <div class="col-md-5">
+                                                <div class="col-md-3">
                                                     <label >{{$t('global.FromDate')}}</label>
                                                     <input type="date" class="form-control date-input"
-                                                           v-model="fromDate" required>
+                                                           v-model="fromDate">
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label >{{$t('global.ToDate')}}</label>
+                                                    <input type="date" class="form-control date-input"
+                                                           v-model="toDate">
                                                 </div>
 
                                                 <div class="col-md-5">
-                                                    <label >{{$t('global.ToDate')}}</label>
-                                                    <input type="date" class="form-control date-input"
-                                                           v-model="toDate" required>
+
+                                                    <label>{{$t('global.ChooseExpenses')}} </label>
+
+                                                    <select v-model="treasury_id" class="form-select select-input" required>
+                                                        <option v-for="treasury in treasuries" :kay="treasury.id" :value="treasury.id">{{treasury.name}}</option>
+                                                    </select>
+
                                                 </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-1">
                                                     <button class="btn btn-primary" type="submit">{{$t('global.Submit')}}</button>
                                                 </div>
 
@@ -135,6 +145,7 @@ export default {
         let incomes = ref([]);
         let treasuries = ref([]);
         let incomesPaginate = ref({});
+        let treasury_id = ref('');
         let fromDate = ref('');
         let toDate = ref('');
         let loading = ref(false);
@@ -144,7 +155,7 @@ export default {
 
            loading.value = true;
 
-           adminApi.get(`/v1/dashboard/expensePlatformReport?page=${page}&search=${search.value}&from_date=${fromDate.value}&to_date=${toDate.value}`)
+           adminApi.get(`/v1/dashboard/expensePlatformReport?page=${page}&search=${search.value}&expense_id=${treasury_id.value}&from_date=${fromDate.value}&to_date=${toDate.value}`)
                .then((res) => {
                    let l = res.data.data;
                    incomesPaginate.value = l.incomes;
@@ -159,11 +170,27 @@ export default {
 
         }
 
+        let getTreasuries = () => {
+            loading.value = true;
+
+            adminApi.get(`/v1/dashboard/activeExpense`)
+                .then((res) => {
+                    let l = res.data.data;
+                    treasuries.value= l.expenses;
+                })
+                .catch((err) => {
+                    console.log(err.response.data);
+                })
+                .finally(() => {
+                    loading.value = false;
+                })
+        }
+
         let getByDate = (page = 1) => {
 
             loading.value = true;
 
-            adminApi.get(`/v1/dashboard/expensePlatformReport?page=${page}&from_date=${fromDate.value}&to_date=${toDate.value}`)
+            adminApi.get(`/v1/dashboard/expensePlatformReport?page=${page}&expense_id=${treasury_id.value}&from_date=${fromDate.value}&to_date=${toDate.value}`)
                 .then((res) => {
                     let l = res.data.data;
                     incomesPaginate.value = l.incomes;
@@ -179,6 +206,7 @@ export default {
 
         onMounted(() => {
             getIncome();
+            getTreasuries();
         });
 
         emitter.on('get_lang', () => {
@@ -205,7 +233,7 @@ export default {
             return new Date(item).toDateString();
         }
 
-        return {printExpense,fromDate,toDate,getByDate,incomes,treasuries, loading, getIncome,dateFormat, search, incomesPaginate};
+        return {printExpense,fromDate,toDate,getByDate,incomes,treasuries,treasury_id, loading, getIncome,dateFormat, search, incomesPaginate};
 
     },
     data() {
@@ -254,8 +282,14 @@ export default {
 .submit-margin{
     margin-top: 38px !important;
 }
+
 .date-input{
-    width: 300px !important;
+    width: 135px !important;
+    display: inline-block !important;
+    margin: 0px 8px 0 8px !important;
+}
+.select-input{
+    width: 235px !important;
     display: inline-block !important;
     margin: 0px 8px 0 8px !important;
 }

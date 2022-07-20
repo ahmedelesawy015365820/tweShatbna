@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\TargetType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MessagerSeeder::class);
         $this->call(BannerSeeder::class);
         $this->call(SponserSeeder::class);
+        $this->call(TargetTypeSeeder::class);
 
     }
 }

@@ -7,11 +7,12 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="row">
-                            <h3 class="page-title col-md-3">{{ $t('global.Assets') }}</h3>
-                            <p class=" col-md-3" v-if="main.debit == 1">{{ $t('global.AccountType') }} :: {{ $t('global.Debit') }}</p>
-                            <p class=" col-md-3" v-if="main.debit == 0">{{ $t('global.AccountType') }} :: {{ $t('global.Creditor') }}</p>
-                            <p class=" col-md-3" v-if="main.count">{{ $t('global.NumberOfElements') }} :: {{main.count}}</p>
-                            <p class="col-md-3" v-if="main.amount">{{ $t('global.Amount') }} :: {{main.amount}}</p>
+                            <h3 class="page-title col-md-2">{{ $t('global.Assets') }}</h3>
+                            <p class=" col-md-2" v-if="main.debit == 1">{{ $t('global.AccountType') }} :: {{ $t('global.Debit') }}</p>
+                            <p class=" col-md-2" v-if="main.debit == 0">{{ $t('global.AccountType') }} :: {{ $t('global.Creditor') }}</p>
+                            <p class=" col-md-2">{{ $t('global.NumberOfElements') }} :: {{incomes.length}}</p>
+                            <p class="col-md-2">{{ $t('global.Debit') }} :: {{main.debit_amount}}</p>
+                            <p class="col-md-2">{{ $t('global.Creditor') }} :: {{main.credit_amount}}</p>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -73,7 +74,8 @@
                                         <th>{{ $t('global.Name') }}</th>
                                         <th>{{ $t('global.AccountType') }}</th>
                                         <th>{{ $t('global.NumberOfElements') }}</th>
-                                        <th>{{ $t('global.Amount') }}</th>
+                                        <th>{{ $t('global.Debit') }}</th>
+                                        <th>{{ $t('global.Creditor') }}</th>
                                         <th>{{ $t('global.RelatedTo') }}</th>
                                         <th>{{ $t('global.AddedDate') }}</th>
                                         <th>{{ $t('global.Action') }}</th>
@@ -85,8 +87,9 @@
                                         <td>{{ item.name }}</td>
                                         <td v-if="item.debit == 1">{{ $t('global.Debit') }}</td>
                                         <td v-if="item.debit == 0">{{ $t('global.Creditor') }}</td>
-                                        <td>{{ item.count }}</td>
-                                        <td>{{ item.amount }}</td>
+                                        <td>{{ item.count_elements }}</td>
+                                        <td>{{ item.debit_amount }}</td>
+                                        <td>{{ item.credit_amount }}</td>
                                         <td>
                                             {{ item.parent.name }}
                                         </td>

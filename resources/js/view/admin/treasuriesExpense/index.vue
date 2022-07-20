@@ -53,14 +53,14 @@
                                         <div class="col-4">
                                             <div class="amount">
                                                 <h5>
-                                                    {{$t('global.TotalIncome')}} : {{expense}}
+                                                    {{$t('global.TotalIncome')}} : {{income}}
                                                 </h5>
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="amount">
                                                 <h5>
-                                                    {{$t('global.TotalExpense')}} : {{income}}
+                                                    {{$t('global.TotalExpense')}} : {{expense}}
                                                 </h5>
                                             </div>
                                         </div>

@@ -29,6 +29,10 @@ class ReportController extends Controller
                     $q->whereDate('payment_date', ">=", $request->from_date)
                         ->whereDate('payment_date', "<=", $request->to_date);
                 });
+            })->where(function ($q) use ($request) {
+                $q->when($request->income_id, function ($q) use ($request) {
+                    $q->where('income_id', $request->income_id);
+                });
             })->latest()->paginate(15);
 
         return $this->sendResponse(['incomes' => $incomeAndExpense], 'Data exited successfully');
@@ -51,6 +55,10 @@ class ReportController extends Controller
                 $q->when($request->from_date && $request->to_date, function ($q) use ($request) {
                     $q->whereDate('payment_date', ">=", $request->from_date)
                         ->whereDate('payment_date', "<=", $request->to_date);
+                });
+            })->where(function ($q) use ($request) {
+                $q->when($request->expense_id, function ($q) use ($request) {
+                    $q->where('expense_id', $request->expense_id);
                 });
             })->latest()->paginate(15);
 

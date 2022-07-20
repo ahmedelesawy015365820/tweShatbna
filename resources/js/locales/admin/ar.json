@@ -237,7 +237,7 @@
         "ToDate": "الى تاریخ",
         "PlatformExpense": "مصروفات المنصة",
         "IncomeTreasuries": "متحصلات الخزن",
-        "ExpenseTreasuries": "مصرؤفات الخزن",
+        "ExpenseTreasuries": "مصروفات الخزن",
         "DailyBalance": "الحافظة اليومية",
         "Total": "الاجمالى",
         "AccountCurrencyAr": "عملة الحسابات باللغة العربية",
@@ -268,7 +268,16 @@
         "Totals": "مجاميع",
         "Holding": "ارصدة",
         "TotalsDifference": "فرق المجامیع",
-        "BalanceDifference": "فرق الارصدة"
+        "BalanceDifference": "فرق الارصدة",
+        "Sales": "المبيعات",
+        "CommissionPlanManagement": "إدارة خطة العمولة",
+        "TotalExpenses": "اجمالى المصروفات",
+        "ChooseExpenses": "اختر البند",
+        "ChooseIncome": "اختر البند",
+        "FinancialCenter": "قائمة المركز المالي",
+        "Statement": "بيان",
+        "Partial": "جزئي",
+        "TotalAccount": "كلي"
     },
 
     "treasury": {

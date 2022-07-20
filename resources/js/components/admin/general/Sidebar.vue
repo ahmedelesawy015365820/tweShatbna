@@ -132,7 +132,6 @@
                                     {{$t('sidebar.AdvisorPackage')}}
                                 </router-link>
                             </li>
-
                         </ul>
                     </li>
 
@@ -292,6 +291,18 @@
                         </ul>
                     </li>
 
+<!--                    <li class="submenu">-->
+<!--                        <a href="#" ><i class="fas fa-user-tie"></i> <span> {{$t('global.Sales')}}</span>  <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span></a>-->
+<!--                        <ul>-->
+<!--                            <li :class="[$route.name == 'indexTargetPlan'? 'active': '']">-->
+<!--                                <router-link :to="{name:'indexTargetPlan',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">-->
+<!--                                    {{$t('global.CommissionPlanManagement')}}-->
+<!--                                </router-link>-->
+<!--                            </li>-->
+
+<!--                        </ul>-->
+<!--                    </li>-->
+
                     <li class="submenu">
                         <a href="#" ><i class="fas fa-coins"></i> <span> {{$t('sidebar.Accounts')}}</span>  <span :class="['menu-arrow',this.$i18n.locale == 'ar'?'menu-arrow-ar':'']"></span></a>
                         <ul>
@@ -387,6 +398,12 @@
                                     {{$t('global.TrialBalance')}}
                                 </router-link>
                             </li>
+
+<!--                            <li :class="[$route.name == 'indexFinancialCenter'? 'active': '']">-->
+<!--                                <router-link :to="{name:'indexFinancialCenter',params: {lang:this.$i18n.locale}}" :class="[this.$i18n.locale == 'ar' ? 'sidebar-menu-rtl':'']">-->
+<!--                                    {{$t('global.FinancialCenter')}}-->
+<!--                                </router-link>-->
+<!--                            </li>-->
 
                         </ul>
                     </li>

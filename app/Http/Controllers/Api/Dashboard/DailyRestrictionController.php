@@ -42,10 +42,9 @@ class DailyRestrictionController extends Controller
 
     public function create(){
 
-        $debits = SubAccount::where('debit',1)->get();
-        $creditor = SubAccount::where('debit',0)->get();
+        $subAccount = SubAccount::all();
 
-        return $this->sendResponse(['debits' => $debits,'creditor' => $creditor], 'Data exited successfully');
+        return $this->sendResponse(['subAccount' => $subAccount], 'Data exited successfully');
     }
 
     public function store(Request $request)

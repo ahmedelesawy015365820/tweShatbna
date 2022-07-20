@@ -108,14 +108,14 @@
                                             <td>{{ item.desc }}</td>
                                             <td>{{ item.amount }}</td>
                                             <td>
-                                                <p v-for="it in item.restriction" v-if="item.restriction" :key="it.id">
+                                                <span v-for="it in item.restriction" v-if="item.restriction" :key="it.id">
                                                     <span v-if="it.debit == 1">{{it.account_name}}</span>
-                                                </p>
+                                                </span>
                                             </td>
                                             <td>
-                                                <p v-for="it in item.restriction" v-if="item.restriction" :key="it.id">
+                                                <span v-for="it in item.restriction" v-if="item.restriction" :key="it.id">
                                                     <span v-if="it.debit == 0">{{it.account_name}}</span>
-                                                </p>
+                                                </span>
                                             </td>
 
                                             <td>{{ item.date }}</td>

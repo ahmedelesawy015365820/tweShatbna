@@ -24,4 +24,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Job::class,'job_id');
     }
+
+    public function target()
+    {
+        return $this->hasMany(Target::class);
+    }
 }

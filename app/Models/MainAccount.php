@@ -20,17 +20,17 @@ class MainAccount extends Model implements TranslatableContract
     protected $hidden = ['main_accounts'];
 
     protected $appends = [
-        'count',
-        'amount'
+        'credit_amount',
+        'debit_amount',
     ];
 
-    public function getCountAttribute()
+    public function getCreditAmountAttribute()
     {
-        return $this->subAccounts->count();
+        return $this->subAccounts->sum('credit_transaction');
     }
-    public function getAmountAttribute()
+    public function getDebitAmountAttribute()
     {
-        return $this->subAccounts->sum('amount_transaction');
+        return $this->subAccounts->sum('debit_transaction');
     }
 
     public function subAccounts(): \Illuminate\Database\Eloquent\Relations\HasMany

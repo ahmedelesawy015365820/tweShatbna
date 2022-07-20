@@ -29,46 +29,36 @@
                             <div class="card-header pt-0">
                                 <div class="row justify-content-between">
                                     <div class="col-12 row justify-content-end">
-                                        <form @submit.prevent="getByDate" class="needs-validation">
+                                        <form @submit.prevent="getIncome" class="needs-validation">
                                             <div class="form-group row">
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <label >{{$t('global.FromDate')}}</label>
                                                     <input type="date" class="form-control date-input"
                                                            v-model="fromDate">
                                                 </div>
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <label >{{$t('global.ToDate')}}</label>
                                                     <input type="date" class="form-control date-input" v-model="toDate">
                                                 </div>
 
-                                                <div class="col-md-5">
 
-                                                    <label>{{$t('global.AccountName')}} </label>
-
-                                                    <select v-model="treasury_id" class="form-select select-input" required>
-                                                        <option v-for="treasury in treasuries" :kay="treasury.id" :value="treasury.id">{{treasury.name}}</option>
-                                                    </select>
-
-                                                </div>
-
-                                                <div class="col-md-1">
+                                                <div class="col-md-2">
                                                     <button class="btn btn-primary" type="submit">{{$t('global.Submit')}}</button>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button @click="printExpense" class="btn btn-success print-button">
+                                                        {{$t('global.Print')}}
+                                                        <i class="fa fa-print"></i>
+                                                    </button>
                                                 </div>
 
                                             </div>
 
                                         </form>
                                     </div>
-                                    <div class="col-12 row mt-3">
-                                        <div class="col-12 d-flex justify-content-center">
-                                        <button @click="printExpense" class="btn btn-success print-button">
-                                            {{$t('global.Print')}}
-                                            <i class="fa fa-print"></i>
-                                        </button>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="table-responsive" id="printExpense">
@@ -90,41 +80,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>أصول ثابتة</td>
-                                        <td>۱۰۰۰۰</td>
-                                        <td>۳۰۰۰</td>
-                                        <td>۷۰۰۰</td>
-                                        <td></td>
+                                    <tr v-for="(item,index) in subAccounts" v-if="subAccounts" :key="item.id">
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.sumDebit}}</td>
+                                        <td>{{item.sumCredit}}</td>
+                                        <td>{{item.debitBalances}}</td>
+                                        <td>{{item.creditBalances}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>أصول متداولة</td>
-                                        <td>۳۰۰۰</td>
-                                        <td>۱۰۰۰۰</td>
-                                        <td></td>
-                                        <td>۷۰۰۰</td>
-                                    </tr>
+
                                     <tr>
                                         <td>{{$t('global.Total')}}</td>
                                         <td>{{$t('global.TotalsDifference')}}</td>
-                                        <td>۳۰۰۰</td>
+                                        <td>{{totalsDifference}}</td>
                                         <td>{{$t('global.BalanceDifference')}}</td>
-                                        <td>۷۰۰۰</td>
+                                        <td>{{balanceDifference}}</td>
                                     </tr>
-<!--                                    <tr v-for="(item,index) in incomes" v-if="incomes" :key="item.id">-->
-<!--                                        <td>{{ index + 1 }}</td>-->
-<!--                                        <td>{{ item.income.name }}</td>-->
-<!--                                        <td>{{ item.amount }}</td>-->
-<!--                                        <td>{{ item.payer }}</td>-->
-<!--                                        <td>{{ item.notes }}</td>-->
-<!--                                        <td>{{ item.payment_date }}</td>-->
-<!--                                        <td>{{ dateFormat(item.created_at) }}</td>-->
-<!--                                        <td>{{ item.user ? item.user.name : "-&#45;&#45;&#45;&#45;" }}</td>-->
 
-<!--                                    </tr>-->
-<!--                                    <tr v-else>-->
-<!--                                        <th class="text-center" colspan="7">{{ $t('global.NoDataFound') }}</th>-->
-<!--                                    </tr>-->
                                     </tbody>
                                 </table>
                             </div>
@@ -151,21 +122,54 @@ export default {
         const {t} = useI18n({});
 
         // get packages
-        let incomes = ref([]);
-        let treasuries = ref([]);
+        let subAccounts = ref([]);
         let fromDate = ref('');
         let toDate = ref('');
-        let treasury_id = ref('');
         let loading = ref(false);
+        let totalsDifference = ref(0);
+        let balanceDifference = ref(0);
 
-        let getIncome = (page = 1) => {
+        let getIncome = () => {
 
            loading.value = true;
+            if (!fromDate.value){
+                fromDate.value = new Date().toISOString().split('T')[0];
+            }
 
-           adminApi.get(`/v1/dashboard/incomeTreasuryPlatformReport?page=${page}&treasury_id=${treasury_id.value}&from_date=${fromDate.value}&to_date=${toDate.value}`)
+            if (!toDate.value){
+                toDate.value = new Date().toISOString().split('T')[0];
+            }
+
+           adminApi.get(`/v1/dashboard/trialBalance?from_date=${fromDate.value}&to_date=${toDate.value}`)
                .then((res) => {
                    let l = res.data.data;
-                   incomes.value = l.incomes.data;
+
+                   subAccounts.value = l.subAccount;
+                   subAccounts.value.forEach(el=>{
+                       let sumDebit = 0;
+                       let sumCredit = 0;
+                       let debitBalances = 0;
+                       let creditBalances = 0;
+                       el.restriction.forEach(elm=>{
+                           if (elm.debit == 1){
+                               sumDebit += elm.amount;
+                           }else {
+                               sumCredit += elm.amount;
+                           }
+                       });
+                       if (sumDebit >= sumCredit){
+                           debitBalances =sumDebit - sumCredit;
+                       }else {
+                           creditBalances =sumCredit - sumDebit;
+                       }
+                       totalsDifference.value += sumDebit - sumCredit;
+                       balanceDifference.value += debitBalances - creditBalances;
+                       el['sumDebit'] =sumDebit;
+                       el['sumCredit'] =sumCredit;
+                       el['debitBalances'] =debitBalances;
+                       el['creditBalances'] =creditBalances;
+                   });
+                   console.log(subAccounts.value);
                })
                .catch((err) => {
                    console.log(err.response.data);
@@ -176,47 +180,13 @@ export default {
 
         }
 
-        let getTreasuries = () => {
-            loading.value = true;
-
-            adminApi.get(`/v1/dashboard/activeTreasury`)
-                .then((res) => {
-                    let l = res.data.data;
-                    treasuries.value= l.treasuries;
-                })
-                .catch((err) => {
-                    console.log(err.response.data);
-                })
-                .finally(() => {
-                    loading.value = false;
-                })
-        }
-
-        let getByDate = (page = 1) => {
-
-            loading.value = true;
-
-            adminApi.get(`/v1/dashboard/incomeTreasuryPlatformReport?page=${page}&treasury_id=${treasury_id.value}&from_date=${fromDate.value}&to_date=${toDate.value}`)
-                .then((res) => {
-                    let l = res.data.data;
-                    incomes.value = l.incomes.data;
-                })
-                .catch((err) => {
-                    console.log(err.response.data);
-                })
-                .finally(() => {
-                    loading.value = false;
-                });
-        }
-
         onMounted(() => {
-            getTreasuries();
+            getIncome();
         });
 
         emitter.on('get_lang', () => {
             getIncome();
         });
-
 
         let printExpense = () => {
             var printContents = document.getElementById('printExpense').innerHTML;
@@ -231,7 +201,7 @@ export default {
             return new Date(item).toDateString();
         }
 
-        return {printExpense,treasury_id,fromDate,toDate,getByDate,incomes,treasuries, loading, getIncome,dateFormat};
+        return {printExpense,fromDate,toDate,subAccounts, loading, getIncome,dateFormat,totalsDifference,balanceDifference};
 
     },
     data() {
@@ -281,14 +251,10 @@ export default {
     margin-top: 38px !important;
 }
 .date-input{
-    width: 135px !important;
+    width: 220px !important;
     display: inline-block !important;
     margin: 0px 8px 0 8px !important;
 }
-.select-input{
-    width: 235px !important;
-    display: inline-block !important;
-    margin: 0px 8px 0 8px !important;
-}
+
 
 </style>

@@ -337,7 +337,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onchange: "event.stopPropagation()"
   }, null, 8
   /* PROPS */
-  , _hoisted_48), _hoisted_49])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /project list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start Pagination "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Pagination :data=\"privacyPaginate\" @pagination-change-page=\"getprivacies\">\n                            <template #prev-nav>\n                                <span>&lt; Previous</span>\n                            </template>\n                            <template #next-nav>\n                                <span>Next &gt;</span>\n                            </template>\n                        </Pagination> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end Pagination ")])])])], 2
+  , _hoisted_48), _hoisted_49])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /project list "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start Pagination "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <Pagination :data=\"privacyPaginate\" @pagination-change-page=\"getprivacies\">\r\n                            <template #prev-nav>\r\n                                <span>&lt; Previous</span>\r\n                            </template>\r\n                            <template #next-nav>\r\n                                <span>Next &gt;</span>\r\n                            </template>\r\n                        </Pagination> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end Pagination ")])])])], 2
   /* CLASS */
   )], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
@@ -358,13 +358,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _index_vue_vue_type_template_id_3d10de04__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.vue?vue&type=template&id=3d10de04 */ "./resources/js/view/admin/projectsManagement/companyProjects/index.vue?vue&type=template&id=3d10de04");
 /* harmony import */ var _index_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.vue?vue&type=script&lang=js */ "./resources/js/view/admin/projectsManagement/companyProjects/index.vue?vue&type=script&lang=js");
-/* harmony import */ var C_xampp_htdocs_tweShatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_tweShatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_index_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_index_vue_vue_type_template_id_3d10de04__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/view/admin/projectsManagement/companyProjects/index.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_index_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_index_vue_vue_type_template_id_3d10de04__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/view/admin/projectsManagement/companyProjects/index.vue"]])
 /* hot reload */
 if (false) {}
 

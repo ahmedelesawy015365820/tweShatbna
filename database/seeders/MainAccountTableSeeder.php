@@ -21,7 +21,7 @@ class MainAccountTableSeeder extends Seeder
         ]);
         MainAccount::create([
             'ar' => ["name" => 'الخصوم'],
-            'en' => ["name"=> "adversaries"],
+            'en' => ["name"=> "Liabilities"],
             'debit'=>1
         ]);
         MainAccount::create([

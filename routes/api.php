@@ -305,6 +305,12 @@ use Illuminate\Support\Facades\Route;
              // Daily Restriction
              Route::resource('dailyRestriction','DailyRestrictionController');
 
+             // trial Balance
+             Route::resource('trialBalance','TrialBalanceController');
+
+             // Financial Center
+             Route::resource('financialCenter','FinancialCenterController');
+
              // Sub Account
              Route::get('subAccount/{main}/{id}','SubAccountController@index');
              Route::get('getMainSub/{id}','SubAccountController@getMainSub');
@@ -322,6 +328,9 @@ use Illuminate\Support\Facades\Route;
 
              // start  banner
              Route::resource('banner',  'BannerController')->except(['show','create','store','destroy']);
+
+             // target plan
+             Route::resource('targetPlan','TargetPlanController');
 
          });
 

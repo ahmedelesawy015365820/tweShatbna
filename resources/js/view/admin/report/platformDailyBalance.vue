@@ -77,7 +77,7 @@
                                 <div class="col-md-6">
                                     <div class="row m-0">
                                         <div class="col-12 head-table">
-                                            <h3>{{$t('global.Incomes')}} {{$t('global.Total')}}:{{totalIncome}}</h3>
+                                            <h3>{{$t('global.TotalIncome')}}:{{totalIncome}}</h3>
                                         </div>
                                         <div class="col-12">
                                             <div class="table-responsive" >
@@ -113,7 +113,7 @@
                                 <div class="col-md-6">
                                     <div class="row m-0">
                                         <div class="col-12 head-table">
-                                            <h3>{{$t('global.Expenses')}} {{$t('global.Total')}}:{{totalExpense}}</h3>
+                                            <h3>{{$t('global.TotalExpenses')}}:{{totalExpense}}</h3>
                                         </div>
                                         <div class="col-12">
                                             <div class="table-responsive" >

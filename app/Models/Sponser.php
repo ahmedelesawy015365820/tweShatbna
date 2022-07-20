@@ -21,4 +21,9 @@ class Sponser extends Model implements TranslatableContract
     {
         return $this->morphOne(Media::class,'mediable');
     }
+
+    public function details()
+    {
+        return $this->hasOne(SponserDetail::class);
+    }
 }

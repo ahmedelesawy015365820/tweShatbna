@@ -56,6 +56,7 @@ import targetPlan from "./adminRoute/targetPlan";
 import trialBalance from "./adminRoute/trialBalance";
 import financialCenter from "./adminRoute/financialCenter";
 import Report from "./adminRoute/report";
+import sponser from "./adminRoute/sponser";
 
 
 const routes = [
@@ -174,8 +175,8 @@ const routes = [
                     ...financialCenter,
                     ...targetPlan,
                     ...setting,
-                    ...banner
-
+                    ...banner,
+                    ...sponser
                 ]
             },
         ]

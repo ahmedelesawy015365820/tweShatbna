@@ -181,13 +181,6 @@
                 <div id="developers-slider" class="owl-carousel owl-theme developers-slider">
                     <div v-for="sponser in sponsers" class="freelance-widget">
                         <div class="freelance-content">
-                            <a
-                                data-toggle="modal"
-                               href="#rating"
-                               :class="['favourite', this.$i18n.locale != 'ar'?'favourite-ar':'']"
-                            >
-                                <i class="fas fa-star"></i>
-                            </a>
                             <div class="freelance-img">
                                 <a href="#">
                                     <img :src="`/web/img/sponser/${sponser.media.file_name}`" alt="User Image">
@@ -203,7 +196,13 @@
                             </div>
                         </div>
                         <div class="cart-hover">
-                            <a href="developer-details.html" class="btn-cart" tabindex="-1">{{$t('index.more')}}</a>
+                            <router-link
+                                :to="{name:'sponser',params:{lang:this.$i18n.locale,id:sponser.id}}"
+                                class="btn-cart"
+                                tabindex="-1"
+                            >
+                                {{$t('index.more')}}
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -281,7 +280,9 @@ export default {
                     sponsers.value = res.data.data.sponser;
                     setTimeout(() => {
                         carousel();
-                    },500)
+                    },500);
+
+                    console.log(res.data.data.sponser);
                 })
                 .catch((err) => {
                     console.log(err.response);

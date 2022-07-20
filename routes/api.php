@@ -86,9 +86,6 @@ use Illuminate\Support\Facades\Route;
          Route::get('country_states/{country_id}',[AreaController::class,'country_states']);
          Route::get('state_areas/{state_id}',[AreaController::class,'state_areas']);
 
-
-
-
         // start  home
         Route::get('home',  'HomeController@get');
 
@@ -331,6 +328,10 @@ use Illuminate\Support\Facades\Route;
 
              // target plan
              Route::resource('targetPlan','TargetPlanController');
+             
+             //start sponser
+             Route::resource('sponser','SponserController');
+             Route::post('sponser/deleteOne/{id}','SponserController@deleteOne');
 
          });
 
@@ -410,6 +411,8 @@ use Illuminate\Support\Facades\Route;
             Route::post('/update_item','CartController@updateCart');
             Route::post('/delete_item','CartController@delete');
 
+            // start sponser
+             Route::get('getSponser',  'SponserController@getSponser');
 
          });
 

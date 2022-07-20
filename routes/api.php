@@ -322,6 +322,7 @@ use Illuminate\Support\Facades\Route;
 
              //start sponser
              Route::resource('sponser','SponserController');
+             Route::post('sponser/deleteOne/{id}','SponserController@deleteOne');
 
          });
 
@@ -400,6 +401,9 @@ use Illuminate\Support\Facades\Route;
             Route::post('/add_item','CartController@addToCart');
             Route::post('/update_item','CartController@updateCart');
             Route::post('/delete_item','CartController@delete');
+
+            // start sponser
+             Route::get('getSponser',  'SponserController@getSponser');
 
          });
 

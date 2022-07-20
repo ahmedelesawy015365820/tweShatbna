@@ -280,7 +280,9 @@ export default {
                     sponsers.value = res.data.data.sponser;
                     setTimeout(() => {
                         carousel();
-                    },500)
+                    },500);
+
+                    console.log(res.data.data.sponser);
                 })
                 .catch((err) => {
                     console.log(err.response);

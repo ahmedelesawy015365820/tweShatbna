@@ -9,11 +9,11 @@
 
                         <div class="page-subtitle d-flex align-items-center justify-content-center">
                             <div>
-                                <img  src="/web/img/sponser/eet.jpg">
+                                <img  :src="`/web/img/sponser/${sponser.media.file_name}`">
                             </div>
                         </div>
 
-                        <h1>تكنولوجيا هندسه المقاولات</h1>
+                        <h1>{{ sponser.name }}</h1>
 
                         <div class="row">
 
@@ -29,9 +29,13 @@
                                         </div>
                                     </div>
 
-                                    <div id="developers-slider" class="owl-carousel owl-theme developers-slider">
+                                    <div
+                                        id="developers-slider"
+                                        class="owl-carousel owl-theme developers-slider"
+                                        v-for="item in media"
+                                    >
                                         <div class="freelance-widget">
-                                            <img src="/web/img/general/1657198471.slider3.webp">
+                                            <img :src="`/web/img/sponser/${item.file_name}`">
                                         </div>
                                     </div>
 
@@ -41,7 +45,7 @@
 
                             <section class="details-company container">
                                 <h3>- نبذه عن الشركه </h3>
-                                <p>Have you ever read a webpage or document that used this text without paying much attention to it? The lorem ipsum is a placeholder text used in publishing and graphic design. This filler text is a short paragraph that contains all the letters of the alphabet. The characters are spread out evenly so that the reader’s attention is focused on the layout of the text instead of its content. Many software programs and applications have made it their default dummy text. Since the lorem ipsum is always used as a placeholder text, its use indicates that this is not a final version of a document, thus helping to avoid unnecessary printing.</p>
+                                <p>{{ detail.description }}</p>
                             </section>
 
                             <section class="contact container">
@@ -50,19 +54,19 @@
                                     <li>
                                         <i class="fas fa-location-arrow"></i>
                                         <span>
-                                            24 شارع عامر الدقي
+                                            {{ detail.location }}
                                         </span>
                                     </li>
                                     <li>
                                         <i class="fas fa-phone"></i>
                                         <span>
-                                            +20 1155716375
+                                            {{ detail.phone }}
                                         </span>
                                     </li>
                                     <li>
                                         <i class="fas fa-envelope"></i>
                                         <span>
-                                            info@shatabna.com
+                                            {{ detail.email }}
                                         </span>
                                     </li>
                                 </ul>
@@ -80,12 +84,16 @@
 
 <script>
 import {ref,onMounted} from 'vue';
+import webApi from "../../api/webAxios";
 
 export default {
     name: "sponser-details",
     setup(){
 
         let loading = ref(false);
+        let sponser = ref({});
+        let media = ref([]);
+        let detail = ref({});
 
         let carousel = () => {
             $('#developers-slider').removeClass('owl-hidden');
@@ -119,11 +127,36 @@ export default {
             //end owl-carousel
         };
 
+        let getData = () => {
+            loading.value = true;
+            webApi.get(`/v1/web/getSponser`)
+                .then((res) => {
+                    sponser.value = res.data.data.sponser;
+                    detail.value = res.data.data.sponser.details;
+                    media.value = res.data.data.sponser.details.media;
+                    console.log(sponser.value);
+                    setTimeout(() => {
+                        carousel();
+                    },500)
+                })
+                .catch((err) => {
+                    console.log(err.response);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا ...',
+                        text: 'يوجد خطاء في النظام يرجي اعاده الماوله مره اخري  !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
+        };
+
         onMounted(() => {
-            carousel();
+            getData();
         });
 
-        return {loading};
+        return {loading,sponser,media,detail};
     }
 }
 </script>

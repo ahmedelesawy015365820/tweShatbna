@@ -45,13 +45,17 @@
                                     </tr>
                                     </thead>
                                     <tbody v-if="sponser.length">
-                                        <tr v-for="item in sponser">
+                                        <tr v-for="(item,index) in sponser">
                                             <td>{{item.id + 1}}</td>
                                             <td>{{item.name}} </td>
                                             <td>
                                                 <router-link :to="{name: 'editSponser', params: {lang: locale || 'ar',id:item.id}}" class="btn btn-sm btn-success me-2">
                                                     <i class="far fa-edit"></i>
                                                 </router-link>
+
+                                                <a href="#" @click.prevent="deleteSponser(item.id,index)" data-bs-target="#staticBackdrop"  class="btn btn-sm btn-danger me-2">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </a>
                                             </td>
 
                                         </tr>
@@ -123,7 +127,50 @@ export default {
             getSponser();
         });
 
-        return {loading,sponser,sponserPagination,getSponser};
+        function deleteSponser(id,index){
+            Swal.fire({
+                title: `Are you sure delete ?`,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    adminApi.delete(`/v1/dashboard/sponser/${id}`)
+                        .then((res) => {
+                            sponser.value.splice(index,index + 1);
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Your package has been deleted.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        })
+                        .catch((err) => {
+                            if(err.response.data.errors){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'يوجد خطا في النظام...',
+                                    text: 'لا ينفع حذف هذه الدوله بسبب وجود اشخاص مشتركين فيها !',
+                                });
+                            }else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'يوجد خطا في النظام...',
+                                    text: 'يوجد خطا في النظام !',
+                                });
+                            }
+                        });
+                }
+            });
+        }
+
+
+        return {loading,sponser,sponserPagination,getSponser,deleteSponser};
 
     },
     data(){

@@ -268,7 +268,6 @@ export default {
 
                 this.loading = true;
 
-
                 adminApi.post(`/v1/dashboard/packageSale`,formData)
                     .then((res) => {
                         notify({

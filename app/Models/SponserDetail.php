@@ -13,7 +13,6 @@ class SponserDetail extends Model implements TranslatableContract
     protected $guarded = ['id'];
     public $translatedAttributes = ['location','description'];
     protected $translationForeignKey = 'sponser_id';
-    protected $hidden = ['translations'];
 
     //start raletions
 
@@ -24,6 +23,6 @@ class SponserDetail extends Model implements TranslatableContract
 
     public function sponser()
     {
-        return $this->hasOne(Sponser::class);
+        return $this->belongsTo(Sponser::class);
     }
 }

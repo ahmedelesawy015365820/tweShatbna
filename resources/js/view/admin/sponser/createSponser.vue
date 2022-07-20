@@ -463,10 +463,10 @@ export default {
                 formData.append('email',this.data.email);
                 formData.append('file',this.data.file);
 
-                for(let i;i < this.data.banners.length ; ++i){
+                for(let i = 0;i < this.data.banners.length ; i++){
                     let file = this.data.banners[i];
 
-                    formData.append('banners[' + i + ']', file);
+                    formData.append('files[' + i + ']', file);
                 }
 
                 adminApi.post(`/v1/dashboard/sponser`,formData)
@@ -487,7 +487,6 @@ export default {
                     })
                     .catch((err) => {
                         this.errors = err.response.data.errors;
-                        console.log(err.response);
                     })
                     .finally(() => {
                         this.loading = false;

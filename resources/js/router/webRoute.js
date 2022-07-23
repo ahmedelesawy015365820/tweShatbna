@@ -10,6 +10,7 @@ import browseCompany from "../view/web/browse-company.vue";
 import browseDetails from  "../view/web/browse-details.vue";
 import browseDesgin from "../view/web/browse-design";
 import designPartiner from "../view/web/design-partiner.vue";
+import CompanyProfile from "../view/web/company-profile.vue";
 import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
 import advisorShatabna from '../view/web/advisorShatabna';
@@ -146,6 +147,11 @@ const routes = [
                 name: 'sponser',
                 component: sponser,
                 props: true
+            },
+            {
+                path: 'company-profile',
+                name: 'company-profile',
+                component: CompanyProfile,
             },
             {
                 path: 'privacy',

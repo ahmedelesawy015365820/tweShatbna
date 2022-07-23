@@ -285,7 +285,6 @@ export default {
                     console.log(res.data.data.sponser);
                 })
                 .catch((err) => {
-                    console.log(err.response);
                     Swal.fire({
                         icon: 'error',
                         title: 'يوجد خطا ...',

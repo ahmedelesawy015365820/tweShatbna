@@ -201,6 +201,7 @@
                                                             accept="image/png,jepg,jpg"
                                                         >
                                                     </div>
+                                                    <span class="text-danger text-center">اقصي ارتفاع للصوره يكون 105px و اقصي عرض 105px و ان حجمها لا يتعدي 2mb</span>
                                                     <p class="num-of-files">{{numberOfImage1 ? numberOfImage1 + ' Files Selected' : 'No Files Chosen' }}</p>
                                                     <div class="container-images" id="container-images1" v-show="numberOfImage1"></div>
                                                     <div class="container-images" v-show="!numberOfImage1">
@@ -229,6 +230,7 @@
                                                             accept="image/png,jepg,jpg"
                                                         >
                                                     </div>
+                                                    <span class="text-danger text-center">اقصي ارتفاع للصوره يكون 275px و اقصي عرض 275px و ان حجمها لا يتعدي 2mb</span>
                                                     <p class="num-of-files">{{numberOfImage2 ? numberOfImage2 + ' Files Selected' : 'No Files Chosen' }}</p>
                                                     <div class="container-images" id="container-images2" v-show="numberOfImage2"></div>
                                                     <div class="container-images all-image">

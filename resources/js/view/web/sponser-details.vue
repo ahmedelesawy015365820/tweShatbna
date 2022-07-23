@@ -9,7 +9,7 @@
 
                         <div class="page-subtitle d-flex align-items-center justify-content-center">
                             <div>
-                                <img  :src="`/web/img/sponser/${sponser.media.file_name}`">
+                                <img  :src="`/web/img/sponser/${media.file_name}`">
                             </div>
                         </div>
 
@@ -32,7 +32,7 @@
                                     <div
                                         id="developers-slider"
                                         class="owl-carousel owl-theme developers-slider"
-                                        v-for="item in media"
+                                        v-for="item in mediaDetails"
                                     >
                                         <div class="freelance-widget">
                                             <img :src="`/web/img/sponser/${item.file_name}`">
@@ -83,17 +83,20 @@
 </template>
 
 <script>
-import {ref,onMounted} from 'vue';
+import {ref,onMounted,toRefs} from 'vue';
 import webApi from "../../api/webAxios";
 
 export default {
     name: "sponser-details",
-    setup(){
+    props: ['id'],
+    setup(props){
 
         let loading = ref(false);
         let sponser = ref({});
-        let media = ref([]);
+        let mediaDetails = ref([]);
+        let media = ref({});
         let detail = ref({});
+        let {id} = toRefs(props);
 
         let carousel = () => {
             $('#developers-slider').removeClass('owl-hidden');
@@ -129,18 +132,17 @@ export default {
 
         let getData = () => {
             loading.value = true;
-            webApi.get(`/v1/web/getSponser`)
+            webApi.get(`/v1/web/getSponser/${id.value}`)
                 .then((res) => {
                     sponser.value = res.data.data.sponser;
                     detail.value = res.data.data.sponser.details;
-                    media.value = res.data.data.sponser.details.media;
-                    console.log(sponser.value);
+                    mediaDetails.value = res.data.data.sponser.details.media;
+                    media.value = res.data.data.sponser.media;
                     setTimeout(() => {
                         carousel();
                     },500)
                 })
                 .catch((err) => {
-                    console.log(err.response);
                     Swal.fire({
                         icon: 'error',
                         title: 'يوجد خطا ...',
@@ -156,7 +158,7 @@ export default {
             getData();
         });
 
-        return {loading,sponser,media,detail};
+        return {loading,sponser,mediaDetails,detail,media};
     }
 }
 </script>
@@ -298,7 +300,7 @@ h1{
     box-shadow: 1px 0px 17px -4px rgb(0 0 0 / 25%);
     border-radius: 50%;
     color: #fcbd33;
-    line-height: 156px;
+    line-height: 168px;
 }
 
 .page-subtitle div i{
@@ -308,7 +310,7 @@ h1{
 }
 
 .page-subtitle div img {
-    width: 85%;
+    width: 61%;
 }
 
 @media (min-width: 992px){

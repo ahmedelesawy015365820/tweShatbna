@@ -201,6 +201,7 @@
                                                             accept="image/png,jepg,jpg"
                                                         >
                                                     </div>
+                                                    <span class="text-danger text-center">اقصي ارتفاع للصوره يكون 105px و اقصي عرض 105px و ان حجمها لا يتعدي 2mb</span>
                                                     <p class="num-of-files">{{numberOfImage1 ? numberOfImage1 + ' Files Selected' : 'No Files Chosen' }}</p>
                                                     <span class="text-danger text-center" v-if="min1">images is required. <br /></span>
                                                     <span class="text-danger text-center" v-if="requiredn1">images is must have at least 1 photos<br /></span>
@@ -223,6 +224,7 @@
                                                             accept="image/png,jepg,jpg"
                                                         >
                                                     </div>
+                                                    <span class="text-danger text-center">اقصي ارتفاع للصوره يكون 275px و اقصي عرض 275px و ان حجمها لا يتعدي 2mb</span>
                                                     <p class="num-of-files">{{numberOfImage2 ? numberOfImage2 + ' Files Selected' : 'No Files Chosen' }}</p>
                                                     <span class="text-danger text-center" v-if="min2">images is required. <br /></span>
                                                     <span class="text-danger text-center" v-if="requiredn2">images is must have at least 1 photos<br /></span>
@@ -350,6 +352,9 @@ export default {
             let clearInput = document.querySelector('#mediaPackage1').value = '';
             min1.value = false;
             requiredn1.value = false;
+
+            let containerImages = document.querySelector('#container-images1');
+            containerImages.innerHTML = '';
         }
 
         let empty2 = () => {
@@ -358,6 +363,9 @@ export default {
             min2.value = false;
             requiredn2.value = false;
             max2.value = false;
+
+            let containerImages = document.querySelector('#container-images2');
+            containerImages.innerHTML = '';
         }
 
         let preview1 = (e) => {

@@ -154,6 +154,17 @@ class AuthController extends Controller
 
     }
 
+    public function authorizeUser()
+    {
+        $user = auth()->guard('api')->check();
+
+        if($user){
+            return  $this->sendResponse(['success' => true],'Data exited successfully');
+        }else{
+            return $this->sendError(['error' => true]);
+        }
+    }
+
     public function complement()
     {
 

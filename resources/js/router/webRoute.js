@@ -23,6 +23,7 @@ import store from "../store/web";
 import lang from "../middleware/web/lang";
 import guest from "../middleware/web/guest";
 import auth from "../middleware/web/auth";
+import checkToken from "../middleware/web/checkToken";
 import advertise from "./webRoute/advertise";
 import design from "./webRoute/design";
 import company from "./webRoute/company";
@@ -144,6 +145,7 @@ const routes = [
                 path: 'sponser/:id(\\d+)',
                 name: 'sponser',
                 component: sponser,
+                props: true
             },
             {
                 path: 'privacy',
@@ -160,7 +162,7 @@ const routes = [
                     template:'<router-view />',
                 },
                 meta: {
-                    middleware: [auth]
+                    middleware: [auth,checkToken]
                 },
                 children:[
                     ...design

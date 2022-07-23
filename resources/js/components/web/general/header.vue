@@ -29,7 +29,7 @@
                             {{$t('header.home')}}
                         </router-link>
                     </li>
-                    <li class="nav-item">
+                    <li :class="[$route.name == 'browse-project' ? 'active' : '','nav-item']">
                         <router-link :to="{name:'browse-project',params: {lang:this.$i18n.locale}}">
                             {{$t('header.browse')}}
                         </router-link>
@@ -49,7 +49,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li :class="[$route.name == 'LoataProducts' ? 'active' : '','nav-item']">
                         <router-link :to="{name:'LoataProducts',params: {lang:this.$i18n.locale}}">{{$t('header.bargain')}}</router-link>
                     </li>
 

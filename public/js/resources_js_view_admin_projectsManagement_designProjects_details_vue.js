@@ -329,14 +329,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _details_vue_vue_type_template_id_e627395e_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./details.vue?vue&type=template&id=e627395e&scoped=true */ "./resources/js/view/admin/projectsManagement/designProjects/details.vue?vue&type=template&id=e627395e&scoped=true");
 /* harmony import */ var _details_vue_vue_type_style_index_0_id_e627395e_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./details.vue?vue&type=style&index=0&id=e627395e&scoped=true&lang=css */ "./resources/js/view/admin/projectsManagement/designProjects/details.vue?vue&type=style&index=0&id=e627395e&scoped=true&lang=css");
-/* harmony import */ var D_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 const script = {}
 
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,D_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(script, [['render',_details_vue_vue_type_template_id_e627395e_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-e627395e"],['__file',"resources/js/view/admin/projectsManagement/designProjects/details.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_shatbna_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(script, [['render',_details_vue_vue_type_template_id_e627395e_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-e627395e"],['__file',"resources/js/view/admin/projectsManagement/designProjects/details.vue"]])
 /* hot reload */
 if (false) {}
 

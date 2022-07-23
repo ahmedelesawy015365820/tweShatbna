@@ -51,7 +51,7 @@ class CartController extends Controller
     //return cart
     public function getCart(Request $request)
     {
-        $user=$request->user()->client()->first();
+        $user = $request->user()->client()->first();
         return response()->json(['cart' => CartResource::collection($user->cart()->whereDate('expiry_date','>=',now()->format('Y-m-d\TH:m:s'))->where('stock','>',0)->get())]);
     }
 

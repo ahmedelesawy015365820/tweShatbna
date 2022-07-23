@@ -1,5 +1,5 @@
 import axios from "axios";
-import Cookies from "js-cookie";
+import store from "../store/web"
 
 const webApi = axios.create({
     baseURL: 'http://admin.shatbna.com/api/'
@@ -8,7 +8,7 @@ const webApi = axios.create({
 webApi.interceptors.request.use(
     function (config) {
         config.headers['lang'] = localStorage.getItem("langWeb") || 'ar';
-        config.headers['Authorization'] = "Bearer "+ (Cookies.get("token") || '');
+        config.headers['Authorization'] = "Bearer "+ (store.state.auth.token || '');
         return config;
     },
     function (error) {

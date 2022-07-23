@@ -29,6 +29,10 @@ use Illuminate\Support\Facades\Route;
      // start web auth
      Route::group(['prefix' => 'web','namespace' => 'Web'],function () {
 
+         // check token
+         Route::get('checkToken',  'AuthController@authorizeUser');
+
+
          // start Register[company,design,advertiser,client]
 
          Route::post('company','RegisterController@companyRegister');
@@ -88,6 +92,9 @@ use Illuminate\Support\Facades\Route;
 
         // start  home
         Route::get('home',  'HomeController@get');
+
+         // start sponser
+         Route::get('getSponser/{id}',  'SponserController@getSponser');
 
      });
 
@@ -328,7 +335,7 @@ use Illuminate\Support\Facades\Route;
 
              // target plan
              Route::resource('targetPlan','TargetPlanController');
-             
+
              //start sponser
              Route::resource('sponser','SponserController');
              Route::post('sponser/deleteOne/{id}','SponserController@deleteOne');
@@ -337,6 +344,8 @@ use Illuminate\Support\Facades\Route;
 
          // start web
          Route::group(['prefix' => 'web','namespace' => 'Web'],function () {
+
+
 
              // start Notification
              Route::get('getAllNot','NotificationController@getAllNot');
@@ -358,6 +367,7 @@ use Illuminate\Support\Facades\Route;
              Route::get('complement',  'AuthController@complement');
              Route::get('partner',  'AuthController@partner');
              Route::post('changeImage',  'AuthController@changeImage');
+             Route::get('checkToken',  'AuthController@authorizeUser');
 
             // start Advertise
              Route::get('webadvertise',  'AdvertiseController@advertise');
@@ -411,8 +421,6 @@ use Illuminate\Support\Facades\Route;
             Route::post('/update_item','CartController@updateCart');
             Route::post('/delete_item','CartController@delete');
 
-            // start sponser
-             Route::get('getSponser',  'SponserController@getSponser');
 
          });
 

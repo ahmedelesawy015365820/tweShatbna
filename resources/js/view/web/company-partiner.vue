@@ -9,7 +9,7 @@
 
                             <div class="row">
 
-                                <div class="col-md-6 col-lg-4">
+                                <div class="col-md-6 col-lg-4" v-for="profile in profiles">
 
                                     <div class="freelance-widget widget-author">
                                         <div class="freelance-content">
@@ -21,7 +21,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="profile-name">
-                                                    <div class="author-location">Amaze Tech <i class="fas fa-check-circle text-success verified"></i></div>
+                                                    <div class="author-location">{{ profile.complement.nameCompany }} <i class="fas fa-check-circle text-success verified"></i></div>
                                                 </div>
                                                 <div>
                                                     <i class="fas fa-star star-background"></i>
@@ -49,18 +49,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="freelance-info">
-                                                    <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Cairo, Egypt</div>
+                                                    <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>{{ profile.complement.state.name }}, {{ profile.complement.country.name }}</div>
                                                 </div>
                                                 <div class="freelance-tags">
-                                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">After Effects</span></a>
-                                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Illustrator</span></a>
-                                                    <a href="javascript:void(0);"><span class="badge badge-pill badge-design">HTML</span></a>
+                                                    <a href="javascript:void(0);" v-for="service in profile.company_service">
+                                                        <span class="badge badge-pill badge-design">{{ service.name }}</span>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="cart-hover">
                                             <router-link
-                                                :to="{name:'company-profile',params:{lang: this.$i18n.locale}}"
+                                                :to="{name:'company-profile',params:{lang: this.$i18n.locale,id:profile.id}}"
                                                 class="btn-cart"
                                                 tabindex="-1"
                                             >
@@ -99,17 +99,20 @@ export default {
 
         const emitter = inject('emitter');
         let loading  = ref(false);
+        let profiles = ref([]);
+        let profilePaginate = ref({});
 
         let getCompany = () => {
             loading.value = true;
 
-            webApi.get(`/v1/web/allComProject`)
+            webApi.get(`/v1/web/companyShowGet`)
                 .then((res) => {
                     let l = res.data.data;
-
+                    profiles.value = l.profiles.data;
+                    profilePaginate.value = l.profiles;
                 })
                 .catch((err) => {
-
+                    console.log(err.response);
                 })
                 .finally(() => {
                     loading.value = false;
@@ -117,14 +120,14 @@ export default {
         };
 
         onMounted(() => {
-            // getCompany();
+            getCompany();
         });
 
         emitter.on('get_lang_web', () => {
             getCompany();
         });
 
-        return {};
+        return {profiles,profilePaginate};
     }
 }
 </script>

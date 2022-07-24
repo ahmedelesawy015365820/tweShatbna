@@ -24,12 +24,11 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $company = User::with(['company:send,user_id','complement:user_id,device'])->whereAuthId(2)->whereJsonContains('role_name','company')
-            ->where(function ($q) use($request){
-               $q->when($request->search,function ($q) use($request){
-                   return $q->OrWhere('email','like','%'.$request->search.'%')
-                       ->orWhere('phone','like','%'.$request->search.'%');
-            });
-
+        ->where(function ($q) use($request){
+           $q->when($request->search,function ($q) use($request){
+               return $q->OrWhere('email','like','%'.$request->search.'%')
+                   ->orWhere('phone','like','%'.$request->search.'%');
+           });
         })->latest()->paginate(15);
 
         return $this->sendResponse(['company' => $company],'Data exited successfully');

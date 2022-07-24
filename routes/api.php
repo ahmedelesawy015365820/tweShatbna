@@ -96,6 +96,11 @@ use Illuminate\Support\Facades\Route;
          // start sponser
          Route::get('getSponser/{id}',  'SponserController@getSponser');
 
+         // strart Company Profile
+         Route::get('companyShowGet',  'CompanyProfileController@companyShowGet');
+         Route::get('companyProfile/{id}',  'CompanyProfileController@companyProfile');
+
+
      });
 
 

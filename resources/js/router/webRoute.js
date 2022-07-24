@@ -149,9 +149,10 @@ const routes = [
                 props: true
             },
             {
-                path: 'company-profile',
+                path: 'company-profile/:id(\\d+)',
                 name: 'company-profile',
                 component: CompanyProfile,
+                props: true
             },
             {
                 path: 'privacy',

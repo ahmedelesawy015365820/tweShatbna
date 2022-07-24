@@ -93,9 +93,9 @@ class CompanyController extends Controller
 
             $userCompany = User::find($user->id);
 
-            User::whereAuthId(1)->each(function ($admin) use($userCompany){
-                $admin->notify(new TrustCompanyNotification($userCompany));
-            });
+//            User::whereAuthId(1)->each(function ($admin) use($userCompany){
+//                $admin->notify(new TrustCompanyNotification($userCompany));
+//            });
 
             DB::commit();
             return $this->sendResponse([], 'Data exited successfully');

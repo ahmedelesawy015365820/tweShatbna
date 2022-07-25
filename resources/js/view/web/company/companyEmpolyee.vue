@@ -1,6 +1,7 @@
 <template>
     <!-- Page Content -->
     <div class="content bookmark">
+        <loader v-if="loading"/>
         <div class="container-fluid">
             <div class="row">
 
@@ -32,16 +33,18 @@
                                                         <th></th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
-                                                    <tr>
+                                                    <tbody v-if="employees.length">
+                                                    <tr v-for="employee in employees">
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="freelancer-profile.html" class="avatar avatar-md tab-imgcircle me-2">
-                                                                    <img class="avatar-img rounded-circle" src="/web/img/img-02.jpg" alt="User Image">
-                                                                </a>
-                                                                <a href="freelancer-profile.html">
-                                                                    <span class="profile-name">Andrew Glover</span><span>Software Developer</span>
-                                                                </a>
+                                                                <img
+                                                                    class="avatar-img rounded-circle"
+                                                                    onerror="src='/web/img/img-02.jpg'"
+                                                                    alt="User Image"
+                                                                    :src="`/web/img/companyEmployee/${employee.media.file_name}`"
+                                                                >
+                                                                <span class="profile-name">{{ employee.name }}</span>
+                                                                <span>{{ employee.job }}</span>
                                                             </h2>
                                                         </td>
                                                         <td class="text-end">
@@ -53,6 +56,11 @@
                                                             </div>
                                                         </td>
                                                     </tr>
+                                                    </tbody>
+                                                    <tbody v-else>
+                                                        <tr>
+                                                            <th class="text-center" colspan="2">No Data Found</th>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -83,28 +91,44 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name (Arbic)</label>
-                                            <input type="text" class="form-control">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                v-model="v$.store.name_ar.$model"
+                                            >
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name (English)</label>
-                                            <input type="text" class="form-control">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                v-model="v$.store.name_en.$model"
+                                            >
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Job Name (Arbic)</label>
-                                            <input type="text" class="form-control">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                v-model="v$.store.job_ar.$model"
+                                            >
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Job Name (English)</label>
-                                            <input type="text" class="form-control">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                v-model="v$.store.job_en.$model"
+                                            >
                                         </div>
                                     </div>
 
@@ -210,12 +234,85 @@
 
 <script>
 import Sidebar from "../../../components/web/sidebar";
+import {computed, onMounted, reactive, ref, toRefs} from "vue";
+import webApi from "../../../api/webAxios";
+import {email, integer, maxLength, minLength, required} from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 
 export default {
     name: "companyEmpolyee",
     setup(){
 
-        return {};
+        let loading = ref(false);
+        let employees = ref([]);
+        let employeePagination = ref([]);
+
+        let getData = () => {
+            loading.value = true;
+            webApi.get(`/v1/web/companyEmployee`)
+                .then((res) => {
+
+                    let l = res.data.data;
+                    employeePagination.value = l.empolyees;
+                    employees.value = l.empolyees.data;
+
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'يوجد خطا ...',
+                        text: 'يوجد خطاء في النظام يرجي اعاده الماوله مره اخري  !',
+                    });
+                })
+                .finally(() => {
+                    loading.value = false;
+                });
+        };
+
+
+        let employeeData =  reactive({
+            store:{
+                name_ar: '',
+                name_en: '',
+                job_ar: '',
+                job_en: '',
+                file: {}
+            },
+            edit:{
+                name_ar: '',
+                name_en: '',
+                job_ar: '',
+                job_en: '',
+                file: {}
+            }
+        });
+
+        const rules = computed(() => {
+            return {
+                store: {
+                    name_ar: {required},
+                    name_en: {required},
+                    job_ar: {required},
+                    job_en: {required},
+                    file: {required}
+                },
+                edit:{
+                    name_ar: {required},
+                    name_en: {required},
+                    job_ar: {required},
+                    job_en: {required}
+                }
+            }
+        });
+
+        const v$ = useVuelidate(rules,employeeData);
+
+
+        onMounted(() => {
+            getData();
+        });
+
+        return {loading,employees,employeePagination,...toRefs(employeeData),v$};
     },
     components: {
         Sidebar

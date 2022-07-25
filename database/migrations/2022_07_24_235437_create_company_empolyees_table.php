@@ -15,6 +15,7 @@ class CreateCompanyEmpolyeesTable extends Migration
     {
         Schema::create('company_empolyees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -426,6 +426,9 @@ use Illuminate\Support\Facades\Route;
             Route::post('/update_item','CartController@updateCart');
             Route::post('/delete_item','CartController@delete');
 
+            // company employee
+             Route::resource('companyEmployee','CompanyEmployeeController');
+
 
          });
 

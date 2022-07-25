@@ -127,7 +127,7 @@ export default {
             getCompany();
         });
 
-        return {profiles,profilePaginate};
+        return {profiles,profilePaginate,loading};
     }
 }
 </script>

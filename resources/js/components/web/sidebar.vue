@@ -70,6 +70,16 @@
                             </router-link>
                         </li>
 
+                        <li class="nav-item">
+                            <router-link
+                                :to="{name:'empolyee',params:{lang:this.$i18n.locale}}"
+                                v-if="parseInt(partner.trust)"
+                                :class="['nav-link', $route.name == 'empolyee'? 'active': '']"
+                            >
+                                <i class="material-icons" >local_play</i> موظفين الشركه
+                            </router-link>
+                        </li>
+
                         <li class="nav-item" v-if="!parseInt(partner.send) || !parseInt(partner.trust)">
                             <router-link
                                 :to="{name:'trustCompany',params:{lang:this.$i18n.locale}}"

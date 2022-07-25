@@ -49,7 +49,7 @@
                                         <th>Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody v-if="countries.length">
                                         <tr v-for="(item,index) in countries" v-if="countries" :key="item.id">
                                             <td>{{index + 1}}</td>
                                             <td>{{item.name}}</td>
@@ -65,10 +65,12 @@
                                             </td>
 
                                         </tr>
-                                        <tr v-else>
+                                    </tbody>
+                                    <body v-else>
+                                        <tr>
                                             <th class="text-center" colspan="5">No Data Found</th>
                                         </tr>
-                                    </tbody>
+                                    </body>
                                 </table>
                             </div>
                         </div>

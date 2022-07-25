@@ -1,6 +1,7 @@
 <template>
     <div>
         <loader2 v-if="loading" />
+
         <!-- Home Banner -->
         <section
             class="section home-banner row-middle"

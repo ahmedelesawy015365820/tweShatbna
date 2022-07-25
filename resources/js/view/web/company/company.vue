@@ -343,6 +343,7 @@ export default {
 .error-trust  .nav-link:hover {
     color: #fcb00c;
 }
+
 .error-trust.send{
     top: 58px;
 }

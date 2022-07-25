@@ -48,8 +48,8 @@
                                         <th>Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr v-for="(item,index) in degrees" v-if="degrees" :key="item.id">
+                                    <tbody v-if="degrees.length">
+                                        <tr v-for="(item,index) in degrees"  :key="item.id">
                                             <td>{{index + 1}}</td>
                                             <td>{{item.name}}</td>
                                             <td><span :class="[parseInt(item.status) ? 'text-success': 'text-danger']">{{parseInt(item.status) ? 'Active': 'Inactive'}}</span></td>
@@ -61,12 +61,13 @@
                                                     <i class="far fa-trash-alt"></i>
                                                 </a>
                                             </td>
-
-                                        </tr>
-                                        <tr v-else>
-                                            <th class="text-center" colspan="5">No Data Found</th>
                                         </tr>
                                     </tbody>
+                                    <body v-else>
+                                        <tr>
+                                            <th class="text-center" colspan="5">No Data Found</th>
+                                        </tr>
+                                    </body>
                                 </table>
                             </div>
                         </div>

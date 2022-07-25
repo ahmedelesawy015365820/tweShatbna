@@ -9,18 +9,24 @@
 
                         <div class="row">
 
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-md-6 col-lg-4" v-for="profile in profiles">
+
                                 <div class="freelance-widget widget-author">
                                     <div class="freelance-content">
                                         <a data-bs-toggle="modal" href="#rating" class="favourite"><i class="fas fa-star"></i></a>
                                         <div class="author-heading">
                                             <div class="profile-img">
                                                 <a href="#">
-                                                    <img src="/web/img/company/img-1.png" alt="author">
+                                                    <img
+
+                                                        :src="profile.imagePath"
+                                                        onerror="src='/web/img/company/img-1.png'"
+                                                         alt="author"
+                                                    >
                                                 </a>
                                             </div>
                                             <div class="profile-name">
-                                                <div class="author-location">Amaze Tech <i class="fas fa-check-circle text-success verified"></i></div>
+                                                <div class="author-location">{{ profile.name }} <i class="fas fa-check-circle text-success verified"></i></div>
                                             </div>
                                             <div>
                                                 <i class="fas fa-star star-background"></i>
@@ -48,17 +54,23 @@
                                                 </div>
                                             </div>
                                             <div class="freelance-info">
-                                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>Georgia, USA</div>
+                                                <div class="freelance-location"><i class="fas fa-map-marker-alt me-1"></i>{{ profile.complement.state.name }}, {{ profile.complement.country.name }}</div>
                                             </div>
                                             <div class="freelance-tags">
-                                                <a href="javascript:void(0);"><span class="badge badge-pill badge-design">After Effects</span></a>
-                                                <a href="javascript:void(0);"><span class="badge badge-pill badge-design">Illustrator</span></a>
-                                                <a href="javascript:void(0);"><span class="badge badge-pill badge-design">HTML</span></a>
+                                                <a href="javascript:void(0);" v-for="service in profile.design_service">
+                                                    <span class="badge badge-pill badge-design">{{ service.name }}</span>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="cart-hover">
-                                        <a href="project-details.html" class="btn-cart" tabindex="-1">Read More</a>
+                                        <router-link
+                                            :to="{name:'designProfile',params:{lang: this.$i18n.locale,id:profile.id}}"
+                                            class="btn-cart"
+                                            tabindex="-1"
+                                        >
+                                            Read More
+                                        </router-link>
                                     </div>
                                 </div>
                             </div>
@@ -92,17 +104,20 @@ export default {
 
         const emitter = inject('emitter');
         let loading  = ref(false);
+        let profiles = ref([]);
+        let profilePaginate = ref({});
 
-        let getCompany = () => {
+        let getDesign = () => {
             loading.value = true;
 
-            webApi.get(`/v1/web/allComProject`)
+            webApi.get(`/v1/web/designShowGet`)
                 .then((res) => {
                     let l = res.data.data;
-
+                    profiles.value = l.profiles.data;
+                    profilePaginate.value = l.profiles;
                 })
                 .catch((err) => {
-
+                    console.log(err.response);
                 })
                 .finally(() => {
                     loading.value = false;
@@ -110,14 +125,14 @@ export default {
         };
 
         onMounted(() => {
-            // getCompany();
+            getDesign();
         });
 
         emitter.on('get_lang_web', () => {
-            getCompany();
+            getDesign();
         });
 
-        return {};
+        return {profiles,profilePaginate,loading};
     }
 }
 </script>
@@ -141,6 +156,10 @@ export default {
 .rate-project span{
     font-size: 16px;
     font-weight: 600;
+}
+
+.widget-author .profile-img a img{
+    border-radius: 50%;
 }
 
 .fa-map-marker-alt {

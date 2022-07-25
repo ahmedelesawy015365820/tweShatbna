@@ -89,7 +89,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#jobs" data-bs-toggle="tab">
                                         <img class="img-fluid" alt="User Image" src="/web/img/icon/tab-icon-05.png">
-                                        <p class="bg-pink">Jobs</p>
+                                        <p class="bg-pink">فريق عمل</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

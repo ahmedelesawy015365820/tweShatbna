@@ -15,6 +15,7 @@ import page404 from '../view/web/404.vue';
 import loginPartiner from '../view/web/loginPartiner.vue';
 import advisorShatabna from '../view/web/advisorShatabna';
 import sizingService from '../view/web/sizingService';
+import DesignProfile from '../view/web/design-profile';
 import sponser from '../view/web/sponser-details';
 import privacy from '../view/web/privacy';
 import forgetPassword from '../view/web/forgetPassword.vue';
@@ -152,6 +153,12 @@ const routes = [
                 path: 'company-profile/:id(\\d+)',
                 name: 'company-profile',
                 component: CompanyProfile,
+                props: true
+            },
+            {
+                path: 'design-profile/:id(\\d+)',
+                name: 'designProfile',
+                component: DesignProfile,
                 props: true
             },
             {

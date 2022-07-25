@@ -48,8 +48,8 @@
                                         <th>Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr v-for="(item,index) in services" v-if="services" :key="item.id">
+                                    <tbody v-if="services.length" >
+                                        <tr v-for="(item,index) in services"  :key="item.id">
                                             <td>{{index + 1}}</td>
                                             <td>{{item.name}}</td>
                                             <td><span :class="[parseInt(item.status) ? 'text-success': 'text-danger']">{{parseInt(item.status) ? 'Active': 'Inactive'}}</span></td>
@@ -63,10 +63,12 @@
                                             </td>
 
                                         </tr>
-                                        <tr v-else>
+                                    </tbody>
+                                    <body v-else>
+                                        <tr>
                                             <th class="text-center" colspan="5">No Data Found</th>
                                         </tr>
-                                    </tbody>
+                                    </body>
                                 </table>
                             </div>
                         </div>

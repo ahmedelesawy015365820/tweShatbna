@@ -1,6 +1,7 @@
 import dashboardCompany from "../../view/web/company/company";
 import trust from "../../view/web/company/trust";
 import profile from "../../view/web/company/profile";
+import empolyee from  "../../view/web/company/companyEmpolyee";
 import companyNotification from "../../view/web/notifications";
 import chat from "../../view/web/chat";
 import store from '../../store/web';
@@ -46,6 +47,11 @@ export default [
                 path: 'chats',
                 name: 'chatCompany',
                 component: chat,
+            },
+            {
+                path: 'empolyee-com',
+                name: 'empolyee',
+                component: empolyee,
             },
         ]
     },

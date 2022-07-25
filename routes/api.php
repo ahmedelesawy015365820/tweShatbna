@@ -77,14 +77,11 @@ use Illuminate\Support\Facades\Route;
          Route::get('SizingSetting',  'SizingServiceController@index');
          Route::post('SizingClientStore',  'SizingServiceController@store');
 
-
-
          //  start loata routes
          Route::post('latestProducts','ProductController@latestProducts');
          Route::post('products','ProductController@index');
          Route::post('product/details/{id}','ProductController@show');
          Route::get('getAllCategories',[CategoryController::class,'getAllCategories']);
-
 
          Route::get('get_countries',[AreaController::class,'get_countries']);
          Route::get('country_states/{country_id}',[AreaController::class,'country_states']);
@@ -100,6 +97,9 @@ use Illuminate\Support\Facades\Route;
          Route::get('companyShowGet',  'CompanyProfileController@companyShowGet');
          Route::get('companyProfile/{id}',  'CompanyProfileController@companyProfile');
 
+         // strart design Profile
+         Route::get('designShowGet',  'DesignProfileController@designShowGet');
+         Route::get('designProfile/{id}',  'DesignProfileController@designProfile');
 
      });
 
